@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Pathfinding\Grid\Tile.cs">
+    <Files>
+      <File FileName="Assets\Scripts - In Game\Pathfinding\Grid\Grid.cs" Line="559" Column="46" />
+      <File FileName="Assets\Scripts - In Game\Movement\VehicleMovement.cs" Line="63" Column="4" />
+      <File FileName="Assets\Scripts - In Game\Pathfinding\Grid\Tile.cs" Line="462" Column="26" />
+      <File FileName="Assets\Scripts - In Game\Pathfinding\AStar\A_Star.cs" Line="45" Column="120" />
+      <File FileName="Assets\Scripts - In Game\Constants\Const.cs" Line="44" Column="52" />
+      <File FileName="Assets\Scripts - In Game\Editor\GridEditor.cs" Line="52" Column="24" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

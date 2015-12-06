@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{A00CDE3A-2E50-C973-4002-3E8D9E1DED2E}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_0;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files (x86)/Unity 4.2.0/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity 4.2.0/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Scripts - In Game\Buildings\Building Placement\BuildingBeingPlaced.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Barracks\GRI_Barracks.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\ConYard\GRI_ConYard.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\PowerPlant\GRI_PowerPlant.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Radar\GRI_Radar.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Refinery\GRI_Refinery.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Repair Pad\GRI_RepairPad.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Super Weapon\GRI_SuperWeapon.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Support\Gun\GRI_Support_Gun.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Support\RPG\GRI_Support_RPG.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Support\SAM\GRI_Support_SAM.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Tech Center\GRI_TechCenter.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\War Factory\GRI_WarFactory.cs" />
+     <Compile Include="Assets\Scripts - In Game\Camera\MainCamera.cs" />
+     <Compile Include="Assets\Scripts - In Game\Camera\sPoint.cs" />
+     <Compile Include="Assets\Scripts - In Game\Classes\Order.cs" />
+     <Compile Include="Assets\Scripts - In Game\Classes\Orders.cs" />
+     <Compile Include="Assets\Scripts - In Game\Constants\Const.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\Building.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\RTSObject.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\Unit.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\Unit\Air.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\Unit\Infantry.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\Unit\Vehicle.cs" />
+     <Compile Include="Assets\Scripts - In Game\Cursors\Cursor.cs" />
+     <Compile Include="Assets\Scripts - In Game\Cursors\CursorManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_0.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_1.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_2.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_3.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_4.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_5.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_6.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_7.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_8.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_9.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_A.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_Control.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_D.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_Escape.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_H.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_S.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_Shift.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\MouseEventActions\LeftButton_Handler.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\MouseEventActions\MiddleButton_Handler.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\MouseEventActions\RightButton_Handler.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\MouseEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\ScreenEdgeEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\ScrollWheelEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\EventsManager.Keyboard.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\EventsManager.Mouse.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\EventsManager.ScreenEdge.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\EventsManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\EventArgs\MaintenanceButtonEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\EventArgs\QueueButtonEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\EventArgs\TypeButtonEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Events\GUIEvents.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\GUIManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\MiniMapController.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Drag Select\DragSelect.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Item Progress\ItemProgressTextures.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Maintenance Buttons\Maintanance_Disable.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Maintenance Buttons\Maintenance_Fix.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Maintenance Buttons\Maintenance_Sell.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Menu Items\QueueButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Menu Items\QueueContent.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Menu Items\TypeButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Styles\GUIStyles.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Textures\GUITextures.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IMaintenanceButtons.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IQueueButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IQueueContent.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\ITypeButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ICamera.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ICursorManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IEventsManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGLManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGUIManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGrid.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ILevelLoader.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IMiniMapController.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ISelectedManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IThreadManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IUIManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IAttackable.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IDeployable.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IInteractable.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IMoveable.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IOrderable.cs" />
+     <Compile Include="Assets\Scripts - In Game\ItemDB\Item.cs" />
+     <Compile Include="Assets\Scripts - In Game\ItemDB\ItemDB.cs" />
+     <Compile Include="Assets\Scripts - In Game\Manager\Manager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Misc\wayPointGizmo.cs" />
+     <Compile Include="Assets\Scripts - In Game\Movement\AirMovement.cs" />
+     <Compile Include="Assets\Scripts - In Game\Movement\InfantryMovement.cs" />
+     <Compile Include="Assets\Scripts - In Game\Movement\LandMovement.cs" />
+     <Compile Include="Assets\Scripts - In Game\Movement\Movement.cs" />
+     <Compile Include="Assets\Scripts - In Game\Movement\VehicleMovement.cs" />
+     <Compile Include="Assets\Scripts - In Game\OpenGL\GLItem.cs" />
+     <Compile Include="Assets\Scripts - In Game\OpenGL\GLManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\OpenGL\GLMatShader.cs" />
+     <Compile Include="Assets\Scripts - In Game\Pathfinding\AStar\A_Star.cs" />
+     <Compile Include="Assets\Scripts - In Game\Pathfinding\Grid\Grid.cs" />
+     <Compile Include="Assets\Scripts - In Game\Pathfinding\Grid\Tile.cs" />
+     <Compile Include="Assets\Scripts - In Game\Resolver\ManagerResolver.cs" />
+     <Compile Include="Assets\Scripts - In Game\Resolver\ResolverConfig.cs" />
+     <Compile Include="Assets\Scripts - In Game\Resource\Strings.cs" />
+     <Compile Include="Assets\Scripts - In Game\Selected Units\Overlays.cs" />
+     <Compile Include="Assets\Scripts - In Game\Selected Units\Selected.cs" />
+     <Compile Include="Assets\Scripts - In Game\Selected Units\SelectedBuilding.cs" />
+     <Compile Include="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\TextureGenerator\TextureGenerator.cs" />
+     <Compile Include="Assets\Scripts - In Game\Threading\GetPathThread.cs" />
+     <Compile Include="Assets\Scripts - In Game\Threading\ThreadJob.cs" />
+     <Compile Include="Assets\Scripts - In Game\Threading\ThreadManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\UI\UIManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Units\Vehicles\MCV\MCV.cs" />
+     <Compile Include="Assets\Scripts - In Game\Units\Vehicles\Standard Tank\StandardTank.cs" />
+     <Compile Include="Assets\Scripts - Menus\LevelLoader.cs" />
+     <Compile Include="Assets\Scripts - Menus\MainMenuGUI.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

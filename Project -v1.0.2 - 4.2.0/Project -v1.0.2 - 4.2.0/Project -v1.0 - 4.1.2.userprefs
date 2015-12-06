@@ -1,0 +1,23 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Pathfinding\Grid\Grid.cs">
+    <Files>
+      <File FileName="Assets\Scripts - In Game\Pathfinding\Grid\Grid.cs" Line="392" Column="3" />
+      <File FileName="Assets\Scripts - In Game\Resolver\ManagerResolver.cs" Line="20" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Movement\VehicleMovement.cs" Line="92" Column="3" />
+      <File FileName="Assets\Scripts - In Game\Threading\ThreadManager.cs" Line="41" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Threading\GetPathThread.cs" Line="28" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Threading\ThreadJob.cs" Line="5" Column="23" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="27" Column="32" />
+      <File FileName="Assets\Scripts - In Game\Pathfinding\Grid\Tile.cs" Line="457" Column="20" />
+      <File FileName="Assets\Scripts - In Game\Units\Vehicles\MCV\MCV.cs" Line="47" Column="32" />
+      <File FileName="Assets\Scripts - In Game\Movement\Movement.cs" Line="12" Column="8" />
+      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="135" Column="41" />
+      <File FileName="Assets\Scripts - In Game\Movement\LandMovement.cs" Line="73" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
