@@ -8,11 +8,12 @@ public class UnitManager : Unit,IOrderable{
 
 
 
-	public bool UnderOrders;
+	public bool isAStructure;
 
 	public int PlayerOwner;
 	public customMover cMover;
 	public IWeapon myWeapon;
+	public bool attackWhileMoving = false;
 	public UnitStats myStats;
 
 	public VisionSphere vision;
@@ -67,8 +68,9 @@ public class UnitManager : Unit,IOrderable{
 
 		visionSphere.radius = visionRange + gameObject.GetComponent<CharacterController>().radius;
 
-
-		changeState (new DefaultState (this, cMover,myWeapon));
+		if (cMover != null) {
+			changeState (new DefaultState (this, cMover, myWeapon));
+		}
 
 	}
 
@@ -84,9 +86,7 @@ public class UnitManager : Unit,IOrderable{
 	void Update () {
 		if (myState != null) {
 			myState.Update ();
-		} else {
-			Debug.Log("State is null");
-		}
+		} 
 
 
 
@@ -147,7 +147,10 @@ public class UnitManager : Unit,IOrderable{
 		//Move Order ---------------------------------------------
 		case Const.ORDER_MOVE_TO:
 		
-				changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));
+			if(attackWhileMoving)
+				{changeState (new AttckWhileMoveState(order.OrderLocation, this, cMover, myWeapon));}
+			else
+				{changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));}
 				//cMover.resetMoveLocation(order.OrderLocation);
 			
 			break;
@@ -183,7 +186,7 @@ public class UnitManager : Unit,IOrderable{
 			
 			if (manage != null) {
 				if (other.GetComponent<UnitManager> ().PlayerOwner != PlayerOwner) {
-					Debug.Log("Enemey in sight");
+				
 					enemies.Add (other.gameObject);
 				}
 				else{allies.Add(other.gameObject);}
@@ -201,6 +204,33 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
+
+	public GameObject findClosestEnemy()
+	{
+
+		enemies.RemoveAll(item => item == null);
+		GameObject best = null;
+		
+		
+		float distance = 1000000;
+	
+		
+		for (int i = 0; i < enemies.Count; i ++) {
+			if (enemies[i] != null) {
+				
+				float currDistance = Vector3.Distance(enemies[i].transform.position, this.gameObject.transform.position);
+				if(currDistance < distance)
+				{best = enemies[i];
+					
+					distance = currDistance;
+				}
+				
+			}
+		}
+		
+		return best;
+
+	}
 	
 	public GameObject findBestEnemy()
 	{enemies.RemoveAll(item => item == null);

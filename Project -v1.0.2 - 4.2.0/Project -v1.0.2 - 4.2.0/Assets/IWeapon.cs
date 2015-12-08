@@ -12,7 +12,6 @@ public class IWeapon : MonoBehaviour {
 
 	public float attackPeriod;
 	public enum type{melee, ranged, magic}
-	public bool AttackWhileMoving;
 
 	public type weaponType;
 
@@ -93,6 +92,7 @@ public class IWeapon : MonoBehaviour {
 	public bool canAttack(GameObject target)
 	{
 
+
 		if (!offCooldown) {
 			
 			return false;}
@@ -109,7 +109,7 @@ public class IWeapon : MonoBehaviour {
 		}
 
 
-		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position);
+		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position) - target.GetComponent<CharacterController>().radius;
 		if (distance > range) {
 
 
@@ -130,7 +130,7 @@ public class IWeapon : MonoBehaviour {
 
 	public bool inRange(GameObject target)
 	{
-		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position);
+		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position)- target.GetComponent<CharacterController>().radius;
 		if (distance > range) {
 			
 		

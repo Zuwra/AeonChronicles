@@ -49,18 +49,19 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 		//Always want the map to appear 3/4 up the screen, with a height of 1/4.5
 		float aspectRatio = (float)Screen.width/(float)Screen.height;
 		
-		float viewPortY = 3.0f/4.0f;
+		float viewPortY = .10f/4.0f;
 		float viewPortHeight = 1.0f/4.5f;
 		
 		//Figure width values based on height values
 		float viewPortWidth = 1.0f/(4.5f*aspectRatio);
 		float viewPortX = 1-(0.25f/aspectRatio);
-		
+
 		//Assign camera viewport
 		GetComponent<Camera>().rect = new Rect(viewPortX, viewPortY, viewPortWidth, viewPortHeight);
 		miniMapRect = GetComponent<Camera>().rect;
 		
 		//Assign pixel rect
+		//Debug.Log (viewPortX*Screen.width + "   "+ viewPortY*Screen.height);
 		m_MiniMapRect = new Rect(viewPortX*Screen.width, viewPortY*Screen.height, viewPortWidth*Screen.width, viewPortHeight*Screen.height);
 		
 		//Now we have the minimap size, determine how wide the GUI should be

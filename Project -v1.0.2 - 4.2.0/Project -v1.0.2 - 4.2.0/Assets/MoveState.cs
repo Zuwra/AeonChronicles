@@ -11,6 +11,7 @@ public class MoveState : UnitState{
 	public MoveState(Vector3 location, UnitManager man, customMover move, IWeapon weapon)
 	{
 		myManager = man;
+
 		myMover = move;
 		myWeapon = weapon;
 		

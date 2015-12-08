@@ -18,7 +18,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 	
 	private Texture2D m_MainMenuBGColor;
 	
-	private ITypeButton[] m_TypeButtons = new TypeButton[5];
+	//private ITypeButton[] m_TypeButtons = new TypeButton[5];
 	private IMaintenanceButtons[] m_MaintenanceButtons = new IMaintenanceButtons[3];
 	private IManager m_Manager;
 	
@@ -82,7 +82,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		
 		//Build Borders around the map
 		float sideBorderWidth = (m_MainMenuWidth-(m_MiniMapRect.width*Screen.width))/2;
-		float topBorderHeight = (1-m_MiniMapRect.yMax)*Screen.height;
+		float topBorderHeight = (1-m_MiniMapRect.yMax)*Screen.height/2;
 		
 		m_LeftMiniMapBG = new Rect();
 		m_LeftMiniMapBG.xMin = Screen.width-m_MainMenuWidth;
@@ -160,7 +160,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		//GUI.DrawTexture (m_BelowMiniMapBG, m_MainMenuBGColor);
 		
 		//Draw Type Buttons
-		foreach (IButton typeButton in m_TypeButtons)
+		//foreach (IButton typeButton in m_TypeButtons)
 		{
 			//typeButton.Execute ();
 		}
@@ -190,7 +190,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 	
 	public void UpdateQueueContents(List<Item> availableItems)
 	{
-		foreach (TypeButton typeButton in m_TypeButtons)
+		//foreach (TypeButton typeButton in m_TypeButtons)
 		{
 			//typeButton.UpdateQueueContents (availableItems);
 		}
@@ -258,7 +258,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		menuArea.yMax = Screen.height;
 		
 		//Update type buttons with new viewable area
-		foreach (ITypeButton button in m_TypeButtons)
+	//	foreach (ITypeButton button in m_TypeButtons)
 		{
 		//	button.Resize(menuArea);
 		}

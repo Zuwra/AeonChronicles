@@ -107,16 +107,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 		hoverOver = HoverOver.Terrain;
 		InteractionState interactionState = InteractionState.Nothing;
 		
-		//Are we hovering over the GUI or the main screen?
-		if (Input.mousePosition.x < Screen.width-m_GuiWidth)
-		{
+
 			//We're over the main screen, let's raycast
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;		
 
 
 
-			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16)))
+			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(8 << 12)))
 			{
 
 				currentObject = hit.collider.gameObject;
@@ -139,12 +137,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				
 				}				
 				}
-		}
-		else
-		{
-			//Mouse is over GUI
-			hoverOver = HoverOver.Menu;
-		}
+
 		
 		if (hoverOver == HoverOver.Menu || m_SelectedManager.ActiveObjectsCount() == 0 || m_GuiManager.GetSupportSelected != 0)
 		{
