@@ -148,9 +148,12 @@ public class UnitManager : Unit,IOrderable{
 		case Const.ORDER_MOVE_TO:
 		
 			if(attackWhileMoving)
-				{changeState (new AttckWhileMoveState(order.OrderLocation, this, cMover, myWeapon));}
+				{
+				Debug.Log("attack while moving");
+				changeState (new AttckWhileMoveState(order.OrderLocation, this, cMover, myWeapon));}
 			else
-				{changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));}
+			{Debug.Log("moving");
+				changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));}
 				//cMover.resetMoveLocation(order.OrderLocation);
 			
 			break;

@@ -11,15 +11,15 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 	private Rect m_MiniMapRect;
 	private float m_MainMenuWidth;
 	
-	private Rect m_RightMiniMapBG;
-	private Rect m_LeftMiniMapBG;
-	private Rect m_AboveMiniMapBG;
-	private Rect m_BelowMiniMapBG;
+	//private Rect m_RightMiniMapBG;
+	//private Rect m_LeftMiniMapBG;
+	//private Rect m_AboveMiniMapBG;
+	//private Rect m_BelowMiniMapBG;
 	
-	private Texture2D m_MainMenuBGColor;
+	//private Texture2D m_MainMenuBGColor;
 	
 	//private ITypeButton[] m_TypeButtons = new TypeButton[5];
-	private IMaintenanceButtons[] m_MaintenanceButtons = new IMaintenanceButtons[3];
+	//private IMaintenanceButtons[] m_MaintenanceButtons = new IMaintenanceButtons[3];
 	private IManager m_Manager;
 	
 	//Properties
@@ -83,7 +83,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		//Build Borders around the map
 		float sideBorderWidth = (m_MainMenuWidth-(m_MiniMapRect.width*Screen.width))/2;
 		float topBorderHeight = (1-m_MiniMapRect.yMax)*Screen.height/2;
-		
+		/*
 		m_LeftMiniMapBG = new Rect();
 		m_LeftMiniMapBG.xMin = Screen.width-m_MainMenuWidth;
 		m_LeftMiniMapBG.xMax = m_LeftMiniMapBG.xMin + sideBorderWidth;
@@ -114,21 +114,21 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		menuArea.xMax = m_RightMiniMapBG.xMax;
 		menuArea.yMin = m_BelowMiniMapBG.yMin;
 		menuArea.yMax = Screen.height;
-		/*
+
 		//Create type buttons
 		m_TypeButtons[0] = new TypeButton(ButtonType.Building, menuArea);
 		m_TypeButtons[1] = new TypeButton(ButtonType.Support, menuArea);
 		m_TypeButtons[2] = new TypeButton(ButtonType.Infantry, menuArea);
 		m_TypeButtons[3] = new TypeButton(ButtonType.Vehicle, menuArea);
 		m_TypeButtons[4] = new TypeButton(ButtonType.Air, menuArea);
-		*/
+
 		//Calcualte Maintenace button rects
 		float size = m_RightMiniMapBG.width-4;
 		float totalHeight = size*3;
 		float offSet = (m_RightMiniMapBG.height-totalHeight)/2;
 		float x = m_RightMiniMapBG.xMin;
 		float y = m_RightMiniMapBG.yMin+offSet;
-		
+
 		Rect rect1 = new Rect(x, y, size, size);
 		Rect rect2 = new Rect(x, y+size, size, size);
 		Rect rect3 = new Rect(x, y+(size*2), size, size);
@@ -137,7 +137,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		m_MaintenanceButtons[0] = new Maintenance_Sell(rect1);
 		m_MaintenanceButtons[1] = new Maintenance_Fix(rect2);
 		m_MaintenanceButtons[2] = new Maintanance_Disable(rect3);
-		
+		*/
 		//Resolve Manager
 		m_Manager = ManagerResolver.Resolve<IManager>();
 	}
@@ -159,20 +159,10 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		//GUI.DrawTexture (m_AboveMiniMapBG, m_MainMenuBGColor);
 		//GUI.DrawTexture (m_BelowMiniMapBG, m_MainMenuBGColor);
 		
-		//Draw Type Buttons
-		//foreach (IButton typeButton in m_TypeButtons)
-		{
-			//typeButton.Execute ();
-		}
-		
-		//Draw maintenance buttons
-		foreach (IMaintenanceButtons button in m_MaintenanceButtons)
-		{
-			//button.Execute ();
-		}
+
 		
 		//Draw Money Label
-		GUI.Label (m_AboveMiniMapBG, m_Manager.Money.ToString (), GUIStyles.MoneyLabel);
+		//GUI.Label (m_AboveMiniMapBG, m_Manager.Money.ToString (), GUIStyles.MoneyLabel);
 	}
 	
 	public bool IsWithin(Vector3 worldPos)
@@ -190,10 +180,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 	
 	public void UpdateQueueContents(List<Item> availableItems)
 	{
-		//foreach (TypeButton typeButton in m_TypeButtons)
-		{
-			//typeButton.UpdateQueueContents (availableItems);
-		}
+
 	}
 
 	public void AddConstructor (Building building)
@@ -225,7 +212,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		//Build Borders around the map
 		float sideBorderWidth = (m_MainMenuWidth-(m_MiniMapRect.width*Screen.width))/2;
 		float topBorderHeight = (1-m_MiniMapRect.yMax)*Screen.height;
-		
+		/*
 		m_LeftMiniMapBG = new Rect();
 		m_LeftMiniMapBG.xMin = Screen.width-m_MainMenuWidth;
 		m_LeftMiniMapBG.xMax = m_LeftMiniMapBG.xMin + sideBorderWidth;
@@ -278,5 +265,6 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		m_MaintenanceButtons[0].Resize (rect1);
 		m_MaintenanceButtons[1].Resize (rect2);
 		m_MaintenanceButtons[2].Resize (rect3);
+		*/
 	}
 }

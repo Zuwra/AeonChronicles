@@ -77,9 +77,10 @@ public class SlowDebuff : MonoBehaviour, Notify {
 				deb.resetTime();
 			}
 		} else {
+			if(target.GetComponent<customMover>() != null){
 			target.AddComponent<SlowDebuff> ();
 			deb = target.GetComponent<SlowDebuff> ();
-			deb.initialize (duration, speedDecrease,percent);
+				deb.initialize (duration, speedDecrease,percent);}
 		}
 
 

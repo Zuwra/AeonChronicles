@@ -115,7 +115,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 
 			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(8 << 12)))
-			{
+		{
 
 				currentObject = hit.collider.gameObject;
 
@@ -239,6 +239,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	//------------------------Mouse Button Commands--------------------------------------------
 	public void LeftButton_SingleClickDown(MouseEventArgs e)
 	{
+		Debug.Log ("left click");
 		switch (m_Mode)
 		{
 		case Mode.Normal:
@@ -381,12 +382,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 	public void RightButton_SingleClick(MouseEventArgs e)
 	{
+	
+
 		switch (m_Mode)
 		{
 		case Mode.Normal:
 			//We've right clicked, have we right clicked on ground, interactable object or enemy?
 			int currentObjLayer = currentObject.layer;
-			
+
 			if (currentObjLayer == 8)
 			{
 				//Terrain -> Move Command
@@ -400,10 +403,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 				{
 					Vector3 attackMovePoint = hit.point;
 					//GiveOrder( Orders.CreateAttackMove(attackMovePoint));
-				
-
 
 				//Debug.Log("commanding to move" + attackMovePoint);
+
 					m_SelectedManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));}
 			}
 			else if (currentObjLayer == 9 || currentObjLayer == 10)

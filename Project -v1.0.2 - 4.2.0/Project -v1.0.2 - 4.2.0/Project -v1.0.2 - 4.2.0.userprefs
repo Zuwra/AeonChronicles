@@ -1,10 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Cursors\CursorManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UI\UIManager.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="123" Column="6" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="399" Column="5" />
       <File FileName="Assets\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Cursors\CursorManager.cs" Line="46" Column="23" />
+      <File FileName="Assets\Scripts - In Game\Cursors\CursorManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\GUI\GUIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\GUI\MiniMapController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Events\EventsManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\SlowDebuff.cs" Line="77" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
