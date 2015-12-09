@@ -63,8 +63,16 @@ public class UnitManager : Unit,IOrderable{
 			myCost = gameObject.GetComponent<AbstractCost>();
 		}
 	
-		RaceManager man = GameObject.Find ("GameRaceManager").GetComponent<RaceManager> ();
-		man.addUnit (this.gameObject);
+		GameManager man = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ();
+		if (PlayerOwner != man.playerNumber) {
+			this.gameObject.tag = "Enemy";
+		} else {
+			this.gameObject.tag = "Player";
+		}
+
+		man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
+		man.playerList [PlayerOwner - 1].UnitCreated(myStats.supply);
+
 
 		visionSphere.radius = visionRange + gameObject.GetComponent<CharacterController>().radius;
 
@@ -178,27 +186,30 @@ public class UnitManager : Unit,IOrderable{
 
 	void OnTriggerEnter(Collider other)
 	{
-		//Debug.Log (this.gameObject.name + "   targeting " + other.gameObject.name + "  " + other.gameObject.tag);
+		//need to set up calls to listener components
+		//this will need to be refactored for team games
 		if (!other.isTrigger) {
-			
-			//if (other.gameObject.layer.Equals("Unit"))
-			UnitManager manage = other.GetComponent<UnitManager> ();
-			if (manage == null) {
-				manage = other.GetComponentInParent<UnitManager> ();
-			}
-			
-			if (manage != null) {
-				if (other.GetComponent<UnitManager> ().PlayerOwner != PlayerOwner) {
-				
-					enemies.Add (other.gameObject);
-				}
-				else{allies.Add(other.gameObject);}
-			}
+
+			UnitManager manage = other.gameObject.GetComponent<UnitManager>();
+			if(manage){
+			if(manage.PlayerOwner != PlayerOwner)
+				{enemies.Add (other.gameObject);}
+
+			else{
+				allies.Add(other.gameObject);
+				}}
+
 		}
 	}
 	
 	void OnTriggerExit(Collider other)
-	{enemies.Remove (other.gameObject);
+	{
+		if (enemies.Contains (other.gameObject)) {
+			enemies.Remove (other.gameObject);
+		} else if (allies.Contains (other.gameObject)) {
+			allies.Remove(other.gameObject);
+		}
+		enemies.Remove (other.gameObject);
 		if (enemies.Count == 0) {
 			
 			//myManager.currentState = UnitManager.state.stop;

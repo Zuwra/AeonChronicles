@@ -125,6 +125,7 @@
      <Compile Include="Assets\Capacitor.cs" />
      <Compile Include="Assets\DamageTypes.cs" />
      <Compile Include="Assets\DefaultState.cs" />
+     <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\GarataiManager.cs" />
      <Compile Include="Assets\GatlingGun.cs" />
      <Compile Include="Assets\HeartStopper.cs" />

@@ -10,7 +10,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public float ResourceOne;
 	public string TwoName;
 	public float ResourceTwo;
-	public float playerNumber;
+	public int playerNumber;
 
 	public float supplyMax;
 	public float currentSupply;
@@ -29,15 +29,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	//public TechTree myTech;
 
 	// Use this for initialization
-	void Start () {foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Player"))
-		{
-			if(obj.GetComponent<UnitManager>())
-			{if(obj.GetComponent<UnitManager>().PlayerOwner == playerNumber)
-				{//Debug.Log(obj.name);
-					unitList.Add(obj);
-				}
-			}
-		}
+	void Start () {
 	
 	}
 	
