@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class UnitManager : Unit,IOrderable{
 
 
-
+	public string UnitName;
 	public bool isAStructure;
 
 	public int PlayerOwner;

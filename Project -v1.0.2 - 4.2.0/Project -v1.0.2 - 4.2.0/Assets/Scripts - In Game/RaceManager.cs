@@ -209,7 +209,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				foundUnits.Add(obj);
 		}
 
-		Debug.Log (foundUnits.Count );
 
 		if (!selectBuildings) {
 

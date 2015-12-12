@@ -7,12 +7,16 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	private List<IOrderable> SelectedActiveObjects = new List<IOrderable>();	
 	private List<RTSObject> SelectedObjects = new List<RTSObject>();
 
+
 	private List<List<RTSObject>> Group = new List<List<RTSObject>>();
 	
 	public static SelectedManager main;
 
 	public UiAbilityManager abilityManager;
 	private RaceManager raceMan;
+
+
+
 
 	void Start()
 	{
@@ -172,11 +176,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 			{
 				SelectedActiveObjects.Add ((IOrderable)obj);
 			}
+		
 			SelectedObjects.Add (obj);
 
 			obj.SetSelected ();
 			if(abilityManager != null){
-				abilityManager.addUnit(obj.gameObject);}
+				abilityManager.addUnit(SelectedObjects);}
 		}
 	}
 	
