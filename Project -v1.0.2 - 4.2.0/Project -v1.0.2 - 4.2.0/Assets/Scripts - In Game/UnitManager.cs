@@ -194,7 +194,8 @@ public class UnitManager : Unit,IOrderable{
 			UnitManager manage = other.gameObject.GetComponent<UnitManager>();
 			if(manage){
 			if(manage.PlayerOwner != PlayerOwner)
-				{enemies.Add (other.gameObject);}
+				{if(!other.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.invisible))
+					{enemies.Add (other.gameObject);}}
 
 			else{
 				allies.Add(other.gameObject);

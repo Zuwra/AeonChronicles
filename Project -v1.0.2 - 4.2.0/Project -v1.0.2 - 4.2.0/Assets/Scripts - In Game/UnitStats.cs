@@ -133,7 +133,7 @@ public class UnitStats : MonoBehaviour {
 				foreach (Modifier mod in damageModifiers) {
 
 					amount = mod.modify (amount, source);
-					if (amount == 0) {
+					if (amount <= 0) {
 						setToZero = true;
 					}
 				}
@@ -195,10 +195,10 @@ public class UnitStats : MonoBehaviour {
 					}
 				}
 				if(supply > 0)
-					{GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().currentSupply -= supply;}
+					{GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<GameManager>().activePlayer.currentSupply -= supply;}
 				else if (supply< 0)
-					{GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().supplyMax -=supply;}
-				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitDied (supply);
+				{GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<GameManager>().activePlayer.supplyMax -=supply;}
+				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager>().activePlayer.UnitDied (supply);
 				Destroy (this.gameObject);
 
 			}
