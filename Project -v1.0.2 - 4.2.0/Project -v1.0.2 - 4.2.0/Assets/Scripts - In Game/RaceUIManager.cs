@@ -113,7 +113,9 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	{selectManager.selectAllArmy ();}
 	
 	public void fTwo()
-	{}
+	{
+		GameObject.FindGameObjectWithTag ("Error").GetComponent<ErrorPrompt> ().showError ("not enough resources");
+	}
 	
 	public void fThree()
 	{}
@@ -144,8 +146,6 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	
 	public void fTwelve()
 	{}
-
-
 
 
 

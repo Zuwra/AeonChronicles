@@ -117,6 +117,7 @@
      <Compile Include="Assets\AstarPathfindingProject\Utilities\ProfileHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
+     <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
      <Compile Include="Assets\Scripts - In Game\Ability.cs" />
      <Compile Include="Assets\Scripts - In Game\AbstractCost.cs" />

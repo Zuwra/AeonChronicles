@@ -1,10 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LandMineActivate.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ErrorPrompt.cs">
     <Files>
-      <File FileName="Assets\LandMineActivate.cs" Line="45" Column="1" />
+      <File FileName="Assets\ErrorPrompt.cs" Line="21" Column="3" />
+      <File FileName="Assets\Scripts - In Game\Ability.cs" Line="1" Column="1" />
+      <File FileName="Assets\LandMineActivate.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="201" Column="34" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="121" Column="4" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

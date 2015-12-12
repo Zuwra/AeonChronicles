@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public abstract class Ability : MonoBehaviour {
-	
+
+	public Material iconPic;
 	public AbstractCost myCost;
 	public enum type{passive, active, triggered}
 	public string Name;
