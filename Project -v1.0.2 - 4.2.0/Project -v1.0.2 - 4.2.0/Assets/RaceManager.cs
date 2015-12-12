@@ -15,7 +15,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public float supplyMax;
 	public float currentSupply;
 
-	public enum race{Ameboid, Garatai, Atilon}
 
 	private List<GameObject> resourceDropOffs = new List<GameObject> ();
 
@@ -159,6 +158,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
+	public HashSet<GameObject> getUnitList()
+	{return unitList;
+	}
+
 	public void addDropOff(GameObject obj)
 	{resourceDropOffs.Add (obj);}
 
@@ -218,7 +221,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 					foundUnits.Remove(foundUnits[i]);}
 			}
 		}
-		Debug.Log (foundUnits.Count);
 
 		return foundUnits;
 	}

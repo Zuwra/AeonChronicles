@@ -20,6 +20,10 @@ public class UiAbilityManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
+
+
 	
 	}
 
@@ -74,6 +78,8 @@ public class UiAbilityManager : MonoBehaviour {
 		}
 
 	}
+	// these are seperate methods  from the update key input so the buttons can also call the same functions.
+
 
 
 

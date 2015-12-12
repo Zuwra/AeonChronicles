@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		eventsManager.KeyAction += KeyBoardPressedHandler;
 		eventsManager.ScreenEdgeMousePosition += MouseAtScreenEdgeHandler;
 
-		raceManager = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager>();
+		raceManager = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager>().activePlayer;
 		//Attach gui width changed event	
 		GUIEvents.MenuWidthChanged += MenuWidthChanged;
 		
@@ -184,8 +184,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	{	interactionState = InteractionState.Select;
 		if (currentObject != null) {
 		
-			if (currentObject.GetComponentInParent<UnitManager> ().PlayerOwner 
-				!= GameObject.Find ("GameRaceManager").GetComponent<RaceManager> ().playerNumber) {
+			if (currentObject.GetComponentInParent<UnitManager> ().PlayerOwner != raceManager.playerNumber) {
 				interactionState = InteractionState.Attack;
 		
 			} 
@@ -239,7 +238,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	//------------------------Mouse Button Commands--------------------------------------------
 	public void LeftButton_SingleClickDown(MouseEventArgs e)
 	{
-		Debug.Log ("left click");
+
 		switch (m_Mode)
 		{
 		case Mode.Normal:
@@ -319,7 +318,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10))
 			{
 				if (!IsShiftDown)
-				{// this shoudl add guys to selection (I dont think it does)
+				{
 					m_SelectedManager.DeselectAll ();
 				}
 				if(currentObject.GetComponent<UnitManager>())

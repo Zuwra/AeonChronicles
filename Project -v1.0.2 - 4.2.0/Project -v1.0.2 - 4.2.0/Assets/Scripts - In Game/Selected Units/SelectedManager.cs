@@ -12,6 +12,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	public static SelectedManager main;
 
 	public UiAbilityManager abilityManager;
+	private RaceManager raceMan;
+
+	void Start()
+	{
+		raceMan = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer;
+
+	}
 
 	public int OverlayWidth
 	{
@@ -44,68 +51,69 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 		
 		}
 
+		if (Input.GetKey (KeyCode.LeftShift)) {
+			// set a control group
+			if (Input.GetKeyDown (KeyCode.Alpha1)) 
+				{AddUnitsToGroup (0);} 
+	
+			else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+				AddUnitsToGroup (1);}
 
+			else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+				AddUnitsToGroup (2);} 
 
-		if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown (KeyCode.Alpha1)) {
-			AddUnitsToGroup (0);
-		} 
-		else if (Input.GetKeyDown (KeyCode.Alpha1)) 
-			{SelectGroup (0);}
-		
-		else if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown (KeyCode.Alpha2)) 
-			{	AddUnitsToGroup(1);	}
-		else if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			SelectGroup(1);}
+			else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+				AddUnitsToGroup (3);} 
 
-		else if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown (KeyCode.Alpha3)) {
-			AddUnitsToGroup(2);}
-		else if (Input.GetKeyDown (KeyCode.Alpha3)) {	
-			SelectGroup(2);}
+			else if (Input.GetKeyDown (KeyCode.Alpha5)) {
+				AddUnitsToGroup (4);} 
 
+			else if (Input.GetKeyDown (KeyCode.Alpha6)) {
+				AddUnitsToGroup (5);} 
 
-		else if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown (KeyCode.Alpha4)) {
-			AddUnitsToGroup(3);	}
+			else if (Input.GetKeyDown (KeyCode.Alpha7)) {
+				AddUnitsToGroup (6);} 
+
+			else if (Input.GetKeyDown (KeyCode.Alpha8)) {
+				AddUnitsToGroup (7);}
+
+			else if ( Input.GetKeyDown (KeyCode.Alpha9)) {
+				AddUnitsToGroup (8);} 
+
+			else if (Input.GetKeyDown (KeyCode.Alpha0)) {
+				AddUnitsToGroup (9);
+
+			} 
+
+		} else {
+			// Select a control group
+		if (Input.GetKeyDown (KeyCode.Alpha1))   
+			{	SelectGroup (0);}
+		else if (Input.GetKeyDown (KeyCode.Alpha2))
+			{SelectGroup (1);}
+		else if (Input.GetKeyDown (KeyCode.Alpha3)) 
+			{	SelectGroup (2);} 
 		else if (Input.GetKeyDown (KeyCode.Alpha4)) {	
-			SelectGroup(3);}
-
-		else if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown (KeyCode.Alpha5)) {
-			AddUnitsToGroup(4);	}
+				SelectGroup (3);} 
 		else if (Input.GetKeyDown (KeyCode.Alpha5)) {	
-			SelectGroup(4);}
-
-		else if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown (KeyCode.Alpha6)) {
-			AddUnitsToGroup(5);	}
+				SelectGroup (4);}
 		else if (Input.GetKeyDown (KeyCode.Alpha6)) {	
-			SelectGroup(5);}
-
-		else if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown (KeyCode.Alpha7)) {
-			AddUnitsToGroup(6);	}
+				SelectGroup (5);} 
 		else if (Input.GetKeyDown (KeyCode.Alpha7)) {	
-			SelectGroup(6);}
-
-		else if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown (KeyCode.Alpha8)) {
-			AddUnitsToGroup(7);	}
+				SelectGroup (6);}
 		else if (Input.GetKeyDown (KeyCode.Alpha8)) {	
-			SelectGroup(7);}
-
-		else if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown (KeyCode.Alpha9)) {
-			AddUnitsToGroup(8);	}
+				SelectGroup (7);}
 		else if (Input.GetKeyDown (KeyCode.Alpha9)) {	
-			SelectGroup(8);}
-
-		else if (Input.GetKey (KeyCode.LeftShift) && Input.GetKeyDown (KeyCode.Alpha0)) {
-			AddUnitsToGroup(9);	}
+				SelectGroup (8);} 
 		else if (Input.GetKeyDown (KeyCode.Alpha0)) {	
-			SelectGroup(9);}
-
-
-
+				SelectGroup (9);}
+		
+		}
 
 	if (Input.GetKeyUp (KeyCode.Q)) {
 
 			foreach (IOrderable unit in SelectedActiveObjects)
-			{;
-
+			{
 				if(!unit.UseQAbility())
 				{break;}
 			}
@@ -227,7 +235,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 
 		foreach (RTSObject obj in Group[groupNumber])
 		{
-			Debug.Log (obj.gameObject.name);
 			AddObject (obj);
 		}
 	}
@@ -251,4 +258,19 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	{
 		return SelectedObjects.Contains (obj.GetComponent<RTSObject>());
 	}
+
+	public void selectAllArmy ()
+		{
+		foreach (GameObject obj in  raceMan.getUnitList ()) {
+		
+			if (!obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.structure) 
+			    &&!obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.worker) ) {
+				AddObject (obj.GetComponent<UnitManager> ());
+			}
+		}
+		}
+
+
+
+
 }

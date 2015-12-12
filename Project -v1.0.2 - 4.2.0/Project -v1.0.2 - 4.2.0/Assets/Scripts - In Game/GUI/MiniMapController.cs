@@ -95,7 +95,7 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 	
 	public void MouseClicked(object sender, MouseEventArgs e)
 	{
-		Debug.Log (sender.ToString ());
+	//	Debug.Log (sender.ToString ());
 		if (!e.buttonUp)
 		{
 			if (m_MiniMapRect.Contains (Input.mousePosition))

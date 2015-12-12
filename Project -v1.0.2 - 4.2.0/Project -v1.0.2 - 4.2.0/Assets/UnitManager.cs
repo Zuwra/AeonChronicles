@@ -69,7 +69,8 @@ public class UnitManager : Unit,IOrderable{
 		} else {
 			this.gameObject.tag = "Player";
 		}
-
+	
+		man.initialize ();
 		man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
 		man.playerList [PlayerOwner - 1].UnitCreated(myStats.supply);
 
@@ -157,10 +158,10 @@ public class UnitManager : Unit,IOrderable{
 		
 			if(attackWhileMoving)
 				{
-				Debug.Log("attack while moving");
+
 				changeState (new AttckWhileMoveState(order.OrderLocation, this, cMover, myWeapon));}
 			else
-			{Debug.Log("moving");
+			{
 				changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));}
 				//cMover.resetMoveLocation(order.OrderLocation);
 			

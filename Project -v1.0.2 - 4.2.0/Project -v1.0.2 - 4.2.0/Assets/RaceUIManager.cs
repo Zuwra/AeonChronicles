@@ -12,16 +12,19 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	string OneName;
 	string TwoName;
 
+	SelectedManager selectManager;
+	
 
 
 
 
 	// Use this for initialization
 	void Start () {
+		selectManager = GameObject.Find ("Manager").GetComponent<SelectedManager>();
 
 		if (raceManager == null) {
 
-			raceManager = GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>();
+			raceManager = GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<GameManager>().activePlayer;
 		}
 		raceManager.addWatcher (this);
 		OneName = raceManager.OneName;
@@ -40,6 +43,50 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	
 	// Update is called once per frame
 	void Update () {
+
+
+		
+		if (Input.GetKeyDown (KeyCode.F1)) {
+			fOne();
+			
+			
+		}
+		else if (Input.GetKeyDown (KeyCode.F2)) {
+			fTwo ();
+			
+		}
+		else if (Input.GetKeyDown (KeyCode.F3)) {
+			fThree();
+		}
+		else if (Input.GetKeyDown (KeyCode.F4)) {
+			fFour();
+		}
+		else if (Input.GetKeyDown (KeyCode.F5)) {
+			fFive();
+		}
+		else if (Input.GetKeyDown (KeyCode.F6)) {
+			fSix();
+		}
+		else if (Input.GetKeyDown (KeyCode.F7)) {
+			fSeven();
+		}
+		else if (Input.GetKeyDown (KeyCode.F8)) {
+			fEight ();
+		}
+		
+		else if (Input.GetKeyDown (KeyCode.F9)) {
+			fNine();
+		}
+		else if (Input.GetKeyDown (KeyCode.F10)) {
+			fTen();
+		}
+		else if (Input.GetKeyDown (KeyCode.F11)) {
+			fEleven();
+		}
+		else if (Input.GetKeyDown (KeyCode.F12)) {
+			fTwelve();
+		}
+
 	
 	}
 
@@ -61,6 +108,43 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	public void updateUpgrades(){
 
 	}
+
+	public void fOne()
+	{selectManager.selectAllArmy ();}
+	
+	public void fTwo()
+	{}
+	
+	public void fThree()
+	{}
+	
+	public void fFour()
+	{}
+	
+	public void fFive()
+	{}
+	
+	public void fSix()
+	{}
+	
+	public void fSeven()
+	{}
+	
+	public void fEight()
+	{}
+	
+	public void fNine()
+	{}
+	
+	public void fTen()
+	{}
+	
+	public void fEleven()
+	{}
+	
+	public void fTwelve()
+	{}
+
 
 
 
