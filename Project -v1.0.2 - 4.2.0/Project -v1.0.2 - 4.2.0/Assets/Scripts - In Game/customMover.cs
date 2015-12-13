@@ -42,7 +42,14 @@ public class customMover : MonoBehaviour {
 			Debug.Log("errer:" +p.error);
 		}
 		if (currentWaypoint < p.vectorPath.Count) {
-			this.gameObject.transform.LookAt (path.vectorPath [currentWaypoint]);
+
+			Vector3 target = path.vectorPath[currentWaypoint];
+			//target.y+=2;
+
+			target.y = this.transform.position.y;
+
+
+			this.gameObject.transform.LookAt (target);
 		}
 	}
 
@@ -95,8 +102,13 @@ public class customMover : MonoBehaviour {
 				return true;
 			}
 			Vector3 target = path.vectorPath[currentWaypoint];
-			target.y+=2;
+			//target.y+=2;
+
+			target.y = this.transform.position.y;
+
+
 			this.gameObject.transform.LookAt (target);
+
 			
 		}
 		return false;

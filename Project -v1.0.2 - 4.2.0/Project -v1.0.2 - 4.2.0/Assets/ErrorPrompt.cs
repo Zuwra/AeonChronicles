@@ -21,7 +21,7 @@ public class ErrorPrompt : MonoBehaviour {
 
 		yield return new WaitForSeconds(3f);
 		this.gameObject.GetComponent<Text> ().enabled = false;
-		print("MyCoroutine is now finished.");
+
 	}//
 	
 	

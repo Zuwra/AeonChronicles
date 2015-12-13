@@ -7,13 +7,13 @@ public class GatlingGun : MonoBehaviour, Notify, Validator {
 	public IWeapon myWeapon;
 	private float intitalSpeed;
 
-	public float speedIncrease;
+	public float speedIncrease = .1f;
 
-	public float MinimumPeriod;
+	public float MinimumPeriod = .1f;
 
 	private float nextActionTime;
-	public float heatLevel;
-	public float totalHeat;
+	private float heatLevel = 2;
+	public float totalHeat = 2;
 	private float lastFired;
 
 	private bool cooldown = false; // weapon shuts down;
@@ -23,7 +23,7 @@ public class GatlingGun : MonoBehaviour, Notify, Validator {
 	void Start () {
 		if (myWeapon == null) {
 
-			//myWeapon = this.gameObject.GetComponent<IWeapon> ();
+			myWeapon = this.gameObject.GetComponent<IWeapon> ();
 		}
 		intitalSpeed = myWeapon.attackPeriod;
 
@@ -82,7 +82,7 @@ public class GatlingGun : MonoBehaviour, Notify, Validator {
 	
 		heatLevel += .08f;
 
-		myWeapon.attackPeriod -= speedIncrease;
+		myWeapon.attackPeriod *= (1 - speedIncrease);
 		if (myWeapon.attackPeriod < MinimumPeriod) {
 			myWeapon.attackPeriod = MinimumPeriod;
 		}

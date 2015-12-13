@@ -3,6 +3,8 @@ using System.Collections;
 
 public class turret : MonoBehaviour {
 
+
+	public bool rotateY;
 	// Use this for initialization
 	void Start () {
 	
@@ -16,7 +18,17 @@ public class turret : MonoBehaviour {
 
 	public void Target(GameObject target)
 	{
-		this.gameObject.transform.LookAt(target.transform.position);}
+
+		Vector3 spotter = target.transform.position;
+		if (!rotateY) {
+			spotter.y = this.transform.position.y;
+		}
+		this.gameObject.transform.LookAt(spotter);
+
+
+
+
+	}
 
 	}
 

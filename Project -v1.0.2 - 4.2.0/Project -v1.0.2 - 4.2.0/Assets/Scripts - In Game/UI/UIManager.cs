@@ -357,7 +357,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 				bottRight.z = Math.Min(groundPoint.z, SgroundPoint.z);
 
 
-				Debug.Log(upperLeft + "         "+ bottRight);
 				foreach(GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight))
 					{
 					m_SelectedManager.AddObject(obj.GetComponent<UnitManager>());

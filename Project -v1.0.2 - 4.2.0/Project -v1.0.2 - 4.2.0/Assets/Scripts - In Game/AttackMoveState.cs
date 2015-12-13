@@ -67,7 +67,8 @@ public class AttackMoveState : UnitState {
 			enemyDead = false;
 			if(myWeapon.inRange(enemy)){
 				if (myWeapon.canAttack (enemy)) {
-					myManager.gameObject.transform.LookAt(enemy.transform.position);
+
+					//myManager.gameObject.transform.LookAt(enemy.transform.position);
 					myWeapon.attack (enemy);
 
 				}}

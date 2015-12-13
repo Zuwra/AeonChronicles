@@ -25,6 +25,7 @@ public class IWeapon : MonoBehaviour {
 	public GameObject turret;
 	private float nextActionTime;
 	public float attackArc;
+	private GameObject enemy;
 
 
 	private bool offCooldown = true;
@@ -78,11 +79,26 @@ public class IWeapon : MonoBehaviour {
 			offCooldown = true;
 	
 		}
+		if (enemy) {
+		if(inRange(enemy))
+			{
+				if (turret != null) {
+					turret.GetComponent<turret> ().Target (enemy);
+				}
+				else
+					{
+				
+					Vector3 spotter = enemy.transform.position;
+					spotter.y = this.transform.position.y;
+					this.gameObject.transform.LookAt(spotter);
 
+						
 
+				
+				}
+			}
+		}
 
-
-	
 	}
 
 
@@ -143,15 +159,13 @@ public class IWeapon : MonoBehaviour {
 	public void attack(GameObject target)
 		{
 	
-
+		enemy = target;
 
 		nextActionTime = Time.time + attackPeriod;
 			
 
 
-		if (turret != null) {
-			turret.GetComponent<turret> ().Target (target);
-		}
+
 			float damage = baseDamage;
 			UnitStats targetStats= target.GetComponent<UnitStats>();
 
@@ -165,7 +179,7 @@ public class IWeapon : MonoBehaviour {
 		GameObject proj = null;
 		if (projectile != null) {
 			proj = (GameObject)Instantiate (projectile, this.gameObject.transform.position, Quaternion.identity);
-			proj.transform.LookAt(target.transform.position);
+
 			Projectile script = proj.GetComponent<Projectile> ();
 			proj.SendMessage("setSource",this.gameObject);
 			proj.SendMessage("setTarget",target);

@@ -176,7 +176,7 @@ public class UnitStats : MonoBehaviour {
 
 			FinishDeath = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager>().UnitDying(this.gameObject, deathSource);
 
-			Debug.Log("I should die " + FinishDeath);
+
 			if (FinishDeath) {
 
 				//foreach (Method effect in deathTriggers) {
