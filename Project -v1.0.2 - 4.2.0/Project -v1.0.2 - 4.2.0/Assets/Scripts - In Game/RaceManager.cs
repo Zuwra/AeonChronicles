@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class RaceManager : MonoBehaviour, ManagerWatcher {
 
@@ -17,7 +18,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 	private List<GameObject> resourceDropOffs = new List<GameObject> ();
-
+    private List<IResource> knownGatherPoints = new List<IResource>();
 
 	private List<ManagerWatcher> myWatchers = new List<ManagerWatcher>();
 
@@ -40,10 +41,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void addWatcher(ManagerWatcher input)
 	{myWatchers.Add (input);}
 
-
-
-
-	public bool UnitDying(GameObject Unit, GameObject deathSource)
+    public bool UnitDying(GameObject Unit, GameObject deathSource)
 	{bool finishDeath = true;
 
 		//Debug.Log ("starting triggers");
@@ -225,5 +223,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
-
+    public void updateGatherLocations(IResource resource)
+    {
+        if (!knownGatherPoints.Contains(resource))
+        {
+            knownGatherPoints.Add(resource);
+            resource.known = true;
+        }
+    }
 }
