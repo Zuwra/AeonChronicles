@@ -119,6 +119,7 @@
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
+     <Compile Include="Assets\Resources\mortarPod.cs" />
      <Compile Include="Assets\Scripts - In Game\Ability.cs" />
      <Compile Include="Assets\Scripts - In Game\AbstractCost.cs" />
      <Compile Include="Assets\Scripts - In Game\AttackMoveState.cs" />
@@ -200,6 +201,7 @@
      <Compile Include="Assets\Scripts - In Game\GUI\Textures\GUITextures.cs" />
      <Compile Include="Assets\Scripts - In Game\GameManager.cs" />
      <Compile Include="Assets\Scripts - In Game\GarataiManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\GatherableResources\IResource.cs" />
      <Compile Include="Assets\Scripts - In Game\GatlingGun.cs" />
      <Compile Include="Assets\Scripts - In Game\HeartStopper.cs" />
      <Compile Include="Assets\Scripts - In Game\HoldState.cs" />
@@ -278,8 +280,6 @@
      <Compile Include="Assets\Scripts - In Game\Resolver\ManagerResolver.cs" />
      <Compile Include="Assets\Scripts - In Game\Resolver\ResolverConfig.cs" />
      <Compile Include="Assets\Scripts - In Game\Resource\Strings.cs" />
-     <Compile Include="Assets\Scripts - In Game\ResourceCarry.cs" />
-     <Compile Include="Assets\Scripts - In Game\ResourceDropOff.cs" />
      <Compile Include="Assets\Scripts - In Game\RunicBlessing.cs" />
      <Compile Include="Assets\Scripts - In Game\Selected Units\Overlays.cs" />
      <Compile Include="Assets\Scripts - In Game\Selected Units\Selected.cs" />
@@ -306,6 +306,9 @@
      <Compile Include="Assets\Scripts - In Game\UnitTypes.cs" />
      <Compile Include="Assets\Scripts - In Game\Units\Vehicles\MCV\MCV.cs" />
      <Compile Include="Assets\Scripts - In Game\Units\Vehicles\Standard Tank\StandardTank.cs" />
+     <Compile Include="Assets\Scripts - In Game\Units\Workers\ResourceCarry.cs" />
+     <Compile Include="Assets\Scripts - In Game\Units\Workers\ResourceDropOff.cs" />
+     <Compile Include="Assets\Scripts - In Game\Units\Workers\WorkerMain.cs" />
      <Compile Include="Assets\Scripts - In Game\Validator.cs" />
      <Compile Include="Assets\Scripts - In Game\VisionSphere.cs" />
      <Compile Include="Assets\Scripts - In Game\WarpCore.cs" />
@@ -335,10 +338,10 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Ionic.Zip.Reduced">
- <HintPath>C:/Users/matthew/Documents/GitHub/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ <HintPath>C:/Users/matthew/Desktop/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.JsonFx">
- <HintPath>C:/Users/matthew/Documents/GitHub/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
+ <HintPath>C:/Users/matthew/Desktop/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

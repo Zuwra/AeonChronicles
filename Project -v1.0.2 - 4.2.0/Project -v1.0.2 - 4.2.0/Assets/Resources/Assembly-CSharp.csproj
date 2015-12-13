@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<RootNamespace></RootNamespace>
+	<ProjectGuid>{A00CDE3A-2E50-C973-4002-3E8D9E1DED2E}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_2_2;UNITY_5_2;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_REFLECTION_BUFFERS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\AstarPathfindingProject\Core\AI\AIPath.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\AI\NavmeshController.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\AI\Seeker.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\AstarData.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\AstarMath.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\AstarPath.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\GraphUpdateScene.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\GraphUpdateShape.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\AnimationLink.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\AstarDebugger.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\AstarEnumFlagAttr.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\BinaryHeap.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\GraphEditorBase.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\GraphModifier.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\Int3.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\ListPool.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\NodeLink.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\NodeLink2.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\NodeLink3.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\ObjectPool.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\PathPool.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\StackPool.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\ThreadControlQueue.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Misc\WindowsStoreCompatibility.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Nodes\GraphNode.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Path.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\PathHandler.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Serialization\JsonConverters.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Serialization\JsonSerializer.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Serialization\SimpleJsonReplacement.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\Serialization\SimpleZipReplacement.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Core\astarclasses.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\ExampleScenes\Example12_Procedural\ProceduralGridMover.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\ExampleScenes\Example12_Procedural\ProceduralWorld.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\ExampleScenes\ExampleScripts\AIFollow.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\ExampleScenes\ExampleScripts\AstarSmoothFollow2.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\ExampleScenes\ExampleScripts\DoorController.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\ExampleScenes\ExampleScripts\DynamicGridObstacle.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\ExampleScenes\ExampleScripts\MineBotAI.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\ExampleScenes\ExampleScripts\ObjectPlacer.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\ExampleScenes\ExampleScripts\TargetMover.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\Base.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\GridGenerator.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\NavMeshGenerator.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\NodeClasses\GridNode.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\NodeClasses\PointNode.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\NodeClasses\TriangleMeshNode.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\PointGenerator.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\QuadtreeGraph.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\Utilities\BBTree.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\Utilities\EuclideanEmbedding.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\Utilities\NavMeshRenderer.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Generators\Utilities\ObjImporter.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Modifiers\AlternativePath.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Modifiers\FunnelModifier.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Modifiers\Modifiers.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Modifiers\RaycastModifier.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Modifiers\SimpleSmoothModifier.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Modifiers\StartEndModifier.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Navmesh\RelevantGraphSurface.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Pathfinders\ABPath.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Utilities\AstarChecksum.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Utilities\AstarMemory.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Utilities\AstarParallel.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Utilities\AstarProfiler.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Utilities\DotNetReplacements.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Utilities\GraphUpdateUtilities.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Utilities\LockFreeStack.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Utilities\PathUtilities.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Utilities\ProfileHelper.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
+     <Compile Include="Assets\ErrorPrompt.cs" />
+     <Compile Include="Assets\LandMineActivate.cs" />
+     <Compile Include="Assets\Scripts - In Game\Ability.cs" />
+     <Compile Include="Assets\Scripts - In Game\AbstractCost.cs" />
+     <Compile Include="Assets\Scripts - In Game\AttackMoveState.cs" />
+     <Compile Include="Assets\Scripts - In Game\AttckWhileMoveState.cs" />
+     <Compile Include="Assets\Scripts - In Game\BuildUnit.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\Building Placement\BuildingBeingPlaced.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Barracks\GRI_Barracks.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\ConYard\GRI_ConYard.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\PowerPlant\GRI_PowerPlant.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Radar\GRI_Radar.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Refinery\GRI_Refinery.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Repair Pad\GRI_RepairPad.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Super Weapon\GRI_SuperWeapon.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Support\Gun\GRI_Support_Gun.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Support\RPG\GRI_Support_RPG.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Support\SAM\GRI_Support_SAM.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\Tech Center\GRI_TechCenter.cs" />
+     <Compile Include="Assets\Scripts - In Game\Buildings\GRI\War Factory\GRI_WarFactory.cs" />
+     <Compile Include="Assets\Scripts - In Game\Camera\MainCamera.cs" />
+     <Compile Include="Assets\Scripts - In Game\Camera\sPoint.cs" />
+     <Compile Include="Assets\Scripts - In Game\Capacitor.cs" />
+     <Compile Include="Assets\Scripts - In Game\Classes\Order.cs" />
+     <Compile Include="Assets\Scripts - In Game\Classes\Orders.cs" />
+     <Compile Include="Assets\Scripts - In Game\Constants\Const.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\Building.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\RTSObject.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\Unit.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\Unit\Air.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\Unit\Infantry.cs" />
+     <Compile Include="Assets\Scripts - In Game\Core\Unit\Vehicle.cs" />
+     <Compile Include="Assets\Scripts - In Game\Cursors\Cursor.cs" />
+     <Compile Include="Assets\Scripts - In Game\Cursors\CursorManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\DamageTypes.cs" />
+     <Compile Include="Assets\Scripts - In Game\DefaultState.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_0.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_1.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_2.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_3.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_4.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_5.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_6.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_7.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_8.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_9.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_A.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_Control.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_D.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_Escape.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_H.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_S.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_Shift.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\MouseEventActions\LeftButton_Handler.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\MouseEventActions\MiddleButton_Handler.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\MouseEventActions\RightButton_Handler.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\MouseEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\ScreenEdgeEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\ScrollWheelEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\EventsManager.Keyboard.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\EventsManager.Mouse.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\EventsManager.ScreenEdge.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\EventsManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\EventArgs\MaintenanceButtonEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\EventArgs\QueueButtonEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\EventArgs\TypeButtonEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Events\GUIEvents.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\GUIManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\MiniMapController.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Drag Select\DragSelect.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Item Progress\ItemProgressTextures.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Maintenance Buttons\Maintanance_Disable.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Maintenance Buttons\Maintenance_Fix.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Maintenance Buttons\Maintenance_Sell.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Menu Items\QueueButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Menu Items\QueueContent.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Modules\Menu Items\TypeButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Styles\GUIStyles.cs" />
+     <Compile Include="Assets\Scripts - In Game\GUI\Textures\GUITextures.cs" />
+     <Compile Include="Assets\Scripts - In Game\GameManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\GarataiManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\GatlingGun.cs" />
+     <Compile Include="Assets\Scripts - In Game\HeartStopper.cs" />
+     <Compile Include="Assets\Scripts - In Game\HoldState.cs" />
+     <Compile Include="Assets\Scripts - In Game\IWeapon.cs" />
+     <Compile Include="Assets\Scripts - In Game\ImmortalityProtocol.cs" />
+     <Compile Include="Assets\Scripts - In Game\InteractState.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IMaintenanceButtons.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IQueueButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IQueueContent.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\ITypeButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ICamera.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ICursorManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IEventsManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGLManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGUIManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGrid.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ILevelLoader.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IMiniMapController.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ISelectedManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IThreadManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IUIManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IAttackable.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IDeployable.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IInteractable.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IMoveable.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IOrderable.cs" />
+     <Compile Include="Assets\Scripts - In Game\ItemDB\Item.cs" />
+     <Compile Include="Assets\Scripts - In Game\ItemDB\ItemDB.cs" />
+     <Compile Include="Assets\Scripts - In Game\LethalDamageinterface.cs" />
+     <Compile Include="Assets\Scripts - In Game\Manager\Manager.cs" />
+     <Compile Include="Assets\Scripts - In Game\ManagerWatcher.cs" />
+     <Compile Include="Assets\Scripts - In Game\MeleeWeaponTest.cs" />
+     <Compile Include="Assets\Scripts - In Game\Misc\wayPointGizmo.cs" />
+     <Compile Include="Assets\Scripts - In Game\Modifier.cs" />
+     <Compile Include="Assets\Scripts - In Game\MoveState.cs" />
+     <Compile Include="Assets\Scripts - In Game\Movement\AirMovement.cs" />
+     <Compile Include="Assets\Scripts - In Game\Movement\InfantryMovement.cs" />
+     <Compile Include="Assets\Scripts - In Game\Movement\LandMovement.cs" />
+     <Compile Include="Assets\Scripts - In Game\Movement\Movement.cs" />
+     <Compile Include="Assets\Scripts - In Game\Movement\VehicleMovement.cs" />
+     <Compile Include="Assets\Scripts - In Game\Notify.cs" />
+     <Compile Include="Assets\Scripts - In Game\OpenGL\GLItem.cs" />
+     <Compile Include="Assets\Scripts - In Game\OpenGL\GLManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\OpenGL\GLMatShader.cs" />
+     <Compile Include="Assets\Scripts - In Game\OreDispenser.cs" />
+     <Compile Include="Assets\Scripts - In Game\Pathfinding\AStar\A_Star.cs" />
+     <Compile Include="Assets\Scripts - In Game\Pathfinding\Grid\Grid.cs" />
+     <Compile Include="Assets\Scripts - In Game\Pathfinding\Grid\Tile.cs" />
+     <Compile Include="Assets\Scripts - In Game\Poison.cs" />
+     <Compile Include="Assets\Scripts - In Game\PoisonStarter.cs" />
+     <Compile Include="Assets\Scripts - In Game\Projectile.cs" />
+     <Compile Include="Assets\Scripts - In Game\ProjectileMover.cs" />
+     <Compile Include="Assets\Scripts - In Game\RaceManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\RaceUIManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Recall.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\AttackArea.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\AttackBase.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\BroodSwarm.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\EffectSimpleContinuousParticle.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\ExtendedCharacterController.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\GameHUDManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\HealthComponent.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\InteractableComponent.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\MovementComponent.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\PlayerController.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\QueenSpawn.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\RespawnTrigger.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\ShipFlight.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\UIButton.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\VisionArc.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\VisionBase.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\VisionCube.cs" />
+     <Compile Include="Assets\Scripts - In Game\RelicCode\WaterController.cs" />
+     <Compile Include="Assets\Scripts - In Game\Resolver\ManagerResolver.cs" />
+     <Compile Include="Assets\Scripts - In Game\Resolver\ResolverConfig.cs" />
+     <Compile Include="Assets\Scripts - In Game\Resource\Strings.cs" />
+     <Compile Include="Assets\Scripts - In Game\ResourceCarry.cs" />
+     <Compile Include="Assets\Scripts - In Game\ResourceDropOff.cs" />
+     <Compile Include="Assets\Scripts - In Game\RunicBlessing.cs" />
+     <Compile Include="Assets\Scripts - In Game\Selected Units\Overlays.cs" />
+     <Compile Include="Assets\Scripts - In Game\Selected Units\Selected.cs" />
+     <Compile Include="Assets\Scripts - In Game\Selected Units\SelectedBuilding.cs" />
+     <Compile Include="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Selecter.cs" />
+     <Compile Include="Assets\Scripts - In Game\Shield.cs" />
+     <Compile Include="Assets\Scripts - In Game\SlowDebuff.cs" />
+     <Compile Include="Assets\Scripts - In Game\SplitterHitList.cs" />
+     <Compile Include="Assets\Scripts - In Game\SplitterShot.cs" />
+     <Compile Include="Assets\Scripts - In Game\StatsUI.cs" />
+     <Compile Include="Assets\Scripts - In Game\StimPack.cs" />
+     <Compile Include="Assets\Scripts - In Game\StunState.cs" />
+     <Compile Include="Assets\Scripts - In Game\TextureGenerator\TextureGenerator.cs" />
+     <Compile Include="Assets\Scripts - In Game\Threading\GetPathThread.cs" />
+     <Compile Include="Assets\Scripts - In Game\Threading\ThreadJob.cs" />
+     <Compile Include="Assets\Scripts - In Game\Threading\ThreadManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Tree.cs" />
+     <Compile Include="Assets\Scripts - In Game\UI\UIManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\UiAbilityManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\UnitManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\UnitState.cs" />
+     <Compile Include="Assets\Scripts - In Game\UnitStats.cs" />
+     <Compile Include="Assets\Scripts - In Game\UnitTypes.cs" />
+     <Compile Include="Assets\Scripts - In Game\Units\Vehicles\MCV\MCV.cs" />
+     <Compile Include="Assets\Scripts - In Game\Units\Vehicles\Standard Tank\StandardTank.cs" />
+     <Compile Include="Assets\Scripts - In Game\Validator.cs" />
+     <Compile Include="Assets\Scripts - In Game\VisionSphere.cs" />
+     <Compile Include="Assets\Scripts - In Game\WarpCore.cs" />
+     <Compile Include="Assets\Scripts - In Game\bobble.cs" />
+     <Compile Include="Assets\Scripts - In Game\customMover.cs" />
+     <Compile Include="Assets\Scripts - In Game\rotater.cs" />
+     <Compile Include="Assets\Scripts - In Game\turret.cs" />
+     <Compile Include="Assets\Scripts - Menus\LevelLoader.cs" />
+     <Compile Include="Assets\Scripts - Menus\MainMenuGUI.cs" />
+     <Compile Include="Assets\mortarPod.cs" />
+     <Compile Include="Assets\testScript.cs" />
+     <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
+     <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
+     <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
+     <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
+     <None Include="Assets\AstarPathfindingProject\Plugins\dependencies.txt" />
+     <None Include="Assets\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
+     <None Include="Assets\AstarPathfindingProject\Readme_upgrading.txt" />
+     <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Light.shader" />
+     <None Include="Assets\AstarPathfindingProject\Readme.txt" />
+     <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\JsonFxLicense.txt" />
+     <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />
+     <None Include="Assets\AstarPathfindingProject\link.xml" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+ <HintPath>C:/Users/matthew/Documents/GitHub/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ </Reference>
+ <Reference Include="Pathfinding.JsonFx">
+ <HintPath>C:/Users/matthew/Documents/GitHub/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Cecil">
+ <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
