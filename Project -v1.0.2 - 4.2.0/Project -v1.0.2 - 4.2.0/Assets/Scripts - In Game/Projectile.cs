@@ -9,9 +9,17 @@ public  class Projectile : MonoBehaviour {
 	public GameObject target;
 	public float damage;
 	public float speed;
+	public float arcAngle;
+	public bool trackTarget;
+
+	private float distance;
+	private float currentDistance;
 
 	//public ProjectileMover mover;
 	public GameObject Source;
+
+	public float inaccuracy;
+	public GameObject explosion;
 
 
 
@@ -21,8 +29,27 @@ public  class Projectile : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {	lastLocation = target.transform.position;
-	
+	void Start () {	
+		
+		if (target) {
+			if( inaccuracy > 0){
+				Vector3 hitzone = target.transform.position;
+				float radius = Random.Range(0, inaccuracy);
+				float angle = Random.Range(0, 360);
+				
+				hitzone.x += Mathf.Sin(Mathf.Deg2Rad * angle);
+				hitzone.z +=  Mathf.Cos(Mathf.Deg2Rad * angle);
+				
+				lastLocation = hitzone;
+				Debug.Log("Location is " + hitzone);
+				
+			}
+			else{
+				lastLocation = target.transform.position;
+			}
+			
+			distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+		}
 	}
 
 
@@ -30,29 +57,51 @@ public  class Projectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (target != null) {
 			lastLocation = target.transform.position;
 			//Debug.Log("attacking on " +Vector3.Distance(lastLocation,this.gameObject.transform.position));
 
 
-			if(Vector3.Distance(lastLocation,this.gameObject.transform.position) <1.3)
+			if(currentDistance <1.3)
 			{
 
 				//Terminate(target);
 			}
-		//	Debug.Log("moveing towards " + target.name);
+		
 
 		} else {
-			//if(Vector3.Distance(lastLocation,this.gameObject.transform.position) <.5)
+
 				{Terminate(null);
 
 				return;}
 		}
 
-		gameObject.transform.LookAt (lastLocation);
-		gameObject.transform.Translate (Vector3.forward* speed);
+
+		if (trackTarget) {
+			gameObject.transform.LookAt (lastLocation);
+		}
+
+		gameObject.transform.Translate (Vector3.forward* speed * Time.deltaTime *40);
+
+		currentDistance += speed * Time.deltaTime * 40;
+
+		if (arcAngle > 0) {
+
+			float yAmount;
+
+				yAmount = (( (distance/2) - currentDistance )/distance) * arcAngle *3* Time.deltaTime;
+
+			gameObject.transform.Translate (Vector3.up * yAmount );
+	
+		}
 
 
+
+
+		//hack for hitting the ground
+		if (this.gameObject.transform.position.y < 0)
+			Terminate (null);
 
 	
 	}
@@ -64,6 +113,10 @@ public  class Projectile : MonoBehaviour {
 			if (other.gameObject == target) {
 				Terminate (other.gameObject);
 			}
+
+
+			if(!trackTarget && other.gameObject.layer == 8)
+			{Terminate(null);}
 		}
 	}
 
@@ -79,6 +132,11 @@ public  class Projectile : MonoBehaviour {
 			if(target == null)
 			{{Source.GetComponent<UnitManager>().cleanEnemy();}}
 		}
+		if (explosion) {
+			Instantiate (explosion,this.gameObject.transform.position, Quaternion.identity);
+
+		}
+
 		Destroy (this.gameObject);
 
 	}
@@ -98,6 +156,34 @@ public  class Projectile : MonoBehaviour {
 	{
 
 		target = so;
+
+		if (target) {
+			if( inaccuracy > 0){
+				Vector3 hitzone = target.transform.position;
+				float radius = Random.Range(0, inaccuracy);
+				float angle = Random.Range(0, 360);
+				
+				hitzone.x += Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
+				hitzone.z +=  Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+				
+				lastLocation = hitzone;
+				Debug.Log("Location is " + hitzone);
+			}
+			else{
+				lastLocation = target.transform.position;
+			}
+			
+			distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+		}
+
+
+
+
+		distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+
+
+		gameObject.transform.LookAt (lastLocation);
+
 	}
 	
 	public void setDamage(float so)

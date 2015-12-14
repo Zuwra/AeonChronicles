@@ -15,6 +15,7 @@ public class mortarPod : MonoBehaviour, Validator, Notify {
 
 	private float nextActionTime;
 
+
 	// Use this for initialization
 	void Start () {
 
@@ -26,7 +27,7 @@ public class mortarPod : MonoBehaviour, Validator, Notify {
 		weapon.validators.Add (this);
 		weapon.triggers.Add (this);
 		if (FireAll) {
-			weapon.attackPeriod = .05f;
+			weapon.attackPeriod = .01f;
 		}
 
 	}
@@ -66,7 +67,7 @@ public class mortarPod : MonoBehaviour, Validator, Notify {
 		{
 		shotCount --;
 		if (FireAll) {
-			weapon.attackPeriod = .05f;
+			weapon.attackPeriod = .01f;
 		}
 
 
