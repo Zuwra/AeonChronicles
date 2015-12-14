@@ -146,41 +146,40 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public void GiveOrder (Order order)
-	{
-		switch (order.OrderType) {
-		//Stop Order----------------------------------------
-		case Const.ORDER_STOP:
-			changeState (new DefaultState (this, cMover, myWeapon));
-			break;
+	{if (!isAStructure) {
+			switch (order.OrderType) {
+			//Stop Order----------------------------------------
+			case Const.ORDER_STOP:
+				changeState (new DefaultState (this, cMover, myWeapon));
+				break;
 			
-		//Move Order ---------------------------------------------
-		case Const.ORDER_MOVE_TO:
+			//Move Order ---------------------------------------------
+			case Const.ORDER_MOVE_TO:
 		
-			if(attackWhileMoving)
-				{
+				if (attackWhileMoving) {
 
-				changeState (new AttckWhileMoveState(order.OrderLocation, this, cMover, myWeapon));}
-			else
-			{
-				changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));}
+					changeState (new AttckWhileMoveState (order.OrderLocation, this, cMover, myWeapon));
+				} else {
+					changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));
+				}
 				//cMover.resetMoveLocation(order.OrderLocation);
 			
-			break;
+				break;
 			
-		case Const.ORDER_ATTACK:
+			case Const.ORDER_ATTACK:
 		//	Debug.Log("Attacking");
-			changeState (new InteractState (order.Target.gameObject,this, cMover, myWeapon));
+				changeState (new InteractState (order.Target.gameObject, this, cMover, myWeapon));
 			
-			break;
+				break;
 		
 
-		case Const.ORDER_AttackMove:
-			changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command,this, cMover, myWeapon, this.gameObject.transform.position));
+			case Const.ORDER_AttackMove:
+				changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, this, cMover, myWeapon, this.gameObject.transform.position));
 		
-			break;
+				break;
 		
-	}
-
+			}
+		}
 
 	}
 

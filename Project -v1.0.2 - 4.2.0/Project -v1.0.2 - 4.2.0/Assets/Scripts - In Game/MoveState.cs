@@ -14,7 +14,9 @@ public class MoveState : UnitState{
 
 		myMover = move;
 		myWeapon = weapon;
-		
+		if (myMover == null) {
+			Debug.Log(myManager.gameObject.name);
+		}
 		myMover.resetMoveLocation (location);
 	}
 

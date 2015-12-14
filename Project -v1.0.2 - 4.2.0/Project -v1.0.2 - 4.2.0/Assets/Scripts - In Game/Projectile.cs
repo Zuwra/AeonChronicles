@@ -19,6 +19,9 @@ public  class Projectile : MonoBehaviour {
 	public GameObject Source;
 
 	public float inaccuracy;
+
+
+	//If you are using an explosion , you should set the variables in the explosion prefab itself.
 	public GameObject explosion;
 
 
@@ -41,7 +44,7 @@ public  class Projectile : MonoBehaviour {
 				hitzone.z +=  Mathf.Cos(Mathf.Deg2Rad * angle);
 				
 				lastLocation = hitzone;
-				Debug.Log("Location is " + hitzone);
+			
 				
 			}
 			else{
@@ -100,7 +103,7 @@ public  class Projectile : MonoBehaviour {
 
 
 		//hack for hitting the ground
-		if (this.gameObject.transform.position.y < 0)
+		if ( !trackTarget &&  this.gameObject.transform.position.y < lastLocation.y)
 			Terminate (null);
 
 	
@@ -109,14 +112,18 @@ public  class Projectile : MonoBehaviour {
 
 	
 	void OnTriggerEnter(Collider other)
-	{if (!other.isTrigger) {
+	{
+	
+		if (!other.isTrigger) {
 			if (other.gameObject == target) {
 				Terminate (other.gameObject);
 			}
 
 
-			if(!trackTarget && other.gameObject.layer == 8)
-			{Terminate(null);}
+			if(!trackTarget && other.gameObject!= Source)
+				{
+			
+				Terminate(null);}
 		}
 	}
 
@@ -133,8 +140,9 @@ public  class Projectile : MonoBehaviour {
 			{{Source.GetComponent<UnitManager>().cleanEnemy();}}
 		}
 		if (explosion) {
-			Instantiate (explosion,this.gameObject.transform.position, Quaternion.identity);
 
+			GameObject explode = (GameObject)Instantiate (explosion,this.gameObject.transform.position, Quaternion.identity);
+			explode.GetComponent<explosion>().source = Source;
 		}
 
 		Destroy (this.gameObject);
@@ -167,7 +175,7 @@ public  class Projectile : MonoBehaviour {
 				hitzone.z +=  Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
 				
 				lastLocation = hitzone;
-				Debug.Log("Location is " + hitzone);
+			
 			}
 			else{
 				lastLocation = target.transform.position;

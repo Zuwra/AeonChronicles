@@ -318,6 +318,7 @@
      <Compile Include="Assets\Scripts - In Game\turret.cs" />
      <Compile Include="Assets\Scripts - Menus\LevelLoader.cs" />
      <Compile Include="Assets\Scripts - Menus\MainMenuGUI.cs" />
+     <Compile Include="Assets\explosion.cs" />
      <Compile Include="Assets\testScript.cs" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
