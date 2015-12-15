@@ -29,7 +29,7 @@ public class PoisonStarter : MonoBehaviour, Notify{
 			enemyPois.startPoison(poisonEffect);
 
 			enemyPois.remainingPoison = damageAmount;
-			Debug.Log("HERE" + enemyPois.remainingPoison);
+
 		} else {
 		
 

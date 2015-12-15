@@ -31,7 +31,7 @@ public class Selected : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () 
-	{myStats = this.gameObject.GetComponent<UnitStats> ();
+	{	myStats = this.gameObject.GetComponent<UnitStats> ();
 		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
 		Overlay = Overlays.CreateTexture ();
 		IsSelected = false;
@@ -53,7 +53,7 @@ public class Selected : MonoBehaviour {
 	void Update () 
 	{
 		//Update overlay rect
-		//SetOverlaySize ();
+		SetOverlaySize ();
 
 		if (!myStats.atFullHealth() || !myStats.atFullEnergy()) {
 

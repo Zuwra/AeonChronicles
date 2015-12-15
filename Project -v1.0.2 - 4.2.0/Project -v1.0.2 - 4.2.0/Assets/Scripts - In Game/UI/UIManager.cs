@@ -407,7 +407,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 					m_SelectedManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));}
 			}
 			else if (currentObjLayer == 9 || currentObjLayer == 10)
-			{Debug.Log(currentObject);
+			{
 				m_SelectedManager.GiveOrder(Orders.CreateAttackOrder(currentObject.GetComponent<UnitManager>()));
 				//Friendly Unit -> Interact (if applicable)
 			}

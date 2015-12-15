@@ -66,20 +66,21 @@ public  class Projectile : MonoBehaviour {
 			//Debug.Log("attacking on " +Vector3.Distance(lastLocation,this.gameObject.transform.position));
 
 
-			if(currentDistance <1.3)
-			{
 
-				//Terminate(target);
-			}
 		
 
 		} else {
 
-				{Terminate(null);
+				{//Terminate(null);
 
-				return;}
+				//return;
+			}
 		}
-
+		if(distance - currentDistance <1.5)
+		{
+			
+			Terminate(target);
+		}
 
 		if (trackTarget) {
 			gameObject.transform.LookAt (lastLocation);
