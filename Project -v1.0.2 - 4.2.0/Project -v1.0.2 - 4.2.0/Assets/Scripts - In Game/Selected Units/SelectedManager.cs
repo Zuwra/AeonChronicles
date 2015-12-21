@@ -15,6 +15,11 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	public UiAbilityManager abilityManager;
 	private RaceManager raceMan;
 
+	public string sUnitOne;
+	public string sUnitTwo;
+	public string sUnitThree;
+	public string sUnitFour;
+
 
 
 
@@ -275,6 +280,90 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 		}
 		}
 
+	public void selectAllUnbound()
+	{
+		
+		selectAllArmy ();
+
+
+		foreach (List<RTSObject> obj in Group) {
+			foreach (RTSObject rts in obj) {
+				DeselectObject (rts);
+			}
+		}
+
+	}
+
+	public void selectIdleWorker()
+	{
+		{
+			foreach (GameObject obj in  raceMan.getUnitList ()) {
+
+				if (!obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.worker)) {
+					continue;
+				}
+				UnitManager manager = obj.GetComponent<UnitManager> ();
+				if (!manager.isIdle ()) {
+					continue;
+				}
+
+				if (!SelectedObjects.Contains (manager)) {
+					DeselectAll ();
+							AddObject (manager);
+							break;
+						}
+					}
+						
+
+
+
+
+		}
+	}
+
+	public void selectUnitOne()
+	{DeselectAll ();
+	foreach (GameObject obj in  raceMan.getUnitList ()) {
+			
+			UnitManager manager = obj.GetComponent<UnitManager> ();
+			if (manager.UnitName == sUnitOne) {
+				AddObject (manager);
+			}
+		}
+		}
+
+	public void selectUnitTwo()
+	{DeselectAll ();
+		foreach (GameObject obj in  raceMan.getUnitList ()) {
+
+			UnitManager manager = obj.GetComponent<UnitManager> ();
+			if (manager.UnitName == sUnitTwo) {
+				AddObject (manager);
+			}
+		}
+	}
+
+	public void selectUnitThree()
+	{DeselectAll ();
+		foreach (GameObject obj in  raceMan.getUnitList ()) {
+
+			UnitManager manager = obj.GetComponent<UnitManager> ();
+			if (manager.UnitName == sUnitThree) {
+				AddObject (manager);
+			}
+		}
+	}
+
+	public void selectUnitFour()
+	{DeselectAll ();
+		foreach (GameObject obj in  raceMan.getUnitList ()) {
+
+			UnitManager manager = obj.GetComponent<UnitManager> ();
+			if (manager.UnitName == sUnitFour) {
+				AddObject (manager);
+			}
+		}
+	}
 
 
 

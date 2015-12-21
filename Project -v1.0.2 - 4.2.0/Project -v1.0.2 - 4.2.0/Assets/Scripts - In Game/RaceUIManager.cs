@@ -114,26 +114,26 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	
 	public void fTwo()
 	{
-		GameObject.FindGameObjectWithTag ("Error").GetComponent<ErrorPrompt> ().showError ("not enough resources");
+		selectManager.selectAllUnbound ();
 	}
 	
 	public void fThree()
-	{}
+	{selectManager.selectIdleWorker ();}
 	
 	public void fFour()
 	{}
 	
 	public void fFive()
-	{}
+	{selectManager.selectUnitOne ();}
 	
 	public void fSix()
-	{}
+	{selectManager.selectUnitTwo ();}
 	
 	public void fSeven()
-	{}
+	{selectManager.selectUnitThree ();}
 	
 	public void fEight()
-	{}
+	{selectManager.selectUnitFour ();}
 	
 	public void fNine()
 	{}

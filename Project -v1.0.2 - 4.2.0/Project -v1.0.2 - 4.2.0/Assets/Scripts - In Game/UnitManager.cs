@@ -315,6 +315,15 @@ public class UnitManager : Unit,IOrderable{
 		myWeapon = weap;
 		myState.myWeapon = weap;
 	}
+
+	public bool isIdle()
+		{
+		if(myState.GetType() == typeof(DefaultState))
+		{return true;	}
+		return false;
+	}
+
+
 }
 
 
