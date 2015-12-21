@@ -16,7 +16,7 @@ public class AttackMoveState : UnitState {
 	private int currentFrame = 0;
 
 
-		public AttackMoveState(GameObject obj, Vector3 location, MoveType type,UnitManager man, customMover move, IWeapon weapon, Vector3 myhome )
+		public AttackMoveState(GameObject obj, Vector3 location, MoveType type,UnitManager man, IMover move, IWeapon weapon, Vector3 myhome )
 		{
 		myManager = man;
 		myMover = move;

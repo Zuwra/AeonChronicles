@@ -6,7 +6,7 @@ public class AttckWhileMoveState : UnitState{
 	
 
 	
-	public AttckWhileMoveState(Vector3 location, UnitManager man, customMover move, IWeapon weapon)
+	public AttckWhileMoveState(Vector3 location, UnitManager man, IMover move, IWeapon weapon)
 	{
 		myManager = man;
 		myMover = move;

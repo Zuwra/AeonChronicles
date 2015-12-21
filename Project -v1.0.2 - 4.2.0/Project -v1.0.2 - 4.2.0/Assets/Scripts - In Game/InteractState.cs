@@ -11,7 +11,7 @@ public class InteractState : UnitState {
 	private int currentFrame = 0;
 
 
-	public InteractState(GameObject unit, UnitManager man, customMover move, IWeapon weapon)
+	public InteractState(GameObject unit, UnitManager man, IMover move, IWeapon weapon)
 	{
 		myManager = man;
 		myMover = move;

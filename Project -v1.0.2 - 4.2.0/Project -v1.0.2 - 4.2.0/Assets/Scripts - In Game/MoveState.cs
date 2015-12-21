@@ -8,7 +8,7 @@ public class MoveState : UnitState{
 	
 	// Update is called once per frame
 
-	public MoveState(Vector3 location, UnitManager man, customMover move, IWeapon weapon)
+	public MoveState(Vector3 location, UnitManager man, IMover move, IWeapon weapon)
 	{
 		myManager = man;
 

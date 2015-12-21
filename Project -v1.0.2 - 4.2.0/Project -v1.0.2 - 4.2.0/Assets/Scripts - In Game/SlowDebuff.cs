@@ -4,7 +4,7 @@ using System.Collections;
 public class SlowDebuff : MonoBehaviour, Notify {
 
 	public bool OnTarget = false;
-	customMover mover ;
+	IMover mover ;
 
 	public float speedDecrease;
 	public float duration;
@@ -30,7 +30,7 @@ public class SlowDebuff : MonoBehaviour, Notify {
 		percent = percentdec;
 		nextActionTime = Time.time + duration;
 		if (OnTarget) {
-			mover = this.gameObject.GetComponent<customMover>();
+			mover = this.gameObject.GetComponent<UnitManager>().cMover;
 
 			if (percent != 0) {
 

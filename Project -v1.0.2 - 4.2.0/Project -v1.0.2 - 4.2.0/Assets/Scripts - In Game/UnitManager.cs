@@ -11,7 +11,7 @@ public class UnitManager : Unit,IOrderable{
 	public bool isAStructure;
 
 	public int PlayerOwner;
-	public customMover cMover;
+	public IMover cMover;
 	public IWeapon myWeapon;
 	public bool attackWhileMoving = false;
 	public UnitStats myStats;
@@ -47,9 +47,11 @@ public class UnitManager : Unit,IOrderable{
 
 		if (cMover == null) {
 			cMover = gameObject.GetComponent<customMover>();
-
-		
+			if(cMover == null)
+				cMover = gameObject.GetComponent<airmover>();
 		}
+
+
 		if (myWeapon == null) {
 			myWeapon = gameObject.GetComponent<IWeapon>();
 		}
@@ -156,7 +158,7 @@ public class UnitManager : Unit,IOrderable{
 			//Move Order ---------------------------------------------
 			case Const.ORDER_MOVE_TO:
 		
-				if (attackWhileMoving) {
+				if (attackWhileMoving && myWeapon) {
 
 					changeState (new AttckWhileMoveState (order.OrderLocation, this, cMover, myWeapon));
 				} else {
@@ -174,8 +176,11 @@ public class UnitManager : Unit,IOrderable{
 		
 
 			case Const.ORDER_AttackMove:
-				changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, this, cMover, myWeapon, this.gameObject.transform.position));
-		
+				if (myWeapon)
+					changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, this, cMover, myWeapon, this.gameObject.transform.position));
+				else {
+					changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));
+				}
 				break;
 		
 			}
@@ -305,7 +310,11 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
-
+	public void setWeapon(IWeapon weap)
+		{
+		myWeapon = weap;
+		myState.myWeapon = weap;
+	}
 }
 
 

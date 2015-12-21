@@ -5,7 +5,7 @@ public class DefaultState : UnitState{
 
 	// Update is called once per frame
 
-	public DefaultState(UnitManager man, customMover move, IWeapon weapon)
+	public DefaultState(UnitManager man, IMover move, IWeapon weapon)
 	{
 		myManager = man;
 		myMover = move;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Pathfinding;
-public class customMover : MonoBehaviour {
+public class customMover : IMover {
 	//The point to move to
 	private Vector3 targetPosition;
 	private Seeker seeker;
@@ -9,7 +9,7 @@ public class customMover : MonoBehaviour {
 	//The calculated path
 	public Path path;
 	//The AI's speed per second
-	public float speed = 0;
+
 	//The max distance from the AI to a waypoint for it to continue to the next waypoint
 	public float nextWaypointDistance = 3;
 	//The waypoint we are currently moving towards
@@ -17,8 +17,6 @@ public class customMover : MonoBehaviour {
 
 	private bool workingframe = false;
 
-	public float acceleration;
-	public float MaxSpeed = 10;
 	private Vector3 dir;
 
 	public void Start () {
@@ -57,9 +55,10 @@ public class customMover : MonoBehaviour {
 	public void Update () {
 
 	}
-
+	override
 	public bool move()
-	{if (!workingframe) {
+	{// for some reason the updates are being called out of order so this is here,
+		if (!workingframe) {
 			workingframe = !workingframe;
 			return false;
 		}
@@ -115,7 +114,7 @@ public class customMover : MonoBehaviour {
 	}
 
 
-
+	override
 	public void resetMoveLocation(Vector3 location)
 	{//	location.y += 2;
 

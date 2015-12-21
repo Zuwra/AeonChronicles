@@ -39,31 +39,32 @@ public class GatlingGun : MonoBehaviour, Notify, Validator {
 
 	// Update is called once per frame
 	void Update () {	
-		if (cooldown) {
-			if(heatLevel < totalHeat/2)
-			{cooldown = false;}
 
-		}
-		if (Time.time > nextActionTime) {
-			nextActionTime += .5f;
-			heatLevel -=.12f;
-			if(heatLevel < 0)
-			{
-				heatLevel = 0;
+		if (myWeapon) {
+			if (cooldown) {
+				if (heatLevel < totalHeat / 2) {
+					cooldown = false;
+				}
+
 			}
+			if (Time.time > nextActionTime) {
+				nextActionTime += .5f;
+				heatLevel -= .12f;
+				if (heatLevel < 0) {
+					heatLevel = 0;
+				}
 
-			if(Time.time -lastFired >1.5){
-				myWeapon.attackPeriod += speedIncrease;
-				if(myWeapon.attackPeriod > intitalSpeed)
-				{
-					myWeapon.attackPeriod = intitalSpeed;
+				if (Time.time - lastFired > 1.5) {
+					myWeapon.attackPeriod += speedIncrease;
+					if (myWeapon.attackPeriod > intitalSpeed) {
+						myWeapon.attackPeriod = intitalSpeed;
 					}
+				}
+
+
 			}
 
-
 		}
-
-
 
 
 	

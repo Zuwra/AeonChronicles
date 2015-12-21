@@ -5,7 +5,7 @@ public abstract class  UnitState  {
 
 
 	public UnitManager myManager;
-	public customMover myMover;
+	public IMover myMover;
 	public IWeapon myWeapon;
 
 	// Update is called once per frame
