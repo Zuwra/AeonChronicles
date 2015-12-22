@@ -15,6 +15,15 @@ public class GameMenu : MonoBehaviour {
 
 	public bool ispaused = false;
 
+	public Canvas racetipMenu;
+	public Canvas OptionMenu;
+	public Canvas hotkeyMenu;
+	public Canvas soundMenu;
+	public Canvas gameplayMenu;
+	public Canvas graphicsMenu;
+
+	private Canvas currentMenu;
+
 
 	// Use this for initialization
 	void Start () {
@@ -34,25 +43,43 @@ public class GameMenu : MonoBehaviour {
 
 
 
+
+	private void setMenu(Canvas can)
+	{if (currentMenu != null) {
+			currentMenu.enabled = false;
+		}
+		currentMenu = can;
+		if (can != null) {
+			can.enabled = true;
+		}
+		
+	}
+
+
+
 	public void openMenu()
 	{if(myCanvas.enabled == true)
 		{returnToGame();}
 	else
-	{myCanvas.enabled = true;}
+	{setMenu (myCanvas);}
 	}
 
 	public void quitGame()
 	{}
 
 	public void openOptions()
-	{
+	{setMenu (OptionMenu);
 	}
 
 	public void openHotkeys()
-	{}
+	{
+		setMenu (hotkeyMenu);
+	}
 
 	public void openRaceTips()
-	{}
+	{setMenu (racetipMenu);}
+
+
 	public void pause()
 	{
 		ispaused = !ispaused;
@@ -66,11 +93,24 @@ public class GameMenu : MonoBehaviour {
 
 	}
 
+	public void openSoundMenu()
+	{setMenu (soundMenu);
+	}
+
 	public void returnToGame()
-	{myCanvas.enabled = false;
+	{setMenu (null);
 	}
 
 
+
+	public void openGamePlayMenu()
+	{setMenu (gameplayMenu);
+	}
+
+	public void openGraphicsMenu()
+	{
+		setMenu (graphicsMenu);
+	}
 
 
 
