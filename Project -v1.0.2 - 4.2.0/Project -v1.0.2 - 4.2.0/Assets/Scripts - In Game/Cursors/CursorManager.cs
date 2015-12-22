@@ -9,7 +9,7 @@ public class CursorManager : MonoBehaviour, ICursorManager {
 	private float cursorSize = 20.0f;
 	
 	private bool m_ShowCursor = false;
-	
+	Rect pointer;
 	public static CursorManager main;
 	
 	void Awake()
@@ -19,7 +19,7 @@ public class CursorManager : MonoBehaviour, ICursorManager {
 	}
 	
 	void Start()
-	{	
+	{	 pointer = new Rect(Input.mousePosition.x-(0/2), Screen.height-Input.mousePosition.y-(0/2), cursorSize, cursorSize);
 		Cursor[] temp = GameObject.FindGameObjectWithTag ("Cursors").GetComponents<Cursor>();
 		Cursors = new Cursor[temp.Length];
 		
@@ -39,6 +39,7 @@ public class CursorManager : MonoBehaviour, ICursorManager {
 		{
 			currentCursor.Animate (Time.deltaTime);
 		}
+		//GUI.DrawTexture (new Rect(Input.mousePosition.x-(0/2), Screen.height-Input.mousePosition.y-(0/2), cursorSize, cursorSize), currentCursor.GetCursorPicture());
 	}
 	
 	public void UpdateCursor(InteractionState interactionState)
@@ -48,6 +49,12 @@ public class CursorManager : MonoBehaviour, ICursorManager {
 	
 	void OnGUI()
 	{
+
+
+		GUI.DrawTexture (new Rect (Input.mousePosition.x, Screen.height - Input.mousePosition.y, cursorSize, cursorSize), currentCursor.GetCursorPicture ());		/*pointer.Set (Input.mousePosition.x-(0/2), Screen.height-Input.mousePosition.y-(0/2), cursorSize, cursorSize);
+		GUI.DrawTexture ((pointer), currentCursor.GetCursorPicture());
+		
+		Debug.Log ("Here");
 		if (m_ShowCursor)
 		{
 			GUI.depth = -2;
@@ -61,8 +68,8 @@ public class CursorManager : MonoBehaviour, ICursorManager {
 			{
 				offset = 0;
 			}
-			GUI.DrawTexture (new Rect(Input.mousePosition.x-(offset/2), Screen.height-Input.mousePosition.y-(offset/2), cursorSize, cursorSize), currentCursor.GetCursorPicture());
-		}
+			//GUI.DrawTexture (new Rect(Input.mousePosition.x-(offset/2), Screen.height-Input.mousePosition.y-(offset/2), cursorSize, cursorSize), currentCursor.GetCursorPicture());
+		}*/
 	}
 	
 	public void HideCursor()

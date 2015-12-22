@@ -117,9 +117,11 @@
      <Compile Include="Assets\AstarPathfindingProject\Utilities\ProfileHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
+     <Compile Include="Assets\Clock.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
      <Compile Include="Assets\GameMenu.cs" />
+     <Compile Include="Assets\GuiControls.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
      <Compile Include="Assets\RaceTipManager.cs" />
      <Compile Include="Assets\Resources\mortarPod.cs" />
@@ -322,10 +324,12 @@
      <Compile Include="Assets\Scripts - In Game\turret.cs" />
      <Compile Include="Assets\Scripts - Menus\LevelLoader.cs" />
      <Compile Include="Assets\Scripts - Menus\MainMenuGUI.cs" />
+     <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TurretMount.cs" />
      <Compile Include="Assets\airmover.cs" />
      <Compile Include="Assets\buildTurret.cs" />
      <Compile Include="Assets\explosion.cs" />
+     <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\testScript.cs" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />

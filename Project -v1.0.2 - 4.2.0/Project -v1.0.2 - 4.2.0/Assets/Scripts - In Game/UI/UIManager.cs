@@ -144,6 +144,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				hoverOver = HoverOver.Menu;
 
 
+
 			}
 
 		}
@@ -316,7 +317,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	{
 
 
-		if(hoverOver != HoverOver.Menu)
+	
 		switch (m_Mode)
 		{
 		case Mode.Menu:

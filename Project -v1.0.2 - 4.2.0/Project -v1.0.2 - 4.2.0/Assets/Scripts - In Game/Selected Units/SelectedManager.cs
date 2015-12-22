@@ -39,24 +39,14 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	void Update () {
 
 		if (Input.GetKeyUp (KeyCode.Tab)) {
-
-				//We're over the main screen, let's raycast
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit hit;		
+			attackMoveO ();
 				
-				
-				
-				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16)))
-				{
-					Vector3 attackMovePoint = hit.point;
-				GiveOrder( Orders.CreateAttackMove(attackMovePoint));
-				}
-
 
 		}
 
 		if (Input.GetKeyUp (KeyCode.CapsLock)) {
-			GiveOrder( Orders.CreateStopOrder());
+			stopO ();
+		
 		
 		}
 
@@ -363,6 +353,27 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 				AddObject (manager);
 			}
 		}
+	}
+
+
+	public void attackMoveO()
+	{
+		//We're over the main screen, let's raycast
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit;		
+
+
+
+		if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16)))
+		{
+			Vector3 attackMovePoint = hit.point;
+			GiveOrder( Orders.CreateAttackMove(attackMovePoint));
+		}
+
+	}
+
+	public void stopO()
+	{	GiveOrder( Orders.CreateStopOrder());
 	}
 
 

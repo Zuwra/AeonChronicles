@@ -1,17 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UI\UIManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ToolTip.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="417" Column="22" />
-      <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="116" Column="20" />
+      <File FileName="Assets\Scripts - In Game\DefaultState.cs" Line="14" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="144" Column="32" />
+      <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="3" Column="1" />
       <File FileName="Assets\GameMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="142" Column="28" />
       <File FileName="Assets\explosion.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\customMover.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\MoveState.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Cursors\CursorManager.cs" Line="52" Column="3" />
+      <File FileName="Assets\Scripts - In Game\Cursors\Cursor.cs" Line="1" Column="1" />
+      <File FileName="Assets\ToolTip.cs" Line="12" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
