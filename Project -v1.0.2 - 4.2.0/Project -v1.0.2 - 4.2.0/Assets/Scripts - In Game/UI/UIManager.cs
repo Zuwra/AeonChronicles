@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour, IUIManager {
 	
@@ -114,13 +115,16 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 
 
-			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(8 << 12)))
-		{
+		if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(5 << 12))) {
 
-				currentObject = hit.collider.gameObject;
+			currentObject = hit.collider.gameObject;
 
-				switch (hit.collider.gameObject.layer)
-				{
+			if (!EventSystem.current.IsPointerOverGameObject ()) {
+				
+			
+				switch (hit.collider.gameObject.layer) {
+
+
 				case 8:
 					//Friendly unit
 					hoverOver = HoverOver.Terrain;
@@ -136,9 +140,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 					break;
 				
 				}				
-				}
+			} else {
+				hoverOver = HoverOver.Menu;
 
-		
+
+			}
+
+		}
+	
 		if (hoverOver == HoverOver.Menu || m_SelectedManager.ActiveObjectsCount() == 0 || m_GuiManager.GetSupportSelected != 0)
 		{
 			//Nothing orderable Selected or mouse is over menu or support is selected
@@ -159,7 +168,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 	{
 		switch (hoveringOver)
 		{
-		case HoverOver.Menu:			
+		case HoverOver.Menu:	
+			break;
 		case HoverOver.Terrain:
 			//Normal Interaction
 			interactionState = InteractionState.Nothing;
@@ -238,9 +248,13 @@ public class UIManager : MonoBehaviour, IUIManager {
 	//------------------------Mouse Button Commands--------------------------------------------
 	public void LeftButton_SingleClickDown(MouseEventArgs e)
 	{
-
+		if(hoverOver != HoverOver.Menu)
 		switch (m_Mode)
 		{
+
+		case Mode.Menu:
+	
+			break;
 		case Mode.Normal:
 			//We've left clicked, what have we left clicked on?
 			int currentObjLayer = currentObject.layer;
@@ -302,9 +316,13 @@ public class UIManager : MonoBehaviour, IUIManager {
 	{
 
 
-
+		if(hoverOver != HoverOver.Menu)
 		switch (m_Mode)
 		{
+		case Mode.Menu:
+	
+			break;
+
 		case Mode.Normal:
 			//If we've just switched from another mode, don't execute
 			if (m_Placed)
@@ -381,9 +399,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public void RightButton_SingleClick(MouseEventArgs e)
 	{
 	
-
+		if(hoverOver != HoverOver.Menu)
 		switch (m_Mode)
 		{
+		case Mode.Menu:
+			break;
+
 		case Mode.Normal:
 			//We've right clicked, have we right clicked on ground, interactable object or enemy?
 			int currentObjLayer = currentObject.layer;
@@ -400,9 +421,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16)))
 				{
 					Vector3 attackMovePoint = hit.point;
-					//GiveOrder( Orders.CreateAttackMove(attackMovePoint));
-
-				//Debug.Log("commanding to move" + attackMovePoint);
+			
 
 					m_SelectedManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));}
 			}
@@ -524,6 +543,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 		m_ItemBeingPlaced = item;
 		m_ObjectBeingPlaced = (GameObject)Instantiate (item.Prefab);
 		m_ObjectBeingPlaced.AddComponent<BuildingBeingPlaced>();
+	}
+
+	private void setToMenu()
+	{m_Mode = Mode.Menu;
 	}
 }
 
