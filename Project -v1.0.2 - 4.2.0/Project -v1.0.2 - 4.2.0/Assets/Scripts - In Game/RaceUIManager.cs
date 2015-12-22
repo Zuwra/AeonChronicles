@@ -110,7 +110,8 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	}
 
 	public void fOne()
-	{selectManager.selectAllArmy ();}
+	{Debug.Log ("Im being clicked");
+		selectManager.selectAllArmy ();}
 	
 	public void fTwo()
 	{
