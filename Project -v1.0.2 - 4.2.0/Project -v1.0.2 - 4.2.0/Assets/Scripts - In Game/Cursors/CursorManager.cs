@@ -8,8 +8,8 @@ public class CursorManager : MonoBehaviour, ICursorManager {
 	private Cursor currentCursor;
 	private float cursorSize = 20.0f;
 	
-	private bool m_ShowCursor = false;
-	Rect pointer;
+	//private bool m_ShowCursor = false;
+	//Rect pointer;
 	public static CursorManager main;
 	
 	void Awake()
@@ -19,7 +19,7 @@ public class CursorManager : MonoBehaviour, ICursorManager {
 	}
 	
 	void Start()
-	{	 pointer = new Rect(Input.mousePosition.x-(0/2), Screen.height-Input.mousePosition.y-(0/2), cursorSize, cursorSize);
+	{	// pointer = new Rect(Input.mousePosition.x-(0/2), Screen.height-Input.mousePosition.y-(0/2), cursorSize, cursorSize);
 		Cursor[] temp = GameObject.FindGameObjectWithTag ("Cursors").GetComponents<Cursor>();
 		Cursors = new Cursor[temp.Length];
 		
@@ -74,11 +74,11 @@ public class CursorManager : MonoBehaviour, ICursorManager {
 	
 	public void HideCursor()
 	{
-		m_ShowCursor = false;
+		//m_ShowCursor = false;
 	}
 	
 	public void ShowCursor()
 	{
-		m_ShowCursor = true;
+		//m_ShowCursor = true;
 	}
 }

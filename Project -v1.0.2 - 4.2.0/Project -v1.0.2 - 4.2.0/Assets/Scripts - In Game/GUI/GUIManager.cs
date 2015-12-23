@@ -20,7 +20,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 	
 	//private ITypeButton[] m_TypeButtons = new TypeButton[5];
 	//private IMaintenanceButtons[] m_MaintenanceButtons = new IMaintenanceButtons[3];
-	private IManager m_Manager;
+	//private IManager m_Manager;
 	
 	//Properties
 	public float MainMenuWidth
@@ -81,9 +81,10 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		MainMenuWidth = tempWidth;
 		
 		//Build Borders around the map
+		/*
 		float sideBorderWidth = (m_MainMenuWidth-(m_MiniMapRect.width*Screen.width))/2;
 		float topBorderHeight = (1-m_MiniMapRect.yMax)*Screen.height/2;
-		/*
+
 		m_LeftMiniMapBG = new Rect();
 		m_LeftMiniMapBG.xMin = Screen.width-m_MainMenuWidth;
 		m_LeftMiniMapBG.xMax = m_LeftMiniMapBG.xMin + sideBorderWidth;
@@ -139,7 +140,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		m_MaintenanceButtons[2] = new Maintanance_Disable(rect3);
 		*/
 		//Resolve Manager
-		m_Manager = ManagerResolver.Resolve<IManager>();
+		//m_Manager = ManagerResolver.Resolve<IManager>();
 	}
 	
 	// Update is called once per frame
@@ -208,11 +209,11 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		//Resolution has changed, re-size all GUI elements
 		//Mini map first
 		ManagerResolver.Resolve<IMiniMapController>().LoadMiniMap (out m_MainMenuWidth, out m_MiniMapRect);
-		
+		/*
 		//Build Borders around the map
 		float sideBorderWidth = (m_MainMenuWidth-(m_MiniMapRect.width*Screen.width))/2;
 		float topBorderHeight = (1-m_MiniMapRect.yMax)*Screen.height;
-		/*
+	
 		m_LeftMiniMapBG = new Rect();
 		m_LeftMiniMapBG.xMin = Screen.width-m_MainMenuWidth;
 		m_LeftMiniMapBG.xMax = m_LeftMiniMapBG.xMin + sideBorderWidth;

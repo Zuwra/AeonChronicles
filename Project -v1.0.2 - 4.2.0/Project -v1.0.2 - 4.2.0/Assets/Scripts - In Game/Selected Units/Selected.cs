@@ -40,7 +40,7 @@ public class Selected : MonoBehaviour {
 		m_MainMenuWidth = ManagerResolver.Resolve<IGUIManager>().MainMenuWidth;
 		
 		m_GLManager = ManagerResolver.Resolve<IGLManager>();
-		m_GLMat = GLMatShader.GetGLMaterial ();
+		//m_GLMat = GLMatShader.GetGLMaterial ();
 		m_GLItem = new GLItem(GLExecuteFunction);
 		
 		//If this unit is land based subscribe to the path changed event
@@ -208,7 +208,7 @@ public class Selected : MonoBehaviour {
 		{
 			m_JustBeenSelected = true;
 			m_JustBeenSelectedTimer = 0;
-			m_GLManager.AddItemToRender (m_GLItem);
+			//m_GLManager.AddItemToRender (m_GLItem);
 		}
 	}
 }

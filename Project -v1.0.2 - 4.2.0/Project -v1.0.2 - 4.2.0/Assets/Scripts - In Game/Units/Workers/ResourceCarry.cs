@@ -13,7 +13,7 @@ public class ResourceCarry : MonoBehaviour {
 	public workerState myState;
 
 	private GameObject nearestDropoff;
-	private GameObject currentWorkSite;
+	//private GameObject currentWorkSite;
 	private RaceManager manager;
 
 
@@ -53,9 +53,9 @@ public class ResourceCarry : MonoBehaviour {
 		carryingTwo= false;
 
 		myState = workerState.travel;
-		if (currentWorkSite != null) {
-			this.gameObject.GetComponent<MovementComponent> ().queueTargetLocation (currentWorkSite.transform.position);
-		}
+		//if (currentWorkSite != null) {
+			//this.gameObject.GetComponent<MovementComponent> ().queueTargetLocation (currentWorkSite.transform.position);
+	//	}
 
 	}
 

@@ -11,7 +11,7 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 	private Rect m_MiniMapRect;
 	
 	//Menu Width (needed to calculate correct viewport in minimap)
-	private float m_MenuWidth;
+
 	
 	//Vectors for viewport co-ordinates in minimap
 	private Vector3[] m_ViewPortVectors = new Vector3[4];
@@ -22,12 +22,14 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 	private ICamera m_MainCamera;
 	
 	private Material mat;
-	
+
+
+
 	void Awake()
 	{
 		main = this;
 		
-		mat = GLMatShader.GetGLMaterial ();
+		//mat = GLMatShader.GetGLMaterial ();
 	}
 
 	// Use this for initialization
@@ -68,8 +70,8 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 		//Now we have the minimap size, determine how wide the GUI should be
 
 		// I commented these out because the program was originally designed with a C&C right hand side game hud, units couldn't be told to move there
-		float miniMapX = 0;// Camera.main.ViewportToScreenPoint(new Vector3(viewPortX, viewPortY, 0)).x;
-		float miniMapX2 = 0;// Camera.main.ViewportToScreenPoint(new Vector3(viewPortX+viewPortWidth, viewPortY, 0)).x;
+		//float miniMapX = 0;// Camera.main.ViewportToScreenPoint(new Vector3(viewPortX, viewPortY, 0)).x;
+		///float miniMapX2 = 0;// Camera.main.ViewportToScreenPoint(new Vector3(viewPortX+viewPortWidth, viewPortY, 0)).x;
 		float miniMapWidth = 0;// miniMapX2 - miniMapX;
 		float miniMapGap = 0;// Screen.width-miniMapX2;
 		
@@ -129,10 +131,10 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 		Ray ray2 = Camera.main.ScreenPointToRay (new Vector3(0, Screen.height-1, 0));
 		
 		//Top right
-		Ray ray3 = Camera.main.ScreenPointToRay (new Vector3(Screen.width-m_MenuWidth, Screen.height-1, 0));
+		Ray ray3 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, Screen.height-1, 0));
 		
 		//Bottom right
-		Ray ray4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width-m_MenuWidth, 0, 0));
+		Ray ray4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, 0, 0));
 		
 		//Find world co-ordinates
 		RaycastHit hit;
@@ -161,7 +163,7 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 			m_zOffSet = hit.point.z- Camera.main.transform.position.z;
 			float midPointX = hit.point.x;
 			
-			Ray ray6 = Camera.main.ScreenPointToRay (new Vector3((Screen.width-m_MenuWidth)/2, Screen.height/2, 0));
+			Ray ray6 = Camera.main.ScreenPointToRay (new Vector3((Screen.width)/2, Screen.height/2, 0));
 			if (Physics.Raycast (ray6, out hit, Mathf.Infinity, 1 << 16))
 			{
 				m_xOffset = hit.point.x-midPointX;
@@ -181,7 +183,7 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 	void OnPostRender()
 	{
 		GL.PushMatrix ();
-		mat.SetPass (0);
+		//mat.SetPass (0);
 		GL.LoadPixelMatrix();
 		GL.Color (Color.white);
 		GL.Begin(GL.LINES);

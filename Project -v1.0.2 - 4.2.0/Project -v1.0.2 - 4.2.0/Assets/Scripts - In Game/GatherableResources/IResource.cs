@@ -29,4 +29,13 @@ public class IResource : MonoBehaviour {
             return uniqueID == (o as IResource).uniqueID;
         return false;
     }
+
+
+	public override int GetHashCode()
+	{return this.GetHashCode ();}
+
+
 }
+
+
+
