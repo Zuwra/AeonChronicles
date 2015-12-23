@@ -125,24 +125,40 @@ public class MainCamera : MonoBehaviour, ICamera {
 			Camera.main.transform.Translate (new Vector3(0,0,m_Boundries.yMax-top), Space.World);
 		}
 	}
-	
+
 	public void Zoom(object sender, ScrollWheelEventArgs e)
-	{
+	{float x = 0;
+		float z = 0;
 		if (HeightAboveGround > m_MaxFieldOfView || HeightAboveGround < m_MinFieldOfView) {
 			return;}
 
 			HeightAboveGround -= e.ScrollValue * ZoomRate * Time.deltaTime * 10;
-
+	
 
 		if (HeightAboveGround < m_MinFieldOfView) {
 			HeightAboveGround = m_MinFieldOfView;
 		} else if (HeightAboveGround > m_MaxFieldOfView) {
 			HeightAboveGround = m_MaxFieldOfView;
-		} 
-			transform.position = new Vector3 (this.gameObject.transform.position.x, HeightAboveGround, this.gameObject.transform.position.z);
+		} else {
+			if (e.ScrollValue > 0) {
+				x = (Screen.width/2 - Input.mousePosition.x) *.03f;
+				z= -(Screen.height/2 - Input.mousePosition.y) *.001f * AngleOffset;
+
+			}
+			
+		}
+
+
+
+
+
+		transform.position = new Vector3 (this.gameObject.transform.position.x - x, HeightAboveGround, this.gameObject.transform.position.z + z);
 
 			
 		AngleOffset = 45 -((HeightAboveGround - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
+
+
+
 			//AngleOffset += e.ScrollValue * Time.deltaTime * 700;
 
 			if (AngleOffset > 90) {

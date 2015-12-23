@@ -28,4 +28,10 @@ public class HoldState : UnitState {
 		}
 	}
 
+
+
+	override
+	public void attackResponse(GameObject src)
+	{}
+
 }

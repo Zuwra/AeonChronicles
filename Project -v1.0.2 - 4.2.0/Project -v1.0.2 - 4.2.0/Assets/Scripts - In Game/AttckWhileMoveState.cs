@@ -30,4 +30,10 @@ public class AttckWhileMoveState : UnitState{
 		{myManager.changeState(new DefaultState(myManager,myMover,myWeapon));}
 		
 	}
+
+
+	override
+	public void attackResponse(GameObject src)
+	{
+	}
 }

@@ -220,7 +220,24 @@ public class IWeapon : MonoBehaviour {
 
 
 
+	public bool isValidTarget(GameObject target)
+	{
+		if (range < 4) {
+			if (target.GetComponent<airmover> ()) {
+				return false;
+			}
 
+		
+		}
+
+		UnitStats stats = target.GetComponent<UnitStats> ();
+		foreach (UnitTypes.UnitTypeTag ty in cantAttackTypes) {
+			if (stats.isUnitType (ty))
+				return false;
+		}
+		return true;
+
+	}
 
 
 

@@ -109,4 +109,12 @@ public class AttackMoveState : UnitState {
 
 	public void setHome(Vector3 input)
 		{home = input;}
+
+
+
+	override
+	public void attackResponse(GameObject src)
+	{}
+
+
 }

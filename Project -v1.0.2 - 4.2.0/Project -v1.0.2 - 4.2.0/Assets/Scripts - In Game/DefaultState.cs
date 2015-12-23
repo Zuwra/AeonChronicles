@@ -28,4 +28,39 @@ public class DefaultState : UnitState{
 	
 	
 	}
+
+
+	override
+	public void attackResponse(GameObject src)
+	{
+		UnitManager manage = src.GetComponent<UnitManager> ();
+		if (manage.PlayerOwner != myManager.PlayerOwner) {
+	
+
+
+			if (myWeapon.isValidTarget (src)) {
+				myManager.GiveOrder (Orders.CreateAttackMove (src.transform.position));
+			}
+
+			else {
+				Vector3 spot = (myManager.transform.position + (myManager.transform.position - src.transform.position)* .4f);
+				spot.y += 100;
+				Ray ray = new Ray(spot, Vector3.down);
+
+				RaycastHit hit;
+				Vector3 dest = new Vector3();
+				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~8))
+				{
+					dest = hit.point;
+				}
+
+				myManager.GiveOrder(Orders.CreateAttackMove(dest));
+			}
+
+
+
+		}
+
+	}
+
 }

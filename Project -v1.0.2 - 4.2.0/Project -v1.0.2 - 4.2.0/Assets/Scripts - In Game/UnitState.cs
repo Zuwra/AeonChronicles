@@ -11,5 +11,7 @@ public abstract class  UnitState  {
 	// Update is called once per frame
 	public abstract void Update ();
 
+	public abstract void attackResponse(GameObject src);
+
 
 }

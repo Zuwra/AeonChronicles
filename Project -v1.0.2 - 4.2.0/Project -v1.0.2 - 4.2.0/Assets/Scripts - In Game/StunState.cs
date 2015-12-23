@@ -11,4 +11,12 @@ public class StunState : UnitState {
 	public void Update () {
 	
 	}
+
+
+
+
+	override
+	public void attackResponse(GameObject src)
+	{
+	}
 }

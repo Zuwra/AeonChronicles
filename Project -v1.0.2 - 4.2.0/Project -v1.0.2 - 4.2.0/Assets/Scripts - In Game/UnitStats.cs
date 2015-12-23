@@ -25,7 +25,7 @@ public class UnitStats : MonoBehaviour {
 	public float attackPriority =1 ;
 
 	public float armor;
-
+	private UnitManager myManager;
 
 	private List<Modifier> damageModifiers = new List<Modifier>();
 	public List<UnitTypes.UnitTypeTag> unitTags = new  List<UnitTypes.UnitTypeTag> ();
@@ -55,7 +55,7 @@ public class UnitStats : MonoBehaviour {
 		if (!mySelection) {
 			mySelection = this.gameObject.GetComponent<Selected>();
 		}
-
+		myManager = this.gameObject.GetComponent<UnitManager> ();
 		//this stuff is taken care of through the thing that builds it
 		//if(supply > 0)
 			//{GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().currentSupply += supply;}
@@ -154,7 +154,8 @@ public class UnitStats : MonoBehaviour {
 						kill (source);
 
 				}
-		
+				if(type != DamageTypes.DamageType.True)
+				myManager.Attacked (source);
 			}
 		}
 	}

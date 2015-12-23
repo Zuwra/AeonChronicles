@@ -270,7 +270,9 @@ public class UnitManager : Unit,IOrderable{
 
 		for (int i = 0; i < enemies.Count; i ++) {
 			if (enemies[i] != null) {
-
+				if (!myWeapon.isValidTarget (enemies [i])) {
+					continue;
+				}
 				if (enemies[i].GetComponent<UnitStats> ().attackPriority < bestPriority) {
 						
 					continue;
@@ -331,7 +333,9 @@ public class UnitManager : Unit,IOrderable{
 		return false;
 	}
 
-
+	public void Attacked(GameObject src)
+	{if(myState!=null)
+		myState.attackResponse (src);}
 }
 
 

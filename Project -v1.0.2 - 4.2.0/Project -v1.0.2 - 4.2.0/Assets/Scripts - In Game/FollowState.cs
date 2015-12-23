@@ -46,4 +46,11 @@ public class FollowState : UnitState {
 
 
 	}
+
+	override
+	public void attackResponse(GameObject src)
+	{
+	}
+
+
 }
