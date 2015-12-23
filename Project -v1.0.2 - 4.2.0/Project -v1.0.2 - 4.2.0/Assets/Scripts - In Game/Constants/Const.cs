@@ -11,6 +11,7 @@ public static class Const {
 	public const int ORDER_ATTACK = 2;
 	public const int ORDER_DEPLOY = 3;
 	public const int ORDER_AttackMove = 4;
+	public const int ORDER_Follow = 5; 
 	
 	public const int BUILDING_ConYard = 0;
 	public const int BUILDING_PowerPlant = 1;

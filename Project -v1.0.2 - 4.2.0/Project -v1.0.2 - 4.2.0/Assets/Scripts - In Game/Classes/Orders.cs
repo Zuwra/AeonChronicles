@@ -27,4 +27,8 @@ public static class Orders {
 	{
 		return new Order ("AttackMove", 4, location);
 	}
+
+	public static Order CreateFollowCommand(RTSObject obj)
+	{return new Order ("Follow", 5, obj);
+	}
 }

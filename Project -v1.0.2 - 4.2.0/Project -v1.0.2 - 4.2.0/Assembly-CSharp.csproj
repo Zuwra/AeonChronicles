@@ -121,6 +121,8 @@
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
      <Compile Include="Assets\GameMenu.cs" />
+     <Compile Include="Assets\GamePlayMenu.cs" />
+     <Compile Include="Assets\GraphicsMenu.cs" />
      <Compile Include="Assets\GuiControls.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
      <Compile Include="Assets\RaceTipManager.cs" />
@@ -188,6 +190,7 @@
      <Compile Include="Assets\Scripts - In Game\Events\EventsManager.ScreenEdge.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\EventsManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts - In Game\FollowState.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\EventArgs\MaintenanceButtonEventArgs.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\EventArgs\QueueButtonEventArgs.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\EventArgs\TypeButtonEventArgs.cs" />

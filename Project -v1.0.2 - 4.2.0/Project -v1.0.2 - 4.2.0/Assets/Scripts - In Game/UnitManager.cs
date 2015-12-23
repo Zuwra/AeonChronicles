@@ -182,8 +182,16 @@ public class UnitManager : Unit,IOrderable{
 					changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));
 				}
 				break;
+			case Const.ORDER_Follow:
+				
+				changeState (new FollowState (order.Target.gameObject, this, cMover, myWeapon));
+				break;
+
+
 		
 			}
+
+
 		}
 
 	}

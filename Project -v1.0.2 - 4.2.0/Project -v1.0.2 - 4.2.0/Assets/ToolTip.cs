@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 	private bool pointerInside;
-
+	public bool Ability;
 	public string helpText;
 
 	private Canvas toolbox;

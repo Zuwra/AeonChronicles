@@ -9,7 +9,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	//Camera Variables
 	public float HeightAboveGround = 30.0f;
 	public float AngleOffset = 20.0f;
-	public float m_MaxFieldOfView = 85.0f;
+	public float m_MaxFieldOfView = 150.0f;
 	public float m_MinFieldOfView = 20.0f;
 	
 	public float ScrollSpeed = 8.0f;
@@ -38,7 +38,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 		{
 			transform.position = new Vector3(StartPoint.transform.position.x, HeightAboveGround, StartPoint.transform.position.z-AngleOffset);
 		}
-		
+		AngleOffset = 45 -((HeightAboveGround - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
 		//Set up camera rotation
 		transform.rotation = Quaternion.Euler (90-AngleOffset, 0, 0);
 	}
@@ -128,18 +128,34 @@ public class MainCamera : MonoBehaviour, ICamera {
 	
 	public void Zoom(object sender, ScrollWheelEventArgs e)
 	{
-		GetComponent<Camera>().fieldOfView -= e.ScrollValue*ZoomRate*Time.deltaTime;
-		
-		if (GetComponent<Camera>().fieldOfView < m_MinFieldOfView) 
-		{
-			GetComponent<Camera>().fieldOfView = m_MinFieldOfView;
+		if (HeightAboveGround > m_MaxFieldOfView || HeightAboveGround < m_MinFieldOfView) {
+			return;}
+
+			HeightAboveGround -= e.ScrollValue * ZoomRate * Time.deltaTime * 10;
+
+
+		if (HeightAboveGround < m_MinFieldOfView) {
+			HeightAboveGround = m_MinFieldOfView;
+		} else if (HeightAboveGround > m_MaxFieldOfView) {
+			HeightAboveGround = m_MaxFieldOfView;
+		} 
+			transform.position = new Vector3 (this.gameObject.transform.position.x, HeightAboveGround, this.gameObject.transform.position.z);
+
+			
+		AngleOffset = 45 -((HeightAboveGround - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
+			//AngleOffset += e.ScrollValue * Time.deltaTime * 700;
+
+			if (AngleOffset > 90) {
+				AngleOffset = 90;
+			} else if (AngleOffset < 0) {
+				AngleOffset = 0;
+			}
+			transform.rotation = Quaternion.Euler (90 - AngleOffset, 0, 0);
+
+		if (HeightAboveGround < m_MaxFieldOfView) {
+			CheckEdgeMovement ();
 		}
-		else if (GetComponent<Camera>().fieldOfView > m_MaxFieldOfView) 
-		{
-			GetComponent<Camera>().fieldOfView = m_MaxFieldOfView;
-		}
-		
-		CheckEdgeMovement();
+
 	}
 	
 	public void DisableScrolling()

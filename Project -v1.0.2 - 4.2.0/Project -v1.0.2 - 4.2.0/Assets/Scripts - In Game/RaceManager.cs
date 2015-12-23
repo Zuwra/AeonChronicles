@@ -16,6 +16,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public float supplyMax;
 	public float currentSupply;
 
+	public Ability UltOne;
+	public Ability UltTwo;
+	public Ability UltThree;
+	public Ability UltFour;
+
+
 
 	private List<GameObject> resourceDropOffs = new List<GameObject> ();
     private List<IResource> knownGatherPoints = new List<IResource>();
@@ -231,4 +237,33 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
             resource.known = true;
         }
     }
+
+
+
+
+
+	public void useAbilityOne()
+	{if (UltOne != null) {
+		}
+	}
+
+	public void useAbilityTwo()
+	{
+		if (UltTwo != null) {
+		}
+	}
+
+	public void useAbilityThree()
+	{
+		if (UltThree != null) {
+		}
+	}
+
+	public void useAbilityFour()
+	{
+		if (UltFour != null) {
+		}
+	}
+
+
 }

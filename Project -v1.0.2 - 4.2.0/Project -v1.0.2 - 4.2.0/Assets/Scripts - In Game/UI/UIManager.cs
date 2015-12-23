@@ -427,8 +427,15 @@ public class UIManager : MonoBehaviour, IUIManager {
 					m_SelectedManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));}
 			}
 			else if (currentObjLayer == 9 || currentObjLayer == 10)
-			{
-				m_SelectedManager.GiveOrder(Orders.CreateAttackOrder(currentObject.GetComponent<UnitManager>()));
+			{UnitManager manage = currentObject.GetComponent<UnitManager> ();
+					if (manage != null) {
+					
+						if (manage.PlayerOwner != raceManager.playerNumber) {
+							m_SelectedManager.GiveOrder (Orders.CreateAttackOrder (currentObject.GetComponent<UnitManager> ()));
+						} else {
+						
+						m_SelectedManager.GiveOrder (Orders.CreateFollowCommand(currentObject.GetComponent<UnitManager>()));						}
+					}
 				//Friendly Unit -> Interact (if applicable)
 			}
 			else if (currentObjLayer == 9 || currentObjLayer == 15)
