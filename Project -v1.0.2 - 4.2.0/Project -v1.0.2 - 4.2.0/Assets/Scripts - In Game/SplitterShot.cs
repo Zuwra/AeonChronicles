@@ -23,15 +23,15 @@ public class SplitterShot : Projectile {
 	}
 
 
-	public void setSource(GameObject so)
+	public new void setSource(GameObject so)
 	{
 		hitlist = so.GetComponent<SplitterHitList> ();
 	
 		Source = so;
 	}
 
-	
-	public void setTarget(GameObject so)
+
+	public new void setTarget(GameObject so)
 	{
 
 	
@@ -39,7 +39,7 @@ public class SplitterShot : Projectile {
 		target = so;
 	}
 	
-	public void setDamage(float so)
+	public new void setDamage(float so)
 	{
 		
 		damage = so;

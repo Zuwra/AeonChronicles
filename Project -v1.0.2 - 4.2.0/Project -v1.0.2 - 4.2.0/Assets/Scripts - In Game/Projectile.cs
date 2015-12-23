@@ -40,12 +40,13 @@ public  class Projectile : MonoBehaviour {
 				float radius = Random.Range(0, inaccuracy);
 				float angle = Random.Range(0, 360);
 				
-				hitzone.x += Mathf.Sin(Mathf.Deg2Rad * angle);
-				hitzone.z +=  Mathf.Cos(Mathf.Deg2Rad * angle);
+				hitzone.x += Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
+				hitzone.z +=  Mathf.Cos(Mathf.Deg2Rad * angle)* radius;
 				
 				lastLocation = hitzone;
 			
-				
+
+
 			}
 			else{
 				lastLocation = target.transform.position;

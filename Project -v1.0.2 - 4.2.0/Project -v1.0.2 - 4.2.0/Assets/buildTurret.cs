@@ -16,7 +16,7 @@ public class buildTurret :Ability{
 	public bool autoPlaceTurrets;
 
 
-	private List<GameObject> turretMounts = new List<GameObject>();
+	private List<TurretMount> turretMounts = new List<TurretMount>();
 
 	// Use this for initialization
 	void Start () {
@@ -29,16 +29,27 @@ public class buildTurret :Ability{
 		if (buildingUnit) {
 
 			timer -= Time.deltaTime;
-			if(timer <=0)
-			{
+			if (timer <= 0) {
 				buildingUnit = false;
 				numberOfTurrets++;
 
 			}
 		}
 
+		if (turretMounts.Count > 0) {
+			if (numberOfTurrets > 0) {
+				foreach (TurretMount obj in turretMounts) {
+					if (numberOfTurrets > 0) {
+						obj.placeTurret (createUnit ());
+					}
+
+				}
+			}
+	
 
 
+
+		}
 	}
 
 
@@ -47,26 +58,32 @@ public class buildTurret :Ability{
 	{
 		//need to set up calls to listener components
 		//this will need to be refactored for team games
-		if (!other.isTrigger) {
+		if (other.isTrigger) {
+				return;}
 
 
-			UnitManager manage = other.gameObject.GetComponent<UnitManager>();
-			if (manage)
-			if (
-				manage.PlayerOwner == manager.PlayerOwner) {
+		UnitManager manage = other.gameObject.GetComponent<UnitManager>();
+
+			if (manage == null) {
+			return;
+		}
+
+			if (manage.PlayerOwner == manager.PlayerOwner) {
 
 				
 				TurretMount mount = other.gameObject.GetComponentInChildren<TurretMount> ();
 				if (mount && mount.turret == null) {
 		
-					if (autoPlaceTurrets && numberOfTurrets >0) {
-						mount.placeTurret (createUnit());
+					if (autoPlaceTurrets) {
+						turretMounts.Add (mount);
+
+
 					}
 				
-				}
-
+				
 
 			}
+			
 
 		}
 	}

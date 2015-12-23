@@ -16,8 +16,9 @@ public class UnitManager : Unit,IOrderable{
 	public bool attackWhileMoving = false;
 	public UnitStats myStats;
 
-	public VisionSphere vision;
+
 	public float visionRange;
+	private float chaseRange;
 	//public VisionComponent myVision;
 
 	public Ability QAbility;
@@ -38,12 +39,15 @@ public class UnitManager : Unit,IOrderable{
 
 
 	// Use this for initialization
-	void Start () {
+	new void Start () {
+
+
 		if (visionSphere == null) {
 			visionSphere = this.gameObject.GetComponent<SphereCollider>();}
+	//	if (visionSphere == null) {
+		//	visionSphere = this.gameObject.GetComponent<CapsuleCollider>();
+		//}
 
-	
-		vision = GetComponentInChildren<VisionSphere> ();
 
 		if (cMover == null) {
 			cMover = gameObject.GetComponent<customMover>();
@@ -82,19 +86,24 @@ public class UnitManager : Unit,IOrderable{
 		if (cMover != null) {
 			changeState (new DefaultState (this, cMover, myWeapon));
 		}
+		if (myWeapon != null) {
+			chaseRange = visionRange - ((visionRange - myWeapon.range) / 2);
+		} else {
+			chaseRange = visionRange;
+		}
 
 	}
 
 
 
-	public GameObject getObject()
+	public new GameObject getObject()
 	{return this.gameObject;}
 
 
 
 	
 	// Update is called once per frame
-	void Update () {
+	new void Update () {
 		if (myState != null) {
 			myState.Update ();
 		} 
@@ -105,7 +114,7 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
-	public bool UseQAbility()
+	public new bool UseQAbility()
 	{
 	
 		if (QAbility != null) {
@@ -118,7 +127,7 @@ public class UnitManager : Unit,IOrderable{
 		return true;
 	}
 
-	public bool UseWAbility()
+	public new bool UseWAbility()
 	{
 		if (WAbility != null) {
 			if(WAbility.canActivate())
@@ -129,7 +138,7 @@ public class UnitManager : Unit,IOrderable{
 			}
 
 
-	public bool UseEAbility()
+	public new bool UseEAbility()
 	{if (EAbility != null) {
 			if(EAbility.canActivate())
 			{return EAbility.Activate();}
@@ -138,7 +147,7 @@ public class UnitManager : Unit,IOrderable{
 		return true;}
 
 
-	public bool UseRAbility()
+	public new bool UseRAbility()
 	{if (RAbility != null) {
 			if(RAbility.canActivate())
 			{return RAbility.Activate();}
@@ -147,7 +156,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 
-	public void GiveOrder (Order order)
+	public new void GiveOrder (Order order)
 	{if (!isAStructure) {
 			switch (order.OrderType) {
 			//Stop Order----------------------------------------
@@ -301,12 +310,10 @@ public class UnitManager : Unit,IOrderable{
 
 	public void changeState(UnitState nextState)
 		{
-		{myState = nextState;
-
-		}
+		myState = nextState;
 
 
-		if (nextState.GetType is AttackMoveState) {
+		if (nextState.GetType() is AttackMoveState) {
 
 			((AttackMoveState)nextState).setHome(this.gameObject.transform.position);
 		}
@@ -336,6 +343,11 @@ public class UnitManager : Unit,IOrderable{
 	public void Attacked(GameObject src)
 	{if(myState!=null)
 		myState.attackResponse (src);}
+
+
+	public float getChaseRange()
+	{return chaseRange;}
+
 }
 
 

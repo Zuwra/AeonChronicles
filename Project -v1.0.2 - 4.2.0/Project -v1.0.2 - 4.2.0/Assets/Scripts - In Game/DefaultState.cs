@@ -17,12 +17,14 @@ public class DefaultState : UnitState{
 	override
 	public void Update () {// change this later so t will only check for attackable enemies.
 		if (myWeapon != null) {
-		if (myManager.enemies.Count > 0) {
+			if (myManager.enemies.Count > 0) {
 
-			//Debug.Log("best enemey is" + myManager.findBestEnemy());
-			
-				myManager.changeState (new AttackMoveState (myManager.findBestEnemy (),
-					new Vector3 (), AttackMoveState.MoveType.passive, myManager, myMover, myWeapon, myManager.gameObject.transform.position));
+				//Debug.Log("best enemey is" + myManager.findBestEnemy());
+				GameObject target = myManager.findBestEnemy ();
+				if (Vector3.Distance (myManager.gameObject.transform.position, target.transform.position) <= myManager.getChaseRange ()) {
+					myManager.changeState (new AttackMoveState (myManager.findBestEnemy (),
+						new Vector3 (), AttackMoveState.MoveType.passive, myManager, myMover, myWeapon, myManager.gameObject.transform.position));
+				}
 			}
 		}
 	

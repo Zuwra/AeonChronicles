@@ -14,31 +14,29 @@ public class MovementComponent : MonoBehaviour {
 	private float currentSpeed;
 	public bool isMoving;
 
-	private float targetAngle = 15;
 
 	public float seperationRadius;
 	public Queue<Vector3> targetLocations = new Queue<Vector3> ();
 
 
 
-	private float currentYVelocity = 0.0f;
+	//private float currentYVelocity = 0.0f;
 	//private Vector3 currentMoveAmount = Vector3.zero;
 
 
     private bool stunned = false;
-	private float elapsedStunTime = 0f;
-	private float targetStunTime = 0f;
+	//private float elapsedStunTime = 0f;
+	//private float targetStunTime = 0f;
 
 	private Vector3 previousVelocity;
-	private CharacterController controller;
+	//private CharacterController controller;
 	private Quaternion targetRotation;
 
-	private UnitManager manage;
 
 	// Use this for initialization
-	void Start () {manage = this.gameObject.GetComponent<UnitManager> ();
+	void Start () {
 	
-		controller = this.gameObject.GetComponent<CharacterController> ();
+		//controller = this.gameObject.GetComponent<CharacterController> ();
 	}
 
 	void Update(){
@@ -136,7 +134,7 @@ public class MovementComponent : MonoBehaviour {
 			if(currentSpeed > MaxSpeed)
 			{currentSpeed = MaxSpeed;}
 		}
-		targetAngle = 25;
+	
 	
 
 	}
@@ -161,9 +159,7 @@ public class MovementComponent : MonoBehaviour {
 		Seeker seeker = GetComponent<Seeker>();
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
 
-		if (location == null) {
-			Debug.Log("Hi");
-		}
+
 		seeker.StartPath (this.gameObject.transform.position,location, OnPathComplete );
 
 
@@ -310,21 +306,7 @@ public class MovementComponent : MonoBehaviour {
 	}
 
 */
-    public void stun(float duration)
-    {
-        //needs to freeze animation and controller input here
-        stunned = true;
-		elapsedStunTime = 0f;
-		targetStunTime = duration;
-    }
-
-    public void unstun()
-    {
-        //needs to unfreeze animation and controller input here
-        stunned = false;
-		elapsedStunTime = 0f;
-		targetStunTime = 0f;
-    }
+   
 
     public bool isStunned()
     {

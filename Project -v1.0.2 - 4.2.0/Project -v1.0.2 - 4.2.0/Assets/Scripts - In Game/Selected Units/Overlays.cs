@@ -6,7 +6,7 @@ public static class Overlays {
 	private static int Height = 100, Width = 100;
 	private static int HealthHeight = 8;
 	
-	private static Color BorderColour = Color.white;
+
 	private static Color HealthColour = Color.green;
 
 	public static Texture2D CreateTexture()

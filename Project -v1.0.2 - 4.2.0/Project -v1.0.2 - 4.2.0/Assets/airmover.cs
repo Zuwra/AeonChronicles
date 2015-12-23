@@ -19,8 +19,6 @@ public class airmover : IMover {
 
 	//The max distance from the AI to a waypoint for it to continue to the next waypoint
 	public float nextWaypointDistance = 3;
-	//The waypoint we are currently moving towards
-	private int currentWaypoint = 0;
 
 	private bool workingframe = false;
 
@@ -107,7 +105,6 @@ public class airmover : IMover {
 		this.gameObject.transform.LookAt(destination);
 		workingframe = false;
 		targetPosition = destination;
-		currentWaypoint = 0;
 
 		//queueTargetLocation(location);
 

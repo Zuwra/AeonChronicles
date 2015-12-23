@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class ErrorPrompt : MonoBehaviour {
 
-	Text errorPrompt;
-	
+
 	public void showError(string err)
 	{this.gameObject.GetComponent<Text> ().text = err;
 		this.gameObject.GetComponent<Text> ().enabled = true;
@@ -35,8 +34,7 @@ public class ErrorPrompt : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	errorPrompt = this.gameObject.GetComponent<Text> ();
-	
+
 	}
 	
 	// Update is called once per frame

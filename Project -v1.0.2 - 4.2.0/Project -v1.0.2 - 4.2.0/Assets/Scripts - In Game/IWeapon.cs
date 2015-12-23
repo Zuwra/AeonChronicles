@@ -59,7 +59,6 @@ public class IWeapon : MonoBehaviour {
 	//public Effect spawnEffect;
 
 
-	private float attackTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -205,7 +204,7 @@ public class IWeapon : MonoBehaviour {
 		}
 
 		fireTriggers (this.gameObject,proj, target);
-		attackTimer = attackPeriod;
+
 			//ATTACK!
 
 	}
