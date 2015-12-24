@@ -28,7 +28,7 @@ public class Selected : MonoBehaviour {
 
 	private GameObject decalCircle;
 	private UnitStats myStats;
-
+	private bool onCooldown = false;
 	// Use this for initialization
 	void Start () 
 	{	myStats = this.gameObject.GetComponent<UnitStats> ();
@@ -55,8 +55,7 @@ public class Selected : MonoBehaviour {
 		//Update overlay rect
 		SetOverlaySize ();
 
-		if (!myStats.atFullHealth() || !myStats.atFullEnergy()) {
-
+		if (!myStats.atFullHealth() || !myStats.atFullEnergy() || onCooldown) {
 
 			Vector3 centerPoint = Camera.main.WorldToScreenPoint (transform.position);
 			OverlayRect.xMin = centerPoint.x - (m_OverlayWidth / 2.0f);
@@ -79,17 +78,28 @@ public class Selected : MonoBehaviour {
 		}
 	}
 
-	public void updateHealthBar(float ratio)
+	public void updateHealthBar(float ratio, int ticks)
 	{
-		Overlays.UpdateTexture (Overlay, ratio); 
+		Overlays.UpdateTexture (Overlay, ratio, ticks); 
 
 	}
 
 	public void updateEnergyBar(float ratio)
 	{
-		Overlays.UpdateTexture (Overlay,1f, ratio); 
+		Overlays.UpdateEnergy (Overlay, ratio); 
 
 	}
+
+	public void updateCoolDown(float ratio)
+	{
+		Overlays.cooldown (Overlay, ratio);
+		if (ratio <= 0) {
+			onCooldown = false;
+		} else {
+			onCooldown = true;
+		}
+	}
+
 	private void FindMaxWorldSize()
 	{
 		//Calculate size of overlay based on the objects size
@@ -122,7 +132,7 @@ public class Selected : MonoBehaviour {
 	
 	void OnGUI()
 	{
-		if (!myStats.atFullHealth() || !myStats.atFullEnergy())
+		if (!myStats.atFullHealth() || !myStats.atFullEnergy() || onCooldown)
 		{
 			if (OverlayRect.xMax < Screen.width-m_MainMenuWidth)
 			{

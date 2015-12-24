@@ -149,7 +149,14 @@ public class UnitStats : MonoBehaviour {
 						}
 				}
 				health-= amount;
-				mySelection.updateHealthBar (health / Maxhealth);
+
+				if (Maxhealth > 500) {
+					mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 120));
+				} else if (Maxhealth > 300) {
+					mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 80));
+				} else {
+					mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 25));
+				}
 
 					if (health <= 0) {
 						kill (source);

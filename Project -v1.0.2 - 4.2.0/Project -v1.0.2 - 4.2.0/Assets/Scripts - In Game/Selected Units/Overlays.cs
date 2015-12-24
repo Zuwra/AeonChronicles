@@ -40,7 +40,7 @@ public static class Overlays {
 		return texToReturn;
 	}
 	
-	public static void UpdateTexture(Texture2D overlay, float healthRatio)
+	public static void UpdateTexture(Texture2D overlay, float healthRatio, int ticks)
 	{//Debug.Log ("Updating health amount" + healthRatio);
 
 		Color currentColor = Color.green;
@@ -59,11 +59,16 @@ public static class Overlays {
 		for (int i=0; i<Width; i++)
 		{
 			for (int j=Height-HealthHeight; j<Height; j++)
-			{
-				if ((float)i/(float)Width < healthRatio)
+			{	if(( i %  (100 /ticks) )==0 || i %  (100 /ticks) ==1 )
+					{
+					
+					overlay.SetPixel (i, j, Color.black);
+				}
+				else if ((float)i/(float)Width < healthRatio)
 				{
 					overlay.SetPixel (i, j, currentColor);
 				}
+			
 				else
 				{
 					overlay.SetPixel (i, j, Color.clear);
@@ -78,7 +83,7 @@ public static class Overlays {
 
 
 
-	public static void UpdateTexture(Texture2D overlay,float health, float energyRatio)
+	public static void UpdateEnergy(Texture2D overlay,float energyRatio)
 	{//Debug.Log ("Updating health amount" + healthRatio);
 		
 
@@ -96,6 +101,25 @@ public static class Overlays {
 		}
 		overlay.Apply ();
 		
+	}
+
+	public static void cooldown(Texture2D overlay, float ratio)
+	{	Debug.Log (ratio);
+		for (int i=0; i<Width; i++)
+		{
+			for (int j=Height-2*HealthHeight-4; j<Height-2*HealthHeight; j++)
+			{
+				if ((float)i / (float)Width < ratio) {
+					overlay.SetPixel (i, j, Color.white);
+				} else {
+					overlay.SetPixel (i, j, Color.clear);
+				}
+
+			}
+		}
+		overlay.Apply ();
+
+
 	}
 
 

@@ -34,7 +34,7 @@ public class StimPack : Ability {
 
 	override
 	public bool Activate()
-	{
+	{Debug.Log ("Activating stim");
 		if (myCost.canActivate ()) {
 
 			if(!on)
