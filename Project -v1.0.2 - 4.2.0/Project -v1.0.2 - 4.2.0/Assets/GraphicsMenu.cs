@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class GraphicsMenu : MonoBehaviour {
 
-
+	public GameObject qualityDropObj;
+	private Dropdown qualityDrop;
 	private bool shadows = true; 
 	// Use this for initialization
 	void Start () {
+		qualityDrop = qualityDropObj.GetComponent<Dropdown> ();
 	
 	}
 	
@@ -20,15 +22,23 @@ public class GraphicsMenu : MonoBehaviour {
 	public void toggleShadows()
 	{ shadows = !shadows;
 		
-		//foreach (GameObject light in GameObject.FindGameObjectsWithTag ("Light")) {
+		foreach (GameObject light in GameObject.FindGameObjectsWithTag ("Light")) {
+			if (shadows) {
+				light.GetComponent<Light> ().shadows = LightShadows.Hard;
 
-			//light.getComponent<light> ();
-		//}
-		//foreach (ToolTip tool in Gam) {
-			//if (tool.Ability) {
-				//tool.enabled = toggled;
-			//}
+			} else {
+				light.GetComponent<Light> ().shadows = LightShadows.None;
+			}
 		}
+
+		}
+
+
+	public void resetQuality()
+		{
+		QualitySettings.SetQualityLevel (qualityDrop.value);
+		
+	}
 		
 
 

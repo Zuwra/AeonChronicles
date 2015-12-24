@@ -327,6 +327,7 @@
      <Compile Include="Assets\Scripts - In Game\turret.cs" />
      <Compile Include="Assets\Scripts - Menus\LevelLoader.cs" />
      <Compile Include="Assets\Scripts - Menus\MainMenuGUI.cs" />
+     <Compile Include="Assets\SoundOptions.cs" />
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TurretMount.cs" />
      <Compile Include="Assets\airmover.cs" />
