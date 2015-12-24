@@ -125,6 +125,7 @@
      <Compile Include="Assets\GraphicsMenu.cs" />
      <Compile Include="Assets\GuiControls.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
+     <Compile Include="Assets\RaceInfo.cs" />
      <Compile Include="Assets\RaceTipManager.cs" />
      <Compile Include="Assets\Resources\mortarPod.cs" />
      <Compile Include="Assets\Scripts - In Game\Ability.cs" />
