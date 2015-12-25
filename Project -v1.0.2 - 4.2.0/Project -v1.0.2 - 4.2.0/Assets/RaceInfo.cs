@@ -9,6 +9,7 @@ public class RaceInfo : MonoBehaviour {
 	public enum raceType{Daexa, Urden}
 
 	public raceType race;
+	public string subtitle;
 
 	public List<GameObject> unitList = new List<GameObject>();
 	public List<GameObject> buildingList = new List<GameObject>();

@@ -1,15 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RaceTipManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RaceSelectionManger.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\Ability.cs" Line="7" Column="1" />
+      <File FileName="Assets\RaceSelectionManger.cs" Line="55" Column="49" />
+      <File FileName="Assets\RaceSelectManager.cs" Line="8" Column="2" />
+      <File FileName="Assets\Scripts - In Game\Ability.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\GameMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\GraphicsMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="337" Column="29" />
-      <File FileName="Assets\RaceInfo.cs" Line="18" Column="2" />
-      <File FileName="Assets\RaceTipManager.cs" Line="16" Column="26" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\RaceInfo.cs" Line="29" Column="2" />
+      <File FileName="Assets\RaceTipManager.cs" Line="4" Column="1" />
+      <File FileName="Assets\MainMenuManager.cs" Line="40" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
