@@ -314,8 +314,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	public void selectUnitOne()
 	{DeselectAll ();
 	foreach (GameObject obj in  raceMan.getUnitList ()) {
-			
+	
 			UnitManager manager = obj.GetComponent<UnitManager> ();
+			Debug.Log (manager.UnitName + "    " +  sUnitOne);
 			if (manager.UnitName == sUnitOne) {
 				AddObject (manager);
 			}

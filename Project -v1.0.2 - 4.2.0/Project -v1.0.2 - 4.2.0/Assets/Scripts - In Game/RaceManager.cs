@@ -20,6 +20,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public Ability UltTwo;
 	public Ability UltThree;
 	public Ability UltFour;
+	public RaceInfo.raceType myRace;
 
 
 

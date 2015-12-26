@@ -124,6 +124,7 @@
      <Compile Include="Assets\GamePlayMenu.cs" />
      <Compile Include="Assets\GraphicsMenu.cs" />
      <Compile Include="Assets\GuiControls.cs" />
+     <Compile Include="Assets\HotkeyMenu.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
