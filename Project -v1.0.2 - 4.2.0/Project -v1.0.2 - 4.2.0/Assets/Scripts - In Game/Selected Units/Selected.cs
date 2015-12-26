@@ -26,6 +26,14 @@ public class Selected : MonoBehaviour {
 	
 	private Vector3 m_WorldExtents;
 
+	public enum displayType
+	{
+		always,damaged,selected,damAndSel,never
+	}
+
+
+	public displayType mydisplayType = displayType.damaged;
+
 	private GameObject decalCircle;
 	private UnitStats myStats;
 	private bool onCooldown = false;
@@ -44,7 +52,7 @@ public class Selected : MonoBehaviour {
 		m_GLItem = new GLItem(GLExecuteFunction);
 		
 		//If this unit is land based subscribe to the path changed event
-
+		mydisplayType = GameObject.Find("GamePlayMenu").GetComponent<GamePlayMenu>().getDisplayType();
 
 		SetOverlaySize ();
 	}
@@ -53,29 +61,62 @@ public class Selected : MonoBehaviour {
 	void Update () 
 	{
 		//Update overlay rect
-		SetOverlaySize ();
 
-		if (!myStats.atFullHealth() || !myStats.atFullEnergy() || onCooldown) {
+		switch(mydisplayType){
+		case displayType.always:
+			displayHealth ();
+			break;
 
-			Vector3 centerPoint = Camera.main.WorldToScreenPoint (transform.position);
-			OverlayRect.xMin = centerPoint.x - (m_OverlayWidth / 2.0f);
-			OverlayRect.xMax = centerPoint.x + (m_OverlayWidth / 2.0f);
-			OverlayRect.yMax = Screen.height - (centerPoint.y - (m_OverlayLength / 2.0f) - 5);
-			OverlayRect.yMin = Screen.height - (centerPoint.y + (m_OverlayLength / 2.0f) + 15);
-		
-		
-		}
-		if (m_JustBeenSelected)
-		{
-			m_JustBeenSelectedTimer += Time.deltaTime;
-			
-			if (m_JustBeenSelectedTimer >= 1.0f)
-			{
-				m_JustBeenSelectedTimer = 0;
-				m_JustBeenSelected = false;
-				m_GLManager.RemoveItemToRender (m_GLItem);
+		case displayType.damaged:
+			if (!myStats.atFullHealth () || !myStats.atFullEnergy () || onCooldown) {
+				displayHealth();
 			}
+			break;
+
+		case displayType.selected:
+			if (IsSelected) {
+				displayHealth ();
+			}
+			break;
+
+		case displayType.damAndSel:
+			if ((!myStats.atFullHealth () || !myStats.atFullEnergy () || onCooldown) && IsSelected) {
+				displayHealth();
+			}
+			break;
+
+		case displayType.never:
+			break;
+
 		}
+	}
+
+
+
+
+
+	public void displayHealth()
+	{SetOverlaySize ();
+
+		Vector3 centerPoint = Camera.main.WorldToScreenPoint (transform.position);
+		OverlayRect.xMin = centerPoint.x - (m_OverlayWidth / 2.0f);
+		OverlayRect.xMax = centerPoint.x + (m_OverlayWidth / 2.0f);
+		OverlayRect.yMax = Screen.height - (centerPoint.y - (m_OverlayLength / 2.0f) - 5);
+		OverlayRect.yMin = Screen.height - (centerPoint.y + (m_OverlayLength / 2.0f) + 15);
+
+
+	
+	if (m_JustBeenSelected)
+	{
+		m_JustBeenSelectedTimer += Time.deltaTime;
+
+		if (m_JustBeenSelectedTimer >= 1.0f)
+		{
+			m_JustBeenSelectedTimer = 0;
+			m_JustBeenSelected = false;
+			m_GLManager.RemoveItemToRender (m_GLItem);
+		}
+	}
 	}
 
 	public void updateHealthBar(float ratio, int ticks)
@@ -132,13 +173,52 @@ public class Selected : MonoBehaviour {
 	
 	void OnGUI()
 	{
-		if (!myStats.atFullHealth() || !myStats.atFullEnergy() || onCooldown)
-		{
-			if (OverlayRect.xMax < Screen.width-m_MainMenuWidth)
-			{
+
+		switch (mydisplayType) {
+		case displayType.always:
+			if (OverlayRect.xMax < Screen.width - m_MainMenuWidth) {
 				GUI.DrawTexture (OverlayRect, Overlay);
 			}
+			break;
+
+		case displayType.damaged:
+			if (!myStats.atFullHealth () || !myStats.atFullEnergy () || onCooldown) {
+				if (OverlayRect.xMax < Screen.width - m_MainMenuWidth) {
+					GUI.DrawTexture (OverlayRect, Overlay);
+				}
+			}
+			break;
+
+		case displayType.selected:
+			if (IsSelected) {
+				if (OverlayRect.xMax < Screen.width - m_MainMenuWidth) {
+					GUI.DrawTexture (OverlayRect, Overlay);
+				}
+			}
+			break;
+
+		case displayType.damAndSel:
+			
+			if ((!myStats.atFullHealth () || !myStats.atFullEnergy () || onCooldown) && IsSelected) {
+				
+				if (OverlayRect.xMax < Screen.width - m_MainMenuWidth) {
+					GUI.DrawTexture (OverlayRect, Overlay);
+				}
+			}
+			break;
+
+		case displayType.never:
+			break;
+
 		}
+
+
+
+
+
+
+
+
 	}
 	
 	public void SetSelected()
