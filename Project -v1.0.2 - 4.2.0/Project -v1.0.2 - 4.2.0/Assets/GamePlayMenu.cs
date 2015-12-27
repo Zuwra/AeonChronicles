@@ -7,9 +7,12 @@ public class GamePlayMenu : MonoBehaviour {
 
 	public Dropdown healthList;
 	private bool toggled= true;
-
+	private MainCamera camera;
+	public Slider scrollSpeed;
 	// Use this for initialization
 	void Start () {
+
+		camera = GameObject.Find ("Main Camera").GetComponent<MainCamera> ();
 	
 	}
 	
@@ -67,6 +70,10 @@ public class GamePlayMenu : MonoBehaviour {
 		}
 	}
 
+
+	public void resetScrollSpeed()
+	{camera.ScrollSpeed = scrollSpeed.value * 700 + 100;
+	}
 
 
 	public Selected.displayType getDisplayType()
