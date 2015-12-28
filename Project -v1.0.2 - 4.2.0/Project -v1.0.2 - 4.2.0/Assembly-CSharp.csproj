@@ -127,6 +127,7 @@
      <Compile Include="Assets\HotkeyMenu.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />
+     <Compile Include="Assets\MissileArmer.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
      <Compile Include="Assets\RaceSelectManager.cs" />
      <Compile Include="Assets\RaceSelectionManger.cs" />
@@ -338,6 +339,7 @@
      <Compile Include="Assets\airmover.cs" />
      <Compile Include="Assets\buildTurret.cs" />
      <Compile Include="Assets\explosion.cs" />
+     <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\testScript.cs" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />

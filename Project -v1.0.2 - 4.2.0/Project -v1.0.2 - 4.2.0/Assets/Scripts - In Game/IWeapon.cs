@@ -11,15 +11,17 @@ public class IWeapon : MonoBehaviour {
 
 
 	public float attackPeriod;
-	public enum type{melee, ranged, magic}
 
-	public type weaponType;
 
 	public float baseDamage;
 
+	[Tooltip("this is multiplied by the enemy mass and added or subtracted from the damage")]
+	public float massBonus;
+
+	[Tooltip("Having arange that is longer than the vision range is not supported yet")]
 	public float range =5;
 	public float minimumRange;
-	public AbstractCost myCost;
+
 	public float DamagePoint;
 
 	public GameObject turret;
@@ -173,7 +175,7 @@ public class IWeapon : MonoBehaviour {
 				if (targetStats.isUnitType (tag.type))
 				{damage +=  tag.bonus;}
 			}
-
+		damage += massBonus * targetStats.mass;
 
 		GameObject proj = null;
 		if (projectile != null) {

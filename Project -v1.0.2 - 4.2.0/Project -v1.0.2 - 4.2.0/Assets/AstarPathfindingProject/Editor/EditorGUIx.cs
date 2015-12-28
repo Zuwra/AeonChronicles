@@ -325,8 +325,8 @@ namespace Pathfinding {
 		public static void TagMaskField (GUIContent label, int value, System.Action<int> callback) {
 
 			GUILayout.BeginHorizontal ();
-
-			EditorGUIUtility.LookLikeControls();
+		
+			//EditorGUIUtility.LookLikeControls();
 			EditorGUILayout.PrefixLabel (label,EditorStyles.layerMaskField);
 
 			string text;

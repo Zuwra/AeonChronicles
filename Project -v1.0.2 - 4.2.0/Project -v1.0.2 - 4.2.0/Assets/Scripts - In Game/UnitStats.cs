@@ -11,20 +11,22 @@ public class UnitStats : MonoBehaviour {
 	public float health;
 	public float startingHealth;
 	public float HealthRegenPerSec;
-	public float HealthRegenPercentPerSec;
+
 
 
 	public float MaxEnergy;
 	public float currentEnergy;
 	public float StartingEnergy;
 	public float EnergyRegenPerSec;
-	public float EnergyRegenPrecentPerSec;
+
 
 	public float kills;
 	public float supply;    //positive gives supply, negative uses it
 	public float cargoSpace;
 	public float attackPriority =1 ;
 
+	[Tooltip("This will affect things such as specialized damage and impact effects, should be in the range of 1-12, 12 being buildings")]
+	public float mass;
 	public float armor;
 	private UnitManager myManager;
 
@@ -91,7 +93,7 @@ public class UnitStats : MonoBehaviour {
 			//Regenerate Health
 			if (health < Maxhealth) {
 				health += HealthRegenPerSec;
-				health += Maxhealth * HealthRegenPercentPerSec * .01f;
+
 			}
 
 			if(health > Maxhealth)
@@ -101,7 +103,7 @@ public class UnitStats : MonoBehaviour {
 			//Regenerate Energy
 			if (currentEnergy < MaxEnergy) {
 				currentEnergy += EnergyRegenPerSec;
-				currentEnergy += MaxEnergy * EnergyRegenPrecentPerSec * .01f;
+			
 			
 				if(currentEnergy > MaxEnergy)
 				{currentEnergy = MaxEnergy;}
