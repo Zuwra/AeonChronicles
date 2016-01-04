@@ -19,12 +19,13 @@ public class DefaultState : UnitState{
 		if (myWeapon != null) {
 			if (myManager.enemies.Count > 0) {
 
-				//Debug.Log("best enemey is" + myManager.findBestEnemy());
 				GameObject target = myManager.findBestEnemy ();
-				if (target != null) {
+
+				if (target == null) {
 					return;}
 				if (Vector3.Distance (myManager.gameObject.transform.position, target.transform.position) <= myManager.getChaseRange ()) {
-					myManager.changeState (new AttackMoveState (myManager.findBestEnemy (),
+					
+					myManager.changeState (new AttackMoveState (target,
 						new Vector3 (), AttackMoveState.MoveType.passive, myManager, myMover, myWeapon, myManager.gameObject.transform.position));
 				}
 			}

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+
 public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
@@ -189,20 +190,21 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 	public List<GameObject> getUnitSelection(Vector3 upperLeft, Vector3 bottRight)
-	{
+	{Debug.Log (upperLeft + "    " + bottRight);
 		bool selectBuildings = true;
 
 		List<GameObject> foundUnits = new List<GameObject> ();
 	
 		foreach (GameObject obj in unitList) {
-			//Debug.Log("Unit " + obj.name);
-			if(obj.transform.position.x + obj.GetComponent<CharacterController>().radius  < upperLeft.x )
+			Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
+
+			if(tempLocation.x + obj.GetComponent<CharacterController>().radius*5  < upperLeft.x )
 				{continue;}
-			if(obj.transform.position.x - obj.GetComponent<CharacterController>().radius > bottRight.x)
+			if(tempLocation.x - obj.GetComponent<CharacterController>().radius*5 > bottRight.x)
 				{continue;}
-			if(obj.transform.position.z - obj.GetComponent<CharacterController>().radius> upperLeft.z)
+			if(tempLocation.y - obj.GetComponent<CharacterController>().radius*5> upperLeft.y)
 				{continue;}
-			if( obj.transform.position.z + obj.GetComponent<CharacterController>().radius < bottRight.z)
+			if( tempLocation.y + obj.GetComponent<CharacterController>().radius*5 < bottRight.y)
 				{	continue;}
 				
 			if(!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.structure))	

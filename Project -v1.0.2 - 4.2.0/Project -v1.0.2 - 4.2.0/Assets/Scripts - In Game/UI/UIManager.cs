@@ -351,29 +351,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 			}
 			else{
 
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit hit;		
-				Vector3 groundPoint = new Vector3();
-				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(8)))
-				{
-				groundPoint = hit.point;}
-
-
-				Ray Sray = Camera.main.ScreenPointToRay(originalPosition);
-				RaycastHit Sechit;		
-				Vector3 SgroundPoint = new Vector3();
-				if (Physics.Raycast (Sray, out Sechit, Mathf.Infinity, ~(8)))
-				{
-					SgroundPoint = Sechit.point;}
-
-
+	
 				Vector3 upperLeft = new Vector3();
-				upperLeft.x = Math.Min(groundPoint.x, SgroundPoint.x);
-				upperLeft.z = Math.Max(groundPoint.z, SgroundPoint.z);
+				upperLeft.x = Math.Min(Input.mousePosition.x, originalPosition.x);
+				upperLeft.y = Math.Max(Input.mousePosition.y,originalPosition.y);
 
 				Vector3 bottRight =new Vector3();
-				bottRight.x = Math.Max(groundPoint.x, SgroundPoint.x);
-				bottRight.z = Math.Min(groundPoint.z, SgroundPoint.z);
+				bottRight.x = Math.Max(Input.mousePosition.x,originalPosition.x);
+				bottRight.y = Math.Min(Input.mousePosition.y, originalPosition.y);
 
 
 				foreach(GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight))
@@ -533,7 +518,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		}
 	}
 	
-	private void SwitchToModeNormal()
+	public void SwitchToModeNormal()
 	{
 		if (m_ObjectBeingPlaced)
 		{
@@ -544,7 +529,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		m_Mode = Mode.Normal;
 	}
 	
-	private void SwitchToModePlacingBuilding(Item item, Action callBackFunction)
+	public void SwitchToModePlacingBuilding(Item item, Action callBackFunction)
 	{
 		m_Mode = Mode.PlaceBuilding;
 		m_CallBackFunction = callBackFunction;
@@ -553,7 +538,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		m_ObjectBeingPlaced.AddComponent<BuildingBeingPlaced>();
 	}
 
-	private void setToMenu()
+	public void setToMenu()
 	{m_Mode = Mode.Menu;
 	}
 }

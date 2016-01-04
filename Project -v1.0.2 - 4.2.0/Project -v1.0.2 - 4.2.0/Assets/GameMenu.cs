@@ -24,11 +24,10 @@ public class GameMenu : MonoBehaviour {
 
 	private Canvas currentMenu;
 
-
+	private UIManager uimanage;
 	// Use this for initialization
 	void Start () {
-
-
+		uimanage = (UIManager)FindObjectOfType<UIManager>();
 	
 	}
 	
@@ -59,9 +58,14 @@ public class GameMenu : MonoBehaviour {
 
 	public void openMenu()
 	{if(myCanvas.enabled == true)
-		{returnToGame();}
+		{returnToGame();
+			uimanage.SwitchToModeNormal ();
+
+		}
 	else
-	{setMenu (myCanvas);}
+	{setMenu (myCanvas);
+		uimanage.setToMenu ();
+	}
 	}
 
 	public void quitGame()

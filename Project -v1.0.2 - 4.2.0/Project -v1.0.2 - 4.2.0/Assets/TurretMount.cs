@@ -21,12 +21,13 @@ public class TurretMount : MonoBehaviour {
 
 	public void placeTurret(GameObject obj)
 	{turret = obj;
+
 		obj.transform.position = this.transform.position;
 		obj.transform.parent = this.gameObject.transform;
 
 		UnitManager manager = this.gameObject.GetComponentInParent<UnitManager> ();
 		manager.setWeapon(obj.GetComponent<IWeapon> ());
-
+		manager.PlayerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
 
 
 	}

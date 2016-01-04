@@ -47,7 +47,6 @@ public class HotkeyMenu : MonoBehaviour {
 					objectList.Add (obj.name);
 				}
 
-
 				fFive.AddOptions (objectList);
 				fSix.AddOptions (objectList);
 				fSeven.AddOptions (objectList);
