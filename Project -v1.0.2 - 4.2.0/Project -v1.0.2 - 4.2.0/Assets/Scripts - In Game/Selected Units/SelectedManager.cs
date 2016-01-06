@@ -21,7 +21,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	public string sUnitFour;
 
 
-
+	public GameObject movementInd;
+	public GameObject attackInd;
 
 	void Start()
 	{
@@ -215,6 +216,18 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 		foreach (IOrderable unit in SelectedActiveObjects)
 		{
 			unit.GiveOrder(order);
+		}
+
+
+		if (order.OrderType == 1) {
+			Vector3 location = order.OrderLocation;
+			location.y = location.y + 30;
+			GameObject ind = (GameObject)Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
+			//ind.transform.Rotate (Vector3.down);
+		} else if (order.OrderType == 4) {
+			Vector3 location = order.OrderLocation;
+			location.y = location.y + 30;
+			GameObject ind = (GameObject)Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
 		}
 	}
 	

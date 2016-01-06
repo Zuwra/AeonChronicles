@@ -341,6 +341,7 @@
      <Compile Include="Assets\explosion.cs" />
      <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\mousetracker.cs" />
+     <Compile Include="Assets\selfDestructTimer.cs" />
      <Compile Include="Assets\testScript.cs" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
