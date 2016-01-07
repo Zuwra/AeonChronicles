@@ -47,55 +47,74 @@ public class UiAbilityManager : MonoBehaviour {
 	}
 
 
-	private void loadUI(List<RTSObject> list, int col)
+	public void loadUI(List<List<RTSObject>> list)
 	{
-		UnitManager man = list[0].gameObject.GetComponent<UnitManager> ();
-
-		GameObject template = (GameObject)Instantiate(UITemplate, this.gameObject.transform.position, Quaternion.identity );
-		myTemplates.Add (template);
-		template.transform.parent = this.gameObject.transform.FindChild("Panel");
-		template.transform.position = this.gameObject.transform.FindChild ("Panel").position;
-		float yTotal = template.GetComponent<RectTransform> ().position.y + 55 - col*52;
-		float xTotal = template.GetComponent<RectTransform> ().position.x - 50;
-		Vector3 location = new Vector3 (xTotal, yTotal, 0);
-		template.GetComponent<RectTransform> ().position = location;
-		
-		
-		//template.GetComponent<Text>().text = list[0].gameObject.name;
-		
-		
-		if (man.QAbility == null) {
-			Destroy (template.transform.FindChild ("QButton").gameObject);
-		} else {
-			template.transform.FindChild ("QButton").GetComponent<Image>().material = man.QAbility.iconPic;
-			template.transform.FindChild ("QButton").FindChild("Text").GetComponent<Text>().text = letters[col -1][0];
+		int n = 0;
+		foreach (List<RTSObject> obj in list) {
+			//Debug.Log (" Ability group " + n);
+			int AbilityX = 0;
+			UnitManager man = obj[0].gameObject.GetComponent<UnitManager> ();
+			Stats [n].GetComponent<StatsUI> ().loadUnit (obj [0].gameObject.GetComponent<UnitStats> (), obj [0].gameObject.GetComponent<IWeapon> (), 
+				obj.Count, man.UnitName);
 			
-		}
-		
-		if (man.WAbility == null) {
-			Destroy (template.transform.FindChild ("WButton").gameObject);
-		} else {
-			template.transform.FindChild ("WButton").GetComponent<Image>().material = man.WAbility.iconPic;
-			template.transform.FindChild ("WButton").FindChild("Text").GetComponent<Text>().text = letters[col -1][1];
-		}
-		
-		if (man.EAbility == null) {
-			Destroy (template.transform.FindChild ("EButton").gameObject);
-		} else {
-			template.transform.FindChild ("EButton").GetComponent<Image>().material = man.EAbility.iconPic;
-			template.transform.FindChild ("EButton").FindChild("Text").GetComponent<Text>().text = letters[col -1][2];
-		}
-		
-		if (man.RAbility == null) {
-			Destroy (template.transform.FindChild ("RButton").gameObject);
-		} else {
-			template.transform.FindChild ("RButton").GetComponent<Image>().material = man.RAbility.iconPic;
-			template.transform.FindChild ("RButton").FindChild("Text").GetComponent<Text>().text =  letters[col -1][3];
-		}
-		
-		Stats[col -1].GetComponent<StatsUI> ().loadUnit (list[0].gameObject.GetComponent<UnitStats> (), list[0].gameObject.GetComponent<IWeapon> (), list.Count);
+			for (int i = 0; i < (man.abilityList.Count / 4) + 1; i++) {
+
+				GameObject template = (GameObject)Instantiate (UITemplate, this.gameObject.transform.position, Quaternion.identity);
+				myTemplates.Add (template);
+				template.transform.parent = this.gameObject.transform.FindChild ("TopLeftPanel");
+				template.transform.position = this.gameObject.transform.FindChild ("TopLeftPanel").position;
+				float yTotal = template.GetComponent<RectTransform> ().position.y  + 3 - n * 52;
+				float xTotal = template.GetComponent<RectTransform> ().position.x - 50;
+				Vector3 location = new Vector3 (xTotal, yTotal, 0);
+				template.GetComponent<RectTransform> ().position = location;
 
 
+
+
+
+
+				if (man.abilityList.Count  <= AbilityX*4 || man.abilityList [0 + AbilityX*4] == null) {
+					Destroy (template.transform.FindChild ("QButton").gameObject);
+				} else {
+					template.transform.FindChild ("QButton").GetComponent<Image> ().material = man.abilityList [0].iconPic;
+					template.transform.FindChild ("QButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [0];
+
+				}
+
+				if (man.abilityList.Count  <= 1 +AbilityX*4 || man.abilityList [1+ AbilityX*4] == null) {
+					Destroy (template.transform.FindChild ("WButton").gameObject);
+				} else {
+					template.transform.FindChild ("WButton").GetComponent<Image> ().material = man.abilityList [1].iconPic;
+					template.transform.FindChild ("WButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [1];
+				}
+
+				if (man.abilityList.Count  <= 2+ AbilityX*4 || man.abilityList [2+ AbilityX*4] == null) {
+					Destroy (template.transform.FindChild ("EButton").gameObject);
+				} else {
+					template.transform.FindChild ("EButton").GetComponent<Image> ().material = man.abilityList [2].iconPic;
+					template.transform.FindChild ("EButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [2];
+				}
+
+				if (man.abilityList.Count  <= 3+ AbilityX*4 || man.abilityList [3+ AbilityX*4] == null) {
+					Destroy (template.transform.FindChild ("RButton").gameObject);
+				} else {
+					template.transform.FindChild ("RButton").GetComponent<Image> ().material = man.abilityList [3].iconPic;
+					template.transform.FindChild ("RButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [3];
+				}
+				AbilityX++;
+				n++;
+			}
+
+
+		
+			if (n > 2) {
+				break;
+			}
+
+		
+		}
+
+		
 
 
 	}
@@ -141,7 +160,8 @@ public class UiAbilityManager : MonoBehaviour {
 			usedUnits.Add(name);
 			//only load the first three rows.
 			if(rowCounter <4 && temp.Count > 0){
-				loadUI(temp, rowCounter);}
+				//loadUI(temp);
+			}
 			rowCounter ++;
 		}
 

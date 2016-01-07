@@ -23,11 +23,9 @@ public class Unit : RTSObject, IOrderable {
 		private set;
 	}
 
-
-	public bool UseQAbility(){return true;}
-	public 	bool UseWAbility(){return true;}
-	public bool UseEAbility(){return true;}
-	public	bool UseRAbility(){return true;}
+	public bool UseAbility(int n){
+		return true;
+	}
 
 
 	public GameObject getObject(){return this.gameObject;}

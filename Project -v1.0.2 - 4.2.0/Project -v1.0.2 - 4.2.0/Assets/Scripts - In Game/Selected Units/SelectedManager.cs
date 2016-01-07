@@ -6,7 +6,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	
 	private List<IOrderable> SelectedActiveObjects = new List<IOrderable>();	
 	private List<RTSObject> SelectedObjects = new List<RTSObject>();
-
+	private List<List<RTSObject>> AbilityGroups = new  List<List<RTSObject>> ();
 
 	private List<List<RTSObject>> Group = new List<List<RTSObject>>();
 	
@@ -25,7 +25,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	public GameObject attackInd;
 
 	void Start()
-	{
+	{abilityManager = GameObject.Find ("GameHud").GetComponent<UiAbilityManager> ();
 		raceMan = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer;
 
 	}
@@ -41,14 +41,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 
 		if (Input.GetKeyUp (KeyCode.Tab)) {
 			attackMoveO ();
-				
-
 		}
 
 		if (Input.GetKeyUp (KeyCode.CapsLock)) {
 			stopO ();
-		
-		
 		}
 
 		if (Input.GetKey (KeyCode.LeftShift)) {
@@ -111,42 +107,67 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 		}
 
 	if (Input.GetKeyUp (KeyCode.Q)) {
-
-			foreach (IOrderable unit in SelectedActiveObjects)
-			{
-				if(!unit.UseQAbility())
-				{break;}
-			}
+			callAbility (0);
+		}
+		else if (Input.GetKeyUp (KeyCode.W)) {
+			callAbility (1);
+		}
+		else 	if (Input.GetKeyUp (KeyCode.E)) {
+			callAbility (2);
+		}
+		else if (Input.GetKeyUp (KeyCode.R)) {
+			callAbility (3);
+		}
+		else if (Input.GetKeyUp (KeyCode.A)) {
+			callAbility (4);
+		}
+		else if (Input.GetKeyUp (KeyCode.S)) {
+			callAbility (5);
+		}
+		else if (Input.GetKeyUp (KeyCode.D)) {
+			callAbility (6);
+		}
+		else if (Input.GetKeyUp (KeyCode.F)) {
+			callAbility (7);
+		}
+		else if (Input.GetKeyUp (KeyCode.Z)) {
+			callAbility (8);
+		}
+		else if (Input.GetKeyUp (KeyCode.X)) {
+			callAbility (9);
+		}
+		else if (Input.GetKeyUp (KeyCode.C)) {
+			callAbility (10);
+		}
+		else if (Input.GetKeyUp (KeyCode.V)) {
+			callAbility (11);
 		}
 
-		if (Input.GetKeyUp (KeyCode.W)) {
-			
-			foreach (IOrderable unit in SelectedActiveObjects)
-			{
-				if(!unit.UseWAbility())
-				{break;}
-			}
-		}
-		if (Input.GetKeyUp (KeyCode.E)) {
-			
-			foreach (IOrderable unit in SelectedActiveObjects)
-			{
-				if(!unit.UseEAbility())
-				{break;}
-			}
-		}
 
-		if (Input.GetKeyUp (KeyCode.R)) {
-			
-			foreach (IOrderable unit in SelectedActiveObjects)
-			{
-				if(!unit.UseRAbility())
-				{break;}
-			}
-		}
 
 	}
 		
+
+	public void callAbility(int n)
+	{int X = 0;
+		foreach (List<RTSObject> lis in AbilityGroups) {
+			if (lis [0].abilityList.Count >= n- X) {
+
+			
+
+
+				foreach (RTSObject unit in lis) {
+					if (!unit.UseAbility (n-X)) {
+						break;
+					}
+				}
+				break;
+			}
+			X += lis [0].abilityList.Count;
+		}
+	}
+
+
 	public void Awake()
 	{
 
@@ -177,8 +198,27 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 
 			obj.SetSelected ();
 			if(abilityManager != null){
-				abilityManager.addUnit(SelectedObjects);}
+				//abilityManager.addUnit(SelectedObjects);
+			}
+			sortUnit (obj);
 		}
+
+		abilityManager.loadUI (AbilityGroups);
+	}
+
+
+
+	public void sortUnit(RTSObject obj)
+	{foreach (List<RTSObject> lis in AbilityGroups) {
+		
+			if (obj.gameObject.GetComponent<UnitManager>().UnitName == (lis [0]).gameObject.GetComponent<UnitManager>().UnitName) {
+				lis.Add (obj);
+				return;
+			}
+		}
+		List<RTSObject> unitList = new List<RTSObject> ();
+		unitList.Add (obj);
+		AbilityGroups.Add (unitList);
 	}
 	
 	public void DeselectAll()
@@ -194,6 +234,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 
 		if(abilityManager != null){
 			abilityManager.resetUI();}
+		
+		AbilityGroups.Clear ();
 	}
 	
 	public void DeselectObject(RTSObject obj)

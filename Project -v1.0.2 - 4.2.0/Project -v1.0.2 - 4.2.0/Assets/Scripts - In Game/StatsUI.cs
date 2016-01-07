@@ -26,9 +26,9 @@ public class StatsUI : MonoBehaviour {
 	
 	}
 
-	public void loadUnit(UnitStats stats, IWeapon weapon, int number)
+	public void loadUnit(UnitStats stats, IWeapon weapon, int number, string unitName)
 		{
-		OneText.text = stats.name +"\n    HP: " + stats.Maxhealth + "\nArmor: " + stats.armor;
+		OneText.text = unitName +"\n    HP: " + stats.Maxhealth + "\nArmor: " + stats.armor;
 		if (weapon != null) {
 			TwoText.text += "\nDamage: " + weapon.baseDamage + "\n   Range: " + weapon.range;
 		}

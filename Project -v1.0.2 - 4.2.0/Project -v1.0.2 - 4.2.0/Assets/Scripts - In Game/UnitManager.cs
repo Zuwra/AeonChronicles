@@ -21,10 +21,8 @@ public class UnitManager : Unit,IOrderable{
 	private float chaseRange;
 	//public VisionComponent myVision;
 
-	public Ability QAbility;
-	public Ability WAbility;
-	public Ability EAbility;
-	public Ability RAbility;
+
+
 
 
 	public AbstractCost myCost;
@@ -107,52 +105,20 @@ public class UnitManager : Unit,IOrderable{
 		if (myState != null) {
 			myState.Update ();
 		} 
-
-
-
-
 	}
 
 
-	public new bool UseQAbility()
+	public new bool useAbility(int n)
 	{
-	
-		if (QAbility != null) {
-
-			if(QAbility.canActivate())
-			{
-				return QAbility.Activate();
+		if (abilityList [n] != null) {
+			if (abilityList [n].canActivate ()) {
+				return abilityList [n].Activate ();
 			}
+
 		}
 		return true;
 	}
 
-	public new bool UseWAbility()
-	{
-		if (WAbility != null) {
-			if(WAbility.canActivate())
-			{return WAbility.Activate();}
-					}
-
-		return true;
-			}
-
-
-	public new bool UseEAbility()
-	{if (EAbility != null) {
-			if(EAbility.canActivate())
-			{return EAbility.Activate();}
-							}
-	
-		return true;}
-
-
-	public new bool UseRAbility()
-	{if (RAbility != null) {
-			if(RAbility.canActivate())
-			{return RAbility.Activate();}
-									}
-		return true;}
 
 
 

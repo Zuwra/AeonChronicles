@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public abstract class RTSObject : MonoBehaviour {
 
 	//The base class for all playable objects
@@ -37,7 +37,14 @@ public abstract class RTSObject : MonoBehaviour {
 	public abstract void AssignToGroup(int groupNumber);
 	public abstract void RemoveFromGroup();
 	public abstract void ChangeTeams(int team);
-	
+
+
+	public List<Ability> abilityList;
+
+	public bool UseAbility( int n)
+	{return true;
+	}
+
 	public float GetHealthRatio()
 	{
 		return m_Health/m_MaxHealth;
