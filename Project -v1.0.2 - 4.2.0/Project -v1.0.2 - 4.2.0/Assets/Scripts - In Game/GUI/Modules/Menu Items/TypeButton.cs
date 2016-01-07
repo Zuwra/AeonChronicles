@@ -105,30 +105,7 @@ public class TypeButton : ITypeButton
 		}
 	}
 
-	public void AddNewQueue (Building building)
-	{
-		m_QueueButtons.Add(new QueueButton(m_QueueButtons.Count, building.UniqueID, building.TeamIdentifier, (int)m_ButtonType, m_QueueButtonViewableRect));
-	}
 
-	public void RemoveQueue (Building building)
-	{
-		IQueueButton queueToRemove = m_QueueButtons.Find (x => x.BuildingID == building.UniqueID);
-		
-		if (queueToRemove == null)
-		{
-			return;
-		}
-		
-		int id = queueToRemove.ID;
-		m_QueueButtons.Remove (queueToRemove);
-		
-		//Button has been removed, tell other queue buttons to update their rect
-		foreach (IQueueButton button in m_QueueButtons)
-		{
-			button.UpdateRect(id);
-		}
-	}
-	
 	public void UpdateQueueContents(List<Item> availableItems)
 	{
 		foreach (QueueButton queueButton in m_QueueButtons)

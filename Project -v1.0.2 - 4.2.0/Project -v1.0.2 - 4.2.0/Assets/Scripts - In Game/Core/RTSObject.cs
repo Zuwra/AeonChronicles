@@ -41,9 +41,7 @@ public abstract class RTSObject : MonoBehaviour {
 
 	public List<Ability> abilityList;
 
-	public bool UseAbility( int n)
-	{return true;
-	}
+	public abstract bool UseAbility (int n);
 
 	public float GetHealthRatio()
 	{

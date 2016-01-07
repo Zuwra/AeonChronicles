@@ -15,7 +15,5 @@ public interface IGUIManager {
 	Rect DragArea { get; set; }
 	
 	void UpdateQueueContents(List<Item> avaialableItems);
-	
-	void AddConstructor(Building building);
-	void RemoveConstructor(Building building);
+
 }

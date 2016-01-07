@@ -13,7 +13,7 @@ public class SelectedBuilding : MonoBehaviour {
 	private IGLManager m_GLManager;
 	
 	private Material m_GLMat;
-	private Building m_Building;
+
 	
 	private float m_HealthSize = 2.0f;
 	private float m_HealthWidth;
@@ -68,7 +68,7 @@ public class SelectedBuilding : MonoBehaviour {
 		m_GLMat = GLMatShader.GetGLMaterial();
 		
 		//Assign building
-		m_Building = GetComponent<Building>();
+
 	}
 	
 	public void SetSelected()
@@ -105,11 +105,7 @@ public class SelectedBuilding : MonoBehaviour {
 		
 		//Health boxes-------------------------------------
 		//Need to update x position for right hand side of health bar based on building health
-		WorldHealthVertices[0].x = WorldHealthVertices[4].x + (m_HealthWidth*m_Building.GetHealthRatio ());
-		WorldHealthVertices[1].x = WorldHealthVertices[4].x + (m_HealthWidth*m_Building.GetHealthRatio ());
-		WorldHealthVertices[2].x = WorldHealthVertices[4].x + (m_HealthWidth*m_Building.GetHealthRatio ());
-		WorldHealthVertices[3].x = WorldHealthVertices[4].x + (m_HealthWidth*m_Building.GetHealthRatio ());
-		
+
 		ScreenHealthVertices[0] = Camera.main.WorldToScreenPoint(WorldHealthVertices[0]);
 		ScreenHealthVertices[1] = Camera.main.WorldToScreenPoint(WorldHealthVertices[1]);
 		ScreenHealthVertices[2] = Camera.main.WorldToScreenPoint(WorldHealthVertices[2]);
@@ -169,16 +165,8 @@ public class SelectedBuilding : MonoBehaviour {
 		//Health Bar
 		GL.Begin (GL.QUADS);
 		
-		float healthRatio = m_Building.GetHealthRatio ();
-		
-		if (healthRatio > 0.5f)
-		{
-			GL.Color (Color.Lerp (Color.yellow, Color.green, (healthRatio-0.5f)*2));
-		}
-		else
-		{
-			GL.Color (Color.Lerp (Color.red, Color.yellow, healthRatio*2));
-		}
+
+
 		
 		GL.Vertex (ScreenHealthVertices[0]);
 		GL.Vertex (ScreenHealthVertices[1]);

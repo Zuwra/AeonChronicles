@@ -151,12 +151,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	public void callAbility(int n)
 	{int X = 0;
 		foreach (List<RTSObject> lis in AbilityGroups) {
-			if (lis [0].abilityList.Count >= n- X) {
+			if (lis [0].abilityList.Count  > n- X ) {
 
 			
-
+				Debug.Log("Activastin");
 
 				foreach (RTSObject unit in lis) {
+					Debug.Log ("Iterating");
 					if (!unit.UseAbility (n-X)) {
 						break;
 					}

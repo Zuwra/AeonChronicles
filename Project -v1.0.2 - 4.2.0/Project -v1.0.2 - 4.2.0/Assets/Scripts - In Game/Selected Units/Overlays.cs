@@ -104,7 +104,7 @@ public static class Overlays {
 	}
 
 	public static void cooldown(Texture2D overlay, float ratio)
-	{	Debug.Log (ratio);
+	{
 		for (int i=0; i<Width; i++)
 		{
 			for (int j=Height-2*HealthHeight-4; j<Height-2*HealthHeight; j++)

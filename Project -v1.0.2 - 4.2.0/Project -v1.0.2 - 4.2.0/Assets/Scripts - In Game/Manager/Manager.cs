@@ -9,7 +9,7 @@ public class Manager : MonoBehaviour, IManager {
 	public static Manager main;
 	
 	//Member Variables-------------------------------------------------
-	private List<Building> m_Buildings = new List<Building>();
+
 	private List<Unit> m_Units = new List<Unit>();
 	
 	private List<Item> m_AvailableItems = new List<Item>();
@@ -73,66 +73,19 @@ public class Manager : MonoBehaviour, IManager {
 	private void Initialise()
 	{
 		//Perform all initialisation here
-		ItemDB.Initialise();
+	
 		ItemProgressTextures.Initialise ();
 		GUIStyles.Initialise ();
 	}
 
-	public void BuildingAdded (Building building)
-	{
-		//Is the building a constructor?
-		if (building.ID == 0 || building.ID == 2)
-		{
-			m_GUIManager.AddConstructor (building);
-		}
-		
-		if (m_Buildings.Count == 0 || m_Buildings.FirstOrDefault (x => x.ID == building.ID) == null)
-		{
-			//This is a new building, need to update available items
-			m_AvailableItems.AddRange(ItemDB.GetAvailableItems(building.ID, m_Buildings));
-			
-			//Tell all the contents to update themselves
-			m_GUIManager.UpdateQueueContents (m_AvailableItems);
-		}
-		
-		m_Buildings.Add (building);
-	}
 
-	public void BuildingRemoved (Building building)
-	{
-		m_Buildings.Remove (building);
-		
-		//Are there any units or buildings left?
-		if (m_Units.Count == 0 && m_Buildings.Count == 0)
-		{
-			//Game Over
-			
-		}
-		
-		if (m_Buildings.Count == 0 || m_Buildings.First (x => x.ID == building.ID) == null)
-		{
-			//There are no more of these buildings, update available buildings and units
-			
-		}
-	}
-	
+
 	public void UnitAdded(Unit unit)
 	{
 		m_Units.Add (unit);
 	}
 	
-	public void UnitRemoved(Unit unit)
-	{
-		m_Units.Remove (unit);
-		
-		//Are there any units or buildings left?
-		if (m_Units.Count == 0 && m_Buildings.Count == 0)
-		{
-			//Game Over
-			
-		}
-	}
-	
+
 	public int GetUniqueID ()
 	{
 		m_UniqueIDCount++;

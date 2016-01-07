@@ -23,10 +23,10 @@ public class Unit : RTSObject, IOrderable {
 		private set;
 	}
 
-	public bool UseAbility(int n){
-		return true;
-	}
 
+	public override bool UseAbility (int n)
+	{Debug.Log ("calling here");
+		return true;}
 
 	public GameObject getObject(){return this.gameObject;}
 
