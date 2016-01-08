@@ -190,7 +190,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 	public List<GameObject> getUnitSelection(Vector3 upperLeft, Vector3 bottRight)
-	{Debug.Log (upperLeft + "    " + bottRight);
+	{
 		bool selectBuildings = true;
 
 		List<GameObject> foundUnits = new List<GameObject> ();

@@ -12,22 +12,19 @@ public class AbstractCost : MonoBehaviour {
 		public float ResourceOne;
 		public float ResourceTwo;
 		
-		public float healthPercent;
+
 		public float minimumHealth;
 		public float health;
 		
-		public float energyPecent;
 		public float energy;
-		
-		public float shield;
-		
+
 		public float cooldown;
 		private float cooldownTimer;
 		public bool StartsRefreshed = true;
 		
 		
 		private UnitStats stats;
-		private Shield myShield;
+
 		private RaceManager myGame;
 		public bool allowedToActivate;
 
@@ -45,7 +42,7 @@ public class AbstractCost : MonoBehaviour {
 			if (!StartsRefreshed) {
 				cooldownTimer = cooldown;
 			}
-			myShield = this.gameObject.GetComponent<Shield> ();
+			
 			stats = this.gameObject.GetComponent<UnitStats> ();
 			myGame = GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>();
 			
@@ -80,11 +77,7 @@ public class AbstractCost : MonoBehaviour {
 			Debug.Log("not enough energy");
 			return false;}
 
-		if(myShield){
-			if(myShield.health < shield) {
-
-				return false;}
-			}
+	
 			if (cooldownTimer > 0) {
 				return false;}
 			
@@ -100,24 +93,18 @@ public class AbstractCost : MonoBehaviour {
 
 
 		public void payCost()
-		{if (canActivate()) {
+	{
+		if (canActivate ()) {
 
-			myGame.buildUnit(ResourceOne, ResourceTwo);
+			myGame.buildUnit (ResourceOne, ResourceTwo);
 				
 				
-			stats.TakeDamage(health,this.gameObject, DamageTypes.DamageType.True);
+			stats.TakeDamage (health, this.gameObject, DamageTypes.DamageType.True);
 
 				
-				stats.currentEnergy -= energy; 
-			if(myShield){
-				myShield.health -=shield;}
-				
-				cooldownTimer = cooldown;
-				
-			} else {
-				//throw exception
-			}
-		}
+			stats.currentEnergy -= energy; 
 		
+		}
+	}
 		
 	}

@@ -6,29 +6,26 @@ using System.Collections.Generic;
 //this class extends RTSObject through the Unit class
 public class UnitManager : Unit,IOrderable{
 
-
 	public string UnitName;
-	public bool isAStructure;
+
 
 	public int PlayerOwner;
-	public IMover cMover;
-	public IWeapon myWeapon;
+	public bool isAStructure;
 	public bool attackWhileMoving = false;
-	public UnitStats myStats;
 
 
 	public float visionRange;
 	private float chaseRange;
-	//public VisionComponent myVision;
-
-
+	public IMover cMover;
+	public IWeapon myWeapon;
+	public UnitStats myStats;
 
 
 
 	public AbstractCost myCost;
 
 	SphereCollider visionSphere;
-	public float AbilityPriority; //Determines which abilities display on first/second/third rows according to a  grid system q-r,a-f,z-v  any more than three units, it goes to another page
+
 	public List<GameObject> enemies = new List<GameObject>();
 	public List<GameObject> allies = new List<GameObject>();
 
@@ -42,9 +39,7 @@ public class UnitManager : Unit,IOrderable{
 
 		if (visionSphere == null) {
 			visionSphere = this.gameObject.GetComponent<SphereCollider>();}
-	//	if (visionSphere == null) {
-		//	visionSphere = this.gameObject.GetComponent<CapsuleCollider>();
-		//}
+
 
 
 		if (cMover == null) {

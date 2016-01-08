@@ -48,76 +48,124 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 	public void loadUI(List<List<RTSObject>> list)
-	{
-		int n = 0;
-		foreach (List<RTSObject> obj in list) {
-			//Debug.Log (" Ability group " + n);
-			int AbilityX = 0;
-			UnitManager man = obj[0].gameObject.GetComponent<UnitManager> ();
-			Stats [n].GetComponent<StatsUI> ().loadUnit (obj [0].gameObject.GetComponent<UnitStats> (), obj [0].gameObject.GetComponent<IWeapon> (), 
-				obj.Count, man.UnitName);
+	{bool[] rows = new bool[3];
+		List<RTSObject> usedUnits = new List<RTSObject>();
+
+		while (true) {
+			if (rows[0] && rows[1] && rows[2]) {
+				break;}
 			
-			for (int i = 0; i < (man.abilityList.Count / 4) + 1; i++) {
+			int min = 100;
+			RTSObject bestPick = null;
+			int numOfUnits = 0;
 
-				GameObject template = (GameObject)Instantiate (UITemplate, this.gameObject.transform.position, Quaternion.identity);
-				myTemplates.Add (template);
-				template.transform.parent = this.gameObject.transform.FindChild ("TopLeftPanel");
-				template.transform.position = this.gameObject.transform.FindChild ("TopLeftPanel").position;
-				float yTotal = template.GetComponent<RectTransform> ().position.y  + 3 - n * 52;
-				float xTotal = template.GetComponent<RectTransform> ().position.x - 50;
-				Vector3 location = new Vector3 (xTotal, yTotal, 0);
-				template.GetComponent<RectTransform> ().position = location;
+			foreach (List<RTSObject> obj in list) {
+				
+				if (obj [0].AbilityPriority > min)
+					continue;
+				if (usedUnits.Contains (obj [0]))
+					continue;
+				
+				if (rows [(int)obj [0].AbilityStartingRow] == true)
+					continue;
+				
+				if (obj [0].abilityList.Count > 4 && rows [obj [0].AbilityStartingRow + 1])
+					continue;	
 
-
-
-
-
-
-				if (man.abilityList.Count  <= AbilityX*4 || man.abilityList [0 + AbilityX*4] == null) {
-					Destroy (template.transform.FindChild ("QButton").gameObject);
-				} else {
-					template.transform.FindChild ("QButton").GetComponent<Image> ().material = man.abilityList [0].iconPic;
-					template.transform.FindChild ("QButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [0];
-
+				if (obj [0].abilityList.Count > 8 && rows [obj [0].AbilityStartingRow + 2]){
+					continue;	
 				}
 
-				if (man.abilityList.Count  <= 1 +AbilityX*4 || man.abilityList [1+ AbilityX*4] == null) {
-					Destroy (template.transform.FindChild ("WButton").gameObject);
-				} else {
-					template.transform.FindChild ("WButton").GetComponent<Image> ().material = man.abilityList [1].iconPic;
-					template.transform.FindChild ("WButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [1];
-				}
+					bestPick = obj [0];
+					min = obj [0].AbilityPriority;
+					numOfUnits = obj.Count;
 
-				if (man.abilityList.Count  <= 2+ AbilityX*4 || man.abilityList [2+ AbilityX*4] == null) {
-					Destroy (template.transform.FindChild ("EButton").gameObject);
-				} else {
-					template.transform.FindChild ("EButton").GetComponent<Image> ().material = man.abilityList [2].iconPic;
-					template.transform.FindChild ("EButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [2];
-				}
-
-				if (man.abilityList.Count  <= 3+ AbilityX*4 || man.abilityList [3+ AbilityX*4] == null) {
-					Destroy (template.transform.FindChild ("RButton").gameObject);
-				} else {
-					template.transform.FindChild ("RButton").GetComponent<Image> ().material = man.abilityList [3].iconPic;
-					template.transform.FindChild ("RButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [3];
-				}
-				AbilityX++;
-				n++;
 			}
 
 
-		
-			if (n > 2) {
+			if (min == 100 || bestPick == null) {
 				break;
 			}
 
+
+
+			usedUnits.Add (bestPick);
+
+
+			rows [bestPick.AbilityStartingRow] = true;
+				
+			if (bestPick.abilityList.Count > 4) {
+				rows [bestPick.AbilityStartingRow + 1] = true;
+				}
+			if (bestPick.abilityList.Count > 8) {
+				rows [bestPick.AbilityStartingRow+ 2] = true;
+				}
+
+
+
+
+
+			int n = bestPick.AbilityStartingRow;
 		
+			int AbilityX = 0;
+			UnitManager man = bestPick.gameObject.GetComponent<UnitManager> ();
+
+			Stats[n].GetComponent<StatsUI> ().loadUnit (bestPick.gameObject.GetComponent<UnitStats> (), bestPick.gameObject.GetComponent<IWeapon> (), 
+				numOfUnits, man.UnitName);
+			
+				for (int i = 0; i < (man.abilityList.Count / 4) + 1; i++) {
+				//sets up the exact position of the buttons
+					GameObject template = (GameObject)Instantiate (UITemplate, this.gameObject.transform.position, Quaternion.identity);
+					myTemplates.Add (template);
+					template.transform.SetParent(this.gameObject.transform.FindChild ("TopLeftPanel"));
+					template.transform.position = this.gameObject.transform.FindChild ("TopLeftPanel").position;
+					float yTotal = template.GetComponent<RectTransform> ().position.y + 3 - n * 52;
+					float xTotal = template.GetComponent<RectTransform> ().position.x - 50;
+					Vector3 location = new Vector3 (xTotal, yTotal, 0);
+					template.GetComponent<RectTransform> ().position = location;
+
+				//deletes buttons if they shouldn't exist or sets their images and hotkeys
+					if (man.abilityList.Count <= AbilityX * 4 || man.abilityList [0 + AbilityX * 4] == null) {
+						Destroy (template.transform.FindChild ("QButton").gameObject);
+					} else {
+						template.transform.FindChild ("QButton").GetComponent<Image> ().material = man.abilityList [0].iconPic;
+						template.transform.FindChild ("QButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [0];
+
+					}
+
+					if (man.abilityList.Count <= 1 + AbilityX * 4 || man.abilityList [1 + AbilityX * 4] == null) {
+						Destroy (template.transform.FindChild ("WButton").gameObject);
+					} else {
+						template.transform.FindChild ("WButton").GetComponent<Image> ().material = man.abilityList [1].iconPic;
+						template.transform.FindChild ("WButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [1];
+					}
+
+					if (man.abilityList.Count <= 2 + AbilityX * 4 || man.abilityList [2 + AbilityX * 4] == null) {
+						Destroy (template.transform.FindChild ("EButton").gameObject);
+					} else {
+						template.transform.FindChild ("EButton").GetComponent<Image> ().material = man.abilityList [2].iconPic;
+						template.transform.FindChild ("EButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [2];
+					}
+
+					if (man.abilityList.Count <= 3 + AbilityX * 4 || man.abilityList [3 + AbilityX * 4] == null) {
+						Destroy (template.transform.FindChild ("RButton").gameObject);
+					} else {
+						template.transform.FindChild ("RButton").GetComponent<Image> ().material = man.abilityList [3].iconPic;
+						template.transform.FindChild ("RButton").FindChild ("Text").GetComponent<Text> ().text = letters [n] [3];
+					}
+					AbilityX++;
+					n++;
+				}
+
+
+
+			}
+
 		}
-
 		
 
 
-	}
+
 
 	// this really needs to be optimized
 	public void addUnit(List<RTSObject> list)

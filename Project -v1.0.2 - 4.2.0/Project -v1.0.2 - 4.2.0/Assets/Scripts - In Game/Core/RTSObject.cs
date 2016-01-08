@@ -40,6 +40,11 @@ public abstract class RTSObject : MonoBehaviour {
 
 
 	public List<Ability> abilityList;
+	[Tooltip("Which units will appear on the first,second,third page of the Command Card when multiple are selected, Lower numbers go to the front")]
+	public int AbilityPriority; //Determines which abilities display on first/second/third rows according to a  grid system q-r,a-f,z-v  any more than three units, it goes to another page
+	[Tooltip("Make sure you don't run out of rows if you have more than 4 abilities. Zero indexed")]
+	public int AbilityStartingRow;
+
 
 	public abstract bool UseAbility (int n);
 

@@ -154,10 +154,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 			if (lis [0].abilityList.Count  > n- X ) {
 
 			
-				Debug.Log("Activastin");
+		
 
 				foreach (RTSObject unit in lis) {
-					Debug.Log ("Iterating");
+			
 					if (!unit.UseAbility (n-X)) {
 						break;
 					}
