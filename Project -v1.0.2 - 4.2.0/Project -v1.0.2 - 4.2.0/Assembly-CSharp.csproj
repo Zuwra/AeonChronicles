@@ -128,6 +128,7 @@
      <Compile Include="Assets\LandMineActivate.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />
      <Compile Include="Assets\MissileArmer.cs" />
+     <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
      <Compile Include="Assets\RaceSelectManager.cs" />
      <Compile Include="Assets\RaceSelectionManger.cs" />

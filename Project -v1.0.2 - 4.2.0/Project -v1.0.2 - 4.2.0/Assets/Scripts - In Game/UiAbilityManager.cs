@@ -47,71 +47,23 @@ public class UiAbilityManager : MonoBehaviour {
 	}
 
 
-	public void loadUI(List<List<RTSObject>> list)
-	{bool[] rows = new bool[3];
-		List<RTSObject> usedUnits = new List<RTSObject>();
-
-		while (true) {
-			if (rows[0] && rows[1] && rows[2]) {
-				break;}
-			
-			int min = 100;
-			RTSObject bestPick = null;
-			int numOfUnits = 0;
-
-			foreach (List<RTSObject> obj in list) {
-				
-				if (obj [0].AbilityPriority > min)
-					continue;
-				if (usedUnits.Contains (obj [0]))
-					continue;
-				
-				if (rows [(int)obj [0].AbilityStartingRow] == true)
-					continue;
-				
-				if (obj [0].abilityList.Count > 4 && rows [obj [0].AbilityStartingRow + 1])
-					continue;	
-
-				if (obj [0].abilityList.Count > 8 && rows [obj [0].AbilityStartingRow + 2]){
-					continue;	
-				}
-
-					bestPick = obj [0];
-					min = obj [0].AbilityPriority;
-					numOfUnits = obj.Count;
-
+	public void loadUI(Page uiPage)
+	{resetUI ();
+		int n = 0;
+		for(int j = 0; j < 3; j ++){
+			if (uiPage.rows [j] == null) {
+				continue;
 			}
-
-
-			if (min == 100 || bestPick == null) {
-				break;
-			}
-
-
-
-			usedUnits.Add (bestPick);
-
-
-			rows [bestPick.AbilityStartingRow] = true;
-				
-			if (bestPick.abilityList.Count > 4) {
-				rows [bestPick.AbilityStartingRow + 1] = true;
-				}
-			if (bestPick.abilityList.Count > 8) {
-				rows [bestPick.AbilityStartingRow+ 2] = true;
-				}
-
-
-
-
-
-			int n = bestPick.AbilityStartingRow;
+	
+			n = uiPage.rows[j][0].AbilityStartingRow;
 		
 			int AbilityX = 0;
-			UnitManager man = bestPick.gameObject.GetComponent<UnitManager> ();
 
-			Stats[n].GetComponent<StatsUI> ().loadUnit (bestPick.gameObject.GetComponent<UnitStats> (), bestPick.gameObject.GetComponent<IWeapon> (), 
-				numOfUnits, man.UnitName);
+			UnitManager man = uiPage.rows[j][0].gameObject.GetComponent<UnitManager> ();
+
+
+			Stats[n].GetComponent<StatsUI> ().loadUnit (uiPage.rows[j][0].gameObject.GetComponent<UnitStats> (), uiPage.rows[j][0].gameObject.GetComponent<IWeapon> (), 
+			uiPage.rows[j].Count, man.UnitName);
 			
 				for (int i = 0; i < (man.abilityList.Count / 4) + 1; i++) {
 				//sets up the exact position of the buttons

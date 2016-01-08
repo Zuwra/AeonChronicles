@@ -6,10 +6,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	
 	private List<IOrderable> SelectedActiveObjects = new List<IOrderable>();	
 	private List<RTSObject> SelectedObjects = new List<RTSObject>();
-	private List<List<RTSObject>> AbilityGroups = new  List<List<RTSObject>> ();
+	private List<List<RTSObject>> tempAbilityGroups = new  List<List<RTSObject>> ();
 
 	private List<List<RTSObject>> Group = new List<List<RTSObject>>();
-	
+	private List<Page> UIPages = new List<Page> ();
+	private int currentPage = 0;
+
 	public static SelectedManager main;
 
 	public UiAbilityManager abilityManager;
@@ -25,10 +27,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	public GameObject attackInd;
 
 	void Start()
-	{abilityManager = GameObject.Find ("GameHud").GetComponent<UiAbilityManager> ();
+		{abilityManager = GameObject.Find ("GameHud").GetComponent<UiAbilityManager> ();
 		raceMan = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer;
 
-	}
+		}
 
 	public int OverlayWidth
 	{
@@ -143,14 +145,32 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 			callAbility (11);
 		}
 
+		if (Input.GetKeyUp (KeyCode.BackQuote)) {
+			
+			if (currentPage < UIPages.Count ) {
+				abilityManager.loadUI (UIPages [currentPage++]);
+			} else {
+				currentPage = 0;
+				abilityManager.loadUI (UIPages [currentPage]);
+			}
+
+		}
+
 
 
 	}
 		
 
 	public void callAbility(int n)
-	{int X = 0;
-		foreach (List<RTSObject> lis in AbilityGroups) {
+	{
+		
+
+
+
+
+		int X = 0;
+	/*
+		foreach (List<RTSObject> lis in UIPages[currentPage]) {
 			if (lis [0].abilityList.Count  > n- X ) {
 
 			
@@ -165,7 +185,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 				break;
 			}
 			X += lis [0].abilityList.Count;
-		}
+		}*/
 	}
 
 
@@ -185,12 +205,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	public void AddObject (RTSObject obj)
 	{
 	
+	
 		if(abilityManager != null){
 			abilityManager.resetUI();}
 
 		if (!SelectedObjects.Contains (obj))
 		{
-			if (obj is IOrderable)// && obj.gameObject.layer == 8)
+			if (obj is IOrderable)
 			{
 				SelectedActiveObjects.Add ((IOrderable)obj);
 			}
@@ -204,13 +225,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 			sortUnit (obj);
 		}
 
-		abilityManager.loadUI (AbilityGroups);
 	}
 
 
 
 	public void sortUnit(RTSObject obj)
-	{foreach (List<RTSObject> lis in AbilityGroups) {
+	{foreach (List<RTSObject> lis in tempAbilityGroups) {
 		
 			if (obj.gameObject.GetComponent<UnitManager>().UnitName == (lis [0]).gameObject.GetComponent<UnitManager>().UnitName) {
 				lis.Add (obj);
@@ -219,7 +239,50 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 		}
 		List<RTSObject> unitList = new List<RTSObject> ();
 		unitList.Add (obj);
-		AbilityGroups.Add (unitList);
+		tempAbilityGroups.Add (unitList);
+	}
+
+	public void CreateUIPages()
+	{	
+		currentPage = 0;
+		UIPages.Clear ();
+		UIPages.Add (new Page());
+		List<RTSObject> usedUnits = new List<RTSObject>();
+	
+		List<RTSObject> bestPick = null;
+		while (usedUnits.Count < tempAbilityGroups.Count) {
+			int min = 100;
+		
+			foreach (List<RTSObject> obj in tempAbilityGroups) {
+				if (obj [0].AbilityPriority <= min && !usedUnits.Contains (obj [0])) {
+
+					bestPick = obj;
+					min = obj [0].AbilityPriority;
+				}
+			}
+			usedUnits.Add (bestPick[0] );
+
+			int n = 0;
+			while (!UIPages [n].canBeAdded (bestPick)) {
+
+				n++;
+			
+
+				if (n > 5) {
+					break;
+				}
+				if (UIPages.Count <= n) {
+
+					UIPages.Add (new Page ());
+				}
+			}
+
+			UIPages [n].addUnit (bestPick);
+
+		}
+
+		abilityManager.loadUI (UIPages[currentPage]);
+
 	}
 	
 	public void DeselectAll()
@@ -236,7 +299,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 		if(abilityManager != null){
 			abilityManager.resetUI();}
 		
-		AbilityGroups.Clear ();
+		tempAbilityGroups.Clear ();
 	}
 	
 	public void DeselectObject(RTSObject obj)
@@ -281,7 +344,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 		{
 			Group[groupNumber].Add (obj);
 			
-		}		
+		}
+
+		CreateUIPages ();
 	}
 	
 	public void SelectGroup(int groupNumber)

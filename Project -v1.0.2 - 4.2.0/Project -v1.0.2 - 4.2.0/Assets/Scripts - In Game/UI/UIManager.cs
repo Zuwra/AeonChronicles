@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	private Mode m_Mode = Mode.Normal;
 	
 	//Interface variables the UI needs to deal with
-	private ISelectedManager m_SelectedManager;
+	private SelectedManager m_SelectedManager;
 	private ICamera m_Camera;
 	private IGUIManager m_GuiManager;
 	private IMiniMapController m_MiniMapController;
@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	void Start () 
 	{
 		//Resolve interface variables
-		m_SelectedManager = ManagerResolver.Resolve<ISelectedManager>();
+		m_SelectedManager = this.gameObject.GetComponent<SelectedManager>();
 		m_Camera = ManagerResolver.Resolve<ICamera>();	
 		m_GuiManager = ManagerResolver.Resolve<IGUIManager>();
 		m_MiniMapController = ManagerResolver.Resolve<IMiniMapController>();
@@ -344,6 +344,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 					{m_SelectedManager.AddObject (currentObject.GetComponent<UnitManager>());}
 				else{
 					m_SelectedManager.AddObject (currentObject.GetComponentInParent<UnitManager>());}
+				m_SelectedManager.CreateUIPages ();
 			}
 			else if (!m_GuiManager.Dragging)
 			{
@@ -365,6 +366,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 					{
 					m_SelectedManager.AddObject(obj.GetComponent<UnitManager>());
 				}
+				m_SelectedManager.CreateUIPages ();
 								
 
 							}
