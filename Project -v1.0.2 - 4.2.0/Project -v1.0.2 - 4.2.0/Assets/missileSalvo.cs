@@ -51,7 +51,7 @@ public class missileSalvo : Ability, Validator, Notify{
 	override
 	public bool Activate()
 	{
-
+		Debug.Log ("activating missile salvo");
 		GameObject home = null;
 		float distance = 100000;
 

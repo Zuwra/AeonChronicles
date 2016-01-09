@@ -104,7 +104,7 @@ public class UnitManager : Unit,IOrderable{
 
 	override
 	public bool UseAbility(int n)
-	{Debug.Log ("Activating my ability " + n);
+	{
 		if (abilityList [n] != null) {
 			if (abilityList [n].canActivate ()) {
 				return abilityList [n].Activate ();

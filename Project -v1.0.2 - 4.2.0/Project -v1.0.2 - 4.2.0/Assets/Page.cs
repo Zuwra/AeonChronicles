@@ -54,7 +54,29 @@ public class Page  {
 
 	public void useAbility(int n)
 	{
+		if (rows [n / 4] [0] == null) {
+			return;
+		}
 
+		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
+
+		if ( rows [n / 4] [0].abilityList.Count <= X) {
+
+		
+				return;
+			}
+
+
+
+
+		foreach (RTSObject unit in rows[n/4]) {
+
+
+					if (!unit.UseAbility (X)) {
+						break;
+					}
+				}
+			
 
 
 	}

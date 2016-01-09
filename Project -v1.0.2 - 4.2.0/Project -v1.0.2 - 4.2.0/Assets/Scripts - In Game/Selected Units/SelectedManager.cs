@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,10 +7,14 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	
 	private List<IOrderable> SelectedActiveObjects = new List<IOrderable>();	
 	private List<RTSObject> SelectedObjects = new List<RTSObject>();
+
+	//used for UI grouping
 	private List<List<RTSObject>> tempAbilityGroups = new  List<List<RTSObject>> ();
+	private List<Page> UIPages = new List<Page> ();
+
 
 	private List<List<RTSObject>> Group = new List<List<RTSObject>>();
-	private List<Page> UIPages = new List<Page> ();
+
 	private int currentPage = 0;
 
 	public static SelectedManager main;
@@ -163,29 +168,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 
 	public void callAbility(int n)
 	{
-		
-
-
-
-
-		int X = 0;
-	/*
-		foreach (List<RTSObject> lis in UIPages[currentPage]) {
-			if (lis [0].abilityList.Count  > n- X ) {
-
-			
-		
-
-				foreach (RTSObject unit in lis) {
-			
-					if (!unit.UseAbility (n-X)) {
-						break;
-					}
-				}
-				break;
-			}
-			X += lis [0].abilityList.Count;
-		}*/
+		UIPages [currentPage].useAbility (n);
 	}
 
 
@@ -206,8 +189,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 	{
 	
 	
-		if(abilityManager != null){
-			abilityManager.resetUI();}
 
 		if (!SelectedObjects.Contains (obj))
 		{
@@ -295,11 +276,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 		SelectedObjects.Clear ();
 		SelectedActiveObjects.Clear ();
 
-
-		if(abilityManager != null){
-			abilityManager.resetUI();}
-		
+		UIPages.Clear ();
 		tempAbilityGroups.Clear ();
+		CreateUIPages ();
 	}
 	
 	public void DeselectObject(RTSObject obj)
@@ -314,7 +293,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 		SelectedObjects.Remove (obj);	
 
 		if(abilityManager != null){
-			abilityManager.resetUI();}
+			UIPages.Clear ();
+			tempAbilityGroups.Clear ();
+			CreateUIPages ();}
 	}
 	
 	public void GiveOrder(Order order)
