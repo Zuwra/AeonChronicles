@@ -48,6 +48,8 @@ public abstract class RTSObject : MonoBehaviour {
 
 	public abstract bool UseAbility (int n);
 
+	public abstract void autoCast (int n);
+
 	public float GetHealthRatio()
 	{
 		return m_Health/m_MaxHealth;

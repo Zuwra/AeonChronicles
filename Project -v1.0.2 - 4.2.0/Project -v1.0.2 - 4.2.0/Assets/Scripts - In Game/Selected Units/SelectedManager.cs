@@ -171,6 +171,11 @@ public class SelectedManager : MonoBehaviour, ISelectedManager {
 		UIPages [currentPage].useAbility (n);
 	}
 
+	public void setAutoCast(int n)
+	{
+		UIPages [currentPage].setAutoCast (n);
+	}
+
 
 	public void Awake()
 	{

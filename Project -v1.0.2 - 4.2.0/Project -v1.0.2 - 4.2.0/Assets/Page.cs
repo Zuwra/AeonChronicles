@@ -83,4 +83,31 @@ public class Page  {
 
 
 
+	public void setAutoCast(int n)
+	{
+		if (rows [n / 4] [0] == null) {
+			return;
+		}
+
+		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
+
+		if ( rows [n / 4] [0].abilityList.Count <= X) {
+
+
+			return;
+		}
+
+
+
+
+		foreach (RTSObject unit in rows[n/4]) {
+			unit.autoCast (X);
+		}
+
+
+
+	}
+
+
+
 }

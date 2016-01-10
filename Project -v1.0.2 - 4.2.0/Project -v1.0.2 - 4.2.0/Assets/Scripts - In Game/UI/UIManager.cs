@@ -138,6 +138,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 				case 10:
 					hoverOver = HoverOver.Building;
 					break;
+
+				case 13:
+					hoverOver = HoverOver.neutral;
+					break;
 				
 				}				
 			} else {
@@ -185,6 +189,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 			
 				
 		case HoverOver.Building:
+			interactionState = InteractionState.Select;
+			break;
+
+		case HoverOver.neutral:
 			interactionState = InteractionState.Select;
 			break;
 			
@@ -551,7 +559,8 @@ public enum HoverOver
 	Menu,
 	Unit,
 	Building,
-	CamPlane
+	CamPlane,
+	neutral
 }
 
 public enum InteractionState

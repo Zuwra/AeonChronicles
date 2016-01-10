@@ -10,8 +10,6 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public int PlayerOwner;
-	public bool isAStructure;
-	public bool attackWhileMoving = false;
 
 
 	public float visionRange;
@@ -20,14 +18,13 @@ public class UnitManager : Unit,IOrderable{
 	public IWeapon myWeapon;
 	public UnitStats myStats;
 
-
-
-	public AbstractCost myCost;
+	public Iinteract interactor;
 
 	SphereCollider visionSphere;
 
 	public List<GameObject> enemies = new List<GameObject>();
 	public List<GameObject> allies = new List<GameObject>();
+	public List<GameObject> neutrals = new List<GameObject> ();
 
 	private UnitState myState;
 
@@ -57,10 +54,7 @@ public class UnitManager : Unit,IOrderable{
 			myStats = gameObject.GetComponent<UnitStats>();
 		}
 
-		if(myCost == null)
-			{
-			myCost = gameObject.GetComponent<AbstractCost>();
-		}
+	
 	
 		GameManager man = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ();
 		if (PlayerOwner != man.playerNumber) {
@@ -102,6 +96,8 @@ public class UnitManager : Unit,IOrderable{
 		} 
 	}
 
+
+
 	override
 	public bool UseAbility(int n)
 	{
@@ -109,62 +105,34 @@ public class UnitManager : Unit,IOrderable{
 			if (abilityList [n].canActivate ()) {
 				return abilityList [n].Activate ();
 			}
-
 		}
 		return true;
 	}
 
 
 
+	override
+	public void autoCast(int n)
+	{
+		if (abilityList [n] != null) {
+			if (abilityList [n].canActivate ()) {
+				abilityList [n].setAutoCast();
+			}
+		}
+	}
+
+
+
+
 
 	public new void GiveOrder (Order order)
-	{if (!isAStructure) {
-			switch (order.OrderType) {
-			//Stop Order----------------------------------------
-			case Const.ORDER_STOP:
-				changeState (new DefaultState (this, cMover, myWeapon));
-				break;
-			
-			//Move Order ---------------------------------------------
-			case Const.ORDER_MOVE_TO:
-		
-				if (attackWhileMoving && myWeapon) {
-
-					changeState (new AttckWhileMoveState (order.OrderLocation, this, cMover, myWeapon));
-				} else {
-					changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));
-				}
-				//cMover.resetMoveLocation(order.OrderLocation);
-			
-				break;
-			
-			case Const.ORDER_ATTACK:
-		//	Debug.Log("Attacking");
-				changeState (new InteractState (order.Target.gameObject, this, cMover, myWeapon));
-			
-				break;
-		
-
-			case Const.ORDER_AttackMove:
-				if (myWeapon)
-					changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, this, cMover, myWeapon, this.gameObject.transform.position));
-				else {
-					changeState (new MoveState (order.OrderLocation, this, cMover, myWeapon));
-				}
-				break;
-			case Const.ORDER_Follow:
-				
-				changeState (new FollowState (order.Target.gameObject, this, cMover, myWeapon));
-				break;
-
-
-		
-			}
-
-
-		}
-
+	{
+		interactor.computeInteractions (order);
 	}
+
+
+
+
 
 
 	void OnTriggerEnter(Collider other)
@@ -173,6 +141,10 @@ public class UnitManager : Unit,IOrderable{
 		//this will need to be refactored for team games
 		if (!other.isTrigger) {
 
+			if (other.gameObject.layer == 13) {
+				neutrals.Add (other.gameObject);
+				return;
+			}
 			UnitManager manage = other.gameObject.GetComponent<UnitManager>();
 			if(manage){
 			if(manage.PlayerOwner != PlayerOwner)
@@ -188,16 +160,17 @@ public class UnitManager : Unit,IOrderable{
 	
 	void OnTriggerExit(Collider other)
 	{
+		
 		if (enemies.Contains (other.gameObject)) {
 			enemies.Remove (other.gameObject);
-		} else if (allies.Contains (other.gameObject)) {
-			allies.Remove(other.gameObject);
+		} 
+		else if (allies.Contains (other.gameObject)) {
+			allies.Remove (other.gameObject);
+		} 
+		else if (neutrals.Contains (other.gameObject)) {
+			neutrals.Remove (other.gameObject);
 		}
-		enemies.Remove (other.gameObject);
-		if (enemies.Count == 0) {
-			
-			//myManager.currentState = UnitManager.state.stop;
-		}
+	
 		
 	}
 
@@ -266,11 +239,15 @@ public class UnitManager : Unit,IOrderable{
 		return best;
 	}
 
-
+	public void setInteractor(Iinteract inter)
+	{interactor = inter;
+	}
 
 
 	public void changeState(UnitState nextState)
-		{
+	{nextState.myManager = this;
+		nextState.myWeapon = myWeapon;
+		nextState.myMover = cMover;
 		myState = nextState;
 
 

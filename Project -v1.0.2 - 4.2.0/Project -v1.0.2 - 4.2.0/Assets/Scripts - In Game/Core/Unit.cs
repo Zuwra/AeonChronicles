@@ -28,6 +28,10 @@ public class Unit : RTSObject, IOrderable {
 	{Debug.Log ("calling here");
 		return true;}
 
+	public override void autoCast (int n)
+	{Debug.Log ("calling here");
+		}
+
 	public GameObject getObject(){return this.gameObject;}
 
 	protected void Start()

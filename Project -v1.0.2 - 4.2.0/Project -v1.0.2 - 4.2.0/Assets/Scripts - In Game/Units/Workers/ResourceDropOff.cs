@@ -7,9 +7,12 @@ public class ResourceDropOff : MonoBehaviour {
 	public bool ResourceOne;
 	public bool ResourceTwo;
 
+	private RaceManager raceM;
+
 	// Use this for initialization
 	void Start () {
-		GameObject.Find ("GameRaceManager").GetComponent<RaceManager> ().addDropOff (this.gameObject);
+		raceM = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer;
+		raceM.addDropOff (this.gameObject);
 
 	
 	}
@@ -20,7 +23,10 @@ public class ResourceDropOff : MonoBehaviour {
 	}
 
 
-
+	public void dropOff(float one, float two)
+	{
+		raceM.updateResources (one, two);
+	}
 
 
 

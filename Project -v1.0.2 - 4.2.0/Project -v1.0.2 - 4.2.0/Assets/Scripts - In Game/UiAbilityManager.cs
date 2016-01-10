@@ -10,8 +10,6 @@ public class UiAbilityManager : MonoBehaviour {
 	public List<GameObject> UIButtons = new List<GameObject>();
 
 
-	List<GameObject> myTemplates = new List<GameObject>();
-
 	private int currentX;
 	private int currentY;
 

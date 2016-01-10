@@ -10,10 +10,14 @@ public abstract class Ability : MonoBehaviour {
 	public string Name;
 	//public GameObject UIButton;
 	protected string description;
+	public bool autocast;
 
 
 	public abstract bool canActivate();
 	public abstract bool Activate();  // returns whether or not the next unit in the same group should also cast it
+	public void setAutoCast()
+	{autocast = !autocast;
+		Debug.Log ("set to autocast");}
 
 	// Use this for initialization
 	void Start () {
