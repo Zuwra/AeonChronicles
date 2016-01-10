@@ -19,7 +19,7 @@ public class customMover : IMover {
 
 	private Vector3 dir;
 
-	public void Start () {
+	public void Awake () {
 		seeker = GetComponent<Seeker>();
 		controller = GetComponent<CharacterController>();
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
@@ -91,7 +91,9 @@ public class customMover : IMover {
 		//Check if we are close enough to the next waypoint
 		//If we are, proceed to follow the next waypoint
 		
-		
+		if (path == null) {
+			return true;
+		}
 		if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
 			
 			currentWaypoint++;
@@ -126,5 +128,14 @@ public class customMover : IMover {
 
 	}
 
+
+
+	void OnControllerColliderHit(ControllerColliderHit other)
+	{
+		if (other.gameObject.transform.position == targetPosition) {
+			Debug.Log ("Colliding with " + other.gameObject);
+			path = null;
+		}
+	}
 
 } 

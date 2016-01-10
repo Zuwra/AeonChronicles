@@ -8,6 +8,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 	// Use this for initialization
 	void Start () {
+
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
 	
@@ -18,7 +19,9 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	
 	}
 
-
+	public void initialize(){
+		Start ();
+	}
 
 	public new  void computeInteractions (Order order)
 	{
@@ -30,7 +33,8 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 				break;
 
 				//Move Order ---------------------------------------------
-			case Const.ORDER_MOVE_TO:
+		case Const.ORDER_MOVE_TO:
+
 
 			if (attackWhileMoving &&  myManager.myWeapon) {
 

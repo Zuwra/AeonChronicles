@@ -28,11 +28,14 @@ public class UnitManager : Unit,IOrderable{
 
 	private UnitState myState;
 
+	void Awake()
+	{
 
+		if(interactor == null)
+		{
+			interactor = (Iinteract)gameObject.GetComponent(typeof(Iinteract));
 
-	// Use this for initialization
-	new void Start () {
-
+		}
 
 		if (visionSphere == null) {
 			visionSphere = this.gameObject.GetComponent<SphereCollider>();}
@@ -54,15 +57,15 @@ public class UnitManager : Unit,IOrderable{
 			myStats = gameObject.GetComponent<UnitStats>();
 		}
 
-	
-	
+
+
 		GameManager man = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ();
 		if (PlayerOwner != man.playerNumber) {
 			this.gameObject.tag = "Enemy";
 		} else {
 			this.gameObject.tag = "Player";
 		}
-	
+
 		man.initialize ();
 		man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
 		man.playerList [PlayerOwner - 1].UnitCreated(myStats.supply);
@@ -79,6 +82,11 @@ public class UnitManager : Unit,IOrderable{
 			chaseRange = visionRange;
 		}
 
+	}
+
+	// Use this for initialization
+	new void Start () {
+		
 	}
 
 
@@ -122,7 +130,9 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
-
+	public void setInteractor()
+	{Start ();
+	}
 
 
 	public new void GiveOrder (Order order)

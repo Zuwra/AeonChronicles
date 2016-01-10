@@ -87,7 +87,7 @@ public class AbstractCost : MonoBehaviour {
 		
 	public void refundCost()
 	{
-		myGame.buildUnit (-ResourceOne, -ResourceTwo);
+		myGame.updateResources(ResourceOne, ResourceTwo);
 		cooldownTimer = 0;
 	}
 
@@ -96,7 +96,7 @@ public class AbstractCost : MonoBehaviour {
 	{
 		if (canActivate ()) {
 
-			myGame.buildUnit (ResourceOne, ResourceTwo);
+			myGame.updateResources (-ResourceOne, -ResourceTwo);
 				
 				
 			stats.TakeDamage (health, this.gameObject, DamageTypes.DamageType.True);

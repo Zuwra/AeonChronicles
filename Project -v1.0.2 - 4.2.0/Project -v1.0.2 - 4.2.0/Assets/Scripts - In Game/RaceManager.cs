@@ -59,7 +59,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		if(trigger != null){
 			if(trigger.lethalDamageTrigger(Unit, deathSource) == false)
-				{Debug.Log ("triggering");
+				{
 				finishDeath = false;
 				}}
 		}
@@ -102,14 +102,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		deathTrigger.Add (input);
 	}
 
-	public void buildUnit (float resOne, float resTwo)
+	public void buildUnit (float supply)
 	{
 
 
-			ResourceOne -= resOne;
-			ResourceTwo -= resTwo;
-
-		updateResources (ResourceOne, ResourceTwo);
 
 	}
 

@@ -8,6 +8,7 @@ public interface Iinteract  {
 
 	void computeInteractions (Order order);
 
+	void initialize();
 
 
 }

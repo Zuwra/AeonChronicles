@@ -34,7 +34,7 @@ public class WarpCore : Ability {
 	// Use this for initialization
 	void Start () {
 		if (isKey) {
-			GameObject.Find ("GameRaceManager").GetComponent<GarataiManager> ().setKeyWarpCore (this.gameObject);
+			//GameObject.Find ("GameRaceManager").GetComponent<GarataiManager> ().setKeyWarpCore (this.gameObject);
 		}
 	
 	}

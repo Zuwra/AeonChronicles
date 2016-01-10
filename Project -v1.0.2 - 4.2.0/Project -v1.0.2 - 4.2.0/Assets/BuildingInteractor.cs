@@ -5,9 +5,10 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 	private UnitManager myManager;
 
-	public Vector3 rallyPoint;
+	public Vector3 rallyPoint = Vector3.zero;
 	public GameObject rallyUnit;
 	public bool AttackMoveSpawn;
+
 
 
 	// Use this for initialization
@@ -21,11 +22,13 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	void Update () {
 
 	}
-
+	public void initialize(){
+		Start ();
+	}
 
 
 	public new  void computeInteractions (Order order)
-	{
+	{Debug.Log ("getting order");
 
 		switch (order.OrderType) {
 		//Stop Order----------------------------------------
@@ -38,23 +41,26 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 		case Const.ORDER_MOVE_TO:
 			AttackMoveSpawn = false;
 			rallyPoint = order.OrderLocation;
-
+			rallyUnit = null;
 			break;
 
 		case Const.ORDER_ATTACK:
 			AttackMoveSpawn = false;
 			rallyUnit = order.Target.gameObject;
+			rallyPoint = Vector3.zero;
 			break;
 
 
 		case Const.ORDER_AttackMove:
 			AttackMoveSpawn = true;
 			rallyPoint = order.OrderLocation;
+			rallyUnit = null;
 
 			break;
 		case Const.ORDER_Follow:
 			AttackMoveSpawn = false;
 			rallyUnit = order.Target.gameObject;
+			rallyPoint= Vector3.zero;
 			break;
 
 
@@ -66,5 +72,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 
 	}
+
+
 
 }

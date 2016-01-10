@@ -20,7 +20,9 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 	void Update () {
 
 	}
-
+	public void initialize(){
+		Start ();
+	}
 
 
 	public new  void computeInteractions (Order order)
