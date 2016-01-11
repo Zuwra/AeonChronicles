@@ -274,6 +274,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				if (m_SelectedManager.IsObjectSelected(currentObject))
 				{
 					//Is the unit deployable?
+                        //as in, does the unit have some ability that's accessed by clicking on a previously-selected unit? Examples - MCV from Dune 2000.
 					if (currentObject.GetComponent<Unit>().IsDeployable())
 					{
 						currentObject.GetComponent<Unit>().GiveOrder (Orders.CreateDeployOrder());
@@ -341,43 +342,83 @@ public class UIManager : MonoBehaviour, IUIManager {
 			}
 			
 			//We've left clicked, have we left clicked on a unit?
-			int currentObjLayer = currentObject.layer;
-			if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10))
-			{
-				if (!IsShiftDown)
-				{
-					m_SelectedManager.DeselectAll ();
-				}
-				if(currentObject.GetComponent<UnitManager>())
-					{m_SelectedManager.AddObject (currentObject.GetComponent<UnitManager>());}
-				else{
-					m_SelectedManager.AddObject (currentObject.GetComponentInParent<UnitManager>());}
+			int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
+            
+            //if we're not dragging and clicked on a unit
+			if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10)){
+                /*  TARGET RULES
+                    shift selects units without affecting others
+                    control deselects units without affecting others
+                */
+                //deselect if none of the modifiers are being used
+                if (!IsShiftDown && !IsControlDown)
+                {
+                    m_SelectedManager.DeselectAll();
+                }
+
+                //if only control is down, remove the unit from selection
+                if(IsControlDown && !IsShiftDown)
+                {
+                     m_SelectedManager.DeselectObject(getUnitManagerFromObject(currentObject));
+                }
+                //if only shift is down, add the unit to selection
+                else if(!IsControlDown && IsShiftDown)
+                {
+                    m_SelectedManager.AddObject(getUnitManagerFromObject(currentObject));
+                }
+                else
+                {
+                    m_SelectedManager.AddObject(getUnitManagerFromObject(currentObject));
+                }
 				m_SelectedManager.CreateUIPages ();
 			}
+            //or if we aren't dragging and clicked on empty air
 			else if (!m_GuiManager.Dragging)
 			{
-				m_SelectedManager.DeselectAll ();
+                //don't deselect stuff if they're holding down shift. 
+                //JUDGEMENT CALL - I think that people will find it more intuitive to think that units will never be deselected by a SHIFT-LEFT_CLICK, even one on empty space
+                if(!IsShiftDown)
+				    m_SelectedManager.DeselectAll ();
 			}
 			else{
-
-	
+                //Get the drag area
 				Vector3 upperLeft = new Vector3();
 				upperLeft.x = Math.Min(Input.mousePosition.x, originalPosition.x);
 				upperLeft.y = Math.Max(Input.mousePosition.y,originalPosition.y);
-
 				Vector3 bottRight =new Vector3();
 				bottRight.x = Math.Max(Input.mousePosition.x,originalPosition.x);
 				bottRight.y = Math.Min(Input.mousePosition.y, originalPosition.y);
+                //TODO - control and shift are not working. Somehow it's deselecting when it starts, but I can't track where it's being deselected
 
+                //if we're control-dragging, deselect everything in the drag area
+                if (IsControlDown)
+                {
+                    foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight))
+                    {
+                        m_SelectedManager.DeselectObject(getUnitManagerFromObject(obj));
+                    }
+                }
+                //if we're shift-dragging, add everything in the drag area  
+                else if(IsShiftDown)
+                {
+                    foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight))
+                    {
+                        m_SelectedManager.AddObject(getUnitManagerFromObject(obj));
+                    }
+                }
+                //if we're dragging, deselect everything, then add everything in the drag area
+                else
+                {
+                    m_SelectedManager.DeselectAll();
+                    foreach (GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight))
+				    {
+					    m_SelectedManager.AddObject(getUnitManagerFromObject(obj));
+				    }
+                }
 
-				foreach(GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight))
-					{
-					m_SelectedManager.AddObject(obj.GetComponent<UnitManager>());
-				}
+                //refresh GUI elements
 				m_SelectedManager.CreateUIPages ();
-								
-
-							}
+			}
 
 
 
@@ -391,8 +432,18 @@ public class UIManager : MonoBehaviour, IUIManager {
 			break;
 		}
 	}
-	
-	public void RightButton_SingleClick(MouseEventArgs e)
+
+    //A safer way to get a UnitManager
+    private static UnitManager getUnitManagerFromObject(GameObject obj)
+    {
+        if (obj.GetComponent<UnitManager>())
+            return obj.GetComponent<UnitManager>();
+        else
+            return obj.GetComponentInParent<UnitManager>();
+    }
+
+
+    public void RightButton_SingleClick(MouseEventArgs e)
 	{
 	
 		if(hoverOver != HoverOver.Menu)
