@@ -15,9 +15,7 @@ public abstract class Ability : MonoBehaviour {
 
 	public abstract bool canActivate();
 	public abstract bool Activate();  // returns whether or not the next unit in the same group should also cast it
-	public void setAutoCast()
-	{autocast = !autocast;
-		Debug.Log ("set to autocast");}
+	public abstract void setAutoCast();
 
 	// Use this for initialization
 	void Start () {

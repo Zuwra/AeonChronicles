@@ -13,15 +13,14 @@ public class buildTurret :Ability{
 	private float timer =0;
 	private bool buildingUnit = false;
 	public int numberOfTurrets;
-	public bool autoPlaceTurrets;
-
+	private Selected mySelect;
 
 	private List<TurretMount> turretMounts = new List<TurretMount>();
 
 	// Use this for initialization
 	void Start () {
 		manager = GetComponent<UnitManager> ();
-
+		mySelect = GetComponent<Selected> ();
 	}
 
 	// Update is called once per frame
@@ -29,7 +28,9 @@ public class buildTurret :Ability{
 		if (buildingUnit) {
 
 			timer -= Time.deltaTime;
+			mySelect.updateCoolDown (1 - timer/buildTime);
 			if (timer <= 0) {
+				mySelect.updateCoolDown (0);
 				buildingUnit = false;
 				numberOfTurrets++;
 
@@ -39,7 +40,7 @@ public class buildTurret :Ability{
 		if (turretMounts.Count > 0) {
 			if (numberOfTurrets > 0) {
 				foreach (TurretMount obj in turretMounts) {
-					if (numberOfTurrets > 0) {
+					if (numberOfTurrets > 0 && obj.turret == null) {
 						obj.placeTurret (createUnit ());
 					}
 
@@ -53,6 +54,18 @@ public class buildTurret :Ability{
 	}
 
 
+	public void turnOffAutoCast()
+	{autocast = false;
+		
+	}
+	public override void setAutoCast()
+	{autocast = !autocast;
+		if (autocast) {
+			foreach (buildTurret build in this.gameObject.GetComponents<buildTurret>()) {
+				build.turnOffAutoCast ();
+			}
+		}
+	}
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -74,7 +87,7 @@ public class buildTurret :Ability{
 				TurretMount mount = other.gameObject.GetComponentInChildren<TurretMount> ();
 				if (mount && mount.turret == null) {
 		
-					if (autoPlaceTurrets) {
+					if (autocast) {
 						turretMounts.Add (mount);
 
 

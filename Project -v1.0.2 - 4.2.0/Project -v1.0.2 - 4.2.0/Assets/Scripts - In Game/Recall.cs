@@ -27,6 +27,8 @@ public class Recall : Ability, Modifier {
 		return true;
 	}
 
+	public override void setAutoCast(){
+	}
 
 	public float modify(float damage, GameObject source)
 	{

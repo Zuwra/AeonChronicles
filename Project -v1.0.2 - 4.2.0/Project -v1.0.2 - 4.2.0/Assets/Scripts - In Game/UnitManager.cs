@@ -136,7 +136,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public new void GiveOrder (Order order)
-	{
+	{if(interactor != null)
 		interactor.computeInteractions (order);
 	}
 

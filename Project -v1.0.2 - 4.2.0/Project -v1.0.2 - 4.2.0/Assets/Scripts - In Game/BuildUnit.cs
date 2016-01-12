@@ -36,6 +36,8 @@ public class BuildUnit :  Ability {
 	
 	}
 
+	public override void setAutoCast(){}
+
 	public void cancelBuild ()
 		{
 		timer = 0;

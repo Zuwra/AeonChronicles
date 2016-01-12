@@ -27,6 +27,10 @@ public class StimPack : Ability {
 
 	}
 
+	public override void setAutoCast(){
+	}
+
+
 	override
 	public bool canActivate ()
 		{return myCost.canActivate ();

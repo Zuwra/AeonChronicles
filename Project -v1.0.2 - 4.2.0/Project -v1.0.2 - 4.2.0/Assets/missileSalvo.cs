@@ -16,6 +16,10 @@ public class missileSalvo : Ability, Validator, Notify{
 		myweapon.validators.Add (this);
 	
 	}
+
+	public override void setAutoCast(){
+	}
+
 	
 	// Update is called once per frame
 	void Update () {

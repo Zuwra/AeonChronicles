@@ -28,7 +28,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 
 	public new  void computeInteractions (Order order)
-	{Debug.Log ("getting order");
+	{
 
 		switch (order.OrderType) {
 		//Stop Order----------------------------------------

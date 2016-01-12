@@ -64,7 +64,9 @@ public class AbstractCost : MonoBehaviour {
 		{
 			
 			if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
-			Debug.Log("not enough resources");
+			GameObject.FindGameObjectWithTag ("Error").GetComponent<ErrorPrompt> ().showError ("Not Enough Resources");
+
+		
 			return false;
 			}
 			

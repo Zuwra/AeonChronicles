@@ -70,6 +70,7 @@ public class MiningState : UnitState {
 		case miningState.mining:
 			timer -= Time.deltaTime;
 			if (timer < 0) {
+				dropoff = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.getNearestDropOff (target);
 				myMover.resetMoveLocation (dropoff.transform.position);
 				state = miningState.returning;
 

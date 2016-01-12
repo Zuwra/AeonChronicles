@@ -29,6 +29,8 @@ public class WarpCore : Ability {
 	{isKey = false;
 
 	}
+	public override void setAutoCast(){
+	}
 
 
 	// Use this for initialization
