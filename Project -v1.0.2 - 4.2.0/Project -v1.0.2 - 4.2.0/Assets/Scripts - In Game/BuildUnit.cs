@@ -17,6 +17,7 @@ public class BuildUnit :  Ability {
 	void Start () {
 		myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
+		myCost.cooldown = buildTime;
 	
 	}
 	

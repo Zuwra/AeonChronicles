@@ -4,10 +4,14 @@ using System.Collections.Generic;
 
 public abstract class Ability : MonoBehaviour {
 
+	public string Name;
+	[TextArea(2,10)]
+	public string Descripton;
+
 	public Material iconPic;
 	public AbstractCost myCost;
 	public enum type{passive, active, triggered}
-	public string Name;
+
 	//public GameObject UIButton;
 	protected string description;
 	public bool autocast;

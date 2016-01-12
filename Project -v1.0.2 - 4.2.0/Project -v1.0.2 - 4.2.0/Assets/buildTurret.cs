@@ -21,6 +21,7 @@ public class buildTurret :Ability{
 	void Start () {
 		manager = GetComponent<UnitManager> ();
 		mySelect = GetComponent<Selected> ();
+		myCost.cooldown = buildTime;
 	}
 
 	// Update is called once per frame

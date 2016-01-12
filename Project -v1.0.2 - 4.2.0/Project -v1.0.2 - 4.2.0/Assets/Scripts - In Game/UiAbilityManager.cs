@@ -69,25 +69,33 @@ public class UiAbilityManager : MonoBehaviour {
 				for (int i = 1; i < 5; i++) {
 
 					if(man.abilityList.Count > AbilityX * 4){
-						UIButtons [n ].transform.FindChild ("QButton").gameObject.SetActive (true);
-						UIButtons [n ].transform.FindChild ("QButton").GetComponent<Image> ().material = man.abilityList [0 + AbilityX * 4].iconPic;
+						Transform trans = UIButtons [n].transform.FindChild ("QButton");
+						trans.gameObject.SetActive (true);
+						trans.GetComponent<Image> ().material = man.abilityList [0 + AbilityX * 4].iconPic;
+						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [0 + AbilityX * 4];
 			
 					}
 			
 					if(man.abilityList.Count >1+( AbilityX * 4)){
-						UIButtons [n ].transform.FindChild ("WButton").gameObject.SetActive (true);
-						UIButtons [n ].transform.FindChild ("WButton").GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
+						Transform trans = UIButtons [n].transform.FindChild ("WButton");
+						trans.gameObject.SetActive (true);
+						trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
+						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
 
 					}
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
-						UIButtons [n ].transform.FindChild ("EButton").gameObject.SetActive (true);
-						UIButtons [n ].transform.FindChild ("EButton").GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
+						Transform trans = UIButtons [n].transform.FindChild ("EButton");
+						trans.gameObject.SetActive (true);
+						trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
+						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
 
 					}
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
-						UIButtons [n ].transform.FindChild ("RButton").gameObject.SetActive (true);
-						UIButtons [n ].transform.FindChild ("RButton").GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
+						Transform trans = UIButtons [n].transform.FindChild ("RButton");
+						trans.gameObject.SetActive (true);
+						trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
+						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
 
 					}
 			
