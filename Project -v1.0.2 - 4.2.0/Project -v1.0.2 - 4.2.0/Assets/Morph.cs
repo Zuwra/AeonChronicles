@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BuildUnit :  Ability {
+public class Morph :  Ability {
 
 
 
@@ -11,80 +11,90 @@ public class BuildUnit :  Ability {
 	public float buildTime;
 	private BuildingInteractor myInteractor;
 
+	private UnitManager myManager;
+	private RaceManager racer;
+
 	private float timer =0;
-	private bool buildingUnit = false;
+	private bool Morphing = false;
 	// Use this for initialization
 	void Start () {
+		myManager = this.gameObject.GetComponent<UnitManager> ();
 		myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
 		myCost.cooldown = buildTime;
-	
+		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ();
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if (buildingUnit) {
+		if (Morphing) {
 
 
 			timer -= Time.deltaTime;
 			mySelect.updateCoolDown (1 - timer/buildTime);
 			if(timer <=0)
 			{mySelect.updateCoolDown (0);
-				buildingUnit = false;
+				Morphing = false;
 				createUnit();
 			}
 		}
-	
+
 	}
 
 	public override void setAutoCast(){}
 
 	public void cancelBuild ()
-		{
+	{
 		timer = 0;
-		buildingUnit = false;
+		Morphing = false;
 		myCost.refundCost ();
-		GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
+		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
 	}
 
 
 
 	override
-		public bool canActivate ()
+	public bool canActivate ()
 	{
-		if (buildingUnit) {
+		if (Morphing) {
+			return true;}
 
-			return false;}
-	
 		return myCost.canActivate ();
 
 	}
-	
+
 	override
-		public bool Activate()
-	{
-		if (myCost.canActivate ()) {
+	public bool Activate()
+	{if (!Morphing) {
+			if (myCost.canActivate ()) {
 
-			myCost.payCost();
+				myCost.payCost ();
 
 
-			timer = buildTime;
-			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
-			buildingUnit = true;
-			return false;
-		}
+				timer = buildTime;
+				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
+				Morphing = true;
+
+				myManager.changeState (new ChannelState (myManager, myManager.cMover, myManager.myWeapon));
+
+				return false;
+
+			}
+		} 
+		
 		return true;//next unit should also do this.
 	}
 
 
 	public void createUnit()
 	{
-		
-		Vector3 location = new Vector3(this.gameObject.transform.position.x + 25,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z);
-		
-		GameObject unit = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
 
-	
+
+		Vector3 posit = new Vector3(gameObject.transform.position.x ,gameObject.transform.position.y+5,gameObject.transform.position.z);
+		GameObject unit = (GameObject)Instantiate(unitToBuild, posit, Quaternion.identity);
+
+
 		unit.GetComponent<UnitManager>().setInteractor();
 		unit.GetComponent<UnitManager> ().interactor.initialize ();
 		if (myInteractor != null) {
@@ -97,7 +107,8 @@ public class BuildUnit :  Ability {
 			}
 		}
 
-		buildingUnit = false;
+		Morphing = false;
+		Destroy (this.gameObject);
 	}
 
 

@@ -9,12 +9,45 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 	public float resourceOne;
 	public float resourceTwo;
 
+
 	// Use this for initialization
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
 
+		StartCoroutine (delayer());
+	
+
 	}
+
+	IEnumerator delayer()
+	{
+		yield return new WaitForSeconds (1);
+		findNearestOre ();
+	}
+
+	public void findNearestOre()
+	{
+
+		float distance = 100000;
+
+		GameObject closest = null;
+		foreach (GameObject obj in myManager.neutrals) {
+
+			float temp = Vector3.Distance (obj.transform.position, this.gameObject.transform.position);
+			if (temp < distance) {
+				distance = temp;
+				closest = obj;
+			}
+		
+		}
+		if (closest != null) {
+			
+			myManager.changeState (new MiningState (closest, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo));
+		}
+	}
+
+
 
 	// Update is called once per frame
 	void Update () {

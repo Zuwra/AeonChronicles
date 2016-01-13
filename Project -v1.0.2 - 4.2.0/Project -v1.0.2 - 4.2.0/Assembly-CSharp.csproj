@@ -119,6 +119,7 @@
      <Compile Include="Assets\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
      <Compile Include="Assets\BuildingInteractor.cs" />
+     <Compile Include="Assets\ChannelState.cs" />
      <Compile Include="Assets\ClickableButton.cs" />
      <Compile Include="Assets\Clock.cs" />
      <Compile Include="Assets\CostBox.cs" />
@@ -135,11 +136,13 @@
      <Compile Include="Assets\MainMenuManager.cs" />
      <Compile Include="Assets\MiningState.cs" />
      <Compile Include="Assets\MissileArmer.cs" />
+     <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
      <Compile Include="Assets\RaceSelectManager.cs" />
      <Compile Include="Assets\RaceSelectionManger.cs" />
      <Compile Include="Assets\RaceTipManager.cs" />
+     <Compile Include="Assets\ResourceGenerator.cs" />
      <Compile Include="Assets\Resources\mortarPod.cs" />
      <Compile Include="Assets\Scripts - In Game\Ability.cs" />
      <Compile Include="Assets\Scripts - In Game\AbstractCost.cs" />

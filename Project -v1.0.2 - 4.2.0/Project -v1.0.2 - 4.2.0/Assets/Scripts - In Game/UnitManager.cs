@@ -136,7 +136,13 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public new void GiveOrder (Order order)
-	{if(interactor != null)
+	{
+		if (myState is  ChannelState) {
+			return;
+		}
+
+
+		if(interactor != null)
 		interactor.computeInteractions (order);
 	}
 
@@ -258,13 +264,16 @@ public class UnitManager : Unit,IOrderable{
 	{nextState.myManager = this;
 		nextState.myWeapon = myWeapon;
 		nextState.myMover = cMover;
+
 		myState = nextState;
 
 
-		if (nextState.GetType() is AttackMoveState) {
-
+		if (nextState is AttackMoveState) {
+			
 			((AttackMoveState)nextState).setHome(this.gameObject.transform.position);
 		}
+
+	
 	}
 
 

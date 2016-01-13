@@ -30,7 +30,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	private List<ManagerWatcher> myWatchers = new List<ManagerWatcher>();
 
-	private HashSet<GameObject> unitList = new HashSet<GameObject>();
+	private List<GameObject> unitList = new List<GameObject>();
 
 	private List<LethalDamageinterface> deathTrigger = new List<LethalDamageinterface>();
 
@@ -80,6 +80,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		}
 
 		updateSupply(currentSupply, supplyMax);
+
+
+		unitList.RemoveAll(item => item == null);
 	}
 
 	public void UnitCreated(float supply)
@@ -160,7 +163,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
-	public HashSet<GameObject> getUnitList()
+	public List<GameObject> getUnitList()
 	{return unitList;
 	}
 
@@ -186,7 +189,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 	public List<GameObject> getUnitSelection(Vector3 upperLeft, Vector3 bottRight)
-	{
+	{unitList.RemoveAll(item => item == null);
 		bool selectBuildings = true;
 
 		List<GameObject> foundUnits = new List<GameObject> ();
