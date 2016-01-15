@@ -124,12 +124,14 @@
      <Compile Include="Assets\Clock.cs" />
      <Compile Include="Assets\CostBox.cs" />
      <Compile Include="Assets\DaexaWorkerInteract.cs" />
+     <Compile Include="Assets\DamageUpgrade.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
      <Compile Include="Assets\GameMenu.cs" />
      <Compile Include="Assets\GamePlayMenu.cs" />
      <Compile Include="Assets\GraphicsMenu.cs" />
      <Compile Include="Assets\GuiControls.cs" />
+     <Compile Include="Assets\HealthUpgrade.cs" />
      <Compile Include="Assets\HotkeyMenu.cs" />
      <Compile Include="Assets\Iinteract.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
@@ -142,6 +144,7 @@
      <Compile Include="Assets\RaceSelectManager.cs" />
      <Compile Include="Assets\RaceSelectionManger.cs" />
      <Compile Include="Assets\RaceTipManager.cs" />
+     <Compile Include="Assets\ResearchUpgrade.cs" />
      <Compile Include="Assets\ResourceGenerator.cs" />
      <Compile Include="Assets\Resources\mortarPod.cs" />
      <Compile Include="Assets\Scripts - In Game\Ability.cs" />
@@ -332,6 +335,8 @@
      <Compile Include="Assets\StandardInteract.cs" />
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TurretMount.cs" />
+     <Compile Include="Assets\Upgradable.cs" />
+     <Compile Include="Assets\Upgrade.cs" />
      <Compile Include="Assets\airmover.cs" />
      <Compile Include="Assets\buildTurret.cs" />
      <Compile Include="Assets\explosion.cs" />

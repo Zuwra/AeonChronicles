@@ -147,7 +147,9 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
-
+	public void removeAbility(Ability abil)
+	{abilityList.Remove (abil);
+		abilityList.RemoveAll(item => item == null);}
 
 
 

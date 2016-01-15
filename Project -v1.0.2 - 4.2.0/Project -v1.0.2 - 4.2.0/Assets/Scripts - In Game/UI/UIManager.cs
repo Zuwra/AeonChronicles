@@ -370,7 +370,7 @@ public class UIManager : MonoBehaviour, IUIManager {
                 {
                     m_SelectedManager.AddObject(getUnitManagerFromObject(currentObject));
                 }
-				m_SelectedManager.CreateUIPages ();
+				m_SelectedManager.CreateUIPages (0);
 			}
             //or if we aren't dragging and clicked on empty air
 			else if (!m_GuiManager.Dragging)
@@ -417,7 +417,7 @@ public class UIManager : MonoBehaviour, IUIManager {
                 }
 
                 //refresh GUI elements
-				m_SelectedManager.CreateUIPages ();
+				m_SelectedManager.CreateUIPages (0);
 			}
 
 

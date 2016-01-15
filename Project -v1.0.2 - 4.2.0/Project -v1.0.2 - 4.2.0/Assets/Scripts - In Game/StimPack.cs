@@ -60,7 +60,7 @@ public class StimPack : Ability {
 		timer = 0;
 
 		this.gameObject.GetComponent<customMover>().MaxSpeed -=speedBoost;
-
+		this.gameObject.GetComponent<customMover>().speed -=speedBoost;
 	}
 
 

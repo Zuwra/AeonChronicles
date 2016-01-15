@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Reflection;
 
 
 public class RaceManager : MonoBehaviour, ManagerWatcher {
@@ -22,6 +23,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public Ability UltThree;
 	public Ability UltFour;
 	public RaceInfo.raceType myRace;
+	public GameObject upgradeBall;
+
+	private List<Upgrade> myUpgrades = new List<Upgrade> ();
+
+	private SelectedManager selectedManager;
+
 
 
 
@@ -38,6 +45,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	// Use this for initialization
 	void Start () {
+		selectedManager = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
 	
 	}
 	
@@ -45,6 +53,41 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	void Update () {
 	
 	}
+
+
+	public void addUpgrade(Upgrade upgrade, string unitname)
+	{
+		
+		Component temp = upgradeBall.AddComponent (upgrade.GetType ());
+
+
+		foreach(FieldInfo f in temp.GetType().GetFields())
+		{
+			f.SetValue (temp, f.GetValue (upgrade));
+		}
+		myUpgrades.Add ((Upgrade)temp);
+
+
+		foreach (GameObject obj in unitList) {
+			upgrade.applyUpgrade (obj);
+
+			if (obj.GetComponent<UnitManager> ().UnitName == unitname) {
+				
+				obj.SendMessage ("researched", upgrade);
+			
+			}
+		}
+
+		selectedManager.updateUI ();
+
+	}
+
+	public void applyUpgrade(GameObject obj )
+	{	foreach (Upgrade up in myUpgrades) {
+			up.applyUpgrade (obj);
+		}
+	}
+
 
 	public void addWatcher(ManagerWatcher input)
 	{myWatchers.Add (input);}

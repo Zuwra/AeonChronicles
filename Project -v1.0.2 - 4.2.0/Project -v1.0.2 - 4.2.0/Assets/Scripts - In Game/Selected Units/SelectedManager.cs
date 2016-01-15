@@ -288,9 +288,15 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         tempAbilityGroups.Add(unitList);
     }
 
-    public void CreateUIPages()
+	public void updateUI()
+	{
+		CreateUIPages (currentPage);
+
+	}
+
+	public void CreateUIPages(int j)
     {
-        currentPage = 0;
+        currentPage = j;
         UIPages.Clear();
         UIPages.Add(new Page());
         List<RTSObject> usedUnits = new List<RTSObject>();
@@ -351,7 +357,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
         UIPages.Clear();
         tempAbilityGroups.Clear();
-        CreateUIPages();
+        CreateUIPages(0);
     }
 
     /**
@@ -382,7 +388,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         {
             UIPages.Clear();
             tempAbilityGroups.Clear();
-            CreateUIPages();
+            CreateUIPages(0);
         }
     }
 
@@ -418,7 +424,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
         }
 
-        CreateUIPages();
+        CreateUIPages(0);
     }
 
     public void SelectGroup(int groupNumber)

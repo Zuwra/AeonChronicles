@@ -5,6 +5,8 @@ public class BuildUnit :  Ability {
 
 
 
+	private RaceManager racer;
+
 	public GameObject unitToBuild;
 	private Selected mySelect;
 
@@ -15,6 +17,8 @@ public class BuildUnit :  Ability {
 	private bool buildingUnit = false;
 	// Use this for initialization
 	void Start () {
+
+		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer;
 		myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
 		myCost.cooldown = buildTime;
@@ -44,7 +48,7 @@ public class BuildUnit :  Ability {
 		timer = 0;
 		buildingUnit = false;
 		myCost.refundCost ();
-		GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
+		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
 	}
 
 
@@ -97,6 +101,7 @@ public class BuildUnit :  Ability {
 			}
 		}
 
+		racer.applyUpgrade (unit);
 		buildingUnit = false;
 	}
 
