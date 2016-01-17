@@ -70,6 +70,7 @@ public class buildTurret :Ability{
 
 	void OnTriggerEnter(Collider other)
 	{
+
 		//need to set up calls to listener components
 		//this will need to be refactored for team games
 		if (other.isTrigger) {
@@ -79,21 +80,23 @@ public class buildTurret :Ability{
 		UnitManager manage = other.gameObject.GetComponent<UnitManager>();
 
 			if (manage == null) {
+
+		
 			return;
 		}
 
 			if (manage.PlayerOwner == manager.PlayerOwner) {
 
-				
-				TurretMount mount = other.gameObject.GetComponentInChildren<TurretMount> ();
+			foreach(TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ())
+				{
 				if (mount && mount.turret == null) {
 		
-					if (autocast) {
+					if (autocast ) {
 						turretMounts.Add (mount);
 
 
 					}
-				
+				}
 				
 
 			}

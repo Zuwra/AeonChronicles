@@ -294,6 +294,11 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	}
 
+	public void reImageUI()
+	{  abilityManager.updateUI(UIPages[currentPage]);
+		
+	}
+
 	public void CreateUIPages(int j)
     {
         currentPage = j;

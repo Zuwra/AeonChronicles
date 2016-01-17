@@ -75,7 +75,11 @@ public class UnitManager : Unit,IOrderable{
 
 		if (cMover != null) {
 			changeState (new DefaultState (this, cMover, myWeapon));
+		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.turret)) {
+			changeState (new turretState (this, this.cMover, this.myWeapon));
 		}
+
+
 		if (myWeapon != null) {
 			chaseRange = visionRange - ((visionRange - myWeapon.range) / 2);
 		} else {
@@ -100,6 +104,8 @@ public class UnitManager : Unit,IOrderable{
 	// Update is called once per frame
 	new void Update () {
 		if (myState != null) {
+			
+
 			myState.Update ();
 		} 
 	}
@@ -227,7 +233,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 		float distance = 1000000;
-		float bestPriority = 0;
+		float bestPriority = -1;
 
 		for (int i = 0; i < enemies.Count; i ++) {
 			if (enemies[i] != null) {

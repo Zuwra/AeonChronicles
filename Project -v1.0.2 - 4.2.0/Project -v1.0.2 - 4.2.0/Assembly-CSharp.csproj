@@ -344,6 +344,7 @@
      <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\selfDestructTimer.cs" />
      <Compile Include="Assets\testScript.cs" />
+     <Compile Include="Assets\turretState.cs" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />

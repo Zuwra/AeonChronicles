@@ -84,7 +84,7 @@ public class BuildUnit :  Ability {
 	public void createUnit()
 	{
 		
-		Vector3 location = new Vector3(this.gameObject.transform.position.x + 25,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z);
+		Vector3 location = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z -20);
 		
 		GameObject unit = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
 

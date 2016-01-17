@@ -33,12 +33,16 @@ public class StimPack : Ability {
 
 	override
 	public bool canActivate ()
-		{return myCost.canActivate ();
+		{
+
+		if (chargeCount == 0) {
+			return false;}
+		return myCost.canActivate ();
 		}
 
 	override
 	public bool Activate()
-	{Debug.Log ("Activating stim");
+	{
 		if (myCost.canActivate ()) {
 
 			if(!on)
@@ -46,10 +50,12 @@ public class StimPack : Ability {
 			this.gameObject.GetComponent<customMover>().MaxSpeed +=speedBoost;
 			
 			}
+
 			myCost.payCost();
 			on = true;
 			timer = duration;
-
+			chargeCount--;
+			RaceManager.upDateUI ();
 		
 		}
 		return true;//next unit should also do this.

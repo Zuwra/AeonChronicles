@@ -33,7 +33,7 @@ public class ResearchUpgrade:  Ability, Upgradable{
 				researching = false;
 				GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.addUpgrade (upgrades[currentUpgrade], GetComponent<UnitManager>().UnitName);
 
-
+				RaceManager.upDateUI ();
 					//createUnit();
 				}
 			}

@@ -82,6 +82,11 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	}
 
+	public static void upDateUI()
+	{GameObject.Find ("Manager").GetComponent<SelectedManager> ().reImageUI ();
+
+	}
+
 	public void applyUpgrade(GameObject obj )
 	{	foreach (Upgrade up in myUpgrades) {
 			up.applyUpgrade (obj);

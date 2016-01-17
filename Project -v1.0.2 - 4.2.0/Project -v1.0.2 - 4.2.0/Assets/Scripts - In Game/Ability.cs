@@ -16,6 +16,9 @@ public abstract class Ability : MonoBehaviour {
 	protected string description;
 	public bool autocast;
 
+	//if -1, then it is infinite
+	public int chargeCount = -1;
+
 
 	public abstract bool canActivate();
 	public abstract bool Activate();  // returns whether or not the next unit in the same group should also cast it

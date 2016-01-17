@@ -103,6 +103,10 @@ public class IWeapon : MonoBehaviour {
 	}
 
 
+
+	public bool isOffCooldown()
+		{return offCooldown;
+		}
 	
 
 
@@ -147,6 +151,8 @@ public class IWeapon : MonoBehaviour {
 
 	public bool inRange(GameObject target)
 	{
+
+
 		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position)- target.GetComponent<CharacterController>().radius;
 		if (distance > range) {
 			
