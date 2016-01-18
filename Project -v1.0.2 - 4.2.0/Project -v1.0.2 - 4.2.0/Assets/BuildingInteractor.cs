@@ -27,7 +27,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	}
 
 
-	public new  void computeInteractions (Order order)
+	public void computeInteractions (Order order)
 	{
 
 		switch (order.OrderType) {

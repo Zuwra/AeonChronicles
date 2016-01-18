@@ -409,14 +409,14 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         {
             Vector3 location = order.OrderLocation;
             location.y = location.y + 30;
-            GameObject ind = (GameObject)Instantiate(movementInd, location, Quaternion.Euler(90, 0, 0));
+          Instantiate(movementInd, location, Quaternion.Euler(90, 0, 0));
             //ind.transform.Rotate (Vector3.down);
         }
         else if (order.OrderType == 4)
         {
             Vector3 location = order.OrderLocation;
             location.y = location.y + 30;
-            GameObject ind = (GameObject)Instantiate(attackInd, location, Quaternion.Euler(90, 0, 0));
+           Instantiate(attackInd, location, Quaternion.Euler(90, 0, 0));
         }
     }
 

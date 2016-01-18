@@ -7,23 +7,23 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	public bool attackWhileMoving;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
 	
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
 	public void initialize(){
-		Start ();
+		Awake ();
 	}
 
-	public new  void computeInteractions (Order order)
+	public void computeInteractions (Order order)
 	{
 
 			switch (order.OrderType) {
@@ -50,10 +50,11 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 				break;
 
 
-			case Const.ORDER_AttackMove:
-			if ( myManager.myWeapon)
+		case Const.ORDER_AttackMove:
+			if (myManager.myWeapon) {
+				
 				myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.cMover, myManager.myWeapon, myManager.gameObject.transform.position));
-				else {
+			}else {
 				myManager.changeState (new MoveState (order.OrderLocation, myManager, myManager.cMover, myManager.myWeapon));
 				}
 				break;

@@ -8,6 +8,7 @@ public class customMover : IMover {
 	private CharacterController controller;
 	//The calculated path
 	public Path path;
+	private bool pathSet;
 	//The AI's speed per second
 
 	//The max distance from the AI to a waypoint for it to continue to the next waypoint
@@ -30,7 +31,7 @@ public class customMover : IMover {
 	public void OnPathComplete (Path p) {
 
 
-	//	Debug.Log ("Yay, we got a path back. Did it have an error? "+p.error);
+		//Debug.Log (this.gameObject.name + "  Yay, we got a path back. Did it have an error? "+p.error);
 		if (!p.error) {
 			path = p;
 			//Reset the waypoint counter
@@ -58,21 +59,24 @@ public class customMover : IMover {
 	override
 	public bool move()
 	{// for some reason the updates are being called out of order so this is here,
+
+
 		if (!workingframe) {
 			workingframe = !workingframe;
 			return false;
 		}
 
-		if (path == null) {
+		if (path == null && pathSet) {
 			//We have no path to move after yet
-		
-			return true;
-		}
+
+			return false;
+		} else if (path == null && !pathSet) {
+			return true;}
 		if (currentWaypoint >= path.vectorPath.Count) {
 			speed = 0;
 			
 			path = null;
-
+			pathSet = false;
 			return true;
 		}
 		if (speed < MaxSpeed) {
@@ -99,7 +103,7 @@ public class customMover : IMover {
 			currentWaypoint++;
 			if(currentWaypoint == path.vectorPath.Count)
 			{path = null;
-
+				pathSet = false;
 				return true;
 			}
 			Vector3 target = path.vectorPath[currentWaypoint];
@@ -112,6 +116,7 @@ public class customMover : IMover {
 
 			
 		}
+
 		return false;
 	}
 
@@ -120,6 +125,7 @@ public class customMover : IMover {
 	public void resetMoveLocation(Vector3 location)
 	{//	location.y += 2;
 
+		pathSet = true;
 		workingframe = false;
 		targetPosition = location;
 		currentWaypoint = 0;
@@ -133,7 +139,7 @@ public class customMover : IMover {
 	void OnControllerColliderHit(ControllerColliderHit other)
 	{
 		if (other.gameObject.transform.position == targetPosition) {
-			Debug.Log ("Colliding with " + other.gameObject);
+			
 			path = null;
 		}
 	}

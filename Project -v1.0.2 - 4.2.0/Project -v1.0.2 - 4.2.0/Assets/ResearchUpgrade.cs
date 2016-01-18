@@ -7,7 +7,7 @@ public class ResearchUpgrade:  Ability, Upgradable{
 		private Selected mySelect;
 		private bool researching;
 		private float timer =0;
-		private bool buildingUnit = false;
+
 		private int currentUpgrade = 0;
 
 
@@ -29,7 +29,7 @@ public class ResearchUpgrade:  Ability, Upgradable{
 				mySelect.updateCoolDown (1 - timer/buildTime);
 				if(timer <=0)
 				{mySelect.updateCoolDown (0);
-					buildingUnit = false;
+					
 				researching = false;
 				GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.addUpgrade (upgrades[currentUpgrade], GetComponent<UnitManager>().UnitName);
 

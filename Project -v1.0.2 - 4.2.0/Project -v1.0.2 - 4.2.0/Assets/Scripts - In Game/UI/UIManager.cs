@@ -282,13 +282,15 @@ public class UIManager : MonoBehaviour, IUIManager {
 				}
 			}
 			break;
-			
+
+
 		case Mode.PlaceBuilding:
 			//We've left clicked, if we're valid place the building
 			if (m_PositionValid)
 			{
 				GameObject newObject = (GameObject)Instantiate (m_ItemBeingPlaced.Prefab, m_ObjectBeingPlaced.transform.position, m_ItemBeingPlaced.Prefab.transform.rotation);
-				UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(newObject, "Assets/Scripts - In Game/UI/UIManager.cs (376,5)", m_ItemBeingPlaced.ObjectType.ToString ());
+
+				//UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(newObject, "Assets/Scripts - In Game/UI/UIManager.cs (376,5)", m_ItemBeingPlaced.ObjectType.ToString ());
 				newObject.layer = 12;
 				newObject.tag = "Player";
 				

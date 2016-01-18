@@ -8,7 +8,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 	public static GUIManager main;
 	
 	//Member Variables
-	private Rect m_MiniMapRect;
+//	private Rect m_MiniMapRect = new Rect();
 	private float m_MainMenuWidth;
 	
 	//private Rect m_RightMiniMapBG;
@@ -77,7 +77,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		//Load the mini map and assign the menu width and mini map rect
 		IMiniMapController miniMap = ManagerResolver.Resolve<IMiniMapController>();		
 		float tempWidth;
-		miniMap.LoadMiniMap(out tempWidth, out m_MiniMapRect);
+		miniMap.LoadMiniMap(out tempWidth);
 		MainMenuWidth = tempWidth;
 		
 		//Build Borders around the map
@@ -191,7 +191,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 	{
 		//Resolution has changed, re-size all GUI elements
 		//Mini map first
-		ManagerResolver.Resolve<IMiniMapController>().LoadMiniMap (out m_MainMenuWidth, out m_MiniMapRect);
+		ManagerResolver.Resolve<IMiniMapController>().LoadMiniMap (out m_MainMenuWidth);
 		/*
 		//Build Borders around the map
 		float sideBorderWidth = (m_MainMenuWidth-(m_MiniMapRect.width*Screen.width))/2;

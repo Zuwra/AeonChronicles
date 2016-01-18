@@ -248,7 +248,6 @@
      <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IOrderable.cs" />
      <Compile Include="Assets\Scripts - In Game\ItemDB\Item.cs" />
      <Compile Include="Assets\Scripts - In Game\LethalDamageinterface.cs" />
-     <Compile Include="Assets\Scripts - In Game\Manager\Manager.cs" />
      <Compile Include="Assets\Scripts - In Game\ManagerWatcher.cs" />
      <Compile Include="Assets\Scripts - In Game\MeleeWeaponTest.cs" />
      <Compile Include="Assets\Scripts - In Game\Misc\wayPointGizmo.cs" />
@@ -262,7 +261,6 @@
      <Compile Include="Assets\Scripts - In Game\Notify.cs" />
      <Compile Include="Assets\Scripts - In Game\OpenGL\GLItem.cs" />
      <Compile Include="Assets\Scripts - In Game\OpenGL\GLManager.cs" />
-     <Compile Include="Assets\Scripts - In Game\OpenGL\GLMatShader.cs" />
      <Compile Include="Assets\Scripts - In Game\OreDispenser.cs" />
      <Compile Include="Assets\Scripts - In Game\Pathfinding\AStar\A_Star.cs" />
      <Compile Include="Assets\Scripts - In Game\Pathfinding\Grid\Grid.cs" />
@@ -337,6 +335,7 @@
      <Compile Include="Assets\TurretMount.cs" />
      <Compile Include="Assets\Upgradable.cs" />
      <Compile Include="Assets\Upgrade.cs" />
+     <Compile Include="Assets\WaveSpawner.cs" />
      <Compile Include="Assets\airmover.cs" />
      <Compile Include="Assets\buildTurret.cs" />
      <Compile Include="Assets\explosion.cs" />

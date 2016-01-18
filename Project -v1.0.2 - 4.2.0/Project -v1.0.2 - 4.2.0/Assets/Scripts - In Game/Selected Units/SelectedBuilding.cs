@@ -12,11 +12,11 @@ public class SelectedBuilding : MonoBehaviour {
 	private GLItem m_GLItem;
 	private IGLManager m_GLManager;
 	
-	private Material m_GLMat;
+	//private Material m_GLMat;
 
 	
 	private float m_HealthSize = 2.0f;
-	private float m_HealthWidth;
+	//private float m_HealthWidth;
 
 	// Use this for initialization
 	void Start () 
@@ -56,7 +56,7 @@ public class SelectedBuilding : MonoBehaviour {
 		WorldHealthVertices[7] = new Vector3(WorldHealthVertices[4].x, WorldHealthVertices[4].y, WorldHealthVertices[0].z-m_HealthSize);
 		
 		//Assign health width
-		m_HealthWidth = Mathf.Abs (WorldHealthVertices[0].x - WorldHealthVertices[4].x);
+		//m_HealthWidth = Mathf.Abs (WorldHealthVertices[0].x - WorldHealthVertices[4].x);
 		
 		//Create GLItem
 		m_GLItem = new GLItem(ExecuteFunction);
@@ -65,7 +65,7 @@ public class SelectedBuilding : MonoBehaviour {
 		m_GLManager = ManagerResolver.Resolve<IGLManager>();
 		
 		//Assign GL material
-		m_GLMat = GLMatShader.GetGLMaterial();
+	//	m_GLMat = GLMatShader.GetGLMaterial();
 		
 		//Assign building
 
@@ -127,7 +127,7 @@ public class SelectedBuilding : MonoBehaviour {
 		//Draw building outline
 		GL.PushMatrix ();
 		
-		m_GLMat.SetPass (0);
+		//m_GLMat.SetPass (0);
 		GL.LoadPixelMatrix();
 		
 		GL.Begin(GL.LINES);

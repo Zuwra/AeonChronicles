@@ -46,7 +46,7 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 		
 	}
 	
-	public void LoadMiniMap(out float guiWidth, out Rect miniMapRect)
+	public void LoadMiniMap(out float guiWidth)
 	{
 		//Properly configure camera viewport so it's a square and it's in the correct place regardless of resolution
 		//Always want the map to appear 3/4 up the screen, with a height of 1/4.5
@@ -61,7 +61,7 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 
 		//Assign camera viewport
 		GetComponent<Camera>().rect = new Rect(viewPortX, viewPortY, viewPortWidth, viewPortHeight);
-		miniMapRect = GetComponent<Camera>().rect;
+		//miniMapRect = GetComponent<Camera>().rect;
 		
 		//Assign pixel rect
 		//Debug.Log (viewPortX*Screen.width + "   "+ viewPortY*Screen.height);

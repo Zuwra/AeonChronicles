@@ -1,18 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\RaceManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\customMover.cs">
     <Files>
-      <File FileName="Assets\TurretMount.cs" Line="19" Column="2" />
-      <File FileName="Assets\StandardInteract.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="112" Column="2" />
-      <File FileName="Assets\ResearchUpgrade.cs" Line="26" Column="4" />
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="161" Column="4" />
-      <File FileName="Assets\Scripts - In Game\Ability.cs" Line="16" Column="31" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="169" Column="1" />
-      <File FileName="Assets\Scripts - In Game\StimPack.cs" Line="58" Column="28" />
-      <File FileName="Assets\Page.cs" Line="57" Column="1" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="83" Column="3" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="299" Column="3" />
+      <File FileName="Assets\WaveSpawner.cs" Line="65" Column="40" />
+      <File FileName="Assets\TurretMount.cs" Line="25" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="273" Column="21" />
+      <File FileName="Assets\Scripts - In Game\GUI\GUIManager.cs" Line="13" Column="2" />
+      <File FileName="Assets\Scripts - In Game\Interfaces - Managers\IMiniMapController.cs" Line="7" Column="29" />
+      <File FileName="Assets\Scripts - In Game\GUI\MiniMapController.cs" Line="100" Column="36" />
+      <File FileName="Assets\StandardInteract.cs" Line="54" Column="29" />
+      <File FileName="Assets\AstarPathfindingProject\Core\Path.cs" Line="321" Column="38" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="468" Column="5" />
+      <File FileName="Assets\Scripts - In Game\customMover.cs" Line="67" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

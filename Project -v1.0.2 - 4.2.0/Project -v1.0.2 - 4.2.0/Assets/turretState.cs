@@ -6,12 +6,6 @@ public class turretState : UnitState {
 
 	private GameObject enemy;
 
-
-	private bool enemyDead = false;
-	private int refreshTime = 4;
-	private int currentFrame = 0;
-
-
 	public turretState(UnitManager man, IMover move, IWeapon weapon )
 	{
 		myManager = man;

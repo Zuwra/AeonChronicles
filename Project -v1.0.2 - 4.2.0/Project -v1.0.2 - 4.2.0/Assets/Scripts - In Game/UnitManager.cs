@@ -28,7 +28,7 @@ public class UnitManager : Unit,IOrderable{
 
 	private UnitState myState;
 
-	void Awake()
+	new void Awake()
 	{
 
 		if(interactor == null)
@@ -148,8 +148,10 @@ public class UnitManager : Unit,IOrderable{
 		}
 
 
-		if(interactor != null)
-		interactor.computeInteractions (order);
+		if (interactor != null) {
+			interactor.computeInteractions (order);
+
+		}
 	}
 
 

@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class CostBox : MonoBehaviour {
 
 
-	public Text name;
+	public Text MyName;
 	public Text time;
 	public Text resOne;
 	public Text resTwo;
@@ -24,7 +24,7 @@ public class CostBox : MonoBehaviour {
 	}
 
 	public void setText(Ability input)
-	{name.text = input.Name;
+	{MyName.text = input.Name;
 		time.text = ""+input.myCost.cooldown;
 
 		if (input.myCost.ResourceOne > 0) {
