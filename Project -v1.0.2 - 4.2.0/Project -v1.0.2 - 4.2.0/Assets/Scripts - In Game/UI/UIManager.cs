@@ -475,15 +475,22 @@ public class UIManager : MonoBehaviour, IUIManager {
 					m_SelectedManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));}
 			}
 			else if (currentObjLayer == 9 || currentObjLayer == 10)
-			{UnitManager manage = currentObject.GetComponent<UnitManager> ();
-					if (manage != null) {
+			{
+				/*Debug.Log ("clicking on " + currentObject);
+				UnitManager manage = currentObject.GetComponent<UnitManager> ();
+					if (!manage) {
+						manage = currentObject.GetComponentInParent<UnitManager> ();
+				}
+				if (manage != null) {
 					
 						if (manage.PlayerOwner != raceManager.playerNumber) {
-							m_SelectedManager.GiveOrder (Orders.CreateAttackOrder (currentObject.GetComponent<UnitManager> ()));
+							m_SelectedManager.GiveOrder (Orders.CreateAttackOrder (manage));
 						} else {
 						
-						m_SelectedManager.GiveOrder (Orders.CreateFollowCommand(currentObject.GetComponent<UnitManager>()));						}
-					}
+						m_SelectedManager.GiveOrder (Orders.CreateFollowCommand(manage));						}
+					}*/
+				m_SelectedManager.GiveOrder (Orders.CreateInteractCommand(currentObject));						
+
 				//Friendly Unit -> Interact (if applicable)
 			}
 			else if (currentObjLayer == 9 || currentObjLayer == 15)

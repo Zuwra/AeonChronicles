@@ -405,14 +405,14 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         }
 
 
-        if (order.OrderType == 1)
+		if (order.OrderType == 1 && SelectedActiveObjects.Count > 0)
         {
             Vector3 location = order.OrderLocation;
             location.y = location.y + 30;
           Instantiate(movementInd, location, Quaternion.Euler(90, 0, 0));
             //ind.transform.Rotate (Vector3.down);
         }
-        else if (order.OrderType == 4)
+		else if (order.OrderType == 4 && SelectedActiveObjects.Count > 0)
         {
             Vector3 location = order.OrderLocation;
             location.y = location.y + 30;

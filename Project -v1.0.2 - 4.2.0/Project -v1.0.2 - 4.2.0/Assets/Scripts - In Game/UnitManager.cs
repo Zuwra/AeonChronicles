@@ -57,22 +57,21 @@ public class UnitManager : Unit,IOrderable{
 			myStats = gameObject.GetComponent<UnitStats>();
 		}
 
+	
+			GameManager man = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ();
+			if (PlayerOwner != man.playerNumber) {
+				this.gameObject.tag = "Enemy";
+			} else {
+				this.gameObject.tag = "Player";
+			}
+
+			man.initialize ();
+			man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
+			man.playerList [PlayerOwner - 1].UnitCreated (myStats.supply);
 
 
-		GameManager man = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ();
-		if (PlayerOwner != man.playerNumber) {
-			this.gameObject.tag = "Enemy";
-		} else {
-			this.gameObject.tag = "Player";
-		}
-
-		man.initialize ();
-		man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
-		man.playerList [PlayerOwner - 1].UnitCreated(myStats.supply);
-
-
-		visionSphere.radius = visionRange + gameObject.GetComponent<CharacterController>().radius;
-
+			visionSphere.radius = visionRange + gameObject.GetComponent<CharacterController> ().radius;
+		
 		if (cMover != null) {
 			changeState (new DefaultState (this, cMover, myWeapon));
 		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.turret)) {

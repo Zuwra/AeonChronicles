@@ -21,11 +21,13 @@ public class Order {
 		private set;
 	}
 	
-	public RTSObject Target
+	public GameObject Target
 	{
 		get;
 		private set;
 	}
+
+
 	
 	public Order(string name, int orderType)
 	{
@@ -40,7 +42,7 @@ public class Order {
 		OrderLocation = orderLocation;
 	}
 	
-	public Order(string name, int orderType, RTSObject target)
+	public Order(string name, int orderType, GameObject target)
 	{
 		Name = name;
 		OrderType = orderType;

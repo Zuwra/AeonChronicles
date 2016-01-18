@@ -13,7 +13,7 @@ public static class Orders {
 		return new Order("Move", 1, location);
 	}
 	
-	public static Order CreateAttackOrder(RTSObject obj)
+	public static Order CreateAttackOrder(GameObject obj)
 	{
 		return new Order("Attack", 2, obj);
 	}
@@ -28,7 +28,13 @@ public static class Orders {
 		return new Order ("AttackMove", 4, location);
 	}
 
-	public static Order CreateFollowCommand(RTSObject obj)
+	public static Order CreateFollowCommand(GameObject obj)
 	{return new Order ("Follow", 5, obj);
 	}
+
+	public static Order CreateInteractCommand(GameObject obj)
+	{return new Order ("Interact", 6, obj);}
+
+
+
 }

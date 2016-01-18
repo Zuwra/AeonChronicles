@@ -73,9 +73,20 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 			break;
 
-		case Const.ORDER_ATTACK:
-			myManager.changeState (new InteractState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+		case Const.ORDER_Interact:
 
+	
+			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
+				{myManager.changeState (new MiningState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo));}
+
+			else if ((order.Target.gameObject.GetComponent<TurretMount> ()) || order.Target.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.turret))
+				{
+				myManager.changeState (new AbilityFollowState (order.Target.gameObject, order.Target.gameObject.transform.position, myManager, myManager.cMover, myManager.myWeapon, GetComponent<TurretPickUp>() ));}
+			else{
+
+				myManager.changeState (new FollowState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+			}
+		
 			break;
 
 
@@ -90,13 +101,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 		case Const.ORDER_Follow:
 			
-
-			if (order.Target.gameObject.GetComponent<OreDispenser> () != null) {
-				myManager.changeState (new MiningState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo));
-			} else {
-
-				myManager.changeState (new FollowState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
-			}
+		
 			break;
 
 

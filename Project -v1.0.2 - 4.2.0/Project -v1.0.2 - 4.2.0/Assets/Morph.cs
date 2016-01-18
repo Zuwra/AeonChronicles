@@ -100,7 +100,7 @@ public class Morph :  Ability {
 		if (myInteractor != null) {
 			if (myInteractor.rallyUnit != null) {
 
-				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateFollowCommand(myInteractor.rallyUnit.GetComponent<UnitManager>()));
+				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateInteractCommand(myInteractor.rallyUnit));
 			} 
 			else if (myInteractor.rallyPoint != Vector3.zero) {
 				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateMoveOrder (myInteractor.rallyPoint));

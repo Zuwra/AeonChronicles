@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AbilityBox.cs" />
+     <Compile Include="Assets\AbilityFollowState.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\AIPath.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\NavmeshController.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\Seeker.cs" />
@@ -331,8 +332,10 @@
      <Compile Include="Assets\Scripts - Menus\MainMenuGUI.cs" />
      <Compile Include="Assets\SoundOptions.cs" />
      <Compile Include="Assets\StandardInteract.cs" />
+     <Compile Include="Assets\TargetAbility.cs" />
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TurretMount.cs" />
+     <Compile Include="Assets\TurretPickUp.cs" />
      <Compile Include="Assets\Upgradable.cs" />
      <Compile Include="Assets\Upgrade.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />

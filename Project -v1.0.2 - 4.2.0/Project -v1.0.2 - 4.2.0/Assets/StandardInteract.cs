@@ -44,8 +44,21 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 				}
 				break;
 
-			case Const.ORDER_ATTACK:
-				myManager.changeState (new InteractState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+		case Const.ORDER_Interact:
+
+			UnitManager manage = order.Target.GetComponent<UnitManager> ();
+			if (!manage) {
+				manage = order.Target.GetComponentInParent<UnitManager> ();
+			}
+			if (manage != null) {
+
+				if (manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner) {
+					myManager.changeState (new InteractState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+				} else {
+					myManager.changeState (new FollowState (order.Target.gameObject,  myManager, myManager.cMover, myManager.myWeapon));
+						}
+				}
+				
 
 				break;
 
@@ -58,6 +71,8 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 				myManager.changeState (new MoveState (order.OrderLocation, myManager, myManager.cMover, myManager.myWeapon));
 				}
 				break;
+
+
 			case Const.ORDER_Follow:
 
 			myManager.changeState (new FollowState (order.Target.gameObject,  myManager, myManager.cMover, myManager.myWeapon));

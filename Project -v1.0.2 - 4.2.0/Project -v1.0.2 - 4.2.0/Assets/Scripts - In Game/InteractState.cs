@@ -5,7 +5,7 @@ public class InteractState : UnitState {
 
 	private GameObject target;
 
-	private bool attack;
+
 
 	private int refreshTime = 5;
 	private int currentFrame = 0;
@@ -20,11 +20,6 @@ public class InteractState : UnitState {
 	target = unit;
 	myMover.resetMoveLocation (target.transform.position);
 
-		if (unit.GetComponent<UnitManager> ().PlayerOwner == GameObject.Find ("GameRaceManager").GetComponent<RaceManager> ().playerNumber) {
-			attack = false;
-		} else {
-			attack = true;
-		}
 
 		refreshTime = 30 - (int)myMover.MaxSpeed;
 		if (refreshTime < 5) {
@@ -47,7 +42,7 @@ public class InteractState : UnitState {
 		}
 
 		//attack
-		if (attack) {
+
 			if (!myWeapon.inRange (target)) {
 				myMover.move ();
 			} else {
@@ -58,13 +53,8 @@ public class InteractState : UnitState {
 	
 				}
 			}
-		}
-		//interact
-		else {
-		//fill in interact stuff
 
-			myManager.changeState(new DefaultState(myManager, myMover,myWeapon));
-		}
+		
 	
 	}
 

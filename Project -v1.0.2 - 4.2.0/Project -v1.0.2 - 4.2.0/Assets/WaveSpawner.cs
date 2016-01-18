@@ -65,7 +65,7 @@ public class WaveSpawner : MonoBehaviour {
 		yield return new WaitForSeconds(.1f);
 
 		Vector3 attackzone = rallyPoint.transform.position;
-		float radiusA = Random.Range(0, 30);
+		float radiusA = Random.Range(0, 50);
 		float angleA = Random.Range(0, 360);
 
 		attackzone.x += Mathf.Sin(Mathf.Deg2Rad * angleA) * radiusA;

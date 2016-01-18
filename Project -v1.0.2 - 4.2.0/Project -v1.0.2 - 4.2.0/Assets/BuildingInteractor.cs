@@ -44,11 +44,6 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 			rallyUnit = null;
 			break;
 
-		case Const.ORDER_ATTACK:
-			AttackMoveSpawn = false;
-			rallyUnit = order.Target.gameObject;
-			rallyPoint = Vector3.zero;
-			break;
 
 
 		case Const.ORDER_AttackMove:
@@ -57,7 +52,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 			rallyUnit = null;
 
 			break;
-		case Const.ORDER_Follow:
+		case Const.ORDER_Interact:
 			AttackMoveSpawn = false;
 			rallyUnit = order.Target.gameObject;
 			rallyPoint= Vector3.zero;
