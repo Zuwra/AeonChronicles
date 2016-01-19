@@ -6,7 +6,7 @@ public class missileSalvo : Ability, Validator, Notify{
 
 	public float numOfRockets;
 	private IWeapon myweapon;
-	public float maxRockets = 4;
+	public int  maxRockets = 4;
 	private UnitManager mymanager;
 	// Use this for initialization
 	void Start () {

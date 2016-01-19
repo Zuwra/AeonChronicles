@@ -17,8 +17,8 @@ public class InteractState : UnitState {
 		myMover = move;
 		myWeapon = weapon;
 
-	target = unit;
-	myMover.resetMoveLocation (target.transform.position);
+		target = unit;
+	//myMover.resetMoveLocation (target.transform.position);
 
 
 		refreshTime = 30 - (int)myMover.MaxSpeed;
@@ -26,6 +26,13 @@ public class InteractState : UnitState {
 			refreshTime = 8;
 		}
 	}
+
+
+	public override void initialize()
+	{myMover.resetMoveLocation (target.transform.position);
+	}
+
+
 
 	// Update is called once per frame
 	override

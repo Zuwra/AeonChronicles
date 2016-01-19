@@ -26,6 +26,8 @@ public class UnitManager : Unit,IOrderable{
 	public List<GameObject> allies = new List<GameObject>();
 	public List<GameObject> neutrals = new List<GameObject> ();
 
+	private Queue<UnitState> queuedStates = new Queue<UnitState> ();
+
 	private UnitState myState;
 
 	new void Awake()
@@ -270,19 +272,39 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public void changeState(UnitState nextState)
-	{nextState.myManager = this;
-		nextState.myWeapon = myWeapon;
-		nextState.myMover = cMover;
-
-		myState = nextState;
+	{
 
 
-		if (nextState is AttackMoveState) {
-			
-			((AttackMoveState)nextState).setHome(this.gameObject.transform.position);
+		if (Input.GetKey (KeyCode.LeftShift) && (!(nextState is DefaultState) && (queuedStates.Count > 0  || !(myState is DefaultState)))) {
+				queuedStates.Enqueue (nextState);
+
+			return;
+		
+		} 
+		else if (nextState is DefaultState) {
+			if (queuedStates.Count > 0) {
+
+				myState = queuedStates.Dequeue ();
+				myState.myManager = this;
+				myState.myWeapon = myWeapon;
+				myState.myMover = cMover;
+				myState.initialize ();
+				return;
+
+			} 
+		}
+		else if (nextState is AttackMoveState) {
+			((AttackMoveState)nextState).setHome (this.gameObject.transform.position);
 		}
 
-	
+			nextState.myManager = this;
+			nextState.myWeapon = myWeapon;
+			nextState.myMover = cMover;
+			queuedStates.Clear ();
+			myState = nextState;
+			myState.initialize ();
+
+			
 	}
 
 

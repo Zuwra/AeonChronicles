@@ -74,8 +74,8 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Image> ().material = man.abilityList [0 + AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [0 + AbilityX * 4];
 
-						Text charger = trans.FindChild ("Charge").GetComponent<Text> ();
-						if (man.abilityList [0 + AbilityX * 4].chargeCount > -1) {
+						Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
+						if (man.abilityList [AbilityX * 4].chargeCount > -1) {
 							charger.text =  ""+man.abilityList [0 + AbilityX * 4].chargeCount;
 						} else {
 							charger.text = "";
@@ -88,9 +88,9 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
 
-						Text charger = trans.FindChild ("Charge").GetComponent<Text> ();
-						if (man.abilityList [0 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [0 + AbilityX * 4].chargeCount;
+						Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
+						if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
+							charger.text =  ""+man.abilityList [1 + AbilityX * 4].chargeCount;
 						} else {
 							charger.text = "";
 						}
@@ -102,9 +102,9 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
 
-						Text charger = trans.FindChild ("Charge").GetComponent<Text> ();
-						if (man.abilityList [0 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [0 + AbilityX * 4].chargeCount;
+						Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
+						if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
+							charger.text =  ""+man.abilityList [2 + AbilityX * 4].chargeCount;
 						} else {
 							charger.text = "";
 						}
@@ -117,9 +117,9 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
 
-						Text charger = trans.FindChild ("Charge").GetComponent<Text> ();
-						if (man.abilityList [0 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [0 + AbilityX * 4].chargeCount;
+						Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
+						if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
+							charger.text =  ""+man.abilityList [3 + AbilityX * 4].chargeCount;
 						} else {
 							charger.text = "";
 						}
@@ -168,9 +168,10 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Image> ().material = man.abilityList [0 + AbilityX * 4].iconPic;
 				
 
-						Text charger = trans.FindChild ("Charge").GetComponent<Text> ();
-						if (man.abilityList [0 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [0 + AbilityX * 4].chargeCount;
+						Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
+						if (man.abilityList [AbilityX * 4].chargeCount > -1) {
+							
+							charger.text =  ""+man.abilityList [ AbilityX * 4].chargeCount;
 						} else {
 							charger.text = "";
 						}
@@ -182,9 +183,10 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
 					
 
-						Text charger = trans.FindChild ("Charge").GetComponent<Text> ();
-						if (man.abilityList [0 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [0 + AbilityX * 4].chargeCount;
+						Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
+						if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
+							charger.text =  ""+man.abilityList [1 + AbilityX * 4].chargeCount;
+
 						} else {
 							charger.text = "";
 						}
@@ -196,9 +198,9 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
 
 
-						Text charger = trans.FindChild ("Charge").GetComponent<Text> ();
-						if (man.abilityList [0 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [0 + AbilityX * 4].chargeCount;
+						Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
+						if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
+							charger.text =  ""+man.abilityList [2 + AbilityX * 4].chargeCount;
 						} else {
 							charger.text = "";
 						}
@@ -211,9 +213,9 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
 
 
-						Text charger = trans.FindChild ("Charge").GetComponent<Text> ();
-						if (man.abilityList [0 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [0 + AbilityX * 4].chargeCount;
+						Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
+						if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
+							charger.text =  ""+man.abilityList [3 + AbilityX * 4].chargeCount;
 						} else {
 							charger.text = "";
 						}

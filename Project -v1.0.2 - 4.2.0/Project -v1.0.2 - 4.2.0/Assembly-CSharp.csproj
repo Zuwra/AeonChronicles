@@ -145,6 +145,7 @@
      <Compile Include="Assets\RaceSelectManager.cs" />
      <Compile Include="Assets\RaceSelectionManger.cs" />
      <Compile Include="Assets\RaceTipManager.cs" />
+     <Compile Include="Assets\RepairTurret.cs" />
      <Compile Include="Assets\ResearchUpgrade.cs" />
      <Compile Include="Assets\ResourceGenerator.cs" />
      <Compile Include="Assets\Resources\mortarPod.cs" />
@@ -344,6 +345,7 @@
      <Compile Include="Assets\explosion.cs" />
      <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\mousetracker.cs" />
+     <Compile Include="Assets\repairReturn.cs" />
      <Compile Include="Assets\selfDestructTimer.cs" />
      <Compile Include="Assets\testScript.cs" />
      <Compile Include="Assets\turretState.cs" />

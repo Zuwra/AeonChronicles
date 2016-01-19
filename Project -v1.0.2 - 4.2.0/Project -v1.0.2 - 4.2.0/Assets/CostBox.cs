@@ -25,27 +25,29 @@ public class CostBox : MonoBehaviour {
 
 	public void setText(Ability input)
 	{MyName.text = input.Name;
-		time.text = ""+input.myCost.cooldown;
+		if (input.myCost) {
+			time.text = "" + input.myCost.cooldown;
+		
 
-		if (input.myCost.ResourceOne > 0) {
-			resOne.text = "Ore: " + input.myCost.ResourceOne;
-		} else {
-			resOne.text = "";
+			if (input.myCost.ResourceOne > 0) {
+				resOne.text = "Ore: " + input.myCost.ResourceOne;
+			} else {
+				resOne.text = "";
+			}
+
+
+			if (input.myCost.ResourceTwo > 0) {
+				resTwo.text = "Gas: " + input.myCost.ResourceTwo;
+			} else {
+				resTwo.text = "";
+			}
+
+			if (input.myCost.health > 0) {
+				health.text = "Health: " + input.myCost.health;
+			} else {
+				health.text = "";
+			}
 		}
-
-
-		if (input.myCost.ResourceTwo > 0) {
-			resTwo.text = "Gas: " + input.myCost.ResourceTwo;
-		} else {
-			resTwo.text = "";
-		}
-
-		if (input.myCost.health > 0) {
-			health.text = "Health: " + input.myCost.health;
-		} else {
-			health.text = "";
-		}
-
 		description.text = input.Descripton;
 
 

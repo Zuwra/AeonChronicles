@@ -52,8 +52,12 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 			}
 			if (manage != null) {
 
-				if (manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner) {
-					myManager.changeState (new InteractState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+				if (manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {
+					if (this.gameObject.GetComponent<UnitManager> ().myWeapon == null) {
+						myManager.changeState (new FollowState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+					} else {
+						myManager.changeState (new InteractState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+					}
 				} else {
 					myManager.changeState (new FollowState (order.Target.gameObject,  myManager, myManager.cMover, myManager.myWeapon));
 						}

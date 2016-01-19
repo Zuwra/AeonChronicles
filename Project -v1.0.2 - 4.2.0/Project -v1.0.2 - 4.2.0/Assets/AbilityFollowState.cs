@@ -28,13 +28,17 @@ public class AbilityFollowState  : UnitState {
 		if (target != null) {
 			Follow = true;
 		}
-		myMover.resetMoveLocation (target.transform.position);
+
 
 
 		refreshTime = 30 - (int)myMover.MaxSpeed;
 		if (refreshTime < 5) {
 			refreshTime = 8;
 		}
+	}
+
+	public override void initialize()
+	{myMover.resetMoveLocation (target.transform.position);
 	}
 
 	// Update is called once per frame

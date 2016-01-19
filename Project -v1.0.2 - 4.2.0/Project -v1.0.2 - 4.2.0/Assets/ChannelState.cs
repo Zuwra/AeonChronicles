@@ -16,6 +16,10 @@ public class ChannelState : UnitState{
 	}
 
 
+	public override void initialize()
+	{
+	}
+
 	override
 	public void Update () {// change this later so t will only check for attackable enemies.
 

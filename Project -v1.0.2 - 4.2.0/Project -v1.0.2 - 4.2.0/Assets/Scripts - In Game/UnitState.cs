@@ -13,5 +13,7 @@ public abstract class  UnitState  {
 
 	public abstract void attackResponse(GameObject src);
 
+	public abstract void initialize();
+
 
 }

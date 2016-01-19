@@ -32,7 +32,7 @@ public class AttackMoveState : UnitState {
 			target = endLocation;
 		}
 
-		myMover.resetMoveLocation (target);
+
 		//Debug.Log("Just called th reset1" + target + "   "+ enemy);
 		if (type == MoveType.passive) {
 			target = home;
@@ -41,6 +41,10 @@ public class AttackMoveState : UnitState {
 		}
 
 		}
+
+	public override void initialize()
+	{myMover.resetMoveLocation (target);
+	}
 
 	// Update is called once per frame
 	override

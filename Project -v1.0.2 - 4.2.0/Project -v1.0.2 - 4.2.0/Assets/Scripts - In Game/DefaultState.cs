@@ -34,6 +34,10 @@ public class DefaultState : UnitState{
 	
 	}
 
+	public override void initialize()
+	{
+	}
+
 
 	override
 	public void attackResponse(GameObject src)

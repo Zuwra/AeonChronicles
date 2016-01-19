@@ -12,7 +12,9 @@ public class StunState : UnitState {
 	
 	}
 
-
+	public override void initialize()
+	{
+	}
 
 
 	override

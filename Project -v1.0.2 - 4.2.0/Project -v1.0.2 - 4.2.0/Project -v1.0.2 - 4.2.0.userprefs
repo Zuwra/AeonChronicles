@@ -1,25 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AbilityFollowState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RepairTurret.cs">
     <Files>
-      <File FileName="Assets\TurretPickUp.cs" Line="43" Column="16" />
-      <File FileName="Assets\DaexaWorkerInteract.cs" Line="77" Column="4" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="491" Column="9" />
-      <File FileName="Assets\TargetAbility.cs" Line="14" Column="3" />
-      <File FileName="Assets\AbilityFollowState.cs" Line="27" Column="3" />
-      <File FileName="Assets\Scripts - In Game\FollowState.cs" Line="34" Column="11" />
-      <File FileName="Assets\TurretMount.cs" Line="37" Column="15" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="71" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="60" Column="2" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="290" Column="30" />
+      <File FileName="Assets\TurretPickUp.cs" Line="36" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="62" Column="44" />
+      <File FileName="Assets\RepairTurret.cs" Line="7" Column="19" />
+      <File FileName="Assets\missileSalvo.cs" Line="9" Column="29" />
+      <File FileName="Assets\MissileArmer.cs" Line="41" Column="1" />
       <File FileName="Assets\Scripts - In Game\Classes\Orders.cs" Line="28" Column="48" />
-      <File FileName="Assets\Scripts - In Game\Classes\Order.cs" Line="40" Column="15" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="404" Column="22" />
-      <File FileName="Assets\Scripts - In Game\Constants\Const.cs" Line="14" Column="37" />
-      <File FileName="Assets\Morph.cs" Line="100" Column="30" />
-      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="92" Column="52" />
-      <File FileName="Assets\StandardInteract.cs" Line="53" Column="25" />
-      <File FileName="Assets\Scripts - In Game\InteractState.cs" Line="46" Column="37" />
-      <File FileName="Assets\BuildingInteractor.cs" Line="47" Column="4" />
+      <File FileName="Assets\TurretMount.cs" Line="31" Column="53" />
+      <File FileName="Assets\repairReturn.cs" Line="61" Column="3" />
+      <File FileName="Assets\buildTurret.cs" Line="24" Column="1" />
+      <File FileName="Assets\CostBox.cs" Line="48" Column="22" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="191" Column="26" />
+      <File FileName="Assets\Scripts - In Game\StimPack.cs" Line="58" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

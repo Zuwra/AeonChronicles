@@ -22,7 +22,7 @@ public class MiningState : UnitState {
 
 
 	public MiningState(GameObject unit, UnitManager man, IMover move, IWeapon weapon, float mineTime, float resourceOne, float resourceTwo)
-	{state = miningState.traveling;
+	{
 		myManager = man;
 		myMover = move;
 		myWeapon = weapon;
@@ -31,13 +31,19 @@ public class MiningState : UnitState {
 		resourceTwoAmount= resourceTwo;
 
 		target = unit;
-		myMover.resetMoveLocation (target.transform.position);
+		//myMover.resetMoveLocation (target.transform.position);
 
 	
 
+	
+
+
+	}
+
+	public override void initialize()
+	{myMover.resetMoveLocation (target.transform.position);
 		dropoff = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.getNearestDropOff (target);
-
-
+		state = miningState.traveling;
 	}
 
 	// Update is called once per frame

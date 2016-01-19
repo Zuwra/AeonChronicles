@@ -27,7 +27,9 @@ public class TurretMount : MonoBehaviour {
 		obj.transform.rotation = this.gameObject.transform.rotation;
 
 		UnitManager manager = this.gameObject.GetComponentInParent<UnitManager> ();
-		manager.setWeapon(obj.GetComponent<IWeapon> ());
+		if (obj.GetComponent<IWeapon> ()) {
+			manager.setWeapon (obj.GetComponent<IWeapon> ());
+		}
 		manager.PlayerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
 
 

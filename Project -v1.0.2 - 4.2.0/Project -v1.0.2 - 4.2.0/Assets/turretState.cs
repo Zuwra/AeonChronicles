@@ -18,10 +18,15 @@ public class turretState : UnitState {
 
 	}
 
+	public override void initialize()
+	{
+	}
+
 	// Update is called once per frame
 	override
 	public void Update () {
-
+		if (!myWeapon) {
+			return;}
 		if (!myWeapon.isOffCooldown()) {
 			return;
 		}

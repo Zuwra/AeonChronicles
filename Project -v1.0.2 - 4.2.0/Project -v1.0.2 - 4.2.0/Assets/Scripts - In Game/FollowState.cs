@@ -17,14 +17,21 @@ public class FollowState : UnitState {
 		myWeapon = weapon;
 
 		target = unit;
-		myMover.resetMoveLocation (target.transform.position);
+		//myMover.resetMoveLocation (target.transform.position);
 
+
+
+	}
+
+	public override void initialize()
+		{myMover.resetMoveLocation (target.transform.position);
 
 		refreshTime = 30 - (int)myMover.MaxSpeed;
 		if (refreshTime < 5) {
 			refreshTime = 8;
 		}
 	}
+
 
 	// Update is called once per frame
 	override

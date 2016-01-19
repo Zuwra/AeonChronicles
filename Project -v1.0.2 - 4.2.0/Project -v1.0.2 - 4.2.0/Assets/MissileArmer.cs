@@ -37,11 +37,15 @@ public class MissileArmer : MonoBehaviour {
 
 
 			missileSalvo salvo = other.gameObject.GetComponent<missileSalvo> ();
-			if (salvo && salvo.numOfRockets < salvo.maxRockets) {
-				salvo.numOfRockets = salvo.maxRockets;
+			if (salvo ) {
+				salvo.chargeCount = salvo.maxRockets;
 			}
 				
+			RepairTurret repair = other.gameObject.GetComponent<RepairTurret> ();
 
+			if (repair) {
+				repair.chargeCount = repair.maxRepair;
+			}
 
 
 			}

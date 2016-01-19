@@ -3,18 +3,23 @@ using System.Collections;
 
 public class AttckWhileMoveState : UnitState{
 
-	
+	private Vector3 location;
 
 	
-	public AttckWhileMoveState(Vector3 location, UnitManager man, IMover move, IWeapon weapon)
+	public AttckWhileMoveState(Vector3 loca, UnitManager man, IMover move, IWeapon weapon)
 	{
 		myManager = man;
 		myMover = move;
 		myWeapon = weapon;
-		
-		myMover.resetMoveLocation (location);
+		location = loca;
+		//myMover.resetMoveLocation (location);
 	}
-	
+
+
+	public override void initialize()
+	{myMover.resetMoveLocation (location);
+	}
+
 	override
 	public void Update () {
 
