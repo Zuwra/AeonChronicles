@@ -100,6 +100,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 			ModePlaceBuildingBehaviour();
 			break;
 		}
+
+	
 	}
 	
 	private void ModeNormalBehaviour()
@@ -273,12 +275,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				//Friendly Unit, is the unit selected?
 				if (m_SelectedManager.IsObjectSelected(currentObject))
 				{
-					//Is the unit deployable?
-                        //as in, does the unit have some ability that's accessed by clicking on a previously-selected unit? Examples - MCV from Dune 2000.
-					if (currentObject.GetComponent<Unit>().IsDeployable())
-					{
-						currentObject.GetComponent<Unit>().GiveOrder (Orders.CreateDeployOrder());
-					}
+
 				}
 			}
 			break;
@@ -332,98 +329,86 @@ public class UIManager : MonoBehaviour, IUIManager {
 		switch (m_Mode)
 		{
 		case Mode.Menu:
-	
+			
 			break;
 
 		case Mode.Normal:
 			//If we've just switched from another mode, don't execute
-			if (m_Placed)
-			{
+			if (m_Placed) {
 				m_Placed = false;
 				return;
 			}
-			
-			//We've left clicked, have we left clicked on a unit?
-			int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
+			if (!EventSystem.current.IsPointerOverGameObject ()) {
+				//We've left clicked, have we left clicked on a unit?
+				int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
             
-            //if we're not dragging and clicked on a unit
-			if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10)){
-                /*  TARGET RULES
+				//if we're not dragging and clicked on a unit
+				if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10)) {
+					/*  TARGET RULES
                     shift selects units without affecting others
                     control deselects units without affecting others
                 */
-                //deselect if none of the modifiers are being used
-                if (!IsShiftDown && !IsControlDown)
-                {
-                    m_SelectedManager.DeselectAll();
-                }
+					//deselect if none of the modifiers are being used
+					if (!IsShiftDown && !IsControlDown) {
+						m_SelectedManager.DeselectAll ();
+					}
 
-                //if only control is down, remove the unit from selection
-                if(IsControlDown && !IsShiftDown)
-                {
-                     m_SelectedManager.DeselectObject(getUnitManagerFromObject(currentObject));
-                }
+					//if only control is down, remove the unit from selection
+					if (IsControlDown && !IsShiftDown) {
+						m_SelectedManager.DeselectObject (getUnitManagerFromObject (currentObject));
+					}
                 //if only shift is down, add the unit to selection
-                else if(!IsControlDown && IsShiftDown)
-                {
-                    m_SelectedManager.AddObject(getUnitManagerFromObject(currentObject));
-                }
-                else
-                {
-                    m_SelectedManager.AddObject(getUnitManagerFromObject(currentObject));
-                }
-				m_SelectedManager.CreateUIPages (0);
-			}
+                else if (!IsControlDown && IsShiftDown) {
+						m_SelectedManager.AddObject (getUnitManagerFromObject (currentObject));
+					} else {
+						m_SelectedManager.AddObject (getUnitManagerFromObject (currentObject));
+					}
+					m_SelectedManager.CreateUIPages (0);
+				}
             //or if we aren't dragging and clicked on empty air
-			else if (!m_GuiManager.Dragging)
-			{
-                //don't deselect stuff if they're holding down shift. 
-                //JUDGEMENT CALL - I think that people will find it more intuitive to think that units will never be deselected by a SHIFT-LEFT_CLICK, even one on empty space
-                if(!IsShiftDown)
-				    m_SelectedManager.DeselectAll ();
-			}
-			else{
-                //Get the drag area
-				Vector3 upperLeft = new Vector3();
-				upperLeft.x = Math.Min(Input.mousePosition.x, originalPosition.x);
-				upperLeft.y = Math.Max(Input.mousePosition.y,originalPosition.y);
-				Vector3 bottRight =new Vector3();
-				bottRight.x = Math.Max(Input.mousePosition.x,originalPosition.x);
-				bottRight.y = Math.Min(Input.mousePosition.y, originalPosition.y);
-                //TODO - control and shift are not working. Somehow it's deselecting when it starts, but I can't track where it's being deselected
+			else if (!m_GuiManager.Dragging) {
+					//don't deselect stuff if they're holding down shift. 
+					//JUDGEMENT CALL - I think that people will find it more intuitive to think that units will never be deselected by a SHIFT-LEFT_CLICK, even one on empty space
+					if (!IsShiftDown)
+						m_SelectedManager.DeselectAll ();
+				} else {
+				
+					if (!EventSystem.current.IsPointerOverGameObject ()) {
+						//Get the drag area
+						Vector3 upperLeft = new Vector3 ();
+						upperLeft.x = Math.Min (Input.mousePosition.x, originalPosition.x);
+						upperLeft.y = Math.Max (Input.mousePosition.y, originalPosition.y);
+						Vector3 bottRight = new Vector3 ();
+						bottRight.x = Math.Max (Input.mousePosition.x, originalPosition.x);
+						bottRight.y = Math.Min (Input.mousePosition.y, originalPosition.y);
+						//TODO - control and shift are not working. Somehow it's deselecting when it starts, but I can't track where it's being deselected
 
-                //if we're control-dragging, deselect everything in the drag area
-                if (IsControlDown)
-                {
-                    foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight))
-                    {
-                        m_SelectedManager.DeselectObject(getUnitManagerFromObject(obj));
-                    }
-                }
+						//if we're control-dragging, deselect everything in the drag area
+						if (IsControlDown) {
+							foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight)) {
+								m_SelectedManager.DeselectObject (getUnitManagerFromObject (obj));
+							}
+						}
                 //if we're shift-dragging, add everything in the drag area  
-                else if(IsShiftDown)
-                {
-                    foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight))
-                    {
-                        m_SelectedManager.AddObject(getUnitManagerFromObject(obj));
-                    }
-                }
+                else if (IsShiftDown) {
+							foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight)) {
+								m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+							}
+						}
                 //if we're dragging, deselect everything, then add everything in the drag area
-                else
-                {
-                    m_SelectedManager.DeselectAll();
-                    foreach (GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight))
-				    {
-					    m_SelectedManager.AddObject(getUnitManagerFromObject(obj));
-				    }
-                }
+                else {
+							m_SelectedManager.DeselectAll ();
+							foreach (GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight)) {
+								m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+							}
+						}
 
-                //refresh GUI elements
-				m_SelectedManager.CreateUIPages (0);
+						//refresh GUI elements
+						m_SelectedManager.CreateUIPages (0);
+					}
+				}
+
 			}
-
-
-
 			break;
 			
 		case Mode.PlaceBuilding:
@@ -476,19 +461,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			}
 			else if (currentObjLayer == 9 || currentObjLayer == 10)
 			{
-				/*Debug.Log ("clicking on " + currentObject);
-				UnitManager manage = currentObject.GetComponent<UnitManager> ();
-					if (!manage) {
-						manage = currentObject.GetComponentInParent<UnitManager> ();
-				}
-				if (manage != null) {
-					
-						if (manage.PlayerOwner != raceManager.playerNumber) {
-							m_SelectedManager.GiveOrder (Orders.CreateAttackOrder (manage));
-						} else {
-						
-						m_SelectedManager.GiveOrder (Orders.CreateFollowCommand(manage));						}
-					}*/
+				
 				m_SelectedManager.GiveOrder (Orders.CreateInteractCommand(currentObject));						
 
 				//Friendly Unit -> Interact (if applicable)

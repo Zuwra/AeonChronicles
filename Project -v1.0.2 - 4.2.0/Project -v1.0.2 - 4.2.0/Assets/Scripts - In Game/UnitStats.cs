@@ -39,7 +39,7 @@ public class UnitStats : MonoBehaviour {
 
 	public SphereCollider visionRange;
 
-	private Shield myShield;
+
 	private float nextActionTime;
 
 	//public List<Methods>  lethalDamage = new List<Methods>();
@@ -66,7 +66,6 @@ public class UnitStats : MonoBehaviour {
 			//{GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().supplyMax +=supply;}
 
 
-		myShield = this.gameObject.GetComponent<Shield> ();
 		nextActionTime = Time.time;
 	
 	}
@@ -128,9 +127,7 @@ public class UnitStats : MonoBehaviour {
 	public void TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
 	{
 		if (!unitTags.Contains (UnitTypes.UnitTypeTag.invulnerable)) {
-			if (myShield != null) {
-				//remaining = myShield.takeDamage(amount, source);
-			}
+			
 			bool setToZero = false;
 			if (type == DamageTypes.DamageType.Penetrating || type == DamageTypes.DamageType.Regular) {
 				foreach (Modifier mod in damageModifiers) {

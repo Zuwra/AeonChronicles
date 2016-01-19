@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
+using UnityEngine.SceneManagement;
+
 public class MainMenuManager : MonoBehaviour {
 
 	public Canvas MainMenu;
@@ -40,7 +42,9 @@ public class MainMenuManager : MonoBehaviour {
 
 
 
-
+	public void startMatch()
+	{SceneManager.LoadScene (0);
+	}
 
 	public void toCampaign()
 	{loadScreen (campaign);}

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
 	//	playerList = new RaceManager[GetComponents<RaceManager>().Length];
 		if(!initialized)

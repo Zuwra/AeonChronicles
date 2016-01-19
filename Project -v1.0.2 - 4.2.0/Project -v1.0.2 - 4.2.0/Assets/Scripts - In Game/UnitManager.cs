@@ -69,6 +69,7 @@ public class UnitManager : Unit,IOrderable{
 
 			man.initialize ();
 			man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
+
 			man.playerList [PlayerOwner - 1].UnitCreated (myStats.supply);
 
 

@@ -138,12 +138,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void UnitCreated(float supply)
 	{
-		if (supply > 0) {
+		if (supply < 0) {
 
 
-			supplyMax += supply;
+			supplyMax -= supply;
 		} else {
-			currentSupply -= supply;
+			currentSupply += supply;
 		}
 		
 		updateSupply(currentSupply, supplyMax);

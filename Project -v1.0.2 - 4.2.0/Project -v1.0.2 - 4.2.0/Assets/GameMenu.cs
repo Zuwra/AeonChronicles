@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+
 public class GameMenu : MonoBehaviour {
 
 
@@ -21,6 +24,8 @@ public class GameMenu : MonoBehaviour {
 	public Canvas soundMenu;
 	public Canvas gameplayMenu;
 	public Canvas graphicsMenu;
+	public Canvas Objectives;
+	public Canvas Victory;
 
 	private Canvas currentMenu;
 
@@ -36,6 +41,10 @@ public class GameMenu : MonoBehaviour {
 
 		if (Input.GetKeyUp (KeyCode.Backspace)) {
 			openMenu ();
+		}
+
+		if (Time.time > 720) {
+			setMenu (Victory);
 		}
 	
 	}
@@ -60,16 +69,18 @@ public class GameMenu : MonoBehaviour {
 	{if(myCanvas.enabled == true)
 		{returnToGame();
 			uimanage.SwitchToModeNormal ();
+			Debug.Log ("Setting to normal");
 
 		}
 	else
 	{setMenu (myCanvas);
 		uimanage.setToMenu ();
+		Debug.Log ("Setting to menu");
 	}
 	}
 
 	public void quitGame()
-	{}
+	{SceneManager.LoadScene (1);}
 
 	public void openOptions()
 	{setMenu (OptionMenu);
@@ -103,6 +114,8 @@ public class GameMenu : MonoBehaviour {
 
 	public void returnToGame()
 	{setMenu (null);
+		uimanage.SwitchToModeNormal ();
+		
 	}
 
 
@@ -114,6 +127,10 @@ public class GameMenu : MonoBehaviour {
 	public void openGraphicsMenu()
 	{
 		setMenu (graphicsMenu);
+	}
+
+	public void openObjectives()
+	{setMenu (Objectives);
 	}
 
 

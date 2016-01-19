@@ -398,9 +398,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     }
 
     public void GiveOrder(Order order)
-    {
+	{
+		if(SelectedActiveObjects.Count == 0 || SelectedActiveObjects[0].getObject().GetComponent<UnitManager>().PlayerOwner != 1)
+			{return;}
+
         foreach (IOrderable unit in SelectedActiveObjects)
-        {
+        { 
             unit.GiveOrder(order);
         }
 
