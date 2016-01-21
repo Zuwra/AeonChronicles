@@ -13,11 +13,9 @@ public class AbilityFollowState  : UnitState {
 	private bool Follow;
 
 
-	public AbilityFollowState(GameObject unit, Vector3 loc,UnitManager man, IMover move, IWeapon weapon, TargetAbility abil)
+	public AbilityFollowState(GameObject unit, Vector3 loc, TargetAbility abil)
 	{
-		myManager = man;
-		myMover = move;
-		myWeapon = weapon;
+		
 		location = loc;
 		myAbility = abil;
 		abil.target = unit;
@@ -31,21 +29,23 @@ public class AbilityFollowState  : UnitState {
 
 
 
+
+	}
+
+	public override void initialize()
+	{
 		refreshTime = 30 - (int)myMover.MaxSpeed;
 		if (refreshTime < 5) {
 			refreshTime = 8;
 		}
-	}
-
-	public override void initialize()
-	{myMover.resetMoveLocation (target.transform.position);
+		myMover.resetMoveLocation (target.transform.position);
 	}
 
 	// Update is called once per frame
 	override
 	public void Update () {
 		if (!target && Follow) {
-			myManager.changeState(new DefaultState(myManager, myMover,myWeapon));
+			myManager.changeState(new DefaultState());
 			return;
 		}
 		if (Follow) {
@@ -63,7 +63,7 @@ public class AbilityFollowState  : UnitState {
 		} else {
 	
 			myAbility.Cast();
-			myManager.changeState(new DefaultState(myManager, myMover,myWeapon));
+			myManager.changeState(new DefaultState());
 			return;
 
 		}

@@ -5,6 +5,10 @@ public class MissileArmer : MonoBehaviour {
 
 
 	public UnitManager manager;
+
+	public bool missiles;
+	public bool nitro;
+	public bool repairs;
 	// Use this for initialization
 	void Start () {
 		manager = GetComponent<UnitManager> ();
@@ -35,19 +39,30 @@ public class MissileArmer : MonoBehaviour {
 
 		if (manage.PlayerOwner == manager.PlayerOwner) {
 
+			if (missiles) {
+				missileSalvo salvo = other.gameObject.GetComponent<missileSalvo> ();
+				if (salvo) {
+					salvo.chargeCount = salvo.maxRockets;
+				}
+			}	
 
-			missileSalvo salvo = other.gameObject.GetComponent<missileSalvo> ();
-			if (salvo ) {
-				salvo.chargeCount = salvo.maxRockets;
+			if (repairs) {
+				RepairTurret repair = other.gameObject.GetComponent<RepairTurret> ();
+
+				if (repair) {
+					repair.chargeCount = repair.maxRepair;
+				}
 			}
-				
-			RepairTurret repair = other.gameObject.GetComponent<RepairTurret> ();
 
-			if (repair) {
-				repair.chargeCount = repair.maxRepair;
+			if (nitro) {
+				StimPack stim = other.gameObject.GetComponent<StimPack> ();
+
+				if (stim) {
+					stim.chargeCount = 3;
+				}
+
 			}
-
-
+			RaceManager.upDateUI ();
 			}
 
 

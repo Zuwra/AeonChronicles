@@ -195,6 +195,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			break;
 
 		case HoverOver.neutral:
+			
 			interactionState = InteractionState.Select;
 			break;
 			
@@ -203,6 +204,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 	private void CalculateInteraction(IOrderable obj, HoverOver hoveringOver, ref InteractionState interactionState)
 	{	interactionState = InteractionState.Select;
+		
 		if (currentObject != null) {
 		
 			if (currentObject.GetComponentInParent<UnitManager> ().PlayerOwner != raceManager.playerNumber) {
@@ -210,9 +212,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 		
 			} 
 		}
-
-
-
 
 
 	}
@@ -459,25 +458,15 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 					m_SelectedManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));}
 			}
-			else if (currentObjLayer == 9 || currentObjLayer == 10)
+			else if (currentObjLayer == 9 || currentObjLayer == 10 || currentObjLayer == 13)
 			{
 				
 				m_SelectedManager.GiveOrder (Orders.CreateInteractCommand(currentObject));						
 
 				//Friendly Unit -> Interact (if applicable)
 			}
-			else if (currentObjLayer == 9 || currentObjLayer == 15)
-			{
-				//Enenmy Unit -> Attack
-			}
-			else if (currentObjLayer == 12)
-			{
-				//Friendly Building -> Interact (if applicable)
-			}
-			else if (currentObjLayer == 13)
-			{
-				//Enemy Building -> Attack
-			}
+		
+		
 			break;
 			
 		case Mode.PlaceBuilding:

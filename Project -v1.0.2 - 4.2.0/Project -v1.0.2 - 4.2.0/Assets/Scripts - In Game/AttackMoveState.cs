@@ -67,19 +67,20 @@ public class AttackMoveState : UnitState {
 
 			
 	
-		if (enemy) {
+
+		if (enemy != null) {
 			enemyDead = false;
 			if(myWeapon.inRange(enemy)){
 				if (myWeapon.canAttack (enemy)) {
-
-					//myManager.gameObject.transform.LookAt(enemy.transform.position);
+					
 					myWeapon.attack (enemy);
-
-				}}
+				} else {
+					
+				}
+			}
 			else{
-			
+				
 				myMover.move();
-
 			}
 		}
 
@@ -101,7 +102,7 @@ public class AttackMoveState : UnitState {
 				myMover.resetMoveLocation(home);}
 			else if(there)
 			{
-				myManager.changeState(new DefaultState(myManager, myMover, myWeapon));
+				myManager.changeState(new DefaultState());
 			}
 
 		}

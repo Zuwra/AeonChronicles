@@ -115,14 +115,19 @@ public  class Projectile : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-	
+		Debug.Log ("colliding witt " + other.gameObject + "    " + Source);
 		if (!other.isTrigger) {
+
+		
 			if (other.gameObject == target) {
 				Terminate (other.gameObject);
 			}
 
+			if (currentDistance / distance < .5) {
+				return;
+			}
 
-			if(!trackTarget && other.gameObject!= Source)
+			if(!trackTarget && (other.gameObject!= Source || !other.gameObject.transform.IsChildOf(Source.transform) ))
 				{
 			
 				Terminate(null);}
@@ -132,7 +137,7 @@ public  class Projectile : MonoBehaviour {
 
 
 	public virtual void Terminate(GameObject target)
-		{
+	{
 		if (target != null) {
 
 			foreach(Notify not in triggers)

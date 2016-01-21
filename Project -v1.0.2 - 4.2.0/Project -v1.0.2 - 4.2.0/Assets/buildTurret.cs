@@ -37,18 +37,19 @@ public class buildTurret :Ability{
 
 			}
 		}
-
-		if (turretMounts.Count > 0) {
-			if (numberOfTurrets > 0) {
+		if(autocast){
+			if (turretMounts.Count > 0) {
 				foreach (TurretMount obj in turretMounts) {
-					if (numberOfTurrets > 0 && obj.turret == null) {
-						obj.placeTurret (createUnit ());
+					if (numberOfTurrets == 0){return;}
+
+					if(obj.turret == null) {
+							obj.placeTurret (createUnit ());
+
+				
 					}
-
 				}
-			}
 	
-
+			}
 
 
 		}
@@ -63,7 +64,9 @@ public class buildTurret :Ability{
 	{autocast = !autocast;
 		if (autocast) {
 			foreach (buildTurret build in this.gameObject.GetComponents<buildTurret>()) {
-				build.turnOffAutoCast ();
+				if (build != this) {
+					build.turnOffAutoCast ();
+				}
 			}
 		}
 	}
@@ -89,13 +92,9 @@ public class buildTurret :Ability{
 
 			foreach(TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ())
 				{
-				if (mount && mount.turret == null) {
+				if (mount) {
 		
-					if (autocast ) {
 						turretMounts.Add (mount);
-
-
-					}
 				}
 				
 
@@ -119,18 +118,25 @@ public class buildTurret :Ability{
 
 
 	override
-	public bool canActivate ()
-	{
+	public continueOrder canActivate ()
+	{continueOrder order = new continueOrder ();
+		
 		if (buildingUnit) {
+			order.canCast = false;
+		} else {
+			order.nextUnitCast = false;
+		}
 
-			return false;}
+		if (!myCost.canActivate ()) {
+			order.canCast = false;
+		}
 
-		return myCost.canActivate ();
+		return order;
 
 	}
 
 	override
-	public bool Activate()
+	public void Activate()
 	{
 		if (myCost.canActivate ()) {
 
@@ -141,7 +147,7 @@ public class buildTurret :Ability{
 			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
 			buildingUnit = true;
 		}
-		return true;//next unit should also do this.
+		//return true;//next unit should also do this.
 	}
 
 

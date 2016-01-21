@@ -38,7 +38,7 @@ public class InteractState : UnitState {
 	override
 	public void Update () {
 		if (!target) {
-			myManager.changeState(new DefaultState(myManager, myMover,myWeapon));
+			myManager.changeState(new DefaultState());
 			return;
 		}
 

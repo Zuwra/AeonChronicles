@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RepairTurret : Ability{
+public class RepairTurret : Ability, Modifier{
 
 
 	public int maxRepair = 400;
@@ -18,7 +18,7 @@ public class RepairTurret : Ability{
 		mymanager = gameObject.transform.parent.GetComponentInParent<UnitManager> ();
 		chargeCount = maxRepair;
 		nextActionTime = Time.time;
-
+		mymanager.myStats.addDeathTrigger (this);
 	}
 
 	public override void setAutoCast(){
@@ -129,18 +129,40 @@ public class RepairTurret : Ability{
 	}
 
 	override
-	public bool canActivate()
-	{return true;
+	public continueOrder canActivate()
+	{continueOrder order = new continueOrder();
+
+		return order;
 
 
 	}
 
 
 	override
-	public bool Activate()
+	public void Activate()
 	{
 		
-		return true;
+
 	}
+
+
+
+
+	public float modify(float damage, GameObject source)
+	{ 
+
+		foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {
+
+			if (turr.turret != null) {
+				mymanager.myWeapon = turr.turret.GetComponent<IWeapon> ();
+				return 0 ;
+			}
+
+		}
+		return 0 ;
+
+	}
+
+
 
 }

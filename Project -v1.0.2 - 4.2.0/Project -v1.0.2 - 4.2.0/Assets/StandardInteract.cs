@@ -29,7 +29,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 			switch (order.OrderType) {
 			//Stop Order----------------------------------------
 			case Const.ORDER_STOP:
-			myManager.changeState (new DefaultState (myManager, myManager.cMover, myManager.myWeapon));
+			myManager.changeState (new DefaultState ());
 				break;
 
 				//Move Order ---------------------------------------------

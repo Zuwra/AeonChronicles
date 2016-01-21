@@ -95,7 +95,7 @@ public class MiningState : UnitState {
 
 
 		if (!target) 
-			{myManager.changeState(new DefaultState(myManager,myMover,myWeapon));	}
+			{myManager.changeState(new DefaultState());	}
 
 	}
 

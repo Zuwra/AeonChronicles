@@ -18,6 +18,7 @@ public class ClickableButton : MonoBehaviour, IPointerClickHandler {
 	{
 		if (eventData.button == PointerEventData.InputButton.Right) {
 			selManager.setAutoCast(abilityNumber);
+			selManager.AutoCastUI ();
 		
 		}
 

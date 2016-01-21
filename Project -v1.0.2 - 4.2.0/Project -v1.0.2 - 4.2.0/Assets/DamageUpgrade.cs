@@ -9,13 +9,13 @@ public class DamageUpgrade : Upgrade {
 	override
 	public void applyUpgrade (GameObject obj){
 
-		UnitManager manager = obj.GetComponent<UnitManager> ();
-
-		if(manager){
-			if (manager.UnitName == "Coyote" || manager.UnitName == "Swallow")
-			if (obj.GetComponent<IWeapon> ()) {
+	
+		IWeapon wep = obj.GetComponent<IWeapon> ();
+		if(wep){
+			
+		
 				obj.GetComponent<IWeapon> ().baseDamage += damageAmount;
-			}
+
 
 		}
 	}

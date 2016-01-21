@@ -35,8 +35,8 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 		resourceTwo = this.gameObject.transform.FindChild ("Resources").FindChild("ResourceTwo").GetComponent<Text>();
 		supply = this.gameObject.transform.FindChild ("Resources").FindChild("Supply").GetComponent<Text>();
 
-		resourceOne.text = OneName + "  " + raceManager.ResourceOne;
-		resourceTwo.text = TwoName + "  " + raceManager.ResourceTwo;
+		resourceOne.text = OneName + "" + raceManager.ResourceOne;
+		resourceTwo.text = TwoName + "" + raceManager.ResourceTwo;
 		supply.text =  raceManager.currentSupply + "/" + raceManager.supplyMax;
 	
 	}

@@ -55,19 +55,26 @@ public class Morph :  Ability {
 
 
 	override
-	public bool canActivate ()
-	{
+	public continueOrder canActivate ()
+		{continueOrder order = new continueOrder();
 		if (Morphing) {
-			return true;}
+			
+			order.nextUnitCast = true;
+			order.canCast = false;
+			return order;
+		}
 
-		return myCost.canActivate ();
-
+		if (!myCost.canActivate ()) {
+			order.canCast = false;
+		}
+		order.nextUnitCast = false;
+		return order;
 	}
 
 	override
-	public bool Activate()
+	public void Activate()
 	{if (!Morphing) {
-			if (myCost.canActivate ()) {
+			 
 
 				myCost.payCost ();
 
@@ -78,12 +85,12 @@ public class Morph :  Ability {
 
 				myManager.changeState (new ChannelState (myManager, myManager.cMover, myManager.myWeapon));
 
-				return false;
+				//return false;
 
-			}
+
 		} 
 		
-		return true;//next unit should also do this.
+		//return true;//next unit should also do this.
 	}
 
 

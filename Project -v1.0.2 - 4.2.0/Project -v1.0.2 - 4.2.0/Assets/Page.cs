@@ -24,7 +24,6 @@ public class Page  {
 
 		if (obj [0].abilityList.Count > 8 && rows [obj [0].AbilityStartingRow + 2] !=null){
 			{
-				
 				return false;
 			}
 		}
@@ -101,6 +100,7 @@ public class Page  {
 
 
 		foreach (RTSObject unit in rows[n/4]) {
+
 			unit.autoCast (X);
 		}
 

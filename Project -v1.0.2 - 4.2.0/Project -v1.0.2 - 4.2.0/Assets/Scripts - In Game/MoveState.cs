@@ -29,7 +29,7 @@ public class MoveState : UnitState{
 	public void Update () {
 
 		if (myMover.move ()) 
-			{myManager.changeState(new DefaultState(myManager,myMover,myWeapon));	}
+			{myManager.changeState(new DefaultState());	}
 
 	}
 

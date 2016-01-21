@@ -54,18 +54,28 @@ public class BuildUnit :  Ability {
 
 
 	override
-		public bool canActivate ()
+	public continueOrder canActivate ()
 	{
-		if (buildingUnit) {
+		continueOrder order = new continueOrder();
 
-			return false;}
-	
-		return myCost.canActivate ();
+		if (buildingUnit) {
+			order.canCast = false;
+
+
+		} else {
+			order.nextUnitCast = false;
+		}
+
+		if (!myCost.canActivate ()) {
+			order.canCast = true;
+		}
+		return order;
+
 
 	}
 	
 	override
-		public bool Activate()
+		public void Activate()
 	{
 		if (myCost.canActivate ()) {
 
@@ -75,9 +85,9 @@ public class BuildUnit :  Ability {
 			timer = buildTime;
 			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
 			buildingUnit = true;
-			return false;
+		//	return false;
 		}
-		return true;//next unit should also do this.
+		//return true;//next unit should also do this.
 	}
 
 

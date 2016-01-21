@@ -9,7 +9,7 @@ public class Poison : MonoBehaviour {
 	private float nextActionTime;
 
 	public float remainingPoison = 16;
-	public float damageRate = 2;
+	public float damageRate = 3;
 
 	private float stackAmount =12 ;
 

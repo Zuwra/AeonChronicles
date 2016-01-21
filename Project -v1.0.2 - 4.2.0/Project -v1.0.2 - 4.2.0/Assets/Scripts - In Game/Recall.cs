@@ -10,12 +10,16 @@ public class Recall : Ability, Modifier {
 	private bool isChanneling;
 
 	override
-	public  bool canActivate()
-	{return true;}
+	public  continueOrder canActivate()
+	{
+
+		return new continueOrder();
+	
+	}
 
 
 	override
-	public  bool Activate()
+	public  void Activate()
 	{
 		isChanneling = !isChanneling;
 
@@ -24,7 +28,7 @@ public class Recall : Ability, Modifier {
 
 		//The units needs to be immobile while recalling
 
-		return true;
+		//return true;
 	}
 
 	public override void setAutoCast(){

@@ -15,14 +15,18 @@ public abstract class Ability : MonoBehaviour {
 	//public GameObject UIButton;
 	protected string description;
 	public bool autocast;
+	[Tooltip("Check this if this ability should break normal activities.")]
+	public bool active;
 
 	//if -1, then it is infinite
 	public int chargeCount = -1;
 
 
-	public abstract bool canActivate();
-	public abstract bool Activate();  // returns whether or not the next unit in the same group should also cast it
+	public abstract continueOrder canActivate();
+	public abstract void Activate();  // returns whether or not the next unit in the same group should also cast it
 	public abstract void setAutoCast();
+
+
 
 	// Use this for initialization
 	void Start () {

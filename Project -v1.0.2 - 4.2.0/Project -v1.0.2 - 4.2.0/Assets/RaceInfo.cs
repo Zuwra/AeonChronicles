@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
+
 using System.Collections.Generic;
 
 public class RaceInfo : MonoBehaviour {
@@ -16,6 +16,7 @@ public class RaceInfo : MonoBehaviour {
 	public List<GameObject> attachmentsList = new List<GameObject>();
 
 	public Material PowerGraph;
+
 
 	[TextArea(3,10)]
 	public string summary;

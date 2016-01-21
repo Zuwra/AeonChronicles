@@ -76,7 +76,7 @@ public class UnitManager : Unit,IOrderable{
 			visionSphere.radius = visionRange + gameObject.GetComponent<CharacterController> ().radius;
 		
 		if (cMover != null) {
-			changeState (new DefaultState (this, cMover, myWeapon));
+			changeState (new DefaultState ());
 		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.turret)) {
 			changeState (new turretState (this, this.cMover, this.myWeapon));
 		}
@@ -116,13 +116,17 @@ public class UnitManager : Unit,IOrderable{
 
 	override
 	public bool UseAbility(int n)
-	{
+	{continueOrder order = null;
 		if (abilityList [n] != null) {
-			if (abilityList [n].canActivate ()) {
-				return abilityList [n].Activate ();
+			 order = abilityList [n].canActivate ();
+			if (order.canCast) {
+				changeState (new CastAbilityState (abilityList [n] ));
 			}
-		}
-		return true;
+				
+			}
+
+
+	return order.nextUnitCast;
 	}
 
 
@@ -131,9 +135,9 @@ public class UnitManager : Unit,IOrderable{
 	public void autoCast(int n)
 	{
 		if (abilityList [n] != null) {
-			if (abilityList [n].canActivate ()) {
+			
 				abilityList [n].setAutoCast();
-			}
+
 		}
 	}
 
@@ -272,9 +276,25 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
+	public void nextState()
+	{
+		if (myState is CastAbilityState) {
+			if (queuedStates.Count > 0) {
+				myState = queuedStates.Dequeue();
+				if (myState != null) {
+					myState.myManager = this;
+					myState.myWeapon = myWeapon;
+					myState.myMover = cMover;
+					myState.initialize ();
+				}
+			} else {
+				changeState (new DefaultState ());
+			}
+		}
+	}
+
 	public void changeState(UnitState nextState)
 	{
-
 
 		if (Input.GetKey (KeyCode.LeftShift) && (!(nextState is DefaultState) && (queuedStates.Count > 0  || !(myState is DefaultState)))) {
 				queuedStates.Enqueue (nextState);
@@ -286,6 +306,9 @@ public class UnitManager : Unit,IOrderable{
 			if (queuedStates.Count > 0) {
 
 				myState = queuedStates.Dequeue ();
+				if (myState == null) {
+					return;
+				}
 				myState.myManager = this;
 				myState.myWeapon = myWeapon;
 				myState.myMover = cMover;
@@ -298,10 +321,19 @@ public class UnitManager : Unit,IOrderable{
 			((AttackMoveState)nextState).setHome (this.gameObject.transform.position);
 		}
 
+
+
 			nextState.myManager = this;
 			nextState.myWeapon = myWeapon;
 			nextState.myMover = cMover;
 			queuedStates.Clear ();
+
+		if (nextState is CastAbilityState && !((CastAbilityState)nextState).myAbility.active) {
+
+			queuedStates.Enqueue (myState);
+		}
+
+
 			myState = nextState;
 			myState.initialize ();
 

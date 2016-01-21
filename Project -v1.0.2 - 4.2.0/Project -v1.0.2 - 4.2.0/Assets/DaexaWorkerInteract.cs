@@ -64,7 +64,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		switch (order.OrderType) {
 		//Stop Order----------------------------------------
 		case Const.ORDER_STOP:
-			myManager.changeState (new DefaultState (myManager, myManager.cMover, myManager.myWeapon));
+			myManager.changeState (new DefaultState ());
 			break;
 
 		//Move Order ---------------------------------------------
@@ -81,7 +81,11 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 			else if ((order.Target.gameObject.GetComponent<TurretMount> ()) || order.Target.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.turret))
 				{
-				myManager.changeState (new AbilityFollowState (order.Target.gameObject, order.Target.gameObject.transform.position, myManager, myManager.cMover, myManager.myWeapon, GetComponent<TurretPickUp>() ));}
+				myManager.changeState (new AbilityFollowState (order.Target.gameObject, order.Target.gameObject.transform.position, GetComponent<TurretPickUp>() ));}
+			else if (order.Target.gameObject.GetComponentInChildren<TurretMount> ())
+			{GameObject obj = order.Target.gameObject.GetComponentInChildren<TurretMount> ().gameObject;
+				myManager.changeState (new AbilityFollowState (obj, order.Target.gameObject.transform.position, GetComponent<TurretPickUp>() ));
+			}
 			else{
 
 				myManager.changeState (new FollowState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));

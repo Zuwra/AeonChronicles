@@ -32,24 +32,19 @@ public class UnitStats : MonoBehaviour {
 
 	private List<Modifier> damageModifiers = new List<Modifier>();
 	public List<UnitTypes.UnitTypeTag> unitTags = new  List<UnitTypes.UnitTypeTag> ();
+	private List<Modifier> deathTriggers = new List<Modifier> ();
+
 	//Tags the units can have
 	private Selected mySelection;
-
-	//public float mass;
 
 	public SphereCollider visionRange;
 
 
 	private float nextActionTime;
 
-	//public List<Methods>  lethalDamage = new List<Methods>();
-	//public List<Methods>  deathTriggers = new List<Methods>();
-
-	//public List<Method>  DamageModifiers = new List<Methods>();
 
 	public GameObject deathCorpse;
-	//private List<Action> deathTriggers;
-	//Enum race
+
 
 
 	// Use this for initialization
@@ -59,12 +54,7 @@ public class UnitStats : MonoBehaviour {
 			mySelection = this.gameObject.GetComponent<Selected>();
 		}
 		myManager = this.gameObject.GetComponent<UnitManager> ();
-		//this stuff is taken care of through the thing that builds it
-		//if(supply > 0)
-			//{GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().currentSupply += supply;}
-		//else if (supply< 0)
-			//{GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().supplyMax +=supply;}
-
+	
 
 		nextActionTime = Time.time;
 	
@@ -109,18 +99,12 @@ public class UnitStats : MonoBehaviour {
 
 
 				mySelection.updateEnergyBar(currentEnergy/MaxEnergy);
-				//mySelection.updateHealthBar (health / Maxhealth);
-			}
 			
-
-
-
+			}
 
 			
 		}
 
-	
-	
 	}
 
 
@@ -187,11 +171,10 @@ public class UnitStats : MonoBehaviour {
 
 			if (FinishDeath) {
 
-				//foreach (Method effect in deathTriggers) {
-				//call deathTrigger;
+				foreach (Modifier effect in deathTriggers) {
+					effect.modify (0, deathSource);
+				}
 
-
-				//}
 
 				if (deathCorpse != null) {
 					GameObject.Instantiate (deathCorpse, this.gameObject.transform.position, new Quaternion ());
@@ -221,9 +204,11 @@ public class UnitStats : MonoBehaviour {
 		
 	}
 
-
-	public void addDeathTrigger()//Method method)
-		{
+	public void removeDeathTrigger (Modifier mod)
+	{deathTriggers.Remove (mod);
+	}
+	public void addDeathTrigger( Modifier mod)//Method method)
+	{deathTriggers.Add(mod);
 		//deathTriggers.Add (method);
 
 	}

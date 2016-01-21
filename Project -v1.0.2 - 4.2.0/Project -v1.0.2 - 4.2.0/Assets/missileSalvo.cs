@@ -45,15 +45,15 @@ public class missileSalvo : Ability, Validator, Notify{
 	}
 
 	override
-	public bool canActivate()
-	{return true;
-
+	public continueOrder canActivate()
+	{
+		return new continueOrder ();
 
 	}
 
 
 	override
-	public bool Activate()
+	public void Activate()
 	{
 		Debug.Log ("activating missile salvo");
 		GameObject home = null;
@@ -71,7 +71,7 @@ public class missileSalvo : Ability, Validator, Notify{
 		if (home != null) {
 			mymanager.GiveOrder (Orders.CreateMoveOrder (home.transform.position));
 		}
-		return true;
+		//return true;
 
 	}
 

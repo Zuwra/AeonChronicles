@@ -295,9 +295,17 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	}
 
 	public void reImageUI()
-	{  abilityManager.updateUI(UIPages[currentPage]);
+	{ if (UIPages.Count > 0) {
+			abilityManager.updateUI (UIPages [currentPage]);
+		}
 		
 	}
+
+	public void AutoCastUI()
+		{  abilityManager.upDateAutoCast(UIPages[currentPage]);
+
+		}
+	
 
 	public void CreateUIPages(int j)
     {
@@ -477,6 +485,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
                 AddObject(obj.GetComponent<UnitManager>());
             }
         }
+		CreateUIPages(0);
     }
 
     public void selectAllUnbound()
@@ -492,7 +501,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
                 DeselectObject(rts);
             }
         }
-
+		CreateUIPages(0);
     }
 
     public void selectIdleWorker()
@@ -524,6 +533,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
         }
+		CreateUIPages(0);
     }
 
     public void selectUnitOne()
@@ -539,6 +549,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
                 AddObject(manager);
             }
         }
+		CreateUIPages(0);
     }
 
     public void selectUnitTwo()
@@ -553,6 +564,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
                 AddObject(manager);
             }
         }
+		CreateUIPages(0);
     }
 
     public void selectUnitThree()
@@ -567,6 +579,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
                 AddObject(manager);
             }
         }
+		CreateUIPages(0);
     }
 
     public void selectUnitFour()
@@ -581,6 +594,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
                 AddObject(manager);
             }
         }
+		CreateUIPages(0);
     }
 
 

@@ -32,7 +32,7 @@ public class AttckWhileMoveState : UnitState{
 			}
 
 		if (myMover.move ()) 
-		{myManager.changeState(new DefaultState(myManager,myMover,myWeapon));}
+		{myManager.changeState(new DefaultState());}
 		
 	}
 

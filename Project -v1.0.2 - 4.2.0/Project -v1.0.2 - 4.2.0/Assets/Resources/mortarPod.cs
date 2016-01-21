@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class mortarPod : MonoBehaviour, Validator, Notify {
+public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 
 
 
@@ -29,6 +29,8 @@ public class mortarPod : MonoBehaviour, Validator, Notify {
 		if (FireAll) {
 			weapon.attackPeriod = .01f;
 		}
+
+		weapon.myManager.myStats.addDeathTrigger (this);
 
 	}
 	
@@ -71,6 +73,25 @@ public class mortarPod : MonoBehaviour, Validator, Notify {
 		}
 
 
+	}
+
+
+	public float modify(float damage, GameObject source)
+	{ 
+
+		if (weapon.myManager.myWeapon == weapon) {
+			foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {
+
+				if (turr.turret != null) {
+					weapon.myManager.myWeapon = turr.turret.GetComponent<IWeapon> ();
+					return 0 ;
+				}
+
+			}
+
+		weapon.myManager.changeState (new DefaultState ());
+	}
+		return 0 ;
 	}
 
 }

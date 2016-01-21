@@ -48,15 +48,15 @@ public class repairReturn : Ability{
 	}
 
 	override
-	public bool canActivate()
-	{return true;
+	public continueOrder canActivate()
+	{return new continueOrder();
 
 
 	}
 
 
 	override
-	public bool Activate()
+	public void Activate()
 	{
 
 		GameObject home = null;
@@ -74,7 +74,7 @@ public class repairReturn : Ability{
 		if (home != null) {
 			mymanager.GiveOrder (Orders.CreateMoveOrder (home.transform.position));
 		}
-		return true;
+		//return true;
 
 	}
 

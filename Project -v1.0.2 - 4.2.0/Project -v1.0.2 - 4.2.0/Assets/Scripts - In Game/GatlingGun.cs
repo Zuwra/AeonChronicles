@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GatlingGun : MonoBehaviour, Notify, Validator {
+public class GatlingGun : MonoBehaviour, Notify, Validator, Modifier {
 
 
 	public IWeapon myWeapon;
@@ -32,6 +32,8 @@ public class GatlingGun : MonoBehaviour, Notify, Validator {
 		myWeapon.triggers.Add (this);
 		myWeapon.validators.Add (this);
 		nextActionTime = Time.time;
+
+		myWeapon.myManager.myStats.addDeathTrigger (this);
 	
 	}
 
@@ -102,5 +104,26 @@ public class GatlingGun : MonoBehaviour, Notify, Validator {
 		return true;
 
 	}		
+
+
+
+	public float modify(float damage, GameObject source)
+	{ 
+
+		if (myWeapon.myManager.myWeapon == myWeapon) {
+			foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {
+
+				if (turr.turret != null) {
+					myWeapon.myManager.myWeapon = turr.turret.GetComponent<IWeapon> ();
+					return 0 ;
+				}
+		
+			}
+				
+			myWeapon.myManager.changeState (new DefaultState ());
+		}
+		return 0 ;
+
+	}
 
 }

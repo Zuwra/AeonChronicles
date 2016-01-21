@@ -69,18 +69,18 @@ public class GameMenu : MonoBehaviour {
 	{if(myCanvas.enabled == true)
 		{returnToGame();
 			uimanage.SwitchToModeNormal ();
-			Debug.Log ("Setting to normal");
+		
 
 		}
 	else
 	{setMenu (myCanvas);
 		uimanage.setToMenu ();
-		Debug.Log ("Setting to menu");
+
 	}
 	}
 
 	public void quitGame()
-	{SceneManager.LoadScene (1);}
+	{SceneManager.LoadScene (0);}
 
 	public void openOptions()
 	{setMenu (OptionMenu);

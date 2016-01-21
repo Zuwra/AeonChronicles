@@ -7,17 +7,21 @@ public class WarpCore : Ability {
 
 
 	override
-	public bool canActivate()
-	{if (isKey) {
-			return false;}
-		return true;
+	public continueOrder canActivate()
+	{continueOrder order = new continueOrder ();
+		order.nextUnitCast = false;
+		if (isKey) {
+			order.canCast = false;
+			}
+
+		return order;
 	}
 	override
-	public bool Activate()
+	public void Activate()
 	{
 		GameObject.Find ("GameRaceManager").GetComponent<GarataiManager> ().setKeyWarpCore (this.gameObject);
 
-		return false;
+		//return false;
 	}
 
 	public void setKey(bool input)

@@ -21,17 +21,19 @@ public class TurretPickUp : TargetAbility {
 
 
 	override
-	public bool canActivate ()
-	{
-		return true;
+	public continueOrder canActivate ()
+	{continueOrder order = new continueOrder ();
+		order.nextUnitCast = false;
+
+		return order;
 
 	}
 
 	override
-	public bool Activate()
+	public void Activate()
 	{
 		
-		return false;//next unit should also do this.
+		//return false;//next unit should also do this.
 	}
 
 

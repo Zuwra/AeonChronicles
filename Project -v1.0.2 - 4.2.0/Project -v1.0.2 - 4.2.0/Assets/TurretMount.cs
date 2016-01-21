@@ -20,14 +20,14 @@ public class TurretMount : MonoBehaviour {
 
 
 	public void placeTurret(GameObject obj)
-	{turret = obj;
+		{turret = obj;
 
 		obj.transform.position = this.transform.position;
 		obj.transform.parent = this.gameObject.transform;
 		obj.transform.rotation = this.gameObject.transform.rotation;
 
 		UnitManager manager = this.gameObject.GetComponentInParent<UnitManager> ();
-		if (obj.GetComponent<IWeapon> ()) {
+		if (obj.GetComponent<IWeapon> ()) {//obj.SendMessage ("modify");
 			manager.setWeapon (obj.GetComponent<IWeapon> ());
 		}
 		manager.PlayerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
@@ -41,7 +41,15 @@ public class TurretMount : MonoBehaviour {
 		turret = null;
 		UnitManager manager = this.gameObject.GetComponentInParent<UnitManager> ();
 		manager.setWeapon(null);
-	
+
+
+			foreach (TurretMount turr in transform.parent.GetComponentsInChildren<TurretMount> ()) {
+			if (turr.turret != null && turr.turret.GetComponent<RepairTurret> () == null) {
+				manager.setWeapon( turr.turret.GetComponent<IWeapon> ());
+					return;
+				}
+
+			}
 
 
 	}

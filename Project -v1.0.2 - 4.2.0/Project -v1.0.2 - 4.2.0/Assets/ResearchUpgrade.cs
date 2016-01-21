@@ -17,6 +17,8 @@ public class ResearchUpgrade:  Ability, Upgradable{
 		// Use this for initialization
 		void Start () {
 			mySelect = GetComponent<Selected> ();
+
+
 		}
 
 		// Update is called once per frame
@@ -44,18 +46,20 @@ public class ResearchUpgrade:  Ability, Upgradable{
 
 
 		override
-		public bool canActivate ()
-		{
-			if (researching) {
+	public continueOrder canActivate ()
+		{continueOrder order = new continueOrder();
 
-				return false;}
+		if (researching || !myCost.canActivate ()) {
+			order.canCast = false;
+			order.nextUnitCast = false;
+				return order;}
 
-			return myCost.canActivate ();
-
+	
+		return order;
 		}
 
 		override
-		public bool Activate()
+		public void Activate()
 		{
 			if (myCost.canActivate ()) {
 			timer = buildTime;
@@ -63,9 +67,9 @@ public class ResearchUpgrade:  Ability, Upgradable{
 
 				researching = true;
 
-				return false;
+				//return false;
 			}
-			return true;//next unit should also do this.
+			//return true;//next unit should also do this.
 		}
 
 		public override void setAutoCast(){}

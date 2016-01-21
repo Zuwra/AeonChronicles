@@ -32,16 +32,22 @@ public class StimPack : Ability {
 
 
 	override
-	public bool canActivate ()
+	public continueOrder canActivate ()
 		{
 
+		continueOrder order = new continueOrder ();
+
 		if (chargeCount == 0) {
-			return false;}
-		return myCost.canActivate ();
+			order.canCast = false;
+			return order;}
+		if (!myCost.canActivate ()) {
+			order.canCast = false;
+		}
+		return order;
 		}
 
 	override
-	public bool Activate()
+	public void Activate()
 	{
 		if (myCost.canActivate ()) {
 
@@ -58,7 +64,7 @@ public class StimPack : Ability {
 			RaceManager.upDateUI ();
 		
 		}
-		return true;//next unit should also do this.
+		//return true;//next unit should also do this.
 	}
 
 	public void Deactivate()
