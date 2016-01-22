@@ -23,10 +23,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     public UiAbilityManager abilityManager;
     private RaceManager raceMan;
 
-    public string sUnitOne;
-    public string sUnitTwo;
-    public string sUnitThree;
-    public string sUnitFour;
+	public List<List<string>> globalSelection = new List<List<string>> ();
 
 
     public GameObject movementInd;
@@ -356,6 +353,14 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     }
 
+
+	public void applyGlobalSelection(List<List<string>> input)
+	{globalSelection = input;
+	
+	
+	}
+
+
     public void DeselectAll()
     {
         if (SelectedObjects.Count == 0)
@@ -528,74 +533,25 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
                 }
             }
 
-
-
-
-
         }
 		CreateUIPages(0);
     }
 
-    public void selectUnitOne()
-    {
-        DeselectAll();
-        foreach (GameObject obj in raceMan.getUnitList())
-        {
 
-            UnitManager manager = obj.GetComponent<UnitManager>();
-            Debug.Log(manager.UnitName + "    " + sUnitOne);
-            if (manager.UnitName == sUnitOne)
-            {
-                AddObject(manager);
-            }
-        }
-		CreateUIPages(0);
-    }
+	public void globalSelect(int n )
+	{ DeselectAll();
+		foreach (GameObject obj in raceMan.getUnitList())
+		{
 
-    public void selectUnitTwo()
-    {
-        DeselectAll();
-        foreach (GameObject obj in raceMan.getUnitList())
-        {
+			UnitManager manager = obj.GetComponent<UnitManager>();
+			if (globalSelection[n].Contains(manager.UnitName))
+			{
+				AddObject(manager);
+			}
+		}
+		CreateUIPages(0);}
 
-            UnitManager manager = obj.GetComponent<UnitManager>();
-            if (manager.UnitName == sUnitTwo)
-            {
-                AddObject(manager);
-            }
-        }
-		CreateUIPages(0);
-    }
 
-    public void selectUnitThree()
-    {
-        DeselectAll();
-        foreach (GameObject obj in raceMan.getUnitList())
-        {
-
-            UnitManager manager = obj.GetComponent<UnitManager>();
-            if (manager.UnitName == sUnitThree)
-            {
-                AddObject(manager);
-            }
-        }
-		CreateUIPages(0);
-    }
-
-    public void selectUnitFour()
-    {
-        DeselectAll();
-        foreach (GameObject obj in raceMan.getUnitList())
-        {
-
-            UnitManager manager = obj.GetComponent<UnitManager>();
-            if (manager.UnitName == sUnitFour)
-            {
-                AddObject(manager);
-            }
-        }
-		CreateUIPages(0);
-    }
 
 
     public void attackMoveO()

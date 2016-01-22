@@ -269,14 +269,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 			//We've left clicked, what have we left clicked on?
 			int currentObjLayer = currentObject.layer;
 			originalPosition = Input.mousePosition;
-			if (currentObjLayer == 8)
-			{
-				//Friendly Unit, is the unit selected?
-				if (m_SelectedManager.IsObjectSelected(currentObject))
-				{
 
-				}
-			}
+
 			break;
 
 

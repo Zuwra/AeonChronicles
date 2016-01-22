@@ -125,16 +125,16 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	{}
 	
 	public void fFive()
-	{selectManager.selectUnitOne ();}
+	{selectManager.globalSelect(0);}
 	
 	public void fSix()
-	{selectManager.selectUnitTwo ();}
+	{selectManager.globalSelect(1);}
 	
 	public void fSeven()
-	{selectManager.selectUnitThree ();}
+	{selectManager.globalSelect(2);}
 	
 	public void fEight()
-	{selectManager.selectUnitFour ();}
+	{selectManager.globalSelect(3);}
 	
 	public void fNine()
 	{}

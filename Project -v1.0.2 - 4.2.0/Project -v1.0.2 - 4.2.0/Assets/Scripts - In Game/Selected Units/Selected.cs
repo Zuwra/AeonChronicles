@@ -89,6 +89,8 @@ public class Selected : MonoBehaviour {
 			break;
 
 		}
+
+
 	}
 
 
@@ -174,10 +176,13 @@ public class Selected : MonoBehaviour {
 	void OnGUI()
 	{
 		GUI.depth = 0;
+
+
 		switch (mydisplayType) {
 		case displayType.always:
 			if (OverlayRect.xMax < Screen.width - m_MainMenuWidth) {
 				GUI.DrawTexture (OverlayRect, Overlay);
+
 			}
 			break;
 
@@ -214,11 +219,6 @@ public class Selected : MonoBehaviour {
 
 
 
-
-
-
-
-		GUI.depth = 1;
 	}
 	
 	public void SetSelected()

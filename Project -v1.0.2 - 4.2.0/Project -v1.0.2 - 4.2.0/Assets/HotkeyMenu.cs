@@ -6,96 +6,140 @@ public class HotkeyMenu : MonoBehaviour {
 
 
 	public GameObject raceInfo;
-	public Dropdown fFive;
-	public Dropdown fSix;
-	public Dropdown fSeven;
-	public Dropdown fEight;
+
+	public GameObject grid;
 
 
-	private Text fFiveBut;
-	private Text fSixBut;
 
-	private Text fSevenBut;
-
-	private Text fEightBut;
-
-	private List<string> objectList;
+	private List<GameObject> objectList;
 	private SelectedManager selectMan;
+
+	private List<GameObject> toggles = new List<GameObject> ();
+
+	private FButtonManager fManager;
 
 	// Use this for initialization
 	void Start () {
 
+		this.gameObject.SetActive (true);
+		this.gameObject.GetComponent<Canvas> ().enabled = true;
+		StartCoroutine(MyCoroutine());
+	
+	}
 
-		fFiveBut = GameObject.Find ("GameHud").GetComponentInChildren<FButtonManager> ().Ffive;
-		fSixBut = GameObject.Find ("GameHud").GetComponentInChildren<FButtonManager> ().Fsix;
-		fSevenBut = GameObject.Find ("GameHud").GetComponentInChildren<FButtonManager> ().fSeven;
-		fEightBut = GameObject.Find ("GameHud").GetComponentInChildren<FButtonManager> ().fEight;
 
+	public void apply()
+		{
+		List<List<string>> selected = new List<List<string>> ();
+
+		for (int i = 0; i < 4; i++) {
+			selected.Add (new List<string> ());
+		}
+
+		int n = 0;
+		foreach (GameObject obj in toggles) {
+			
+			if (obj.GetComponent<Toggle>().isOn) {
+
+				selected [n % 4].Add (objectList[(int) n /4].GetComponent<UnitManager> ().UnitName);
+			
+			}
+			n++;
+		}
+
+
+
+		if (selected [0].Count > 0) {
+			fManager.Ffive.text = "(F5) " + selected [0] [0];
+		} else {
+			fManager.Ffive.text = "(F5) ";
+		}
+
+		if (selected [1].Count > 0) {
+			fManager.Fsix.text = "(F6) " + selected [1] [0];
+		} else {
+			fManager.Fsix.text = "(F6) ";
+		}
+
+		if (selected [2].Count > 0) {
+			fManager.fSeven.text = "(F7) " + selected [2] [0];
+		} else {
+			fManager.fSeven.text = "(F7) ";
+		}
+
+		if (selected [3].Count > 0) {
+			fManager.fEight.text = "(F8) " + selected [3] [0];
+		} else {
+			fManager.fEight.text = "(F8) ";
+		}
+	
+
+
+
+		selectMan.applyGlobalSelection(selected);
+
+
+		}
+
+
+
+
+	IEnumerator MyCoroutine ()
+	{
+		yield return new WaitForSeconds(0);
+
+
+		fManager = GameObject.Find ("F-Buttons").GetComponent<FButtonManager>();
 
 		selectMan = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
 		foreach (RaceInfo info in raceInfo.GetComponents<RaceInfo>()) {
-			
+
 			if (info.race == GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.myRace) {
 
-				objectList = new List<string> ();
+				objectList = new List<GameObject> ();
 
-				foreach (GameObject build in info.buildingList) {
-					objectList.Add (build.name);
-				}
 
 				foreach (GameObject obj in info.unitList) {
-					objectList.Add (obj.name);
+					objectList.Add (obj);
 				}
-
-				fFive.AddOptions (objectList);
-				fSix.AddOptions (objectList);
-				fSeven.AddOptions (objectList);
-				fEight.AddOptions (objectList);
+				foreach (GameObject build in info.buildingList) {
+					objectList.Add (build);
+				}
 
 			}
 		}
-		selectMan.sUnitOne = objectList [0];
-		selectMan.sUnitTwo = objectList [1];
-		selectMan.sUnitThree = objectList [2];
-		selectMan.sUnitFour = objectList [3];
+
+		GameObject toggle = transform.FindChild ("UseIt").gameObject;
+		GameObject name = transform.FindChild ("UnitName").gameObject;
+		int n = 0;
+		foreach (GameObject obj in objectList) {
+			GameObject tempName = (GameObject)Instantiate (name, this.gameObject.transform.position, Quaternion.identity);
+			tempName.transform.SetParent (grid.transform);
+			tempName.GetComponent<Text> ().text = obj.GetComponent<UnitManager> ().UnitName;
+
+			for (int i = 0; i < 4; i++) {
+
+				GameObject tog = (GameObject)Instantiate (toggle, this.gameObject.transform.position, Quaternion.identity);
+				tog.transform.SetParent (grid.transform);
+				toggles.Add (tog);
+				if (n != i) {
+					tog.GetComponent<Toggle> ().isOn = false;
+
+				}
+			}
+
+			n++;
+		}
 
 
-		fFive.value = 0;
-		fSix.value = 1;
-		fSeven.value = 2;
-		fEight.value = 3;
-	
 
-	
+
+		apply ();
+		this.gameObject.GetComponent<Canvas> ().enabled = false;
 	}
-	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-
-	public void setFive()
-	{
-		selectMan.sUnitOne = objectList [fFive.value];
-		fFiveBut.text =  "(F5) All " + objectList [fFive.value];
-	}
-
-	public void setSix()
-	{
-		selectMan.sUnitTwo = objectList [fSix.value];
-		fSixBut.text = "(F6) All " +objectList [fSix.value];
-	}
-
-	public void setSeven()
-	{
-		selectMan.sUnitThree = objectList [fSeven.value];
-		fSevenBut.text = "(F7) All " +objectList [fSeven.value];
-	}
-
-	public void setEight()
-	{
-		selectMan.sUnitFour = objectList [fEight.value];
-		fEightBut.text = "(F8) All " +objectList [fEight.value];
-	}
 }

@@ -26,8 +26,11 @@ public class airmover : IMover {
 
 	public float flyerHeight;
 
-	public void Start () {
 
+	private float nextActionTime;
+
+	public void Start () {
+		nextActionTime = Time.time;
 		controller = GetComponent<CharacterController>();
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
 		//seeker.StartPath (transform.position,targetPosition, OnPathComplete);
@@ -57,40 +60,34 @@ public class airmover : IMover {
 				speed = MaxSpeed;
 			}
 		}
+
 		//Direction to the next waypoint
 		dir = (targetPosition -transform.position).normalized;
 		dir *= speed * Time.deltaTime;
 		controller.Move (dir);
 
 
-		RaycastHit objecthit;
-		Vector3 down = this.gameObject.transform.TransformDirection (Vector3.down);
 
-		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (8))) {
+		if (Time.time > nextActionTime) {
+			nextActionTime += .6f;
+
+			RaycastHit objecthit;
+			Vector3 down = this.gameObject.transform.TransformDirection (Vector3.down);
+
+			if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (8))) {
 			
 
-			while (this.gameObject.transform.position.y < objecthit.point.y + 24) {
-				controller.Move ( Vector3.up*.2f);
+				while (this.gameObject.transform.position.y < objecthit.point.y + 24) {
+					controller.Move (Vector3.up * .2f);
 
-			}
+				}
 
-			while(this.gameObject.transform.position.y > objecthit.point.y + 26) {
-				controller.Move (Vector3.down *.2f);
+				while (this.gameObject.transform.position.y > objecthit.point.y + 26) {
+					controller.Move (Vector3.down * .2f);
 			
+				}
 			}
-
-		
 		}
-
-
-
-		//if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(8 << 12)))
-
-
-		//controller.SimpleMove (dir);
-
-		//Check if we are close enough to the next waypoint
-		//If we are, proceed to follow the next waypoint
 
 
 		return false;
@@ -101,8 +98,11 @@ public class airmover : IMover {
 	public void resetMoveLocation(Vector3 location)
 	{//	location.y += 2;
 
-		Vector3 destination = new Vector3(location.x, location.y + flyerHeight, location.z);
+		Vector3 destination = new Vector3(location.x, this.gameObject.transform.position.y, location.z);
+
 		this.gameObject.transform.LookAt(destination);
+
+		destination.y = location.y + flyerHeight;
 		workingframe = false;
 		targetPosition = destination;
 
