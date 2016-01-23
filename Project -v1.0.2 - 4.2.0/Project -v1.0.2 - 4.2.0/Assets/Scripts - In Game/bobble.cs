@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class bobble : MonoBehaviour {
+public class bobble : animate {
 
 	public float amplitude;          //Set in Inspector 
 	public float speed;                  //Set in Inspector 
@@ -14,13 +14,15 @@ public class bobble : MonoBehaviour {
 	}
 	
 	void Update () 
-	{        
-		tempPos.y = tempVal + amplitude * Mathf.Sin(speed * Time.time);
-		transform.position = tempPos;
+	{        if (active) {
+			tempPos.y = tempVal + amplitude * Mathf.Sin (speed * Time.time);
+			transform.position = tempPos;
+		}
 	}
 
 
 
+		
 
 
 }

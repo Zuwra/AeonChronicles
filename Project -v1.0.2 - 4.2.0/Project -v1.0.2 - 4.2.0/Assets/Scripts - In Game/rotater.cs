@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class rotater : MonoBehaviour {
+public class rotater : animate {
 
 
 	public float speed;
@@ -22,9 +22,15 @@ public class rotater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {  
-		
+		if(active)
 			transform.Rotate (axis, speed * Time.deltaTime);
 
 	
 	}
+
+
+
+
+
+
 }

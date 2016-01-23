@@ -110,4 +110,11 @@ public class airmover : IMover {
 
 	}
 
+	override
+	public void resetMoveLocation(Transform targ)
+
+	{
+	}
+
+
 }

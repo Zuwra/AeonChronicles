@@ -13,8 +13,11 @@ public class UiAbilityManager : MonoBehaviour {
 	private int currentX;
 	private int currentY;
 
+	public GameObject buttonTemplate;
+
 	public List<GameObject> Stats = new List<GameObject> ();
-	private SelectedManager selectMan;
+	private List<GameObject> unitIcons = new List<GameObject> ();
+ 	private SelectedManager selectMan;
 
 	// Use this for initialization
 	void Start () {
@@ -50,6 +53,12 @@ public class UiAbilityManager : MonoBehaviour {
 		}
 
 
+		foreach (GameObject del in unitIcons) {
+			Destroy (del);
+		}
+
+		unitIcons.Clear ();
+
 
 		for(int j = 0; j < 3; j ++){
 			if (uiPage.rows [j] == null) {
@@ -58,11 +67,38 @@ public class UiAbilityManager : MonoBehaviour {
 
 			n = uiPage.rows[j][0].AbilityStartingRow;
 
+
 			//Sets the unit's stats and count
 			UnitManager man = uiPage.rows[j][0].gameObject.GetComponent<UnitManager> ();
 			Stats[n].GetComponent<StatsUI> ().loadUnit (man, 
 				uiPage.rows[j].Count, man.UnitName);
 
+		// fill the icon panel
+			if (j == 0 || uiPage.rows [j] != uiPage.rows [j - 1]) {
+				int picCount = Mathf.Min (uiPage.rows [j].Count, 18);
+				int separation = 47;
+
+				if (uiPage.rows [j].Count > 9) {
+					separation = Mathf.Max (10, 408 / picCount);
+				}
+				
+				int currentX = 120;
+				for (int k = 0; k < picCount; k++) {
+			
+					GameObject unit = (GameObject)Instantiate (buttonTemplate, this.gameObject.transform.position, Quaternion.identity);
+					unit.transform.SetParent (this.gameObject.transform);
+					unit.GetComponent<Image> ().material = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
+					Vector3 pos = Stats [j].transform.position;
+					pos.x += currentX;
+					currentX += separation;
+					unit.transform.position = pos;
+
+					unitIcons.Add (unit);
+
+				}
+			}
+
+			//Set up the command card
 			int AbilityX = 0;
 	
 			for (int m = 0; m < man.abilityList.Count / 4 +1; m++) {

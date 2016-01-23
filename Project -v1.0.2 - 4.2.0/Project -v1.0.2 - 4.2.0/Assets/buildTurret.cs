@@ -33,6 +33,11 @@ public class buildTurret :Ability{
 			if (timer <= 0) {
 				mySelect.updateCoolDown (0);
 				buildingUnit = false;
+				foreach (Transform obj in this.transform) {
+
+					obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
+				}
+
 				numberOfTurrets++;
 
 			}
@@ -141,7 +146,10 @@ public class buildTurret :Ability{
 		if (myCost.canActivate ()) {
 
 			myCost.payCost();
+			foreach (Transform obj in this.transform) {
 
+				obj.SendMessage ("ActivateAnimation",SendMessageOptions.DontRequireReceiver);
+			}
 
 			timer = buildTime;
 			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);

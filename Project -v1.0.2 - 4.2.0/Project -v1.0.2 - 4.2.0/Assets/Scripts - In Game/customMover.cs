@@ -133,8 +133,11 @@ public class customMover : IMover {
 		//queueTargetLocation(location);
 
 	}
+	override
+	public void resetMoveLocation(Transform targ)
 
-
+	{
+	}
 
 	void OnControllerColliderHit(ControllerColliderHit other)
 	{

@@ -45,9 +45,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AIMover.cs" />
      <Compile Include="Assets\AbilityBox.cs" />
      <Compile Include="Assets\AbilityFollowState.cs" />
-     <Compile Include="Assets\AstarPathfindingProject\Core\AI\AIPath.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\AIPath.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\NavmeshController.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\Seeker.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AstarData.cs" />
@@ -343,6 +344,7 @@
      <Compile Include="Assets\Upgrade.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />
      <Compile Include="Assets\airmover.cs" />
+     <Compile Include="Assets\animate.cs" />
      <Compile Include="Assets\buildTurret.cs" />
      <Compile Include="Assets\continueOrder.cs" />
      <Compile Include="Assets\deathTrigger.cs" />

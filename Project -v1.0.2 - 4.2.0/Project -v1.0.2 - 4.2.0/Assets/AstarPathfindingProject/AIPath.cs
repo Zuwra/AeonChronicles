@@ -32,6 +32,10 @@ using Pathfinding.RVO;
  * If it finds a NavmeshController, it will use that, otherwise it will look for a character controller, then for a rigidbody and if it hasn't been able to find any
  * it will use Transform.Translate which is guaranteed to always work.
  */
+
+
+
+
 [RequireComponent(typeof(Seeker))]
 [AddComponentMenu("Pathfinding/AI/AIPath (generic)")]
 public class AIPath : MonoBehaviour {
@@ -467,4 +471,6 @@ public class AIPath : MonoBehaviour {
 		offset = Mathf.Clamp (offset+closest,0.0F,1.0F);
 		return (b-a)*offset + a;
 	}
+
+
 }

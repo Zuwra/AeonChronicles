@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BuildUnit :  Ability {
 
@@ -80,14 +81,18 @@ public class BuildUnit :  Ability {
 		if (myCost.canActivate ()) {
 
 			myCost.payCost();
-
+			//start animations in any children
+			foreach (Transform obj in this.transform) {
+				
+				obj.SendMessage ("ActivateAnimation",SendMessageOptions.DontRequireReceiver);
+			}
 
 			timer = buildTime;
 			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
 			buildingUnit = true;
 		//	return false;
 		}
-		//return true;//next unit should also do this.
+
 	}
 
 
@@ -109,6 +114,11 @@ public class BuildUnit :  Ability {
 			else if (myInteractor.rallyPoint != Vector3.zero) {
 				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateMoveOrder (myInteractor.rallyPoint));
 			}
+		}
+
+		foreach (Transform obj in this.transform) {
+
+			obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
 		}
 
 		racer.applyUpgrade (unit);

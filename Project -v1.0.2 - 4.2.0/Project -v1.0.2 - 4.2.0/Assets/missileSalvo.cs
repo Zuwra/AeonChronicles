@@ -4,7 +4,6 @@ using System.Collections;
 public class missileSalvo : Ability, Validator, Notify{
 
 
-	public float numOfRockets;
 	private IWeapon myweapon;
 	public int  maxRockets = 4;
 	private UnitManager mymanager;
@@ -29,7 +28,7 @@ public class missileSalvo : Ability, Validator, Notify{
 
 	public bool validate(GameObject source, GameObject target)
 	{
-		if (numOfRockets > 0) {
+		if (chargeCount > 0) {
 			return true;
 		}
 		return false;
@@ -39,7 +38,8 @@ public class missileSalvo : Ability, Validator, Notify{
 
 
 	public void trigger(GameObject source, GameObject projectile,GameObject target)	{
-		numOfRockets--;
+		chargeCount--;
+		RaceManager.upDateUI ();
 
 
 	}

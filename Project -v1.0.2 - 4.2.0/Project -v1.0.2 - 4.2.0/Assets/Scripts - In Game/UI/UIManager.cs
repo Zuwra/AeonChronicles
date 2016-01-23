@@ -168,7 +168,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 				
 		//Tell the cursor manager to update itself based on the interactionstate
-		CursorManager.main.UpdateCursor (interactionState);	
+		//CursorManager.main.UpdateCursor (interactionState);	
 	}
 	
 	private void CalculateInteraction(HoverOver hoveringOver, ref InteractionState interactionState)

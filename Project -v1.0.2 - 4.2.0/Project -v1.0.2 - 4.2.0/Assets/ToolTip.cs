@@ -36,7 +36,7 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 		if (pointerInside) {
 
 
-			toolbox.transform.position = new Vector3 (Input.mousePosition.x + 100, Input.mousePosition.y + 55, 0);
+			toolbox.transform.position = new Vector3 (Input.mousePosition.x + 100, Input.mousePosition.y + 60, 0);
 
 		}
 	}

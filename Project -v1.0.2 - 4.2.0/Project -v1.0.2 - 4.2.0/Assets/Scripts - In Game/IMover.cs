@@ -12,6 +12,7 @@ public abstract class IMover: MonoBehaviour {
 	public abstract bool move ();
 
 	public 	abstract void resetMoveLocation (Vector3 location);
+	public 	abstract void resetMoveLocation (Transform theTarget);
 
 
 }

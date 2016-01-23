@@ -9,7 +9,6 @@ public class UnitStats : MonoBehaviour {
 
 	public float Maxhealth;
 	public float health;
-	public float startingHealth;
 	public float HealthRegenPerSec;
 
 
@@ -18,11 +17,10 @@ public class UnitStats : MonoBehaviour {
 	public float currentEnergy;
 	public float StartingEnergy;
 	public float EnergyRegenPerSec;
-
+	public Material Icon;
 
 	public float kills;
 	public float supply;    //positive gives supply, negative uses it
-	public float cargoSpace;
 	public float attackPriority =1 ;
 
 	[Tooltip("This will affect things such as specialized damage and impact effects, should be in the range of 1-12, 12 being buildings")]

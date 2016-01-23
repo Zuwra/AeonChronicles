@@ -64,7 +64,10 @@ public class ResearchUpgrade:  Ability, Upgradable{
 			if (myCost.canActivate ()) {
 			timer = buildTime;
 				myCost.payCost();
+			foreach (Transform obj in this.transform) {
 
+				obj.SendMessage ("ActivateAnimation",SendMessageOptions.DontRequireReceiver);
+			}
 				researching = true;
 
 				//return false;
@@ -95,6 +98,11 @@ public class ResearchUpgrade:  Ability, Upgradable{
 					if (up.myCost != null)
 						Destroy (up.myCost);
 					Destroy (up);
+				}
+
+				foreach (Transform obj in this.transform) {
+
+					obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
 				}
 				Destroy (this);
 			}
