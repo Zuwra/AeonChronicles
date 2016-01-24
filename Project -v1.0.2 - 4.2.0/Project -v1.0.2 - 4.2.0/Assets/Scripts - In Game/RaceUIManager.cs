@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
@@ -13,7 +14,9 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	string TwoName;
 
 	SelectedManager selectManager;
-	
+	public Dropdown production;
+	private GameObject currentProdManager;
+	public List<GameObject> dropdowns = new List<GameObject>();
 
 
 
@@ -38,22 +41,17 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 		resourceOne.text = OneName + "" + raceManager.ResourceOne;
 		resourceTwo.text = TwoName + "" + raceManager.ResourceTwo;
 		supply.text =  raceManager.currentSupply + "/" + raceManager.supplyMax;
-	
+		currentProdManager = dropdowns [0];
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-
-		
 		if (Input.GetKeyDown (KeyCode.F1)) {
 			fOne();
-			
-			
 		}
 		else if (Input.GetKeyDown (KeyCode.F2)) {
-			fTwo ();
-			
+			fTwo ();	
 		}
 		else if (Input.GetKeyDown (KeyCode.F3)) {
 			fThree();
@@ -92,6 +90,44 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 
 
+	public void chanageDropDown()
+	{
+		if (production.value == 0) {
+			currentProdManager.SetActive (false);
+			currentProdManager = dropdowns [0];
+			currentProdManager.SetActive (true);
+		}
+		else if (production.value == 1) {
+			currentProdManager.SetActive (false);
+			currentProdManager = dropdowns [1];
+			currentProdManager.SetActive (true);
+
+		}
+		else if (production.value == 2) {
+			currentProdManager.SetActive (false);
+			currentProdManager = dropdowns [2];
+			currentProdManager.SetActive (true);
+
+		}
+		else{
+			currentProdManager.SetActive (false);
+		}
+	}
+
+	public void changeUnits()
+	{
+	}
+
+	public void changeEconomy()
+	{
+	}
+
+
+
+
+
+
+
 
 
 	
@@ -110,7 +146,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	}
 
 	public void fOne()
-	{Debug.Log ("Im being clicked");
+	{
 		selectManager.selectAllArmy ();}
 	
 	public void fTwo()

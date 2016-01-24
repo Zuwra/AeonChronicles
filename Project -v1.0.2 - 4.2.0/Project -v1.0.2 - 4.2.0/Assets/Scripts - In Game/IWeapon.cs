@@ -11,6 +11,7 @@ public class IWeapon : MonoBehaviour {
 
 
 	public float attackPeriod;
+	public int numOfAttacks = 1;
 
 
 	public float baseDamage;
@@ -22,7 +23,6 @@ public class IWeapon : MonoBehaviour {
 	public float range =5;
 	public float minimumRange;
 
-	public float DamagePoint;
 
 	public GameObject turret;
 	private float nextActionTime;
@@ -166,23 +166,31 @@ public class IWeapon : MonoBehaviour {
 
 
 	public void attack(GameObject target)
-		{
-	
+	{nextActionTime = Time.time + attackPeriod;
+		for (int i = 0; i < numOfAttacks; i++) {
+			StartCoroutine( Fire ((i * .1f), target));
+		
+		}
+
+
+	}
+
+
+	IEnumerator Fire (float time, GameObject target)
+	{
+		yield return new WaitForSeconds(time);
+
 		enemy = target;
 
-		nextActionTime = Time.time + attackPeriod;
-			
+
+		float damage = baseDamage;
+		UnitStats targetStats= target.GetComponent<UnitStats>();
 
 
-
-			float damage = baseDamage;
-			UnitStats targetStats= target.GetComponent<UnitStats>();
-
-		
-			foreach (bonusDamage tag in extraDamage) {
-				if (targetStats.isUnitType (tag.type))
-				{damage +=  tag.bonus;}
-			}
+		foreach (bonusDamage tag in extraDamage) {
+			if (targetStats.isUnitType (tag.type))
+			{damage +=  tag.bonus;}
+		}
 		damage += massBonus * targetStats.mass;
 
 		GameObject proj = null;
@@ -202,9 +210,6 @@ public class IWeapon : MonoBehaviour {
 
 		} else {
 
-
-
-		
 			//OnAttacking();
 			target.GetComponent<UnitStats> ().TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
 
@@ -215,10 +220,9 @@ public class IWeapon : MonoBehaviour {
 
 		fireTriggers (this.gameObject,proj, target);
 
-			//ATTACK!
 
 	}
-
+		
 
 
 	public void fireTriggers(GameObject source, GameObject proj, GameObject target)

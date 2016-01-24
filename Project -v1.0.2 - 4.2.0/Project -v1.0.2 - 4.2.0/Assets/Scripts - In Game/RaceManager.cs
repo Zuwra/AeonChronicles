@@ -28,11 +28,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public RaceInfo.raceType myRace;
 	public GameObject upgradeBall;
 
+
 	private List<Upgrade> myUpgrades = new List<Upgrade> ();
 
 	private SelectedManager selectedManager;
-
-
 
 
 	private List<GameObject> resourceDropOffs = new List<GameObject> ();
@@ -43,12 +42,16 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	private List<GameObject> unitList = new List<GameObject>();
 
 	private List<LethalDamageinterface> deathTrigger = new List<LethalDamageinterface>();
+	public RaceUIManager uiManager;
+
 
 	//public TechTree myTech;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		selectedManager = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
+		uiManager = FindObjectOfType <RaceUIManager>();
+
 	
 	}
 	
@@ -68,6 +71,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		{
 			f.SetValue (temp, f.GetValue (upgrade));
 		}
+
 		myUpgrades.Add ((Upgrade)temp);
 
 
@@ -137,6 +141,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 		unitList.RemoveAll(item => item == null);
+		//uiManager.dropdowns[].changeUnits ();
 	}
 
 	public void UnitCreated(float supply)
@@ -168,15 +173,19 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 	public void addUnit(GameObject obj )
-	{//Debug.Log (StackTraceUtility.ExtractStackTrace() );
-		//Debug.Log (obj.name);
+	{
 		unitList.Add(obj);
+		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.worker)) {
+			if (uiManager != null) {
+				uiManager.production.GetComponent<EconomyManager> ().updateWorker ();
+			}
+		}
+		//uiManager.changeUnits ();
 	}
 
 	public void updateResources(float resOne, float resTwo)
 	{bool hasNull = false;
 		ResourceOne += resOne;
-	
 		ResourceTwo += resTwo;
 
 
@@ -188,6 +197,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		}
 		if(hasNull){
 			myWatchers.RemoveAll(item => item == null);}
+
+		uiManager.production.GetComponent<EconomyManager> ().updateMoney((int)resOne, (int)resTwo);
+
 	}
 	
 	

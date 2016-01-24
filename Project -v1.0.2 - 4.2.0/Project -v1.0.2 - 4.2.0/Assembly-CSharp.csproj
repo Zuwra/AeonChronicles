@@ -48,6 +48,7 @@
      <Compile Include="Assets\AIMover.cs" />
      <Compile Include="Assets\AbilityBox.cs" />
      <Compile Include="Assets\AbilityFollowState.cs" />
+     <Compile Include="Assets\ArmyUIManager.cs" />
      <Compile Include="Assets\AstarPathfindingProject\AIPath.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\NavmeshController.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\Seeker.cs" />
@@ -128,6 +129,7 @@
      <Compile Include="Assets\CostBox.cs" />
      <Compile Include="Assets\DaexaWorkerInteract.cs" />
      <Compile Include="Assets\DamageUpgrade.cs" />
+     <Compile Include="Assets\EconomyManager.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
      <Compile Include="Assets\GameMenu.cs" />
@@ -143,6 +145,7 @@
      <Compile Include="Assets\MissileArmer.cs" />
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\Page.cs" />
+     <Compile Include="Assets\ProductionManager.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
      <Compile Include="Assets\RaceSelectManager.cs" />
      <Compile Include="Assets\RaceSelectionManger.cs" />
@@ -340,6 +343,7 @@
      <Compile Include="Assets\TurretDeathTrigger.cs" />
      <Compile Include="Assets\TurretMount.cs" />
      <Compile Include="Assets\TurretPickUp.cs" />
+     <Compile Include="Assets\UnitCardCreater.cs" />
      <Compile Include="Assets\Upgradable.cs" />
      <Compile Include="Assets\Upgrade.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />

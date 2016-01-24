@@ -115,7 +115,7 @@ public  class Projectile : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-		Debug.Log ("colliding witt " + other.gameObject + "    " + Source);
+		
 		if (!other.isTrigger) {
 
 		

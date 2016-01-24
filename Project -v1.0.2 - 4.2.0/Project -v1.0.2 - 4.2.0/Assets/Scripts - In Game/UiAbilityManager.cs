@@ -9,7 +9,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public List<GameObject> UIButtons = new List<GameObject>();
 
-
+	public UnitCardCreater cardCreator;
 	private int currentX;
 	private int currentY;
 
@@ -59,6 +59,20 @@ public class UiAbilityManager : MonoBehaviour {
 
 		unitIcons.Clear ();
 
+		int totalUnit = 0;
+
+		for(int j = 0; j < 3; j ++){
+			if (uiPage.rows [j] != null) {
+				totalUnit += uiPage.rows [j].Count;
+			}
+			}
+
+		if (totalUnit > 1 || totalUnit == 0) {
+			cardCreator.gameObject.GetComponent<Canvas> ().enabled = false;
+		} else {
+			cardCreator.gameObject.GetComponent<Canvas> ().enabled = true;
+		}
+
 
 		for(int j = 0; j < 3; j ++){
 			if (uiPage.rows [j] == null) {
@@ -70,34 +84,41 @@ public class UiAbilityManager : MonoBehaviour {
 
 			//Sets the unit's stats and count
 			UnitManager man = uiPage.rows[j][0].gameObject.GetComponent<UnitManager> ();
-			Stats[n].GetComponent<StatsUI> ().loadUnit (man, 
-				uiPage.rows[j].Count, man.UnitName);
+			Stats[n].GetComponent<StatsUI> ().loadUnit (man,uiPage.rows[j].Count, man.UnitName);
 
 		// fill the icon panel
-			if (j == 0 || uiPage.rows [j] != uiPage.rows [j - 1]) {
-				int picCount = Mathf.Min (uiPage.rows [j].Count, 18);
-				int separation = 47;
-
-				if (uiPage.rows [j].Count > 9) {
-					separation = Mathf.Max (10, 408 / picCount);
-				}
+			if (totalUnit > 1) {
 				
-				int currentX = 120;
-				for (int k = 0; k < picCount; k++) {
+				if (j == 0 || uiPage.rows [j] != uiPage.rows [j - 1]) {
+					int picCount = Mathf.Min (uiPage.rows [j].Count, 18);
+					int separation = 47;
+
+					if (uiPage.rows [j].Count > 9) {
+						separation = Mathf.Max (10, 408 / picCount);
+					}
+				
+					int currentX = 120;
+					for (int k = 0; k < picCount; k++) {
 			
-					GameObject unit = (GameObject)Instantiate (buttonTemplate, this.gameObject.transform.position, Quaternion.identity);
-					unit.transform.SetParent (this.gameObject.transform);
-					unit.GetComponent<Image> ().material = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
-					Vector3 pos = Stats [j].transform.position;
-					pos.x += currentX;
-					currentX += separation;
-					unit.transform.position = pos;
+						GameObject unit = (GameObject)Instantiate (buttonTemplate, this.gameObject.transform.position, Quaternion.identity);
+						unit.transform.SetParent (this.gameObject.transform);
+						unit.GetComponent<Image> ().material = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
+						Vector3 pos = Stats [j].transform.position;
+						pos.x += currentX;
+						currentX += separation;
+						unit.transform.position = pos;
 
-					unitIcons.Add (unit);
+						unitIcons.Add (unit);
 
+					}
+				}
+			} else {
+
+				if (uiPage.rows [j] != null) {
+					
+					cardCreator.CreateCard (uiPage.rows [j][0]);
 				}
 			}
-
 			//Set up the command card
 			int AbilityX = 0;
 	
