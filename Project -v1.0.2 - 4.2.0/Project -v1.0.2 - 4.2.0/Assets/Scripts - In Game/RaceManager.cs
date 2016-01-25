@@ -122,7 +122,11 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				}}
 		}
 
-
+		if (finishDeath) {
+			if (uiManager != null) {
+				uiManager.production.GetComponent<ArmyUIManager> ().unitLost(Unit);
+			}
+		}
 		return finishDeath;
 
 	}
@@ -141,6 +145,8 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 		unitList.RemoveAll(item => item == null);
+
+
 		//uiManager.dropdowns[].changeUnits ();
 	}
 
@@ -179,6 +185,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			if (uiManager != null) {
 				uiManager.production.GetComponent<EconomyManager> ().updateWorker ();
 			}
+		}
+		if (uiManager != null) {
+			uiManager.production.GetComponent<ArmyUIManager> ().updateUnits (obj);
 		}
 		//uiManager.changeUnits ();
 	}

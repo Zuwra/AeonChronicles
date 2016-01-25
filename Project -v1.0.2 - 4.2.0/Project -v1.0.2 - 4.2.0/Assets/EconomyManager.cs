@@ -14,7 +14,7 @@ public class EconomyManager : MonoBehaviour {
 
 	private Dictionary<float, int> resOneMap = new Dictionary<float, int>();
 	private Dictionary<float, int> resTwoMap = new Dictionary<float, int>();
-
+	private int totalWorkers = 0;
 
 	private float nextActionTime;
 
@@ -87,12 +87,7 @@ public class EconomyManager : MonoBehaviour {
 
 
 	public void updateWorker()
-	{int totalWorkers = 0;
-		foreach (GameObject obj in racer.getUnitList()) {
-			if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.worker)) {
-				totalWorkers++;
-			}
-		}
+	{totalWorkers++;
 
 		Workers.text = "Workers: " + totalWorkers;
 	}

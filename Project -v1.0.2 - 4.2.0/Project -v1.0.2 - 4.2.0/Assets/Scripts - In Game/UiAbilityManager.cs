@@ -99,14 +99,15 @@ public class UiAbilityManager : MonoBehaviour {
 				
 					int currentX = 120;
 					for (int k = 0; k < picCount; k++) {
-			
-						GameObject unit = (GameObject)Instantiate (buttonTemplate, this.gameObject.transform.position, Quaternion.identity);
-						unit.transform.SetParent (this.gameObject.transform);
-						unit.GetComponent<Image> ().material = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
+
 						Vector3 pos = Stats [j].transform.position;
 						pos.x += currentX;
+
+						GameObject unit = (GameObject)Instantiate (buttonTemplate,  pos, Quaternion.identity);
+						unit.transform.SetParent (this.gameObject.transform);
+						unit.GetComponent<Image> ().material = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
+					
 						currentX += separation;
-						unit.transform.position = pos;
 
 						unitIcons.Add (unit);
 

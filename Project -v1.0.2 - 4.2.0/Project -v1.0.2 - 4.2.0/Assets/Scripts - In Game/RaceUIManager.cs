@@ -15,6 +15,8 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 	SelectedManager selectManager;
 	public Dropdown production;
+
+
 	private GameObject currentProdManager;
 	public List<GameObject> dropdowns = new List<GameObject>();
 
