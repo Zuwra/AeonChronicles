@@ -1,10 +1,4 @@
 ﻿
-
-
-using UnityEngine;
-using System.Collections;
-
-
 /*
 	/* AI for following paths.
  * This AI is the default movement script which comes with the A* Pathfinding Project.
@@ -57,7 +51,7 @@ public class AIMover : IMover {
 	 * It can be a point on the ground where the player has clicked in an RTS for example, or it can be the player object in a zombie game.
 	 */
 	private Transform target;
-	protected Vector3 targetV;
+	protected Vector3 targetV = Vector3.zero;
 
 		/** Enables or disables searching for paths.
 	 * Setting this to false does not stop any active path requests from being calculated or stop it from continuing to follow the current path.
@@ -72,7 +66,7 @@ public class AIMover : IMover {
 		/** Maximum velocity.
 	 * This is the maximum speed in world units per second.
 	 */
-		public float speed = 3;
+		public new float speed = 3;
 
 		/** Rotation speed.
 	 * Rotation is calculated using Quaternion.SLerp. This variable represents the damping, the higher, the faster it will be able to rotate.
@@ -232,7 +226,7 @@ public class AIMover : IMover {
 	 * \returns The time to wait until calling this function again (based on #repathRate)
 	 */
 		public float TrySearchPath () {
-		if (Time.time - lastRepath >= repathRate && canSearchAgain && canSearch && (target != null ||targetV != null)) {
+		if (Time.time - lastRepath >= repathRate && canSearchAgain && canSearch && (target != null ||targetV != Vector3.zero)) {
 				SearchPath ();
 				return repathRate;
 			} else {
@@ -245,7 +239,7 @@ public class AIMover : IMover {
 		/** Requests a path to the target */
 		public virtual void SearchPath () {
 
-		if (target == null && (targetV == Vector3.zero || targetV == null))
+		if (target == null && (targetV == Vector3.zero || targetV == Vector3.zero))
 			return;//throw new System.InvalidOperationException ("Target is null");
 
 		lastRepath = Time.time;

@@ -10,12 +10,12 @@ public class FButtonManager : MonoBehaviour {
 	public Text fEight;
 
 
-	SelectedManager selectManager;
+	//SelectedManager selectManager;
 
 
 	// Use this for initialization
 	void Start () {
-		selectManager = GameObject.Find ("Manager").GetComponent<SelectedManager>();
+		//selectManager = GameObject.Find ("Manager").GetComponent<SelectedManager>();
 		//setButtons ();
 
 	}

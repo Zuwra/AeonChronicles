@@ -40,6 +40,7 @@ public class GameMenu : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKeyUp (KeyCode.Backspace)) {
+			
 			openMenu ();
 		}
 

@@ -50,6 +50,7 @@ public class Morph :  Ability {
 		Morphing = false;
 		myCost.refundCost ();
 		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
+		racer.stopBuildingUnit (unitToBuild);
 	}
 
 
@@ -82,7 +83,7 @@ public class Morph :  Ability {
 				timer = buildTime;
 				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
 				Morphing = true;
-
+			racer.buildingUnit (unitToBuild);
 				myManager.changeState (new ChannelState (myManager, myManager.cMover, myManager.myWeapon));
 
 				//return false;
@@ -113,7 +114,7 @@ public class Morph :  Ability {
 				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateMoveOrder (myInteractor.rallyPoint));
 			}
 		}
-
+		racer.stopBuildingUnit (unitToBuild);
 		Morphing = false;
 		Destroy (this.gameObject);
 	}

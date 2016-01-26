@@ -30,7 +30,6 @@ public class BuildUnit :  Ability {
 	void Update () {
 		if (buildingUnit) {
 
-
 			timer -= Time.deltaTime;
 			mySelect.updateCoolDown (1 - timer/buildTime);
 			if(timer <=0)
@@ -90,6 +89,8 @@ public class BuildUnit :  Ability {
 			timer = buildTime;
 			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
 			buildingUnit = true;
+			racer.buildingUnit (unitToBuild);
+
 		//	return false;
 		}
 
@@ -120,7 +121,7 @@ public class BuildUnit :  Ability {
 
 			obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
 		}
-
+		racer.stopBuildingUnit (unitToBuild);
 		racer.applyUpgrade (unit);
 		buildingUnit = false;
 	}

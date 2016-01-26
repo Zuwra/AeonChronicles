@@ -267,7 +267,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			break;
 		case Mode.Normal:
 			//We've left clicked, what have we left clicked on?
-			int currentObjLayer = currentObject.layer;
+			//int currentObjLayer = currentObject.layer;
 			originalPosition = Input.mousePosition;
 
 

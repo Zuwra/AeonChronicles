@@ -107,6 +107,16 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void addWatcher(ManagerWatcher input)
 	{myWatchers.Add (input);}
 
+
+	public void buildingUnit(GameObject abil)
+	{uiManager.production.GetComponent<ProductionManager>().updateUnits(abil);	}
+
+	public void stopBuildingUnit(GameObject abil)
+	{uiManager.production.GetComponent<ProductionManager>().unitLost(abil);		}
+
+
+
+
     public bool UnitDying(GameObject Unit, GameObject deathSource)
 	{bool finishDeath = true;
 
@@ -207,8 +217,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		if(hasNull){
 			myWatchers.RemoveAll(item => item == null);}
 
-		uiManager.production.GetComponent<EconomyManager> ().updateMoney((int)resOne, (int)resTwo);
-
+		if (resOne >= 0 && resTwo >= 0) {
+			uiManager.production.GetComponent<EconomyManager> ().updateMoney ((int)resOne, (int)resTwo);
+		}
 	}
 	
 	

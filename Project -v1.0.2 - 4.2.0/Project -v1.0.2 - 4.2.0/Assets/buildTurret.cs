@@ -9,10 +9,10 @@ public class buildTurret :Ability{
 	public GameObject unitToBuild;
 
 	public float buildTime;
-
+	private RaceManager racer;
 	private float timer =0;
 	private bool buildingUnit = false;
-	public int numberOfTurrets;
+
 	private Selected mySelect;
 
 	private List<TurretMount> turretMounts = new List<TurretMount>();
@@ -22,6 +22,7 @@ public class buildTurret :Ability{
 		manager = GetComponent<UnitManager> ();
 		mySelect = GetComponent<Selected> ();
 		myCost.cooldown = buildTime;
+		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ();
 	}
 
 	// Update is called once per frame
@@ -33,19 +34,22 @@ public class buildTurret :Ability{
 			if (timer <= 0) {
 				mySelect.updateCoolDown (0);
 				buildingUnit = false;
+
+				racer.stopBuildingUnit (unitToBuild);
 				foreach (Transform obj in this.transform) {
 
 					obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
 				}
 
-				numberOfTurrets++;
+				chargeCount++;
+				RaceManager.upDateUI ();
 
 			}
 		}
 		if(autocast){
 			if (turretMounts.Count > 0) {
 				foreach (TurretMount obj in turretMounts) {
-					if (numberOfTurrets == 0){return;}
+					if (chargeCount == 0){return;}
 
 					if(obj.turret == null) {
 							obj.placeTurret (createUnit ());
@@ -118,6 +122,8 @@ public class buildTurret :Ability{
 		buildingUnit = false;
 		myCost.refundCost ();
 		GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
+	
+		racer.stopBuildingUnit (unitToBuild);
 	}
 
 
@@ -154,6 +160,7 @@ public class buildTurret :Ability{
 			timer = buildTime;
 			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
 			buildingUnit = true;
+			racer.buildingUnit (unitToBuild);
 		}
 		//return true;//next unit should also do this.
 	}
@@ -166,7 +173,8 @@ public class buildTurret :Ability{
 	{
 
 		Vector3 location = new Vector3(this.gameObject.transform.position.x + 25,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z);
-		numberOfTurrets--;
+		chargeCount--;
+		RaceManager.upDateUI ();
 	GameObject tur = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
 	return tur;
 	}

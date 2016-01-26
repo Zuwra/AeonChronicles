@@ -88,7 +88,9 @@ public class ArmyUIManager : MonoBehaviour {
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
 		icon.transform.SetParent (unitPanel.transform);
 		icon.GetComponent<Image> ().material = manage.myStats.Icon;
-
+		if (!manage.myStats.isUnitType (UnitTypes.UnitTypeTag.structure)) {
+			icon.transform.SetAsFirstSibling ();
+		}
 		RectTransform trans = unitPanel.GetComponent<RectTransform> ();
 
 		if (iconList.Count > 8) {

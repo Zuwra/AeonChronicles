@@ -4,13 +4,13 @@ using System.Collections;
 public class RepairTurret : Ability, Modifier{
 
 
-	public int maxRepair = 400;
+	public int maxRepair = 600;
 	private UnitManager mymanager;
 
 	private UnitStats TargetHealth;
 	private GameObject target;
 
-	public int repairRate = 6;
+	public int repairRate = 8;
 	private float nextActionTime;
 	private repairReturn returner;
 	// Use this for initialization
