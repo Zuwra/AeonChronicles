@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-public class buildTurret :Ability{
+public class buildTurret :UnitProduction{
 
 
 
@@ -35,7 +35,7 @@ public class buildTurret :Ability{
 				mySelect.updateCoolDown (0);
 				buildingUnit = false;
 
-				racer.stopBuildingUnit (unitToBuild);
+				racer.stopBuildingUnit (this);
 				foreach (Transform obj in this.transform) {
 
 					obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
@@ -63,6 +63,9 @@ public class buildTurret :Ability{
 
 		}
 	}
+
+	public override float getProgress ()
+	{return (1 - timer/buildTime);}
 
 
 	public void turnOffAutoCast()
@@ -123,7 +126,7 @@ public class buildTurret :Ability{
 		myCost.refundCost ();
 		GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
 	
-		racer.stopBuildingUnit (unitToBuild);
+		racer.stopBuildingUnit (this);
 	}
 
 
@@ -160,7 +163,7 @@ public class buildTurret :Ability{
 			timer = buildTime;
 			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
 			buildingUnit = true;
-			racer.buildingUnit (unitToBuild);
+			racer.buildingUnit (this);
 		}
 		//return true;//next unit should also do this.
 	}

@@ -6,8 +6,8 @@ public class ProductionManager : MonoBehaviour {
 
 
 
-	private Dictionary<string, List<GameObject>> unitList = new Dictionary<string, List<GameObject>>();
 
+	private Dictionary<string,  List<UnitProduction>> abilityList = new Dictionary<string,  List<UnitProduction>> ();
 	public GameObject template;
 	public GameObject unitPanel;
 	private Dictionary<string, GameObject> iconList = new Dictionary<string,GameObject>();
@@ -18,7 +18,7 @@ public class ProductionManager : MonoBehaviour {
 	private float nextActionTime;
 	// Use this for initialization
 	void Start () {
-		nextActionTime = Time.time + 1;
+		nextActionTime = Time.time + .5f;
 		yPosition = unitPanel.transform.position.y;
 
 
@@ -27,37 +27,41 @@ public class ProductionManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Time.time > nextActionTime) {
-			nextActionTime += 1;
+			nextActionTime += .5f;
 
-		
+			foreach (KeyValuePair<string, List<UnitProduction>> pair in abilityList) {
+				Transform t = iconList [pair.Key].transform.FindChild ("Percent");
+				t.GetComponent<Text>().text = 
+					"" +(int)(pair.Value [0].getProgress()*100) + "%";
 
+
+			}
 
 		}
-
-
 
 	}
 
 
-	public void updateUnits(GameObject unit)
+	public void updateUnits( UnitProduction producer)
 	{
-		UnitManager manage = unit.GetComponent<UnitManager> ();
+		UnitManager manage = producer.GetComponent<UnitManager> ();
 
-		if (unitList.ContainsKey (manage.UnitName)) {
+		if (abilityList.ContainsKey (manage.UnitName)) {
 
-			unitList [manage.UnitName].Add (unit);
+			Debug.Log ("bulding " + producer);
+			abilityList [manage.UnitName].Add (producer);
 			StartCoroutine (addNUmber (manage));
 
 		} 
 		else {
 
-			List<GameObject> list = new List<GameObject> ();
-			list.Add (unit);
-			unitList.Add (manage.UnitName, list);
+			List<UnitProduction> list = new List<UnitProduction> ();
+			list.Add (producer);
+			abilityList.Add (manage.UnitName, list);
 			unitCount++;
 
 
-			StartCoroutine (createIcon (unit));
+			StartCoroutine (createIcon (producer));
 
 		}
 
@@ -68,22 +72,22 @@ public class ProductionManager : MonoBehaviour {
 		yield return new WaitForSeconds(0);
 
 		iconList [manage.UnitName].transform.FindChild("Text").GetComponent<Text> ().text
-		= ""+unitList [manage.UnitName].Count;
+		= ""+abilityList [manage.UnitName].Count;
 	}
 
 
 
 
-	public void unitLost(GameObject unit)
-	{UnitManager manage = unit.GetComponent<UnitManager> ();
+	public void unitLost(UnitProduction produce)
+	{UnitManager manage = produce.GetComponent<UnitManager> ();
 
-		unitList [manage.UnitName].Remove (unit);
+		abilityList [manage.UnitName].Remove (produce);
 
-		if (unitList [manage.UnitName].Count == 0) {
+		if (abilityList [manage.UnitName].Count == 0) {
 			GameObject obj = iconList [manage.UnitName];
 			iconList.Remove (manage.UnitName);
 			Destroy (obj);
-			unitList.Remove (manage.UnitName);
+			abilityList.Remove (manage.UnitName);
 		} else {
 			addNUmber (manage);
 		}
@@ -91,15 +95,15 @@ public class ProductionManager : MonoBehaviour {
 	}
 
 
-	IEnumerator createIcon(GameObject unit)
+	IEnumerator createIcon(UnitProduction produce)
 	{		yield return new WaitForSeconds(0);
 
-		UnitManager manage = unit.GetComponent<UnitManager> ();
+		UnitManager manage = produce.GetComponent<UnitManager> ();
 		UnitStats theStats = manage.gameObject.GetComponent<UnitStats> ();
 
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
 		icon.transform.SetParent (unitPanel.transform);
-		icon.GetComponent<Image> ().material =theStats.Icon;
+		icon.GetComponent<Image> ().material = produce.iconPic;
 		if (!theStats.isUnitType (UnitTypes.UnitTypeTag.structure)) {
 			icon.transform.SetAsFirstSibling ();
 		}

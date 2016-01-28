@@ -129,9 +129,9 @@ public class UiAbilityManager : MonoBehaviour {
 					if(man.abilityList.Count > AbilityX * 4){
 						Transform trans = UIButtons [n].transform.FindChild ("QButton");
 						trans.gameObject.SetActive (true);
-						trans.GetComponent<Image> ().material = man.abilityList [0 + AbilityX * 4].iconPic;
+						trans.GetComponent<Image> ().material = man.abilityList [AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [0 + AbilityX * 4];
-
+						trans.GetComponent<Button> ().interactable = man.abilityList [AbilityX * 4].active;
 						if (man.abilityList [0 + AbilityX * 4].autocast) {
 							trans.GetComponent<Button> ().image.color = Color.green;
 						} else {
@@ -151,7 +151,7 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
-
+						trans.GetComponent<Button> ().interactable = man.abilityList [1+AbilityX * 4].active;
 						if (man.abilityList [1 + AbilityX * 4].autocast) {
 							trans.GetComponent<Button> ().image.color = Color.green;
 						} else {
@@ -172,7 +172,7 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
-
+						trans.GetComponent<Button> ().interactable = man.abilityList [2+AbilityX * 4].active;
 						if (man.abilityList [2 + AbilityX * 4].autocast) {
 							trans.GetComponent<Button> ().image.color = Color.green;
 						} else {
@@ -194,7 +194,7 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
-
+						trans.GetComponent<Button> ().interactable = man.abilityList [3+AbilityX * 4].active;
 						if (man.abilityList [3 + AbilityX * 4].autocast) {
 							trans.GetComponent<Button> ().image.color = Color.green;
 						} else {
@@ -328,8 +328,11 @@ public class UiAbilityManager : MonoBehaviour {
 					if(man.abilityList.Count > AbilityX * 4){
 						Transform trans = UIButtons [n].transform.FindChild ("QButton");
 
-						trans.GetComponent<Image> ().material = man.abilityList [0 + AbilityX * 4].iconPic;
+						trans.GetComponent<Image> ().material = man.abilityList [AbilityX * 4].iconPic;
 				
+					
+						trans.GetComponent<Button> ().interactable = man.abilityList [AbilityX * 4].active;
+					
 
 						Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
 						if (man.abilityList [AbilityX * 4].chargeCount > -1) {
@@ -347,6 +350,8 @@ public class UiAbilityManager : MonoBehaviour {
 					
 
 						Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
+						trans.GetComponent<Button> ().interactable = man.abilityList [1 +AbilityX * 4].active;
+
 						if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
 							charger.text =  ""+man.abilityList [1 + AbilityX * 4].chargeCount;
 
@@ -359,7 +364,7 @@ public class UiAbilityManager : MonoBehaviour {
 						Transform trans = UIButtons [n].transform.FindChild ("EButton");
 					
 						trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
-
+						trans.GetComponent<Button> ().interactable = man.abilityList [2+ AbilityX * 4].active;
 
 						Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
 						if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
@@ -375,7 +380,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 						trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
 
-
+						trans.GetComponent<Button> ().interactable = man.abilityList [3+AbilityX * 4].active;
 						Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
 						if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
 							charger.text =  ""+man.abilityList [3 + AbilityX * 4].chargeCount;

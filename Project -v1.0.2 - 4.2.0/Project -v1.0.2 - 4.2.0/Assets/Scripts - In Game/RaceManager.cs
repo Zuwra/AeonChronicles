@@ -106,12 +106,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void addWatcher(ManagerWatcher input)
 	{myWatchers.Add (input);}
+	 
 
-
-	public void buildingUnit(GameObject abil)
+	public void buildingUnit(UnitProduction abil)
 	{uiManager.production.GetComponent<ProductionManager>().updateUnits(abil);	}
 
-	public void stopBuildingUnit(GameObject abil)
+	public void stopBuildingUnit(UnitProduction abil)
 	{uiManager.production.GetComponent<ProductionManager>().unitLost(abil);		}
 
 

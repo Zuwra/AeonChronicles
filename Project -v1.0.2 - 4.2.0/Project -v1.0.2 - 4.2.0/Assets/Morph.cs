@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Morph :  Ability {
+public class Morph :  UnitProduction {
 
 
 
 	public GameObject unitToBuild;
 	private Selected mySelect;
 
-	public float buildTime;
 	private BuildingInteractor myInteractor;
 
 	private UnitManager myManager;
 	private RaceManager racer;
 
+	public float buildTime;
 	private float timer =0;
 	private bool Morphing = false;
 	// Use this for initialization
@@ -50,10 +50,11 @@ public class Morph :  Ability {
 		Morphing = false;
 		myCost.refundCost ();
 		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
-		racer.stopBuildingUnit (unitToBuild);
+		racer.stopBuildingUnit (this);
 	}
 
-
+	public override float getProgress ()
+	{return (1 - timer/buildTime);}
 
 	override
 	public continueOrder canActivate ()
@@ -83,7 +84,7 @@ public class Morph :  Ability {
 				timer = buildTime;
 				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
 				Morphing = true;
-			racer.buildingUnit (unitToBuild);
+				racer.buildingUnit (this);
 				myManager.changeState (new ChannelState (myManager, myManager.cMover, myManager.myWeapon));
 
 				//return false;
@@ -114,7 +115,7 @@ public class Morph :  Ability {
 				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateMoveOrder (myInteractor.rallyPoint));
 			}
 		}
-		racer.stopBuildingUnit (unitToBuild);
+		racer.stopBuildingUnit (this);
 		Morphing = false;
 		Destroy (this.gameObject);
 	}

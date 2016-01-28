@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BuildUnit :  Ability {
+public class BuildUnit : UnitProduction {
 
 
 
@@ -31,6 +31,7 @@ public class BuildUnit :  Ability {
 		if (buildingUnit) {
 
 			timer -= Time.deltaTime;
+
 			mySelect.updateCoolDown (1 - timer/buildTime);
 			if(timer <=0)
 			{mySelect.updateCoolDown (0);
@@ -42,6 +43,11 @@ public class BuildUnit :  Ability {
 	}
 
 	public override void setAutoCast(){}
+
+
+	public override float getProgress ()
+	{return (1 - timer/buildTime);}
+
 
 	public void cancelBuild ()
 		{
@@ -89,7 +95,7 @@ public class BuildUnit :  Ability {
 			timer = buildTime;
 			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
 			buildingUnit = true;
-			racer.buildingUnit (unitToBuild);
+			racer.buildingUnit (this);
 
 		//	return false;
 		}
@@ -121,7 +127,7 @@ public class BuildUnit :  Ability {
 
 			obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
 		}
-		racer.stopBuildingUnit (unitToBuild);
+		racer.stopBuildingUnit (this);
 		racer.applyUpgrade (unit);
 		buildingUnit = false;
 	}

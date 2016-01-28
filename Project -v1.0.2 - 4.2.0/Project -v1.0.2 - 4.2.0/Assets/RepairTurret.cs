@@ -74,10 +74,6 @@ public class RepairTurret : Ability, Modifier{
 			}
 		
 		}
-
-
-
-
 	}
 
 
@@ -102,8 +98,6 @@ public class RepairTurret : Ability, Modifier{
 					}
 				}
 			}
-
-
 			return best;
 
 		}
