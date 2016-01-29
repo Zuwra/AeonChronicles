@@ -16,6 +16,10 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text range;
 
 
+	public Image damageIcon;
+	public Image rangeIcon;
+	public Image attackSpeedIcon;
+
 
 
 
@@ -49,6 +53,9 @@ public class UnitCardCreater : MonoBehaviour {
 
 
 		if (manager.myWeapon != null) {
+			damageIcon.enabled = true;
+			rangeIcon.enabled= true;
+			attackSpeedIcon.enabled = true;
 			damage.text = "" + manager.myWeapon.baseDamage;
 			attackSpeed.text = "" + manager.myWeapon.attackPeriod;
 			range.text = "" + manager.myWeapon.range;
@@ -57,6 +64,10 @@ public class UnitCardCreater : MonoBehaviour {
 			}
 		
 		} else {
+			damageIcon.enabled = false;
+			rangeIcon.enabled= false;
+			attackSpeedIcon.enabled= false;
+
 			damage.text = "" ;
 			attackSpeed.text = "";
 			range.text = "" ;

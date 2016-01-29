@@ -118,14 +118,15 @@ public class UnitManager : Unit,IOrderable{
 	public bool UseAbility(int n)
 	{continueOrder order = null;
 		if (abilityList [n] != null) {
-			 order = abilityList [n].canActivate ();
+			order = abilityList [n].canActivate ();
+
 			if (order.canCast) {
-				changeState (new CastAbilityState (abilityList [n] ));
-			}
-				
+
+				changeState (new CastAbilityState (abilityList [n]));
+
 			}
 
-
+		}
 	return order.nextUnitCast;
 	}
 
@@ -280,7 +281,7 @@ public class UnitManager : Unit,IOrderable{
 	{
 		if (myState is CastAbilityState) {
 			if (queuedStates.Count > 0) {
-				myState = queuedStates.Dequeue();
+				myState = queuedStates.Dequeue ();
 				if (myState != null) {
 					myState.myManager = this;
 					myState.myWeapon = myWeapon;
@@ -290,7 +291,7 @@ public class UnitManager : Unit,IOrderable{
 			} else {
 				changeState (new DefaultState ());
 			}
-		}
+		} 
 	}
 
 	public void changeState(UnitState nextState)
@@ -302,6 +303,7 @@ public class UnitManager : Unit,IOrderable{
 			return;
 		
 		} 
+
 		else if (nextState is DefaultState) {
 			if (queuedStates.Count > 0) {
 
@@ -315,8 +317,16 @@ public class UnitManager : Unit,IOrderable{
 				myState.initialize ();
 				return;
 
-			} 
+			}  
 		}
+
+		else if (myState is ChannelState) {
+			
+				queuedStates.Enqueue(nextState);
+			return;
+			}
+
+	
 		else if (nextState is AttackMoveState) {
 			((AttackMoveState)nextState).setHome (this.gameObject.transform.position);
 		}
@@ -338,6 +348,11 @@ public class UnitManager : Unit,IOrderable{
 			myState.initialize ();
 
 			
+	}
+
+	public void enQueueState(UnitState nextState)
+	{queuedStates.Enqueue (nextState);
+	
 	}
 
 
@@ -365,6 +380,21 @@ public class UnitManager : Unit,IOrderable{
 	{if(myState!=null)
 		myState.attackResponse (src);}
 
+
+
+	public UnitState getState()
+	{return myState;}
+
+	public int getStateCount()
+	{return queuedStates.Count;
+	}
+
+	public UnitState checkNextState()
+	{if (queuedStates.Count > 0) {
+			return queuedStates.Peek ();
+		} else {
+		return null;}
+	}
 
 	public float getChaseRange()
 	{return chaseRange;}

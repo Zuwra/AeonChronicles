@@ -85,7 +85,7 @@ public class Morph :  UnitProduction {
 				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
 				Morphing = true;
 				racer.buildingUnit (this);
-				myManager.changeState (new ChannelState (myManager, myManager.cMover, myManager.myWeapon));
+				myManager.changeState (new ChannelState ());
 
 				//return false;
 

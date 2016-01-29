@@ -16,6 +16,9 @@ public class BuildUnit : UnitProduction {
 
 	private float timer =0;
 	private bool buildingUnit = false;
+	private UnitManager manage;
+
+	private int QueueNum;
 	// Use this for initialization
 	void Start () {
 
@@ -23,6 +26,7 @@ public class BuildUnit : UnitProduction {
 		myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
 		myCost.cooldown = buildTime;
+		manage = GetComponent<UnitManager> ();
 	
 	}
 	
@@ -64,13 +68,9 @@ public class BuildUnit : UnitProduction {
 	{
 		continueOrder order = new continueOrder();
 
-		if (buildingUnit) {
-			order.canCast = false;
 
+		order.nextUnitCast = false;
 
-		} else {
-			order.nextUnitCast = false;
-		}
 
 		if (!myCost.canActivate ()) {
 			order.canCast = true;
@@ -82,21 +82,30 @@ public class BuildUnit : UnitProduction {
 	
 	override
 		public void Activate()
-	{
+	{//Debug.Log ("casting " + QueueNum);
+
 		if (myCost.canActivate ()) {
-
-			myCost.payCost();
-			//start animations in any children
-			foreach (Transform obj in this.transform) {
+			Debug.Log ("Queue another unit" + manage.checkNextState() + "   " +manage.getStateCount() );
+			//if(manage.getStateCount > 0){
 				
-				obj.SendMessage ("ActivateAnimation",SendMessageOptions.DontRequireReceiver);
-			}
+			
+			//	manage.enQueueState (new CastAbilityState (this));
+			//} else {
+				myCost.payCost();
+			
+				manage.enQueueState (new ChannelState ());
+				//start animations in any children
+				foreach (Transform obj in this.transform) {
+				
+					obj.SendMessage ("ActivateAnimation", SendMessageOptions.DontRequireReceiver);
+				}
 
-			timer = buildTime;
-			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
-			buildingUnit = true;
-			racer.buildingUnit (this);
+				timer = buildTime;
 
+				buildingUnit = true;
+				racer.buildingUnit (this);
+				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
+		//	}
 		//	return false;
 		}
 
@@ -130,7 +139,11 @@ public class BuildUnit : UnitProduction {
 		racer.stopBuildingUnit (this);
 		racer.applyUpgrade (unit);
 		buildingUnit = false;
-	}
+
+	
+		manage.changeState (new DefaultState ());//.enQueueState (new DefaultState ());
+		}
+
 
 
 

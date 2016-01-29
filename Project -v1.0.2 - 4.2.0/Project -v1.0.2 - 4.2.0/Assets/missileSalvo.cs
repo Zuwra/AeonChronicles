@@ -55,15 +55,17 @@ public class missileSalvo : Ability, Validator, Notify{
 	override
 	public void Activate()
 	{
-		Debug.Log ("activating missile salvo");
+
 		GameObject home = null;
 		float distance = 100000;
 
 		foreach (MissileArmer arm in Object.FindObjectsOfType<MissileArmer>()) {
+			if(arm.missiles){
 			float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
-			if (temp< distance) {
-				distance = temp;
-				home = arm.gameObject;
+				if (temp < distance) {
+					distance = temp;
+					home = arm.gameObject;
+				}
 			}
 		
 		}

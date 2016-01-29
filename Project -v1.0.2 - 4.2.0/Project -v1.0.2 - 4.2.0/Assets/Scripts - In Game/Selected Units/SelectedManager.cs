@@ -200,11 +200,14 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         if (Input.GetKeyUp(KeyCode.BackQuote))
         {
 
-            if (currentPage < UIPages.Count)
-            {
-                abilityManager.loadUI(UIPages[currentPage++]);
+            if (currentPage < UIPages.Count-1)
+			{
+				currentPage++;
+
+                abilityManager.loadUI(UIPages[currentPage]);
             }
             else {
+				
                 currentPage = 0;
                 abilityManager.loadUI(UIPages[currentPage]);
             }
@@ -217,8 +220,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
     public void callAbility(int n)
-    {
-        UIPages[currentPage].useAbility(n);
+	{if (UIPages.Count > 0) {
+			UIPages [currentPage].useAbility (n);
+		}
     }
 
     public void setAutoCast(int n)
@@ -411,7 +415,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     }
 
     public void GiveOrder(Order order)
-	{
+	{//fix this once we get to multiplayer games
 		if(SelectedActiveObjects.Count == 0 || SelectedActiveObjects[0].getObject().GetComponent<UnitManager>().PlayerOwner != 1)
 			{return;}
 
@@ -421,19 +425,28 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         }
 
 
-		if (order.OrderType == 1 && SelectedActiveObjects.Count > 0)
-        {
-            Vector3 location = order.OrderLocation;
-            location.y = location.y + 30;
-          Instantiate(movementInd, location, Quaternion.Euler(90, 0, 0));
-            //ind.transform.Rotate (Vector3.down);
-        }
-		else if (order.OrderType == 4 && SelectedActiveObjects.Count > 0)
-        {
-            Vector3 location = order.OrderLocation;
-            location.y = location.y + 30;
-           Instantiate(attackInd, location, Quaternion.Euler(90, 0, 0));
-        }
+		if (order.OrderType == 1 && SelectedActiveObjects.Count > 0) {
+			Vector3 location = order.OrderLocation;
+			location.y = location.y + 30;
+			Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
+
+		} else if (order.OrderType == 4 && SelectedActiveObjects.Count > 0) {
+			Vector3 location = order.OrderLocation;
+			location.y = location.y + 30;
+			Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
+		} 
+		else if (order.OrderType == 6 && SelectedActiveObjects.Count > 0) {
+			if (order.Target.GetComponent<UnitManager> ().PlayerOwner != 1) {
+				Vector3 location = order.OrderLocation;
+				location.y = location.y + 30;
+				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
+			} else {
+				Vector3 location = order.OrderLocation;
+				location.y = location.y + 30;
+				Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
+			}
+		
+		}
     }
 
     public void AddUnitsToGroup(int groupNumber)

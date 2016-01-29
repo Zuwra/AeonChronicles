@@ -266,6 +266,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 			break;
 		case Mode.Normal:
+
+		//	if (!EventSystem.current.IsPointerOverGameObject ()) {
 			//We've left clicked, what have we left clicked on?
 			//int currentObjLayer = currentObject.layer;
 			originalPosition = Input.mousePosition;
@@ -331,7 +333,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				m_Placed = false;
 				return;
 			}
-			if (!EventSystem.current.IsPointerOverGameObject ()) {
+		
 				//We've left clicked, have we left clicked on a unit?
 				int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
             
@@ -399,7 +401,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 						//refresh GUI elements
 						m_SelectedManager.CreateUIPages (0);
 					}
-				}
+
 
 			}
 			break;

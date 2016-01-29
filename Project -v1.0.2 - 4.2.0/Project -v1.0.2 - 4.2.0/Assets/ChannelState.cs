@@ -7,11 +7,8 @@ public class ChannelState : UnitState{
 
 
 
-	public ChannelState(UnitManager man, IMover move, IWeapon weapon)
+	public ChannelState()
 	{
-		myManager = man;
-		myMover = move;
-		myWeapon = weapon;
 
 	}
 

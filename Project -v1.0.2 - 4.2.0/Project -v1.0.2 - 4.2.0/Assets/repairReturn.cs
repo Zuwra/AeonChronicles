@@ -63,12 +63,13 @@ public class repairReturn : Ability{
 		float distance = 100000;
 
 		foreach (MissileArmer arm in Object.FindObjectsOfType<MissileArmer>()) {
-			float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
-			if (temp< distance) {
-				distance = temp;
-				home = arm.gameObject;
+			if (arm.repairs) {
+				float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
+				if (temp < distance) {
+					distance = temp;
+					home = arm.gameObject;
+				}
 			}
-
 		}
 
 		if (home != null) {
