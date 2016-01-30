@@ -131,6 +131,24 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
+	override
+	public bool UseTargetAbility(GameObject obj, Vector3 loc, int n)
+	{continueOrder order = null;
+		if (abilityList [n] != null) {
+	
+			order = abilityList [n].canActivate ();
+		
+			if (order.canCast) {
+				changeState (new AbilityFollowState (obj,loc, (TargetAbility)abilityList [n]));
+
+
+			}
+
+		}
+		return order.nextUnitCast;
+	}
+
+
 
 	override
 	public void autoCast(int n)

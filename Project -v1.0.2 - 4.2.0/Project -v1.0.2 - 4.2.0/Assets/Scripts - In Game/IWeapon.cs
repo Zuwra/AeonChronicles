@@ -181,46 +181,48 @@ public class IWeapon : MonoBehaviour {
 		yield return new WaitForSeconds(time);
 
 		enemy = target;
+		if (target) {
+			
+
+			float damage = baseDamage;
+			UnitStats targetStats = target.GetComponent<UnitStats> ();
 
 
-		float damage = baseDamage;
-		UnitStats targetStats= target.GetComponent<UnitStats>();
+			foreach (bonusDamage tag in extraDamage) {
+				if (targetStats.isUnitType (tag.type)) {
+					damage += tag.bonus;
+				}
+			}
+			damage += massBonus * targetStats.mass;
 
+			GameObject proj = null;
+			if (projectile != null) {
+				Vector3 pos = this.gameObject.transform.position;
+				pos.y += this.gameObject.GetComponent<CharacterController> ().radius;
+				proj = (GameObject)Instantiate (projectile, pos, Quaternion.identity);
 
-		foreach (bonusDamage tag in extraDamage) {
-			if (targetStats.isUnitType (tag.type))
-			{damage +=  tag.bonus;}
+				Projectile script = proj.GetComponent<Projectile> ();
+				proj.SendMessage ("setSource", this.gameObject);
+				proj.SendMessage ("setTarget", target);
+				proj.SendMessage ("setDamage", damage);
+				script.damage = damage;
+
+				script.target = target;
+				script.Source = this.gameObject;
+
+			} else {
+
+				//OnAttacking();
+				target.GetComponent<UnitStats> ().TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
+
+			}
+			if (target == null) {
+				myManager.cleanEnemy ();
+			}
+
+			fireTriggers (this.gameObject, proj, target);
+
 		}
-		damage += massBonus * targetStats.mass;
-
-		GameObject proj = null;
-		if (projectile != null) {
-			Vector3 pos = this.gameObject.transform.position;
-			pos.y +=this.gameObject.GetComponent<CharacterController>().radius;
-			proj = (GameObject)Instantiate (projectile,pos, Quaternion.identity);
-
-			Projectile script = proj.GetComponent<Projectile> ();
-			proj.SendMessage("setSource",this.gameObject);
-			proj.SendMessage("setTarget",target);
-			proj.SendMessage("setDamage",damage);
-			script.damage = damage;
-
-			script.target = target;
-			script.Source = this.gameObject;
-
-		} else {
-
-			//OnAttacking();
-			target.GetComponent<UnitStats> ().TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
-
-		}
-		if (target == null) {
-			myManager.cleanEnemy();
-		}
-
-		fireTriggers (this.gameObject,proj, target);
-
-
 	}
 		
 

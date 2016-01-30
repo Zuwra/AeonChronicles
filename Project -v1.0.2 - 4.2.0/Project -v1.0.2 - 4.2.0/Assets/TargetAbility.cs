@@ -22,7 +22,7 @@ public abstract class TargetAbility : Ability {
 
 	public abstract void Cast(); 
 
-
+	public abstract bool Cast(GameObject target, Vector3 location); 
 
 
 

@@ -19,7 +19,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     private int currentPage = 0;
 
     public static SelectedManager main;
-
+	public UIManager uiManage;
     public UiAbilityManager abilityManager;
     private RaceManager raceMan;
 
@@ -30,10 +30,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     public GameObject attackInd;
 
     void Start()
-    {
+	{uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
         abilityManager = GameObject.Find("GameHud").GetComponent<UiAbilityManager>();
         raceMan = GameObject.Find("GameRaceManager").GetComponent<GameManager>().activePlayer;
-
+		Debug.Log ("Current page " + UIPages.Count);
     }
 
     public int OverlayWidth
@@ -219,9 +219,24 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     }
 
 
+	public void fireAbility(GameObject obj , Vector3 loc, int abilNum)
+		{
+		
+		UIPages [currentPage].fireAtTarget (obj, loc, abilNum);
+
+	}
+
     public void callAbility(int n)
 	{if (UIPages.Count > 0) {
-			UIPages [currentPage].useAbility (n);
+			
+			if (UIPages [currentPage].isTargetAbility (n)) {
+				uiManage.SwitchMode (Mode.targetAbility);
+
+				uiManage.setAbility (	UIPages [currentPage].getAbility(n), n);
+			} 
+			else {
+				UIPages [currentPage].useAbility (n);
+			}
 		}
     }
 

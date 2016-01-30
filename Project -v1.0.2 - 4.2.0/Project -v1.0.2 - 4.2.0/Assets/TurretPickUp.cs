@@ -65,6 +65,10 @@ public class TurretPickUp : TargetAbility {
 	
 	}
 
+	override
+	public  bool Cast(GameObject target, Vector3 location){
+		return false;
+	} 
 
 
 }

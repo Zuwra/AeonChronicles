@@ -38,12 +38,15 @@ public class AbilityFollowState  : UnitState {
 		if (refreshTime < 5) {
 			refreshTime = 8;
 		}
-		myMover.resetMoveLocation (target.transform.position);
+		if (target) {
+			myMover.resetMoveLocation (target.transform.position);
+		}
 	}
 
 	// Update is called once per frame
 	override
 	public void Update () {
+		
 		if (!target && Follow) {
 			myManager.changeState(new DefaultState());
 			return;
@@ -57,11 +60,13 @@ public class AbilityFollowState  : UnitState {
 			}
 		}
 
-
+	
 		if (!myAbility.inRange (location)) {
+
+	
 			myMover.move ();
 		} else {
-	
+			
 			myAbility.Cast();
 			myManager.changeState(new DefaultState());
 			return;

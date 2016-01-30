@@ -129,7 +129,9 @@
      <Compile Include="Assets\CostBox.cs" />
      <Compile Include="Assets\DaexaWorkerInteract.cs" />
      <Compile Include="Assets\DamageUpgrade.cs" />
+     <Compile Include="Assets\EMPblast.cs" />
      <Compile Include="Assets\EconomyManager.cs" />
+     <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
      <Compile Include="Assets\GameMenu.cs" />
@@ -150,6 +152,7 @@
      <Compile Include="Assets\RaceSelectManager.cs" />
      <Compile Include="Assets\RaceSelectionManger.cs" />
      <Compile Include="Assets\RaceTipManager.cs" />
+     <Compile Include="Assets\RegenerativeSap.cs" />
      <Compile Include="Assets\RepairTurret.cs" />
      <Compile Include="Assets\ResearchUpgrade.cs" />
      <Compile Include="Assets\ResourceGenerator.cs" />

@@ -35,29 +35,34 @@ public  class Projectile : MonoBehaviour {
 	void Start () {	
 		
 		if (target) {
-			if( inaccuracy > 0){
+			if (inaccuracy > 0) {
 				Vector3 hitzone = target.transform.position;
-				float radius = Random.Range(0, inaccuracy);
-				float angle = Random.Range(0, 360);
+				float radius = Random.Range (0, inaccuracy);
+				float angle = Random.Range (0, 360);
 				
-				hitzone.x += Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-				hitzone.z +=  Mathf.Cos(Mathf.Deg2Rad * angle)* radius;
+				hitzone.x += Mathf.Sin (Mathf.Deg2Rad * angle) * radius;
+				hitzone.z += Mathf.Cos (Mathf.Deg2Rad * angle) * radius;
 				
 				lastLocation = hitzone;
 			
 
 
-			}
-			else{
+			
+			} else {
 				lastLocation = target.transform.position;
 			}
-			
+		} 
 			distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
-		}
+	
 	}
 
 
-
+	public void setLocation(Vector3 loc)
+	{
+		lastLocation = loc;
+		gameObject.transform.LookAt (lastLocation);
+		distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -79,7 +84,7 @@ public  class Projectile : MonoBehaviour {
 		}
 		if(distance - currentDistance <1.5)
 		{
-			
+			Debug.Log ("very close " +  this.gameObject.transform.position);
 			Terminate(target);
 		}
 
@@ -105,9 +110,10 @@ public  class Projectile : MonoBehaviour {
 
 
 		//hack for hitting the ground
-		if ( !trackTarget &&  this.gameObject.transform.position.y < lastLocation.y)
+		if (!trackTarget && this.gameObject.transform.position.y < lastLocation.y +1 && this.gameObject.transform.position.y > lastLocation.y) {
 			Terminate (null);
-
+		
+		}
 	
 	}
 
@@ -141,7 +147,8 @@ public  class Projectile : MonoBehaviour {
 		if (target != null) {
 
 			foreach(Notify not in triggers)
-			{not.trigger(this.gameObject,this.gameObject, target);}
+				{not.trigger(this.gameObject,this.gameObject, target);}
+
 			target.GetComponent<UnitStats>().TakeDamage(damage,Source, DamageTypes.DamageType.Regular);
 			if(target == null)
 			{{Source.GetComponent<UnitManager>().cleanEnemy();}}

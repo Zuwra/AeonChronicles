@@ -32,11 +32,52 @@ public class Page  {
 
 	}
 
+	public bool isTargetAbility(int n)
+	{
+		if (rows [n / 4] == null) {
+			return false;
+		}
+
+		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
+		if (rows [n / 4] [0].abilityList [X].myType == Ability.type.target) {
+			return true;
+		}
+		return false;
+	}
+
+	public void fireAtTarget(GameObject obj , Vector3 loc,int n)
+		{
+		if (rows [n / 4] [0] == null) {
+			return;
+		}
+
+		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
+
+		if ( rows [n / 4] [0].abilityList.Count <= X) {
+
+
+			return;
+		}
+
+
+		foreach (RTSObject unit in rows[n/4]) {
+
+			continueOrder ord = unit.abilityList [X].canActivate ();
+			Debug.Log ("Iterating " + unit + "   " + ord.canCast + "   " + ord.nextUnitCast);
+			if (ord.canCast) {
+				unit.UseTargetAbility (obj, loc, X);
+
+				}
+			 if (!ord.nextUnitCast)
+			{Debug.Log ("breaking");
+				break;}
+
+		}
+
+	}
+
 	public void addUnit(List<RTSObject> obj)
 	{
-
-	
-
 
 		
 		rows [obj[0].AbilityStartingRow] = obj;
@@ -50,9 +91,18 @@ public class Page  {
 
 	}
 
+	public Ability getAbility(int n)
+	{	int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
+		return rows [n / 4] [0].abilityList [X];
+	}
+
 
 	public void useAbility(int n)
 	{
+		if (rows [n / 4] == null) {
+			return;
+		}
+
 		if (rows [n / 4] [0] == null) {
 			return;
 		}
@@ -65,19 +115,14 @@ public class Page  {
 				return;
 			}
 
+			foreach (RTSObject unit in rows[n/4]) {
 
 
-
-		foreach (RTSObject unit in rows[n/4]) {
-
-
-					if (!unit.UseAbility (X)) {
-						break;
-					}
+				if (!unit.UseAbility (X)) {
+					break;
 				}
-			
 
-
+		}
 	}
 
 

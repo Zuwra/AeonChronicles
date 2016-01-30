@@ -34,6 +34,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 	private RaceManager raceManager;
 	private Vector3 originalPosition;
+	public GameObject AbilityTargeter;
+	private Ability currentAbility;
+	private int currentAbilityNUmber;
+
 
 	public bool IsShiftDown
 	{
@@ -95,6 +99,21 @@ public class UIManager : MonoBehaviour, IUIManager {
 		case Mode.Menu:
 			
 			break;
+		case Mode.targetAbility:
+	
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+
+			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 16)))
+			{
+				Vector3 targetPoint = hit.point;
+				targetPoint.y += 40;
+				AbilityTargeter.transform.position =  targetPoint;
+				currentObject = hit.collider.gameObject;
+			}
+
+			break;
+
 			
 		case Mode.PlaceBuilding:
 			ModePlaceBuildingBehaviour();
@@ -267,7 +286,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			break;
 		case Mode.Normal:
 
-		//	if (!EventSystem.current.IsPointerOverGameObject ()) {
+		
 			//We've left clicked, what have we left clicked on?
 			//int currentObjLayer = currentObject.layer;
 			originalPosition = Input.mousePosition;
@@ -333,7 +352,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				m_Placed = false;
 				return;
 			}
-		
+			if (!EventSystem.current.IsPointerOverGameObject ()) {
 				//We've left clicked, have we left clicked on a unit?
 				int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
             
@@ -402,8 +421,31 @@ public class UIManager : MonoBehaviour, IUIManager {
 						m_SelectedManager.CreateUIPages (0);
 					}
 
-
+				}
 			}
+			break;
+
+		case Mode.targetAbility:
+
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
+			Vector3 targetPoint = Vector3.zero;
+			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
+				targetPoint = hit.point;
+			
+
+				AbilityTargeter.transform.position = targetPoint;
+				currentObject = hit.collider.gameObject;
+				if (currentObject.layer == 9 || currentObject.layer == 10 || currentObject.layer == 13) {
+				
+				} else {
+					currentObject = null;}
+			}
+
+
+
+			m_SelectedManager.fireAbility (currentObject, targetPoint, currentAbilityNUmber);
+			SwitchMode (Mode.Normal);
 			break;
 			
 		case Mode.PlaceBuilding:
@@ -414,6 +456,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 			break;
 		}
 	}
+
+	public void setAbility(Ability abil, int n)
+	{currentAbilityNUmber = n;
+		currentAbility = abil;
+
+	}
+
+
 
     //A safer way to get a UnitManager
     private static UnitManager getUnitManagerFromObject(GameObject obj)
@@ -464,6 +514,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 		
 		
 			break;
+
+			case Mode.targetAbility:
+				SwitchMode (Mode.Normal);
+				
+				break;
 			
 		case Mode.PlaceBuilding:
 			
@@ -534,10 +589,16 @@ public class UIManager : MonoBehaviour, IUIManager {
 		{
 		case Mode.Normal:
 			SwitchToModeNormal ();
+			AbilityTargeter.SetActive (false);
 			break;
 			
 		case Mode.Menu:
-			
+			AbilityTargeter.SetActive (false);
+			break;
+
+		case Mode.targetAbility:
+			m_Mode = Mode.targetAbility;
+			AbilityTargeter.SetActive (true);
 			break;
 			
 		case Mode.Disabled:
@@ -545,7 +606,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 			break;
 		}
 	}
-	
+
+
+
 	public void SwitchToModeNormal()
 	{
 		if (m_ObjectBeingPlaced)
@@ -595,6 +658,7 @@ public enum Mode
 {
 	Normal,
 	Menu,
+	targetAbility,
 	PlaceBuilding,
 	Disabled,
 }

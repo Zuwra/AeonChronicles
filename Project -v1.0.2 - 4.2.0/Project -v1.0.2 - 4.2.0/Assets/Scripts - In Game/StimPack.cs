@@ -51,17 +51,17 @@ public class StimPack : Ability {
 	{
 		if (myCost.canActivate ()) {
 
-			if(!on)
-			{
-			this.gameObject.GetComponent<customMover>().MaxSpeed +=speedBoost;
+			if (!on) {
+				this.gameObject.GetComponent<customMover> ().MaxSpeed += speedBoost;
 			
-			}
+			
 
-			myCost.payCost();
-			on = true;
-			timer = duration;
-			chargeCount--;
-			RaceManager.upDateUI ();
+				myCost.payCost ();
+				on = true;
+				timer = duration;
+				chargeCount--;
+				RaceManager.upDateUI ();
+			}
 		
 		}
 		//return true;//next unit should also do this.

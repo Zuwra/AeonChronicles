@@ -48,6 +48,9 @@ public abstract class RTSObject : MonoBehaviour {
 
 	public abstract bool UseAbility (int n);
 
+
+	public abstract bool UseTargetAbility(GameObject obj, Vector3 loc, int n);
+
 	public abstract void autoCast (int n);
 
 	public float GetHealthRatio()

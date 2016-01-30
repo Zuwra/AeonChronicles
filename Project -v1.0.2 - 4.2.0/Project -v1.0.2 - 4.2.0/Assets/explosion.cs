@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class explosion : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class explosion : MonoBehaviour {
 	public float maxSize= 5.0f;
 	public float growthRate = 1.0f;
 	private float scale = 1.0f;
+
+	public List<Notify> triggers = new List<Notify> ();
 
 
 	// Use this for initialization
@@ -44,6 +47,11 @@ public class explosion : MonoBehaviour {
 
 				if (friendlyFire || source.GetComponent<UnitManager> ().PlayerOwner != manager.PlayerOwner) {
 					other.gameObject.GetComponent<UnitStats> ().TakeDamage (damageAmount, source, type);
+
+					foreach (Notify not in triggers) {
+					
+						not.trigger(source,  null, other.gameObject);
+					}
 				}
 
 			}

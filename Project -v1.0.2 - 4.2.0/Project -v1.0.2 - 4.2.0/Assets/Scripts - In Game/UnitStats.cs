@@ -81,6 +81,7 @@ public class UnitStats : MonoBehaviour {
 			if (health < Maxhealth) {
 				health += HealthRegenPerSec;
 
+				updateHealthBar ();
 			}
 
 			if(health > Maxhealth)
@@ -131,13 +132,7 @@ public class UnitStats : MonoBehaviour {
 				}
 				health-= amount;
 
-				if (Maxhealth > 500) {
-					mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 120));
-				} else if (Maxhealth > 300) {
-					mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 80));
-				} else {
-					mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 25));
-				}
+				updateHealthBar ();
 
 					if (health <= 0) {
 						kill (source);
@@ -149,7 +144,17 @@ public class UnitStats : MonoBehaviour {
 		}
 	}
 
+	private void updateHealthBar()
+	{
+		if (Maxhealth > 500) {
+			mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 120));
+		} else if (Maxhealth > 300) {
+			mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 80));
+		} else {
+			mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 25));
+		}
 
+	}
 
 
 
@@ -163,9 +168,9 @@ public class UnitStats : MonoBehaviour {
 
 
 			//}
-
-			FinishDeath = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager>().UnitDying(this.gameObject, deathSource);
-
+			if (myManager.PlayerOwner == 1) {
+				FinishDeath = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitDying (this.gameObject, deathSource);
+			}
 
 			if (FinishDeath) {
 
@@ -183,13 +188,17 @@ public class UnitStats : MonoBehaviour {
 						deathSource.GetComponent<UnitStats> ().kills += 1;
 					}
 				}
-				if(supply > 0)
-					{GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<GameManager>().activePlayer.currentSupply -= supply;}
-				else if (supply< 0)
-				{GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<GameManager>().activePlayer.supplyMax -=supply;}
-				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager>().activePlayer.UnitDied (supply);
-				Destroy (this.gameObject);
-
+				//fix this when we have multiplayer games
+				if (myManager.PlayerOwner == 1) {
+					if (supply > 0) {
+						GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer.currentSupply -= supply;
+					} else if (supply < 0) {
+						GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer.supplyMax -= supply;
+					}
+					GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer.UnitDied (supply);
+				}
+					Destroy (this.gameObject);
+				
 			}
 		}
 
@@ -227,6 +236,16 @@ public class UnitStats : MonoBehaviour {
 		}
 	}
 
+
+	public void heal(float n)
+	{
+		health += n;
+		if (health > Maxhealth) {
+			health = Maxhealth;
+		}
+
+		updateHealthBar ();
+	}
 
 	public bool atFullEnergy()
 	{	

@@ -19,7 +19,7 @@ public class AbstractCost : MonoBehaviour {
 		public float energy;
 
 		public float cooldown;
-		private float cooldownTimer;
+		public float cooldownTimer;
 		public bool StartsRefreshed = true;
 		
 		
@@ -105,7 +105,7 @@ public class AbstractCost : MonoBehaviour {
 
 				
 			stats.currentEnergy -= energy; 
-		
+			cooldownTimer = cooldown;
 		}
 	}
 		
