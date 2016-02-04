@@ -52,7 +52,7 @@ public class AbstractCost : MonoBehaviour {
 		void Update () {
 			if (cooldownTimer > 0) {
 				cooldownTimer -= Time.deltaTime;
-			selectMan.updateCoolDown (cooldownTimer / cooldown);
+			//selectMan.updateCoolDown (cooldownTimer / cooldown);
 			}
 			
 			
@@ -81,11 +81,16 @@ public class AbstractCost : MonoBehaviour {
 
 	
 			if (cooldownTimer > 0) {
+			Debug.Log ("Colldown");
 				return false;}
 			
 			return true;
 			
 		}
+
+	public void resetCoolDown()
+	{cooldownTimer = 0;
+	}
 		
 	public void refundCost()
 	{

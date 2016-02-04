@@ -16,9 +16,11 @@ public class buildTurret :UnitProduction{
 	private Selected mySelect;
 
 	private List<TurretMount> turretMounts = new List<TurretMount>();
+	private BuildManager buildMan;
 
 	// Use this for initialization
 	void Start () {
+		buildMan = GetComponent<BuildManager> ();
 		manager = GetComponent<UnitManager> ();
 		mySelect = GetComponent<Selected> ();
 		myCost.cooldown = buildTime;
@@ -155,21 +157,29 @@ public class buildTurret :UnitProduction{
 		if (myCost.canActivate ()) {
 
 			myCost.payCost();
-			foreach (Transform obj in this.transform) {
+			myCost.resetCoolDown ();
+			buildMan.buildUnit (this);
 
-				obj.SendMessage ("ActivateAnimation",SendMessageOptions.DontRequireReceiver);
-			}
-
-			timer = buildTime;
-			GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
-			buildingUnit = true;
-			racer.buildingUnit (this);
 		}
 		//return true;//next unit should also do this.
 	}
 
 
 
+	override
+	public void startBuilding()
+	{
+		foreach (Transform obj in this.transform) {
+
+			obj.SendMessage ("ActivateAnimation",SendMessageOptions.DontRequireReceiver);
+		}
+
+		timer = buildTime;
+		GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
+		buildingUnit = true;
+		racer.buildingUnit (this);
+
+	}
 
 
 	public GameObject createUnit()
@@ -179,6 +189,7 @@ public class buildTurret :UnitProduction{
 		chargeCount--;
 		RaceManager.upDateUI ();
 	GameObject tur = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
+		buildMan.unitFinished (this);
 	return tur;
 	}
 }

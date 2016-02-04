@@ -115,6 +115,30 @@ public class Page  {
 				return;
 			}
 
+
+		// Tell the unit with the least number of units queued up to build the unit.
+	
+		if (rows [n / 4] [0].abilityList[X].GetType().IsSubclassOf(typeof(UnitProduction))) {
+			Debug.Log ("It is a unit producer");
+			int min = 1000;
+			RTSObject best = null;
+			foreach (RTSObject unit in rows[n/4]) {
+				
+				int man = unit.GetComponent<BuildManager> ().buildOrder.Count;
+				Debug.Log (unit + "   " + man + "   min " + min);
+				if (man < min) {
+					min = man;
+					best = unit;
+				}
+			}
+			if (best != null) {
+				best.UseAbility (X);
+			}
+
+
+		}//Normal unit ability use
+		else {
+			Debug.Log ("Normal ability");
 			foreach (RTSObject unit in rows[n/4]) {
 
 
@@ -122,6 +146,7 @@ public class Page  {
 					break;
 				}
 
+			}
 		}
 	}
 

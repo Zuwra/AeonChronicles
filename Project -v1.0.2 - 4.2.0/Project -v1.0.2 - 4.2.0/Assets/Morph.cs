@@ -16,6 +16,8 @@ public class Morph :  UnitProduction {
 	public float buildTime;
 	private float timer =0;
 	private bool Morphing = false;
+
+
 	// Use this for initialization
 	void Start () {
 		myManager = this.gameObject.GetComponent<UnitManager> ();
@@ -95,6 +97,9 @@ public class Morph :  UnitProduction {
 		//return true;//next unit should also do this.
 	}
 
+
+
+	public override void startBuilding(){}
 
 	public void createUnit()
 	{

@@ -1,20 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Selected Units\SelectedManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Page.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="169" Column="4" />
-      <File FileName="Assets\EmpMissile.cs" Line="29" Column="3" />
-      <File FileName="Assets\EMPblast.cs" Line="11" Column="17" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="228" Column="2" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="212" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="118" Column="3" />
-      <File FileName="Assets\TargetAbility.cs" Line="14" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Ability.cs" Line="11" Column="21" />
-      <File FileName="Assets\Page.cs" Line="105" Column="3" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="137" Column="33" />
-      <File FileName="Assets\AbilityFollowState.cs" Line="70" Column="8" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="438" Column="18" />
+      <File FileName="Assets\BuildManager.cs" Line="30" Column="35" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
       <File FileName="Assets\continueOrder.cs" Line="1" Column="1" />
+      <File FileName="Assets\buildTurret.cs" Line="148" Column="4" />
+      <File FileName="Assets\UnitProduction.cs" Line="12" Column="2" />
+      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="81" Column="3" />
+      <File FileName="Assets\Morph.cs" Line="96" Column="3" />
+      <File FileName="Assets\Scripts - In Game\AbstractCost.cs" Line="88" Column="4" />
+      <File FileName="Assets\ProductionManager.cs" Line="35" Column="56" />
+      <File FileName="Assets\Page.cs" Line="129" Column="21" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="546" Column="62" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="392" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

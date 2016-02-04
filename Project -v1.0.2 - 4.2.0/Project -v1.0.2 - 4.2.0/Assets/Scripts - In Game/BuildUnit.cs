@@ -18,10 +18,12 @@ public class BuildUnit : UnitProduction {
 	private bool buildingUnit = false;
 	private UnitManager manage;
 
+	private BuildManager buildMan;
+
 	private int QueueNum;
 	// Use this for initialization
 	void Start () {
-
+		buildMan = GetComponent<BuildManager> ();
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer;
 		myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
@@ -36,9 +38,10 @@ public class BuildUnit : UnitProduction {
 
 			timer -= Time.deltaTime;
 
-			mySelect.updateCoolDown (1 - timer/buildTime);
+			mySelect.updateCoolDown (1- timer/buildTime);
 			if(timer <=0)
 			{mySelect.updateCoolDown (0);
+				Debug.Log ("Finished");
 				buildingUnit = false;
 				createUnit();
 			}
@@ -73,8 +76,10 @@ public class BuildUnit : UnitProduction {
 
 
 		if (!myCost.canActivate ()) {
-			order.canCast = true;
+			order.canCast = false;
 		}
+
+
 		return order;
 
 
@@ -82,34 +87,38 @@ public class BuildUnit : UnitProduction {
 	
 	override
 		public void Activate()
-	{//Debug.Log ("casting " + QueueNum);
+	{
 
 		if (myCost.canActivate ()) {
-			Debug.Log ("Queue another unit" + manage.checkNextState() + "   " +manage.getStateCount() );
-			//if(manage.getStateCount > 0){
-				
 			
-			//	manage.enQueueState (new CastAbilityState (this));
-			//} else {
+		
 				myCost.payCost();
-			
-				manage.enQueueState (new ChannelState ());
-				//start animations in any children
-				foreach (Transform obj in this.transform) {
-				
-					obj.SendMessage ("ActivateAnimation", SendMessageOptions.DontRequireReceiver);
-				}
-
-				timer = buildTime;
-
-				buildingUnit = true;
-				racer.buildingUnit (this);
-				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
-		//	}
-		//	return false;
+			myCost.resetCoolDown ();
+		
+			buildMan.buildUnit (this);
 		}
 
 	}
+
+
+	override
+	public  void startBuilding()
+	{
+
+		foreach (Transform obj in this.transform) {
+
+			obj.SendMessage ("ActivateAnimation", SendMessageOptions.DontRequireReceiver);
+		}
+
+		timer = buildTime;
+
+		buildingUnit = true;
+		racer.buildingUnit (this);
+		GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
+
+
+	}
+
 
 
 	public void createUnit()
@@ -139,9 +148,9 @@ public class BuildUnit : UnitProduction {
 		racer.stopBuildingUnit (this);
 		racer.applyUpgrade (unit);
 		buildingUnit = false;
-
+		buildMan.unitFinished (this);
 	
-		manage.changeState (new DefaultState ());//.enQueueState (new DefaultState ());
+	//	manage.changeState (new DefaultState ());//.enQueueState (new DefaultState ());
 		}
 
 
