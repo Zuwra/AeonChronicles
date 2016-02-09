@@ -197,6 +197,13 @@ public class UnitStats : MonoBehaviour {
 					}
 					GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer.UnitDied (supply);
 				}
+
+				if (mySelection.IsSelected) {
+
+
+					RaceManager.removeUnitSelect(myManager);
+				}
+
 					Destroy (this.gameObject);
 				
 			}

@@ -9,10 +9,11 @@ public class StimPack : Ability {
 	public float speedBoost;
 
 	private float timer;
+	private Selected select;
 
 	// Use this for initialization
 	void Start () {description = "Uses life to give a short burst of speed";
-	
+		select = GetComponent<Selected> ();
 	}
 	
 	// Update is called once per frame
@@ -60,7 +61,10 @@ public class StimPack : Ability {
 				on = true;
 				timer = duration;
 				chargeCount--;
-				RaceManager.upDateUI ();
+				if (select.IsSelected) {
+					RaceManager.upDateUI ();
+				}
+			
 			}
 		
 		}

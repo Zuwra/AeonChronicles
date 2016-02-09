@@ -16,7 +16,7 @@ public class explosion : MonoBehaviour {
 
 	public List<Notify> triggers = new List<Notify> ();
 
-
+	public IWeapon.bonusDamage[] extraDamage;
 	// Use this for initialization
 	void Start () {
 	
@@ -46,8 +46,16 @@ public class explosion : MonoBehaviour {
 			if (manager) {
 
 				if (friendlyFire || source.GetComponent<UnitManager> ().PlayerOwner != manager.PlayerOwner) {
-					other.gameObject.GetComponent<UnitStats> ().TakeDamage (damageAmount, source, type);
 
+					float amount = damageAmount	;
+					UnitStats stats = other.gameObject.GetComponent<UnitStats> ();
+					foreach ( IWeapon.bonusDamage tag in extraDamage) {
+						if ( stats.isUnitType (tag.type)) {
+							amount += tag.bonus;
+						}
+					}
+					stats.TakeDamage (amount, source, type);
+				
 					foreach (Notify not in triggers) {
 					
 						not.trigger(source,  null, other.gameObject);

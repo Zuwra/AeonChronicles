@@ -19,7 +19,8 @@ public  class Projectile : MonoBehaviour {
 	public GameObject Source;
 
 	public float inaccuracy;
-
+	private bool selfDest = false;
+	private CharacterController control;
 
 	//If you are using an explosion , you should set the variables in the explosion prefab itself.
 	public GameObject explosion;
@@ -52,6 +53,8 @@ public  class Projectile : MonoBehaviour {
 				lastLocation = target.transform.position;
 			}
 		} 
+
+		control = GetComponent<CharacterController> ();
 			distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
 	
 	}
@@ -67,24 +70,15 @@ public  class Projectile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
 		if (target != null) {
 			lastLocation = target.transform.position;
 			//Debug.Log("attacking on " +Vector3.Distance(lastLocation,this.gameObject.transform.position));
 
+		} 
 
-
-		
-
-		} else {
-
-				{//Terminate(null);
-
-				//return;
-			}
-		}
 		if(distance - currentDistance <1.5)
 		{
-			Debug.Log ("very close " +  this.gameObject.transform.position);
 			Terminate(target);
 		}
 
@@ -101,8 +95,8 @@ public  class Projectile : MonoBehaviour {
 			float yAmount;
 
 				yAmount = (( (distance/2) - currentDistance )/distance) * arcAngle *3* Time.deltaTime;
-
-			gameObject.transform.Translate (Vector3.up * yAmount );
+			control.Move (Vector3.up * yAmount);
+			//gameObject.transform.Translate (Vector3.up * yAmount );
 	
 		}
 
@@ -110,22 +104,43 @@ public  class Projectile : MonoBehaviour {
 
 
 		//hack for hitting the ground
-		if (!trackTarget && this.gameObject.transform.position.y < lastLocation.y +1 && this.gameObject.transform.position.y > lastLocation.y) {
-			Terminate (null);
+		//if (!trackTarget && this.gameObject.transform.position.y < lastLocation.y +1 && this.gameObject.transform.position.y > lastLocation.y) {
+			//Terminate (null);
 		
-		}
+		//}
 	
 	}
 
+	void OnControllerColliderHit(ControllerColliderHit other)
+	{
+		if (!target) {
+			return;}
+		if (other.gameObject == target || other.gameObject.transform.IsChildOf(target.transform)) {
+			
+			Terminate (other.gameObject);
+		}
 
+		if (currentDistance / distance < .5) {
+			return;
+		}
+
+		if(!trackTarget && (other.gameObject!= Source || !other.gameObject.transform.IsChildOf(Source.transform) ))
+		{
+
+			Terminate(null);}
+	}
 	
 	void OnTriggerEnter(Collider other)
-	{
+	{if (!target) {
+			return;}
 		
-		if (!other.isTrigger) {
+		if (other.isTrigger) {
+			
+			return;}
+	
 
-		
-			if (other.gameObject == target) {
+		if (other.gameObject == target || other.gameObject.transform.IsChildOf(target.transform)) {
+				
 				Terminate (other.gameObject);
 			}
 
@@ -135,9 +150,9 @@ public  class Projectile : MonoBehaviour {
 
 			if(!trackTarget && (other.gameObject!= Source || !other.gameObject.transform.IsChildOf(Source.transform) ))
 				{
-			
+				
 				Terminate(null);}
-		}
+		
 	}
 
 
@@ -146,12 +161,17 @@ public  class Projectile : MonoBehaviour {
 	{
 		if (target != null) {
 
-			foreach(Notify not in triggers)
-				{not.trigger(this.gameObject,this.gameObject, target);}
+			foreach (Notify not in triggers) {
+				not.trigger (this.gameObject, this.gameObject, target);
+			}
 
-			target.GetComponent<UnitStats>().TakeDamage(damage,Source, DamageTypes.DamageType.Regular);
-			if(target == null)
-			{{Source.GetComponent<UnitManager>().cleanEnemy();}}
+			target.GetComponent<UnitStats> ().TakeDamage (damage, Source, DamageTypes.DamageType.Regular);
+			if (target == null) {
+				{
+					Source.GetComponent<UnitManager> ().cleanEnemy ();}
+			}
+		} else {
+
 		}
 		if (explosion) {
 
@@ -206,6 +226,13 @@ public  class Projectile : MonoBehaviour {
 
 		gameObject.transform.LookAt (lastLocation);
 
+	}
+
+	public void selfDestruct()
+	{target = null;
+		GameObject.Destroy (this);
+		selfDest = true;
+		Debug.Log ("I should be dead " + this.gameObject);
 	}
 	
 	public void setDamage(float so)

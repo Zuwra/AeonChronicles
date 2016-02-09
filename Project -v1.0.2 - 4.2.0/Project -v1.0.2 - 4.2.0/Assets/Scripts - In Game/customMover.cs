@@ -59,7 +59,7 @@ public class customMover : IMover {
 	override
 	public bool move()
 	{// for some reason the updates are being called out of order so this is here,
-
+		
 
 		if (!workingframe) {
 			workingframe = !workingframe;

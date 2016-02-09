@@ -20,7 +20,9 @@ public class UnitCardCreater : MonoBehaviour {
 	public Image rangeIcon;
 	public Image attackSpeedIcon;
 
+	private UnitManager currentUnit;
 
+	private bool hasUnit;
 
 
 	// Use this for initialization
@@ -30,7 +32,17 @@ public class UnitCardCreater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (currentUnit) {
+			
+			health.text = currentUnit.myStats.health + "/" + currentUnit.myStats.Maxhealth;
+		
+		} else {
+			if (hasUnit) {
+				this.GetComponent<Canvas> ().enabled = false;
+				hasUnit = false;
+				//RaceManager.updateUIUnitcount();
+			}
+		}
 	}
 
 
@@ -39,7 +51,8 @@ public class UnitCardCreater : MonoBehaviour {
 	public void CreateCard(RTSObject obj)
 	{
 		UnitManager manager = obj.gameObject.GetComponent<UnitManager> ();
-
+		currentUnit = manager;
+		hasUnit = true;
 		unitIcon.material = manager.myStats.Icon;
 		UnitName.text = manager.UnitName;
 		health.text = manager.myStats.health + "/" + manager.myStats.Maxhealth;
@@ -53,6 +66,7 @@ public class UnitCardCreater : MonoBehaviour {
 
 
 		if (manager.myWeapon != null) {
+			
 			damageIcon.enabled = true;
 			rangeIcon.enabled= true;
 			attackSpeedIcon.enabled = true;

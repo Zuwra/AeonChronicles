@@ -12,10 +12,16 @@ public class buildTurret :UnitProduction{
 	private RaceManager racer;
 	private float timer =0;
 	private bool buildingUnit = false;
+	public enum turretType
+	{
+		one, two
+	}
 
+	public turretType myTurretType;
 	private Selected mySelect;
 
 	private List<TurretMount> turretMounts = new List<TurretMount>();
+	private List<TurretMountTwo> turretTwoMounts = new List<TurretMountTwo>();
 	private BuildManager buildMan;
 
 	// Use this for initialization
@@ -49,17 +55,38 @@ public class buildTurret :UnitProduction{
 			}
 		}
 		if(autocast){
-			if (turretMounts.Count > 0) {
-				foreach (TurretMount obj in turretMounts) {
-					if (chargeCount == 0){return;}
+			if ( myTurretType ==  turretType.one) { 
+				if (turretMounts.Count > 0) {
+					foreach (TurretMount obj in turretMounts) {
+						if (chargeCount == 0) {
+							return;
+						}
 
-					if(obj.turret == null) {
+						if (obj.turret == null) {
 							obj.placeTurret (createUnit ());
 
 				
+						}
 					}
-				}
 	
+				}
+			} else {
+
+				if (turretTwoMounts.Count > 0) {
+					foreach (TurretMountTwo obj in turretTwoMounts) {
+						if (chargeCount == 0) {
+							return;
+						}
+
+						if (obj.turret == null) {
+							obj.placeTurret (createUnit ());
+
+
+						}
+					}
+
+				}
+			
 			}
 
 
@@ -103,15 +130,21 @@ public class buildTurret :UnitProduction{
 		}
 
 			if (manage.PlayerOwner == manager.PlayerOwner) {
+			if ( myTurretType ==  turretType.one) {
 
-			foreach(TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ())
-				{
-				if (mount) {
+				foreach (TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ()) {
+					if (mount) {
 		
 						turretMounts.Add (mount);
+					}
 				}
-				
+			} else {
+				foreach (TurretMountTwo mount in other.gameObject.GetComponentsInChildren<TurretMountTwo> ()) {
+					if (mount) {
 
+						turretTwoMounts.Add (mount);
+					}
+				}
 			}
 			
 

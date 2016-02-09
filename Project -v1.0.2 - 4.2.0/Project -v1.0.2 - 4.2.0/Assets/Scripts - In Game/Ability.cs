@@ -10,7 +10,7 @@ public abstract class Ability : MonoBehaviour {
 
 	public Material iconPic;
 	public AbstractCost myCost;
-	public enum type{passive, target, triggered}
+	public enum type{passive, target, activated}
 	public type myType;
 
 	//public GameObject UIButton;

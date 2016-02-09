@@ -190,6 +190,7 @@ public class UnitManager : Unit,IOrderable{
 	{
 		//need to set up calls to listener components
 		//this will need to be refactored for team games
+
 		if (!other.isTrigger) {
 
 			if (other.gameObject.layer == 13) {

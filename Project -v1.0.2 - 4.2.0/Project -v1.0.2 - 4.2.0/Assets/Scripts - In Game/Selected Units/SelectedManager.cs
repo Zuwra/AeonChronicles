@@ -33,7 +33,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
         abilityManager = GameObject.Find("GameHud").GetComponent<UiAbilityManager>();
         raceMan = GameObject.Find("GameRaceManager").GetComponent<GameManager>().activePlayer;
-		Debug.Log ("Current page " + UIPages.Count);
+		//Debug.Log ("Current page " + UIPages.Count);
     }
 
     public int OverlayWidth
@@ -324,20 +324,36 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	
 
 	public void CreateUIPages(int j)
-    {
+	{
         currentPage = j;
         UIPages.Clear();
         UIPages.Add(new Page());
+	
+	
+
+		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
+			tempAbilityGroups[i].RemoveAll (item => item == null);
+
+			if (tempAbilityGroups[i].Count == 0) {
+				
+				tempAbilityGroups.Remove (tempAbilityGroups[i]);
+			}
+		}
+
         List<RTSObject> usedUnits = new List<RTSObject>();
 
+
+
         List<RTSObject> bestPick = null;
+
         while (usedUnits.Count < tempAbilityGroups.Count)
         {
             int min = 100;
 
             foreach (List<RTSObject> obj in tempAbilityGroups)
-            {
-                if (obj[0].AbilityPriority <= min && !usedUnits.Contains(obj[0]))
+			{obj.RemoveAll (item => item == null);
+				   
+				if (obj[0].AbilityPriority <= min && !usedUnits.Contains(obj[0]))
                 {
 
                     bestPick = obj;
@@ -407,6 +423,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     **/
     public void DeselectObject(RTSObject obj)
     {
+
+	
         //don't bother deselecting it if it's not selected in the first place
         if (!SelectedObjects.Contains(obj))
             return;
@@ -419,12 +437,31 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         {
             obj.SetDeselected();
         }
+
+
+		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
+
+			if (obj.gameObject.GetComponent<UnitManager> ().UnitName == (tempAbilityGroups [i])[0].gameObject.GetComponent<UnitManager> ().UnitName) {
+				tempAbilityGroups [i].Remove (obj);
+
+				if (tempAbilityGroups [i].Count == 0) {
+
+					tempAbilityGroups.Remove (tempAbilityGroups [i]);
+
+				}
+
+			}
+		}
+
+
+
         SelectedObjects.Remove(obj);
 
         if (abilityManager != null)
         {
             UIPages.Clear();
-            tempAbilityGroups.Clear();
+
+            //tempAbilityGroups.Clear();
             CreateUIPages(0);
         }
     }

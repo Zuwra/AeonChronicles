@@ -86,7 +86,7 @@ public class HotkeyMenu : MonoBehaviour {
 
 	IEnumerator MyCoroutine ()
 	{
-		yield return new WaitForSeconds(0);
+		yield return new WaitForSeconds(.1f);
 
 
 		fManager = GameObject.Find ("F-Buttons").GetComponent<FButtonManager>();

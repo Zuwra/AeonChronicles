@@ -132,7 +132,7 @@ public class IWeapon : MonoBehaviour {
 
 		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position) - target.GetComponent<CharacterController>().radius;
 		float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
-		if (distance > (range + (verticalDistance*1.5)) || distance < minimumRange) {
+		if (distance > (range + (verticalDistance*1.2)) || distance < minimumRange) {
 
 
 			return false;}
@@ -156,7 +156,7 @@ public class IWeapon : MonoBehaviour {
 
 		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position)- target.GetComponent<CharacterController>().radius;
 		float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
-		if (distance > (range + (verticalDistance*1.5))) {
+		if (distance > (range + (verticalDistance*1.2))) {
 			
 		
 			return false;}
@@ -200,7 +200,7 @@ public class IWeapon : MonoBehaviour {
 				Vector3 pos = this.gameObject.transform.position;
 				pos.y += this.gameObject.GetComponent<CharacterController> ().radius;
 				proj = (GameObject)Instantiate (projectile, pos, Quaternion.identity);
-
+			
 				Projectile script = proj.GetComponent<Projectile> ();
 				proj.SendMessage ("setSource", this.gameObject);
 				proj.SendMessage ("setTarget", target);

@@ -7,8 +7,6 @@ public class Page  {
 	public List<RTSObject>[] rows = new List<RTSObject>[3];
 
 
-
-
 	public bool canBeAdded(List<RTSObject> obj)
 	{
 
@@ -63,13 +61,13 @@ public class Page  {
 		foreach (RTSObject unit in rows[n/4]) {
 
 			continueOrder ord = unit.abilityList [X].canActivate ();
-			Debug.Log ("Iterating " + unit + "   " + ord.canCast + "   " + ord.nextUnitCast);
+		
 			if (ord.canCast) {
 				unit.UseTargetAbility (obj, loc, X);
 
 				}
 			 if (!ord.nextUnitCast)
-			{Debug.Log ("breaking");
+			{
 				break;}
 
 		}
@@ -119,13 +117,13 @@ public class Page  {
 		// Tell the unit with the least number of units queued up to build the unit.
 	
 		if (rows [n / 4] [0].abilityList[X].GetType().IsSubclassOf(typeof(UnitProduction))) {
-			Debug.Log ("It is a unit producer");
+
 			int min = 1000;
 			RTSObject best = null;
 			foreach (RTSObject unit in rows[n/4]) {
 				
 				int man = unit.GetComponent<BuildManager> ().buildOrder.Count;
-				Debug.Log (unit + "   " + man + "   min " + min);
+			
 				if (man < min) {
 					min = man;
 					best = unit;
@@ -138,7 +136,7 @@ public class Page  {
 
 		}//Normal unit ability use
 		else {
-			Debug.Log ("Normal ability");
+			
 			foreach (RTSObject unit in rows[n/4]) {
 
 

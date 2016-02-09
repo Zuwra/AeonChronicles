@@ -32,7 +32,7 @@ public class repairReturn : Ability{
 
 	public bool validate(GameObject source, GameObject target)
 	{
-		if (chargeCount > 0) {
+		if (chargeCount < maxRepair) {
 			return true;
 		}
 		return false;
