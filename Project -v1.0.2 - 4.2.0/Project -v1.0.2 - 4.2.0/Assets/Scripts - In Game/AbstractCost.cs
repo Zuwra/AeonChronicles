@@ -60,8 +60,10 @@ public class AbstractCost : MonoBehaviour {
 		}
 		
 		
-		public bool canActivate()
+	public bool canActivate(Ability ab)
 		{
+		if (!ab.active) {
+			return  false;}
 			
 			if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
 			GameObject.FindGameObjectWithTag ("Error").GetComponent<ErrorPrompt> ().showError ("Not Enough Resources");
@@ -101,7 +103,7 @@ public class AbstractCost : MonoBehaviour {
 
 		public void payCost()
 	{
-		if (canActivate ()) {
+
 
 			myGame.updateResources (-ResourceOne, -ResourceTwo);
 				
@@ -111,7 +113,7 @@ public class AbstractCost : MonoBehaviour {
 				
 			stats.currentEnergy -= energy; 
 			cooldownTimer = cooldown;
-		}
+
 	}
 		
 	}

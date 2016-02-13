@@ -49,7 +49,7 @@ public class ResearchUpgrade:  Ability, Upgradable{
 	public continueOrder canActivate ()
 		{continueOrder order = new continueOrder();
 
-		if (researching || !myCost.canActivate ()) {
+		if (researching || !myCost.canActivate (this)) {
 			order.canCast = false;
 			order.nextUnitCast = false;
 				return order;}
@@ -61,7 +61,7 @@ public class ResearchUpgrade:  Ability, Upgradable{
 		override
 		public void Activate()
 		{
-			if (myCost.canActivate ()) {
+			if (myCost.canActivate (this)) {
 			timer = buildTime;
 				myCost.payCost();
 			foreach (Transform obj in this.transform) {

@@ -106,7 +106,8 @@ public class RepairTurret : Ability, Modifier{
 
 
 	public bool validate(GameObject source, GameObject target)
-	{
+	{if (!active) {
+			return false;}
 		if (chargeCount > 0) {
 			return true;
 		}

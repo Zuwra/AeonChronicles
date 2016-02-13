@@ -41,7 +41,7 @@ public class StimPack : Ability {
 		if (chargeCount == 0) {
 			order.canCast = false;
 			return order;}
-		if (!myCost.canActivate ()) {
+		if (!myCost.canActivate (this)) {
 			order.canCast = false;
 		}
 		return order;
@@ -50,7 +50,7 @@ public class StimPack : Ability {
 	override
 	public void Activate()
 	{
-		if (myCost.canActivate ()) {
+		if (myCost.canActivate (this)) {
 
 			if (!on) {
 				this.gameObject.GetComponent<customMover> ().MaxSpeed += speedBoost;

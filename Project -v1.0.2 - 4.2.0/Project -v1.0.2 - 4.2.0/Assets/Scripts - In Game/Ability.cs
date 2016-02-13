@@ -13,11 +13,16 @@ public abstract class Ability : MonoBehaviour {
 	public enum type{passive, target, activated}
 	public type myType;
 
+	//These are seperate because Unit inspector wont show dictionaries
+	public List<string> pubUnitList = new List<string>();
+	private Dictionary<string, bool> requirementList = new Dictionary<string, bool> ();
+
+
 	//public GameObject UIButton;
 	protected string description;
 	public bool autocast;
 	[Tooltip("Check this if this ability should break normal activities.")]
-	public bool active;
+	public bool active = false;
 
 	//if -1, then it is infinite
 	public int chargeCount = -1;
@@ -28,6 +33,25 @@ public abstract class Ability : MonoBehaviour {
 	public abstract void setAutoCast();
 
 
+
+	private bool initialized;
+
+	private void initialize()
+		{
+		initialized = true;
+		foreach (string s in pubUnitList) {
+
+			requirementList.Add (s, false);
+
+		}
+
+		if (requirementList.Count  > 0 && requirementList.ContainsValue (false)) {
+
+		//	Debug.Log (this.gameObject.name + "  was created " + (requirementList.Count == 0) + "   " + (!requirementList.ContainsValue (false)));
+			active = false;
+		} 
+
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -41,4 +65,46 @@ public abstract class Ability : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
+
+	public void newUnitCreated(string newUnit)
+	{if (!initialized) {
+			initialize ();
+		}
+		if (requirementList.Count == 0) {
+			return;
+		}
+
+		if (pubUnitList.Contains(newUnit)) {
+			requirementList [newUnit] = true;
+		}
+
+		if (!requirementList.ContainsValue (false)) {
+
+			active = true;
+		} 
+			
+
+	}
+
+
+	public void UnitDied(string unitname)
+	{
+		if (requirementList.Count == 0) {
+			return;
+		}
+
+		if (pubUnitList.Contains (unitname)) {
+			requirementList [unitname] = false;
+		}
+
+		if (requirementList.ContainsValue (false)) {
+			active = false;
+		}
+
+	}
+
+
+
 }

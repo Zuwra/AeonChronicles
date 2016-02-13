@@ -176,7 +176,7 @@ public class buildTurret :UnitProduction{
 			order.nextUnitCast = false;
 		}
 
-		if (!myCost.canActivate ()) {
+		if (!myCost.canActivate (this)) {
 			order.canCast = false;
 		}
 
@@ -187,7 +187,7 @@ public class buildTurret :UnitProduction{
 	override
 	public void Activate()
 	{
-		if (myCost.canActivate ()) {
+		if (myCost.canActivate (this)) {
 
 			myCost.payCost();
 			myCost.resetCoolDown ();

@@ -13,6 +13,7 @@ public class CostBox : MonoBehaviour {
 	public Text resTwo;
 	public Text health;
 	public Text description;
+	public Text requirements;
 	// Use this for initialization
 	void Start () {
 	
@@ -35,6 +36,18 @@ public class CostBox : MonoBehaviour {
 				resOne.text = "";
 			}
 
+			if (input.pubUnitList.Count > 0) {
+				string s = "Req: ";
+				foreach (string n in input.pubUnitList) {
+					if (!s.Equals ("Req: ")) {
+						s += ", ";
+					}
+					s += n;
+				}
+				requirements.text = s;
+			} else {
+				requirements.text = "";
+			}
 
 			if (input.myCost.ResourceTwo > 0) {
 				resTwo.text = "Gas: " + input.myCost.ResourceTwo;

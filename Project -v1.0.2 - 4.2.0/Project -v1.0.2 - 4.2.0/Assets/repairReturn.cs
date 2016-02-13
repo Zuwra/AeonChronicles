@@ -31,7 +31,9 @@ public class repairReturn : Ability{
 
 
 	public bool validate(GameObject source, GameObject target)
-	{
+	{if (!active) {
+			return false;}
+		
 		if (chargeCount < maxRepair) {
 			return true;
 		}
@@ -49,7 +51,11 @@ public class repairReturn : Ability{
 
 	override
 	public continueOrder canActivate()
-	{return new continueOrder();
+	{continueOrder ord = new continueOrder ();
+		if (!active) {
+			ord.canCast = false;}
+
+		return ord;
 
 
 	}

@@ -41,6 +41,11 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	private List<GameObject> unitList = new List<GameObject>();
 
+	//used for unit ability validation
+	private Dictionary<string, int > unitTypeCount = new Dictionary<string, int>();
+
+
+
 	private List<LethalDamageinterface> deathTrigger = new List<LethalDamageinterface>();
 	public RaceUIManager uiManager;
 
@@ -127,29 +132,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 
-    public bool UnitDying(GameObject Unit, GameObject deathSource)
-	{bool finishDeath = true;
-
-		//Debug.Log ("starting triggers");
-
-		foreach (LethalDamageinterface trigger in deathTrigger) {
-
-
-		if(trigger != null){
-			if(trigger.lethalDamageTrigger(Unit, deathSource) == false)
-				{
-				finishDeath = false;
-				}}
-		}
-
-		if (finishDeath) {
-			if (uiManager != null) {
-				uiManager.production.GetComponent<ArmyUIManager> ().unitLost(Unit);
-			}
-		}
-		return finishDeath;
-
-	}
 
 	public void UnitDied(float supply)
 	{
@@ -167,7 +149,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		unitList.RemoveAll(item => item == null);
 
 
-		//uiManager.dropdowns[].changeUnits ();
 	}
 
 	public void UnitCreated(float supply)
@@ -198,8 +179,57 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
+
+	public bool UnitDying(GameObject Unit, GameObject deathSource)
+	{bool finishDeath = true;
+
+		//Debug.Log ("starting triggers");
+
+		foreach (LethalDamageinterface trigger in deathTrigger) {
+
+
+			if(trigger != null){
+				if(trigger.lethalDamageTrigger(Unit, deathSource) == false)
+				{
+					finishDeath = false;
+				}}
+		}
+
+		if (finishDeath) {
+			if (uiManager != null) {
+				uiManager.production.GetComponent<ArmyUIManager> ().unitLost(Unit);
+			}
+		}
+
+		string unitName = Unit.GetComponent<UnitManager> ().UnitName;
+
+		if (unitTypeCount.ContainsKey (unitName)) {
+			unitTypeCount [unitName]--;
+
+
+			// No Units of tis type, call update function on units abilities
+			if(unitTypeCount[unitName] == 0){
+				foreach (GameObject o in unitList) {
+
+					foreach (Ability a in o.GetComponent<UnitManager>().abilityList) {
+						a.UnitDied (unitName);
+
+					}
+				}
+			}
+
+		} 
+
+		return finishDeath;
+	}
+
+
+
+
 	public void addUnit(GameObject obj )
 	{
+
+
 		unitList.Add(obj);
 		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.worker)) {
 			if (uiManager != null) {
@@ -209,6 +239,45 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		if (uiManager != null) {
 			uiManager.production.GetComponent<ArmyUIManager> ().updateUnits (obj);
 		}
+
+		string unitName = obj.GetComponent<UnitManager> ().UnitName;
+
+		if (unitTypeCount.ContainsKey (unitName)) {
+			unitTypeCount [unitName]++;
+		} else {
+			unitTypeCount.Add (unitName, 1);
+		}
+		//Debug.Log ("STARTING");
+	
+		//apply all existing units built to new unit
+		foreach (KeyValuePair<string, int> n in unitTypeCount) {
+			
+			if (n.Value > 0 ) {
+	
+				foreach (Ability ab in obj.GetComponent<UnitManager>().abilityList) {
+					ab.newUnitCreated (n.Key);
+
+				}
+			}
+		}
+
+
+		// new unit, call update function on units abilities
+		if(unitTypeCount[unitName] ==1){
+
+			foreach (GameObject o in unitList) {
+				if (o != null) {
+					foreach (Ability a in o.GetComponent<UnitManager>().abilityList) {
+						a.newUnitCreated (unitName);
+				
+					}
+				}
+			}
+		}
+
+
+
+
 		//uiManager.changeUnits ();
 	}
 

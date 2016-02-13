@@ -75,7 +75,7 @@ public class BuildUnit : UnitProduction {
 		order.nextUnitCast = false;
 
 
-		if (!myCost.canActivate ()) {
+		if (!myCost.canActivate (this)) {
 			order.canCast = false;
 		}
 
@@ -89,7 +89,7 @@ public class BuildUnit : UnitProduction {
 		public void Activate()
 	{
 
-		if (myCost.canActivate ()) {
+		if (myCost.canActivate (this)) {
 			
 		
 				myCost.payCost();

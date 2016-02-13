@@ -68,7 +68,7 @@ public class Morph :  UnitProduction {
 			return order;
 		}
 
-		if (!myCost.canActivate ()) {
+		if (!myCost.canActivate (this)) {
 			order.canCast = false;
 		}
 		order.nextUnitCast = false;

@@ -20,7 +20,8 @@ public class BallisticMissile:  TargetAbility {
 
 		continueOrder order = new continueOrder ();
 
-		if (!myCost.canActivate ()) {
+
+		if (!myCost.canActivate (this)) {
 			order.canCast = false;
 		} else {
 			order.nextUnitCast = false;
