@@ -86,6 +86,7 @@ public class ResearchUpgrade:  Ability, Upgradable{
 			if (upgrades.Count > currentUpgrade + 1) {
 				currentUpgrade++;
 
+				//this is all here for replaceable or scaling upgrades
 				iconPic = upgrades [currentUpgrade].iconPic;
 				Name = upgrades [currentUpgrade].Name;
 				myCost = upgrades [currentUpgrade].myCost;
@@ -95,8 +96,7 @@ public class ResearchUpgrade:  Ability, Upgradable{
 
 				foreach (Upgrade up in upgrades) {
 
-					if (up.myCost != null)
-						Destroy (up.myCost);
+				
 					Destroy (up);
 				}
 

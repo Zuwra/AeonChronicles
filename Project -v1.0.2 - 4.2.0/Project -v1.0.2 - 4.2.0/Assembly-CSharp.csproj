@@ -130,6 +130,7 @@
      <Compile Include="Assets\ChannelState.cs" />
      <Compile Include="Assets\ClickableButton.cs" />
      <Compile Include="Assets\Clock.cs" />
+     <Compile Include="Assets\CooledJacket.cs" />
      <Compile Include="Assets\CostBox.cs" />
      <Compile Include="Assets\DaexaWorkerInteract.cs" />
      <Compile Include="Assets\DamageUpgrade.cs" />
@@ -138,6 +139,7 @@
      <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
+     <Compile Include="Assets\FusionWeld.cs" />
      <Compile Include="Assets\GameMenu.cs" />
      <Compile Include="Assets\GamePlayMenu.cs" />
      <Compile Include="Assets\GraphicsMenu.cs" />
@@ -153,6 +155,7 @@
      <Compile Include="Assets\MissileArmer.cs" />
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\Page.cs" />
+     <Compile Include="Assets\PalCapacitors.cs" />
      <Compile Include="Assets\ProductionManager.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
      <Compile Include="Assets\RaceSelectManager.cs" />
@@ -349,6 +352,7 @@
      <Compile Include="Assets\StandardInteract.cs" />
      <Compile Include="Assets\TargetAbility.cs" />
      <Compile Include="Assets\ToolTip.cs" />
+     <Compile Include="Assets\TurboRockets.cs" />
      <Compile Include="Assets\TurretDeathTrigger.cs" />
      <Compile Include="Assets\TurretMount.cs" />
      <Compile Include="Assets\TurretMountTwo.cs" />

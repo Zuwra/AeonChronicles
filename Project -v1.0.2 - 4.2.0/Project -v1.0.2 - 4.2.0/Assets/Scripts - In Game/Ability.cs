@@ -14,7 +14,7 @@ public abstract class Ability : MonoBehaviour {
 	public type myType;
 
 	//These are seperate because Unit inspector wont show dictionaries
-	public List<string> pubUnitList = new List<string>();
+	public List<string> RequiredUnit = new List<string>();
 	private Dictionary<string, bool> requirementList = new Dictionary<string, bool> ();
 
 
@@ -39,7 +39,7 @@ public abstract class Ability : MonoBehaviour {
 	private void initialize()
 		{
 		initialized = true;
-		foreach (string s in pubUnitList) {
+		foreach (string s in RequiredUnit) {
 
 			requirementList.Add (s, false);
 
@@ -76,7 +76,7 @@ public abstract class Ability : MonoBehaviour {
 			return;
 		}
 
-		if (pubUnitList.Contains(newUnit)) {
+		if (RequiredUnit.Contains(newUnit)) {
 			requirementList [newUnit] = true;
 		}
 
@@ -95,7 +95,7 @@ public abstract class Ability : MonoBehaviour {
 			return;
 		}
 
-		if (pubUnitList.Contains (unitname)) {
+		if (RequiredUnit.Contains (unitname)) {
 			requirementList [unitname] = false;
 		}
 

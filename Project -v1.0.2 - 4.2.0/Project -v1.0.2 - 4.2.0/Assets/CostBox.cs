@@ -36,9 +36,9 @@ public class CostBox : MonoBehaviour {
 				resOne.text = "";
 			}
 
-			if (input.pubUnitList.Count > 0) {
+			if (input.RequiredUnit.Count > 0) {
 				string s = "Req: ";
-				foreach (string n in input.pubUnitList) {
+				foreach (string n in input.RequiredUnit) {
 					if (!s.Equals ("Req: ")) {
 						s += ", ";
 					}

@@ -222,7 +222,11 @@ public class buildTurret :UnitProduction{
 		chargeCount--;
 		RaceManager.upDateUI ();
 	GameObject tur = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
+
+		racer.applyUpgrade (tur);
+		buildingUnit = false;
 		buildMan.unitFinished (this);
+	
 	return tur;
 	}
 }
