@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour {
 
 
 
-	public RaceManager[] playerList = new RaceManager[2];
+	public RaceManager[] playerList = new RaceManager[3];
 	public int playerNumber;
 	public RaceManager activePlayer;
 	private RaceManager playerOne;
@@ -32,9 +32,11 @@ public class GameManager : MonoBehaviour {
 	public void initialize()
 		{
 		if (!initialized) {
-			playerList = new RaceManager[2];
+			initialized = true;
+			playerList = new RaceManager[3];
 			foreach(RaceManager race in GetComponents<RaceManager> ())
-			{playerList[race.playerNumber-1] = race;}
+			{Debug.Log (race.playerNumber -1);
+				playerList[race.playerNumber-1] = race;}
 			
 			activePlayer = playerList [playerNumber - 1];
 		}

@@ -146,6 +146,7 @@
      <Compile Include="Assets\GameMenu.cs" />
      <Compile Include="Assets\GamePlayMenu.cs" />
      <Compile Include="Assets\GraphicsMenu.cs" />
+     <Compile Include="Assets\Grinder.cs" />
      <Compile Include="Assets\GuiControls.cs" />
      <Compile Include="Assets\HealthUpgrade.cs" />
      <Compile Include="Assets\HotkeyMenu.cs" />
@@ -352,6 +353,7 @@
      <Compile Include="Assets\Scripts - In Game\turret.cs" />
      <Compile Include="Assets\Scripts - Menus\LevelLoader.cs" />
      <Compile Include="Assets\Scripts - Menus\MainMenuGUI.cs" />
+     <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SoundOptions.cs" />
      <Compile Include="Assets\StandardInteract.cs" />
      <Compile Include="Assets\TargetAbility.cs" />
@@ -371,6 +373,7 @@
      <Compile Include="Assets\buildTurret.cs" />
      <Compile Include="Assets\continueOrder.cs" />
      <Compile Include="Assets\deathTrigger.cs" />
+     <Compile Include="Assets\deexaArmor.cs" />
      <Compile Include="Assets\explosion.cs" />
      <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\mousetracker.cs" />

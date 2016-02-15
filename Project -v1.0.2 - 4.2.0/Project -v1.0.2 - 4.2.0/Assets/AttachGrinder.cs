@@ -30,6 +30,12 @@ public class AttachGrinder : Ability{
 				GetComponent<UnitManager> ().AbilityStartingRow = 1;
 				GetComponent<UnitManager> ().AbilityPriority = 10;
 
+
+
+			
+				grinder.GetComponent<Grinder> ().setOwner (GetComponent<UnitManager>().PlayerOwner);
+				grinder.GetComponent<Grinder> ().turnOn ();
+
 				GetComponent<CarryRacks> ().delete ();
 				GetComponent<RocketBooster> ().delete ();
 				if (mySelect.IsSelected) {

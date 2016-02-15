@@ -61,8 +61,10 @@ public class buildTurret :UnitProduction{
 						if (chargeCount == 0) {
 							return;
 						}
+						if (obj.enabled == false) {
+							return;}
 
-						if (obj.turret == null) {
+						if (obj.turret == null ) {
 							obj.placeTurret (createUnit ());
 
 				
@@ -77,7 +79,9 @@ public class buildTurret :UnitProduction{
 						if (chargeCount == 0) {
 							return;
 						}
-
+						if (obj.enabled == false) {
+							return;}
+						
 						if (obj.turret == null) {
 							obj.placeTurret (createUnit ());
 

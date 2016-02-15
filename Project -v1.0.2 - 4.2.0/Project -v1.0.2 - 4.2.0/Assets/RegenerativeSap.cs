@@ -45,7 +45,7 @@ public class RegenerativeSap : MonoBehaviour, Modifier {
 
 	public float modify(float damage, GameObject source)
 		{
-		if (healthList.Count < 10) {
+		if (healthList.Count < 15) {
 			healthList.Add (10);
 		
 		} else {

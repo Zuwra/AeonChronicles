@@ -72,9 +72,10 @@ public class UnitManager : Unit,IOrderable{
 
 			man.playerList [PlayerOwner - 1].UnitCreated (myStats.supply);
 
-
+		if (gameObject.GetComponent<CharacterController> ()  && visionSphere != null) {
 			visionSphere.radius = visionRange + gameObject.GetComponent<CharacterController> ().radius;
-		
+		}
+
 		if (cMover != null) {
 			changeState (new DefaultState ());
 		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.turret)) {
