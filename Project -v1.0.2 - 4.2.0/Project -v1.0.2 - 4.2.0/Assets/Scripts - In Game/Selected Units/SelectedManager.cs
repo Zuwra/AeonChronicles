@@ -30,6 +30,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     public GameObject attackInd;
 
 	private ControlGroupUI controlUI;
+	public PageUIManager pageUI;
 
     void Start()
 	{uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
@@ -37,6 +38,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         raceMan = GameObject.Find("GameRaceManager").GetComponent<GameManager>().activePlayer;
 
 		controlUI = GameObject.FindObjectOfType<ControlGroupUI> ();
+		pageUI = GameObject.FindObjectOfType<PageUIManager> ();
 		//Debug.Log ("Current page " + UIPages.Count);
     }
 
@@ -220,12 +222,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             if (currentPage < UIPages.Count-1)
 			{
 				currentPage++;
-
+				pageUI.selectPage (currentPage);
                 abilityManager.loadUI(UIPages[currentPage]);
             }
             else {
 				
                 currentPage = 0;
+				pageUI.selectPage (currentPage);
                 abilityManager.loadUI(UIPages[currentPage]);
             }
 
@@ -234,6 +237,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
     }
+
+
+	public void setPage(int n)
+	{
+		currentPage = n;
+		abilityManager.loadUI(UIPages[currentPage]);
+	}
 
 
 	public void fireAbility(GameObject obj , Vector3 loc, int abilNum)
@@ -319,6 +329,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         List<RTSObject> unitList = new List<RTSObject>();
         unitList.Add(obj);
         tempAbilityGroups.Add(unitList);
+
     }
 
 	public void updateUI()
@@ -402,7 +413,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         }
 
         abilityManager.loadUI(UIPages[currentPage]);
-
+		pageUI.setPageCount (UIPages.Count);
     }
 
 	public void applyGlobalSelection(List<List<string>> input)

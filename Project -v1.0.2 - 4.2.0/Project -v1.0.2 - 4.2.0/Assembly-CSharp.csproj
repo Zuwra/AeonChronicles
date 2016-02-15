@@ -159,6 +159,7 @@
      <Compile Include="Assets\MissileArmer.cs" />
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\Page.cs" />
+     <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\PalCapacitors.cs" />
      <Compile Include="Assets\ProductionManager.cs" />
      <Compile Include="Assets\RaceInfo.cs" />

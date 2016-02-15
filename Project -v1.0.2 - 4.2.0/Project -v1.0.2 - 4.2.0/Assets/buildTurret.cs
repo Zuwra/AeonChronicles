@@ -157,6 +157,47 @@ public class buildTurret :UnitProduction{
 
 
 
+	void OnTriggerExit(Collider other)
+	{
+
+		//need to set up calls to listener components
+		//this will need to be refactored for team games
+		if (other.isTrigger) {
+			return;}
+
+		UnitManager manage = other.gameObject.GetComponent<UnitManager>();
+
+		if (manage == null) {
+			return;
+		}
+
+		if (manage.PlayerOwner == manager.PlayerOwner) {
+			if ( myTurretType ==  turretType.one) {
+
+				foreach (TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ()) {
+					if (mount) {
+
+						turretMounts.Remove(mount);
+					}
+				}
+			} else {
+				foreach (TurretMountTwo mount in other.gameObject.GetComponentsInChildren<TurretMountTwo> ()) {
+					if (mount) {
+
+						turretTwoMounts.Remove(mount);
+					}
+				}
+			}
+
+
+		}
+	}
+
+
+
+
+
+
 
 	public void cancelBuild ()
 	{
