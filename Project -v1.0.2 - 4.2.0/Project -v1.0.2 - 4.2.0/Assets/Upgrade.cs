@@ -13,7 +13,7 @@ public abstract class Upgrade : MonoBehaviour {
 
 	public Material iconPic;
 	public AbstractCost myCost;
-
+    public float buildTime;
 	//public GameObject UIButton;
 
 	public  abstract void applyUpgrade (GameObject obj);

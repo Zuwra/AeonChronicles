@@ -88,6 +88,7 @@ public class ResearchUpgrade:  Ability, Upgradable{
 
 				//this is all here for replaceable or scaling upgrades
 				iconPic = upgrades [currentUpgrade].iconPic;
+                buildTime = upgrades[currentUpgrade].buildTime;
 				Name = upgrades [currentUpgrade].Name;
 				myCost = upgrades [currentUpgrade].myCost;
 				Descripton = upgrades [currentUpgrade].Descripton;
