@@ -121,15 +121,18 @@
      <Compile Include="Assets\AstarPathfindingProject\Utilities\ProfileHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
+     <Compile Include="Assets\AttachGrinder.cs" />
      <Compile Include="Assets\Ballistic.cs" />
      <Compile Include="Assets\BallisticMissile.cs" />
      <Compile Include="Assets\BuildLargeTurret.cs" />
      <Compile Include="Assets\BuildManager.cs" />
      <Compile Include="Assets\BuildingInteractor.cs" />
+     <Compile Include="Assets\CarryRacks.cs" />
      <Compile Include="Assets\CastAbilityState.cs" />
      <Compile Include="Assets\ChannelState.cs" />
      <Compile Include="Assets\ClickableButton.cs" />
      <Compile Include="Assets\Clock.cs" />
+     <Compile Include="Assets\ControlGroupUI.cs" />
      <Compile Include="Assets\CooledJacket.cs" />
      <Compile Include="Assets\CostBox.cs" />
      <Compile Include="Assets\DaexaWorkerInteract.cs" />
@@ -166,6 +169,7 @@
      <Compile Include="Assets\ResearchUpgrade.cs" />
      <Compile Include="Assets\ResourceGenerator.cs" />
      <Compile Include="Assets\Resources\mortarPod.cs" />
+     <Compile Include="Assets\RocketBooster.cs" />
      <Compile Include="Assets\Scripts - In Game\Ability.cs" />
      <Compile Include="Assets\Scripts - In Game\AbstractCost.cs" />
      <Compile Include="Assets\Scripts - In Game\AttackMoveState.cs" />

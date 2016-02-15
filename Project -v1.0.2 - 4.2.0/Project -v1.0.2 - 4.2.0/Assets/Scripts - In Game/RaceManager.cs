@@ -111,6 +111,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public static void removeUnitSelect(RTSObject man)
 	{GameObject.Find ("Manager").GetComponent<SelectedManager> ().DeselectObject(man);}
 
+	public static void AddUnitSelect(RTSObject man)
+	{GameObject.Find ("Manager").GetComponent<SelectedManager> ().AddObject(man);}
+
 
 	public void applyUpgrade(GameObject obj )
 	{	foreach (Upgrade up in myUpgrades) {

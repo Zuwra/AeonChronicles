@@ -31,8 +31,6 @@ public class BuildManager : MonoBehaviour {
 			return false;}
 		return true;
 
-
-
 	}
 
 

@@ -29,10 +29,14 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     public GameObject movementInd;
     public GameObject attackInd;
 
+	private ControlGroupUI controlUI;
+
     void Start()
 	{uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
         abilityManager = GameObject.Find("GameHud").GetComponent<UiAbilityManager>();
         raceMan = GameObject.Find("GameRaceManager").GetComponent<GameManager>().activePlayer;
+
+		controlUI = GameObject.FindObjectOfType<ControlGroupUI> ();
 		//Debug.Log ("Current page " + UIPages.Count);
     }
 
@@ -60,52 +64,65 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         {
             // set a control group
             if (Input.GetKeyDown(KeyCode.Alpha1))
-            { AddUnitsToGroup(0); }
+            { AddUnitsToGroup(0); 
+				controlUI.activateTab (0);
+			}
 
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 AddUnitsToGroup(1);
+				controlUI.activateTab (1);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 AddUnitsToGroup(2);
+				controlUI.activateTab (2);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 AddUnitsToGroup(3);
+				controlUI.activateTab (3);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha5))
             {
                 AddUnitsToGroup(4);
+				controlUI.activateTab (4);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha6))
             {
                 AddUnitsToGroup(5);
+				controlUI.activateTab (5);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha7))
             {
                 AddUnitsToGroup(6);
+				controlUI.activateTab (6);
+			
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha8))
             {
                 AddUnitsToGroup(7);
+				controlUI.activateTab (7);
+
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha9))
             {
                 AddUnitsToGroup(8);
+				controlUI.activateTab (8);
+			
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 AddUnitsToGroup(9);
-
+				controlUI.activateTab (9);
             }
 
         }
@@ -388,7 +405,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     }
 
-
 	public void applyGlobalSelection(List<List<string>> input)
 	{globalSelection = input;
 	
@@ -522,6 +538,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         {
             AddObject(obj);
         }
+		CreateUIPages (0);
     }
 
     public int ActiveObjectsCount()

@@ -79,11 +79,11 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
 				{myManager.changeState (new MiningState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo));}
 
-			else if ((order.Target.gameObject.GetComponent<TurretMount> ()) || order.Target.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.turret))
+			else if ((order.Target.gameObject.GetComponent<TurretMount> () && order.Target.gameObject.GetComponent<TurretMount> ().enabled == true) || order.Target.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.turret))
 				{
 				myManager.changeState (new AbilityFollowState (order.Target.gameObject, order.Target.gameObject.transform.position, GetComponent<TurretPickUp>() ));}
-			else if (order.Target.gameObject.GetComponentInChildren<TurretMount> ())
-			{GameObject obj = order.Target.gameObject.GetComponentInChildren<TurretMount> ().gameObject;
+			else if (order.Target.gameObject.GetComponentInChildren<TurretMount> () && order.Target.gameObject.GetComponentInChildren<TurretMount> ().enabled==true)
+				{GameObject obj = order.Target.gameObject.GetComponentInChildren<TurretMount> ().gameObject;
 				myManager.changeState (new AbilityFollowState (obj, order.Target.gameObject.transform.position, GetComponent<TurretPickUp>() ));
 			}
 			else{
