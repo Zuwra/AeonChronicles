@@ -46,8 +46,8 @@ public class Morph :  UnitProduction {
 
 	public override void setAutoCast(){}
 
-	public void cancelBuild ()
-	{
+	public override void cancelBuilding ()
+	{	mySelect.updateCoolDown (0);
 		timer = 0;
 		Morphing = false;
 		myCost.refundCost ();
@@ -88,9 +88,6 @@ public class Morph :  UnitProduction {
 				Morphing = true;
 				racer.buildingUnit (this);
 				myManager.changeState (new ChannelState ());
-
-				//return false;
-
 
 		} 
 		

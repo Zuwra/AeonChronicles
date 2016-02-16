@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ResearchUpgrade:  Ability, Upgradable{
+public class ResearchUpgrade: UnitProduction, Upgradable{
 
 		private Selected mySelect;
 		private bool researching;
@@ -10,14 +10,14 @@ public class ResearchUpgrade:  Ability, Upgradable{
 
 		private int currentUpgrade = 0;
 
-
+	private BuildManager buildMan;
 		public List<Upgrade> upgrades;
 
 		public float buildTime;
 		// Use this for initialization
 		void Start () {
 			mySelect = GetComponent<Selected> ();
-
+		buildMan = GetComponent<BuildManager> ();
 
 		}
 
@@ -31,10 +31,10 @@ public class ResearchUpgrade:  Ability, Upgradable{
 				mySelect.updateCoolDown (1 - timer/buildTime);
 				if(timer <=0)
 				{mySelect.updateCoolDown (0);
-					
+				buildMan.unitFinished (this);
 				researching = false;
 				GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.addUpgrade (upgrades[currentUpgrade], GetComponent<UnitManager>().UnitName);
-
+				active = true;
 				RaceManager.upDateUI ();
 					//createUnit();
 				}
@@ -53,7 +53,9 @@ public class ResearchUpgrade:  Ability, Upgradable{
 			order.canCast = false;
 			order.nextUnitCast = false;
 				return order;}
-
+		if (active == false) {
+			order.canCast = false;
+		}
 	
 		return order;
 		}
@@ -62,17 +64,22 @@ public class ResearchUpgrade:  Ability, Upgradable{
 		public void Activate()
 		{
 			if (myCost.canActivate (this)) {
+
+	
 			timer = buildTime;
-				myCost.payCost();
-			foreach (Transform obj in this.transform) {
-
-				obj.SendMessage ("ActivateAnimation",SendMessageOptions.DontRequireReceiver);
+			active = false;
+			if (mySelect.IsSelected) {
+				RaceManager.updateActivity ();
 			}
-				researching = true;
 
-				//return false;
+			myCost.payCost();
+			myCost.resetCoolDown ();
+
+			buildMan.buildUnit (this);
+		
+
 			}
-			//return true;//next unit should also do this.
+
 		}
 
 		public override void setAutoCast(){}
@@ -93,7 +100,8 @@ public class ResearchUpgrade:  Ability, Upgradable{
 				myCost = upgrades [currentUpgrade].myCost;
 				Descripton = upgrades [currentUpgrade].Descripton;
 			} else {
-				this.gameObject.GetComponent<UnitManager> ().removeAbility (this);
+				this.gameObject.GetComponent<UnitManager> ().abilityList[GetComponent<UnitManager> ().abilityList.IndexOf(this)] = null;
+			//	this.gameObject.GetComponent<UnitManager> ().removeAbility (this);
 
 				foreach (Upgrade up in upgrades) {
 
@@ -105,12 +113,36 @@ public class ResearchUpgrade:  Ability, Upgradable{
 
 					obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
 				}
+
 				Destroy (this);
 			}
 		}
 	}
 
 
+	public override float getProgress ()
+	{return (1 - timer/buildTime);}
+
+
+	public override void startBuilding(){ 
+		timer = buildTime;
+
+		myCost.resetCoolDown ();
+
+		foreach (Transform obj in this.transform) {
+
+			obj.SendMessage ("ActivateAnimation",SendMessageOptions.DontRequireReceiver);
+		}
+		researching = true;
+	}
+
+	public override void cancelBuilding(){
+
+		mySelect.updateCoolDown (0);
+		timer = 0;
+		researching = false;
+		myCost.refundCost ();
+	}
 
 
 }

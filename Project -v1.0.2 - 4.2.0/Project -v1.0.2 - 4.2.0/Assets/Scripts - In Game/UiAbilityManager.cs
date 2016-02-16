@@ -127,6 +127,7 @@ public class UiAbilityManager : MonoBehaviour {
 				for (int i = 1; i < 5; i++) {
 
 					if(man.abilityList.Count > AbilityX * 4){
+						if(man.abilityList [AbilityX * 4] !=null){
 						Transform trans = UIButtons [n].transform.FindChild ("QButton");
 						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().material = man.abilityList [AbilityX * 4].iconPic;
@@ -143,72 +144,76 @@ public class UiAbilityManager : MonoBehaviour {
 							charger.text =  ""+man.abilityList [0 + AbilityX * 4].chargeCount;
 						} else {
 							charger.text = "";
-						}
+							}}
 					}
 			
 					if(man.abilityList.Count >1+( AbilityX * 4)){
-						Transform trans = UIButtons [n].transform.FindChild ("WButton");
-						trans.gameObject.SetActive (true);
-						trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
-						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
-						trans.GetComponent<Button> ().interactable = man.abilityList [1+AbilityX * 4].active;
-						if (man.abilityList [1 + AbilityX * 4].autocast) {
-							trans.GetComponent<Button> ().image.color = Color.green;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
+						if (man.abilityList [1 + AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("WButton");
+							trans.gameObject.SetActive (true);
+							trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
+							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
+							trans.GetComponent<Button> ().interactable = man.abilityList [1 + AbilityX * 4].active;
+							if (man.abilityList [1 + AbilityX * 4].autocast) {
+								trans.GetComponent<Button> ().image.color = Color.green;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
+
+
+							Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
+							if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
+								charger.text = "" + man.abilityList [1 + AbilityX * 4].chargeCount;
+							} else {
+								charger.text = "";
+							}
 						}
-
-
-						Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
-						if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [1 + AbilityX * 4].chargeCount;
-						} else {
-							charger.text = "";
-						}
-
 					}
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
-						Transform trans = UIButtons [n].transform.FindChild ("EButton");
-						trans.gameObject.SetActive (true);
-						trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
-						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
-						trans.GetComponent<Button> ().interactable = man.abilityList [2+AbilityX * 4].active;
-						if (man.abilityList [2 + AbilityX * 4].autocast) {
-							trans.GetComponent<Button> ().image.color = Color.green;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
-						}
+						if (man.abilityList [2 +AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("EButton");
+							trans.gameObject.SetActive (true);
+							trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
+							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
+							trans.GetComponent<Button> ().interactable = man.abilityList [2 + AbilityX * 4].active;
+							if (man.abilityList [2 + AbilityX * 4].autocast) {
+								trans.GetComponent<Button> ().image.color = Color.green;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
 
 
-						Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
-						if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [2 + AbilityX * 4].chargeCount;
-						} else {
-							charger.text = "";
+							Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
+							if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
+								charger.text = "" + man.abilityList [2 + AbilityX * 4].chargeCount;
+							} else {
+								charger.text = "";
+							}
 						}
 
 					}
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
-						Transform trans = UIButtons [n].transform.FindChild ("RButton");
-						trans.gameObject.SetActive (true);
-						trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
-						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
-						trans.GetComponent<Button> ().interactable = man.abilityList [3+AbilityX * 4].active;
-						if (man.abilityList [3 + AbilityX * 4].autocast) {
-							trans.GetComponent<Button> ().image.color = Color.green;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
+						if (man.abilityList [3 +AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("RButton");
+							trans.gameObject.SetActive (true);
+							trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
+							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
+							trans.GetComponent<Button> ().interactable = man.abilityList [3 + AbilityX * 4].active;
+							if (man.abilityList [3 + AbilityX * 4].autocast) {
+								trans.GetComponent<Button> ().image.color = Color.green;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
+
+
+							Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
+							if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
+								charger.text = "" + man.abilityList [3 + AbilityX * 4].chargeCount;
+							} else {
+								charger.text = "";
+							}
 						}
-
-
-						Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
-						if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [3 + AbilityX * 4].chargeCount;
-						} else {
-							charger.text = "";
-						}
-
 					}
 			
 			
@@ -245,46 +250,51 @@ public class UiAbilityManager : MonoBehaviour {
 				for (int i = 1; i < 5; i++) {
 
 					if(man.abilityList.Count > AbilityX * 4){
-						Transform trans = UIButtons [n].transform.FindChild ("QButton");
+						if (man.abilityList [AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("QButton");
 
-						if (man.abilityList [AbilityX * 4].autocast) {
-							trans.GetComponent<Button> ().image.color = Color.green;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
+							if (man.abilityList [AbilityX * 4].autocast) {
+								trans.GetComponent<Button> ().image.color = Color.green;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
 						}
-
 					}
 
 					if(man.abilityList.Count >1+( AbilityX * 4)){
-						Transform trans = UIButtons [n].transform.FindChild ("WButton");
+						if (man.abilityList [1 + AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("WButton");
 
-						if (man.abilityList [1 + AbilityX * 4].autocast) {
-							trans.GetComponent<Button> ().image.color = Color.green;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
+							if (man.abilityList [1 + AbilityX * 4].autocast) {
+								trans.GetComponent<Button> ().image.color = Color.green;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
 						}
-
 					}
+
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
-						Transform trans = UIButtons [n].transform.FindChild ("EButton");
+						if (man.abilityList [2 + AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("EButton");
 
-						if (man.abilityList [2 + AbilityX * 4].autocast) {
-							trans.GetComponent<Button> ().image.color = Color.green;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
+							if (man.abilityList [2 + AbilityX * 4].autocast) {
+								trans.GetComponent<Button> ().image.color = Color.green;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
 						}
-
 					}
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
-						Transform trans = UIButtons [n].transform.FindChild ("RButton");
+						if (man.abilityList [3 +AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("RButton");
 
-						if (man.abilityList [3 + AbilityX * 4].autocast) {
-							trans.GetComponent<Button> ().image.color = Color.green;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
+							if (man.abilityList [3 + AbilityX * 4].autocast) {
+								trans.GetComponent<Button> ().image.color = Color.green;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
 						}
-
 					}
 
 
@@ -302,8 +312,6 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public void updateUI(Page uiPage)
 	{
-
-
 		int n = 0;
 
 
@@ -325,69 +333,75 @@ public class UiAbilityManager : MonoBehaviour {
 			for (int m = 0; m < man.abilityList.Count / 4 +1; m++) {
 				for (int i = 1; i < 5; i++) {
 
-					if(man.abilityList.Count > AbilityX * 4){
-						Transform trans = UIButtons [n].transform.FindChild ("QButton");
+					if (man.abilityList.Count > AbilityX * 4) {
+						if (man.abilityList [AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("QButton");
 
-						trans.GetComponent<Image> ().material = man.abilityList [AbilityX * 4].iconPic;
+							trans.GetComponent<Image> ().material = man.abilityList [AbilityX * 4].iconPic;
 				
 					
-						trans.GetComponent<Button> ().interactable = man.abilityList [AbilityX * 4].active;
+							trans.GetComponent<Button> ().interactable = man.abilityList [AbilityX * 4].active;
 					
 
-						Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
-						if (man.abilityList [AbilityX * 4].chargeCount > -1) {
+							Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
+							if (man.abilityList [AbilityX * 4].chargeCount > -1) {
 							
-							charger.text =  ""+man.abilityList [ AbilityX * 4].chargeCount;
-						} else {
-							charger.text = "";
+								charger.text = "" + man.abilityList [AbilityX * 4].chargeCount;
+							} else {
+								charger.text = "";
+							}
 						}
 					}
 
 					if(man.abilityList.Count >1+( AbilityX * 4)){
-						Transform trans = UIButtons [n].transform.FindChild ("WButton");
+						if (man.abilityList [1 + AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("WButton");
 
-						trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
+							trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
 					
 
-						Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
-						trans.GetComponent<Button> ().interactable = man.abilityList [1 +AbilityX * 4].active;
+							Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
+							trans.GetComponent<Button> ().interactable = man.abilityList [1 + AbilityX * 4].active;
 
-						if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [1 + AbilityX * 4].chargeCount;
+							if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
+								charger.text = "" + man.abilityList [1 + AbilityX * 4].chargeCount;
 
-						} else {
-							charger.text = "";
+							} else {
+								charger.text = "";
+							}
 						}
-
 					}
+
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
-						Transform trans = UIButtons [n].transform.FindChild ("EButton");
+						if (man.abilityList [2 + AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("EButton");
 					
-						trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
-						trans.GetComponent<Button> ().interactable = man.abilityList [2+ AbilityX * 4].active;
+							trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
+							trans.GetComponent<Button> ().interactable = man.abilityList [2 + AbilityX * 4].active;
 
-						Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
-						if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [2 + AbilityX * 4].chargeCount;
-						} else {
-							charger.text = "";
+							Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
+							if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
+								charger.text = "" + man.abilityList [2 + AbilityX * 4].chargeCount;
+							} else {
+								charger.text = "";
+							}
 						}
-
 					}
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
-						Transform trans = UIButtons [n].transform.FindChild ("RButton");
+						if (man.abilityList [3 + AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("RButton");
 
-						trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
+							trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
 
-						trans.GetComponent<Button> ().interactable = man.abilityList [3+AbilityX * 4].active;
-						Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
-						if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [3 + AbilityX * 4].chargeCount;
-						} else {
-							charger.text = "";
+							trans.GetComponent<Button> ().interactable = man.abilityList [3 + AbilityX * 4].active;
+							Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
+							if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
+								charger.text = "" + man.abilityList [3 + AbilityX * 4].chargeCount;
+							} else {
+								charger.text = "";
+							}
 						}
-
 					}
 
 
@@ -401,6 +415,88 @@ public class UiAbilityManager : MonoBehaviour {
 	}
 		
 
+
+
+	public void upDateActive(Page uiPage)
+	{
+
+
+		int n = 0;
+
+		for (int j = 0; j < 3; j++) {
+			if (uiPage.rows [j] == null) {
+				continue;
+			}
+
+			n = uiPage.rows [j] [0].AbilityStartingRow;
+
+			//Sets the unit's stats and count
+			UnitManager man = uiPage.rows [j] [0].gameObject.GetComponent<UnitManager> ();
+
+
+			int AbilityX = 0;
+
+			for (int m = 0; m < man.abilityList.Count / 4 + 1; m++) {
+				for (int i = 1; i < 5; i++) {
+
+					if (man.abilityList.Count > AbilityX * 4) {
+						if (man.abilityList [AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("QButton");
+							trans.GetComponent<Button> ().interactable = man.abilityList [AbilityX * 4].active;
+							if (!man.abilityList [AbilityX * 4].active) {
+								trans.GetComponent<Button> ().image.color = Color.red;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
+						}
+					}
+
+					if (man.abilityList.Count > 1 + (AbilityX * 4)) {
+						if (man.abilityList [1 + AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("WButton");
+
+							trans.GetComponent<Button> ().interactable = man.abilityList [1 + AbilityX * 4].active;
+							if (!man.abilityList [1 + AbilityX * 4].active) {
+								trans.GetComponent<Button> ().image.color = Color.red;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
+						}
+					}
+
+					if (man.abilityList.Count > 2 + (AbilityX * 4)) {
+						if (man.abilityList [2 + AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("EButton");
+
+							trans.GetComponent<Button> ().interactable = man.abilityList [2 + AbilityX * 4].active;
+							if (!man.abilityList [2 + AbilityX * 4].active) {
+								trans.GetComponent<Button> ().image.color = Color.red;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
+						}
+					}
+
+					if (man.abilityList.Count > 3 + (AbilityX * 4)) {
+						if (man.abilityList [3 + AbilityX * 4] != null) {
+							Transform trans = UIButtons [n].transform.FindChild ("RButton");
+
+							trans.GetComponent<Button> ().interactable = man.abilityList [3 + AbilityX * 4].active;
+							if (!man.abilityList [3 + AbilityX * 4].active) {
+								trans.GetComponent<Button> ().image.color = Color.red;
+							} else {
+								trans.GetComponent<Button> ().image.color = Color.white;
+							}
+						}
+					}
+
+
+				}
+				AbilityX++;
+				n++;
+			}
+		}
+	}
 
 
 

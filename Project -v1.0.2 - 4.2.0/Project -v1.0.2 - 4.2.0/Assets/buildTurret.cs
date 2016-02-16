@@ -199,13 +199,13 @@ public class buildTurret :UnitProduction{
 
 
 
-	public void cancelBuild ()
+	public override void cancelBuilding ()
 	{
 		timer = 0;
 		buildingUnit = false;
 		myCost.refundCost ();
 		GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
-	
+		mySelect.updateCoolDown (0);
 		racer.stopBuildingUnit (this);
 	}
 

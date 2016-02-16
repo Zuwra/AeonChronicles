@@ -8,5 +8,7 @@ public abstract class UnitProduction: Ability {
 
 	public abstract void startBuilding();
 
+	public abstract void cancelBuilding();
+
 
 }

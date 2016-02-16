@@ -24,9 +24,12 @@ public class UnitCardCreater : MonoBehaviour {
 
 	private bool hasUnit;
 
+	private BuilderUI builder;
+
 
 	// Use this for initialization
 	void Start () {
+		builder = GetComponent<BuilderUI> ();
 	
 	}
 	
@@ -86,6 +89,7 @@ public class UnitCardCreater : MonoBehaviour {
 			attackSpeed.text = "";
 			range.text = "" ;
 		}
+		builder.loadUnit (obj);
 
 	}
 

@@ -56,8 +56,9 @@ public class BuildUnit : UnitProduction {
 	{return (1 - timer/buildTime);}
 
 
-	public void cancelBuild ()
+	public override void cancelBuilding ()
 		{
+		mySelect.updateCoolDown (0);
 		timer = 0;
 		buildingUnit = false;
 		myCost.refundCost ();
@@ -90,8 +91,7 @@ public class BuildUnit : UnitProduction {
 	{
 
 		if (myCost.canActivate (this)) {
-			
-		
+
 				myCost.payCost();
 			myCost.resetCoolDown ();
 		

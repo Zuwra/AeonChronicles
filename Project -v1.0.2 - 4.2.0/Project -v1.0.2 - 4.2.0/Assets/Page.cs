@@ -37,6 +37,8 @@ public class Page  {
 		}
 
 		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
+		if (rows [n / 4] [0].abilityList [X] == null) {
+			return false;}
 		if (rows [n / 4] [0].abilityList [X].myType == Ability.type.target) {
 			return true;
 		}
@@ -116,6 +118,10 @@ public class Page  {
 
 		// Tell the unit with the least number of units queued up to build the unit.
 	
+		if (rows [n / 4] [0].abilityList [X] == null) {
+		
+			return;}
+
 		if (rows [n / 4] [0].abilityList[X].GetType().IsSubclassOf(typeof(UnitProduction))) {
 
 			int min = 1000;

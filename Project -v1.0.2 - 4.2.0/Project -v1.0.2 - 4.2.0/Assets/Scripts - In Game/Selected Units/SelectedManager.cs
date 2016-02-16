@@ -338,6 +338,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	}
 
+	public void updateUIActivity()
+	{
+		if (UIPages.Count > 0) {
+			abilityManager.upDateActive(UIPages [currentPage]);
+		}
+	}
+
 	public void reImageUI()
 	{ if (UIPages.Count > 0) {
 			abilityManager.updateUI (UIPages [currentPage]);

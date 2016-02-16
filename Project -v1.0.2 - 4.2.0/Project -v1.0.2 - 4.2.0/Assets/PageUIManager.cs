@@ -25,7 +25,8 @@ public class PageUIManager : MonoBehaviour {
 	{pageList [currentPage].image.color = Color.white;
 		currentPage = n;
 		selectM.setPage (n);
-		pageList [n].image.color = Color.blue;
+		pageList [n].image.color = Color.red;
+	
 	}
 
 	public void setPageCount(int n)

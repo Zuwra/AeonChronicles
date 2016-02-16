@@ -50,6 +50,8 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public RaceUIManager uiManager;
 
 
+	private static SelectedManager statSelect;
+
 	//public TechTree myTech;
 
 	// Use this for initialization
@@ -94,25 +96,42 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	}
 
+	public static void  findSelectMan()
+	{if (statSelect == null) {
+			statSelect = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
+		}
+	}
+
 	public static void upDateUI()
-	{GameObject.Find ("Manager").GetComponent<SelectedManager> ().reImageUI ();
+	{findSelectMan();
+		statSelect.reImageUI ();
 	}
 
 	public static void upDateAutocast()
-	{GameObject.Find ("Manager").GetComponent<SelectedManager> ().AutoCastUI();
+	{findSelectMan();
+		statSelect.AutoCastUI();
 	}
 
 	public static void updateUIUnitcount()
-	{
-		GameObject.Find ("Manager").GetComponent<SelectedManager> ().updateUI();
+	{findSelectMan();
+		statSelect.updateUI();
+	}
+
+	public static void updateActivity()
+	{findSelectMan();
+		statSelect.updateUIActivity();
 	}
 
 
 	public static void removeUnitSelect(RTSObject man)
-	{GameObject.Find ("Manager").GetComponent<SelectedManager> ().DeselectObject(man);}
+	{findSelectMan();
+		statSelect.DeselectObject(man);}
 
 	public static void AddUnitSelect(RTSObject man)
-	{GameObject.Find ("Manager").GetComponent<SelectedManager> ().AddObject(man);}
+	{findSelectMan();
+		statSelect.AddObject(man);}
+
+
 
 
 	public void applyUpgrade(GameObject obj )
