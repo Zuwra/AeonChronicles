@@ -114,6 +114,21 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 			break;
 
+		case Mode.globalAbility:
+
+			 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+
+			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 16)))
+			{
+				Vector3 targetPoint = hit.point;
+				targetPoint.y += 40;
+				AbilityTargeter.transform.position =  targetPoint;
+				currentObject = hit.collider.gameObject;
+			}
+
+			break;
+
 			
 		case Mode.PlaceBuilding:
 			ModePlaceBuildingBehaviour();
@@ -339,7 +354,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	{
 
 
-	
+		Ray ray;
 		switch (m_Mode)
 		{
 		case Mode.Menu:
@@ -427,7 +442,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		case Mode.targetAbility:
 
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 			Vector3 targetPoint = Vector3.zero;
 			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
@@ -445,6 +460,30 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 
 			m_SelectedManager.fireAbility (currentObject, targetPoint, currentAbilityNUmber);
+			SwitchMode (Mode.Normal);
+			break;
+
+		case Mode.globalAbility:
+
+			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		
+			targetPoint = Vector3.zero;
+			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
+				targetPoint = hit.point;
+
+
+				AbilityTargeter.transform.position = targetPoint;
+				currentObject = hit.collider.gameObject;
+				if (currentObject.layer == 9 || currentObject.layer == 10 || currentObject.layer == 13) {
+
+				} else {
+					currentObject = null;
+				}
+			}
+			Debug.Log ("casting");
+
+			((TargetAbility)currentAbility).Cast (currentObject, targetPoint);
+		
 			SwitchMode (Mode.Normal);
 			break;
 			
@@ -519,6 +558,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 				SwitchMode (Mode.Normal);
 				
 				break;
+
+		case Mode.globalAbility:
+			SwitchMode (Mode.Normal);
+
+			break;
+
 			
 		case Mode.PlaceBuilding:
 			
@@ -604,7 +649,15 @@ public class UIManager : MonoBehaviour, IUIManager {
 		case Mode.Disabled:
 			
 			break;
+
+		case Mode.globalAbility:
+			m_Mode = Mode.globalAbility;
+			AbilityTargeter.SetActive (true);
+			break;
+
 		}
+
+		Debug.Log ("Mode is set to " + m_Mode);
 	}
 
 
@@ -659,6 +712,7 @@ public enum Mode
 	Normal,
 	Menu,
 	targetAbility,
+	globalAbility,
 	PlaceBuilding,
 	Disabled,
 }

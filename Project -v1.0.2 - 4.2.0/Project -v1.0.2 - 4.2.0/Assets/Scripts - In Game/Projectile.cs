@@ -62,7 +62,27 @@ public  class Projectile : MonoBehaviour {
 
 	public void setLocation(Vector3 loc)
 	{
-		lastLocation = loc;
+
+
+
+		if (inaccuracy > 0) {
+			Vector3 hitzone = loc;
+			float radius = Random.Range (0, inaccuracy);
+			float angle = Random.Range (0, 360);
+
+			hitzone.x += Mathf.Sin (Mathf.Deg2Rad * angle) * radius;
+			hitzone.z += Mathf.Cos (Mathf.Deg2Rad * angle) * radius;
+
+			lastLocation = hitzone;
+
+
+
+
+		} else {
+			lastLocation = loc;
+		}
+
+
 		gameObject.transform.LookAt (lastLocation);
 		distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
 	}

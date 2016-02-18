@@ -175,16 +175,16 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	{selectManager.globalSelect(3);}
 	
 	public void fNine()
-	{}
+	{raceManager.useAbilityOne ();}
 	
 	public void fTen()
-	{}
+	{raceManager.useAbilityTwo ();}
 	
 	public void fEleven()
-	{}
+	{raceManager.useAbilityThree ();}
 	
 	public void fTwelve()
-	{}
+	{raceManager.useAbilityFour ();}
 
 
 

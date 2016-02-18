@@ -28,6 +28,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public RaceInfo.raceType myRace;
 	public GameObject upgradeBall;
 
+	public UIManager uiManage;
 
 	private List<Upgrade> myUpgrades = new List<Upgrade> ();
 
@@ -58,13 +59,14 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	void Awake () {
 		selectedManager = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
 		uiManager = FindObjectOfType <RaceUIManager>();
-
+		uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+
 	}
 
 
@@ -433,24 +435,32 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void useAbilityOne()
 	{if (UltOne != null) {
+			uiManage.SwitchMode (Mode.globalAbility);
+			uiManage.setAbility (	UltOne, 1);
 		}
 	}
 
 	public void useAbilityTwo()
 	{
 		if (UltTwo != null) {
+			uiManage.SwitchMode (Mode.globalAbility);
+			uiManage.setAbility (	UltTwo, 1);
 		}
 	}
 
 	public void useAbilityThree()
 	{
 		if (UltThree != null) {
+			uiManage.SwitchMode (Mode.globalAbility);
+			uiManage.setAbility (	UltThree, 1);
 		}
 	}
 
 	public void useAbilityFour()
 	{
 		if (UltFour != null) {
+			uiManage.SwitchMode (Mode.globalAbility);
+			uiManage.setAbility (	UltFour, 1);
 		}
 	}
 

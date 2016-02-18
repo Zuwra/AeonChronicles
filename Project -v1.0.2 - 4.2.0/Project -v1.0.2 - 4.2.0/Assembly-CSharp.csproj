@@ -124,6 +124,7 @@
      <Compile Include="Assets\AttachGrinder.cs" />
      <Compile Include="Assets\Ballistic.cs" />
      <Compile Include="Assets\BallisticMissile.cs" />
+     <Compile Include="Assets\Bombardment.cs" />
      <Compile Include="Assets\BuildLargeTurret.cs" />
      <Compile Include="Assets\BuildManager.cs" />
      <Compile Include="Assets\BuilderUI.cs" />
@@ -136,6 +137,7 @@
      <Compile Include="Assets\ControlGroupUI.cs" />
      <Compile Include="Assets\CooledJacket.cs" />
      <Compile Include="Assets\CostBox.cs" />
+     <Compile Include="Assets\DaexaSupplyDrop.cs" />
      <Compile Include="Assets\DaexaWorkerInteract.cs" />
      <Compile Include="Assets\DamageUpgrade.cs" />
      <Compile Include="Assets\EMPblast.cs" />
@@ -162,6 +164,7 @@
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\PalCapacitors.cs" />
+     <Compile Include="Assets\PrefabDrop.cs" />
      <Compile Include="Assets\ProductionManager.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
      <Compile Include="Assets\RaceSelectManager.cs" />
@@ -173,6 +176,7 @@
      <Compile Include="Assets\ResourceGenerator.cs" />
      <Compile Include="Assets\Resources\mortarPod.cs" />
      <Compile Include="Assets\RocketBooster.cs" />
+     <Compile Include="Assets\SateliteScan.cs" />
      <Compile Include="Assets\Scripts - In Game\Ability.cs" />
      <Compile Include="Assets\Scripts - In Game\AbstractCost.cs" />
      <Compile Include="Assets\Scripts - In Game\AttackMoveState.cs" />
