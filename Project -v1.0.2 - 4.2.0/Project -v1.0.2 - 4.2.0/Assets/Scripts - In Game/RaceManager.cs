@@ -159,24 +159,24 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void UnitDied(float supply)
 	{
-	if (supply > 0) {
+	if (supply < 0) {
 
 
-			supplyMax -= supply;
+			supplyMax += supply;
 		} else {
-			currentSupply += supply;
+			currentSupply -= supply;
 		}
 
 		updateSupply(currentSupply, supplyMax);
 
 
-		unitList.RemoveAll(item => item == null);
+	//	unitList.RemoveAll(item => item == null);
 
 
 	}
 
 	public void UnitCreated(float supply)
-	{
+	{Debug.Log("Unit created " + supply);
 		if (supply < 0) {
 
 
@@ -233,6 +233,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 			// No Units of tis type, call update function on units abilities
 			if(unitTypeCount[unitName] == 0){
+				unitList.RemoveAll(item => item == null);
 				foreach (GameObject o in unitList) {
 
 					foreach (Ability a in o.GetComponent<UnitManager>().abilityList) {
@@ -364,8 +365,11 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public GameObject getNearestDropOff(GameObject worker)
 		{
 		float closest = 10000000;
-
+		resourceDropOffs.RemoveAll(item => item == null);
+		if (resourceDropOffs.Count == 0) {
+			return null;}
 		GameObject nearest = resourceDropOffs[0];
+
 		foreach (GameObject obj in resourceDropOffs) {
 			float distance = Vector3.Distance(obj.transform.position,worker.transform.position);
 			if(distance < closest)

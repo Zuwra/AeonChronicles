@@ -67,7 +67,7 @@ public class Bombardment : TargetAbility{
 
 
 		Vector3 spawnLoc = location;
-		spawnLoc.y += 150;
+		spawnLoc.y += 200;
 
 
 		proj = (GameObject)Instantiate (Explosion, spawnLoc, Quaternion.identity);

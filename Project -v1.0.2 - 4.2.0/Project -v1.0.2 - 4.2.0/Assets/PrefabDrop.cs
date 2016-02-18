@@ -52,36 +52,58 @@ public class PrefabDrop : TargetAbility{
 
 		Vector3 loc1 = location;
 		loc1.x += 9;
+		loc1.y += 150;
 		proj = (GameObject)Instantiate (prefab, loc1, Quaternion.identity);
 		proj.GetComponent<UnitManager>().setInteractor();
 		proj.GetComponent<UnitManager> ().interactor.initialize ();
 		racer.applyUpgrade (proj);
+		proj.AddComponent<SpaceDrop> ();
+		proj.GetComponent<SpaceDrop> ().speed = 3;
+		loc1.y -= 150;
+		proj.GetComponent<SpaceDrop> ().setLocation (loc1);
 
 		Vector3 loc2 = location;
 		loc2.x -= 9;
+		loc2.y += 150;
 		proj = (GameObject)Instantiate (prefab, loc2, Quaternion.identity);
 		proj.GetComponent<UnitManager>().setInteractor();
 		proj.GetComponent<UnitManager> ().interactor.initialize ();
 		racer.applyUpgrade (proj);
+		proj.AddComponent<SpaceDrop> ();
+		proj.GetComponent<SpaceDrop> ().speed = 3;
+		loc2.y -= 150;
+		proj.GetComponent<SpaceDrop> ().setLocation (loc2);
 
 		Vector3 loc3 = location;
 		loc3.z += 9;
+		loc3.y += 150;
 		proj = (GameObject)Instantiate (prefab, loc3, Quaternion.identity);
 		proj.GetComponent<UnitManager>().setInteractor();
 		proj.GetComponent<UnitManager> ().interactor.initialize ();
 		racer.applyUpgrade (proj);
+		proj.AddComponent<SpaceDrop> ();
+		proj.GetComponent<SpaceDrop> ().speed = 3;
+		loc3.y -= 150;
+		proj.GetComponent<SpaceDrop> ().setLocation (loc3);
 
 		Vector3 loc4 = location;
 		loc4.z -= 9;
+		loc4.y += 150;
 		proj = (GameObject)Instantiate (prefab, loc4, Quaternion.identity);
 		proj.GetComponent<UnitManager>().setInteractor();
 		proj.GetComponent<UnitManager> ().interactor.initialize ();
 		racer.applyUpgrade (proj);
+		proj.AddComponent<SpaceDrop> ();
+		proj.GetComponent<SpaceDrop> ().speed = 3;
+		loc4.y -= 150;
+		proj.GetComponent<SpaceDrop> ().setLocation (loc4);
 
 
 		return false;
 
 	}
+
+
 
 
 

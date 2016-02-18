@@ -97,6 +97,12 @@ public class buildTurret :UnitProduction{
 		}
 	}
 
+	public override void DeQueueUnit()
+	{
+		myCost.refundCost ();
+
+	}
+
 	public override float getProgress ()
 	{return (1 - timer/buildTime);}
 
@@ -215,11 +221,8 @@ public class buildTurret :UnitProduction{
 	public continueOrder canActivate ()
 	{continueOrder order = new continueOrder ();
 		
-		if (buildingUnit) {
-			order.canCast = false;
-		} else {
-			order.nextUnitCast = false;
-		}
+
+		order.nextUnitCast = false;
 
 		if (!myCost.canActivate (this)) {
 			order.canCast = false;
@@ -234,10 +237,11 @@ public class buildTurret :UnitProduction{
 	{
 		if (myCost.canActivate (this)) {
 
-			myCost.payCost();
-			myCost.resetCoolDown ();
-			buildMan.buildUnit (this);
+			if (buildMan.buildUnit (this)) {
+				myCost.payCost ();
+				myCost.resetCoolDown ();
 
+			}
 		}
 		//return true;//next unit should also do this.
 	}

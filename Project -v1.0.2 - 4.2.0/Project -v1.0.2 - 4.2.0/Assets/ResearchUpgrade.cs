@@ -42,7 +42,11 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 		}
 
+	public override void DeQueueUnit()
+	{
+		myCost.refundCost ();
 
+	}
 
 
 		override
@@ -66,18 +70,17 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 			if (myCost.canActivate (this)) {
 
 	
-			timer = buildTime;
-			active = false;
-			if (mySelect.IsSelected) {
-				RaceManager.updateActivity ();
+			if (buildMan.buildUnit (this)) {
+				timer = buildTime;
+				active = false;
+				if (mySelect.IsSelected) {
+					RaceManager.updateActivity ();
+				}
+
+				myCost.payCost ();
+				myCost.resetCoolDown ();
+
 			}
-
-			myCost.payCost();
-			myCost.resetCoolDown ();
-
-			buildMan.buildUnit (this);
-		
-
 			}
 
 		}

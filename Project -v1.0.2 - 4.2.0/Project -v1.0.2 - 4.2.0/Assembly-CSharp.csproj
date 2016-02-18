@@ -361,6 +361,7 @@
      <Compile Include="Assets\Scripts - Menus\MainMenuGUI.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SoundOptions.cs" />
+     <Compile Include="Assets\SpaceDrop.cs" />
      <Compile Include="Assets\StandardInteract.cs" />
      <Compile Include="Assets\TargetAbility.cs" />
      <Compile Include="Assets\ToolTip.cs" />

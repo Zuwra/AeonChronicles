@@ -190,11 +190,7 @@ public class UnitStats : MonoBehaviour {
 				}
 				//fix this when we have multiplayer games
 				if (myManager.PlayerOwner == 1) {
-					if (supply > 0) {
-						GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer.currentSupply -= supply;
-					} else if (supply < 0) {
-						GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer.supplyMax -= supply;
-					}
+					
 					GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer.UnitDied (supply);
 				}
 

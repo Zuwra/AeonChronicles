@@ -10,5 +10,7 @@ public abstract class UnitProduction: Ability {
 
 	public abstract void cancelBuilding();
 
+	public abstract void DeQueueUnit();
+
 
 }

@@ -51,6 +51,11 @@ public class BuildUnit : UnitProduction {
 
 	public override void setAutoCast(){}
 
+	public override void DeQueueUnit()
+	{myCost.refundCost ();
+		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
+	
+	}
 
 	public override float getProgress ()
 	{return (1 - timer/buildTime);}
@@ -61,8 +66,8 @@ public class BuildUnit : UnitProduction {
 		mySelect.updateCoolDown (0);
 		timer = 0;
 		buildingUnit = false;
-		myCost.refundCost ();
-		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
+		//myCost.refundCost ();
+		//racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
 	}
 
 
@@ -92,10 +97,14 @@ public class BuildUnit : UnitProduction {
 
 		if (myCost.canActivate (this)) {
 
+
+			if (buildMan.buildUnit (this)) {
 				myCost.payCost();
-			myCost.resetCoolDown ();
-		
-			buildMan.buildUnit (this);
+				myCost.resetCoolDown ();
+
+				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
+
+			}
 		}
 
 	}
@@ -114,7 +123,7 @@ public class BuildUnit : UnitProduction {
 
 		buildingUnit = true;
 		racer.buildingUnit (this);
-		GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
+
 
 
 	}

@@ -46,6 +46,13 @@ public class Morph :  UnitProduction {
 
 	public override void setAutoCast(){}
 
+	public override void DeQueueUnit()
+	{
+		myCost.refundCost ();
+
+	}
+
+
 	public override void cancelBuilding ()
 	{	mySelect.updateCoolDown (0);
 		timer = 0;

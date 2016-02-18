@@ -26,6 +26,7 @@ public class BuildManager : MonoBehaviour {
 	public void cancel()
 	{
 		if (buildOrder.Count > 0) {
+			buildOrder [0].DeQueueUnit ();
 			buildOrder [0].cancelBuilding ();
 			buildOrder.RemoveAt (0);
 
@@ -45,7 +46,9 @@ public class BuildManager : MonoBehaviour {
 		if (n == 0) {
 			cancel ();
 		} else {
+			
 			if (buildOrder.Count > n) {
+				buildOrder [n].DeQueueUnit ();
 				buildOrder.RemoveAt (n);
 
 				if (mySelect.IsSelected) {
@@ -58,7 +61,11 @@ public class BuildManager : MonoBehaviour {
 	}
 
 	public bool buildUnit(UnitProduction prod)
-	{Debug.Log ("Adding " + prod);
+	{if (buildOrder.Count >= 5) {
+			return false;
+		
+		}
+
 		buildOrder.Add (prod);
 		if (mySelect.IsSelected) {
 			build.bUpdate ();
@@ -66,7 +73,7 @@ public class BuildManager : MonoBehaviour {
 	
 		if (buildOrder.Count == 1) {
 			buildOrder [0].startBuilding();
-			return false;}
+			}
 		return true;
 
 	}

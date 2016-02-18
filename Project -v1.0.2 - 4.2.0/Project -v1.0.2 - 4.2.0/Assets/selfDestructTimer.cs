@@ -21,7 +21,10 @@ public class selfDestructTimer : MonoBehaviour {
 
 		yield return new WaitForSeconds(tim);
 
-		Destroy (this.gameObject);
+		if (GetComponent<UnitStats> ()) {
+			GetComponent<UnitStats> ().kill (null);
+		} else {
+			Destroy (this.gameObject);}
 	}
 
 }

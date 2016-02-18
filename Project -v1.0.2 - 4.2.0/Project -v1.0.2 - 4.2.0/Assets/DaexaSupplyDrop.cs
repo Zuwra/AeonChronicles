@@ -50,13 +50,15 @@ public class DaexaSupplyDrop: TargetAbility{
 
 		GameObject proj = null;
 
+		Vector3 spawnLoc = location;
+		spawnLoc.y += 150;
 		location.y += 5;
-		proj = (GameObject)Instantiate (prefab, location, Quaternion.identity);
+		proj = (GameObject)Instantiate (prefab, spawnLoc, Quaternion.identity);
 		proj.GetComponent<UnitManager>().setInteractor();
 		proj.GetComponent<UnitManager> ().interactor.initialize ();
 		racer.applyUpgrade (proj);
-
-
+		proj.GetComponent<SpaceDrop> ().setLocation (location);
+		GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (-15);
 
 		return false;
 

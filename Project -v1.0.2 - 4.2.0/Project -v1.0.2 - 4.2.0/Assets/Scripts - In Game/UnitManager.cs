@@ -70,7 +70,7 @@ public class UnitManager : Unit,IOrderable{
 			man.initialize ();
 			man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
 
-			man.playerList [PlayerOwner - 1].UnitCreated (myStats.supply);
+		//	man.playerList [PlayerOwner - 1].UnitCreated (myStats.supply);
 
 		if (gameObject.GetComponent<CharacterController> ()  && visionSphere != null) {
 			visionSphere.radius = visionRange + gameObject.GetComponent<CharacterController> ().radius;
