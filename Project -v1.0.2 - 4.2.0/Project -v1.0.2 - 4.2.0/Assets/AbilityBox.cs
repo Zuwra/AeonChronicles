@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 	public class AbilityBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 		private bool pointerInside;
-		
+		// Testing comment for first time sync
 
 		private Canvas toolbox;
 	public Ability myAbility;
