@@ -151,6 +151,7 @@
      <Compile Include="Assets\GraphicsMenu.cs" />
      <Compile Include="Assets\Grinder.cs" />
      <Compile Include="Assets\GuiControls.cs" />
+     <Compile Include="Assets\HealthDisplay.cs" />
      <Compile Include="Assets\HealthUpgrade.cs" />
      <Compile Include="Assets\HotkeyMenu.cs" />
      <Compile Include="Assets\Iinteract.cs" />

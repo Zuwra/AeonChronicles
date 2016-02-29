@@ -10,16 +10,16 @@ public class Selected : MonoBehaviour {
 		private set;
 	}
 
-
+	public HealthDisplay buffDisplay;
 	private GameObject cam;
-	public Slider healthslider;
-	public Image healthFill;
+	private Slider healthslider;
+	private Image healthFill;
 
-	public Slider energySlider;
-	public Image energyFill;
+	private Slider energySlider;
+	private Image energyFill;
 
-	public Slider coolDownSlider;
-	public Image coolFill;
+	private Slider coolDownSlider;
+	private Image coolFill;
 
 	public enum displayType
 	{
@@ -34,7 +34,19 @@ public class Selected : MonoBehaviour {
 	private bool onCooldown = false;
 	// Use this for initialization
 	void Start () 
-	{	cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
+	{	
+		buffDisplay = GetComponentInChildren<HealthDisplay> ();
+
+		healthslider = transform.FindChild("HealthDisplay").FindChild("HealthBar").GetComponent<Slider>();
+		healthFill = transform.FindChild("HealthDisplay").FindChild("HealthBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
+
+		energySlider= transform.FindChild("HealthDisplay").FindChild("EnergyBar").GetComponent<Slider>();
+		energyFill= transform.FindChild("HealthDisplay").FindChild("EnergyBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
+
+		coolDownSlider= transform.FindChild("HealthDisplay").FindChild("Cooldown").GetComponent<Slider>();
+		coolFill= transform.FindChild("HealthDisplay").FindChild("Cooldown").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
+
+		cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
 		myStats = this.gameObject.GetComponent<UnitStats> ();
 		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
 
@@ -55,9 +67,7 @@ public class Selected : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () 
-	{if (this.gameObject.gameObject.gameObject.name == "Swallow") {
-			Debug.Log ("Looking at " + cam.transform.position);
-		}
+	{
 		Vector3 location = cam.transform.position;
 		location.x = this.gameObject.transform.position.x;
 		healthslider.gameObject.gameObject.transform.LookAt (location);

@@ -101,10 +101,15 @@ public class UiAbilityManager : MonoBehaviour {
 					for (int k = 0; k < picCount; k++) {
 
 						Vector3 pos = Stats [j].transform.position;
-						pos.x += currentX;
+						pos.x += currentX *this.transform.localScale.x ;
 
-						GameObject unit = (GameObject)Instantiate (buttonTemplate,  pos, Quaternion.identity);
+						GameObject unit = (GameObject)Instantiate (buttonTemplate);
+						unit.transform.localScale = this.transform.localScale;
+						unit.transform.rotation = this.transform.rotation;
 						unit.transform.SetParent (this.gameObject.transform);
+
+						unit.transform.position = pos;
+						Debug.Log ("Position" +unit.transform.position);
 						unit.GetComponent<Image> ().material = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
 					
 						currentX += separation;
