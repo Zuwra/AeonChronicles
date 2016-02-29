@@ -15,6 +15,9 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text attackSpeed;
 	public Text range;
 
+	public Text energyText;
+	public Image energyIcon;
+
 
 	public Image damageIcon;
 	public Image rangeIcon;
@@ -38,7 +41,11 @@ public class UnitCardCreater : MonoBehaviour {
 		if (currentUnit) {
 			
 			health.text = currentUnit.myStats.health + "/" + currentUnit.myStats.Maxhealth;
-		
+			if (currentUnit.myStats.MaxEnergy > 0) {
+				energyText.text = currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
+
+			}
+
 		} else {
 			if (hasUnit) {
 				this.GetComponent<Canvas> ().enabled = false;
@@ -68,6 +75,17 @@ public class UnitCardCreater : MonoBehaviour {
 		}
 
 
+
+		if (currentUnit.myStats.MaxEnergy > 0) {
+			energyIcon.enabled = true;
+			energyText.enabled = true;
+			energyText.text = currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
+
+		} else {
+			energyIcon.enabled = false;
+			energyText.enabled = false;
+		}
+
 		if (manager.myWeapon != null) {
 			
 			damageIcon.enabled = true;
@@ -78,6 +96,10 @@ public class UnitCardCreater : MonoBehaviour {
 			range.text = "" + manager.myWeapon.range;
 			if (manager.myWeapon.numOfAttacks > 1) {
 				damage.text = "" + manager.myWeapon.baseDamage + " (X" + manager.myWeapon.numOfAttacks +")";
+			}
+			foreach(IWeapon.bonusDamage d in manager.myWeapon.extraDamage){
+				damage.text = damage.text + " ( +" + manager.myWeapon.extraDamage[0].bonus + " v " +manager.myWeapon.extraDamage[0].type +")";
+			
 			}
 		
 		} else {

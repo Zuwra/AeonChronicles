@@ -91,13 +91,13 @@ public class UiAbilityManager : MonoBehaviour {
 				
 				if (j == 0 || uiPage.rows [j] != uiPage.rows [j - 1]) {
 					int picCount = Mathf.Min (uiPage.rows [j].Count, 18);
-					int separation = 47;
+					int separation = 59;
 
 					if (uiPage.rows [j].Count > 9) {
 						separation = Mathf.Max (10, 408 / picCount);
 					}
 				
-					int currentX = 120;
+					int currentX = 140;
 					for (int k = 0; k < picCount; k++) {
 
 						Vector3 pos = Stats [j].transform.position;

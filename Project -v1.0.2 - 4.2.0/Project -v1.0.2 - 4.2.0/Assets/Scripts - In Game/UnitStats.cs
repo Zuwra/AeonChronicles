@@ -146,14 +146,9 @@ public class UnitStats : MonoBehaviour {
 
 	private void updateHealthBar()
 	{
-		if (Maxhealth > 500) {
-			mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 120));
-		} else if (Maxhealth > 300) {
-			mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 80));
-		} else {
-			mySelection.updateHealthBar (health / Maxhealth, (int)(Maxhealth / 25));
-		}
 
+			mySelection.updateHealthBar (health / Maxhealth);
+	
 	}
 
 

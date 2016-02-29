@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Selected : MonoBehaviour {
@@ -9,22 +10,16 @@ public class Selected : MonoBehaviour {
 		private set;
 	}
 
-	private bool m_JustBeenSelected = false;
-	private float m_JustBeenSelectedTimer = 0;
-	private GLItem m_GLItem;
-	private Material m_GLMat;
-	private IGLManager m_GLManager;
-	
-	private Texture2D Overlay;
-	private Rect OverlayRect = new Rect();
-	
-	private Rect m_ScreenRect = new Rect(-100, -100, Screen.width+200, Screen.height+200);
-	
-	private float m_OverlayWidth = 0;
-	private float m_OverlayLength = 0;
-	private float m_MainMenuWidth;
-	
-	private Vector3 m_WorldExtents;
+
+	private GameObject cam;
+	public Slider healthslider;
+	public Image healthFill;
+
+	public Slider energySlider;
+	public Image energyFill;
+
+	public Slider coolDownSlider;
+	public Image coolFill;
 
 	public enum displayType
 	{
@@ -39,193 +34,75 @@ public class Selected : MonoBehaviour {
 	private bool onCooldown = false;
 	// Use this for initialization
 	void Start () 
-	{	myStats = this.gameObject.GetComponent<UnitStats> ();
+	{	cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
+		myStats = this.gameObject.GetComponent<UnitStats> ();
 		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
-		Overlay = Overlays.CreateTexture ();
+
 		IsSelected = false;
-		FindMaxWorldSize();
-		
-		m_MainMenuWidth = ManagerResolver.Resolve<IGUIManager>().MainMenuWidth;
-		
-		m_GLManager = ManagerResolver.Resolve<IGLManager>();
-		//m_GLMat = GLMatShader.GetGLMaterial ();
-		m_GLItem = new GLItem(GLExecuteFunction);
-		
+
 		//If this unit is land based subscribe to the path changed event
 		mydisplayType = GameObject.Find("GamePlayMenu").GetComponent<GamePlayMenu>().getDisplayType();
+		if (myStats.MaxEnergy == 0) {
+			energySlider.gameObject.SetActive (false);
+		} else {
+			updateHealthBar (myStats.currentEnergy / myStats.MaxEnergy);
 
-		SetOverlaySize ();
+		}
+		updateHealthBar (myStats.health / myStats.Maxhealth);
+		coolDownSlider.gameObject.SetActive (false);
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
-	{
-		//Update overlay rect
-
-		switch(mydisplayType){
-		case displayType.always:
-			displayHealth ();
-			break;
-
-		case displayType.damaged:
-			if (!myStats.atFullHealth () || !myStats.atFullEnergy () || onCooldown) {
-				displayHealth();
-			}
-			break;
-
-		case displayType.selected:
-			if (IsSelected) {
-				displayHealth ();
-			}
-			break;
-
-		case displayType.damAndSel:
-			if ((!myStats.atFullHealth () || !myStats.atFullEnergy () || onCooldown) && IsSelected) {
-				displayHealth();
-			}
-			break;
-
-		case displayType.never:
-			break;
-
+	{if (this.gameObject.gameObject.gameObject.name == "Swallow") {
+			Debug.Log ("Looking at " + cam.transform.position);
 		}
-
-
+		Vector3 location = cam.transform.position;
+		location.x = this.gameObject.transform.position.x;
+		healthslider.gameObject.gameObject.transform.LookAt (location);
 	}
 
 
 
 
 
-	public void displayHealth()
-	{SetOverlaySize ();
-
-		Vector3 centerPoint = Camera.main.WorldToScreenPoint (transform.position);
-		OverlayRect.xMin = centerPoint.x - (m_OverlayWidth / 2.0f);
-		OverlayRect.xMax = centerPoint.x + (m_OverlayWidth / 2.0f);
-		OverlayRect.yMax = Screen.height - (centerPoint.y - (m_OverlayLength / 2.0f) - 5);
-		OverlayRect.yMin = Screen.height - (centerPoint.y + (m_OverlayLength / 2.0f) + 15);
-
-
-	
-	if (m_JustBeenSelected)
+	public void updateHealthBar(float ratio)
 	{
-		m_JustBeenSelectedTimer += Time.deltaTime;
-
-		if (m_JustBeenSelectedTimer >= 1.0f)
-		{
-			m_JustBeenSelectedTimer = 0;
-			m_JustBeenSelected = false;
-			m_GLManager.RemoveItemToRender (m_GLItem);
+		healthslider.value = ratio; 
+		if (ratio > .5) {
+			healthFill.color = Color.green;
+		} else if (ratio > .2) {
+			healthFill.color = Color.yellow;
+		} else {
+			healthFill.color = Color.red;
 		}
-	}
-	}
-
-	public void updateHealthBar(float ratio, int ticks)
-	{
-		Overlays.UpdateTexture (Overlay, ratio, ticks); 
 
 	}
 
 	public void updateEnergyBar(float ratio)
 	{
-		Overlays.UpdateEnergy (Overlay, ratio); 
+		energySlider.value = ratio;
 
 	}
 
 	public void updateCoolDown(float ratio)
 	{
-		Overlays.cooldown (Overlay, ratio);
+		coolDownSlider.value = ratio;
 		if (ratio <= 0) {
 			onCooldown = false;
+			coolDownSlider.gameObject.SetActive (false);
 		} else {
 			onCooldown = true;
-		}
-	}
-
-	private void FindMaxWorldSize()
-	{
-		//Calculate size of overlay based on the objects size
-		Vector3 worldSize = GetComponent<Collider>().bounds.extents;
-		float maxDimension = Mathf.Max (worldSize.x, worldSize.z);
-		m_WorldExtents = new Vector3(maxDimension, 0, 0);
-	}
-	
-	private void SetOverlaySize()
-	{
-		Vector3 maxWorldSize = transform.position + m_WorldExtents;
-		Vector3 minWorldSize = transform.position - m_WorldExtents;
-		
-		Vector3 maxScreenSize = Camera.main.WorldToScreenPoint (maxWorldSize);
-		Vector3 minScreenSize = Camera.main.WorldToScreenPoint (minWorldSize);
-		
-		maxScreenSize.z = 0;
-		minScreenSize.z = 0;
-		
-		//Make sure the screen points are within our screen rect (needed to stop errors in the world to screen conversion process)
-		if (m_ScreenRect.Contains (maxScreenSize) && m_ScreenRect.Contains (minScreenSize))
-		{
-			//Find max size in either z or x direction
-			float overlaySize = Mathf.Max (Mathf.Abs (maxScreenSize.x - minScreenSize.x), Mathf.Abs (maxScreenSize.y - minScreenSize.y));
-			
-			m_OverlayWidth = overlaySize + 10;
-			m_OverlayLength = overlaySize + 20;
-		}
-	}
-	
-	void OnGUI()
-	{
-		GUI.depth = 0;
-
-
-		switch (mydisplayType) {
-		case displayType.always:
-			if (OverlayRect.xMax < Screen.width - m_MainMenuWidth) {
-				GUI.DrawTexture (OverlayRect, Overlay);
-
-			}
-			break;
-
-		case displayType.damaged:
-			if (!myStats.atFullHealth () || !myStats.atFullEnergy () || onCooldown) {
-				if (OverlayRect.xMax < Screen.width - m_MainMenuWidth) {
-					GUI.DrawTexture (OverlayRect, Overlay);
-				}
-			}
-			break;
-
-		case displayType.selected:
-			if (IsSelected) {
-				if (OverlayRect.xMax < Screen.width - m_MainMenuWidth) {
-					GUI.DrawTexture (OverlayRect, Overlay);
-				}
-			}
-			break;
-
-		case displayType.damAndSel:
-			
-			if ((!myStats.atFullHealth () || !myStats.atFullEnergy () || onCooldown) && IsSelected) {
-				
-				if (OverlayRect.xMax < Screen.width - m_MainMenuWidth) {
-					GUI.DrawTexture (OverlayRect, Overlay);
-				}
-			}
-			break;
-
-		case displayType.never:
-			break;
-
+			coolDownSlider.gameObject.SetActive (true);
 		}
 
-
-
 	}
-	
+
+
 	public void SetSelected()
 	{
 		IsSelected = true;
-		m_JustBeenSelected = true;
-		m_JustBeenSelectedTimer = 0;
 		decalCircle.GetComponent<MeshRenderer> ().enabled = true;
 		//m_GLManager.AddItemToRender (m_GLItem);
 	}
@@ -233,7 +110,7 @@ public class Selected : MonoBehaviour {
 	public void SetDeselected()
 	{
 		IsSelected = false;
-		m_JustBeenSelected = false;
+
 		decalCircle.GetComponent<MeshRenderer> ().enabled = false;
 	//	m_GLManager.RemoveItemToRender (m_GLItem);
 	}
@@ -248,57 +125,7 @@ public class Selected : MonoBehaviour {
 		
 	}
 	
-	private void GLExecuteFunction()
-	{
-		//Need to get target locat
-	/*
-		Vector3 target = GetComponent<MovementComponent>().targetLocations.Peek();
-		if (target != null) {
-			if (IsSelected && target != Vector3.zero) {
-				Vector3 screenTarget = Camera.main.WorldToScreenPoint (target);
-				Vector3 screenPosition = Camera.main.WorldToScreenPoint (transform.position);
-			
-				screenTarget.z = 0;
-				screenPosition.z = 0;
-			
-				GL.PushMatrix ();
-		
-				m_GLMat.SetPass (0);
-				GL.LoadPixelMatrix ();
-			
-				GL.Begin (GL.LINES);
-			
-				//If we're travelling set to green, if we're attacking set to red (keep as green for now)
-				GL.Color (Color.green);
-			
-				GL.Vertex (screenPosition);
-				GL.Vertex (screenTarget);
-			
-				GL.End ();
-			
-				//Draw a little quad at target
-				GL.Begin (GL.QUADS);
-				int quadSize = 3;
-				GL.Vertex3 (screenTarget.x - quadSize, screenTarget.y - quadSize, 0);
-				GL.Vertex3 (screenTarget.x + quadSize, screenTarget.y - quadSize, 0);
-				GL.Vertex3 (screenTarget.x + quadSize, screenTarget.y + quadSize, 0);
-				GL.Vertex3 (screenTarget.x - quadSize, screenTarget.y + quadSize, 0);
-			
-				GL.End ();
-			
-				GL.PopMatrix ();
-			
-			}
-		}*/
-	}
+
 	
-	private void PathChanged()
-	{
-		if (IsSelected)
-		{
-			m_JustBeenSelected = true;
-			m_JustBeenSelectedTimer = 0;
-			//m_GLManager.AddItemToRender (m_GLItem);
-		}
-	}
+
 }
