@@ -97,10 +97,10 @@ public class UnitCardCreater : MonoBehaviour {
 			if (manager.myWeapon.numOfAttacks > 1) {
 				damage.text = "" + manager.myWeapon.baseDamage + " (X" + manager.myWeapon.numOfAttacks +")";
 			}
-			foreach(IWeapon.bonusDamage d in manager.myWeapon.extraDamage){
+		
 				damage.text = damage.text + " ( +" + manager.myWeapon.extraDamage[0].bonus + " v " +manager.myWeapon.extraDamage[0].type +")";
 			
-			}
+
 		
 		} else {
 			damageIcon.enabled = false;

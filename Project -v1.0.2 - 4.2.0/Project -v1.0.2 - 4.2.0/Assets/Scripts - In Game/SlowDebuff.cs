@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SlowDebuff : MonoBehaviour, Notify {
+public class SlowDebuff : Behavior, Notify {
 
 	public bool OnTarget = false;
 	IMover mover ;
@@ -38,8 +38,12 @@ public class SlowDebuff : MonoBehaviour, Notify {
 			}
 			totalDecrease += speedDecrease;
 			mover.MaxSpeed -= speedDecrease;
+
 			if(mover.MaxSpeed < 0)
 			{mover.MaxSpeed = 0;}
+
+			setBuffStuff (Behavior.buffType.movement, true);
+			applyBuffUI ();
 		}
 	}
 
@@ -50,7 +54,10 @@ public class SlowDebuff : MonoBehaviour, Notify {
 	void Update () {
 	
 		if (OnTarget) {
+
 			if (Time.time > nextActionTime) {
+				
+				unApplybuffUI ();
 				Destroy (this);
 			}
 		}
@@ -60,10 +67,15 @@ public class SlowDebuff : MonoBehaviour, Notify {
 	public void OnDestroy()
 	{	
 		if (OnTarget) {
-
-
-
 			mover.MaxSpeed += totalDecrease;
+		
+			if (mover.speed > mover.MaxSpeed) {
+				Debug.Log ("Lowerinspeed");
+				mover.speed = mover.MaxSpeed;}
+			if (mover.speed < 0) {
+				mover.speed = 0;
+			}
+		
 		}
 	}
 

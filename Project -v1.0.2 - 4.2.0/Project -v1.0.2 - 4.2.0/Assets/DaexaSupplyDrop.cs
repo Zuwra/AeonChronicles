@@ -73,11 +73,10 @@ public class DaexaSupplyDrop: TargetAbility{
 
 		//myCost.payCost ();
 
-		GameObject proj = null;
 
 		Vector3 pos = this.gameObject.transform.position;
 
-		proj = (GameObject)Instantiate (prefab, pos, Quaternion.identity);
+		Instantiate (prefab, pos, Quaternion.identity);
 
 
 

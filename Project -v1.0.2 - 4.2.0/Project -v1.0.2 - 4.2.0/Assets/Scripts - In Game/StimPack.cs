@@ -53,13 +53,21 @@ public class StimPack : Ability {
 		if (myCost.canActivate (this)) {
 
 			if (!on) {
-				this.gameObject.GetComponent<customMover> ().MaxSpeed += speedBoost;
+
+
+				if (GetComponent<SlowDebuff> () == null) {
+					this.gameObject.AddComponent<SlowDebuff> ();
+				}
+				GetComponent<SlowDebuff> ().initialize (duration, -speedBoost, 0);
+
+
+				//this.gameObject.GetComponent<customMover> ().MaxSpeed += speedBoost;
 			
 			
 
 				myCost.payCost ();
-				on = true;
-				timer = duration;
+				//on = true;
+				//timer = duration;
 				chargeCount--;
 				if (select.IsSelected) {
 					RaceManager.upDateUI ();

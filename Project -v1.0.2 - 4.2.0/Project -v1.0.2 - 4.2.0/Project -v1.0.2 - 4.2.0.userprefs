@@ -1,14 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UiAbilityManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Behavior.cs">
     <Files>
-      <File FileName="Assets\HealthDisplay.cs" Line="57" Column="4" />
-      <File FileName="Assets\UnitCardCreater.cs" Line="1" Column="1" />
-      <File FileName="Assets\Bombardment.cs" Line="1" Column="1" />
-      <File FileName="Assets\DaexaSupplyDrop.cs" Line="76" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="99" Column="5" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="17" Column="2" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\StimPack.cs" Line="51" Column="24" />
+      <File FileName="Assets\Behavior.cs" Line="39" Column="4" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="49" Column="63" />
+      <File FileName="Assets\HealthDisplay.cs" Line="52" Column="32" />
+      <File FileName="Assets\Scripts - In Game\SlowDebuff.cs" Line="42" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

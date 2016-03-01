@@ -11,7 +11,7 @@ public class SpaceDrop : MonoBehaviour {
 
 	//public ProjectileMover mover;
 
-	private CharacterController control;
+	//private CharacterController control;
 
 
 	private Vector3 lastLocation;
@@ -21,7 +21,7 @@ public class SpaceDrop : MonoBehaviour {
 	void Start () {	
 
 
-		control = GetComponent<CharacterController> ();
+		//control = GetComponent<CharacterController> ();
 
 
 	}

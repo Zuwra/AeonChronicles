@@ -16,14 +16,14 @@ public class Selected : MonoBehaviour {
 	private Image healthFill;
 
 	private Slider energySlider;
-	private Image energyFill;
+	//private Image energyFill;
 
 	private Slider coolDownSlider;
-	private Image coolFill;
+	//private Image coolFill;
 
 	public enum displayType
 	{
-		always,damaged,selected,damAndSel,never
+		always,damaged,selected,never
 	}
 
 
@@ -41,10 +41,10 @@ public class Selected : MonoBehaviour {
 		healthFill = transform.FindChild("HealthDisplay").FindChild("HealthBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 
 		energySlider= transform.FindChild("HealthDisplay").FindChild("EnergyBar").GetComponent<Slider>();
-		energyFill= transform.FindChild("HealthDisplay").FindChild("EnergyBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
+		//energyFill= transform.FindChild("HealthDisplay").FindChild("EnergyBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 
 		coolDownSlider= transform.FindChild("HealthDisplay").FindChild("Cooldown").GetComponent<Slider>();
-		coolFill= transform.FindChild("HealthDisplay").FindChild("Cooldown").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
+		//coolFill= transform.FindChild("HealthDisplay").FindChild("Cooldown").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 
 		cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
 		myStats = this.gameObject.GetComponent<UnitStats> ();
@@ -64,13 +64,50 @@ public class Selected : MonoBehaviour {
 		coolDownSlider.gameObject.SetActive (false);
 
 	}
+
+
+	public void setDisplayType(displayType t)
+	{mydisplayType = t;
+
+		switch (t) {
+		case displayType.always: 
+			
+			healthslider.enabled = true;
+			if (myStats.MaxEnergy > 0) {
+				energySlider.gameObject.SetActive (true);
+			}
+			break;
+
+		case displayType.damaged:
+			if (!myStats.atFullHealth ()) {
+				healthslider.gameObject.SetActive (false);
+			}
+			if (myStats.MaxEnergy > 0) {
+				energySlider.gameObject.SetActive (true);
+			}
+			break;
+
+		case  displayType.selected:
+			if (IsSelected) {
+				healthslider.gameObject.SetActive (true);
+				if (myStats.MaxEnergy > 0) {
+					energySlider.gameObject.SetActive (true);
+				}
+			}
+			break;
+
+		case displayType.never:
+			healthslider.gameObject.SetActive (false);
+			energySlider.gameObject.SetActive (false);
+			break;
+		}
+
+	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		Vector3 location = cam.transform.position;
-		location.x = this.gameObject.transform.position.x;
-		healthslider.gameObject.gameObject.transform.LookAt (location);
+		
 	}
 
 
@@ -80,9 +117,22 @@ public class Selected : MonoBehaviour {
 	public void updateHealthBar(float ratio)
 	{
 		healthslider.value = ratio; 
-		if (ratio > .5) {
+
+	
+		if(mydisplayType ==displayType.damaged){
+	
+			if (ratio > .99) {
+				healthslider.gameObject.SetActive (false);
+			} else {
+				healthslider.gameObject.SetActive (true);
+			}
+	
+
+		}
+
+		if (ratio > .55) {
 			healthFill.color = Color.green;
-		} else if (ratio > .2) {
+		} else if (ratio > .25) {
 			healthFill.color = Color.yellow;
 		} else {
 			healthFill.color = Color.red;
@@ -114,6 +164,16 @@ public class Selected : MonoBehaviour {
 	{
 		IsSelected = true;
 		decalCircle.GetComponent<MeshRenderer> ().enabled = true;
+
+		if (displayType.selected == mydisplayType) {
+			healthslider.gameObject.SetActive (true);
+			if (myStats.MaxEnergy > 0) {
+				energySlider.gameObject.SetActive (true);
+			}
+		}
+
+
+
 		//m_GLManager.AddItemToRender (m_GLItem);
 	}
 	
@@ -122,18 +182,19 @@ public class Selected : MonoBehaviour {
 		IsSelected = false;
 
 		decalCircle.GetComponent<MeshRenderer> ().enabled = false;
+
+		if (displayType.selected == mydisplayType) {
+			healthslider.gameObject.SetActive (false);
+			if (myStats.MaxEnergy > 0) {
+				energySlider.gameObject.SetActive (false);
+			}
+		}
+
+
 	//	m_GLManager.RemoveItemToRender (m_GLItem);
 	}
 	
-	public void AssignGroupNumber(int number)
-	{
-		
-	}
-	
-	public void RemoveGroupNumber()
-	{
-		
-	}
+
 	
 
 	

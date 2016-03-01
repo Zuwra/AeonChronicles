@@ -58,10 +58,6 @@ public class GamePlayMenu : MonoBehaviour {
 			} else if (healthList.value == 2) {
 				sel.mydisplayType = Selected.displayType.selected;
 
-			} else if (healthList.value == 3) {
-				sel.mydisplayType = Selected.displayType.damAndSel;
-
-
 			} else {
 				sel.mydisplayType = Selected.displayType.never;
 			
@@ -88,10 +84,6 @@ public class GamePlayMenu : MonoBehaviour {
 
 	} else if (healthList.value == 2) {
 		return Selected.displayType.selected;
-
-	} else if (healthList.value == 3) {
-		return Selected.displayType.damAndSel;
-
 
 	} else {
 		return Selected.displayType.never;

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour {
 
-
+	private GameObject cam;
 	public List<Image> buffList = new List<Image>();
 	public Material positive;
 	public Material negative;
@@ -13,11 +13,14 @@ public class HealthDisplay : MonoBehaviour {
 	private List<int> colorList = new List<int>();
 	// Use this for initialization
 	void Start () {
-	
+		cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		Vector3 location = cam.transform.position;
+		location.x = this.gameObject.transform.position.x;
+		gameObject.transform.LookAt (location);
 
 	}
 
@@ -26,7 +29,9 @@ public class HealthDisplay : MonoBehaviour {
 	{
 
 		foreach (Image i in buffList) {
+			
 			if (!i.enabled) {
+				i.enabled = true;
 				if (b) {
 					i.material = positive;
 				} else {
@@ -38,11 +43,7 @@ public class HealthDisplay : MonoBehaviour {
 		}
 
 	
-		int id;
-		do {
-			id = Random.Range (0, 50);
-		} while(!colorList.Contains (id));
-
+		int id = Random.Range (0, 10000);
 
 		colorList.Add (id);
 			return id;
@@ -61,6 +62,7 @@ public class HealthDisplay : MonoBehaviour {
 			buffList [i].color = buffList [i + 1].color;
 			buffList [i].material = buffList [i + 1].material;
 		}
+		buffList [n].enabled = false;
 
 		colorList.Remove (id);
 

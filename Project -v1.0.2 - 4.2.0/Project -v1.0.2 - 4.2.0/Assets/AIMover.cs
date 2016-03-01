@@ -118,8 +118,6 @@ public class AIMover : IMover {
 		protected CharacterController controller;
 
 		/** Cached NavmeshController component */
-		protected NavmeshController navController;
-
 
 		/** Cached Rigidbody component */
 		protected Rigidbody rigid;
@@ -162,7 +160,7 @@ public class AIMover : IMover {
 
 			//Cache some other components (not all are necessarily there)
 			controller = GetComponent<CharacterController>();
-			navController = GetComponent<NavmeshController>();
+
 			rigid = GetComponent<Rigidbody>();
 		}
 
@@ -504,7 +502,8 @@ public class AIMover : IMover {
 			float magn = (a-b).magnitude;
 			if (magn == 0) return a;
 
-			float closest = AstarMath.Clamp01 (AstarMath.NearestPointFactor (a, b, p));
+		float closest = Mathf.Clamp01 (VectorMath.ClosestPointOnLineFactor(a,b,p));
+			//float closest = AstarMath.Clamp01 (AstarMath.NearestPointFactor (a, b, p));
 			Vector3 point = (b-a)*closest + a;
 			float distance = (point-p).magnitude;
 
