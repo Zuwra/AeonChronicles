@@ -34,7 +34,8 @@ public class Selected : MonoBehaviour {
 	private bool onCooldown = false;
 	// Use this for initialization
 	void Start () 
-	{	
+	{		IsSelected = false;
+		
 		buffDisplay = GetComponentInChildren<HealthDisplay> ();
 
 		healthslider = transform.FindChild("HealthDisplay").FindChild("HealthBar").GetComponent<Slider>();
@@ -50,8 +51,7 @@ public class Selected : MonoBehaviour {
 		myStats = this.gameObject.GetComponent<UnitStats> ();
 		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
 
-		IsSelected = false;
-
+	
 		//If this unit is land based subscribe to the path changed event
 		mydisplayType = GameObject.Find("GamePlayMenu").GetComponent<GamePlayMenu>().getDisplayType();
 		if (myStats.MaxEnergy == 0) {
@@ -71,7 +71,7 @@ public class Selected : MonoBehaviour {
 
 		switch (t) {
 		case displayType.always: 
-			
+			buffDisplay.isOn = true;
 			healthslider.enabled = true;
 			if (myStats.MaxEnergy > 0) {
 				energySlider.gameObject.SetActive (true);
@@ -80,15 +80,21 @@ public class Selected : MonoBehaviour {
 
 		case displayType.damaged:
 			if (!myStats.atFullHealth ()) {
+				buffDisplay.isOn = true;
 				healthslider.gameObject.SetActive (false);
+			} else {
+				buffDisplay.isOn = false;
 			}
+
 			if (myStats.MaxEnergy > 0) {
 				energySlider.gameObject.SetActive (true);
+				buffDisplay.isOn = true;
 			}
 			break;
 
 		case  displayType.selected:
 			if (IsSelected) {
+				buffDisplay.isOn = true;
 				healthslider.gameObject.SetActive (true);
 				if (myStats.MaxEnergy > 0) {
 					energySlider.gameObject.SetActive (true);
@@ -97,6 +103,7 @@ public class Selected : MonoBehaviour {
 			break;
 
 		case displayType.never:
+			buffDisplay.isOn = false;
 			healthslider.gameObject.SetActive (false);
 			energySlider.gameObject.SetActive (false);
 			break;
@@ -122,8 +129,10 @@ public class Selected : MonoBehaviour {
 		if(mydisplayType ==displayType.damaged){
 	
 			if (ratio > .99) {
+				buffDisplay.isOn = false;
 				healthslider.gameObject.SetActive (false);
 			} else {
+				buffDisplay.isOn = true;
 				healthslider.gameObject.SetActive (true);
 			}
 	
@@ -150,10 +159,12 @@ public class Selected : MonoBehaviour {
 	{
 		coolDownSlider.value = ratio;
 		if (ratio <= 0) {
+			buffDisplay.isOn = false;
 			onCooldown = false;
 			coolDownSlider.gameObject.SetActive (false);
 		} else {
 			onCooldown = true;
+			buffDisplay.isOn = true;
 			coolDownSlider.gameObject.SetActive (true);
 		}
 
@@ -166,6 +177,7 @@ public class Selected : MonoBehaviour {
 		decalCircle.GetComponent<MeshRenderer> ().enabled = true;
 
 		if (displayType.selected == mydisplayType) {
+			buffDisplay.isOn = true;
 			healthslider.gameObject.SetActive (true);
 			if (myStats.MaxEnergy > 0) {
 				energySlider.gameObject.SetActive (true);
@@ -184,6 +196,7 @@ public class Selected : MonoBehaviour {
 		decalCircle.GetComponent<MeshRenderer> ().enabled = false;
 
 		if (displayType.selected == mydisplayType) {
+			buffDisplay.isOn = false;
 			healthslider.gameObject.SetActive (false);
 			if (myStats.MaxEnergy > 0) {
 				energySlider.gameObject.SetActive (false);

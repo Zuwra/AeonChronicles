@@ -86,6 +86,11 @@ public class ArmyUIManager : MonoBehaviour {
 		UnitManager manage = unit.GetComponent<UnitManager> ();
 
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
+
+		icon.transform.localScale = unitPanel.transform.localScale;
+		icon.transform.rotation =unitPanel.transform.rotation;
+
+
 		icon.transform.SetParent (unitPanel.transform);
 		icon.GetComponent<Image> ().material = manage.myStats.Icon;
 		if (!manage.myStats.isUnitType (UnitTypes.UnitTypeTag.structure)) {

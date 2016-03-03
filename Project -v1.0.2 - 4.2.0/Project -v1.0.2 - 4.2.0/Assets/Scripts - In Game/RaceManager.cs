@@ -1,12 +1,9 @@
-﻿
-
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Reflection;
-
+using Pathfinding;
 
 public class RaceManager : MonoBehaviour, ManagerWatcher {
 
@@ -169,14 +166,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		updateSupply(currentSupply, supplyMax);
 
-
-	//	unitList.RemoveAll(item => item == null);
-
-
 	}
 
 	public void UnitCreated(float supply)
-	{Debug.Log("Unit created " + supply);
+	{
 		if (supply < 0) {
 
 
@@ -221,34 +214,45 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		if (finishDeath) {
 			if (uiManager != null) {
-				uiManager.production.GetComponent<ArmyUIManager> ().unitLost(Unit);
+				uiManager.production.GetComponent<ArmyUIManager> ().unitLost (Unit);
 			}
-		}
+		
 
-		string unitName = Unit.GetComponent<UnitManager> ().UnitName;
+			string unitName = Unit.GetComponent<UnitManager> ().UnitName;
 
-		if (unitTypeCount.ContainsKey (unitName)) {
-			unitTypeCount [unitName]--;
+			if (unitTypeCount.ContainsKey (unitName)) {
+				unitTypeCount [unitName]--;
 
 
-			// No Units of tis type, call update function on units abilities
-			if(unitTypeCount[unitName] == 0){
-				unitList.RemoveAll(item => item == null);
-				foreach (GameObject o in unitList) {
+				// No Units of tis type, call update function on units abilities
+				if (unitTypeCount [unitName] == 0) {
+					unitList.RemoveAll (item => item == null);
+					foreach (GameObject o in unitList) {
 
-					foreach (Ability a in o.GetComponent<UnitManager>().abilityList) {
-						a.UnitDied (unitName);
+						foreach (Ability a in o.GetComponent<UnitManager>().abilityList) {
+							a.UnitDied (unitName);
 
+						}
 					}
 				}
+
+			} 
+			if (Unit.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.structure)) {
+				GraphUpdateObject b =new GraphUpdateObject(Unit.GetComponent<CharacterController>().bounds); 
+
+				StartCoroutine (DeathRescan (b));
 			}
-
-		} 
-
+		}
 		return finishDeath;
 	}
 
+	IEnumerator DeathRescan(GraphUpdateObject b)
+	{	
+		yield return new WaitForSeconds (.2f);
 
+			AstarPath.active.UpdateGraphs (b);
+
+	}
 
 
 	public void addUnit(GameObject obj )

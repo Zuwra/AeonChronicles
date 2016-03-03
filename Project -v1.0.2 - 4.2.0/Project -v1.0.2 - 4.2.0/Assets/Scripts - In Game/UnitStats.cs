@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 
 public class UnitStats : MonoBehaviour {
 
@@ -55,7 +56,11 @@ public class UnitStats : MonoBehaviour {
 	
 
 		nextActionTime = Time.time;
-	
+		if (isUnitType (UnitTypes.UnitTypeTag.structure)) {
+			GraphUpdateObject b =new GraphUpdateObject(GetComponent<CharacterController>().bounds); 
+			AstarPath.active.UpdateGraphs (b);
+		}
+
 	}
 
 
@@ -64,9 +69,6 @@ public class UnitStats : MonoBehaviour {
 	}
 
 
-	void OnDestroy() {
-	
-	}
 
 	// Update is called once per frame
 	void Update () {
@@ -194,6 +196,8 @@ public class UnitStats : MonoBehaviour {
 
 					RaceManager.removeUnitSelect(myManager);
 				}
+
+
 
 					Destroy (this.gameObject);
 				

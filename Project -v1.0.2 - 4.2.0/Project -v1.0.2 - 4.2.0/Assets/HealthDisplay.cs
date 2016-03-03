@@ -10,6 +10,8 @@ public class HealthDisplay : MonoBehaviour {
 	public Material positive;
 	public Material negative;
 
+	public bool isOn;
+
 	private List<int> colorList = new List<int>();
 	// Use this for initialization
 	void Start () {
@@ -46,6 +48,7 @@ public class HealthDisplay : MonoBehaviour {
 		int id = Random.Range (0, 10000);
 
 		colorList.Add (id);
+		this.enabled = true;
 			return id;
 	}
 
@@ -65,6 +68,11 @@ public class HealthDisplay : MonoBehaviour {
 		buffList [n].enabled = false;
 
 		colorList.Remove (id);
+		if (colorList.Count == 0) {
+			if (!isOn) {
+				this.enabled = false;
+			}
+		}
 
 	}
 

@@ -109,7 +109,7 @@ public class UiAbilityManager : MonoBehaviour {
 						unit.transform.SetParent (this.gameObject.transform);
 
 						unit.transform.position = pos;
-						Debug.Log ("Position" +unit.transform.position);
+
 						unit.GetComponent<Image> ().material = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
 					
 						currentX += separation;
