@@ -388,7 +388,9 @@ public class UnitManager : Unit,IOrderable{
 	public void setWeapon(IWeapon weap)
 		{
 		myWeapon = weap;
-		myState.myWeapon = weap;
+		if (myState != null) {
+			myState.myWeapon = weap;
+		}
 	}
 
 	public bool isIdle()

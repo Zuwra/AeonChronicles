@@ -40,9 +40,9 @@ public class UnitCardCreater : MonoBehaviour {
 	void Update () {
 		if (currentUnit) {
 			
-			health.text = currentUnit.myStats.health + "/" + currentUnit.myStats.Maxhealth;
+			health.text = " "+currentUnit.myStats.health + "/" + currentUnit.myStats.Maxhealth;
 			if (currentUnit.myStats.MaxEnergy > 0) {
-				energyText.text = currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
+				energyText.text = " "+currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
 
 			}
 
@@ -65,12 +65,12 @@ public class UnitCardCreater : MonoBehaviour {
 		hasUnit = true;
 		unitIcon.material = manager.myStats.Icon;
 		UnitName.text = manager.UnitName;
-		health.text = manager.myStats.health + "/" + manager.myStats.Maxhealth;
-		armor.text =  "" +manager.myStats.armor;
-		Mass.text = "" + manager.myStats.mass;
+		health.text = " "+manager.myStats.health + "/" + manager.myStats.Maxhealth;
+		armor.text =  " " +manager.myStats.armor;
+		Mass.text = " " + manager.myStats.mass;
 
 		if (manager.cMover != null) {
-			speed.text = "" + manager.cMover.MaxSpeed;
+			speed.text = " " + manager.cMover.MaxSpeed;
 		} else {speed.text = "";
 		}
 
@@ -91,15 +91,15 @@ public class UnitCardCreater : MonoBehaviour {
 			damageIcon.enabled = true;
 			rangeIcon.enabled= true;
 			attackSpeedIcon.enabled = true;
-			damage.text = "" + manager.myWeapon.baseDamage;
-			attackSpeed.text = "" + manager.myWeapon.attackPeriod;
-			range.text = "" + manager.myWeapon.range;
+			damage.text = " " + manager.myWeapon.baseDamage;
+			attackSpeed.text = " " + manager.myWeapon.attackPeriod;
+			range.text = " " + manager.myWeapon.range;
 			if (manager.myWeapon.numOfAttacks > 1) {
-				damage.text = "" + manager.myWeapon.baseDamage + " (X" + manager.myWeapon.numOfAttacks +")";
+				damage.text = " " + manager.myWeapon.baseDamage + " (X" + manager.myWeapon.numOfAttacks +")";
 			}
-		
-				damage.text = damage.text + " ( +" + manager.myWeapon.extraDamage[0].bonus + " v " +manager.myWeapon.extraDamage[0].type +")";
-			
+			if (manager.myWeapon.extraDamage.Length > 0) {
+				damage.text = damage.text + " ( +" + manager.myWeapon.extraDamage [0].bonus + " v " + manager.myWeapon.extraDamage [0].type + ")";
+			}
 
 		
 		} else {

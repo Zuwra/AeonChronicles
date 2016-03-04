@@ -4,6 +4,7 @@ using System.Collections;
 public class TurretPickUp : TargetAbility {
 
 	TurretMount myMount;
+	public bool onSwallow;
 	// Use this for initialization
 	void Start () {
 		myMount = this.gameObject.GetComponentInChildren<TurretMount> ();
@@ -17,6 +18,7 @@ public class TurretPickUp : TargetAbility {
 
 
 	public override void setAutoCast(){
+		autocast = !autocast;
 	}
 
 
@@ -41,27 +43,27 @@ public class TurretPickUp : TargetAbility {
 	override
 	public void Cast()
 	{ 
-
-		if (target) {
+		if (onSwallow) {
+			if (target) {
 	
 
-			if (myMount.turret != null) {
+				if (myMount.turret != null) {
 	
-				target.GetComponentInChildren<TurretMount> ().placeTurret (myMount.turret);
+					target.GetComponentInChildren<TurretMount> ().placeTurret (myMount.turret);
 
-				myMount.unPlaceTurret ();
+					myMount.unPlaceTurret ();
 
-			} else {
-				if (target.GetComponentInChildren<TurretMount> ().turret != null) {
+				} else {
+					if (target.GetComponentInChildren<TurretMount> ().turret != null) {
 
-					myMount.placeTurret (target.GetComponentInChildren<TurretMount> ().turret);
+						myMount.placeTurret (target.GetComponentInChildren<TurretMount> ().turret);
 
-					target.GetComponentInChildren<TurretMount> ().unPlaceTurret ();
+						target.GetComponentInChildren<TurretMount> ().unPlaceTurret ();
 				
+					}
 				}
 			}
 		}
-
 	
 	}
 

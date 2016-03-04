@@ -61,8 +61,19 @@ public class buildTurret :UnitProduction{
 						if (chargeCount == 0) {
 							return;
 						}
+
+					
 						if (obj.enabled == false) {
 							return;}
+
+						if (obj.gameObject.GetComponentInParent<TurretPickUp> ()) {
+							Debug.Log (obj.gameObject.name + " has a turret pick up");
+							if (!obj.gameObject.GetComponentInParent<TurretPickUp> ().autocast) {
+								
+								return;
+							}
+						}
+
 
 						if (obj.turret == null ) {
 							obj.placeTurret (createUnit ());
