@@ -18,11 +18,6 @@ public class HealthUpgrade : Upgrade {
 
 				obj.GetComponent<UnitStats> ().health += healthAmount;
 			}
-
-
 		}
 	}
-
-
-
 }
