@@ -11,7 +11,7 @@ public class Selected : MonoBehaviour {
 	}
 
 	public HealthDisplay buffDisplay;
-	private GameObject cam;
+
 	private Slider healthslider;
 	private Image healthFill;
 
@@ -31,7 +31,7 @@ public class Selected : MonoBehaviour {
 
 	private GameObject decalCircle;
 	private UnitStats myStats;
-	private bool onCooldown = false;
+	//private bool onCooldown = false;
 	// Use this for initialization
 	void Start () 
 	{		IsSelected = false;
@@ -47,7 +47,7 @@ public class Selected : MonoBehaviour {
 		coolDownSlider= transform.FindChild("HealthDisplay").FindChild("Cooldown").GetComponent<Slider>();
 		//coolFill= transform.FindChild("HealthDisplay").FindChild("Cooldown").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 
-		cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
+
 		myStats = this.gameObject.GetComponent<UnitStats> ();
 		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
 
@@ -160,10 +160,10 @@ public class Selected : MonoBehaviour {
 		coolDownSlider.value = ratio;
 		if (ratio <= 0) {
 			buffDisplay.isOn = false;
-			onCooldown = false;
+			//onCooldown = false;
 			coolDownSlider.gameObject.SetActive (false);
 		} else {
-			onCooldown = true;
+			//onCooldown = true;
 			buffDisplay.isOn = true;
 			coolDownSlider.gameObject.SetActive (true);
 		}

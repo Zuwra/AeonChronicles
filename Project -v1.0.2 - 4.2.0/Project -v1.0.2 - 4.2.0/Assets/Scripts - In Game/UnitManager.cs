@@ -76,7 +76,7 @@ public class UnitManager : Unit,IOrderable{
 			visionSphere.radius = visionRange + gameObject.GetComponent<CharacterController> ().radius;
 		}
 
-		Debug.Log ("Creating Turret State");
+	
 		if (cMover != null) {
 			changeState (new DefaultState ());
 		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.turret)) {

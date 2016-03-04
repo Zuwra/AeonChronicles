@@ -3,28 +3,41 @@ using System.Collections;
 
 public class selfDestructTimer : MonoBehaviour {
 	public float timer;
+	public bool showTimer;
+	private float deathTime;
+
+	private Selected hd;
 	// Use this for initialization
 	void Start () {
-		StartCoroutine(MyCoroutine(timer));
+		if (showTimer) {
+			hd = GetComponent<Selected> ();
+		}
+
+		deathTime = Time.time + timer;
+
+
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (Time.time > deathTime) {
+			hd.updateCoolDown (1);
+			if (GetComponent<UnitStats> ()) {
+				GetComponent<UnitStats> ().kill (null);
+			} else {
+				Destroy (this.gameObject);}
+		}
+
+		hd.updateCoolDown ((deathTime - Time.time) / timer);
+		
+		}
+
 	
-	}
 
 
 
-	IEnumerator MyCoroutine (float tim)
-	{
 
-
-		yield return new WaitForSeconds(tim);
-
-		if (GetComponent<UnitStats> ()) {
-			GetComponent<UnitStats> ().kill (null);
-		} else {
-			Destroy (this.gameObject);}
-	}
+	
 
 }

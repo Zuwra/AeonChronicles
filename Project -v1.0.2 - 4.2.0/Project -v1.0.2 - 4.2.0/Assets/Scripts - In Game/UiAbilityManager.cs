@@ -137,7 +137,24 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().material = man.abilityList [AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [0 + AbilityX * 4];
-						trans.GetComponent<Button> ().interactable = man.abilityList [AbilityX * 4].active;
+
+							ColorBlock cb= trans.GetComponent<Button> ().colors;
+							if (man.abilityList [AbilityX * 4].active) {
+								cb.disabledColor = Color.white;
+								trans.GetComponent<Button> ().interactable = true;
+							} else {
+								cb.disabledColor =new Color(.5f,0,0,1);
+								trans.GetComponent<Button> ().interactable = false;
+
+							}
+						
+							if (man.abilityList [AbilityX * 4].myType == Ability.type.passive) {
+								cb.disabledColor = Color.white;
+								trans.GetComponent<Button> ().interactable = false;
+							}
+							trans.GetComponent<Button> ().colors = cb;
+
+
 						if (man.abilityList [0 + AbilityX * 4].autocast) {
 							trans.GetComponent<Button> ().image.color = Color.green;
 						} else {
@@ -158,7 +175,26 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.gameObject.SetActive (true);
 							trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
-							trans.GetComponent<Button> ().interactable = man.abilityList [1 + AbilityX * 4].active;
+
+							ColorBlock cb= trans.GetComponent<Button> ().colors;
+							if (man.abilityList [1+AbilityX * 4].active) {
+								cb.disabledColor = Color.white;
+								trans.GetComponent<Button> ().interactable = true;
+							} else {
+								cb.disabledColor =new Color(.5f,0,0,1);
+								trans.GetComponent<Button> ().interactable = false;
+
+							}
+
+							if (man.abilityList [1+AbilityX * 4].myType == Ability.type.passive) {
+								cb.disabledColor = Color.white;
+								trans.GetComponent<Button> ().interactable = false;
+							}
+							trans.GetComponent<Button> ().colors = cb;
+
+
+
+						
 							if (man.abilityList [1 + AbilityX * 4].autocast) {
 								trans.GetComponent<Button> ().image.color = Color.green;
 							} else {
@@ -180,7 +216,25 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.gameObject.SetActive (true);
 							trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
-							trans.GetComponent<Button> ().interactable = man.abilityList [2 + AbilityX * 4].active;
+
+							ColorBlock cb= trans.GetComponent<Button> ().colors;
+							if (man.abilityList [2+AbilityX * 4].active) {
+								cb.disabledColor = Color.white;
+								trans.GetComponent<Button> ().interactable = true;
+							} else {
+								cb.disabledColor =new Color(.5f,0,0,1);
+								trans.GetComponent<Button> ().interactable = false;
+
+							}
+
+							if (man.abilityList [2+AbilityX * 4].myType == Ability.type.passive) {
+								cb.disabledColor = Color.white;
+								trans.GetComponent<Button> ().interactable = false;
+							}
+							trans.GetComponent<Button> ().colors = cb;
+
+
+							//trans.GetComponent<Button> ().interactable = man.abilityList [2 + AbilityX * 4].active;
 							if (man.abilityList [2 + AbilityX * 4].autocast) {
 								trans.GetComponent<Button> ().image.color = Color.green;
 							} else {
@@ -204,7 +258,26 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.gameObject.SetActive (true);
 							trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
-							trans.GetComponent<Button> ().interactable = man.abilityList [3 + AbilityX * 4].active;
+
+							ColorBlock cb= trans.GetComponent<Button> ().colors;
+							if (man.abilityList [3 + AbilityX * 4].active) {
+								cb.disabledColor = Color.white;
+								trans.GetComponent<Button> ().interactable = true;
+							} else {
+								cb.disabledColor =new Color(.5f,0,0,1);
+								trans.GetComponent<Button> ().interactable = false;
+
+							}
+
+							if (man.abilityList [3 +AbilityX * 4].myType == Ability.type.passive) {
+								cb.disabledColor = Color.white;
+								trans.GetComponent<Button> ().interactable = false;
+							}
+							trans.GetComponent<Button> ().colors = cb;
+
+
+
+							//trans.GetComponent<Button> ().interactable = man.abilityList [3 + AbilityX * 4].active;
 							if (man.abilityList [3 + AbilityX * 4].autocast) {
 								trans.GetComponent<Button> ().image.color = Color.green;
 							} else {

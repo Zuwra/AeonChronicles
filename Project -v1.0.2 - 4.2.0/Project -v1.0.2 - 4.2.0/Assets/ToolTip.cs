@@ -5,8 +5,6 @@ using UnityEngine.EventSystems;
 public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 
-	private bool pointerInside;
-
 	public bool Ability;
 	public string helpText;
 
@@ -14,14 +12,12 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
 	public void OnPointerEnter(PointerEventData eventd)
 	{
-		pointerInside = true;
 		toolbox.enabled = true;
 		//toolbox.gameObject.GetComponentInChildren<Text> ().text = helpText;
 	}
 
 	public void OnPointerExit(PointerEventData eventd)
 	{
-		pointerInside = false;
 		toolbox.enabled = false;
 	}
 

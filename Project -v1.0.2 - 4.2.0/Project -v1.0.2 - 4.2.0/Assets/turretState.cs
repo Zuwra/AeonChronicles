@@ -32,7 +32,7 @@ public class turretState : UnitState {
 		}
 
 		if (myManager.enemies.Count > 0) {
-			Debug.Log ("Finding and enemty");
+
 
 			enemy = findBestEnemy ();
 

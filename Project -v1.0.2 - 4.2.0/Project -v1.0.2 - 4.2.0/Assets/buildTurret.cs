@@ -67,7 +67,7 @@ public class buildTurret :UnitProduction{
 							return;}
 
 						if (obj.gameObject.GetComponentInParent<TurretPickUp> ()) {
-							Debug.Log (obj.gameObject.name + " has a turret pick up");
+
 							if (!obj.gameObject.GetComponentInParent<TurretPickUp> ().autocast) {
 								
 								return;
