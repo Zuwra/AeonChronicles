@@ -5,7 +5,7 @@ public class TurretMount : MonoBehaviour {
 
 	public GameObject turret;
 
-
+	public TurretPlacer hasDisplayer;
 
 	// Use this for initialization
 	void Start () {
