@@ -22,15 +22,17 @@ public class selfDestructTimer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Time.time > deathTime) {
-			hd.updateCoolDown (1);
-			if (GetComponent<UnitStats> ()) {
+			if (hd) {
+				hd.updateCoolDown (1);
+			}
+				if (GetComponent<UnitStats> ()) {
 				GetComponent<UnitStats> ().kill (null);
 			} else {
 				Destroy (this.gameObject);}
 		}
-
+			if(hd){
 		hd.updateCoolDown ((deathTime - Time.time) / timer);
-		
+			}
 		}
 
 	

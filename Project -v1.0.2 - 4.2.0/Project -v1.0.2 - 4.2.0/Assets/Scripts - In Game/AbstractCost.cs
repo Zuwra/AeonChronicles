@@ -60,35 +60,76 @@ public class AbstractCost : MonoBehaviour {
 		}
 		
 		
-	public bool canActivate(Ability ab)
+	public bool canActivate(Ability ab, continueOrder order)
 		{
+		bool result = true;
 		if (!ab.active) {
-			return  false;}
+			result =  false;}
 			
-			if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
-			GameObject.FindGameObjectWithTag ("Error").GetComponent<ErrorPrompt> ().showError ("Not Enough Resources");
+		if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
 
-		
-			return false;
+			if (myGame.ResourceOne < this.ResourceOne) {
+				order.reasonList.Add (continueOrder.reason.resourceOne);
+			}
+
+			if (myGame.ResourceTwo < this.ResourceTwo) {
+				order.reasonList.Add (continueOrder.reason.resourceTwo);
+			}
+			order.nextUnitCast = false;
+			//GameObject.FindGameObjectWithTag ("Error").GetComponent<ErrorPrompt> ().showError ("Not Enough Resources");
+			result =  false;
 			}
 			
+
 			if (stats.health < health || stats.health < minimumHealth) {
-			Debug.Log("not enough health");
-				return false;
+			order.reasonList.Add (continueOrder.reason.health);
+			result =  false;
 			}
 			
 			if (stats.currentEnergy < energy) {
-			Debug.Log("not enough energy");
-			return false;}
+			order.reasonList.Add (continueOrder.reason.energy);
+			result = false;}
 
 	
 			if (cooldownTimer > 0) {
-			Debug.Log ("Colldown");
-				return false;}
+			order.reasonList.Add (continueOrder.reason.cooldown);
+			result = false;}
 			
-			return true;
+			return result;
 			
 		}
+
+
+	public bool canActivate(Ability ab)
+	{
+		if (!ab.active) {
+			return  false;}
+
+		if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
+
+		
+			GameObject.FindGameObjectWithTag ("Error").GetComponent<ErrorPrompt> ().showError ("Not Enough Resources");
+			return false;
+		}
+
+
+		if (stats.health < health || stats.health < minimumHealth) {
+			return false;
+		}
+
+		if (stats.currentEnergy < energy) {
+
+			return false;}
+
+
+		if (cooldownTimer > 0) {
+			return false;}
+
+		return true;
+
+	}
+
+
 
 	public void resetCoolDown()
 	{cooldownTimer = 0;

@@ -36,7 +36,7 @@ using UnityEngine.EventSystems;
 		void Update () {
 			if (pointerInside) {
 
-
+			toolbox.GetComponent<CostBox> ().setText(myAbility);
 				//toolbox.transform.position = new Vector3 (Input.mousePosition.x + 105, Input.mousePosition.y + 70, 0);
 
 			}

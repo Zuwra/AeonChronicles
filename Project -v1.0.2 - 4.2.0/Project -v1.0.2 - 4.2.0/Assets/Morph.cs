@@ -75,9 +75,13 @@ public class Morph :  UnitProduction {
 			return order;
 		}
 
-		if (!myCost.canActivate (this)) {
+		if (!myCost.canActivate (this, order)) {
 			order.canCast = false;
 		}
+		if (!active) {
+			order.reasonList.Add (continueOrder.reason.requirement);
+		}
+
 		order.nextUnitCast = false;
 		return order;
 	}

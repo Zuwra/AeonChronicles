@@ -235,8 +235,12 @@ public class buildTurret :UnitProduction{
 
 		order.nextUnitCast = false;
 
-		if (!myCost.canActivate (this)) {
+		if (!myCost.canActivate (this, order)) {
 			order.canCast = false;
+		}
+
+		if (!active) {
+			order.reasonList.Add (continueOrder.reason.requirement);
 		}
 
 		return order;
