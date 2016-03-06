@@ -20,7 +20,6 @@ public class UiAbilityManager : MonoBehaviour {
 		public GameObject RButton;
 		public Slider RSlide;
 
-		public List<Slider> slideList;
 	}
 
 	public List<buttonSet> certainButtons = new List<buttonSet> ();
@@ -66,11 +65,23 @@ public class UiAbilityManager : MonoBehaviour {
 						if (man.abilityList [AbilityX * 4] != null) {
 						if (man.abilityList [AbilityX * 4].myCost) {
 
-							certainButtons [j].QSlide.value = man.abilityList [AbilityX * 4].myCost.cooldownProgress ();
-							
-							certainButtons [j].QSlide.gameObject.SetActive (certainButtons [j].QSlide.value < .98);
+							float maxA = 0;
+							foreach (RTSObject obj in currentPage.rows [j]) {
+								float n = obj.gameObject.GetComponent<UnitManager> ().abilityList[AbilityX * 4].myCost.cooldownProgress();
+								if (n > maxA) {
+									maxA = n;
+								}
 
+								if (n > .99f) {
+									break;}
+							}
+
+							certainButtons [j].QSlide.value = maxA;
+			
+							certainButtons [j].QSlide.gameObject.SetActive (certainButtons [j].QSlide.value < .98);
+							//Debug.Log ("Setting to above " +  (certainButtons [j].QSlide.value < .98));
 						} else {
+							//Debug.Log ("Setting to false");
 							certainButtons [j].QSlide.gameObject.SetActive (false);	
 						}
 
@@ -79,36 +90,79 @@ public class UiAbilityManager : MonoBehaviour {
 					if (man.abilityList.Count >1+ AbilityX * 4) {
 						if (man.abilityList [1 + AbilityX * 4] != null) {
 							if (man.abilityList [1 + AbilityX * 4].myCost) {
-								certainButtons [j].WSlide.value = man.abilityList [AbilityX * 4].myCost.cooldownProgress ();
 
+
+							float maxA = 0;
+							foreach (RTSObject obj in currentPage.rows [j]) {
+								float n = obj.gameObject.GetComponent<UnitManager> ().abilityList[1 +AbilityX * 4].myCost.cooldownProgress();
+								if (n > maxA) {
+									maxA = n;
+								}
+
+								if (n > .99f) {
+									break;}
+							}
+
+
+							certainButtons [j].WSlide.value = maxA;
+						
 							certainButtons [j].WSlide.gameObject.SetActive (certainButtons [j].WSlide.value < .98);
 							}
 						else {
-							certainButtons [j].QSlide.gameObject.SetActive (false);	
+
+							certainButtons [j].WSlide.gameObject.SetActive (false);	
 						}
 						}
 					}
 					if (man.abilityList.Count > 2 + AbilityX * 4) {
 						if (man.abilityList [2 + AbilityX * 4] != null) {
 							if (man.abilityList [2 + AbilityX * 4].myCost) {
-								certainButtons [j].ESlide.value = man.abilityList [AbilityX * 4].myCost.cooldownProgress ();
+
+							float maxA = 0;
+							foreach (RTSObject obj in currentPage.rows [j]) {
+								float n = obj.gameObject.GetComponent<UnitManager> ().abilityList[2 + AbilityX * 4].myCost.cooldownProgress();
+								if (n > maxA) {
+									maxA = n;
+								}
+
+								if (n > .99f) {
+									break;}
+							}
+
+
+							certainButtons [j].ESlide.value = maxA;
 
 							certainButtons [j].ESlide.gameObject.SetActive (certainButtons [j].ESlide.value < .98);
 							}
 						else {
-							certainButtons [j].QSlide.gameObject.SetActive (false);	
+							certainButtons [j].ESlide.gameObject.SetActive (false);	
 						}
 						}
 					}
 					if (man.abilityList.Count > 3 + AbilityX * 4) {
 						if (man.abilityList [3 + AbilityX * 4] != null) {
 							if (man.abilityList [3 + AbilityX * 4].myCost) {
-								certainButtons [j].RSlide.value = man.abilityList [AbilityX * 4].myCost.cooldownProgress ();
+
+							float maxA = 0;
+							foreach (RTSObject obj in currentPage.rows [j]) {
+								float n = obj.gameObject.GetComponent<UnitManager> ().abilityList[3 + AbilityX * 4].myCost.cooldownProgress();
+
+
+								if (n > maxA) {
+									maxA = n;
+								}
+
+								if (n > .99f) {
+							
+									break;}
+							}
+
+							certainButtons [j].RSlide.value = maxA;
 
 								certainButtons [j].RSlide.gameObject.SetActive (certainButtons [j].RSlide.value < .98);	
 							}
 						else {
-							certainButtons [j].QSlide.gameObject.SetActive (false);	
+							certainButtons [j].RSlide.gameObject.SetActive (false);	
 						}
 						}
 
@@ -416,7 +470,7 @@ public class UiAbilityManager : MonoBehaviour {
 			int AbilityX = 0;
 
 			for (int m = 0; m < man.abilityList.Count / 4 +1; m++) {
-				for (int i = 1; i < 5; i++) {
+
 
 					if(man.abilityList.Count > AbilityX * 4){
 						if (man.abilityList [AbilityX * 4] != null) {
@@ -474,7 +528,7 @@ public class UiAbilityManager : MonoBehaviour {
 				}
 				AbilityX++;
 				n++;
-			}
+			
 		}
 
 
@@ -504,7 +558,7 @@ public class UiAbilityManager : MonoBehaviour {
 			int AbilityX = 0;
 
 			for (int m = 0; m < man.abilityList.Count / 4 +1; m++) {
-				for (int i = 1; i < 5; i++) {
+		
 
 					if (man.abilityList.Count > AbilityX * 4) {
 						if (man.abilityList [AbilityX * 4] != null) {
@@ -586,7 +640,7 @@ public class UiAbilityManager : MonoBehaviour {
 				AbilityX++;
 				n++;
 			}
-		}
+		
 
 
 	}
@@ -614,7 +668,7 @@ public class UiAbilityManager : MonoBehaviour {
 			int AbilityX = 0;
 
 			for (int m = 0; m < man.abilityList.Count / 4 + 1; m++) {
-				for (int i = 1; i < 5; i++) {
+		
 
 					if (man.abilityList.Count > AbilityX * 4) {
 						if (man.abilityList [AbilityX * 4] != null) {
@@ -676,7 +730,7 @@ public class UiAbilityManager : MonoBehaviour {
 				AbilityX++;
 				n++;
 			}
-		}
+
 	}
 
 
