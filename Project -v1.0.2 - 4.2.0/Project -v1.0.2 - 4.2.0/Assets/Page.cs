@@ -171,8 +171,6 @@ public class Page  {
 		}
 
 
-
-
 		foreach (RTSObject unit in rows[n/4]) {
 
 			unit.autoCast (X);

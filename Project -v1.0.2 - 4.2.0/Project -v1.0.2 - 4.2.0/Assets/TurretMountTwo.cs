@@ -4,6 +4,7 @@ using System.Collections;
 public class TurretMountTwo : MonoBehaviour {
 	public GameObject turret;
 
+	public TurretplacerTwo hasDisplayer;
 
 
 	// Use this for initialization

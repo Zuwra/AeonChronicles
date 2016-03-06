@@ -82,7 +82,7 @@ public class BuildManager : MonoBehaviour {
 	public bool unitFinished(UnitProduction prod)
 	{
 		buildOrder.RemoveAt(0);
-		Debug.Log ("Removing " + buildOrder.Count);
+	
 		if(buildOrder.Count > 0)
 		{
 			buildOrder [0].startBuilding();

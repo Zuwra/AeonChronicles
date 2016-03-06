@@ -135,6 +135,12 @@ public class AbstractCost : MonoBehaviour {
 	{cooldownTimer = 0;
 	}
 		
+
+	public float cooldownProgress()
+	{
+		return (1 - cooldownTimer / cooldown);
+		}
+	
 	public void refundCost()
 	{
 		myGame.updateResources(ResourceOne, ResourceTwo);

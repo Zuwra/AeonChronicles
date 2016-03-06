@@ -185,8 +185,6 @@ public class Selected : MonoBehaviour {
 		}
 
 
-
-		//m_GLManager.AddItemToRender (m_GLItem);
 	}
 	
 	public void SetDeselected()
@@ -203,13 +201,6 @@ public class Selected : MonoBehaviour {
 			}
 		}
 
-
-	//	m_GLManager.RemoveItemToRender (m_GLItem);
 	}
-	
-
-	
-
-	
 
 }

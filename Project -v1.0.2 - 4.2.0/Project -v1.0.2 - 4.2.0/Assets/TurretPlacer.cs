@@ -18,6 +18,13 @@ public class TurretPlacer : MonoBehaviour {
 
 	private GameObject cam;
 
+	private float lastTrueTimeG;
+	private float lastTrueTimeR;
+	private float lastTrueTimeM;
+	private float lastTrueTimeP;
+
+	public TurretPlacerManager turretManager;
+
 	private bool isON;
 	// Use this for initialization
 	void Start () {
@@ -28,7 +35,8 @@ public class TurretPlacer : MonoBehaviour {
 	{
 		unit = u;
 		unitSelect = unit.GetComponentInParent<Selected> ();
-		Debug.Log (unit.transform.parent);
+		turretManager = unit.GetComponentInParent<TurretPlacerManager> ();
+
 	}
 
 	// Update is called once per frame
@@ -65,16 +73,58 @@ public class TurretPlacer : MonoBehaviour {
 	public void initialize(bool g, bool r, bool m , bool p)
 	{
 		if (buttonsOn) {
-			gatling.interactable = g;
-			railgun.interactable =r;
-			mortar.interactable =m;
-			repair.interactable =p;
+			if (g) {
+				lastTrueTimeG = Time.time;
+				gatling.interactable = g;
+			} else {
+				if (Time.time > lastTrueTimeG + .1) {
+					gatling.interactable = false;
+				}
+			}
+
+			if (r) {
+				lastTrueTimeR = Time.time;
+				gatling.interactable = r;
+			} else {
+				if (Time.time > lastTrueTimeR + .1) {
+					railgun.interactable = false;
+				}
+			}
+
+			if (m) {
+				lastTrueTimeM = Time.time;
+				gatling.interactable = m;
+			} else {
+				if (Time.time > lastTrueTimeM + .1) {
+					mortar.interactable = false;
+				}
+			}
+
+			if (p) {
+				lastTrueTimeP = Time.time;
+				gatling.interactable = p;
+			} else {
+				if (Time.time > lastTrueTimeP + .1) {
+					repair.interactable = false;
+				}
+			}
+
+
 		}
 	}
 
+	public void ToggleOn()
+	{
+		center.gameObject.SetActive (!center.gameObject.activeSelf);
+	}
 
 	public void showButtons(){
 		buttonsOn = !buttonsOn;
+		if (turretManager != null) {
+			turretManager.deactivate ();
+			center.gameObject.SetActive (!center.gameObject.activeSelf);
+		} 
+
 		gatling.gameObject.SetActive (buttonsOn);
 		railgun.gameObject.SetActive (buttonsOn);
 		mortar.gameObject.SetActive (buttonsOn);

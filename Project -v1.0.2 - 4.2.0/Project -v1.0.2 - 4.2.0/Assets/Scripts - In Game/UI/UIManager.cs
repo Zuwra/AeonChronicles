@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	private Vector3 originalPosition;
 	public GameObject AbilityTargeter;
 	private Ability currentAbility;
-	private int currentAbilityNUmber;
+	public int currentAbilityNUmber;
 
 
 	public bool IsShiftDown

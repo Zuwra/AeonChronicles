@@ -481,7 +481,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				if (tempAbilityGroups [i].Count == 0) {
 
 					tempAbilityGroups.Remove (tempAbilityGroups [i]);
-
+				
+				//	uiManage.SwitchToModeNormal ();
 				}
 
 			}

@@ -14,6 +14,8 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	public buildTurret C;
 	public buildTurret D;
 
+
+
 	// Use this for initialization
 	void Start () {
 		manage = GetComponent<UnitManager> ();
@@ -85,15 +87,16 @@ public class TurretScreenDisplayer : MonoBehaviour {
 		if (!other.isTrigger) {
 
 			UnitManager manage = other.gameObject.GetComponent<UnitManager> ();
-
-			if (manage.PlayerOwner == manage.PlayerOwner) {
+			if (manage) {
+				if (manage.PlayerOwner == manage.PlayerOwner) {
 		
-				foreach (TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ()) {
-					if (mount) {
+					foreach (TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ()) {
+						if (mount) {
 						
-						mounts.Add (mount);
-					}
+							mounts.Add (mount);
+						}
 
+					}
 				}
 			}
 		}
