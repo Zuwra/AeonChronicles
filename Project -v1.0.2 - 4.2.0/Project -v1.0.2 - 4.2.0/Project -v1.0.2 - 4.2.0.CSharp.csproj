@@ -209,6 +209,7 @@
     <Compile Include="Assets\Ballistic.cs" />
     <Compile Include="Assets\BallisticMissile.cs" />
     <Compile Include="Assets\Behavior.cs" />
+    <Compile Include="Assets\BigTurretScreenDisplayer.cs" />
     <Compile Include="Assets\Bombardment.cs" />
     <Compile Include="Assets\BuildLargeTurret.cs" />
     <Compile Include="Assets\BuildManager.cs" />
@@ -458,7 +459,9 @@
     <Compile Include="Assets\TurretMountTwo.cs" />
     <Compile Include="Assets\TurretPickUp.cs" />
     <Compile Include="Assets\TurretPlacer.cs" />
+    <Compile Include="Assets\TurretPlacerManager.cs" />
     <Compile Include="Assets\TurretScreenDisplayer.cs" />
+    <Compile Include="Assets\TurretplacerTwo.cs" />
     <Compile Include="Assets\UnitCardCreater.cs" />
     <Compile Include="Assets\UnitProduction.cs" />
     <Compile Include="Assets\Upgradable.cs" />
