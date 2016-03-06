@@ -229,6 +229,7 @@
      <Compile Include="Assets\RaceTipManager.cs" />
      <Compile Include="Assets\RegenerativeSap.cs" />
      <Compile Include="Assets\RepairTurret.cs" />
+     <Compile Include="Assets\RepairUpgrade.cs" />
      <Compile Include="Assets\ResearchUpgrade.cs" />
      <Compile Include="Assets\ResourceGenerator.cs" />
      <Compile Include="Assets\Resources\mortarPod.cs" />
