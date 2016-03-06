@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	private RaceManager raceManager;
 	private Vector3 originalPosition;
 	public GameObject AbilityTargeter;
-	private Ability currentAbility;
+	private TargetAbility currentAbility;
 	public int currentAbilityNUmber;
 
 
@@ -100,31 +100,48 @@ public class UIManager : MonoBehaviour, IUIManager {
 			
 			break;
 		case Mode.targetAbility:
-	
+			ModeNormalBehaviour ();
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 16)))
 			{
 				Vector3 targetPoint = hit.point;
+				currentObject = hit.collider.gameObject;
+				if (currentAbility.isValidTarget (currentObject, targetPoint)) {
+					AbilityTargeter.GetComponent<Light> ().color = Color.green;
+				} else {
+					AbilityTargeter.GetComponent<Light> ().color = Color.red;
+				}
+
 				targetPoint.y += 40;
 				AbilityTargeter.transform.position =  targetPoint;
-				currentObject = hit.collider.gameObject;
+			
+
+			
 			}
 
 			break;
 
 		case Mode.globalAbility:
-
+			ModeNormalBehaviour ();
 			 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 16)))
 			{
 				Vector3 targetPoint = hit.point;
+				currentObject = hit.collider.gameObject;
+				if (currentAbility.isValidTarget (currentObject, targetPoint)) {
+					AbilityTargeter.GetComponent<Light> ().color = Color.green;
+				} else {
+					AbilityTargeter.GetComponent<Light> ().color = Color.red;
+				}
+
 				targetPoint.y += 40;
 				AbilityTargeter.transform.position =  targetPoint;
-				currentObject = hit.collider.gameObject;
+
+
 			}
 
 			break;
@@ -353,21 +370,20 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public void LeftButton_SingleClickUp(MouseEventArgs e)
 	{
 
-
-		Ray ray;
-		switch (m_Mode)
-		{
-		case Mode.Menu:
+		if (!EventSystem.current.IsPointerOverGameObject ()) {
+			Ray ray;
+			switch (m_Mode) {
+			case Mode.Menu:
 			
-			break;
+				break;
 
-		case Mode.Normal:
+			case Mode.Normal:
 			//If we've just switched from another mode, don't execute
-			if (m_Placed) {
-				m_Placed = false;
-				return;
-			}
-			if (!EventSystem.current.IsPointerOverGameObject ()) {
+				if (m_Placed) {
+					m_Placed = false;
+					return;
+				}
+
 				//We've left clicked, have we left clicked on a unit?
 				int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
             
@@ -437,68 +453,70 @@ public class UIManager : MonoBehaviour, IUIManager {
 					}
 
 				}
-			}
-			break;
+			
+				break;
 
-		case Mode.targetAbility:
+			case Mode.targetAbility:
 
-			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit hit;
-			Vector3 targetPoint = Vector3.zero;
-			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
-				targetPoint = hit.point;
+				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				RaycastHit hit;
+				Vector3 targetPoint = Vector3.zero;
+				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
+					targetPoint = hit.point;
 			
 
-				AbilityTargeter.transform.position = targetPoint;
-				currentObject = hit.collider.gameObject;
-				if (currentObject.layer == 9 || currentObject.layer == 10 || currentObject.layer == 13) {
+					AbilityTargeter.transform.position = targetPoint;
+					currentObject = hit.collider.gameObject;
+					if (currentObject.layer == 9 || currentObject.layer == 10 || currentObject.layer == 13) {
 				
-				} else {
-					currentObject = null;}
-			}
-
-
-
-			m_SelectedManager.fireAbility (currentObject, targetPoint, currentAbilityNUmber);
-			SwitchMode (Mode.Normal);
-			break;
-
-		case Mode.globalAbility:
-
-			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-		
-			targetPoint = Vector3.zero;
-			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
-				targetPoint = hit.point;
-
-
-				AbilityTargeter.transform.position = targetPoint;
-				currentObject = hit.collider.gameObject;
-				if (currentObject.layer == 9 || currentObject.layer == 10 || currentObject.layer == 13) {
-
-				} else {
-					currentObject = null;
+					} else {
+						currentObject = null;
+					}
 				}
-			}
-			Debug.Log ("casting");
 
-			((TargetAbility)currentAbility).Cast (currentObject, targetPoint);
+
+				if (currentAbility.isValidTarget ( currentObject,targetPoint)) {
+					m_SelectedManager.fireAbility (currentObject, targetPoint, currentAbilityNUmber);
+					SwitchMode (Mode.Normal);
+				}
+				break;
+
+			case Mode.globalAbility:
+
+				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		
-			SwitchMode (Mode.Normal);
-			break;
+				targetPoint = Vector3.zero;
+				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
+					targetPoint = hit.point;
+
+
+					AbilityTargeter.transform.position = targetPoint;
+					currentObject = hit.collider.gameObject;
+					if (currentObject.layer == 9 || currentObject.layer == 10 || currentObject.layer == 13) {
+
+					} else {
+						currentObject = null;
+					}
+				}
+				if (currentAbility.isValidTarget ( currentObject,targetPoint)) {
+					((TargetAbility)currentAbility).Cast (currentObject, targetPoint);
+		
+					SwitchMode (Mode.Normal);
+				}
+				break;
 			
-		case Mode.PlaceBuilding:
-			if (m_Placed)
-			{
-				m_Placed = false;
+			case Mode.PlaceBuilding:
+				if (m_Placed) {
+					m_Placed = false;
+				}
+				break;
 			}
-			break;
 		}
 	}
 
 	public void setAbility(Ability abil, int n)
 	{currentAbilityNUmber = n;
-		currentAbility = abil;
+		currentAbility = (TargetAbility)abil;
 
 	}
 
@@ -516,64 +534,61 @@ public class UIManager : MonoBehaviour, IUIManager {
 
     public void RightButton_SingleClick(MouseEventArgs e)
 	{
-	
-		if(hoverOver != HoverOver.Menu)
-		switch (m_Mode)
-		{
-		case Mode.Menu:
-			break;
+		
+		if (hoverOver != HoverOver.Menu) {
 
-		case Mode.Normal:
+			switch (m_Mode) {
+			case Mode.Menu:
+				break;
+
+			case Mode.Normal:
 			//We've right clicked, have we right clicked on ground, interactable object or enemy?
-			int currentObjLayer = currentObject.layer;
+				int currentObjLayer = currentObject.layer;
 
-			if (currentObjLayer == 8)
-			{
-				//Terrain -> Move Command
+				if (currentObjLayer == 8) {
+					//Terrain -> Move Command
 
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit hit;		
+					Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+					RaycastHit hit;		
 				
 				
 				
-				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16)))
-				{
-					Vector3 attackMovePoint = hit.point;
+					if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
+						Vector3 attackMovePoint = hit.point;
 			
 
-					m_SelectedManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));}
-			}
-			else if (currentObjLayer == 9 || currentObjLayer == 10 || currentObjLayer == 13)
-			{
+						m_SelectedManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));
+					}
+				} else if (currentObjLayer == 9 || currentObjLayer == 10 || currentObjLayer == 13) {
 				
-				m_SelectedManager.GiveOrder (Orders.CreateInteractCommand(currentObject));						
+					m_SelectedManager.GiveOrder (Orders.CreateInteractCommand (currentObject));						
 
-				//Friendly Unit -> Interact (if applicable)
-			}
+					//Friendly Unit -> Interact (if applicable)
+				}
 		
 		
-			break;
+				break;
 
 			case Mode.targetAbility:
 				SwitchMode (Mode.Normal);
 				
 				break;
 
-		case Mode.globalAbility:
-			SwitchMode (Mode.Normal);
+			case Mode.globalAbility:
+				SwitchMode (Mode.Normal);
 
-			break;
+				break;
 
 			
-		case Mode.PlaceBuilding:
+			case Mode.PlaceBuilding:
 			
 			//Cancel building placement
 			
 			
-			SwitchToModeNormal();
-			break;
+				SwitchToModeNormal ();
+				break;
+			}
 		}
-		
 	}
 	
 	public void RightButton_DoubleClick(MouseEventArgs e)
@@ -635,6 +650,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 		case Mode.Normal:
 			SwitchToModeNormal ();
 			AbilityTargeter.SetActive (false);
+
+		
 			break;
 			
 		case Mode.Menu:
@@ -657,7 +674,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		}
 
-		Debug.Log ("Mode is set to " + m_Mode);
+	
 	}
 
 

@@ -24,6 +24,7 @@ public abstract class TargetAbility : Ability {
 
 	public abstract bool Cast(GameObject target, Vector3 location); 
 
+	public abstract bool isValidTarget (GameObject target, Vector3 location);
 
 
 }

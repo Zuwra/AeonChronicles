@@ -38,6 +38,13 @@ public class TurretPickUp : TargetAbility {
 		//return false;//next unit should also do this.
 	}
 
+	public override bool isValidTarget (GameObject target, Vector3 location){
+
+		return true;
+
+	}
+
+
 
 
 	override

@@ -35,6 +35,11 @@ public class Bombardment : TargetAbility{
 	override
 	public  void setAutoCast(){}
 
+	public override bool isValidTarget (GameObject target, Vector3 location){
+
+		return true;
+
+	}
 
 
 

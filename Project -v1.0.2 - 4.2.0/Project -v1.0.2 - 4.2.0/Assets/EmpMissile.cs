@@ -3,11 +3,11 @@ using System.Collections;
 
 public class EmpMissile :  TargetAbility {
 
-
+	private UnitManager manage;
 	public GameObject missile;
 	// Use this for initialization
 	void Start () {
-	
+		manage = this.gameObject.GetComponent<UnitManager> ();
 	}
 	
 	// Update is called once per frame
@@ -36,6 +36,24 @@ public class EmpMissile :  TargetAbility {
 
 	override
 	public  void setAutoCast(){}
+
+	public override bool isValidTarget (GameObject target, Vector3 location){
+		if (target == null) {
+			return false;
+		}
+
+		UnitManager m = target.GetComponent<UnitManager> ();
+		if (m == null) {
+			return false;}
+
+		if (manage.PlayerOwner != m.PlayerOwner) {
+			return true;
+		}
+
+		return false;
+
+	}
+
 
 	override
 	public  bool Cast(GameObject target, Vector3 location)

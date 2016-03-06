@@ -37,6 +37,14 @@ public class PrefabDrop : TargetAbility{
 	override
 	public  void setAutoCast(){}
 
+	public override bool isValidTarget (GameObject target, Vector3 location){
+		if (target == null) {
+			return true;
+		}
+
+		return (!target.GetComponent<UnitManager>());
+
+	}
 
 
 
