@@ -48,7 +48,7 @@ public class ProductionManager : MonoBehaviour {
 
 		if (abilityList.ContainsKey (manage.UnitName)) {
 
-			Debug.Log ("bulding " + producer);
+		
 			abilityList [manage.UnitName].Add (producer);
 			StartCoroutine (addNUmber (manage));
 

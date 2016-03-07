@@ -52,7 +52,7 @@ public class DaexaSupplyDrop: TargetAbility{
 	override
 	public  bool Cast(GameObject target, Vector3 location)
 	{
-		Debug.Log ("Casting");
+		myCost.payCost ();
 
 
 		//	myCost.payCost ();

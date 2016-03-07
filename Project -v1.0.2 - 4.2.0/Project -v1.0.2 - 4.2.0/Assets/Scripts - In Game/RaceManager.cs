@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -19,9 +20,21 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public float currentSupply;
 
 	public Ability UltOne;
+	public Slider slideOne;
+	public Button ultBOne;
+
 	public Ability UltTwo;
+	public Slider slideTwo;
+	public Button ultBTwo;
+
 	public Ability UltThree;
+	public Slider slideThree;
+	public Button ultBThree;
+
 	public Ability UltFour;
+	public Slider slideFour;
+	public Button ultBFour;
+
 	public RaceInfo.raceType myRace;
 	public GameObject upgradeBall;
 
@@ -62,6 +75,37 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	
 	// Update is called once per frame
 	void Update () {
+		//slideOne.value = UltOne.myCost.cooldownProgress ();
+		if (slideTwo) {
+			slideTwo.value = UltTwo.myCost.cooldownProgress ();
+			if (slideTwo.value < .99) {
+				ultBTwo.interactable = false;
+			}
+			else{
+					ultBTwo.interactable = true;
+				}
+
+		}
+		if (slideThree) {
+			slideThree.value = UltThree.myCost.cooldownProgress ();
+			if (slideThree.value < .99) {
+				ultBThree.interactable = false;
+			}
+			else{
+				ultBThree.interactable = true;
+			}
+		}
+		if (slideFour) {
+			slideFour.value = UltFour.myCost.cooldownProgress ();
+			if (slideFour.value < .99) {
+				ultBFour.interactable = false;
+			}
+			else{
+				ultBFour.interactable = true;
+			}
+		}
+
+
 
 
 	}
@@ -443,6 +487,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void useAbilityOne()
 	{if (UltOne != null) {
+			if(UltOne.canActivate().canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltOne, 1);
 		}
@@ -451,6 +496,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void useAbilityTwo()
 	{
 		if (UltTwo != null) {
+			if(UltTwo.canActivate().canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltTwo, 1);
 		}
@@ -459,6 +505,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void useAbilityThree()
 	{
 		if (UltThree != null) {
+			if(UltThree.canActivate().canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltThree, 1);
 		}
@@ -467,6 +514,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void useAbilityFour()
 	{
 		if (UltFour != null) {
+			if(UltFour.canActivate().canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltFour, 1);
 		}

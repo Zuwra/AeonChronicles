@@ -18,7 +18,8 @@ public class ArmyUIManager : MonoBehaviour {
 	void Start () {
 		
 		yPosition = unitPanel.transform.position.y;
-
+		Debug.Log (yPosition);
+	
 
 	}
 	
@@ -87,9 +88,10 @@ public class ArmyUIManager : MonoBehaviour {
 
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
 
-		icon.transform.localScale = unitPanel.transform.localScale;
-		icon.transform.rotation =unitPanel.transform.rotation;
+		icon.transform.rotation = unitPanel.transform.rotation;
 
+		icon.transform.SetParent (unitPanel.transform);
+	
 
 		icon.transform.SetParent (unitPanel.transform);
 		icon.GetComponent<Image> ().material = manage.myStats.Icon;
@@ -100,21 +102,33 @@ public class ArmyUIManager : MonoBehaviour {
 
 		if (iconList.Count > 8) {
 			trans.sizeDelta = new Vector2(trans.rect.width, 135);
-			unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, yPosition -20, unitPanel.transform.position.z);
+			//unitPanel.transform.Translate (0, -20, 0);
+			//unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, (yPosition -20) * unitPanel.transform.localScale.x, unitPanel.transform.position.z);
 			//trans.localPosition = new Vector3 (trans.position.x, trans.position.y, trans.position.z);
 		} else if (iconList.Count > 12) {
 			trans.sizeDelta = new Vector2(trans.rect.width, 180);
-			unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, yPosition - 40, unitPanel.transform.position.z);
+			//unitPanel.transform.Translate (0, -40, 0);
+			//unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, (yPosition - 40) * unitPanel.transform.localScale.x, unitPanel.transform.position.z);
 			//trans.localPosition = new Vector3 (trans.position.x, trans.position.y, trans.position.z);
 		} else {
 			trans.sizeDelta = new Vector2(trans.rect.width, 95);
-			unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, unitPanel.transform.position.y, unitPanel.transform.position.z);
+			//unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, unitPanel.transform.position.y, unitPanel.transform.position.z);
 			//trans.localPosition = new Vector3 (trans.position.x, trans.position.y, trans.position.z);
 		}
 
+		icon.transform.localScale = unitPanel.transform.localScale;
 		iconList.Add (manage.UnitName, icon);
 
 	}
+
+
+
+
+
+
+
+
+
 
 
 }

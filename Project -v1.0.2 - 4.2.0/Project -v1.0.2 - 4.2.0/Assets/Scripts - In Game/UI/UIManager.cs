@@ -108,7 +108,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 			{
 				Vector3 targetPoint = hit.point;
 				currentObject = hit.collider.gameObject;
-				if (currentAbility.isValidTarget (currentObject, targetPoint)) {
+
+				try{
+				if (m_SelectedManager.checkValidTarget(targetPoint, currentObject, currentAbilityNUmber)) {
 					AbilityTargeter.GetComponent<Light> ().color = Color.green;
 				} else {
 					AbilityTargeter.GetComponent<Light> ().color = Color.red;
@@ -117,7 +119,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 				targetPoint.y += 40;
 				AbilityTargeter.transform.position =  targetPoint;
 			
+				}
+				catch(NullReferenceException e) {
+					SwitchMode (Mode.Normal);
 
+				}
 			
 			}
 
@@ -475,7 +481,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				}
 
 
-				if (currentAbility.isValidTarget ( currentObject,targetPoint)) {
+			if (m_SelectedManager.checkValidTarget(targetPoint, currentObject, currentAbilityNUmber)) {
 					m_SelectedManager.fireAbility (currentObject, targetPoint, currentAbilityNUmber);
 					SwitchMode (Mode.Normal);
 				}
@@ -498,7 +504,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 						currentObject = null;
 					}
 				}
-				if (currentAbility.isValidTarget ( currentObject,targetPoint)) {
+				if ( currentAbility.isValidTarget ( currentObject,targetPoint)) {
 					((TargetAbility)currentAbility).Cast (currentObject, targetPoint);
 		
 					SwitchMode (Mode.Normal);

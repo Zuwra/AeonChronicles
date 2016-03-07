@@ -52,6 +52,7 @@ public class PrefabDrop : TargetAbility{
 	public  bool Cast(GameObject target, Vector3 location)
 	{
 
+		myCost.payCost ();
 
 
 	//	myCost.payCost ();

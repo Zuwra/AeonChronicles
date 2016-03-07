@@ -266,6 +266,15 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
 		}
     }
+	public bool checkValidTarget(Vector3 location, GameObject obj, int n) 
+	{
+		if (UIPages.Count > 0) {
+			return UIPages [currentPage].validTarget ( obj,location, n);
+			}
+
+		return false;
+	}
+
 
     public void setAutoCast(int n)
     {

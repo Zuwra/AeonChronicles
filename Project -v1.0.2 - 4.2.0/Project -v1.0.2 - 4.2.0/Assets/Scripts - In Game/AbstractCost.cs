@@ -112,15 +112,16 @@ public class AbstractCost : MonoBehaviour {
 			return false;
 		}
 
+		if (stats) {
+			if (stats.health < health || stats.health < minimumHealth) {
+				return false;
+			}
 
-		if (stats.health < health || stats.health < minimumHealth) {
-			return false;
+			if (stats.currentEnergy < energy) {
+
+				return false;
+			}
 		}
-
-		if (stats.currentEnergy < energy) {
-
-			return false;}
-
 
 		if (cooldownTimer > 0) {
 			return false;}
@@ -154,11 +155,12 @@ public class AbstractCost : MonoBehaviour {
 
 			myGame.updateResources (-ResourceOne, -ResourceTwo);
 				
-				
+		if (stats) {
 			stats.TakeDamage (health, this.gameObject, DamageTypes.DamageType.True);
-
+		
 				
-			stats.currentEnergy -= energy; 
+			stats.currentEnergy -= energy;
+		}
 			cooldownTimer = cooldown;
 
 	}

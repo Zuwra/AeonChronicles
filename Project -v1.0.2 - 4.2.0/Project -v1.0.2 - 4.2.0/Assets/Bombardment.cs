@@ -47,7 +47,7 @@ public class Bombardment : TargetAbility{
 	public  bool Cast(GameObject target, Vector3 location)
 	{
 
-
+		myCost.payCost ();
 
 		//	myCost.payCost ();
 

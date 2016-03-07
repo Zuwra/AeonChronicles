@@ -21,7 +21,7 @@ public class HotkeyMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		this.gameObject.SetActive (true);
+
 		this.gameObject.GetComponent<Canvas> ().enabled = true;
 		StartCoroutine(MyCoroutine());
 	

@@ -97,6 +97,22 @@ public class Page  {
 	}
 
 
+	public bool validTarget(GameObject target, Vector3 location, int n)
+	{
+		
+		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
+
+		foreach (RTSObject rts in rows[n/4]) {
+			if(((TargetAbility)rts.abilityList [X]).isValidTarget ( target,location))
+			{
+				return true;
+			}
+		
+		}
+		return false;
+	}
+
+
 	public void useAbility(int n)
 	{
 		if (rows [n / 4] == null) {
