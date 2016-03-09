@@ -2,12 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UiAbilityManager.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="9" Column="32" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="118" Column="6" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="260" Column="35" />
-      <File FileName="Assets\TargetAbility.cs" Line="16" Column="3" />
-      <File FileName="Assets\CostBox.cs" Line="38" Column="14" />
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="445" Column="8" />
+      <File FileName="Assets\BuilderUI.cs" Line="49" Column="4" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\TargetAbility.cs" Line="1" Column="1" />
+      <File FileName="Assets\CostBox.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="210" Column="6" />
+      <File FileName="Assets\UnitCardCreater.cs" Line="89" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

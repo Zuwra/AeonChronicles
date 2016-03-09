@@ -203,7 +203,15 @@ public class UiAbilityManager : MonoBehaviour {
 
 		for(int j = 0; j < 3; j ++){
 			if (uiPage.rows [j] != null) {
-				totalUnit += uiPage.rows [j].Count;
+				if (j != 0) {
+					if (uiPage.rows [j] == uiPage.rows [j - 1]) {
+						continue;
+					}
+				}
+						Debug.Log ("Row " + uiPage.rows [j]);
+						totalUnit += uiPage.rows [j].Count;
+					
+
 			}
 		}
 
@@ -213,9 +221,9 @@ public class UiAbilityManager : MonoBehaviour {
 			cardCreator.gameObject.GetComponent<Canvas> ().enabled = true;
 		}
 
-
 		for(int j = 0; j < 3; j ++){
 			if (uiPage.rows [j] == null) {
+				
 				continue;
 			}
 
@@ -259,7 +267,7 @@ public class UiAbilityManager : MonoBehaviour {
 					}
 				}
 			} else {
-
+				Debug.Log ("Created card " + totalUnit);
 				if (uiPage.rows [j] != null) {
 					
 					cardCreator.CreateCard (uiPage.rows [j][0]);

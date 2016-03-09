@@ -42,7 +42,9 @@ public class BuilderUI : MonoBehaviour {
 	public void loadUnit(RTSObject obj)
 	{
 		myMan = obj.GetComponent<BuildManager> ();
+
 		bool hasBuild = false;
+		Debug.Log ("HAS a builder " + hasBuild);
 		if (myMan) {
 
 			hasBuild = true;

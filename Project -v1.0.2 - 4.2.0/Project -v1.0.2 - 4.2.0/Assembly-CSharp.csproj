@@ -222,6 +222,7 @@
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\PalCapacitors.cs" />
      <Compile Include="Assets\PrefabDrop.cs" />
+     <Compile Include="Assets\Prefabs\DaexaUnits\CoyoteMoveFireUpgrade.cs" />
      <Compile Include="Assets\ProductionManager.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
      <Compile Include="Assets\RaceSelectManager.cs" />
