@@ -116,7 +116,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 					AbilityTargeter.GetComponent<Light> ().color = Color.red;
 				}
 
-				targetPoint.y += 40;
+				targetPoint.y += 60;
 				AbilityTargeter.transform.position =  targetPoint;
 			
 				}
@@ -144,7 +144,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 					AbilityTargeter.GetComponent<Light> ().color = Color.red;
 				}
 
-				targetPoint.y += 40;
+				targetPoint.y += 60;
 				AbilityTargeter.transform.position =  targetPoint;
 
 
@@ -523,7 +523,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public void setAbility(Ability abil, int n)
 	{currentAbilityNUmber = n;
 		currentAbility = (TargetAbility)abil;
-
+		AbilityTargeter.GetComponent<Light> ().cookie = currentAbility.targetArea;
+		AbilityTargeter.GetComponent<Light> ().spotAngle = currentAbility.areaSize;
 	}
 
 

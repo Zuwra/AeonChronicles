@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 using System.Collections;
 
 public abstract class TargetAbility : Ability {
@@ -7,7 +8,8 @@ public abstract class TargetAbility : Ability {
 
 	public GameObject target;
 	public Vector3 location;
-
+	public Texture targetArea;
+	public float areaSize;
 
 	public bool inRange(Vector3 location)
 	{

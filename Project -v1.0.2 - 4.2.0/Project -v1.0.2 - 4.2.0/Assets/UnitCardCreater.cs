@@ -23,6 +23,8 @@ public class UnitCardCreater : MonoBehaviour {
 	public Image rangeIcon;
 	public Image attackSpeedIcon;
 
+
+	public Text UnitDescription;
 	private UnitManager currentUnit;
 
 	private bool hasUnit;
@@ -60,7 +62,9 @@ public class UnitCardCreater : MonoBehaviour {
 
 	public void CreateCard(RTSObject obj)
 	{
+		
 		UnitManager manager = obj.gameObject.GetComponent<UnitManager> ();
+		UnitDescription.text = manager.myStats.UnitDescription;
 		currentUnit = manager;
 		hasUnit = true;
 		unitIcon.material = manager.myStats.Icon;

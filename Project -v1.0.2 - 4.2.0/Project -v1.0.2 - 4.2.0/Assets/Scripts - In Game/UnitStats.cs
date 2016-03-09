@@ -5,8 +5,8 @@ using Pathfinding;
 
 public class UnitStats : MonoBehaviour {
 
-
-
+	[TextArea(2,10)]
+	public string UnitDescription;
 
 	public float Maxhealth;
 	public float health;

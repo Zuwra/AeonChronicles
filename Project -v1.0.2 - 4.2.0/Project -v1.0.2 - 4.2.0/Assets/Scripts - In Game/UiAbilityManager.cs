@@ -57,8 +57,7 @@ public class UiAbilityManager : MonoBehaviour {
 			}
 
 			UnitManager man = currentPage.rows [j] [0].gameObject.GetComponent<UnitManager> ();
-			for (int m = 0; m < man.abilityList.Count / 4 + 1; m++) {
-				//for (int i = 1; i < 5; i++) {
+			for (int m = 0; m < man.abilityList.Count / 4 + 1; m++) {		
 
 					if (man.abilityList.Count > AbilityX * 4) {
 
@@ -79,9 +78,9 @@ public class UiAbilityManager : MonoBehaviour {
 							certainButtons [j].QSlide.value = maxA;
 			
 							certainButtons [j].QSlide.gameObject.SetActive (certainButtons [j].QSlide.value < .98);
-							//Debug.Log ("Setting to above " +  (certainButtons [j].QSlide.value < .98));
+
 						} else {
-							//Debug.Log ("Setting to false");
+		
 							certainButtons [j].QSlide.gameObject.SetActive (false);	
 						}
 
@@ -131,7 +130,6 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 							certainButtons [j].ESlide.value = maxA;
-
 							certainButtons [j].ESlide.gameObject.SetActive (certainButtons [j].ESlide.value < .98);
 							}
 						else {
@@ -158,8 +156,7 @@ public class UiAbilityManager : MonoBehaviour {
 							}
 
 							certainButtons [j].RSlide.value = maxA;
-
-								certainButtons [j].RSlide.gameObject.SetActive (certainButtons [j].RSlide.value < .98);	
+							certainButtons [j].RSlide.gameObject.SetActive (certainButtons [j].RSlide.value < .98);	
 							}
 						else {
 							certainButtons [j].RSlide.gameObject.SetActive (false);	
@@ -167,7 +164,6 @@ public class UiAbilityManager : MonoBehaviour {
 						}
 
 					}
-					//}
 
 			}
 			AbilityX++;
@@ -273,18 +269,30 @@ public class UiAbilityManager : MonoBehaviour {
 			int AbilityX = 0;
 	
 			for (int m = 0; m < man.abilityList.Count / 4 +1; m++) {
-				//for (int i = 1; i < 5; i++) {
+
 
 					if(man.abilityList.Count > AbilityX * 4){
 						if(man.abilityList [AbilityX * 4] !=null){
 						Transform trans = certainButtons [n].QButton.transform;
 	
+
+
+
 						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().material = man.abilityList [AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [0 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
-							if (man.abilityList [AbilityX * 4].active) {
+							
+						bool active = false;
+						foreach (RTSObject obj in currentPage.rows [j]) {
+							active = (obj.gameObject.GetComponent<UnitManager> ().abilityList[AbilityX * 4].active);
+							if (active) {
+								break;}
+							}
+
+						//if (man.abilityList [AbilityX * 4].active) {
+						if (active) {
 								cb.disabledColor = Color.white;
 								trans.GetComponent<Button> ().interactable = true;
 							} else {
@@ -323,7 +331,18 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
-							if (man.abilityList [1+AbilityX * 4].active) {
+
+						bool active= false;
+						foreach (RTSObject obj in currentPage.rows [j]) {
+							active = (obj.gameObject.GetComponent<UnitManager> ().abilityList[1+AbilityX * 4].active);
+							if (active) {
+								break;}
+						}
+
+						//if (man.abilityList [AbilityX * 4].active) {
+						if (active) {
+
+							
 								cb.disabledColor = Color.white;
 								trans.GetComponent<Button> ().interactable = true;
 							} else {
@@ -356,6 +375,10 @@ public class UiAbilityManager : MonoBehaviour {
 							}
 						}
 					}
+
+
+
+
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
 						if (man.abilityList [2 +AbilityX * 4] != null) {
 							Transform trans = certainButtons [n].EButton.transform;
@@ -365,7 +388,19 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
-							if (man.abilityList [2+AbilityX * 4].active) {
+							
+						bool active= false;
+						foreach (RTSObject obj in currentPage.rows [j]) {
+							active = (obj.gameObject.GetComponent<UnitManager> ().abilityList[2 + AbilityX * 4].active);
+							if (active) {
+
+								break;}
+						}
+
+						//if (man.abilityList [AbilityX * 4].active) {
+						if (active) {
+
+
 								cb.disabledColor = Color.white;
 								trans.GetComponent<Button> ().interactable = true;
 							} else {
@@ -407,7 +442,18 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
-							if (man.abilityList [3 + AbilityX * 4].active) {
+							
+						bool active= false;
+						foreach (RTSObject obj in currentPage.rows [j]) {
+							active = (obj.gameObject.GetComponent<UnitManager> ().abilityList[3 + AbilityX * 4].active);
+							if (active) {
+
+								break;}
+						}
+
+						//if (man.abilityList [AbilityX * 4].active) {
+						if (active) {
+
 								cb.disabledColor = Color.white;
 								trans.GetComponent<Button> ().interactable = true;
 							} else {
@@ -438,9 +484,7 @@ public class UiAbilityManager : MonoBehaviour {
 							}
 						}
 					}
-			
-			
-				//}
+
 				AbilityX++;
 				n++;
 			}
