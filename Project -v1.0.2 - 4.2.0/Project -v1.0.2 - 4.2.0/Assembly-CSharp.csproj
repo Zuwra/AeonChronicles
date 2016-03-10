@@ -423,6 +423,8 @@
      <Compile Include="Assets\SpaceDrop.cs" />
      <Compile Include="Assets\StandardInteract.cs" />
      <Compile Include="Assets\TargetAbility.cs" />
+     <Compile Include="Assets\TargetCircle.cs" />
+     <Compile Include="Assets\TargetCircleManager.cs" />
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TurboRockets.cs" />
      <Compile Include="Assets\TurretDeathTrigger.cs" />

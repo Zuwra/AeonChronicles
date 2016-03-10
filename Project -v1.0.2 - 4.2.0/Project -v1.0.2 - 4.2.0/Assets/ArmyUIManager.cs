@@ -18,7 +18,7 @@ public class ArmyUIManager : MonoBehaviour {
 	void Start () {
 		
 		yPosition = unitPanel.transform.position.y;
-		Debug.Log (yPosition);
+
 	
 
 	}

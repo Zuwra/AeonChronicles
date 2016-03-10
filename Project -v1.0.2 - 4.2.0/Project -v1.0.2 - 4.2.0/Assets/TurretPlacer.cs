@@ -25,7 +25,7 @@ public class TurretPlacer : MonoBehaviour {
 
 	public TurretPlacerManager turretManager;
 
-	private bool isON;
+	private bool isON = false;
 	// Use this for initialization
 	void Start () {
 		cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
@@ -42,7 +42,9 @@ public class TurretPlacer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (unitSelect.IsSelected != isON) {
+			
 			isON = unitSelect.IsSelected;
+			Debug.Log ("Turning onOff " + isON);
 			center.gameObject.SetActive(unitSelect.IsSelected);
 			if (!isON) {
 

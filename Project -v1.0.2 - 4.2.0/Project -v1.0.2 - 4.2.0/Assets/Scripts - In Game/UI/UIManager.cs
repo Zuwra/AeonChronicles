@@ -120,7 +120,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 				AbilityTargeter.transform.position =  targetPoint;
 			
 				}
-				catch(NullReferenceException e) {
+				catch(NullReferenceException) {
+					
 					SwitchMode (Mode.Normal);
 
 				}

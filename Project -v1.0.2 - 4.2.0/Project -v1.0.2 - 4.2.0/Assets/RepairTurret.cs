@@ -5,6 +5,8 @@ public class RepairTurret : Ability, Modifier{
 
 
 	public int maxRepair = 600;
+	public int hiddenAmount = 600;
+
 	private UnitManager mymanager;
 
 	private UnitStats TargetHealth;
@@ -75,7 +77,6 @@ public class RepairTurret : Ability, Modifier{
 		
 		}
 	}
-
 
 
 	private GameObject findHurtAlly()

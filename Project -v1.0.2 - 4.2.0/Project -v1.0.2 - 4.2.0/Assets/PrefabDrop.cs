@@ -123,11 +123,12 @@ public class PrefabDrop : TargetAbility{
 
 		//myCost.payCost ();
 
-		GameObject proj = null;
+		//GameObject proj = null;
 
-		Vector3 pos = this.gameObject.transform.position;
+		//Vector3 pos = this.gameObject.transform.position;
 	
-		proj = (GameObject)Instantiate (prefab, pos, Quaternion.identity);
+		//proj = (GameObject)
+		Instantiate (prefab,  this.gameObject.transform.position, Quaternion.identity);
 	
 
 

@@ -19,7 +19,7 @@ public  class Projectile : MonoBehaviour {
 	public GameObject Source;
 
 	public float inaccuracy;
-	private bool selfDest = false;
+	//private bool selfDest = false;
 	private CharacterController control;
 
 	//If you are using an explosion , you should set the variables in the explosion prefab itself.
@@ -251,8 +251,8 @@ public  class Projectile : MonoBehaviour {
 	public void selfDestruct()
 	{target = null;
 		GameObject.Destroy (this);
-		selfDest = true;
-		Debug.Log ("I should be dead " + this.gameObject);
+		//selfDest = true;
+
 	}
 	
 	public void setDamage(float so)

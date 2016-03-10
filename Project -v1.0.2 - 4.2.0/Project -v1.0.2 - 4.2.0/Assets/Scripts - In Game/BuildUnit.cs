@@ -16,7 +16,7 @@ public class BuildUnit : UnitProduction {
 
 	private float timer =0;
 	private bool buildingUnit = false;
-	private UnitManager manage;
+	//private UnitManager manage;
 
 	private BuildManager buildMan;
 
@@ -28,7 +28,7 @@ public class BuildUnit : UnitProduction {
 		myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
 		myCost.cooldown = buildTime;
-		manage = GetComponent<UnitManager> ();
+		//manage = GetComponent<UnitManager> ();
 	
 	}
 	

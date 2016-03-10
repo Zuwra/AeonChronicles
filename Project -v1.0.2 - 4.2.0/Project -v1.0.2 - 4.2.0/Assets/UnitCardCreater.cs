@@ -62,7 +62,6 @@ public class UnitCardCreater : MonoBehaviour {
 
 	public void CreateCard(RTSObject obj)
 	{
-		Debug.Log ("Creating card");
 		UnitManager manager = obj.gameObject.GetComponent<UnitManager> ();
 		UnitDescription.text = manager.myStats.UnitDescription;
 		currentUnit = manager;

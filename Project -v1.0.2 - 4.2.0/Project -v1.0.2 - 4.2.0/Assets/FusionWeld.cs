@@ -16,6 +16,7 @@ public class FusionWeld  : Upgrade {
 
 			obj.GetComponent<RepairTurret> ().maxRepair += capacityIncrease;
 			obj.GetComponent<RepairTurret> ().chargeCount += capacityIncrease;
+		
 
 
 		}

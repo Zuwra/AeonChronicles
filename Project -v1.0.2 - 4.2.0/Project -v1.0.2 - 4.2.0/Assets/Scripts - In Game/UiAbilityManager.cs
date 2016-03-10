@@ -208,7 +208,7 @@ public class UiAbilityManager : MonoBehaviour {
 						continue;
 					}
 				}
-						Debug.Log ("Row " + uiPage.rows [j]);
+					
 						totalUnit += uiPage.rows [j].Count;
 					
 
@@ -267,7 +267,7 @@ public class UiAbilityManager : MonoBehaviour {
 					}
 				}
 			} else {
-				Debug.Log ("Created card " + totalUnit);
+		
 				if (uiPage.rows [j] != null) {
 					
 					cardCreator.CreateCard (uiPage.rows [j][0]);

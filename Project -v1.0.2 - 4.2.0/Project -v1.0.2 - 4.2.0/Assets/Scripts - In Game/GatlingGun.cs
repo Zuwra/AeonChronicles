@@ -16,6 +16,7 @@ public class GatlingGun : MonoBehaviour, Notify, Validator, Modifier {
 	public float totalHeat = 2;
 	private float lastFired;
 
+	private Selected healthD;
 	private bool cooldown = false; // weapon shuts down;
 
 
@@ -27,7 +28,7 @@ public class GatlingGun : MonoBehaviour, Notify, Validator, Modifier {
 		}
 		intitalSpeed = myWeapon.attackPeriod;
 
-
+		healthD = GetComponent<Selected> ();
 	
 		myWeapon.triggers.Add (this);
 		myWeapon.validators.Add (this);
@@ -54,8 +55,9 @@ public class GatlingGun : MonoBehaviour, Notify, Validator, Modifier {
 				heatLevel -= .12f;
 				if (heatLevel < 0) {
 					heatLevel = 0;
+				
 				}
-
+				healthD.updateCoolDown (0);
 				if (Time.time - lastFired > 1.5) {
 					myWeapon.attackPeriod += speedIncrease;
 					if (myWeapon.attackPeriod > intitalSpeed) {
@@ -84,6 +86,8 @@ public class GatlingGun : MonoBehaviour, Notify, Validator, Modifier {
 		lastFired = Time.time;
 	
 		heatLevel += .08f;
+		if((heatLevel / totalHeat) > .15f)
+		{healthD.updateCoolDown (heatLevel/totalHeat);}
 
 		myWeapon.attackPeriod *= (1 - speedIncrease);
 		if (myWeapon.attackPeriod < MinimumPeriod) {

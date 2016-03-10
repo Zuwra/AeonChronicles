@@ -33,8 +33,11 @@ public class TurretMount : MonoBehaviour {
 
 		if (obj.GetComponent<RepairTurret> () && GetComponentInParent<repairReturn> ()) {
 			GetComponentInParent<repairReturn> ().active = true;
+			GetComponentInParent<repairReturn> ().placeTurret ();
 		} else if (GetComponentInParent<repairReturn> ()) {
 			GetComponentInParent<repairReturn> ().active = false;
+			GetComponentInParent<repairReturn> ().removeTurret();
+		
 		}
 		manager.PlayerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
 
@@ -50,6 +53,7 @@ public class TurretMount : MonoBehaviour {
 
 		if (GetComponentInParent<repairReturn> ()) {
 			GetComponentInParent<repairReturn> ().active = false;
+			GetComponentInParent<repairReturn> ().removeTurret();
 		}
 	
 
@@ -58,9 +62,12 @@ public class TurretMount : MonoBehaviour {
 			foreach (TurretMount turr in transform.parent.GetComponentsInChildren<TurretMount> ()) {
 			if (turr.turret != null && turr.turret.GetComponent<RepairTurret> () == null) {
 				manager.setWeapon (turr.turret.GetComponent<IWeapon> ());
+				//GetComponentInParent<repairReturn> ().removeTurret();
+
 				return;
 			} else if (turr.turret != null && turr.turret.GetComponent<RepairTurret> () != null) {
 				GetComponentInParent<repairReturn> ().active = true;
+				GetComponentInParent<repairReturn> ().placeTurret ();
 			}
 			}
 

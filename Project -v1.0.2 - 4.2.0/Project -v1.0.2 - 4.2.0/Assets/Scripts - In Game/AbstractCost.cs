@@ -28,7 +28,7 @@ public class AbstractCost : MonoBehaviour {
 		private RaceManager myGame;
 		public bool allowedToActivate;
 
-		private Selected selectMan;
+		//private Selected selectMan;
 
 
 
@@ -37,7 +37,7 @@ public class AbstractCost : MonoBehaviour {
 		
 		// Use this for initialization
 		void Start () {
-		selectMan = this.gameObject.GetComponent<Selected> ();
+		//selectMan = this.gameObject.GetComponent<Selected> ();
 			
 			if (!StartsRefreshed) {
 				cooldownTimer = cooldown;

@@ -24,7 +24,7 @@ public class Order {
 	public GameObject Target
 	{
 		get;
-		private set;
+	set;
 	}
 
 

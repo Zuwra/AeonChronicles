@@ -86,9 +86,9 @@ public class BigTurretScreenDisplayer : MonoBehaviour {
 
 		if (!other.isTrigger) {
 
-			UnitManager manage = other.gameObject.GetComponent<UnitManager> ();
+			UnitManager manager = other.gameObject.GetComponent<UnitManager> ();
 			if (manage) {
-				if (manage.PlayerOwner == manage.PlayerOwner) {
+				if (manage.PlayerOwner == manager.PlayerOwner) {
 
 					foreach (TurretMountTwo mount in other.gameObject.GetComponentsInChildren<TurretMountTwo> ()) {
 						if (mount) {
@@ -114,13 +114,13 @@ public class BigTurretScreenDisplayer : MonoBehaviour {
 		if (other.isTrigger) {
 			return;}
 
-		UnitManager manage = other.gameObject.GetComponent<UnitManager>();
+		UnitManager manager = other.gameObject.GetComponent<UnitManager>();
 
 		if (manage == null) {
 			return;
 		}
 
-		if (manage.PlayerOwner == manage.PlayerOwner) {
+		if (manage.PlayerOwner == manager.PlayerOwner) {
 
 			foreach (TurretMountTwo mount in other.gameObject.GetComponentsInChildren<TurretMountTwo> ()) {
 				if (mounts.Contains(mount)) {

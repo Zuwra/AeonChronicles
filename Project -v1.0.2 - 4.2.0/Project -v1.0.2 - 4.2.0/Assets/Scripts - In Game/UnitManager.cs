@@ -79,7 +79,9 @@ public class UnitManager : Unit,IOrderable{
 	
 		if (cMover != null) {
 			changeState (new DefaultState ());
-		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.turret)) {
+		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.turret) 
+			&& this.gameObject.gameObject.GetComponent<UnitManager>().UnitName == "Coyote"
+			&& ((StandardInteract)this.gameObject.gameObject.GetComponent<UnitManager>().interactor).attackWhileMoving) {
 
 			changeState (new turretState (this, this.cMover, this.myWeapon));
 		}
@@ -200,8 +202,15 @@ public class UnitManager : Unit,IOrderable{
 				neutrals.Add (other.gameObject);
 				return;
 			}
+
 			UnitManager manage = other.gameObject.GetComponent<UnitManager>();
+
 			if(manage){
+				if (manage.PlayerOwner == 3) {
+					neutrals.Add (other.gameObject);
+					return;
+				}
+
 			if(manage.PlayerOwner != PlayerOwner)
 				{if(!other.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.invisible))
 					{enemies.Add (other.gameObject);}}

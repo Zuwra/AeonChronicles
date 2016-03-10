@@ -512,6 +512,15 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     public void GiveOrder(Order order)
 	{//fix this once we get to multiplayer games
+
+		if (order.Target) {
+			if (order.Target.GetComponent<UnitManager> () == null) {
+				//this is here for random interactions
+				order.Target = order.Target.transform.parent.gameObject;
+			}
+		}
+
+
 		if(SelectedActiveObjects.Count == 0 || SelectedActiveObjects[0].getObject().GetComponent<UnitManager>().PlayerOwner != 1)
 			{return;}
 
@@ -532,6 +541,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
 		} 
 		else if (order.OrderType == 6 && SelectedActiveObjects.Count > 0) {
+			
+
 			if (order.Target.GetComponent<UnitManager> ().PlayerOwner != 1) {
 				Vector3 location = order.OrderLocation;
 				location.y = location.y + 30;

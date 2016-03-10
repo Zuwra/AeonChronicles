@@ -7,6 +7,7 @@ public class repairReturn : Ability{
 	public int maxRepair = 400;
 	private UnitManager mymanager;
 
+	public int hiddenAmount;
 	private UnitStats TargetHealth;
 	private GameObject target;
 	// Use this for initialization
@@ -25,6 +26,22 @@ public class repairReturn : Ability{
 		
 	}
 
+
+	public void removeTurret (){
+		Debug.Log ("removing turret " );
+		setHiddenAmount ();
+		chargeCount = -1;
+	}
+
+	public void placeTurret()
+	{Debug.Log ("Placing turret " + hiddenAmount);
+		chargeCount = hiddenAmount;
+	}
+
+	public void setHiddenAmount ()
+	{hiddenAmount = chargeCount;
+		Debug.Log ("Setting hidden amount " + hiddenAmount);
+	}
 
 
 
