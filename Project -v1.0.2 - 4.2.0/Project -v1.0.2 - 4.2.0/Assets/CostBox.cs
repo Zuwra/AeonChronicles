@@ -26,7 +26,9 @@ public class CostBox : MonoBehaviour {
 	}
 
 	public void setText(Ability input)
-	{continueOrder order = input.canActivate ();
+	{if (input == null) {
+			return;}
+		continueOrder order = input.canActivate ();
 		
 		MyName.text = input.Name;
 		if (input.myCost) {

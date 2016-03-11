@@ -121,7 +121,9 @@ public class UnitManager : Unit,IOrderable{
 
 	override
 	public bool UseAbility(int n)
-	{continueOrder order = null;
+	{
+
+		continueOrder order = null;
 		if (abilityList [n] != null) {
 			order = abilityList [n].canActivate ();
 
@@ -369,7 +371,8 @@ public class UnitManager : Unit,IOrderable{
 			nextState.myMover = cMover;
 			queuedStates.Clear ();
 
-		if (nextState is CastAbilityState && !((CastAbilityState)nextState).myAbility.active) {
+
+		if (nextState is CastAbilityState && ((CastAbilityState)nextState).myAbility.continueMoving) {
 
 			queuedStates.Enqueue (myState);
 		}

@@ -19,7 +19,7 @@ public class buildTurret :UnitProduction{
 
 	public turretType myTurretType;
 	private Selected mySelect;
-
+	private HealthDisplay HD;
 	private List<TurretMount> turretMounts = new List<TurretMount>();
 	private List<TurretMountTwo> turretTwoMounts = new List<TurretMountTwo>();
 	private BuildManager buildMan;
@@ -31,6 +31,7 @@ public class buildTurret :UnitProduction{
 		mySelect = GetComponent<Selected> ();
 		myCost.cooldown = buildTime;
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ();
+		HD = GetComponentInChildren<HealthDisplay>();
 	}
 
 	// Update is called once per frame
@@ -40,6 +41,7 @@ public class buildTurret :UnitProduction{
 			timer -= Time.deltaTime;
 			mySelect.updateCoolDown (1 - timer/buildTime);
 			if (timer <= 0) {
+				HD.stopBuilding ();
 				mySelect.updateCoolDown (0);
 				buildingUnit = false;
 
@@ -217,7 +219,7 @@ public class buildTurret :UnitProduction{
 
 
 	public override void cancelBuilding ()
-	{
+	{HD.stopBuilding ();
 		timer = 0;
 		buildingUnit = false;
 		myCost.refundCost ();
@@ -275,7 +277,7 @@ public class buildTurret :UnitProduction{
 		GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitCreated(unitToBuild.GetComponent<UnitStats>().supply);
 		buildingUnit = true;
 		racer.buildingUnit (this);
-
+		HD.loadIMage(unitToBuild.GetComponent<UnitStats> ().Icon);
 	}
 
 

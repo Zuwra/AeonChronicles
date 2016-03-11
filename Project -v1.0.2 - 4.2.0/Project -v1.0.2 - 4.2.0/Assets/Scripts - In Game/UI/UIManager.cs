@@ -377,25 +377,27 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public void LeftButton_SingleClickUp(MouseEventArgs e)
 	{
 
-		if (!EventSystem.current.IsPointerOverGameObject ()) {
+	
 			Ray ray;
 			switch (m_Mode) {
 			case Mode.Menu:
 			
 				break;
 
-			case Mode.Normal:
+		case Mode.Normal:
 			//If we've just switched from another mode, don't execute
-				if (m_Placed) {
-					m_Placed = false;
-					return;
-				}
+				
+			if (m_Placed) {
+				m_Placed = false;
+				return;
+			}
 
 				//We've left clicked, have we left clicked on a unit?
-				int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
+			int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
             
 				//if we're not dragging and clicked on a unit
-				if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10)) {
+			if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10)) {
+				if (!EventSystem.current.IsPointerOverGameObject ()) {
 					/*  TARGET RULES
                     shift selects units without affecting others
                     control deselects units without affecting others
@@ -417,6 +419,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 					}
 					m_SelectedManager.CreateUIPages (0);
 				}
+			}
             //or if we aren't dragging and clicked on empty air
 			else if (!m_GuiManager.Dragging) {
 					//don't deselect stuff if they're holding down shift. 
@@ -425,7 +428,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 						m_SelectedManager.DeselectAll ();
 				} else {
 				
-					if (!EventSystem.current.IsPointerOverGameObject ()) {
+
 						//Get the drag area
 						Vector3 upperLeft = new Vector3 ();
 						upperLeft.x = Math.Min (Input.mousePosition.x, originalPosition.x);
@@ -457,7 +460,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 						//refresh GUI elements
 						m_SelectedManager.CreateUIPages (0);
-					}
+					
 
 				}
 			
@@ -518,7 +521,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				}
 				break;
 			}
-		}
+		
 	}
 
 	public void setAbility(Ability abil, int n)

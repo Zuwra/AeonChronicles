@@ -16,7 +16,7 @@ public class Morph :  UnitProduction {
 	public float buildTime;
 	private float timer =0;
 	private bool Morphing = false;
-
+	private HealthDisplay HD;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +25,7 @@ public class Morph :  UnitProduction {
 		mySelect = GetComponent<Selected> ();
 		myCost.cooldown = buildTime;
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ();
-
+		HD = GetComponentInChildren<HealthDisplay>();
 	}
 
 	// Update is called once per frame
@@ -37,6 +37,7 @@ public class Morph :  UnitProduction {
 			mySelect.updateCoolDown (1 - timer/buildTime);
 			if(timer <=0)
 			{mySelect.updateCoolDown (0);
+				HD.stopBuilding ();
 				Morphing = false;
 				createUnit();
 			}
@@ -54,7 +55,8 @@ public class Morph :  UnitProduction {
 
 
 	public override void cancelBuilding ()
-	{	mySelect.updateCoolDown (0);
+	{	HD.stopBuilding ();
+		mySelect.updateCoolDown (0);
 		timer = 0;
 		Morphing = false;
 		myCost.refundCost ();
@@ -89,7 +91,7 @@ public class Morph :  UnitProduction {
 	override
 	public void Activate()
 	{if (!Morphing) {
-			 
+			HD.loadIMage (iconPic);
 
 				myCost.payCost ();
 
@@ -110,7 +112,7 @@ public class Morph :  UnitProduction {
 	public override void startBuilding(){}
 
 	public void createUnit()
-	{
+	{HD.stopBuilding ();
 
 
 		Vector3 posit = new Vector3(gameObject.transform.position.x ,gameObject.transform.position.y+5,gameObject.transform.position.z);

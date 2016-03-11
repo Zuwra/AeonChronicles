@@ -12,7 +12,7 @@ public abstract class Ability : MonoBehaviour {
 	public AbstractCost myCost;
 	public enum type{passive, target, activated}
 	public type myType;
-
+	public bool continueMoving;
 	//These are seperate because Unit inspector wont show dictionaries
 	public List<string> RequiredUnit = new List<string>();
 	private Dictionary<string, bool> requirementList = new Dictionary<string, bool> ();

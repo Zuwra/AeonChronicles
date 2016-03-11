@@ -9,7 +9,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 		private float timer =0;
 
 		private int currentUpgrade = 0;
-
+	private HealthDisplay HD;
 	private BuildManager buildMan;
 		public List<Upgrade> upgrades;
 
@@ -18,7 +18,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 		void Start () {
 			mySelect = GetComponent<Selected> ();
 		buildMan = GetComponent<BuildManager> ();
-
+		HD = GetComponentInChildren<HealthDisplay>();
 		}
 
 		// Update is called once per frame
@@ -31,6 +31,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 				mySelect.updateCoolDown (1 - timer/buildTime);
 				if(timer <=0)
 				{mySelect.updateCoolDown (0);
+				HD.stopBuilding ();
 				buildMan.unitFinished (this);
 				researching = false;
 				GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.addUpgrade (upgrades[currentUpgrade], GetComponent<UnitManager>().UnitName);
@@ -129,7 +130,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 	public override void startBuilding(){ 
 		timer = buildTime;
-
+		HD.loadIMage(iconPic);
 		myCost.resetCoolDown ();
 
 		foreach (Transform obj in this.transform) {
@@ -140,7 +141,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	}
 
 	public override void cancelBuilding(){
-
+		HD.stopBuilding ();
 		mySelect.updateCoolDown (0);
 		timer = 0;
 		researching = false;

@@ -11,7 +11,7 @@ public class TargetCircleManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		Debug.Log ("HERE " + this.gameObject);
 		nextActionTime = Time.time + .1f;
 	}
 	

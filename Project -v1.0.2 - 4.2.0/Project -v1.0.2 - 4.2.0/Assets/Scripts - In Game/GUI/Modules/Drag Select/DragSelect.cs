@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.EventSystems;
 public class DragSelect : MonoBehaviour {
 	
 	private GUIStyle m_DragStyle = new GUIStyle();
@@ -40,15 +40,15 @@ public class DragSelect : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (m_CheckDeselect)
-		{
-			if (Mathf.Abs (Input.mousePosition.x - m_DragLocationStart.x) > 2 && Mathf.Abs (Input.mousePosition.y-m_DragLocationStart.y) > 2)
-			{
-				m_CheckDeselect = false;
-				m_Dragging = true;
-				m_GuiManager.Dragging = true;
-				m_SelectedManager.DeselectAll ();
-			}
+		if (m_CheckDeselect) {
+			
+				if (Mathf.Abs (Input.mousePosition.x - m_DragLocationStart.x) > 2 && Mathf.Abs (Input.mousePosition.y - m_DragLocationStart.y) > 2) {
+					m_CheckDeselect = false;
+					m_Dragging = true;
+					m_GuiManager.Dragging = true;
+					m_SelectedManager.DeselectAll ();
+				}
+
 		}
 	}
 	
@@ -63,19 +63,19 @@ public class DragSelect : MonoBehaviour {
 	
 	public void LeftButtonPressed(object sender, MouseEventArgs e)
 	{
-		if (e.button == 0)
-		{
-			if (!e.buttonUp && e.X < Screen.width-m_GuiWidth)
-			{
-				m_DragLocationStart = new Vector2(e.X, e.Y);
-				m_CheckDeselect = true;
-			}
-			else
-			{
-				m_CheckDeselect = false;
-				m_Dragging = false;
-				m_GuiManager.Dragging = false;
-			}
+		if (e.button == 0) {
+
+				if (!e.buttonUp && e.X < Screen.width ) {
+				if (!EventSystem.current.IsPointerOverGameObject ()) {
+					m_DragLocationStart = new Vector2 (e.X, e.Y);
+					m_CheckDeselect = true;
+				}
+				} else {
+					m_CheckDeselect = false;
+					m_Dragging = false;
+					m_GuiManager.Dragging = false;
+				}
+
 		}
 	}
 	
@@ -90,15 +90,7 @@ public class DragSelect : MonoBehaviour {
 		Rect rect = new Rect(minX, minY, maxX-minX, maxY-minY);
 		
 		//Don't let the dragged area interfere with the gui
-		if (rect.xMin > Screen.width-m_GuiWidth)
-		{
-			rect.xMin = Screen.width-m_GuiWidth;
-		}
-		
-		if (rect.xMax > Screen.width-m_GuiWidth)
-		{
-			rect.xMax = Screen.width-m_GuiWidth;
-		}
+
 		
 		m_GuiManager.DragArea = new Rect(maxX, maxY, minX-maxX, minY-maxY);
 		

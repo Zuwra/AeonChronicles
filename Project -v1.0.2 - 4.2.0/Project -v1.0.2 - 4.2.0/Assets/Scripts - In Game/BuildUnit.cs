@@ -17,7 +17,7 @@ public class BuildUnit : UnitProduction {
 	private float timer =0;
 	private bool buildingUnit = false;
 	//private UnitManager manage;
-
+	private HealthDisplay HD;
 	private BuildManager buildMan;
 
 	private int QueueNum;
@@ -29,7 +29,7 @@ public class BuildUnit : UnitProduction {
 		mySelect = GetComponent<Selected> ();
 		myCost.cooldown = buildTime;
 		//manage = GetComponent<UnitManager> ();
-	
+		HD = GetComponentInChildren<HealthDisplay>();
 	}
 	
 	// Update is called once per frame
@@ -62,7 +62,7 @@ public class BuildUnit : UnitProduction {
 
 
 	public override void cancelBuilding ()
-		{
+	{HD.stopBuilding ();
 		mySelect.updateCoolDown (0);
 		timer = 0;
 		buildingUnit = false;
@@ -120,7 +120,7 @@ public class BuildUnit : UnitProduction {
 
 			obj.SendMessage ("ActivateAnimation", SendMessageOptions.DontRequireReceiver);
 		}
-
+		HD.loadIMage(unitToBuild.GetComponent<UnitStats> ().Icon);
 		timer = buildTime;
 
 		buildingUnit = true;
@@ -134,7 +134,7 @@ public class BuildUnit : UnitProduction {
 
 	public void createUnit()
 	{
-		
+		HD.stopBuilding ();
 		Vector3 location = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z -20);
 		
 		GameObject unit = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
