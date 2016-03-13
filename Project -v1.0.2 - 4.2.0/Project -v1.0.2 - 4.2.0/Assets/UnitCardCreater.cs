@@ -18,6 +18,7 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text energyText;
 	public Image energyIcon;
 
+	public Text unitTypes;
 
 	public Image damageIcon;
 	public Image rangeIcon;
@@ -63,6 +64,8 @@ public class UnitCardCreater : MonoBehaviour {
 	public void CreateCard(RTSObject obj)
 	{
 		UnitManager manager = obj.gameObject.GetComponent<UnitManager> ();
+
+		obj.gameObject.GetComponent<Selected> ().setIcon (unitIcon.gameObject);
 		UnitDescription.text = manager.myStats.UnitDescription;
 		currentUnit = manager;
 		hasUnit = true;
@@ -77,8 +80,11 @@ public class UnitCardCreater : MonoBehaviour {
 		} else {speed.text = "";
 		}
 
-
-
+		string s = "Types - ";
+		foreach(UnitTypes.UnitTypeTag ut in manager.myStats.unitTags){
+			s += ut + " - ";
+		}
+		unitTypes.text = s;
 		if (currentUnit.myStats.MaxEnergy > 0) {
 			energyIcon.enabled = true;
 			energyText.enabled = true;

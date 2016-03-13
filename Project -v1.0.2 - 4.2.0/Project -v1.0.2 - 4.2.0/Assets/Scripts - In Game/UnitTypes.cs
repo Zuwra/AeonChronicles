@@ -3,6 +3,6 @@ using System.Collections;
 
 public class UnitTypes {
 
-	public enum UnitTypeTag{light,armor,melee,ranged,magic,structure,biological,mechanical,dead,invisible,invulnerable,worker, turret, destructableTerrain}
+	public enum UnitTypeTag{Flying,Ground,Light,Armor,Melee,Support,Ranged,Magic,Structure,Biological,Mechanical,Dead,Invisible,Invulnerable,Worker, Turret, Destructable_Terrain}
 
 }

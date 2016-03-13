@@ -11,17 +11,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 //	private Rect m_MiniMapRect = new Rect();
 	private float m_MainMenuWidth;
 	
-	//private Rect m_RightMiniMapBG;
-	//private Rect m_LeftMiniMapBG;
-	//private Rect m_AboveMiniMapBG;
-	//private Rect m_BelowMiniMapBG;
-	
-	//private Texture2D m_MainMenuBGColor;
-	
-	//private ITypeButton[] m_TypeButtons = new TypeButton[5];
-	//private IMaintenanceButtons[] m_MaintenanceButtons = new IMaintenanceButtons[3];
-	//private IManager m_Manager;
-	
+
 	//Properties
 	public float MainMenuWidth
 	{
@@ -82,33 +72,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		
 		//Build Borders around the map
 		/*
-		float sideBorderWidth = (m_MainMenuWidth-(m_MiniMapRect.width*Screen.width))/2;
-		float topBorderHeight = (1-m_MiniMapRect.yMax)*Screen.height/2;
 
-		m_LeftMiniMapBG = new Rect();
-		m_LeftMiniMapBG.xMin = Screen.width-m_MainMenuWidth;
-		m_LeftMiniMapBG.xMax = m_LeftMiniMapBG.xMin + sideBorderWidth;
-		m_LeftMiniMapBG.yMin = 0;
-		m_LeftMiniMapBG.yMax = (1-m_MiniMapRect.yMin)*Screen.height;
-		
-		m_RightMiniMapBG = new Rect();
-		m_RightMiniMapBG.xMin = m_MiniMapRect.xMax*Screen.width;
-		m_RightMiniMapBG.xMax = Screen.width;
-		m_RightMiniMapBG.yMin = 0;
-		m_RightMiniMapBG.yMax = (1-m_MiniMapRect.yMin)*Screen.height;
-		
-		m_AboveMiniMapBG = new Rect();
-		m_AboveMiniMapBG.xMin = Screen.width-m_MainMenuWidth;
-		m_AboveMiniMapBG.xMax = Screen.width;
-		m_AboveMiniMapBG.yMin = 0;
-		m_AboveMiniMapBG.yMax = topBorderHeight;
-		
-		m_BelowMiniMapBG = new Rect();
-		m_BelowMiniMapBG.xMin = Screen.width-m_MainMenuWidth;
-		m_BelowMiniMapBG.xMax = Screen.width;
-		m_BelowMiniMapBG.yMin = ((1-m_MiniMapRect.yMin)*Screen.height)-1;
-		m_BelowMiniMapBG.yMax = Screen.height;
-		
 		//Create viewable area rect
 		Rect menuArea = new Rect();
 		menuArea.xMin = m_LeftMiniMapBG.xMin;
@@ -151,20 +115,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 		
 
 	}
-	
-	void OnGUI()
-	{
-		//Draw Menu Backgrounds
-		//GUI.DrawTexture (m_LeftMiniMapBG, m_MainMenuBGColor);
-		//GUI.DrawTexture (m_RightMiniMapBG, m_MainMenuBGColor);
-		//GUI.DrawTexture (m_AboveMiniMapBG, m_MainMenuBGColor);
-		//GUI.DrawTexture (m_BelowMiniMapBG, m_MainMenuBGColor);
-		
 
-		
-		//Draw Money Label
-		//GUI.Label (m_AboveMiniMapBG, m_Manager.Money.ToString (), GUIStyles.MoneyLabel);
-	}
 	
 	public bool IsWithin(Vector3 worldPos)
 	{

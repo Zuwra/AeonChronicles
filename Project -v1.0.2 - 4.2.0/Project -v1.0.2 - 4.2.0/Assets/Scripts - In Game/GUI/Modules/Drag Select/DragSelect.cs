@@ -14,7 +14,7 @@ public class DragSelect : MonoBehaviour {
 	private IGUIManager m_GuiManager;
 	private ISelectedManager m_SelectedManager;
 
-
+	private bool shiftDown;
 	// Use this for initialization
 	void Start () 
 	{
@@ -34,13 +34,24 @@ public class DragSelect : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if (Input.GetKeyDown (KeyCode.LeftShift)) {
+			shiftDown = true;
+		}
+		else if (Input.GetKeyUp (KeyCode.LeftShift)) {
+			shiftDown =false;
+		}
+
+
 		if (m_CheckDeselect) {
 			
 				if (Mathf.Abs (Input.mousePosition.x - m_DragLocationStart.x) > 2 && Mathf.Abs (Input.mousePosition.y - m_DragLocationStart.y) > 2) {
 					m_CheckDeselect = false;
 					m_Dragging = true;
 					m_GuiManager.Dragging = true;
+					
+				if (!shiftDown) {
 					m_SelectedManager.DeselectAll ();
+				}
 				}
 
 		}
@@ -83,9 +94,7 @@ public class DragSelect : MonoBehaviour {
 				
 		Rect rect = new Rect(minX, minY, maxX-minX, maxY-minY);
 		
-		//Don't let the dragged area interfere with the gui
 
-		
 		m_GuiManager.DragArea = new Rect(maxX, maxY, minX-maxX, minY-maxY);
 		
 		GUI.Box (rect, "", style);

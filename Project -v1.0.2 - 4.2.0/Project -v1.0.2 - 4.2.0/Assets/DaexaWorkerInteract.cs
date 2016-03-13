@@ -79,7 +79,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
 				{myManager.changeState (new MiningState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo));}
 
-			else if ((order.Target.gameObject.GetComponent<TurretMount> () && order.Target.gameObject.GetComponent<TurretMount> ().enabled == true) || order.Target.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.turret))
+			else if ((order.Target.gameObject.GetComponent<TurretMount> () && order.Target.gameObject.GetComponent<TurretMount> ().enabled == true) || order.Target.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Turret))
 				{
 				myManager.changeState (new AbilityFollowState (order.Target.gameObject, order.Target.gameObject.transform.position, GetComponent<TurretPickUp>() ));}
 			else if (order.Target.gameObject.GetComponentInChildren<TurretMount> () && order.Target.gameObject.GetComponentInChildren<TurretMount> ().enabled==true)

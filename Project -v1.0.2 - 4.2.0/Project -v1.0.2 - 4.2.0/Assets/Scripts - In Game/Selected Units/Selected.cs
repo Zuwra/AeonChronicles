@@ -11,7 +11,7 @@ public class Selected : MonoBehaviour {
 	}
 
 	public HealthDisplay buffDisplay;
-
+	private GameObject unitIcon;
 	private Slider healthslider;
 	private Image healthFill;
 
@@ -35,7 +35,8 @@ public class Selected : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{		IsSelected = false;
-		
+
+
 		buffDisplay = GetComponentInChildren<HealthDisplay> ();
 
 		healthslider = transform.FindChild("HealthDisplay").FindChild("HealthBar").GetComponent<Slider>();
@@ -110,6 +111,30 @@ public class Selected : MonoBehaviour {
 		}
 
 	}
+
+	public void setIcon(GameObject obj)
+	{
+		unitIcon = obj;
+		if (healthslider.value > .55) {
+
+	
+				unitIcon.GetComponent<Image>().color = Color.green;
+
+		} else if (healthslider.value> .25) {
+			
+
+				unitIcon.GetComponent<Image>().color = Color.yellow;
+
+		} else {
+			
+				unitIcon.GetComponent<Image>().color = Color.red;
+
+		}
+
+
+
+
+	}
 	
 	// Update is called once per frame
 	void Update () 
@@ -141,10 +166,19 @@ public class Selected : MonoBehaviour {
 
 		if (ratio > .55) {
 			healthFill.color = Color.green;
+			if (unitIcon) {
+				unitIcon.GetComponent<Image>().color = Color.green;
+			}
 		} else if (ratio > .25) {
 			healthFill.color = Color.yellow;
+			if (unitIcon) {
+				unitIcon.GetComponent<Image>().color = Color.yellow;
+			}
 		} else {
 			healthFill.color = Color.red;
+			if (unitIcon) {
+				unitIcon.GetComponent<Image>().color = Color.red;
+			}
 		}
 
 	}
@@ -190,7 +224,7 @@ public class Selected : MonoBehaviour {
 	public void SetDeselected()
 	{
 		IsSelected = false;
-
+		unitIcon = null;
 		decalCircle.GetComponent<MeshRenderer> ().enabled = false;
 
 		if (displayType.selected == mydisplayType) {

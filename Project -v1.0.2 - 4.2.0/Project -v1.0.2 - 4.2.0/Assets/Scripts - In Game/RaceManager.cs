@@ -281,7 +281,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				}
 
 			} 
-			if (Unit.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.structure)) {
+			if (Unit.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 				GraphUpdateObject b =new GraphUpdateObject(Unit.GetComponent<CharacterController>().bounds); 
 
 				StartCoroutine (DeathRescan (b));
@@ -304,7 +304,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 		unitList.Add(obj);
-		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.worker)) {
+		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
 			if (uiManager != null) {
 				uiManager.production.GetComponent<EconomyManager> ().updateWorker ();
 			}
@@ -447,7 +447,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			if( tempLocation.y + obj.GetComponent<CharacterController>().radius*5 < bottRight.y)
 				{	continue;}
 				
-			if(!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.structure))	
+			if(!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure))	
 				{
 			
 				selectBuildings = false;}
@@ -462,7 +462,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 			for(int i = foundUnits.Count -1; i >-1; i--)
 			{
-				if(foundUnits[i].GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.structure))
+				if(foundUnits[i].GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure))
 				{	
 					foundUnits.Remove(foundUnits[i]);}
 			}

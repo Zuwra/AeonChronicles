@@ -138,83 +138,62 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             { SelectGroup(2); }
             else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                SelectGroup(3);
-            }
+            {SelectGroup(3);}
             else if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                SelectGroup(4);
-            }
+            {SelectGroup(4); }
             else if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                SelectGroup(5);
+            { SelectGroup(5);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha7))
-            {
-                SelectGroup(6);
+            { SelectGroup(6);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha8))
-            {
-                SelectGroup(7);
+            {SelectGroup(7);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha9))
-            {
-                SelectGroup(8);
+            {SelectGroup(8);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha0))
-            {
-                SelectGroup(9);
+            {SelectGroup(9);
             }
 
         }
 
         if (Input.GetKeyUp(KeyCode.Q))
-        {
-            callAbility(0);
+        { callAbility(0);
         }
         else if (Input.GetKeyUp(KeyCode.W))
-        {
-            callAbility(1);
+        {callAbility(1);
         }
         else if (Input.GetKeyUp(KeyCode.E))
-        {
-            callAbility(2);
+        {callAbility(2);
         }
         else if (Input.GetKeyUp(KeyCode.R))
-        {
-            callAbility(3);
+        {callAbility(3);
         }
         else if (Input.GetKeyUp(KeyCode.A))
-        {
-            callAbility(4);
+        {callAbility(4);
         }
         else if (Input.GetKeyUp(KeyCode.S))
-        {
-            callAbility(5);
+        {callAbility(5);
         }
         else if (Input.GetKeyUp(KeyCode.D))
-        {
-            callAbility(6);
+        {callAbility(6);
         }
         else if (Input.GetKeyUp(KeyCode.F))
-        {
-            callAbility(7);
+        {callAbility(7);
         }
         else if (Input.GetKeyUp(KeyCode.Z))
-        {
-            callAbility(8);
+        {callAbility(8);
         }
         else if (Input.GetKeyUp(KeyCode.X))
-        {
-            callAbility(9);
+        {callAbility(9);
         }
         else if (Input.GetKeyUp(KeyCode.C))
-        {
-            callAbility(10);
+        {callAbility(10);
         }
         else if (Input.GetKeyUp(KeyCode.V))
-        {
-            callAbility(11);
+        {callAbility(11);
         }
 
         if (Input.GetKeyUp(KeyCode.BackQuote))
@@ -234,9 +213,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             }
 
         }
-
-
-
     }
 
 
@@ -317,17 +293,14 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         if (!SelectedObjects.Contains(obj))
         {
             if (obj is IOrderable)
-			{Debug.Log ("Adding unit " + obj.gameObject);
+			{
                 SelectedActiveObjects.Add((IOrderable)obj);
             }
 
             SelectedObjects.Add(obj);
 
             obj.SetSelected();
-            if (abilityManager != null)
-            {
-                //abilityManager.addUnit(SelectedObjects);
-            }
+            
             sortUnit(obj);
         }
 
@@ -344,7 +317,66 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	}
 
+	//Select all of a given unit type that is currently selected
+	public void selectAllUnitType(RTSObject obj)
+	{
+		List<RTSObject> tempList = new List<RTSObject> ();
+		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
 
+			if (obj.gameObject.GetComponent<UnitManager> ().UnitName == (tempAbilityGroups [i]) [0].gameObject.GetComponent<UnitManager> ().UnitName) {
+				foreach (RTSObject rts in (tempAbilityGroups [i])) {
+					tempList.Add (rts);
+				}
+			}
+		}
+
+
+		foreach (RTSObject o in SelectedObjects)
+		{
+			o.SetDeselected();
+		}
+
+		SelectedObjects.Clear();
+		SelectedActiveObjects.Clear();
+
+		UIPages.Clear();
+		tempAbilityGroups.Clear();
+
+		foreach (RTSObject r in tempList) {
+			AddObject (r);	
+		}
+		CreateUIPages (0);
+	}
+
+	public void DeSelectAllUnitType(RTSObject obj)
+	{
+		List<RTSObject> tempList = new List<RTSObject> ();
+		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
+
+			if (obj.gameObject.GetComponent<UnitManager> ().UnitName != (tempAbilityGroups [i]) [0].gameObject.GetComponent<UnitManager> ().UnitName) {
+				foreach (RTSObject rts in (tempAbilityGroups [i])) {
+					tempList.Add (rts);
+				}
+			}
+		}
+
+
+		foreach (RTSObject o in SelectedObjects)
+		{
+			o.SetDeselected();
+		}
+
+		SelectedObjects.Clear();
+		SelectedActiveObjects.Clear();
+
+		UIPages.Clear();
+		tempAbilityGroups.Clear();
+
+		foreach (RTSObject r in tempList) {
+			AddObject (r);	
+		}
+		CreateUIPages (0);
+	}
 
 
     public void sortUnit(RTSObject obj)
@@ -462,7 +494,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
     public void DeselectAll()
-    {
+	{
         if (SelectedObjects.Count == 0)
             return;
         foreach (RTSObject obj in SelectedObjects)
@@ -489,7 +521,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     public void DeselectObject(RTSObject obj)
     {
 
-	
         //don't bother deselecting it if it's not selected in the first place
         if (!SelectedObjects.Contains(obj))
             return;
@@ -512,8 +543,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				if (tempAbilityGroups [i].Count == 0) {
 
 					tempAbilityGroups.Remove (tempAbilityGroups [i]);
-				
-				//	uiManage.SwitchToModeNormal ();
+
 				}
 
 			}
@@ -627,8 +657,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         foreach (GameObject obj in raceMan.getUnitList())
         {
 
-            if (!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.structure)
-                && !obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.worker))
+            if (!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure)
+                && !obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Worker))
             {
                 AddObject(obj.GetComponent<UnitManager>());
             }
@@ -658,7 +688,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             foreach (GameObject obj in raceMan.getUnitList())
             {
 
-                if (!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.worker))
+                if (!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Worker))
                 {
                     continue;
                 }

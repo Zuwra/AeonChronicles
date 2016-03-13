@@ -56,7 +56,7 @@ public class UnitStats : MonoBehaviour {
 	
 
 		nextActionTime = Time.time;
-		if (isUnitType (UnitTypes.UnitTypeTag.structure)) {
+		if (isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			GraphUpdateObject b =new GraphUpdateObject(GetComponent<CharacterController>().bounds); 
 			AstarPath.active.UpdateGraphs (b);
 		}
@@ -111,7 +111,7 @@ public class UnitStats : MonoBehaviour {
 
 	public void TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
 	{
-		if (!unitTags.Contains (UnitTypes.UnitTypeTag.invulnerable)) {
+		if (!unitTags.Contains (UnitTypes.UnitTypeTag.Invulnerable)) {
 			
 			bool setToZero = false;
 			if (type == DamageTypes.DamageType.Penetrating || type == DamageTypes.DamageType.Regular) {
@@ -157,7 +157,7 @@ public class UnitStats : MonoBehaviour {
 
 	public void kill(GameObject deathSource)
 	{bool FinishDeath= true;
-		if (!unitTags.Contains(UnitTypes.UnitTypeTag.invulnerable)) {
+		if (!unitTags.Contains(UnitTypes.UnitTypeTag.Invulnerable)) {
 			//foreach (Method effect in lethalDamage) {
 
 			//if(call deathTrigger != true)

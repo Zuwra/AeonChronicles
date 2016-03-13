@@ -29,7 +29,7 @@ public class ImmortalityProtocol : MonoBehaviour,LethalDamageinterface {
 
 	public bool lethalDamageTrigger(GameObject unit, GameObject deathsource)
 	{if (canRecall && !onCooldown) {
-			if(!unit.GetComponent<UnitStats>().unitTags.Contains(UnitTypes.UnitTypeTag.structure) &&
+			if(!unit.GetComponent<UnitStats>().unitTags.Contains(UnitTypes.UnitTypeTag.Structure) &&
 			   unit.GetComponent<UnitManager>().PlayerOwner == GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().playerNumber){
 				EmergencyRecall(unit);
 				return false;

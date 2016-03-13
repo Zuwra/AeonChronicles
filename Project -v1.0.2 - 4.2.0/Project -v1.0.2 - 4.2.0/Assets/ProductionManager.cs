@@ -109,7 +109,7 @@ public class ProductionManager : MonoBehaviour {
 		icon.GetComponent<Image> ().material = produce.iconPic;
 
 
-		if (!theStats.isUnitType (UnitTypes.UnitTypeTag.structure)) {
+		if (!theStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			icon.transform.SetAsFirstSibling ();
 		}
 		RectTransform trans = unitPanel.GetComponent<RectTransform> ();

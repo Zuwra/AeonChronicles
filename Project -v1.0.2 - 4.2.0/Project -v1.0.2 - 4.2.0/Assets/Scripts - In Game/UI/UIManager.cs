@@ -286,20 +286,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			m_ObjectBeingPlaced.transform.position = hit.point;
 		}
 		
-		//Check validity of current position
-		if (Input.GetKeyDown ("v"))
-		{
-			m_PositionValid = !m_PositionValid;
-			
-			if (m_PositionValid)
-			{
-				m_ObjectBeingPlaced.GetComponent<BuildingBeingPlaced>().SetToValid();
-			}
-			else
-			{
-				m_ObjectBeingPlaced.GetComponent<BuildingBeingPlaced>().SetToInvalid();
-			}
-		}
+	
 	}
 	
 	//----------------------Mouse Button Handler------------------------------------
@@ -420,7 +407,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 				if (!isPointerOverUIObject()) {
 
-					Debug.Log ("Clicking in here");
+		
 				/*  TARGET RULES
                     shift selects units without affecting others
                     control deselects units without affecting others

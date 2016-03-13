@@ -66,7 +66,7 @@ public class Grinder : MonoBehaviour {
 			return;
 		}
 
-		if (manage.myStats.isUnitType (UnitTypes.UnitTypeTag.destructableTerrain)) {
+		if (manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Destructable_Terrain)) {
 			terrain.Add (manage.myStats);
 		
 		} else if (manage.myStats.mass < 3) {

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class UiAbilityManager : MonoBehaviour {
 
 
-
+	private bool shiftDown;
+	private bool ctrlDown;
 	//public List<GameObject> UIButtons = new List<GameObject>();
 
 	[System.Serializable]
@@ -47,6 +48,21 @@ public class UiAbilityManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKeyDown (KeyCode.LeftShift)) {
+			shiftDown = true;
+		}
+		else if (Input.GetKeyUp (KeyCode.LeftShift)) {
+			shiftDown =false;
+		}
+
+		if (Input.GetKeyDown (KeyCode.LeftControl)) {
+			ctrlDown = true;
+		}
+		else if (Input.GetKeyUp (KeyCode.LeftControl)) {
+			ctrlDown =false;
+		}
+
 
 		if (currentPage == null) {
 			return;
@@ -179,20 +195,28 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public void IconClick(GameObject obj)
 	{
-		if (!Input.GetKeyDown (KeyCode.LeftShift)) {
+		if (!shiftDown && !ctrlDown) {
 			GameObject temp = unitIcons [obj];
 			selectMan.DeselectAll ();
-			selectMan.AddObject (temp.GetComponent<UnitManager>());
+			selectMan.AddObject (temp.GetComponent<UnitManager> ());
 
 			selectMan.CreateUIPages (0);
+		} else if (shiftDown && !ctrlDown) {
+
+			selectMan.DeselectObject (unitIcons [obj].GetComponent<UnitManager> ());
+			selectMan.CreateUIPages (0);
+		
+		} else if (!shiftDown && ctrlDown) {
+			selectMan.selectAllUnitType (unitIcons [obj].GetComponent<UnitManager> ());
+		
+		} else {selectMan.DeSelectAllUnitType (unitIcons [obj].GetComponent<UnitManager> ());
 		}
 	}
 
 
 	public void loadUI(Page uiPage)
 	{currentPage = uiPage;
-
-		Debug.Log ("Loading UI");
+		
 		foreach (GameObject obj in Stats) {
 			obj.GetComponent<StatsUI> ().clear ();
 		}
@@ -252,7 +276,7 @@ public class UiAbilityManager : MonoBehaviour {
 			Stats[n].GetComponent<StatsUI> ().loadUnit (man,uiPage.rows[j].Count, man.UnitName);
 
 		// fill the icon panel
-			Debug.Log("unit count " + totalUnit);
+		
 			if (totalUnit > 1) {
 				
 				if (j == 0 || uiPage.rows [j] != uiPage.rows [j - 1]) {
@@ -284,13 +308,13 @@ public class UiAbilityManager : MonoBehaviour {
 						unit.GetComponent<Button> ().onClick.AddListener(delegate() {IconClick(unit);});
 					
 						unitIcons.Add (unit, uiPage.rows [j] [k].gameObject);
-
+						uiPage.rows [j] [k].gameObject.GetComponent<Selected> ().setIcon (unit);
 					}
 				}
 			} else {
-				Debug.Log ("In here");
+	
 				if (uiPage.rows [j] != null) {
-					Debug.Log ("Making card " +uiPage.rows [j][0]);
+
 					cardCreator.CreateCard (uiPage.rows [j][0]);
 				}
 			}
