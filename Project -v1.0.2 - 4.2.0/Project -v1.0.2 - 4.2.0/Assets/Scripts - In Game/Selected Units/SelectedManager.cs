@@ -24,7 +24,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     private RaceManager raceMan;
 
 	public List<List<string>> globalSelection = new List<List<string>> ();
-
+	private TargetCircleManager targetManager;
 
     public GameObject movementInd;
     public GameObject attackInd;
@@ -39,6 +39,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		controlUI = GameObject.FindObjectOfType<ControlGroupUI> ();
 		pageUI = GameObject.FindObjectOfType<PageUIManager> ();
+		targetManager = GameObject.FindObjectOfType<TargetCircleManager> ();
 		//Debug.Log ("Current page " + UIPages.Count);
     }
 
@@ -250,13 +251,20 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		{
 		
 		UIPages [currentPage].fireAtTarget (obj, loc, abilNum);
+		targetManager.turnOff ();
 
+	}
+
+	public void stoptarget (){
+		targetManager.turnOff ();
 	}
 
     public void callAbility(int n)
 	{if (UIPages.Count > 0) {
 			
 			if (UIPages [currentPage].isTargetAbility (n)) {
+				targetManager.loadUnits (UIPages [currentPage].getUnitsFromAbilities(n),
+					((TargetAbility)UIPages [currentPage].getAbility(n)).range );
 				uiManage.SwitchMode (Mode.targetAbility);
 
 				uiManage.setAbility (	UIPages [currentPage].getAbility(n), n);
@@ -303,12 +311,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     * set's the selected property of the object
     * calls the sortUnit method (doesn't really sort. Not sure what that method does precisely, but it's involved in handling the displaying of abilities
     **/
+
     public void AddObject(RTSObject obj)
     {
         if (!SelectedObjects.Contains(obj))
         {
             if (obj is IOrderable)
-            {
+			{Debug.Log ("Adding unit " + obj.gameObject);
                 SelectedActiveObjects.Add((IOrderable)obj);
             }
 
@@ -323,6 +332,19 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         }
 
     }
+
+	//removes the unit from the selection if is already in or adds it if not in.
+	public void AddRemoveObject(RTSObject obj)
+	{
+		if (SelectedObjects.Contains (obj)) {
+			DeselectObject (obj);
+		} else {
+			AddObject (obj);
+		}
+
+	}
+
+
 
 
     public void sortUnit(RTSObject obj)

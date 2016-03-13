@@ -10,7 +10,17 @@ public class TargetCircle : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		if (unit) {
+			Initialize (range, unit);
+		}
+
+
+	}
+
+	public void Initialize(float r, GameObject u)
+	{this.gameObject.SetActive (true);
+		unit = u;
+		range = r;
 		float degree = 360 / points.Count;
 		for (int i = 0; i < points.Count; i++) {
 			Vector3 location = this.gameObject.transform.position;
@@ -19,20 +29,27 @@ public class TargetCircle : MonoBehaviour {
 			location.z += Mathf.Cos (Mathf.Deg2Rad* degree *i) * range;
 
 			points [i].transform.position = location;
-		
-		
+
+			Vector3 unitLoc = unit.transform.position;
+			unitLoc.y += 20;
+			this.gameObject.transform.position = unitLoc;
+
 		}
-
-
 	}
 
 
+	public void turnOff()
+	{
+		this.gameObject.SetActive (false);
+	}
 
 	// Update is called once per frame
 	void Update () {
-		Vector3 location = unit.transform.position;
-		location.y += 20;
-		this.gameObject.transform.position = location;
+		if (unit) {
+			Vector3 location = unit.transform.position;
+			location.y += 20;
+			this.gameObject.transform.position = location;
+		}
 	}
 
 

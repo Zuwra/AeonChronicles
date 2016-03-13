@@ -364,7 +364,21 @@ public class UIManager : MonoBehaviour, IUIManager {
 		}
 		
 	}
-	
+
+	public bool isPointerOverUIObject()
+	{
+		PointerEventData eventDatacurrenPosition = new PointerEventData (EventSystem.current);
+		eventDatacurrenPosition.position = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+
+		List<RaycastResult> results = new List<RaycastResult> ();
+		EventSystem.current.RaycastAll (eventDatacurrenPosition, results);
+		return results.Count > 0;
+
+
+	}
+
+
+
 	public void LeftButton_DoubleClickDown(MouseEventArgs e)
 	{
 		if (currentObject.layer == 8)
@@ -377,8 +391,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public void LeftButton_SingleClickUp(MouseEventArgs e)
 	{
 
-	
+		Vector3 targetPoint = Vector3.zero;
 			Ray ray;
+		RaycastHit hit;
 			switch (m_Mode) {
 			case Mode.Menu:
 			
@@ -397,8 +412,16 @@ public class UIManager : MonoBehaviour, IUIManager {
             
 				//if we're not dragging and clicked on a unit
 			if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10)) {
-				if (!EventSystem.current.IsPointerOverGameObject ()) {
-					/*  TARGET RULES
+			
+
+
+
+
+
+				if (!isPointerOverUIObject()) {
+
+					Debug.Log ("Clicking in here");
+				/*  TARGET RULES
                     shift selects units without affecting others
                     control deselects units without affecting others
                 */
@@ -409,12 +432,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 					//if only control is down, remove the unit from selection
 					if (IsControlDown && !IsShiftDown) {
-						m_SelectedManager.DeselectObject (getUnitManagerFromObject (currentObject));
+					//	m_SelectedManager.DeselectObject (getUnitManagerFromObject (currentObject));
 					}
                 //if only shift is down, add the unit to selection
                 else if (!IsControlDown && IsShiftDown) {
-						m_SelectedManager.AddObject (getUnitManagerFromObject (currentObject));
+
+						m_SelectedManager.AddRemoveObject (getUnitManagerFromObject (currentObject));
 					} else {
+
 						m_SelectedManager.AddObject (getUnitManagerFromObject (currentObject));
 					}
 					m_SelectedManager.CreateUIPages (0);
@@ -422,11 +447,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 			}
             //or if we aren't dragging and clicked on empty air
 			else if (!m_GuiManager.Dragging) {
-					//don't deselect stuff if they're holding down shift. 
-					//JUDGEMENT CALL - I think that people will find it more intuitive to think that units will never be deselected by a SHIFT-LEFT_CLICK, even one on empty space
+				if (!isPointerOverUIObject()) {
 					if (!IsShiftDown)
 						m_SelectedManager.DeselectAll ();
-				} else {
+				}} else {
 				
 
 						//Get the drag area
@@ -466,11 +490,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 			
 				break;
 
-			case Mode.targetAbility:
-
+		case Mode.targetAbility:
+			if (!EventSystem.current.IsPointerOverGameObject ()) {
 				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-				RaycastHit hit;
-				Vector3 targetPoint = Vector3.zero;
+			
+				
 				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
 					targetPoint = hit.point;
 			
@@ -485,17 +509,18 @@ public class UIManager : MonoBehaviour, IUIManager {
 				}
 
 
-			if (m_SelectedManager.checkValidTarget(targetPoint, currentObject, currentAbilityNUmber)) {
+				if (m_SelectedManager.checkValidTarget (targetPoint, currentObject, currentAbilityNUmber)) {
 					m_SelectedManager.fireAbility (currentObject, targetPoint, currentAbilityNUmber);
 					SwitchMode (Mode.Normal);
 				}
+			}
 				break;
 
-			case Mode.globalAbility:
-
+		case Mode.globalAbility:
+			if (!EventSystem.current.IsPointerOverGameObject ()) {
 				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		
-				targetPoint = Vector3.zero;
+
 				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
 					targetPoint = hit.point;
 
@@ -508,11 +533,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 						currentObject = null;
 					}
 				}
-				if ( currentAbility.isValidTarget ( currentObject,targetPoint)) {
+				if (currentAbility.isValidTarget (currentObject, targetPoint)) {
 					((TargetAbility)currentAbility).Cast (currentObject, targetPoint);
 		
 					SwitchMode (Mode.Normal);
 				}
+			}
 				break;
 			
 			case Mode.PlaceBuilding:
@@ -574,13 +600,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 				
 					m_SelectedManager.GiveOrder (Orders.CreateInteractCommand (currentObject));						
 
-					//Friendly Unit -> Interact (if applicable)
+					//Friendly Unit -> Interact (if applicable) 
 				}
 		
 		
 				break;
 
 			case Mode.targetAbility:
+				m_SelectedManager.stoptarget ();
 				SwitchMode (Mode.Normal);
 				
 				break;

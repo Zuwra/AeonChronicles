@@ -33,6 +33,7 @@ public abstract class RTSObject : MonoBehaviour {
 	private float m_MaxHealth;
 	
 	public abstract void SetSelected();
+	public abstract void ToggleSelected();
 	public abstract void SetDeselected();
 	public abstract void AssignToGroup(int groupNumber);
 	public abstract void RemoveFromGroup();

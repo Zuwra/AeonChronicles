@@ -31,7 +31,10 @@ public class UiAbilityManager : MonoBehaviour {
 	public GameObject buttonTemplate;
 
 	public List<GameObject> Stats = new List<GameObject> ();
-	private List<GameObject> unitIcons = new List<GameObject> ();
+
+
+	//Key - Icon, Value - Unit
+	private Dictionary<GameObject, GameObject> unitIcons = new Dictionary<GameObject, GameObject> ();
  	private SelectedManager selectMan;
 
 	private Page currentPage;
@@ -174,10 +177,22 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 
+	public void IconClick(GameObject obj)
+	{
+		if (!Input.GetKeyDown (KeyCode.LeftShift)) {
+			GameObject temp = unitIcons [obj];
+			selectMan.DeselectAll ();
+			selectMan.AddObject (temp.GetComponent<UnitManager>());
+
+			selectMan.CreateUIPages (0);
+		}
+	}
+
 
 	public void loadUI(Page uiPage)
 	{currentPage = uiPage;
-		
+
+		Debug.Log ("Loading UI");
 		foreach (GameObject obj in Stats) {
 			obj.GetComponent<StatsUI> ().clear ();
 		}
@@ -193,8 +208,8 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 
-		foreach (GameObject del in unitIcons) {
-			Destroy (del);
+		foreach (KeyValuePair< GameObject, GameObject > del in unitIcons) {
+			Destroy (del.Key);
 		}
 
 		unitIcons.Clear ();
@@ -218,10 +233,12 @@ public class UiAbilityManager : MonoBehaviour {
 		if (totalUnit > 1 || totalUnit == 0) {
 			cardCreator.gameObject.GetComponent<Canvas> ().enabled = false;
 		} else {
+
 			cardCreator.gameObject.GetComponent<Canvas> ().enabled = true;
 		}
 
 		for(int j = 0; j < 3; j ++){
+
 			if (uiPage.rows [j] == null) {
 				
 				continue;
@@ -235,6 +252,7 @@ public class UiAbilityManager : MonoBehaviour {
 			Stats[n].GetComponent<StatsUI> ().loadUnit (man,uiPage.rows[j].Count, man.UnitName);
 
 		// fill the icon panel
+			Debug.Log("unit count " + totalUnit);
 			if (totalUnit > 1) {
 				
 				if (j == 0 || uiPage.rows [j] != uiPage.rows [j - 1]) {
@@ -252,7 +270,9 @@ public class UiAbilityManager : MonoBehaviour {
 						pos.x += currentX *this.transform.localScale.x ;
 
 						GameObject unit = (GameObject)Instantiate (buttonTemplate);
+
 						unit.transform.localScale = this.transform.localScale;
+					
 						unit.transform.rotation = this.transform.rotation;
 						unit.transform.SetParent (this.gameObject.transform);
 
@@ -261,15 +281,16 @@ public class UiAbilityManager : MonoBehaviour {
 						unit.GetComponent<Image> ().material = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
 					
 						currentX += separation;
-
-						unitIcons.Add (unit);
+						unit.GetComponent<Button> ().onClick.AddListener(delegate() {IconClick(unit);});
+					
+						unitIcons.Add (unit, uiPage.rows [j] [k].gameObject);
 
 					}
 				}
 			} else {
-		
+				Debug.Log ("In here");
 				if (uiPage.rows [j] != null) {
-					
+					Debug.Log ("Making card " +uiPage.rows [j][0]);
 					cardCreator.CreateCard (uiPage.rows [j][0]);
 				}
 			}

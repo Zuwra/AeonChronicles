@@ -72,6 +72,15 @@ public class Unit : RTSObject, IOrderable {
 		}
 	}
 
+	public override void ToggleSelected ()
+	{
+		if (GetComponent<Selected> ().IsSelected) {
+			GetComponent<Selected> ().SetDeselected ();
+		} else {
+			GetComponent<Selected> ().SetSelected();
+		}
+	}
+
 	public override void SetDeselected ()
 	{
 

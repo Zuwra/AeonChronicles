@@ -97,6 +97,12 @@ public class Page  {
 	}
 
 
+	public List<RTSObject> getUnitsFromAbilities(int n)
+	{
+		return rows [n / 4];
+	}
+
+
 	public bool validTarget(GameObject target, Vector3 location, int n)
 	{
 		

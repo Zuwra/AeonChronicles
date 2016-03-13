@@ -13,13 +13,7 @@ public class DragSelect : MonoBehaviour {
 	
 	private IGUIManager m_GuiManager;
 	private ISelectedManager m_SelectedManager;
-	
-	private float m_GuiWidth = 0;
-	
-	void Awake()
-	{
-		GUIEvents.MenuWidthChanged += MenuWidthChanged;
-	}
+
 
 	// Use this for initialization
 	void Start () 
@@ -97,8 +91,5 @@ public class DragSelect : MonoBehaviour {
 		GUI.Box (rect, "", style);
 	}
 	
-	public void MenuWidthChanged(float newWidth)
-	{
-		m_GuiWidth = newWidth;
-	}
+
 }
