@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class MiniMapUIController : MonoBehaviour {
 
@@ -49,8 +50,14 @@ public class MiniMapUIController : MonoBehaviour {
             for (int j = -1; j <= 1; j++)
             {
                 //TODO: Currently does not map unit to correct spot on minimap.
-                int iCoord = i + (int)( ( (topLeftCornerX - unitX) / unitX) * (float)textureWidth);
-                int jCoord = j + (int)( ( (topLeftCornerZ - unitZ) / unitZ) * (float)textureHeight);
+
+                //int iCoord = i + (int)( ( (topLeftCornerX - unitX) / unitX) * (float)textureWidth);
+                //int jCoord = j + (int)( ( (topLeftCornerZ - unitZ) / unitZ) * (float)textureHeight);
+
+                int iCoord = i+30;
+                int jCoord = j+70;
+                Console.WriteLine(iCoord);
+                Console.WriteLine(jCoord);
                 texToReturn.SetPixel(iCoord, jCoord, Color.black);
             }
         }
