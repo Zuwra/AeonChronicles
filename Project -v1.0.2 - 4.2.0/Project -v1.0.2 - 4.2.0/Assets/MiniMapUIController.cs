@@ -6,8 +6,9 @@ using System;
 public class MiniMapUIController : MonoBehaviour {
 
     public Image img;
-
+    
     public RaceManager raceMan;
+    public float minimapUpdateRate;
 
     private float topLeftCornerX = 782f;
     private float topLeftCornerY = 40.3f;
@@ -16,22 +17,29 @@ public class MiniMapUIController : MonoBehaviour {
     private float bottomRightCornerX = 1381f;
     private float bottomRightCornerZ = 769f;
 
-	// Use this for initialization
-	void Start () {
+    private Texture2D texture;
+
+    private float nextActionTime;
+
+    // Use this for initialization
+    void Start () {
         //img.sprite = CreateTexture();
-        Sprite newSprite = Sprite.Create(CreateTexture() as Texture2D, new Rect(0f, 0f, textureWidth, textureHeight), Vector2.zero);
+        texture = CreateTexture();
+        Sprite newSprite = Sprite.Create(texture as Texture2D, new Rect(0f, 0f, textureWidth, textureHeight), Vector2.zero);
         img.sprite = newSprite;
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Time.time > nextActionTime)
+        {
+            nextActionTime += 1f;
+            updateUnitsOnMinimap(texture);
+        }
+    }
 
     private int textureHeight = 100, textureWidth = 100;
-    private int separator = 10;
-    private int numUnits = 4;
-
     private float unitX = 1009f;
     private float unitZ = 906f;
 
@@ -45,24 +53,28 @@ public class MiniMapUIController : MonoBehaviour {
                 texToReturn.SetPixel(i, j, Color.clear);
             }
         }
-        for (int i = -1; i <= 1; i++)
-        {
-            for (int j = -1; j <= 1; j++)
-            {
-                //TODO: Currently does not map unit to correct spot on minimap.
-
-                //int iCoord = i + (int)( ( (topLeftCornerX - unitX) / unitX) * (float)textureWidth);
-                //int jCoord = j + (int)( ( (topLeftCornerZ - unitZ) / unitZ) * (float)textureHeight);
-
-                int iCoord = i+30;
-                int jCoord = j+70;
-                Console.WriteLine(iCoord);
-                Console.WriteLine(jCoord);
-                texToReturn.SetPixel(iCoord, jCoord, Color.black);
-            }
-        }
-        texToReturn.Apply();
+        
         return texToReturn;
     }
+    private void updateUnitsOnMinimap(Texture2D tex)
+    {
+        foreach (GameObject unit in raceMan.getUnitList())
+        {
+            for (int i = -1; i <= 1; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    float unitWorldX = unit.GetComponent<Transform>().position.x;
+                    float unitWorldZ = unit.GetComponent<Transform>().position.z;
 
+                    //Scale unit x and z coordinates down to 1, then rescale back up to minimap scale
+                    int iCoord = i + (int)( ( (topLeftCornerX - unitWorldX) / unitWorldX) * (float)textureWidth);
+                    int jCoord = j + (int)( ( (topLeftCornerZ - unitWorldZ) / unitWorldZ) * (float)textureHeight);
+                    
+                    tex.SetPixel(iCoord, jCoord, Color.black);
+                }
+              }
+        }
+        tex.Apply();
+    }
 }
