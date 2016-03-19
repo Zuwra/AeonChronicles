@@ -89,11 +89,11 @@ public class MiningState : UnitState {
 			} else if (timer / miningTime > .75) {
 			
 				Vector3 pos = hook.transform.position ;
-				pos.y -= 27f * Time.deltaTime;
+				pos.y -= 25f * Time.deltaTime;
 				hook.transform.position = pos;
 			} else if (timer / miningTime < .25) {
 				Vector3 pos = hook.transform.position;
-				pos.y += 27f * Time.deltaTime;
+				pos.y += 25f * Time.deltaTime;
 				hook.transform.position = pos;
 			
 			}

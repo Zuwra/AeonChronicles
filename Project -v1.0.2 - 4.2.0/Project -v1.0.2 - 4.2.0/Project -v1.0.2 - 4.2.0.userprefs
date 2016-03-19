@@ -2,13 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MiningState.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\rotater.cs" Line="17" Column="22" />
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="69" Column="4" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="596" Column="4" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="591" Column="6" />
+      <File FileName="Assets\MiningState.cs" Line="92" Column="35" />
+      <File FileName="Assets\Scripts - In Game\rotater.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Classes\Orders.cs" Line="1" Column="1" />
-      <File FileName="Assets\DaexaWorkerInteract.cs" Line="24" Column="4" />
-      <File FileName="Assets\MiningState.cs" Line="98" Column="4" />
+      <File FileName="Assets\DaexaWorkerInteract.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
