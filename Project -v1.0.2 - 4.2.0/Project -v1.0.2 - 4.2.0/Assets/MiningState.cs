@@ -7,6 +7,7 @@ public class MiningState : UnitState {
 
 	private GameObject target;
 	private GameObject dropoff;
+	private GameObject hook;
 	private enum miningState
 	{
 		traveling, mining, returning
@@ -21,7 +22,7 @@ public class MiningState : UnitState {
 	private float resourceTwoAmount;
 
 
-	public MiningState(GameObject unit, UnitManager man, IMover move, IWeapon weapon, float mineTime, float resourceOne, float resourceTwo)
+	public MiningState(GameObject unit, UnitManager man, IMover move, IWeapon weapon, float mineTime, float resourceOne, float resourceTwo, GameObject hooky)
 	{
 		myManager = man;
 		myMover = move;
@@ -29,7 +30,7 @@ public class MiningState : UnitState {
 		miningTime = mineTime;
 		resourceOneAmount = resourceOne;
 		resourceTwoAmount= resourceTwo;
-
+		hook = hooky;
 		target = unit;
 		//myMover.resetMoveLocation (target.transform.position);
 
@@ -85,7 +86,18 @@ public class MiningState : UnitState {
 					myMover.resetMoveLocation (dropoff.transform.position);
 					state = miningState.returning;
 				}
+			} else if (timer / miningTime > .75) {
+			
+				Vector3 pos = hook.transform.position ;
+				pos.y -= 27f * Time.deltaTime;
+				hook.transform.position = pos;
+			} else if (timer / miningTime < .25) {
+				Vector3 pos = hook.transform.position;
+				pos.y += 27f * Time.deltaTime;
+				hook.transform.position = pos;
+			
 			}
+
 			break;
 
 		case miningState.returning:

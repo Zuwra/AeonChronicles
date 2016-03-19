@@ -6,7 +6,7 @@ public class rotater : animate {
 
 	public float speed;
 	public bool Yaxis;
-
+	public bool ZAxis;
 	Vector3 axis;
 
 
@@ -14,6 +14,8 @@ public class rotater : animate {
 	void Start () {
 		if (Yaxis) {
 			axis = Vector3.up;
+		} else if (ZAxis) {
+			axis = Vector3.forward;
 		} else {
 			axis = Vector3.right;
 		}

@@ -8,7 +8,9 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 	public float resourceOne;
 	public float resourceTwo;
-
+	public GameObject Hook;
+	private Vector3 hookPos;
+	private bool retractHook;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +18,10 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		myManager.setInteractor (this);
 
 		StartCoroutine (delayer());
-	
+		if (Hook) {
+			hookPos = this.gameObject.transform.position - Hook.transform.position;
+		
+		}
 
 	}
 
@@ -43,7 +48,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		}
 		if (closest != null) {
 			
-			myManager.changeState (new MiningState (closest, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo));
+			myManager.changeState (new MiningState (closest, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo, Hook));
 		}
 	}
 
@@ -51,6 +56,19 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 	// Update is called once per frame
 	void Update () {
+		if (retractHook) {
+			Vector3 pos = Hook.transform.position;
+			pos.y += 20 * Time.deltaTime;
+		
+
+			if (pos.y > this.gameObject.transform.position.y -hookPos.y ) {
+				pos.y = this.gameObject.transform.position.y - hookPos.y;
+				retractHook = false;
+
+			}
+			Hook.transform.position = pos;
+
+		}
 
 	}
 	public void initialize(){
@@ -65,21 +83,31 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		//Stop Order----------------------------------------
 		case Const.ORDER_STOP:
 			myManager.changeState (new DefaultState ());
+			checkHook ();
 			break;
 
 		//Move Order ---------------------------------------------
 		case Const.ORDER_MOVE_TO:
 			myManager.changeState (new MoveState (order.OrderLocation, myManager, myManager.cMover, myManager.myWeapon));
-
+			checkHook ();
 			break;
 
 		case Const.ORDER_Interact:
 
-	
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
-				{myManager.changeState (new MiningState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo));}
+			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo, Hook));
+				break;}
+			
+			checkHook ();
 
-			else if ((order.Target.gameObject.GetComponent<TurretMount> () && order.Target.gameObject.GetComponent<TurretMount> ().enabled == true) || order.Target.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Turret))
+			if (order.Target) {
+				if (order.Target.GetComponent<UnitManager> () == null) {
+					order.Target = order.Target.transform.parent.gameObject;
+				}
+			}
+
+
+			if ((order.Target.gameObject.GetComponent<TurretMount> () && order.Target.gameObject.GetComponent<TurretMount> ().enabled == true) || order.Target.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Turret))
 				{
 				myManager.changeState (new AbilityFollowState (order.Target.gameObject, order.Target.gameObject.transform.position, GetComponent<TurretPickUp>() ));}
 			else if (order.Target.gameObject.GetComponentInChildren<TurretMount> () && order.Target.gameObject.GetComponentInChildren<TurretMount> ().enabled==true)
@@ -100,6 +128,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 			else {
 				myManager.changeState (new MoveState (order.OrderLocation, myManager, myManager.cMover, myManager.myWeapon));
 			}
+			checkHook ();
 			break;
 
 
@@ -116,5 +145,14 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 
 
+	}
+
+	public void checkHook()
+	{
+		if (Hook.transform.position.y <this.gameObject.transform.position.y - hookPos.y ) {
+			
+			retractHook = true;
+
+		}
 	}
 }
