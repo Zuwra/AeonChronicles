@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Pathfinding;
+using Pathfinding.RVO;
+
 public class customMover : IMover {
 	//The point to move to
 	private Vector3 targetPosition;
@@ -11,6 +13,8 @@ public class customMover : IMover {
 	private bool pathSet;
 	//The AI's speed per second
 
+
+	public RVOController myRVO;
 	//The max distance from the AI to a waypoint for it to continue to the next waypoint
 	public float nextWaypointDistance = 3;
 	//The waypoint we are currently moving towards
@@ -60,6 +64,8 @@ public class customMover : IMover {
 	public bool move()
 	{// for some reason the updates are being called out of order so this is here,
 		
+		GraphUpdateObject b =new GraphUpdateObject(GetComponent<CharacterController>().bounds); 
+		AstarPath.active.UpdateGraphs (b);
 
 		if (!workingframe) {
 			workingframe = !workingframe;
@@ -71,12 +77,19 @@ public class customMover : IMover {
 
 			return false;
 		} else if (path == null && !pathSet) {
+			if (myRVO) {
+				myRVO.Move (Vector3.zero);
+			}
 			return true;}
 		if (currentWaypoint >= path.vectorPath.Count) {
 			speed = 0;
 			
 			path = null;
 			pathSet = false;
+			Debug.Log ("Setting it to false");
+			if (myRVO) {
+				myRVO.Move (Vector3.zero);
+			}
 			return true;
 		}
 		if (speed < MaxSpeed) {
@@ -88,14 +101,23 @@ public class customMover : IMover {
 		}
 		//Direction to the next waypoint
 		dir = (path.vectorPath[currentWaypoint]-transform.position).normalized;
-		dir *= speed * Time.deltaTime;
-		controller.Move (dir);
+	
+
+		if (myRVO) {
+			myRVO.Move (dir * speed);
+		} else {
+			dir *= speed * Time.deltaTime;
+			controller.Move (dir);
+		}
 		//controller.SimpleMove (dir);
 		
 		//Check if we are close enough to the next waypoint
 		//If we are, proceed to follow the next waypoint
 		
 		if (path == null) {
+			if (myRVO) {
+				myRVO.Move (Vector3.zero);
+			}
 			return true;
 		}
 		if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
@@ -104,6 +126,9 @@ public class customMover : IMover {
 			if(currentWaypoint == path.vectorPath.Count)
 			{path = null;
 				pathSet = false;
+				if (myRVO) {
+					myRVO.Move (Vector3.zero);
+				}
 				return true;
 			}
 			Vector3 target = path.vectorPath[currentWaypoint];

@@ -11,25 +11,25 @@ public class MiniMapUIController : MonoBehaviour {
     private GameManager gameMan;
     public float minimapUpdateRate;
 
-    private float topLeftCornerX = 782f;
-    private float topLeftCornerY = 40.3f;
-    private float topLeftCornerZ = 1427f;
+	public int unitPixelSize = 3;
 
-    private float bottomLeftCornerX = 746f;
-    private float bottomLeftCornerZ = 726f;
+ 
+    public float Left = 726f; 
+  
 
-    private float topRightCornerX = 1400f;
-    private float topRightCornerZ = 1400f;
+    public float top = 1400f; 
+   
+	public float Right = 1447f;
+	public float bottom = 730f;
 
-    private float bottomRightCornerX = 1447f;
-    private float bottomRightCornerZ = 730f;
-    
+
+	private float WorldHeight;
+	private float WorldWidth;
+
+ 
     private int textureHeight = 200, textureWidth = 200;
-    private float unitX = 1009f;
-    private float unitZ = 1000f;
-    private bool floatAfterInt = false;
 
-    private int unitPixelSize = 3;
+    private bool floatAfterInt = false;
 
     private Texture2D texture;
 
@@ -42,11 +42,20 @@ public class MiniMapUIController : MonoBehaviour {
         CreateTexture();
         Sprite newSprite = Sprite.Create(texture as Texture2D, new Rect(0f, 0f, textureWidth, textureHeight), Vector2.zero);
         img.sprite = newSprite;
+
+		WorldHeight = top - bottom;
+		WorldWidth = Right - Left;
     }
 
     // Update is called once per frame
     void Update()
     {
+		if (floatAfterInt)
+		{
+			updateUnitsOnMinimap(texture);
+			floatAfterInt = false;
+		}
+
         if (Time.time > nextActionTime)
         {
             nextActionTime += minimapUpdateRate;
@@ -54,11 +63,7 @@ public class MiniMapUIController : MonoBehaviour {
             clearTexture(false);
             floatAfterInt = true;
         }
-        if (floatAfterInt)
-        {
-            updateUnitsOnMinimap(texture);
-            floatAfterInt = false;
-        }
+      
     }
 
     public void CreateTexture()
@@ -81,26 +86,26 @@ public class MiniMapUIController : MonoBehaviour {
     }
     private void updateUnitsOnMinimap(Texture2D tex)
     {
-        foreach (RaceManager race in gameMan.playerList)
+        foreach (RaceManager race in gameMan.playerList) // Loops 3 times
         {
             Color raceColor = getColorForRaceManager(race);
             
-            foreach (GameObject unit in race.getUnitList())
-            {
-                for (int i = -unitPixelSize; i <= unitPixelSize; i++)
+            foreach (GameObject unit in race.getUnitList()) // Loops 0 -100 ish times
+			{ if(unit){
+				float unitWorldX = unit.transform.position.x;
+				float unitWorldZ = unit.transform.position.z;
+               
+				int iCoord = (int)(((unitWorldX - Left) / (WorldWidth)) * textureWidth);
+				int jCoord = (int)(((unitWorldZ - bottom) / (WorldHeight)) * textureHeight);
+
+				for (int i = -unitPixelSize; i <= unitPixelSize; i++)
                 {
+
                     for (int j = -unitPixelSize; j <= unitPixelSize; j++)
                     {
-                        float unitWorldX = unit.GetComponent<Transform>().position.x;
-                        float unitWorldZ = unit.GetComponent<Transform>().position.z;
-
-                        //Scale unit x and z coordinates down to 1, then rescale back up to minimap scale
-                        int iCoord = i + (int)(((unitWorldX - bottomLeftCornerX) / (topRightCornerX - bottomLeftCornerX)) * (float)textureWidth);
-                        int jCoord = j + (int)(((unitWorldZ - bottomLeftCornerZ) / (topRightCornerZ - bottomRightCornerZ)) * (float)textureHeight);
-                        
-                        tex.SetPixel(iCoord, jCoord, raceColor);
+                        tex.SetPixel(i + iCoord, j + jCoord, raceColor);
                     }
-                }
+					}}
             }
         }
         tex.Apply();

@@ -207,6 +207,13 @@ namespace Pathfinding.RVO {
 		 */
 		public void Move (Vector3 vel) {
 			desiredVelocity = vel;
+
+
+
+
+
+
+
 		}
 
 		/** Teleport the agent to a new position.
@@ -225,6 +232,8 @@ namespace Pathfinding.RVO {
 		}
 
 		public void Update () {
+
+
 			if (rvoAgent == null) return;
 
 			if (lastPosition != tr.position) {
@@ -271,16 +280,23 @@ namespace Pathfinding.RVO {
 					}
 			}
 
-	#if ASTARDEBUG
+			#if ASTARDEBUG
 			Debug.DrawRay(position, desiredVelocity + force*wallAvoidForce);
-	#endif
+			#endif
 			rvoAgent.DesiredVelocity = desiredVelocity + force*wallAvoidForce;
 
 			tr.position = realPos + Vector3.up*height*0.5f - center;
 			lastPosition = tr.position;
 
-			if (enableRotation && velocity != Vector3.zero) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity), Time.deltaTime * rotationSpeed * Mathf.Min(velocity.magnitude, 0.2f));
-		}
+			if (enableRotation && velocity != Vector3.zero) 
+				transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity), Time.deltaTime * rotationSpeed * Mathf.Min(velocity.magnitude, 0.2f));
+
+
+
+
+
+			}
+
 
 		private static readonly Color GizmoColor = new Color(240/255f, 213/255f, 30/255f);
 

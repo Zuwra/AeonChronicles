@@ -113,7 +113,7 @@ public class Selected : MonoBehaviour {
 	}
 
 	public void setIcon(GameObject obj)
-	{
+	{//buffDisplay.isOn = true;
 		unitIcon = obj;
 		if (healthslider.value > .55) {
 
@@ -194,10 +194,10 @@ public class Selected : MonoBehaviour {
 		coolDownSlider.value = ratio;
 		if (ratio <= 0) {
 			buffDisplay.isOn = false;
-			//onCooldown = false;
+
 			coolDownSlider.gameObject.SetActive (false);
 		} else {
-			//onCooldown = true;
+			
 			buffDisplay.isOn = true;
 			coolDownSlider.gameObject.SetActive (true);
 		}

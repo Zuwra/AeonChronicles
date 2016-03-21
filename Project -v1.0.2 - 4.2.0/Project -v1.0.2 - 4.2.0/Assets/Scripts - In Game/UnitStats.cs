@@ -57,8 +57,7 @@ public class UnitStats : MonoBehaviour {
 
 		nextActionTime = Time.time;
 		if (isUnitType (UnitTypes.UnitTypeTag.Structure)) {
-			GraphUpdateObject b =new GraphUpdateObject(GetComponent<CharacterController>().bounds); 
-			AstarPath.active.UpdateGraphs (b);
+	
 		}
 
 	}

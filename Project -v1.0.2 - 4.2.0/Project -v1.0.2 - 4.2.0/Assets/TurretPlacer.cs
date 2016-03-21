@@ -44,7 +44,7 @@ public class TurretPlacer : MonoBehaviour {
 		if (unitSelect.IsSelected != isON) {
 			
 			isON = unitSelect.IsSelected;
-			Debug.Log ("Turning onOff " + isON);
+
 			center.gameObject.SetActive(unitSelect.IsSelected);
 			if (!isON) {
 

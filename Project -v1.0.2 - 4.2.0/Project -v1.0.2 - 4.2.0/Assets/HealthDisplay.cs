@@ -21,10 +21,11 @@ public class HealthDisplay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 location = cam.transform.position;
-		location.x = this.gameObject.transform.position.x;
-		gameObject.transform.LookAt (location);
-
+		if (isOn) {
+			Vector3 location = cam.transform.position;
+			location.x = this.gameObject.transform.position.x;
+			gameObject.transform.LookAt (location);
+		}
 	}
 
 	public void  loadIMage(Material m)

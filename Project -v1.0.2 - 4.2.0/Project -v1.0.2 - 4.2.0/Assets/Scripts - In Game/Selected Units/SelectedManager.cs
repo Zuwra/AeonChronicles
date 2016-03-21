@@ -565,21 +565,16 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     public void GiveOrder(Order order)
 	{//fix this once we get to multiplayer games
 
-		//if (order.Target) {
-			//if (order.Target.GetComponent<UnitManager> () == null) {
-				//this is here for random interactions
-			//	order.Target = order.Target.transform.parent.gameObject;
-		//	}
-		//}
+	
 
 
 		if(SelectedActiveObjects.Count == 0 || SelectedActiveObjects[0].getObject().GetComponent<UnitManager>().PlayerOwner != 1)
 			{return;}
 
-        foreach (IOrderable unit in SelectedActiveObjects)
-        { 
-            unit.GiveOrder(order);
-        }
+
+		//foreach (IOrderable obj in SelectedActiveObjects) {
+		//	obj.GiveOrder (order);
+		//}
 
 
 		if (order.OrderType == 1 && SelectedActiveObjects.Count > 0) {
@@ -587,10 +582,17 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			location.y = location.y + 30;
 			Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
 
+			assignMoveCOmmand (order.OrderLocation, false);
+
 		} else if (order.OrderType == 4 && SelectedActiveObjects.Count > 0) {
 			Vector3 location = order.OrderLocation;
 			location.y = location.y + 30;
 			Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
+
+
+			assignMoveCOmmand (order.OrderLocation, true);
+
+
 		} 
 		else if (order.OrderType == 6 && SelectedActiveObjects.Count > 0) {
 			
@@ -607,6 +609,62 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		
 		}
     }
+
+	// Used  for Circular Formation movement, Mostly Broken
+	public void assignMoveCOmmand(Vector3 targetPoint, bool attack)
+	{
+		List<Vector3> points = new List<Vector3> ();
+		for (int i = 0; i < SelectedActiveObjects.Count; i++) {
+
+			float deg = 2 * Mathf.PI * i / SelectedActiveObjects.Count;
+			Vector3 p = targetPoint + new Vector3 (Mathf.Cos (deg), 0, Mathf.Sin (deg))  *( SelectedActiveObjects.Count -1) *4;
+			points.Add (p);
+		}
+		List<IOrderable> usedGuys = new List<IOrderable> ();
+		while (usedGuys.Count < SelectedActiveObjects.Count) {
+			float maxDistance = 0;
+			IOrderable closestUnit = null;
+			foreach (IOrderable obj in SelectedActiveObjects) {
+				if (!usedGuys.Contains (obj) && Vector3.Distance (obj.getObject ().transform.position, targetPoint) > maxDistance) {
+					maxDistance = Vector3.Distance (obj.getObject ().transform.position, targetPoint);
+					closestUnit = obj;
+				}
+			}
+			usedGuys.Add (closestUnit);
+
+			float runDistance = 1000000;
+			Vector3 closestSpot = points[0];
+			for (int i = 0; i < points.Count; i++) {
+				if (points [i] != null) {
+					if (Vector3.Distance (closestUnit.getObject ().transform.position, points [i]) < maxDistance) {
+						closestSpot = points [i];
+						runDistance = Vector3.Distance (closestUnit.getObject ().transform.position, points [i]);
+					}
+			
+				}
+			}
+
+			if (attack) {
+				Order o = Orders.CreateAttackMove (closestSpot);
+
+				closestUnit.GiveOrder (o);
+			} else {
+				Order o = Orders.CreateMoveOrder (closestSpot);
+				closestUnit.GiveOrder (o);
+				//Debug.Log ("Ordering " + closestUnit.getObject());
+			}
+	
+			points.Remove (closestSpot);
+	
+
+		}
+
+
+	}
+
+
+
+
 
     public void AddUnitsToGroup(int groupNumber)
     {
