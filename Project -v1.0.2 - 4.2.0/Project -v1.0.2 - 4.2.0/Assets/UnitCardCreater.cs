@@ -96,10 +96,12 @@ public class UnitCardCreater : MonoBehaviour {
 		}
 
 		if (manager.myWeapon != null) {
-			
+			damage.enabled = true;
 			damageIcon.enabled = true;
 			rangeIcon.enabled= true;
+			range.enabled = true;
 			attackSpeedIcon.enabled = true;
+			attackSpeed.enabled = true;
 			damage.text = " " + manager.myWeapon.baseDamage;
 			attackSpeed.text = " " + manager.myWeapon.attackPeriod;
 			range.text = " " + manager.myWeapon.range;
@@ -113,9 +115,11 @@ public class UnitCardCreater : MonoBehaviour {
 		
 		} else {
 			damageIcon.enabled = false;
+			damage.enabled = false;
 			rangeIcon.enabled= false;
+			range.enabled = false;
 			attackSpeedIcon.enabled= false;
-
+			attackSpeed.enabled = false;
 			damage.text = "" ;
 			attackSpeed.text = "";
 			range.text = "" ;

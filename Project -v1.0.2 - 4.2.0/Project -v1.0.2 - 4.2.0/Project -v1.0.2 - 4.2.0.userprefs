@@ -1,20 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UnitStats.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Ability.cs">
     <Files>
-      <File FileName="Assets\MiniMapUIController.cs" Line="95" Column="50" />
-      <File FileName="Assets\AstarPathfindingProject\RVO\RVOController.cs" Line="246" Column="4" />
-      <File FileName="Assets\AstarPathfindingProject\ExampleScenes\Example11_RVO\RVOExampleAgent.cs" Line="171" Column="15" />
-      <File FileName="Assets\CustomRVO.cs" Line="130" Column="3" />
-      <File FileName="Assets\Scripts - In Game\customMover.cs" Line="71" Column="33" />
-      <File FileName="Assets\simpleROV.cs" Line="20" Column="72" />
-      <File FileName="Assets\AstarPathfindingProject\RVO\RVOSimulator.cs" Line="99" Column="7" />
-      <File FileName="Assets\AstarPathfindingProject\ExampleScenes\Example11_RVO\RVOAgentPlacer.cs" Line="56" Column="52" />
-      <File FileName="Assets\AstarPathfindingProject\ExampleScenes\Example11_RVO\GroupController.cs" Line="96" Column="4" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="629" Column="17" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="285" Column="94" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="60" Column="2" />
-      <File FileName="Assets\TurretPlacer.cs" Line="44" Column="39" />
+      <File FileName="Assets\Scripts - In Game\Ability.cs" Line="29" Column="2" />
+      <File FileName="Assets\MissileArmer.cs" Line="1" Column="1" />
+      <File FileName="Assets\UnitCardCreater.cs" Line="1" Column="1" />
+      <File FileName="Assets\MiniMapUIController.cs" Line="1" Column="1" />
+      <File FileName="Assets\AstarPathfindingProject\RVO\RVOController.cs" Line="1" Column="1" />
+      <File FileName="Assets\AstarPathfindingProject\ExampleScenes\Example11_RVO\RVOExampleAgent.cs" Line="1" Column="1" />
+      <File FileName="Assets\CustomRVO.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\customMover.cs" Line="1" Column="1" />
+      <File FileName="Assets\simpleROV.cs" Line="1" Column="1" />
+      <File FileName="Assets\AstarPathfindingProject\RVO\RVOSimulator.cs" Line="1" Column="1" />
+      <File FileName="Assets\AstarPathfindingProject\ExampleScenes\Example11_RVO\RVOAgentPlacer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -10,7 +10,7 @@ public abstract class Ability : MonoBehaviour {
 
 	public Material iconPic;
 	public AbstractCost myCost;
-	public enum type{passive, target, activated}
+	public enum type{passive, target, activated, building}
 	public type myType;
 	public bool continueMoving;
 	//These are seperate because Unit inspector wont show dictionaries

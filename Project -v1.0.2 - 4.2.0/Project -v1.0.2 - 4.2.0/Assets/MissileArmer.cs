@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MissileArmer : MonoBehaviour {
-
+public class MissileArmer :Ability{
 
 	public UnitManager manager;
 
@@ -22,7 +21,8 @@ public class MissileArmer : MonoBehaviour {
 		manager = GetComponent<UnitManager> ();
 		nextActionTime = Time.time + 1;
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 
@@ -61,6 +61,14 @@ public class MissileArmer : MonoBehaviour {
 
 	}
 
+	public  override continueOrder canActivate(){
+		return new continueOrder ();
+	}
+	public override void Activate(){
+	}
+	public  override void setAutoCast()
+	{
+	}
 
 
 	void OnTriggerExit(Collider other)
