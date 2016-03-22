@@ -239,12 +239,17 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{if (UIPages.Count > 0) {
 			
 			if (UIPages [currentPage].isTargetAbility (n)) {
-				targetManager.loadUnits (UIPages [currentPage].getUnitsFromAbilities(n),
-					((TargetAbility)UIPages [currentPage].getAbility(n)).range );
+				targetManager.loadUnits (UIPages [currentPage].getUnitsFromAbilities (n),
+					((TargetAbility)UIPages [currentPage].getAbility (n)).range);
 				uiManage.SwitchMode (Mode.targetAbility);
 
-				uiManage.setAbility (	UIPages [currentPage].getAbility(n), n);
-			} 
+				uiManage.setAbility (UIPages [currentPage].getAbility (n), n);
+			
+			} else if (UIPages [currentPage].isBuildingAbility (n)) {
+				
+				uiManage.UserPlacingBuilding (((UnitProduction)UIPages [currentPage].getAbility (n)).unitToBuild, n);
+
+			}
 			else {
 				UIPages [currentPage].useAbility (n);
 			}
@@ -534,7 +539,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             obj.SetDeselected();
         }
 
-
 		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
 
 			if (obj.gameObject.GetComponent<UnitManager> ().UnitName == (tempAbilityGroups [i])[0].gameObject.GetComponent<UnitManager> ().UnitName) {
@@ -549,8 +553,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
 		}
 
-
-
         SelectedObjects.Remove(obj);
 
         if (abilityManager != null)
@@ -564,9 +566,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     public void GiveOrder(Order order)
 	{//fix this once we get to multiplayer games
-
-	
-
 
 		if(SelectedActiveObjects.Count == 0 || SelectedActiveObjects[0].getObject().GetComponent<UnitManager>().PlayerOwner != 1)
 			{return;}

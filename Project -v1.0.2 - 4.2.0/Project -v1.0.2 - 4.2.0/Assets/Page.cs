@@ -45,6 +45,22 @@ public class Page  {
 		return false;
 	}
 
+
+	public bool isBuildingAbility(int n)
+	{
+		if (rows [n / 4] == null) {
+			return false;
+		}
+
+		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
+		if (rows [n / 4] [0].abilityList [X] == null) {
+			return false;}
+		if (rows [n / 4] [0].abilityList [X].myType == Ability.type.building) {
+			return true;
+		}
+		return false;
+	}
+
 	public void fireAtTarget(GameObject obj , Vector3 loc,int n)
 		{
 		if (rows [n / 4] [0] == null) {

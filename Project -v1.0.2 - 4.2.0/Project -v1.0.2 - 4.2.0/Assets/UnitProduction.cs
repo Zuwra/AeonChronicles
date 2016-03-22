@@ -3,6 +3,8 @@ using System.Collections;
 
 public abstract class UnitProduction: Ability {
 
+	public GameObject unitToBuild;
+
 	public abstract float getProgress ();
 
 

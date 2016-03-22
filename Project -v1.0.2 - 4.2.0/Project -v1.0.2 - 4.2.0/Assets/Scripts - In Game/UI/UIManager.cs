@@ -8,7 +8,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 	//Singleton
 	public static UIManager main;
-	
+
+	public GameObject buildingPlacer;
+	public Material goodPlacement;
+	public Material badPlacement;
 	//Width of GUI menu
 	private float m_GuiWidth;
 	
@@ -28,7 +31,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	//Building Placement variables
 	private Action m_CallBackFunction;
 	private Item m_ItemBeingPlaced;
-	private GameObject m_ObjectBeingPlaced;
+	public GameObject m_ObjectBeingPlaced;
 	private bool m_PositionValid = true;
 	private bool m_Placed = false;
 
@@ -155,6 +158,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 			
 		case Mode.PlaceBuilding:
+
 			ModePlaceBuildingBehaviour();
 			break;
 		}
@@ -184,14 +188,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 			
 				switch (hit.collider.gameObject.layer) {
 
-
 				case 8:
-					//Friendly unit
 					hoverOver = HoverOver.Terrain;
 					break;
 					
 				case 9:
-					//Enemy Unit
 					hoverOver = HoverOver.Unit;
 					break;
 					
@@ -206,8 +207,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 				}				
 			} else {
 				hoverOver = HoverOver.Menu;
-
-
 
 			}
 
@@ -274,19 +273,24 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 	}
 
-	
+
 	private void ModePlaceBuildingBehaviour()
 	{
 		//Get current location and place building on that location
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
+		if (!EventSystem.current.IsPointerOverGameObject ()) {
+			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(8))) {
+				Vector3 spot = hit.point;
+				spot.y += 7;
+
+
+				m_ObjectBeingPlaced.transform.position = spot;
+				buildingPlacer.transform.position = spot;
+
+			}
 		
-		if (Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 11))
-		{
-			m_ObjectBeingPlaced.transform.position = hit.point;
 		}
-		
-	
 	}
 	
 	//----------------------Mouse Button Handler------------------------------------
@@ -311,43 +315,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 			break;
 		case Mode.Normal:
-
-		
 			//We've left clicked, what have we left clicked on?
 			//int currentObjLayer = currentObject.layer;
 			originalPosition = Input.mousePosition;
-
-
 			break;
 
 
-		case Mode.PlaceBuilding:
-			//We've left clicked, if we're valid place the building
-			if (m_PositionValid)
-			{
-				GameObject newObject = (GameObject)Instantiate (m_ItemBeingPlaced.Prefab, m_ObjectBeingPlaced.transform.position, m_ItemBeingPlaced.Prefab.transform.rotation);
-
-				//UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(newObject, "Assets/Scripts - In Game/UI/UIManager.cs (376,5)", m_ItemBeingPlaced.ObjectType.ToString ());
-				newObject.layer = 12;
-				newObject.tag = "Player";
-				
-				BoxCollider tempCollider = newObject.GetComponent<BoxCollider>();
-				
-				if (tempCollider == null)
-				{
-					tempCollider = newObject.AddComponent<BoxCollider>();
-				}
-				
-				tempCollider.center = m_ObjectBeingPlaced.GetComponent<BuildingBeingPlaced>().ColliderCenter;
-				tempCollider.size = m_ObjectBeingPlaced.GetComponent<BuildingBeingPlaced>().ColliderSize;
-				tempCollider.isTrigger = true;
-				
-				m_ItemBeingPlaced.FinishBuild ();
-				m_CallBackFunction.Invoke ();
-				m_Placed = true;
-				SwitchToModeNormal ();
-			}
-			break;
 		}
 		
 	}
@@ -399,15 +372,10 @@ public class UIManager : MonoBehaviour, IUIManager {
             
 				//if we're not dragging and clicked on a unit
 			if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10)) {
-			
-
-
-
 
 
 				if (!isPointerOverUIObject()) {
 
-		
 				/*  TARGET RULES
                     shift selects units without affecting others
                     control deselects units without affecting others
@@ -528,13 +496,57 @@ public class UIManager : MonoBehaviour, IUIManager {
 			}
 				break;
 			
-			case Mode.PlaceBuilding:
-				if (m_Placed) {
-					m_Placed = false;
+		case Mode.PlaceBuilding:
+				
+			if (buildingPlacer.GetComponent<BuildingPlacer> ().canBuild ()) {
+			
+
+				if (!EventSystem.current.IsPointerOverGameObject ()) {
+					ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+
+					if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(11))) {
+						targetPoint = hit.point;
+
+					}
+
+					m_SelectedManager.fireAbility (null, targetPoint, currentAbilityNUmber);
+						
+					SwitchMode (Mode.Normal);
+
 				}
+
+			}
+
 				break;
 			}
 		
+	}
+
+	public bool allowDrag()
+	{
+		switch (m_Mode) {
+		case Mode.Menu:
+			return false;
+			break;
+
+		case Mode.globalAbility:
+			return false;
+			break;
+
+		case Mode.targetAbility:
+			return false;
+			break;
+
+		case Mode.Normal:
+			return true;
+			break;
+
+		case Mode.PlaceBuilding:
+			return false;
+			break;
+
+		}
+		return true;
 	}
 
 	public void setAbility(Ability abil, int n)
@@ -587,7 +599,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 				
 					m_SelectedManager.GiveOrder (Orders.CreateInteractCommand (currentObject));						
 
-					//Friendly Unit -> Interact (if applicable) 
 				}
 		
 		
@@ -608,8 +619,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			case Mode.PlaceBuilding:
 			
 			//Cancel building placement
-			
-			
+				buildingPlacer.SetActive(false);
 				SwitchToModeNormal ();
 				break;
 			}
@@ -663,9 +673,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 		m_GuiWidth = newWidth;
 	}
 	
-	public void UserPlacingBuilding(Item item, Action callbackFunction)
+	public void UserPlacingBuilding(GameObject item, int i)
 	{
-		SwitchToModePlacingBuilding(item, callbackFunction);
+		currentAbilityNUmber = i;
+		SwitchToModePlacingBuilding(item);
 	}
 	
 	public void SwitchMode(Mode mode)
@@ -705,7 +716,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 
 	public void SwitchToModeNormal()
-	{
+	{buildingPlacer.SetActive (false);
 		if (m_ObjectBeingPlaced)
 		{
 			Destroy (m_ObjectBeingPlaced);
@@ -715,13 +726,13 @@ public class UIManager : MonoBehaviour, IUIManager {
 		m_Mode = Mode.Normal;
 	}
 	
-	public void SwitchToModePlacingBuilding(Item item, Action callBackFunction)
+	public void SwitchToModePlacingBuilding(GameObject item)
 	{
 		m_Mode = Mode.PlaceBuilding;
-		m_CallBackFunction = callBackFunction;
-		m_ItemBeingPlaced = item;
-		m_ObjectBeingPlaced = (GameObject)Instantiate (item.Prefab);
-		m_ObjectBeingPlaced.AddComponent<BuildingBeingPlaced>();
+		buildingPlacer.SetActive (true);
+		m_ObjectBeingPlaced = (GameObject)Instantiate (item);
+		buildingPlacer.GetComponent<BuildingPlacer> ().reset (m_ObjectBeingPlaced, goodPlacement, badPlacement);
+	
 	}
 
 	public void setToMenu()

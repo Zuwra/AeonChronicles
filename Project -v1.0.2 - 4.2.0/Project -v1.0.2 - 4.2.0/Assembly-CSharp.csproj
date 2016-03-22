@@ -185,6 +185,7 @@
      <Compile Include="Assets\BuildManager.cs" />
      <Compile Include="Assets\BuilderUI.cs" />
      <Compile Include="Assets\BuildingInteractor.cs" />
+     <Compile Include="Assets\BuildingPlacer.cs" />
      <Compile Include="Assets\CarryRacks.cs" />
      <Compile Include="Assets\CastAbilityState.cs" />
      <Compile Include="Assets\ChannelState.cs" />
@@ -223,6 +224,7 @@
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\PalCapacitors.cs" />
+     <Compile Include="Assets\PlaceBuildingState.cs" />
      <Compile Include="Assets\PrefabDrop.cs" />
      <Compile Include="Assets\Prefabs\DaexaUnits\CoyoteMoveFireUpgrade.cs" />
      <Compile Include="Assets\ProductionManager.cs" />

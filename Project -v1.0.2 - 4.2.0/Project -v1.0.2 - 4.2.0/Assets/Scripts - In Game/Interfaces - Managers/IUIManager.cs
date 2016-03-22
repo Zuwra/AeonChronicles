@@ -33,7 +33,8 @@ public interface IUIManager
 	void MiddleButton_SingleClick(MouseEventArgs e);
 	void MiddleButton_DoubleClick(MouseEventArgs e);
 	
-	void UserPlacingBuilding(Item item, Action callbackFunction);
+	void UserPlacingBuilding(GameObject item, int n);
 	
 	void SwitchMode(Mode mode);
+	bool allowDrag();
 }

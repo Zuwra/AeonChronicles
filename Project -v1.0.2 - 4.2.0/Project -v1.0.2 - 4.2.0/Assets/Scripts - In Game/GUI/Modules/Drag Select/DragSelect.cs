@@ -12,6 +12,7 @@ public class DragSelect : MonoBehaviour {
 	private bool m_Dragging = false;
 	
 	private IGUIManager m_GuiManager;
+	private UIManager uiManager;
 	private ISelectedManager m_SelectedManager;
 
 	private bool shiftDown;
@@ -23,7 +24,7 @@ public class DragSelect : MonoBehaviour {
 		m_DragStyle.border.top = 1;
 		m_DragStyle.border.left = 1;
 		m_DragStyle.border.right = 1;
-		
+		uiManager = GameObject.FindObjectOfType<UIManager> ();
 		m_GuiManager = ManagerResolver.Resolve<IGUIManager>();
 		m_SelectedManager = ManagerResolver.Resolve<ISelectedManager>();
 		
@@ -43,16 +44,17 @@ public class DragSelect : MonoBehaviour {
 
 
 		if (m_CheckDeselect) {
-			
+			if (uiManager.allowDrag()) {
 				if (Mathf.Abs (Input.mousePosition.x - m_DragLocationStart.x) > 2 && Mathf.Abs (Input.mousePosition.y - m_DragLocationStart.y) > 2) {
 					m_CheckDeselect = false;
 					m_Dragging = true;
 					m_GuiManager.Dragging = true;
 					
-				if (!shiftDown) {
-					m_SelectedManager.DeselectAll ();
+					if (!shiftDown) {
+						m_SelectedManager.DeselectAll ();
+					}
 				}
-				}
+			}
 
 		}
 	}

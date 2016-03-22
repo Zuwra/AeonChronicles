@@ -5,7 +5,7 @@ public class Morph :  UnitProduction {
 
 
 
-	public GameObject unitToBuild;
+
 	private Selected mySelect;
 
 	private BuildingInteractor myInteractor;
@@ -131,6 +131,9 @@ public class Morph :  UnitProduction {
 			}
 		}
 		racer.stopBuildingUnit (this);
+		RaceManager.removeUnitSelect (myManager);
+		unit.GetComponent<Selected> ().Initialize ();
+	
 		Morphing = false;
 		Destroy (this.gameObject);
 	}

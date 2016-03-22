@@ -34,7 +34,14 @@ public class Selected : MonoBehaviour {
 	//private bool onCooldown = false;
 	// Use this for initialization
 	void Start () 
-	{		IsSelected = false;
+	{		Initialize ();
+
+	}
+
+
+	public void Initialize()
+	{
+		IsSelected = false;
 
 
 		buffDisplay = GetComponentInChildren<HealthDisplay> ();
@@ -52,7 +59,7 @@ public class Selected : MonoBehaviour {
 		myStats = this.gameObject.GetComponent<UnitStats> ();
 		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
 
-	
+
 		//If this unit is land based subscribe to the path changed event
 		mydisplayType = GameObject.Find("GamePlayMenu").GetComponent<GamePlayMenu>().getDisplayType();
 		if (myStats.MaxEnergy == 0) {
@@ -63,8 +70,8 @@ public class Selected : MonoBehaviour {
 		}
 		updateHealthBar (myStats.health / myStats.Maxhealth);
 		coolDownSlider.gameObject.SetActive (false);
-
 	}
+
 
 
 	public void setDisplayType(displayType t)

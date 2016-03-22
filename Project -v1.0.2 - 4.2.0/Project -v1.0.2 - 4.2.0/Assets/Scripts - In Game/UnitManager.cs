@@ -146,8 +146,11 @@ public class UnitManager : Unit,IOrderable{
 			order = abilityList [n].canActivate ();
 		
 			if (order.canCast) {
-				changeState (new AbilityFollowState (obj,loc, (TargetAbility)abilityList [n]));
-
+				if (abilityList [n] is TargetAbility) {
+					changeState (new AbilityFollowState (obj, loc, (TargetAbility)abilityList [n]));
+				} else if (abilityList [n] is Morph) {
+					changeState (new PlaceBuildingState (loc, abilityList [n]));
+				}
 
 			}
 

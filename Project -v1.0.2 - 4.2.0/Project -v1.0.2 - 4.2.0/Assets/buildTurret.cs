@@ -6,7 +6,7 @@ public class buildTurret :UnitProduction{
 
 
 	public UnitManager manager;
-	public GameObject unitToBuild;
+
 
 	public float buildTime;
 	private RaceManager racer;

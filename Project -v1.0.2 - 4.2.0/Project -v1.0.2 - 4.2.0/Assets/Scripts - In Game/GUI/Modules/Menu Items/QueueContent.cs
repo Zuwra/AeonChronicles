@@ -22,7 +22,7 @@ public class QueueContent : IQueueContent
 	}
 	
 	public void Execute()
-	{
+	{/*
 		//Draw Items
 		int counter = 0;
 		int itemsDrawn = 0;
@@ -44,11 +44,7 @@ public class QueueContent : IQueueContent
 						else if ((item.TypeIdentifier == Const.TYPE_Building || item.TypeIdentifier == Const.TYPE_Support) && item.IsFinished && m_UIManager.CurrentMode == Mode.Normal)
 						{
 							//Building has finished, needs to be placed, pass control to the UI manager and wait for a response
-							m_UIManager.UserPlacingBuilding(item, () => 
-							{
-								//Building was placed
-								m_Building = false;
-							});
+							m_UIManager.UserPlacingBuilding(item);
 						}
 						else if (!m_Building)
 						{
@@ -108,6 +104,7 @@ public class QueueContent : IQueueContent
 		{
 			m_ArrowOffset -= 2;
 		}
+		*/
 	}
 	
 	public void UpdateContents(List<Item> newAvailableItems)

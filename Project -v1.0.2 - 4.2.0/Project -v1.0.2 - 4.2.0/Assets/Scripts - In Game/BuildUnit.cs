@@ -6,9 +6,10 @@ public class BuildUnit : UnitProduction {
 
 
 
+
 	private RaceManager racer;
 
-	public GameObject unitToBuild;
+
 	private Selected mySelect;
 
 	public float buildTime;
