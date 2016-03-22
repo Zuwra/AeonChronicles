@@ -106,7 +106,7 @@ public class ProductionManager : MonoBehaviour {
 		icon.transform.rotation = unitPanel.transform.rotation;
 	
 		icon.transform.SetParent (unitPanel.transform);
-		icon.GetComponent<Image> ().material = produce.iconPic;
+		icon.GetComponent<Image> ().sprite= produce.iconPic;
 
 
 		if (!theStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {

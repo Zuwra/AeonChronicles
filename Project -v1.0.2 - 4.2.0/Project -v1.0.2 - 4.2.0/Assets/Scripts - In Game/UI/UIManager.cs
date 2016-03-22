@@ -527,23 +527,23 @@ public class UIManager : MonoBehaviour, IUIManager {
 		switch (m_Mode) {
 		case Mode.Menu:
 			return false;
-			break;
+
 
 		case Mode.globalAbility:
 			return false;
-			break;
+		
 
 		case Mode.targetAbility:
 			return false;
-			break;
+		
 
 		case Mode.Normal:
 			return true;
-			break;
+		
 
 		case Mode.PlaceBuilding:
 			return false;
-			break;
+		
 
 		}
 		return true;

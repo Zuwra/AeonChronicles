@@ -18,7 +18,7 @@ public class UnitStats : MonoBehaviour {
 	public float currentEnergy;
 	public float StartingEnergy;
 	public float EnergyRegenPerSec;
-	public Material Icon;
+	public Sprite Icon;
 
 	public float kills;
 	public float supply;    //positive gives supply, negative uses it

@@ -11,7 +11,7 @@ public abstract class Upgrade : MonoBehaviour {
 	[TextArea(2,10)]
 	public string Descripton;
 
-	public Material iconPic;
+	public Sprite iconPic;
 	public AbstractCost myCost;
     public float buildTime;
 	//public GameObject UIButton;

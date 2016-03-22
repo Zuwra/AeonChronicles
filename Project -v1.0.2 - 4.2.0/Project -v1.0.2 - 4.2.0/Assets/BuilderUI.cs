@@ -58,7 +58,7 @@ public class BuilderUI : MonoBehaviour {
 		if (myMan) {
 			for (int i = 0; i <5; i++) {
 				if (myMan.buildOrder.Count > i) {
-					que [i].image.material = myMan.buildOrder [i].iconPic;
+					que [i].image.sprite = myMan.buildOrder [i].iconPic;
 					numbers [i].SetActive (false);
 				} else {
 					que [i].image.material = defaultImage;

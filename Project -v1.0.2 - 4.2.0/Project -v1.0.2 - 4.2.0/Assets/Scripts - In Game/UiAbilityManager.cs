@@ -302,7 +302,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 						unit.transform.position = pos;
 
-						unit.GetComponent<Image> ().material = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
+						unit.GetComponent<Image> ().sprite = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
 					
 						currentX += separation;
 						unit.GetComponent<Button> ().onClick.AddListener(delegate() {IconClick(unit);});
@@ -332,7 +332,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 						trans.gameObject.SetActive (true);
-						trans.GetComponent<Image> ().material = man.abilityList [AbilityX * 4].iconPic;
+						trans.GetComponent<Image> ().sprite = man.abilityList [AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [0 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
@@ -380,7 +380,7 @@ public class UiAbilityManager : MonoBehaviour {
 							Transform trans = certainButtons [n].WButton.transform;
 
 							trans.gameObject.SetActive (true);
-							trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
+						trans.GetComponent<Image> ().sprite = man.abilityList [1 + AbilityX * 4].iconPic;
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
@@ -437,7 +437,7 @@ public class UiAbilityManager : MonoBehaviour {
 							Transform trans = certainButtons [n].EButton.transform;
 
 							trans.gameObject.SetActive (true);
-							trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
+						trans.GetComponent<Image> ().sprite = man.abilityList [2 + AbilityX * 4].iconPic;
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
@@ -491,7 +491,7 @@ public class UiAbilityManager : MonoBehaviour {
 							Transform trans = certainButtons [n].RButton.transform;
 	
 							trans.gameObject.SetActive (true);
-							trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
+						trans.GetComponent<Image> ().sprite = man.abilityList [3 + AbilityX * 4].iconPic;
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
@@ -662,7 +662,7 @@ public class UiAbilityManager : MonoBehaviour {
 							Transform trans = certainButtons [n].QButton.transform;
 							//Transform trans = UIButtons [n].transform.FindChild ("QButton");
 
-							trans.GetComponent<Image> ().material = man.abilityList [AbilityX * 4].iconPic;
+						trans.GetComponent<Image> ().sprite = man.abilityList [AbilityX * 4].iconPic;
 				
 					
 							trans.GetComponent<Button> ().interactable = man.abilityList [AbilityX * 4].active;
@@ -683,7 +683,7 @@ public class UiAbilityManager : MonoBehaviour {
 							Transform trans = certainButtons [n].WButton.transform;
 							//Transform trans = UIButtons [n].transform.FindChild ("WButton");
 
-							trans.GetComponent<Image> ().material = man.abilityList [1 + AbilityX * 4].iconPic;
+						trans.GetComponent<Image> ().sprite = man.abilityList [1 + AbilityX * 4].iconPic;
 					
 
 							Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
@@ -703,7 +703,7 @@ public class UiAbilityManager : MonoBehaviour {
 							Transform trans = certainButtons [n].EButton.transform;
 							//Transform trans = UIButtons [n].transform.FindChild ("EButton");
 					
-							trans.GetComponent<Image> ().material = man.abilityList [2 + AbilityX * 4].iconPic;
+						trans.GetComponent<Image> ().sprite = man.abilityList [2 + AbilityX * 4].iconPic;
 							trans.GetComponent<Button> ().interactable = man.abilityList [2 + AbilityX * 4].active;
 
 							Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
@@ -720,7 +720,7 @@ public class UiAbilityManager : MonoBehaviour {
 							Transform trans = certainButtons [n].RButton.transform;
 							//Transform trans = UIButtons [n].transform.FindChild ("RButton");
 
-							trans.GetComponent<Image> ().material = man.abilityList [3 + AbilityX * 4].iconPic;
+						trans.GetComponent<Image> ().sprite = man.abilityList [3 + AbilityX * 4].iconPic;
 
 							trans.GetComponent<Button> ().interactable = man.abilityList [3 + AbilityX * 4].active;
 							Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();

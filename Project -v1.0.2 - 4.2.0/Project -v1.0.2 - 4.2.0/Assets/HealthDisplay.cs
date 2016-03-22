@@ -7,8 +7,8 @@ public class HealthDisplay : MonoBehaviour {
 
 	private GameObject cam;
 	public List<Image> buffList = new List<Image>();
-	public Material positive;
-	public Material negative;
+	public Sprite positive;
+	public Sprite negative;
 
 	public bool isOn;
 	public Image BuildingUnit;
@@ -28,14 +28,14 @@ public class HealthDisplay : MonoBehaviour {
 		}
 	}
 
-	public void  loadIMage(Material m)
+	public void  loadIMage(Sprite m)
 	{
-		BuildingUnit.material = m;
+		BuildingUnit.sprite = m;
 		BuildingUnit.gameObject.SetActive(true);
 	}
 
 	public void stopBuilding()
-	{BuildingUnit.material = null;
+	{BuildingUnit.sprite = null;
 		BuildingUnit.gameObject.SetActive(false);
 	}
 
@@ -48,9 +48,9 @@ public class HealthDisplay : MonoBehaviour {
 			if (!i.enabled) {
 				i.enabled = true;
 				if (b) {
-					i.material = positive;
+					i.sprite = positive;
 				} else {
-					i.material = negative;
+					i.sprite = negative;
 				}
 				i.color = c;
 				break;
@@ -76,7 +76,7 @@ public class HealthDisplay : MonoBehaviour {
 			}
 
 			buffList [i].color = buffList [i + 1].color;
-			buffList [i].material = buffList [i + 1].material;
+			buffList [i].sprite = buffList [i + 1].sprite;
 		}
 		buffList [n].enabled = false;
 

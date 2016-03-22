@@ -8,7 +8,7 @@ public abstract class Ability : MonoBehaviour {
 	[TextArea(2,10)]
 	public string Descripton;
 
-	public Material iconPic;
+	public Sprite iconPic;
 	public AbstractCost myCost;
 	public enum type{passive, target, activated, building}
 	public type myType;

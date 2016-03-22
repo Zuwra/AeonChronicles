@@ -69,7 +69,7 @@ public class UnitCardCreater : MonoBehaviour {
 		UnitDescription.text = manager.myStats.UnitDescription;
 		currentUnit = manager;
 		hasUnit = true;
-		unitIcon.material = manager.myStats.Icon;
+		unitIcon.sprite = manager.myStats.Icon;
 		UnitName.text = manager.UnitName;
 		health.text = " "+manager.myStats.health + "/" + manager.myStats.Maxhealth;
 		armor.text =  " " +manager.myStats.armor;

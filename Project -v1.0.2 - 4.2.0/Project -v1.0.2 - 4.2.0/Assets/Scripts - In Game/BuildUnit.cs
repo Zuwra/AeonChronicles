@@ -121,6 +121,7 @@ public class BuildUnit : UnitProduction {
 
 			obj.SendMessage ("ActivateAnimation", SendMessageOptions.DontRequireReceiver);
 		}
+
 		HD.loadIMage(unitToBuild.GetComponent<UnitStats> ().Icon);
 		timer = buildTime;
 

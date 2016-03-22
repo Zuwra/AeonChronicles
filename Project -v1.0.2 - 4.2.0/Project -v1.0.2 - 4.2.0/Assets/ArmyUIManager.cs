@@ -94,7 +94,7 @@ public class ArmyUIManager : MonoBehaviour {
 	
 
 		icon.transform.SetParent (unitPanel.transform);
-		icon.GetComponent<Image> ().material = manage.myStats.Icon;
+		icon.GetComponent<Image> ().sprite = manage.myStats.Icon;
 		if (!manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			icon.transform.SetAsFirstSibling ();
 		}
