@@ -326,12 +326,12 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > AbilityX * 4){
 						if(man.abilityList [AbilityX * 4] !=null){
-						Transform trans = certainButtons [n].QButton.transform;
+						Transform trans = certainButtons [n].QButton.transform.FindChild("QButton");
 	
 
 
 
-						trans.gameObject.SetActive (true);
+						trans.parent.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [0 + AbilityX * 4];
 
@@ -377,9 +377,9 @@ public class UiAbilityManager : MonoBehaviour {
 			
 					if(man.abilityList.Count >1+( AbilityX * 4)){
 						if (man.abilityList [1 + AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].WButton.transform;
+						Transform trans = certainButtons [n].WButton.transform.FindChild("WButton");;
 
-							trans.gameObject.SetActive (true);
+						trans.parent.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [1 + AbilityX * 4].iconPic;
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
 
@@ -434,9 +434,9 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
 						if (man.abilityList [2 +AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].EButton.transform;
+						Transform trans = certainButtons [n].EButton.transform.FindChild("EButton");;
 
-							trans.gameObject.SetActive (true);
+						trans.parent.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [2 + AbilityX * 4].iconPic;
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
 
@@ -488,9 +488,9 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
 						if (man.abilityList [3 +AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].RButton.transform;
+						Transform trans = certainButtons [n].RButton.transform.FindChild("RButton");;
 	
-							trans.gameObject.SetActive (true);
+						trans.parent.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [3 + AbilityX * 4].iconPic;
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
 
@@ -571,7 +571,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > AbilityX * 4){
 						if (man.abilityList [AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].QButton.transform;
+						Transform trans = certainButtons [n].QButton.transform.FindChild("QButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("QButton");
 
 							if (man.abilityList [AbilityX * 4].autocast) {
@@ -584,7 +584,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count >1+( AbilityX * 4)){
 						if (man.abilityList [1 + AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].WButton.transform;
+						Transform trans = certainButtons [n].WButton.transform.FindChild("WButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("WButton");
 
 							if (man.abilityList [1 + AbilityX * 4].autocast) {
@@ -597,7 +597,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
 						if (man.abilityList [2 + AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].EButton.transform;
+						Transform trans = certainButtons [n].EButton.transform.FindChild("EButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("EButton");
 
 							if (man.abilityList [2 + AbilityX * 4].autocast) {
@@ -610,7 +610,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
 						if (man.abilityList [3 +AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].RButton.transform;
+						Transform trans = certainButtons [n].RButton.transform.FindChild("RButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("RButton");
 
 							if (man.abilityList [3 + AbilityX * 4].autocast) {
@@ -659,7 +659,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if (man.abilityList.Count > AbilityX * 4) {
 						if (man.abilityList [AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].QButton.transform;
+						Transform trans = certainButtons [n].QButton.transform.FindChild("QButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("QButton");
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [AbilityX * 4].iconPic;
@@ -680,7 +680,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count >1+( AbilityX * 4)){
 						if (man.abilityList [1 + AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].WButton.transform;
+						Transform trans = certainButtons [n].WButton.transform.FindChild("WButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("WButton");
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [1 + AbilityX * 4].iconPic;
@@ -700,7 +700,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
 						if (man.abilityList [2 + AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].EButton.transform;
+						Transform trans = certainButtons [n].EButton.transform.FindChild("EButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("EButton");
 					
 						trans.GetComponent<Image> ().sprite = man.abilityList [2 + AbilityX * 4].iconPic;
@@ -717,7 +717,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
 						if (man.abilityList [3 + AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].RButton.transform;
+						Transform trans = certainButtons [n].RButton.transform.FindChild("RButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("RButton");
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [3 + AbilityX * 4].iconPic;
@@ -769,7 +769,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if (man.abilityList.Count > AbilityX * 4) {
 						if (man.abilityList [AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].QButton.transform;
+						Transform trans = certainButtons [n].QButton.transform.FindChild("QButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("QButton");
 							trans.GetComponent<Button> ().interactable = man.abilityList [AbilityX * 4].active;
 							if (!man.abilityList [AbilityX * 4].active) {
@@ -782,7 +782,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if (man.abilityList.Count > 1 + (AbilityX * 4)) {
 						if (man.abilityList [1 + AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].WButton.transform;
+						Transform trans = certainButtons [n].WButton.transform.FindChild("WButton");;
 						//	Transform trans = UIButtons [n].transform.FindChild ("WButton");
 
 							trans.GetComponent<Button> ().interactable = man.abilityList [1 + AbilityX * 4].active;
@@ -796,7 +796,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if (man.abilityList.Count > 2 + (AbilityX * 4)) {
 						if (man.abilityList [2 + AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].EButton.transform;
+						Transform trans = certainButtons [n].EButton.transform.FindChild("EButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("EButton");
 
 							trans.GetComponent<Button> ().interactable = man.abilityList [2 + AbilityX * 4].active;
@@ -810,7 +810,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if (man.abilityList.Count > 3 + (AbilityX * 4)) {
 						if (man.abilityList [3 + AbilityX * 4] != null) {
-							Transform trans = certainButtons [n].RButton.transform;
+						Transform trans = certainButtons [n].RButton.transform.FindChild("RButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("RButton");
 
 							trans.GetComponent<Button> ().interactable = man.abilityList [3 + AbilityX * 4].active;
