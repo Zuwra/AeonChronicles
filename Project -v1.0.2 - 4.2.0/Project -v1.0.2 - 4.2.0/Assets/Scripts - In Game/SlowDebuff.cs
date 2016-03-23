@@ -79,7 +79,7 @@ public class SlowDebuff : Behavior, Notify {
 		}
 	}
 
-	public void trigger(GameObject source,GameObject proj, GameObject target)
+	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
 	{SlowDebuff deb = target.GetComponent<SlowDebuff> ();
 		if (deb) {
 			if (stackable) {

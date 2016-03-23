@@ -53,7 +53,7 @@ public class SplitterShot : Projectile {
 		if (target != null) {
 		//	Debug.Log("TAKE DAMAGE!");
 			foreach(Notify not in triggers)
-			{not.trigger(this.gameObject,this.gameObject, target);}
+			{not.trigger(this.gameObject,this.gameObject, target, damage);}
 
 			target.GetComponent<UnitStats>().TakeDamage(damage,Source, DamageTypes.DamageType.Regular);
 			if(target == null)

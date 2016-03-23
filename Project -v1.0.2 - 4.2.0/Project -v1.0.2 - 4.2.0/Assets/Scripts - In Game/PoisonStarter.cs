@@ -19,7 +19,7 @@ public class PoisonStarter : MonoBehaviour, Notify{
 	}
 
 
-	public void trigger(GameObject source,GameObject proj, GameObject target)
+	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
 	{
 		Poison enemyPois = target.GetComponent<Poison> ();
 	if (enemyPois == null) {

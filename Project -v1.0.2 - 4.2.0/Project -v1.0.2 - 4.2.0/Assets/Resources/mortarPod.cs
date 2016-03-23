@@ -65,7 +65,7 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 		return false;
 	}
 
-	public void trigger(GameObject source, GameObject proj, GameObject target)
+	public void trigger(GameObject source, GameObject proj, GameObject target, float damage)
 		{
 		shotCount --;
 		if (FireAll) {

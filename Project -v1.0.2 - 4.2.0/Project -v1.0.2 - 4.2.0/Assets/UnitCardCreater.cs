@@ -24,6 +24,7 @@ public class UnitCardCreater : MonoBehaviour {
 	public Image rangeIcon;
 	public Image attackSpeedIcon;
 
+	public Text kills;
 
 	public Text UnitDescription;
 	private UnitManager currentUnit;
@@ -43,7 +44,7 @@ public class UnitCardCreater : MonoBehaviour {
 	void Update () {
 		if (currentUnit) {
 			
-			health.text = " "+currentUnit.myStats.health + "/" + currentUnit.myStats.Maxhealth;
+			health.text = " "+ (int)currentUnit.myStats.health + "/" + currentUnit.myStats.Maxhealth;
 			if (currentUnit.myStats.MaxEnergy > 0) {
 				energyText.text = " "+currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
 
@@ -74,7 +75,7 @@ public class UnitCardCreater : MonoBehaviour {
 		health.text = " "+manager.myStats.health + "/" + manager.myStats.Maxhealth;
 		armor.text =  " " +manager.myStats.armor;
 		Mass.text = " " + manager.myStats.mass;
-
+		kills.text = "Kills: " + manager.myStats.kills;
 		if (manager.cMover != null) {
 			speed.text = " " + manager.cMover.MaxSpeed;
 		} else {speed.text = "";

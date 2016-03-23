@@ -4,7 +4,7 @@ using System.Collections;
 public interface Notify {
 
 
-	void trigger(GameObject source, GameObject projectile,GameObject target);
+	void trigger(GameObject source, GameObject projectile,GameObject target, float damage);
 
 
 

@@ -89,9 +89,9 @@ public class IWeapon : MonoBehaviour {
 				else
 					{
 				
-					Vector3 spotter = enemy.transform.position;
-					spotter.y = this.transform.position.y;
-					this.gameObject.transform.LookAt(spotter);
+					//Vector3 spotter = enemy.transform.position;
+					//spotter.y = this.transform.position.y;
+					//this.gameObject.transform.LookAt(spotter);
 
 						
 
@@ -182,7 +182,9 @@ public class IWeapon : MonoBehaviour {
 
 		enemy = target;
 		if (target) {
-			
+			Vector3 spotter = enemy.transform.position;
+			spotter.y = this.transform.position.y;
+			this.gameObject.transform.LookAt(spotter);
 
 			float damage = baseDamage;
 			UnitStats targetStats = target.GetComponent<UnitStats> ();
@@ -213,23 +215,23 @@ public class IWeapon : MonoBehaviour {
 			} else {
 
 				//OnAttacking();
-				target.GetComponent<UnitStats> ().TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
+				damage = target.GetComponent<UnitStats> ().TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
 
 			}
 			if (target == null) {
 				myManager.cleanEnemy ();
 			}
 
-			fireTriggers (this.gameObject, proj, target);
+			fireTriggers (this.gameObject, proj, target, damage);
 
 		}
 	}
 		
 
 
-	public void fireTriggers(GameObject source, GameObject proj, GameObject target)
+	public void fireTriggers(GameObject source, GameObject proj, GameObject target, float damage)
 	{	foreach (Notify obj in triggers) {
-			obj.trigger(source,proj,target);
+			obj.trigger(source,proj,target, damage);
 		}
 	}
 
@@ -255,6 +257,16 @@ public class IWeapon : MonoBehaviour {
 	}
 
 
+
+	public void changeDamage(float dm)
+	{
+		baseDamage += dm;
+	}
+
+	public void changeAttackSpeed(float am)
+	{
+		attackPeriod -= am;
+	}
 
 
 

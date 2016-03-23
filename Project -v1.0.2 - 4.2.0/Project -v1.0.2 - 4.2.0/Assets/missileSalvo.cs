@@ -37,7 +37,7 @@ public class missileSalvo : Ability, Validator, Notify{
 
 
 
-	public void trigger(GameObject source, GameObject projectile,GameObject target)	{
+	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)	{
 		chargeCount--;
 		RaceManager.upDateUI ();
 

@@ -22,7 +22,7 @@ public class SplitterHitList : MonoBehaviour,Notify{
 
 
 
-	public void trigger(GameObject source,GameObject proj, GameObject target)
+	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
 		{
 		proj.GetComponent<SplitterShot> ().chargesRemaning = chargeCount;
 		hitTargets.Clear ();

@@ -32,7 +32,7 @@ public class UnitStats : MonoBehaviour {
 	private List<Modifier> damageModifiers = new List<Modifier>();
 	public List<UnitTypes.UnitTypeTag> unitTags = new  List<UnitTypes.UnitTypeTag> ();
 	private List<Modifier> deathTriggers = new List<Modifier> ();
-
+	public List<KillModifier> killMods = new List<KillModifier> ();
 	//Tags the units can have
 	private Selected mySelection;
 
@@ -108,7 +108,7 @@ public class UnitStats : MonoBehaviour {
 	}
 
 
-	public void TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
+	public float TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
 	{
 		if (!unitTags.Contains (UnitTypes.UnitTypeTag.Invulnerable)) {
 			
@@ -142,7 +142,9 @@ public class UnitStats : MonoBehaviour {
 				if(type != DamageTypes.DamageType.True)
 				myManager.Attacked (source);
 			}
+			return amount;
 		}
+		return 0;
 	}
 
 	private void updateHealthBar()
@@ -181,7 +183,7 @@ public class UnitStats : MonoBehaviour {
 
 				if (deathSource) {
 					if (deathSource.GetComponent<UnitStats> ()) {
-						deathSource.GetComponent<UnitStats> ().kills += 1;
+						deathSource.GetComponent<UnitStats> ().upKills ();
 					}
 				}
 				//fix this when we have multiplayer games
@@ -192,11 +194,8 @@ public class UnitStats : MonoBehaviour {
 
 				if (mySelection.IsSelected) {
 
-
 					RaceManager.removeUnitSelect(myManager);
 				}
-
-
 
 					Destroy (this.gameObject);
 				
@@ -205,6 +204,14 @@ public class UnitStats : MonoBehaviour {
 
 	}
 
+
+	public void upKills()
+	{
+		kills++;
+		foreach (KillModifier km in killMods) {
+			km.incKill ();
+		}
+	}
 
 	public void addLethalTrigger()//Method method)
 	{
@@ -258,6 +265,7 @@ public class UnitStats : MonoBehaviour {
 		}
 	}
 
-
+	public void changeArmor(float amount)
+	{armor += amount;}
 
 }

@@ -27,7 +27,7 @@ public class EMPblast : MonoBehaviour, Notify {
 
 	}
 
-	public void trigger(GameObject source,GameObject proj, GameObject target)
+	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
 	{UnitManager manage = target.GetComponent<UnitManager> ();
 		if (manage && source != target) {
 

@@ -74,7 +74,7 @@ public class GatlingGun : MonoBehaviour, Notify, Validator, Modifier {
 	
 	}
 
-	public void trigger(GameObject source, GameObject proj, GameObject target)
+	public void trigger(GameObject source, GameObject proj, GameObject target,float damage)
 	{IncreaseSpeed (0, source);
 	}
 

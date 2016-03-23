@@ -24,7 +24,7 @@ public class HeartStopper : MonoBehaviour, Notify {
 
 
 
-	public void trigger(GameObject source,GameObject proj, GameObject target)
+	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
 		{
 		Poison targetPois = target.GetComponent<Poison> ();
 		if (targetPois) {
