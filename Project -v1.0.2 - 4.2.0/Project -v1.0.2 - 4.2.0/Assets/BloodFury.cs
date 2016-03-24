@@ -31,17 +31,16 @@ public class BloodFury : MonoBehaviour, Modifier, Notify {
 
 	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)
 	{
-		myMover.MaxSpeed = initialMoveSpeed + (1 - (myStats.health / myStats.Maxhealth)) * initialMoveSpeed;
-
+		myMover.removeSpeedBuff (this);
+		myMover.changeSpeed ((1 - (myStats.health / myStats.Maxhealth)), 0, false, this );  
 
 	}
 
 	public float modify(float damage, GameObject source)
 	{
 
-		myMover.MaxSpeed = initialMoveSpeed + (1 - (myStats.health / myStats.Maxhealth)) * initialMoveSpeed;
-
-
+		myMover.removeSpeedBuff (this);
+		myMover.changeSpeed ((1 - (myStats.health / myStats.Maxhealth)), 0, false, this );  
 		return damage;
 	}
 

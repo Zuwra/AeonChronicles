@@ -11,7 +11,6 @@ public class SlowDebuff : Behavior, Notify {
 	public bool stackable;
 	public float percent;
 
-	private float totalDecrease;
 	private float nextActionTime;
 	// Use this for initialization
 	void Start () {
@@ -33,14 +32,10 @@ public class SlowDebuff : Behavior, Notify {
 			mover = this.gameObject.GetComponent<UnitManager>().cMover;
 
 			if (percent != 0) {
+				mover.changeSpeed (percent, speedDecrease, false, this);
 
-				speedDecrease = mover.MaxSpeed*percent*.01f;	
 			}
-			totalDecrease += speedDecrease;
-			mover.MaxSpeed -= speedDecrease;
-
-			if(mover.MaxSpeed < 0)
-			{mover.MaxSpeed = 0;}
+		
 
 			setBuffStuff (Behavior.buffType.movement, true);
 			applyBuffUI ();
@@ -67,15 +62,8 @@ public class SlowDebuff : Behavior, Notify {
 	public void OnDestroy()
 	{	
 		if (OnTarget) {
-			mover.MaxSpeed += totalDecrease;
-		
-			if (mover.speed > mover.MaxSpeed) {
-				Debug.Log ("Lowerinspeed");
-				mover.speed = mover.MaxSpeed;}
-			if (mover.speed < 0) {
-				mover.speed = 0;
-			}
-		
+			mover.removeSpeedBuff (this);
+	
 		}
 	}
 
@@ -92,7 +80,7 @@ public class SlowDebuff : Behavior, Notify {
 			if(target.GetComponent<customMover>() != null){
 			target.AddComponent<SlowDebuff> ();
 			deb = target.GetComponent<SlowDebuff> ();
-				deb.initialize (duration, speedDecrease,percent);}
+			deb.initialize (duration, speedDecrease,percent);}
 		}
 
 

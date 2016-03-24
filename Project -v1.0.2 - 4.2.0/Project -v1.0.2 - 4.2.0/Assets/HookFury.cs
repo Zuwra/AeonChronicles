@@ -27,20 +27,16 @@ public class HookFury : MonoBehaviour, Modifier, Notify {
 
 	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)
 	{
-		myWeapon.attackPeriod = (initialAttackSpeed -.2f) * (myStats.health / myStats.Maxhealth) + .2f;
-		if (myWeapon.attackPeriod > initialAttackSpeed) {
-			myWeapon.attackPeriod = initialAttackSpeed;
-		}
+		myWeapon.removeAttackSpeedBuff (this);
+		myWeapon.changeAttackSpeed (-(.5f - (myStats.health / myStats.Maxhealth) / 2), 0, false, this);
+
 
 	}
 
 	public float modify(float damage, GameObject source)
 	{
-
-		myWeapon.attackPeriod = (initialAttackSpeed -.2f) * (myStats.health / myStats.Maxhealth) + .2f;
-		if (myWeapon.attackPeriod > initialAttackSpeed) {
-			myWeapon.attackPeriod = initialAttackSpeed;
-		}
+		myWeapon.removeAttackSpeedBuff (this);
+		myWeapon.changeAttackSpeed (-(.5f -  (myStats.health / myStats.Maxhealth) / 2), 0, false, this);
 		return damage;
 	}
 

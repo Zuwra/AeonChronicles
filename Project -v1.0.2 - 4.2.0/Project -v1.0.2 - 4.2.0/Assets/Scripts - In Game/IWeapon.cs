@@ -11,11 +11,13 @@ public class IWeapon : MonoBehaviour {
 
 
 	public float attackPeriod;
+	private float baseAttackPeriod;
 	public int numOfAttacks = 1;
 
 
-	public float baseDamage;
 
+	public float baseDamage;
+	private float InitialBaseDamage;
 	[Tooltip("this is multiplied by the enemy mass and added or subtracted from the damage")]
 	public float massBonus;
 
@@ -37,9 +39,14 @@ public class IWeapon : MonoBehaviour {
 	public List<Validator> validators = new List<Validator>();
 
 
+	private struct attackSpeedMod{
+		public float perc;
+		public float flat;
+		public Object source;
+	}
 
-
-
+	private List<attackSpeedMod> ASMod = new List<attackSpeedMod>();
+	private List<attackSpeedMod> DamageMod = new List<attackSpeedMod>();
 
 	public List<UnitTypes.UnitTypeTag> cantAttackTypes = new List<UnitTypes.UnitTypeTag> ();
 
@@ -66,7 +73,8 @@ public class IWeapon : MonoBehaviour {
 	void Start () {
 
 		myManager = this.gameObject.GetComponent<UnitManager> ();
-
+		baseAttackPeriod = attackPeriod;
+		InitialBaseDamage = baseDamage;
 	}
 
 
@@ -258,15 +266,108 @@ public class IWeapon : MonoBehaviour {
 
 
 
-	public void changeDamage(float dm)
+
+	public void removeAttackSpeedBuff(Object obj)
 	{
-		baseDamage += dm;
+		for (int i = 0; i < ASMod.Count; i++) {
+			if (ASMod [i].source ==obj) {
+				ASMod.RemoveAt (i);
+			
+			}
+		}
+		adjustAttackSpeed ();
+
 	}
 
-	public void changeAttackSpeed(float am)
-	{
-		attackPeriod -= am;
+
+	public void changeAttackSpeed(float perc, float flat, bool perm, Object obj )
+	{if (perm) {
+			baseAttackPeriod += flat;
+			baseAttackPeriod *= perc;
+		} else {
+			attackSpeedMod temp = new attackSpeedMod ();
+			temp.flat = flat;
+			temp.perc = perc;
+			temp.source = obj;
+			ASMod.Add (temp);
+		}
+
+		adjustAttackSpeed ();
+	
 	}
+
+	private void adjustAttackSpeed()
+	{
+		float speed = baseAttackPeriod;
+		foreach (attackSpeedMod a in ASMod) {
+			speed += a.flat;
+		}
+
+		float percent = 1;
+		foreach (attackSpeedMod a in ASMod) {
+			percent += a.perc;
+		}
+
+		speed *= percent;
+		if (speed < .05f) {
+			speed = .05f;}
+		
+		attackPeriod = speed;
+	}
+
+
+	// CHANGE ATTACK DAMAGE
+
+	public void removeAttackBuff(Object obj)
+	{
+		for (int i = 0; i < ASMod.Count; i++) {
+			if (DamageMod [i].source ==obj) {
+				DamageMod.RemoveAt (i);
+
+
+			}
+		}
+		adjustAttack();
+
+	}
+
+
+	public void changeAttack(float perc, float flat, bool perm, Object obj )
+	{if (perm) {
+			InitialBaseDamage += flat;
+			InitialBaseDamage *= perc;
+	} else {
+		attackSpeedMod temp = new attackSpeedMod ();
+		temp.flat = flat;
+		temp.perc = perc;
+		temp.source = obj;
+		DamageMod.Add (temp);
+	}
+
+	adjustAttack();
+
+}
+
+	private void adjustAttack()
+	{
+		float myDamage = InitialBaseDamage;
+		foreach (attackSpeedMod a in DamageMod) {
+			myDamage += a.flat;
+		}
+
+		float percent = 1;
+		foreach (attackSpeedMod a in DamageMod) {
+			percent += a.perc;
+		}
+
+		myDamage *= percent;
+		if (myDamage < .05f) {
+			myDamage = .05f;}
+
+		baseDamage = myDamage;
+	}
+
+
 
 
 

@@ -149,10 +149,8 @@ public class AbstractCost : MonoBehaviour {
 	}
 
 
-		public void payCost()
+	public void payCost()
 	{
-
-
 			myGame.updateResources (-ResourceOne, -ResourceTwo);
 				
 		if (stats) {

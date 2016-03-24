@@ -34,8 +34,8 @@ public class BountyHunter : MonoBehaviour, KillModifier {
 		myStats.heal (health);
 
 		myStats.changeArmor (armor);
-		myWeap.changeDamage (damage);
-		myWeap.changeAttackSpeed (attackPeriodDecrease);
+		myWeap.changeAttack (0,damage,true, this);
+		myWeap.changeAttackSpeed (0, attackPeriodDecrease,this, this);
 
 		foreach (Ability ab in manage.abilityList) {
 			ab.myCost.cooldown -= cooldownDecrease;

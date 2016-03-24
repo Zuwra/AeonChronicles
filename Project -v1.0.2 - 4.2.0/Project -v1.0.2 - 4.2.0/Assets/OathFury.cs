@@ -33,6 +33,7 @@ public class OathFury : MonoBehaviour, Modifier, Notify {
 	{
 		myStealer.percentage = initialLifeSteal + (1 - (myStats.health / myStats.Maxhealth));
 
+
 	}
 
 	public float modify(float damage, GameObject source)
