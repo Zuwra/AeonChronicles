@@ -232,6 +232,8 @@
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\PalCapacitors.cs" />
      <Compile Include="Assets\PlaceBuildingState.cs" />
+     <Compile Include="Assets\PopUp.cs" />
+     <Compile Include="Assets\PopUpMaker.cs" />
      <Compile Include="Assets\PrefabDrop.cs" />
      <Compile Include="Assets\Prefabs\DaexaUnits\CoyoteMoveFireUpgrade.cs" />
      <Compile Include="Assets\ProductionManager.cs" />

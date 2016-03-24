@@ -12,12 +12,17 @@ public class Poison : MonoBehaviour {
 	public float damageRate = 4;
 
 	private float stackAmount =12 ;
+	private PopUpMaker popper;
 
 	// Use this for initialization
 	void Start () {targetStats = this.gameObject.GetComponent<UnitStats> ();
 		nextActionTime = Time.time;
-
-	
+		if(GetComponent<PopUpMaker>() ==null)
+		{
+			this.gameObject.AddComponent<PopUpMaker> ();
+		}
+		popper = GetComponent<PopUpMaker> ();
+		popper.textColor = Color.magenta;
 	}
 
 
@@ -39,7 +44,7 @@ public class Poison : MonoBehaviour {
 
 			targetStats.TakeDamage(damageRate,null, DamageTypes.DamageType.True);
 			remainingPoison -= damageRate;
-
+			popper.CreatePopUp ("-" + damageRate, Color.magenta);
 			if(remainingPoison <=0)
 			{
 				Destroy(poisonEffect);

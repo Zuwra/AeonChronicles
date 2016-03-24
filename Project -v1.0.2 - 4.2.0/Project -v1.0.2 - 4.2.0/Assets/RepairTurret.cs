@@ -6,7 +6,7 @@ public class RepairTurret : Ability, Modifier{
 
 	public int maxRepair = 600;
 	public int hiddenAmount = 600;
-
+	private PopUpMaker popper;
 	private UnitManager mymanager;
 
 	private UnitStats TargetHealth;
@@ -63,10 +63,15 @@ public class RepairTurret : Ability, Modifier{
 				if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 18) {
 				
 					nextActionTime += 1;
-					TargetHealth.health += repairRate;
-					returner.chargeCount -= repairRate;
-					chargeCount -= repairRate;
-					RaceManager.upDateUI ();
+					int amount = (int)Mathf.Min (repairRate, TargetHealth.Maxhealth - TargetHealth.health);
+
+					TargetHealth.heal (amount);
+					returner.chargeCount -= amount;
+					chargeCount -=amount;
+					if (GetComponentInParent<Selected> ().IsSelected) {
+						RaceManager.upDateUI ();
+					}
+					popper.CreatePopUp ("+" + amount, Color.green);
 					if (TargetHealth.atFullHealth ()) {
 						target = null;
 						TargetHealth = null;
