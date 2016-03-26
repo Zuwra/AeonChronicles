@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -22,7 +23,8 @@ public class UiAbilityManager : MonoBehaviour {
 		public Slider RSlide;
 
 	}
-
+	public GameObject topDividerBar;
+	public GameObject bottomBar;
 	public List<buttonSet> certainButtons = new List<buttonSet> ();
 
 	public UnitCardCreater cardCreator;
@@ -240,7 +242,8 @@ public class UiAbilityManager : MonoBehaviour {
 		foreach (GameObject obj in Stats) {
 			obj.GetComponent<StatsUI> ().clear ();
 		}
-
+		topDividerBar.SetActive (true);
+		bottomBar.SetActive (true);
 		int n = 0;
 
 		foreach (buttonSet obj in certainButtons) {
@@ -264,18 +267,26 @@ public class UiAbilityManager : MonoBehaviour {
 			if (uiPage.rows [j] != null) {
 				if (j != 0) {
 					if (uiPage.rows [j] == uiPage.rows [j - 1]) {
+						if (j == 1) {
+							topDividerBar.SetActive (false);
+						} else if (j == 2) {
+							bottomBar.SetActive (false);}
 						continue;
 					}
 				}
 					
 						totalUnit += uiPage.rows [j].Count;
-					
-
+			
 			}
 		}
 
 		if (totalUnit > 1 || totalUnit == 0) {
 			cardCreator.gameObject.GetComponent<Canvas> ().enabled = false;
+			if (totalUnit == 0) {
+				topDividerBar.SetActive (false);
+			
+				bottomBar.SetActive (false);
+			}
 		} else {
 
 			cardCreator.gameObject.GetComponent<Canvas> ().enabled = true;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OathFury : MonoBehaviour, Modifier, Notify {
+public class OathFury : Ability, Modifier, Notify {
 	// Unit modifier that make them move Life Steal more the less health they have
 	private IWeapon myWeapon;
 
@@ -25,6 +25,14 @@ public class OathFury : MonoBehaviour, Modifier, Notify {
 	void Update () {
 
 	}
+
+	public override continueOrder canActivate(){
+		return new continueOrder ();
+	}
+	public  override void Activate(){
+	}  // returns whether or not the next unit in the same group should also cast it
+	public  override void setAutoCast(){}
+
 
 
 

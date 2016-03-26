@@ -328,8 +328,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			if (n.Value > 0 ) {
 	
 				foreach (Ability ab in obj.GetComponent<UnitManager>().abilityList) {
-					ab.newUnitCreated (n.Key);
-
+					if (ab != null) {
+						ab.newUnitCreated (n.Key);
+					}
 				}
 			}
 		}
@@ -341,7 +342,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			foreach (GameObject o in unitList) {
 				if (o != null) {
 					foreach (Ability a in o.GetComponent<UnitManager>().abilityList) {
-						a.newUnitCreated (unitName);
+						if (a != null) {
+							a.newUnitCreated (unitName);
+						}
 				
 					}
 				}

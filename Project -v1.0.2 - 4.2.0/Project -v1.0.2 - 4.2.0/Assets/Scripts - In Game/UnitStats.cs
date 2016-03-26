@@ -234,6 +234,12 @@ public class UnitStats : MonoBehaviour {
 
 	}
 
+	public void removeModifier(Modifier mod)
+	{damageModifiers.Remove(mod);
+
+	}
+
+
 
 	public bool atFullHealth()
 	{

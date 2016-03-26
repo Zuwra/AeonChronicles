@@ -1,23 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RepairTurret.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CostBox.cs">
     <Files>
-      <File FileName="Assets\PopUpMaker.cs" Line="30" Column="53" />
-      <File FileName="Assets\Masochism.cs" Line="1" Column="1" />
-      <File FileName="Assets\LifeSteal.cs" Line="23" Column="2" />
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Morph.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\HookFury.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitCardCreater.cs" Line="1" Column="1" />
-      <File FileName="Assets\BloodFury.cs" Line="1" Column="1" />
-      <File FileName="Assets\OathFury.cs" Line="1" Column="1" />
-      <File FileName="Assets\HealthDisplay.cs" Line="19" Column="63" />
-      <File FileName="Assets\PopUp.cs" Line="18" Column="41" />
-      <File FileName="Assets\repairReturn.cs" Line="37" Column="48" />
-      <File FileName="Assets\RepairTurret.cs" Line="73" Column="7" />
-      <File FileName="Assets\Scripts - In Game\Poison.cs" Line="54" Column="2" />
+      <File FileName="Assets\BloodMist.cs" Line="93" Column="1" />
+      <File FileName="Assets\BloodMistCloud.cs" Line="67" Column="1" />
+      <File FileName="Assets\BloodMistAura.cs" Line="36" Column="3" />
+      <File FileName="Assets\BountyHunter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Sanguinate.cs" Line="29" Column="37" />
+      <File FileName="Assets\SanguinAura.cs" Line="35" Column="43" />
+      <File FileName="Assets\RepairTurret.cs" Line="66" Column="93" />
+      <File FileName="Assets\PopUpMaker.cs" Line="1" Column="1" />
+      <File FileName="Assets\LifeSteal.cs" Line="26" Column="3" />
+      <File FileName="Assets\CostBox.cs" Line="111" Column="31" />
+      <File FileName="Assets\OathFury.cs" Line="31" Column="3" />
+      <File FileName="Assets\Scripts - In Game\Ability.cs" Line="30" Column="1" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="327" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

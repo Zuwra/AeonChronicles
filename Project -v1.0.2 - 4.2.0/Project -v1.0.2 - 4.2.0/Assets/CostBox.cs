@@ -15,6 +15,7 @@ public class CostBox : MonoBehaviour {
 	public Text description;
 	public Text requirements;
 	public Image clocker;
+	public Image BloodDrop;
 	// Use this for initialization
 	void Start () {
 	
@@ -31,6 +32,8 @@ public class CostBox : MonoBehaviour {
 		continueOrder order = input.canActivate ();
 		
 		MyName.text = input.Name;
+
+	
 		if (input.myCost) {
 			// CLOCK ===========================================
 			if (input.myCost.cooldown == 0) {
@@ -102,8 +105,8 @@ public class CostBox : MonoBehaviour {
 			}
 
 			if (input.myCost.health > 0) {
-				health.text = "Health: " + input.myCost.health;
-
+				health.text = ""+ input.myCost.health;
+				BloodDrop.enabled = true;
 				if (order.reasonList.Contains (continueOrder.reason.health)) {
 					health.color = Color.red;
 				} else {
@@ -111,14 +114,17 @@ public class CostBox : MonoBehaviour {
 				}
 
 			} else {
+				BloodDrop.enabled = false;
 				health.text = "";
 			}
 		} else {
 			time.text = "";
 			resOne.text = "";
 			resTwo.text = "";
+			health.text = "";
 			requirements.text = "";
 			clocker.enabled = false;
+			BloodDrop.enabled = false;
 		}
 		description.text = input.Descripton;
 
