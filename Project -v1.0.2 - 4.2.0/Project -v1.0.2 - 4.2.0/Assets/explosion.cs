@@ -6,7 +6,7 @@ public class explosion : MonoBehaviour {
 
 
 	public GameObject source;
-
+	public GameObject particleEff;
 	public bool friendlyFire;
 	public float damageAmount;
 	public DamageTypes.DamageType type;
@@ -19,7 +19,10 @@ public class explosion : MonoBehaviour {
 	public IWeapon.bonusDamage[] extraDamage;
 	// Use this for initialization
 	void Start () {
-	
+		if (particleEff) {
+			Instantiate (particleEff, this.gameObject.transform.position, Quaternion.identity);
+		}
+
 	}
 
 

@@ -236,6 +236,7 @@
      <Compile Include="Assets\MissileArmer.cs" />
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\OathFury.cs" />
+     <Compile Include="Assets\OneShotParticleSystem.cs" />
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\PalCapacitors.cs" />
