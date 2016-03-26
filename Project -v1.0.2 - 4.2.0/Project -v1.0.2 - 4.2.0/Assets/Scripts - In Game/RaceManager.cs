@@ -274,6 +274,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 					foreach (GameObject o in unitList) {
 
 						foreach (Ability a in o.GetComponent<UnitManager>().abilityList) {
+							if(a != null)
 							a.UnitDied (unitName);
 
 						}

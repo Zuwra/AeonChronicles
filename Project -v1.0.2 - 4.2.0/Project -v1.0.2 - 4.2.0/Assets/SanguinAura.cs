@@ -25,7 +25,11 @@ public class SanguinAura : MonoBehaviour {
 
 			float amount = Mathf.Min (myStats.health - 10, 5);
 			if (amount > 0) {
-				sourceStats.heal (myStats.TakeDamage (amount, sourceStats.gameObject, DamageTypes.DamageType.True) / 2);
+				if (sourceStats) {
+					sourceStats.heal (myStats.TakeDamage (amount, sourceStats.gameObject, DamageTypes.DamageType.True) / 2);
+				} else {
+					Destroy (this);
+				}
 			}
 		}
 		if (Time.time > endTime) {

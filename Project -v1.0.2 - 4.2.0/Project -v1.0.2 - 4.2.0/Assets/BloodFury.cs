@@ -6,7 +6,7 @@ public class BloodFury : MonoBehaviour, Modifier, Notify {
 	// Unit modifier that make them move faster the less health they have
 	private IWeapon myWeapon;
 
-	private float initialMoveSpeed;
+
 	private UnitStats myStats;
 	private IMover myMover;
 
@@ -18,7 +18,7 @@ public class BloodFury : MonoBehaviour, Modifier, Notify {
 		myStats.addModifier (this);
 		myWeapon.triggers.Add (this);
 		myMover = GetComponent<UnitManager> ().cMover;
-		initialMoveSpeed = myMover.MaxSpeed;
+	
 	}
 
 	// Update is called once per frame

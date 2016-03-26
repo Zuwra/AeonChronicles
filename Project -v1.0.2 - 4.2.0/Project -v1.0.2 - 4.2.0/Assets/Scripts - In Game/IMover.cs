@@ -62,21 +62,24 @@ public abstract class IMover: MonoBehaviour {
 
 	private void adjustSpeed()
 	{
-		float speed = initialSpeed;
+		float tempspeed = initialSpeed;
 		foreach (SpeedMod a in ASMod) {
-			speed += a.flat;
+			tempspeed += a.flat;
 		}
 
 		float percent = 1;
 		foreach (SpeedMod a in ASMod) {
 			percent += a.perc;
 		}
-		speed *= percent;
-		if (speed < .01f) {
-			speed = .01f;}
-		else if(speed >10000) {
-			speed = 10000;}
-		MaxSpeed = speed;
+		tempspeed *= percent;
+		if (tempspeed < .01f) {
+			tempspeed = .01f;}
+		else if(tempspeed >1000) {
+			tempspeed = 1000;}
+
+
+		MaxSpeed = tempspeed;
+
 	}
 
 }

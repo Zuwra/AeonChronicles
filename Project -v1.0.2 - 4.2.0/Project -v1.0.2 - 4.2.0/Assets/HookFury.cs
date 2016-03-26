@@ -6,12 +6,11 @@ public class HookFury : MonoBehaviour, Modifier, Notify {
 	// Unit modifier that make them attack faster the less health they have
 	private IWeapon myWeapon;
 
-	private float initialAttackSpeed;
 	private UnitStats myStats;
 	// Use this for initialization
 	void Start () {
 		myWeapon = GetComponent<IWeapon> ();
-		initialAttackSpeed = myWeapon.attackPeriod;
+	
 		myStats = GetComponent<UnitStats> ();
 		myStats.addModifier (this);
 		myWeapon.triggers.Add (this);

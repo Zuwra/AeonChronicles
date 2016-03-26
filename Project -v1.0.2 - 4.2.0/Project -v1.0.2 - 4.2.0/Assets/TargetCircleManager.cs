@@ -45,7 +45,7 @@ public class TargetCircleManager : MonoBehaviour {
 
 	public void loadUnits(List<RTSObject> obj, float r)
 	{
-		Debug.Log ("Loading ob " + obj[0].gameObject);
+		
 		while (obj.Count > circles.Count) {
 		
 			GameObject o = (GameObject)Instantiate (circles [0].gameObject);

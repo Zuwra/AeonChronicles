@@ -1,0 +1,64 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class CoagulateAura : MonoBehaviour {
+
+
+
+	private UnitStats myStats;
+	private IMover myMover;
+
+	private UnitStats sourceStats;
+
+	private float nextaction;
+
+	private float endTime;
+	// Use this for initialization
+	void Start () {
+		nextaction = Time.time + .5f;
+		endTime = Time.time + 8;
+		myStats = GetComponent<UnitManager> ().myStats;
+		myMover = GetComponent<UnitManager> ().cMover;
+	}
+
+	// Update is called once per frame
+	void Update () {
+
+		if (Time.time > endTime) {
+			myMover.removeSpeedBuff (this);
+
+			Destroy (this);
+			return;}
+
+
+		if (Time.time > nextaction) {
+
+			if (myMover == null) {
+				myMover.removeSpeedBuff (this);
+
+				Destroy (this);
+				return;
+			}
+			nextaction += .5f;
+			myMover.removeSpeedBuff (this);
+			myMover.changeSpeed (- (1 - (myStats.health / myStats.Maxhealth)), 0, false, this);
+
+		}
+
+	}
+
+	public void Initialize(GameObject source)
+	{nextaction = Time.time + .5f;
+		myStats = GetComponent<UnitManager> ().myStats;
+		myMover = GetComponent<UnitManager> ().cMover;
+		sourceStats = source.GetComponent<UnitManager> ().myStats;
+		endTime = Time.time + 8;
+
+		if (myMover == null) {
+			Destroy (this);
+		}
+		myMover.removeSpeedBuff (this);
+		myMover.changeSpeed ( -(1 - (myStats.health / myStats.Maxhealth)), 0, false, this);
+	
+	}
+}

@@ -66,18 +66,18 @@ public class ArmyUIManager : MonoBehaviour {
 
 	public void unitLost(GameObject unit)
 	{UnitManager manage = unit.GetComponent<UnitManager> ();
+		if (unitList.ContainsKey (manage.UnitName)) {
+			unitList [manage.UnitName].Remove (unit);
 
-		unitList [manage.UnitName].Remove (unit);
-
-		if (unitList [manage.UnitName].Count == 0) {
-			GameObject obj = iconList [manage.UnitName];
-			iconList.Remove (manage.UnitName);
-			Destroy (obj);
-			unitList.Remove (manage.UnitName);
-		} else {
-			addNUmber (manage);
+			if (unitList [manage.UnitName].Count == 0) {
+				GameObject obj = iconList [manage.UnitName];
+				iconList.Remove (manage.UnitName);
+				Destroy (obj);
+				unitList.Remove (manage.UnitName);
+			} else {
+				addNUmber (manage);
+			}
 		}
-
 	}
 
 

@@ -119,6 +119,7 @@ public class UnitStats : MonoBehaviour {
 					amount = mod.modify (amount, source);
 					if (amount <= 0) {
 						setToZero = true;
+						break;
 					}
 				}
 			}
