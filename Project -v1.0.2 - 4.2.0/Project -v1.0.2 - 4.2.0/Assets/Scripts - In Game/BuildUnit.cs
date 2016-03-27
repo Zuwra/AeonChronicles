@@ -67,6 +67,10 @@ public class BuildUnit : UnitProduction {
 		mySelect.updateCoolDown (0);
 		timer = 0;
 		buildingUnit = false;
+		foreach (Transform obj in this.transform) {
+
+			obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
+		}
 		//myCost.refundCost ();
 		//racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
 	}

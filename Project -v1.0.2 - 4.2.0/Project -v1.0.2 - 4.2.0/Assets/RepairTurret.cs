@@ -12,6 +12,7 @@ public class RepairTurret : Ability, Modifier{
 	private UnitStats TargetHealth;
 	private GameObject target;
 
+	public MultiShotParticle particleEff;
 	public int repairRate = 8;
 	private float nextActionTime;
 	private repairReturn returner;
@@ -21,6 +22,7 @@ public class RepairTurret : Ability, Modifier{
 		chargeCount = maxRepair;
 		nextActionTime = Time.time;
 		mymanager.myStats.addDeathTrigger (this);
+		popper = GetComponent<PopUpMaker> ();
 	}
 
 	public override void setAutoCast(){
@@ -64,14 +66,14 @@ public class RepairTurret : Ability, Modifier{
 				
 					nextActionTime += 1;
 					int amount = (int)Mathf.Min (repairRate, TargetHealth.Maxhealth - TargetHealth.health);
-
+					particleEff.playEffect ();
 					TargetHealth.heal (amount);
 					returner.chargeCount -= amount;
 					chargeCount -=amount;
 					if (GetComponentInParent<Selected> ().IsSelected) {
 						RaceManager.upDateUI ();
 					}
-					popper.CreatePopUp ("+" + amount, Color.green);
+					popper.CreatePopUp ("+" + amount, Color.green, target.transform.position);
 					if (TargetHealth.atFullHealth ()) {
 						target = null;
 						TargetHealth = null;

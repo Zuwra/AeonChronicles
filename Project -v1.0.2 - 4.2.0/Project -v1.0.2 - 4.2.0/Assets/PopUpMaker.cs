@@ -34,6 +34,22 @@ public class PopUpMaker : MonoBehaviour {
 
 	}
 
+	public void CreatePopUp(string input, Color c, Vector3 loc)
+	{Vector3 location = loc;
+		location.y += 5;
+		GameObject obj = (GameObject)Instantiate (Resources.Load ("PopUp"), location, Quaternion.identity);
+		if (mySprite != null) {
+			obj.GetComponentInChildren<Image> ().enabled = true;
+			obj.GetComponentInChildren<Image> ().sprite = mySprite;
+		} else {
+			obj.GetComponentInChildren<Text> ().text = input;
+			obj.GetComponentInChildren<Text> ().color = c;
+		}
+
+
+	}
+
+
 	public void CreatePopUp()
 	{Vector3 location = this.transform.position;
 		location.y +=5;

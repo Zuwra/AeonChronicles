@@ -226,6 +226,11 @@ public class buildTurret :UnitProduction{
 		GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
 		mySelect.updateCoolDown (0);
 		racer.stopBuildingUnit (this);
+
+		foreach (Transform obj in this.transform) {
+
+			obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
+		}
 	}
 
 

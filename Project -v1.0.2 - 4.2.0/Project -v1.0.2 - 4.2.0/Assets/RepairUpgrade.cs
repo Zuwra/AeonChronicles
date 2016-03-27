@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RepairUpgrade : Upgrade {
 
-    public int repairAmount = 12;
+    public int repairAmount = 20;
 
     override
     public void applyUpgrade(GameObject obj)

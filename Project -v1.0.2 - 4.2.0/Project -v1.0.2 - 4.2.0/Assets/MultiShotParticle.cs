@@ -4,11 +4,12 @@ using System.Collections;
 public class MultiShotParticle : MonoBehaviour {
 
 	private ParticleSystem ps;
-
+	private int emmitNUm;
 
 	public void Start() 
 	{
 		ps = GetComponent<ParticleSystem>();
+		emmitNUm = ps.maxParticles;
 	}
 
 	// Update is called once per frame
@@ -24,7 +25,7 @@ public class MultiShotParticle : MonoBehaviour {
 			Debug.Log ("Stopping");
 		}
 		//ps.Clear ();
-		ps.Emit(1);
+		ps.Emit(emmitNUm);
 		ps.startLifetime = ps.startLifetime;
 		//ps.Play ();
 	

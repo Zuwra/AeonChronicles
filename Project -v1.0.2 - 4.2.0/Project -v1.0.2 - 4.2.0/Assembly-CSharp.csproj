@@ -241,6 +241,7 @@
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\PalCapacitors.cs" />
+     <Compile Include="Assets\ParticleAn.cs" />
      <Compile Include="Assets\PlaceBuildingState.cs" />
      <Compile Include="Assets\PopUp.cs" />
      <Compile Include="Assets\PopUpMaker.cs" />
