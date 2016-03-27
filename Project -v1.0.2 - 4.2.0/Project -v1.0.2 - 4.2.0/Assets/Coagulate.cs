@@ -7,6 +7,7 @@ public class Coagulate : MonoBehaviour {
 
 	private GameObject source;
 	private int playerNumber;
+	public GameObject myEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -31,11 +32,11 @@ public class Coagulate : MonoBehaviour {
 		UnitManager manage = other.gameObject.GetComponent<UnitManager> ();
 		if (manage) {
 			if (manage.PlayerOwner != playerNumber) {
-				if (other.gameObject.GetComponent<CoagulateAura> () == null) {
+				if (other.gameObject.GetComponent<CoagulateAura> () == null) { 
 					other.gameObject.AddComponent<CoagulateAura> ();
 				} 
-				if (other.GetComponent<SanguinAura> ()) {
-					other.GetComponent<SanguinAura> ().Initialize (source);
+				if (other.GetComponent<CoagulateAura> ()) {
+					other.GetComponent<CoagulateAura> ().Initialize (source, myEffect);
 
 				}
 			}

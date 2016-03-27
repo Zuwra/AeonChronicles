@@ -31,8 +31,11 @@ public class BackLashZone : MonoBehaviour {
 		if (manage) {
 			if (manage.PlayerOwner != playerNumber) {
 				myAuras.Add (other.gameObject.AddComponent<BackLashAura> ());
-				other.GetComponent<BackLashAura> (). Initialize(source.GetComponent<UnitManager>().myStats);
-
+				if (source) {
+					other.GetComponent<BackLashAura> ().Initialize (source.GetComponent<UnitManager> ().myStats);
+				} else {
+					other.GetComponent<BackLashAura> ().Initialize (null);
+				}
 
 			}
 

@@ -7,6 +7,7 @@ public class Sanguinate : MonoBehaviour {
 
 	private GameObject source;
 	private int playerNumber;
+	public GameObject myEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -30,12 +31,12 @@ public class Sanguinate : MonoBehaviour {
 	{
 		UnitManager manage = other.gameObject.GetComponent<UnitManager> ();
 		if (manage) {
-			if (manage.PlayerOwner != playerNumber) {
+			if (manage.PlayerOwner != playerNumber && manage.PlayerOwner != 3) {
 				if (other.gameObject.GetComponent<SanguinAura> () == null) {
 					other.gameObject.AddComponent<SanguinAura> ();
 				} 
 					
-					other.GetComponent<SanguinAura> ().Initialize (source);
+					other.GetComponent<SanguinAura> ().Initialize (source, myEffect);
 
 
 			}

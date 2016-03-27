@@ -5,7 +5,8 @@ public class UndyingArmor :  IEffect,Modifier {
 
 
 	private bool onTarget;
-
+	public GameObject myEffect;
+	private GameObject effectOnChar;
 	private UnitStats mystat;
 	private float endtime;
 	// Use this for initialization
@@ -16,21 +17,30 @@ public class UndyingArmor :  IEffect,Modifier {
 	// Update is called once per frame
 	void Update () {
 		if (onTarget) {
-			Debug.Log (Time.time + "   " + endtime);
+
 			if (Time.time > endtime) {
 
 				mystat.removeModifier (this);
+				Destroy (effectOnChar);
 				Destroy (this);
 				return;
 			}
 		}
 	}
 
-	public void initialize(GameObject source){
+	public void initialize(GameObject source, GameObject e){
+		if (!onTarget) {
+			Vector3 loc = this.gameObject.transform.position;
+			loc.y += 4;
+			effectOnChar = (GameObject) Instantiate (e, loc, Quaternion.identity);
+			effectOnChar.transform.SetParent (this.gameObject.transform);
+		}
+
 		onTarget = true;
 		endtime = Time.time + 10;
 		mystat = GetComponent<UnitManager> ().myStats;
 		mystat.addModifier (this);
+
 
 
 	}
@@ -40,7 +50,7 @@ public class UndyingArmor :  IEffect,Modifier {
 
 		target.AddComponent<UndyingArmor> ();
 
-		target.GetComponent<UndyingArmor> ().initialize (source);
+		target.GetComponent<UndyingArmor> ().initialize (source,myEffect);
 
 
 	}

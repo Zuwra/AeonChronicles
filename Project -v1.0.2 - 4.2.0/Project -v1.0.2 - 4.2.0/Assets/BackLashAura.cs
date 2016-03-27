@@ -24,7 +24,9 @@ public class BackLashAura : MonoBehaviour, Notify {
 			if (manage) {
 				myStats = manage.myStats;
 				myweap= manage.myWeapon;
-				myweap.triggers.Add (this);
+				if (myweap) {
+					myweap.triggers.Add (this);
+				}
 			}
 
 		} else {
@@ -41,7 +43,9 @@ public class BackLashAura : MonoBehaviour, Notify {
 			numberOfClouds--;}
 
 		else{
-			myweap.triggers.Remove(this);
+			if (myweap) {
+				myweap.triggers.Remove (this);
+			}
 			Destroy (this);
 
 		}

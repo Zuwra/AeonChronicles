@@ -85,7 +85,7 @@ public class GatlingGun : MonoBehaviour, Notify, Validator, Modifier {
 		cooldown = false;
 		lastFired = Time.time;
 	
-		heatLevel += .08f;
+		heatLevel += .1f;
 		if((heatLevel / totalHeat) > .15f)
 		{healthD.updateCoolDown (heatLevel/totalHeat);}
 

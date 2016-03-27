@@ -7,7 +7,7 @@ public class CoagulateAura : MonoBehaviour {
 
 	private UnitStats myStats;
 	private IMover myMover;
-
+	private GameObject myAura;
 	private UnitStats sourceStats;
 
 	private float nextaction;
@@ -26,7 +26,7 @@ public class CoagulateAura : MonoBehaviour {
 
 		if (Time.time > endTime) {
 			myMover.removeSpeedBuff (this);
-
+			Destroy (this);
 			Destroy (this);
 			return;}
 
@@ -35,7 +35,7 @@ public class CoagulateAura : MonoBehaviour {
 
 			if (myMover == null) {
 				myMover.removeSpeedBuff (this);
-
+				Destroy (myAura);
 				Destroy (this);
 				return;
 			}
@@ -47,7 +47,7 @@ public class CoagulateAura : MonoBehaviour {
 
 	}
 
-	public void Initialize(GameObject source)
+	public void Initialize(GameObject source, GameObject eff)
 	{nextaction = Time.time + .5f;
 		myStats = GetComponent<UnitManager> ().myStats;
 		myMover = GetComponent<UnitManager> ().cMover;
@@ -56,6 +56,12 @@ public class CoagulateAura : MonoBehaviour {
 
 		if (myMover == null) {
 			Destroy (this);
+		}
+
+		if (myAura == null) {
+			myAura = (GameObject)Instantiate (eff, this.gameObject.transform.position, Quaternion.identity);
+			myAura.transform.SetParent (this.gameObject.transform);
+			myAura.transform.Rotate (new Vector3 (-90, 0, 0));
 		}
 		myMover.removeSpeedBuff (this);
 		myMover.changeSpeed ( -(1 - (myStats.health / myStats.Maxhealth)), 0, false, this);

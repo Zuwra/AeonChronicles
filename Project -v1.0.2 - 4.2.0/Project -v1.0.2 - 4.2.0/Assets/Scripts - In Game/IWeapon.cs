@@ -8,7 +8,7 @@ public class IWeapon : MonoBehaviour {
 
 
 	public UnitManager myManager;
-
+	public MultiShotParticle fireEffect;
 
 	public float attackPeriod;
 	private float baseAttackPeriod;
@@ -101,9 +101,6 @@ public class IWeapon : MonoBehaviour {
 					//spotter.y = this.transform.position.y;
 					//this.gameObject.transform.LookAt(spotter);
 
-						
-
-				
 				}
 			}
 		}
@@ -230,6 +227,9 @@ public class IWeapon : MonoBehaviour {
 				myManager.cleanEnemy ();
 			}
 
+			if (fireEffect) {
+				fireEffect.playEffect ();
+			}
 			fireTriggers (this.gameObject, proj, target, damage);
 
 		}
