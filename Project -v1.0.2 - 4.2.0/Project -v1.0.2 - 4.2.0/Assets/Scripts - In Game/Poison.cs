@@ -29,7 +29,7 @@ public class Poison : MonoBehaviour {
 	public void startPoison(GameObject poison)
 	{
 		Vector3 pos = this.gameObject.transform.position;
-		pos.y += 8;
+		//pos.y += 8;
 		GameObject obj = (GameObject)Instantiate (poison,pos, Quaternion.identity);
 		obj.transform.parent = this.gameObject.transform;
 		poisonEffect = obj;

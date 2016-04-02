@@ -3,12 +3,11 @@ using System.Collections;
 
 public class BloodMist : TargetAbility {
 
-	private UnitManager manage;
 
 	public GameObject BloodMistObj;
 	// Use this for initialization
 	void Start () {
-		manage = this.gameObject.GetComponent<UnitManager> ();
+
 	}
 
 	// Update is called once per frame
@@ -60,7 +59,7 @@ public class BloodMist : TargetAbility {
 		pos.y += 5;
 		proj = (GameObject)Instantiate (BloodMistObj, pos, Quaternion.identity);
 
-		Projectile script = proj.GetComponent<Projectile> ();
+
 		proj.SendMessage ("setSource", this.gameObject);
 
 
@@ -80,7 +79,7 @@ public class BloodMist : TargetAbility {
 		pos.y += 5;
 		proj = (GameObject)Instantiate (BloodMistObj, pos, Quaternion.identity);
 
-		Projectile script = proj.GetComponent<Projectile> ();
+
 		proj.SendMessage ("setSource", this.gameObject);
 
 

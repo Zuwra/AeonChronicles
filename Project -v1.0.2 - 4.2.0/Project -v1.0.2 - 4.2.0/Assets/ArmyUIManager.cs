@@ -13,13 +13,11 @@ public class ArmyUIManager : MonoBehaviour {
 	private Dictionary<string, GameObject> iconList = new Dictionary<string,GameObject>();
 	private int unitCount = 0;
 
-	private float yPosition;
+
 	// Use this for initialization
 	void Start () {
 		
-		yPosition = unitPanel.transform.position.y;
 
-	
 
 	}
 	

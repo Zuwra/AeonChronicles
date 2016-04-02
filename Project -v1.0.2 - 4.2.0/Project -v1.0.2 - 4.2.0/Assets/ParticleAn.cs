@@ -22,11 +22,10 @@ public class ParticleAn : animate {
 
 			if (!change) {
 
-				Debug.Log ("Changing to off");
+			
 				ps.maxParticles = 0;
 			} else {
-
-				Debug.Log ("Turning on");
+				
 				ps.maxParticles = emmisionRate;
 			}
 			ps.startLifetime = ps.startLifetime;

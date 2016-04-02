@@ -9,14 +9,13 @@ public class Masochism : Ability {
 	public float speedBoost;
 
 	private float timer;
-	private Selected select;
 
 	private float attackSpeedChange;
 	private IWeapon myWeap;
 	private IMover myMover;
 	// Use this for initialization
 	void Start () {description = "Uses life to give a short burst of speed";
-		select = GetComponent<Selected> ();
+		
 		myWeap = GetComponent<IWeapon> ();
 		myMover = GetComponent<UnitManager> ().cMover;
 	}

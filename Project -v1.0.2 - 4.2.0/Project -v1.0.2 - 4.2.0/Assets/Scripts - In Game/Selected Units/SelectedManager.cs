@@ -634,11 +634,11 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			float runDistance = 1000000;
 			Vector3 closestSpot = points[0];
 			for (int i = 0; i < points.Count; i++) {
-				if (points [i] != null) {
-					if (Vector3.Distance (closestUnit.getObject ().transform.position, points [i]) < maxDistance) {
+				
+					if (Vector3.Distance (closestUnit.getObject ().transform.position, points [i]) < runDistance) {
 						closestSpot = points [i];
 						runDistance = Vector3.Distance (closestUnit.getObject ().transform.position, points [i]);
-					}
+
 			
 				}
 			}

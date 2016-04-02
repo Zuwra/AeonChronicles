@@ -44,7 +44,7 @@ public class buildTurret :UnitProduction{
 				HD.stopBuilding ();
 				mySelect.updateCoolDown (0);
 				buildingUnit = false;
-
+				buildMan.unitFinished (this);
 				racer.stopBuildingUnit (this);
 				foreach (Transform obj in this.transform) {
 
@@ -296,7 +296,7 @@ public class buildTurret :UnitProduction{
 
 		racer.applyUpgrade (tur);
 		buildingUnit = false;
-		buildMan.unitFinished (this);
+
 	
 	return tur;
 	}

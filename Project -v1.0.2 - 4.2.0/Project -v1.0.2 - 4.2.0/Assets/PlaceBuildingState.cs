@@ -7,8 +7,7 @@ public class PlaceBuildingState :UnitState {
 
 	public Ability myAbility;
 
-	private int refreshTime = 5;
-	private int currentFrame = 0;
+
 	private bool Follow;
 
 

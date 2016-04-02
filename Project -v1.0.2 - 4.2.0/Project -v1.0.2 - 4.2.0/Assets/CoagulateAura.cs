@@ -8,7 +8,7 @@ public class CoagulateAura : MonoBehaviour {
 	private UnitStats myStats;
 	private IMover myMover;
 	private GameObject myAura;
-	private UnitStats sourceStats;
+
 
 	private float nextaction;
 
@@ -51,7 +51,7 @@ public class CoagulateAura : MonoBehaviour {
 	{nextaction = Time.time + .5f;
 		myStats = GetComponent<UnitManager> ().myStats;
 		myMover = GetComponent<UnitManager> ().cMover;
-		sourceStats = source.GetComponent<UnitManager> ().myStats;
+	
 		endTime = Time.time + 8;
 
 		if (myMover == null) {

@@ -29,10 +29,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 	private IMiniMapController m_MiniMapController;
 	
 	//Building Placement variables
-	private Action m_CallBackFunction;
-	private Item m_ItemBeingPlaced;
+	//private Action m_CallBackFunction;
+	//private Item m_ItemBeingPlaced;
 	public GameObject m_ObjectBeingPlaced;
-	private bool m_PositionValid = true;
+	//private bool m_PositionValid = true;
 	private bool m_Placed = false;
 
 	private RaceManager raceManager;
@@ -721,8 +721,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 		{
 			Destroy (m_ObjectBeingPlaced);
 		}
-		m_CallBackFunction = null;
-		m_ItemBeingPlaced = null;
+		//m_CallBackFunction = null;
+		//m_ItemBeingPlaced = null;
 		m_Mode = Mode.Normal;
 	}
 	

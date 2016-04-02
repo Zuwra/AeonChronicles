@@ -44,6 +44,8 @@ public class TurretScreenDisplayer : MonoBehaviour {
 
 				createDisplayer (obj);
 			} else {
+
+				//Debug.Log ("Updating buttons");
 				updateButtons(obj);
 			}
 				}

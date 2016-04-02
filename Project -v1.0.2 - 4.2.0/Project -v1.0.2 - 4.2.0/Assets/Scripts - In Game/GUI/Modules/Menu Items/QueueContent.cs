@@ -7,18 +7,21 @@ public class QueueContent : IQueueContent
 {
 	private List<Item> m_Items = new List<Item>();
 	private Rect[] m_Area;
-	private int m_ArrowOffset = 0;
+
+	//private int m_ArrowOffset = 0;
 	private int m_MaxVisibleItems;
-	private bool m_ArrowsEnabled = false;
+
+
+	//private bool m_Building = false;
+
+	//private bool m_ArrowsEnabled = false;
 	private Rect[] m_ArrowRects = new Rect[2];
-	private bool m_Building = false;
-	
-	private IUIManager m_UIManager;
+	//private IUIManager m_UIManager;
 	
 	public QueueContent(Rect area)
 	{
 		CalculateSize (area);
-		m_UIManager = ManagerResolver.Resolve<IUIManager>();
+		//m_UIManager = ManagerResolver.Resolve<IUIManager>();
 	}
 	
 	public void Execute()
@@ -122,14 +125,14 @@ public class QueueContent : IQueueContent
 		m_Items = m_Items.OrderBy(x => x.SortOrder).ToList();
 		
 		//Items have been added or removed, do we need the arrows?
-		if (m_Items.Count > m_MaxVisibleItems)
-		{
-			m_ArrowsEnabled = true;
-		}
-		else
-		{
-			m_ArrowsEnabled = false;
-		}
+		//if (m_Items.Count > m_MaxVisibleItems)
+		//{
+		//	m_ArrowsEnabled = true;
+		//}
+		//else
+		//{
+		//	m_ArrowsEnabled = false;
+		//}
 	}
 	
 	public void Resize(Rect newArea)

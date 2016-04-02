@@ -24,7 +24,7 @@ public  class Projectile : MonoBehaviour {
 
 	//If you are using an explosion , you should set the variables in the explosion prefab itself.
 	public GameObject explosion;
-
+	public GameObject SpecialEffect;
 
 
 	public List<Notify> triggers = new List<Notify> ();
@@ -197,6 +197,10 @@ public  class Projectile : MonoBehaviour {
 
 			GameObject explode = (GameObject)Instantiate (explosion,this.gameObject.transform.position, Quaternion.identity);
 			explode.GetComponent<explosion>().source = Source;
+		}
+		if (SpecialEffect) {
+			Instantiate (SpecialEffect,this.gameObject.transform.position, Quaternion.identity);
+		
 		}
 
 		Destroy (this.gameObject);

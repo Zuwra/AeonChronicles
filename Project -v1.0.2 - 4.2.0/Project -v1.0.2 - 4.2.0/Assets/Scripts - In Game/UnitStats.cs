@@ -43,7 +43,7 @@ public class UnitStats : MonoBehaviour {
 
 
 	public GameObject deathCorpse;
-
+	public GameObject deathEffect;
 
 
 	// Use this for initialization
@@ -197,7 +197,9 @@ public class UnitStats : MonoBehaviour {
 
 					RaceManager.removeUnitSelect(myManager);
 				}
-
+				if (deathEffect) {
+					Instantiate (deathEffect, this.gameObject.transform.position, Quaternion.identity);
+				}
 					Destroy (this.gameObject);
 				
 			}
