@@ -26,7 +26,7 @@ public class CoagulateAura : MonoBehaviour {
 
 		if (Time.time > endTime) {
 			myMover.removeSpeedBuff (this);
-			Destroy (this);
+			Destroy (myAura);
 			Destroy (this);
 			return;}
 

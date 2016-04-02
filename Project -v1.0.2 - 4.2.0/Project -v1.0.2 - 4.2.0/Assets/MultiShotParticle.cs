@@ -10,6 +10,8 @@ public class MultiShotParticle : MonoBehaviour {
 	{
 		ps = GetComponent<ParticleSystem>();
 		emmitNUm = ps.maxParticles;
+
+		this.gameObject.SetActive (false);
 	}
 
 	// Update is called once per frame
@@ -18,18 +20,26 @@ public class MultiShotParticle : MonoBehaviour {
 	}
 
 
-	public void playEffect()
+	public void stopEffect()
 	{
-		if (ps.isPlaying) {
-			//ps.Stop ();
-			Debug.Log ("Stopping");
-		}
+		this.gameObject.SetActive (false);
+
+
+	}
+
+	public void continueEffect()
+	{this.gameObject.SetActive (true);
+
+
+	}
+
+	public void playEffect()
+	{this.gameObject.SetActive (true);
+
+
 		//ps.Clear ();
 		ps.Emit(emmitNUm);
 		ps.startLifetime = ps.startLifetime;
-		//ps.Play ();
-	
-
 
 	}
 }

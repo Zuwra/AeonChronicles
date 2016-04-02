@@ -21,7 +21,7 @@ public class InteractState : UnitState {
 	//myMover.resetMoveLocation (target.transform.position);
 
 
-		refreshTime = 30 - (int)myMover.MaxSpeed;
+		refreshTime = 30 - (int)myMover.getMaxSpeed();
 		if (refreshTime < 5) {
 			refreshTime = 8;
 		}

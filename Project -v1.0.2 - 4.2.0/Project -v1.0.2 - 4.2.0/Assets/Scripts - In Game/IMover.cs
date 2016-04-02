@@ -9,7 +9,7 @@ public abstract class IMover: MonoBehaviour {
 	public float speed = 0;
 	public float acceleration;
 	public float MaxSpeed = 10;
-	private float initialSpeed;
+	public float initialSpeed;
 
 	public abstract bool move ();
 
@@ -24,6 +24,16 @@ public abstract class IMover: MonoBehaviour {
 
 	private List<SpeedMod> ASMod = new List<SpeedMod>();
 
+	void Awake()
+	{
+		initialSpeed = MaxSpeed;
+
+	}
+
+	public float getMaxSpeed()
+	{
+		return MaxSpeed;
+	}
 
 
 	void Start()
@@ -63,14 +73,17 @@ public abstract class IMover: MonoBehaviour {
 	private void adjustSpeed()
 	{
 		float tempspeed = initialSpeed;
+
 		foreach (SpeedMod a in ASMod) {
 			tempspeed += a.flat;
+		
 		}
 
 		float percent = 1;
 		foreach (SpeedMod a in ASMod) {
 			percent += a.perc;
 		}
+
 		tempspeed *= percent;
 		if (tempspeed < .01f) {
 			tempspeed = .01f;}
@@ -79,7 +92,8 @@ public abstract class IMover: MonoBehaviour {
 
 
 		MaxSpeed = tempspeed;
-
+		if (speed > MaxSpeed) {
+			speed = MaxSpeed;}
 	}
 
 }

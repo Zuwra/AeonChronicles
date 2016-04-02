@@ -34,6 +34,7 @@ public class airmover : IMover {
 		controller = GetComponent<CharacterController>();
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
 		//seeker.StartPath (transform.position,targetPosition, OnPathComplete);
+		initialSpeed = getMaxSpeed();
 	}
 
 
@@ -53,11 +54,11 @@ public class airmover : IMover {
 
 			return true;
 		}
-		if (speed < MaxSpeed) {
+		if (speed < getMaxSpeed()) {
 			speed += .1f * acceleration;
 
-			if (speed > MaxSpeed) {
-				speed = MaxSpeed;
+			if (speed > getMaxSpeed()) {
+				speed = getMaxSpeed();
 			}
 		}
 

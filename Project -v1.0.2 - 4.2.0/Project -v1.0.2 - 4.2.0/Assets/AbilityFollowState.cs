@@ -34,7 +34,7 @@ public class AbilityFollowState  : UnitState {
 
 	public override void initialize()
 	{
-		refreshTime = 30 - (int)myMover.MaxSpeed;
+		refreshTime = 30 - (int)myMover.getMaxSpeed ();
 		if (refreshTime < 5) {
 			refreshTime = 8;
 		}

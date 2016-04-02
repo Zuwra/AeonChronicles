@@ -1,14 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UnitManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\StimPack.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="199" Column="6" />
+      <File FileName="Assets\Scripts - In Game\StimPack.cs" Line="63" Column="23" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="1" Column="1" />
       <File FileName="Assets\ParticleAn.cs" Line="1" Column="1" />
       <File FileName="Assets\CoagulateAura.cs" Line="1" Column="1" />
-      <File FileName="Assets\MultiShotParticle.cs" Line="1" Column="1" />
+      <File FileName="Assets\MultiShotParticle.cs" Line="15" Column="3" />
       <File FileName="Assets\OneShotParticleSystem.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="321" Column="27" />
+      <File FileName="Assets\Scripts - In Game\SlowDebuff.cs" Line="60" Column="4" />
+      <File FileName="Assets\Scripts - In Game\IMover.cs" Line="84" Column="22" />
+      <File FileName="Assets\CustomRVO.cs" Line="163" Column="4" />
+      <File FileName="Assets\AstarPathfindingProject\RVO\RVOController.cs" Line="193" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -51,6 +51,7 @@ public class CustomRVO : IMover {
 	#endif
 
 	public void Awake () {
+		initialSpeed = getMaxSpeed();
 		seeker = GetComponent<Seeker>();
 	}
 
@@ -153,15 +154,16 @@ public class CustomRVO : IMover {
 			return true;
 		}
 
-		if (speed < MaxSpeed) {
+		if (speed < getMaxSpeed()) {
 			speed += acceleration * Time.deltaTime;
 
-			if (speed > MaxSpeed) {
-				speed = MaxSpeed;
+			if (speed > getMaxSpeed()) {
+				speed =  getMaxSpeed();
 			}
 		}
 
 		//Direction to the next waypoint
+	
 		Vector3 dir = (path.vectorPath[currentWaypoint]-this.transform.position).normalized * speed;
 
 

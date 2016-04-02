@@ -27,7 +27,7 @@ public class RocketBooster : Ability{
 				rocket.GetComponent<MeshRenderer> ().enabled = true;
 
 
-				GetComponent<UnitManager> ().cMover.MaxSpeed += 7.5f;
+				GetComponent<UnitManager> ().cMover.changeSpeed (.75f,0,true, this);
 				GetComponent<UnitManager> ().cMover.acceleration += 4;
 				GetComponent<UnitManager> ().AbilityStartingRow = 2;
 				GetComponent<UnitManager> ().AbilityPriority = 11;

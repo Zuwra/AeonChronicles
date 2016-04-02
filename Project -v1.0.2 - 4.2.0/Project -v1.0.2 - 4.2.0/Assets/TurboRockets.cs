@@ -12,7 +12,7 @@ public class TurboRockets  : Upgrade {
 
 		if(obj.GetComponent<UnitManager>().UnitName.Equals("Hornet")){
 	
-			obj.GetComponent<UnitManager> ().cMover.MaxSpeed += speedAmount;
+			obj.GetComponent<UnitManager> ().cMover.changeSpeed (0, speedAmount, true, this);
 
 
 

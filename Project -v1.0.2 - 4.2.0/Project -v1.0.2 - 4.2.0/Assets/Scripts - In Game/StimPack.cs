@@ -10,6 +10,7 @@ public class StimPack : Ability {
 
 	private float timer;
 	private Selected select;
+	public MultiShotParticle BoostEffect;
 
 	// Use this for initialization
 	void Start () {description = "Uses life to give a short burst of speed";
@@ -18,12 +19,11 @@ public class StimPack : Ability {
 	
 	// Update is called once per frame
 	void Update () {
-		if (on && timer > 0) {
-			timer -= Time.deltaTime;
+		if (on && Time.time  > timer) {
+			
 		
-			if (timer <= 0) {
 				Deactivate ();
-			}
+
 		} 
 
 	}
@@ -58,16 +58,11 @@ public class StimPack : Ability {
 				if (GetComponent<SlowDebuff> () == null) {
 					this.gameObject.AddComponent<SlowDebuff> ();
 				}
-				GetComponent<SlowDebuff> ().initialize (duration, -speedBoost, 0);
-
-
-				//this.gameObject.GetComponent<customMover> ().MaxSpeed += speedBoost;
-			
-			
-
+				GetComponent<SlowDebuff> ().initialize (duration, 0, speedBoost);
+				BoostEffect.continueEffect ();
 				myCost.payCost ();
-				//on = true;
-				//timer = duration;
+				on = true;
+				timer = Time.time + duration;
 				chargeCount--;
 				if (select.IsSelected) {
 					RaceManager.upDateUI ();
@@ -81,10 +76,11 @@ public class StimPack : Ability {
 
 	public void Deactivate()
 	{on = false;
-		timer = 0;
+		
+		BoostEffect.stopEffect ();
+		Debug.Log ("Turning off stim ");
 
-		this.gameObject.GetComponent<customMover>().MaxSpeed -=speedBoost;
-		this.gameObject.GetComponent<customMover>().speed -=speedBoost;
+
 	}
 
 

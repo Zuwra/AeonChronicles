@@ -25,6 +25,7 @@ public class customMover : IMover {
 	private Vector3 dir;
 
 	public void Awake () {
+		initialSpeed = getMaxSpeed();
 		seeker = GetComponent<Seeker>();
 		controller = GetComponent<CharacterController>();
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
@@ -92,11 +93,11 @@ public class customMover : IMover {
 			}
 			return true;
 		}
-		if (speed < MaxSpeed) {
+		if (speed < getMaxSpeed()) {
 			speed += .1f * acceleration;
 			
-			if (speed > MaxSpeed) {
-				speed = MaxSpeed;
+			if (speed > getMaxSpeed()) {
+				speed = getMaxSpeed();
 			}
 		}
 		//Direction to the next waypoint

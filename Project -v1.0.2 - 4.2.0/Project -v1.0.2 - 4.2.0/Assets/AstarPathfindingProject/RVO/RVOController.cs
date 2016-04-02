@@ -22,6 +22,9 @@ namespace Pathfinding.RVO {
 	[HelpURL("http://arongranberg.com/astar/docs/class_pathfinding_1_1_r_v_o_1_1_r_v_o_controller.php")]
 	public class RVOController : MonoBehaviour {
 		/** Radius of the agent */
+
+		private IMover myMover;
+
 		[Tooltip("Radius of the agent")]
 		public float radius = 5;
 
@@ -161,7 +164,7 @@ namespace Pathfinding.RVO {
 
 		public void Awake () {
 			tr = transform;
-
+			myMover = GetComponent<UnitManager> ().cMover;
 			// Find the RVOSimulator in this scene
 			cachedSimulator = cachedSimulator ?? FindObjectOfType(typeof(RVOSimulator)) as RVOSimulator;
 			if (cachedSimulator == null) {
@@ -190,7 +193,7 @@ namespace Pathfinding.RVO {
 
 		protected void UpdateAgentProperties () {
 			rvoAgent.Radius = radius;
-			rvoAgent.MaxSpeed = maxSpeed;
+			rvoAgent.MaxSpeed = myMover.MaxSpeed;
 			rvoAgent.Height = height;
 			rvoAgent.AgentTimeHorizon = agentTimeHorizon;
 			rvoAgent.ObstacleTimeHorizon = obstacleTimeHorizon;

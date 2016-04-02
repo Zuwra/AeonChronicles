@@ -68,7 +68,7 @@ public class AttackMoveState : UnitState {
 			
 	
 
-		if (enemy != null) {
+		if (enemy != null && myWeapon != null) {
 			enemyDead = false;
 			if(myWeapon.inRange(enemy)){
 				if (myWeapon.canAttack (enemy)) {

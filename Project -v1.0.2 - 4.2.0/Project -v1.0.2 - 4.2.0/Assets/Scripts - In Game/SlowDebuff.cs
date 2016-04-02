@@ -28,18 +28,15 @@ public class SlowDebuff : Behavior, Notify {
 		speedDecrease = speed;
 		percent = percentdec;
 		nextActionTime = Time.time + duration;
-		if (OnTarget) {
-			mover = this.gameObject.GetComponent<UnitManager>().cMover;
 
-			if (percent != 0) {
-				mover.changeSpeed (percent, speedDecrease, false, this);
+		mover = this.gameObject.GetComponent<UnitManager>().cMover;
+		mover.removeSpeedBuff (this);
 
-			}
-		
+		mover.changeSpeed (percent, speedDecrease, false, this);
 
-			setBuffStuff (Behavior.buffType.movement, true);
-			applyBuffUI ();
-		}
+		setBuffStuff (Behavior.buffType.movement, true);
+			
+
 	}
 
 	public void resetTime()
@@ -52,7 +49,7 @@ public class SlowDebuff : Behavior, Notify {
 
 			if (Time.time > nextActionTime) {
 				
-				unApplybuffUI ();
+
 				Destroy (this);
 			}
 		}

@@ -21,8 +21,9 @@ public class TurretMount : MonoBehaviour {
 
 	public void placeTurret(GameObject obj)
 		{turret = obj;
-
-		obj.transform.position = this.transform.position;
+		Vector3 spot = this.transform.position;
+		spot.y += .5f;
+		obj.transform.position = spot;
 		obj.transform.parent = this.gameObject.transform;
 		obj.transform.rotation = this.gameObject.transform.rotation;
 

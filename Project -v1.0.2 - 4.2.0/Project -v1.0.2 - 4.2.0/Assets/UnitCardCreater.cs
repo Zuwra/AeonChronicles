@@ -77,7 +77,7 @@ public class UnitCardCreater : MonoBehaviour {
 		Mass.text = " " + manager.myStats.mass;
 		kills.text = "Kills: " + manager.myStats.kills;
 		if (manager.cMover != null) {
-			speed.text = " " + manager.cMover.MaxSpeed;
+			speed.text = " " + manager.cMover.getMaxSpeed();
 		} else {speed.text = "";
 		}
 
