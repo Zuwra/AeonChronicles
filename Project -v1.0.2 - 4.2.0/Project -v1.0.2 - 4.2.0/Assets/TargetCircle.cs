@@ -23,6 +23,7 @@ public class TargetCircle : MonoBehaviour {
 		range = r;
 		float degree = 360 / points.Count;
 		for (int i = 0; i < points.Count; i++) {
+			points [i].SetActive (true);
 			Vector3 location = this.gameObject.transform.position;
 			location.y += 20;
 			location.x += Mathf.Sin (Mathf.Deg2Rad * degree *i) * range;

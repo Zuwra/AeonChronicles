@@ -38,8 +38,6 @@ public class TargetCircleManager : MonoBehaviour {
 		currentCircles.Add (circles [0]);
 		currentCircles [0].Initialize (r, obj.gameObject);
 
-
-
 	}
 
 
@@ -56,6 +54,7 @@ public class TargetCircleManager : MonoBehaviour {
 		for (int i = 0; i < obj.Count; i++) {
 			currentCircles.Add (circles [i]);
 			currentCircles [i].Initialize (r, obj [i].gameObject);
+
 		
 		}
 
@@ -75,9 +74,10 @@ public class TargetCircleManager : MonoBehaviour {
 		
 			foreach (TargetCircle cir in currentCircles) {
 					foreach (GameObject obj in cir.points) {
-						bool cont =false;
+						
 					foreach (TargetCircle inner in currentCircles) {
 							if (inner == cir) {
+							
 								continue;
 							}
 					
@@ -85,13 +85,11 @@ public class TargetCircleManager : MonoBehaviour {
 							bool temp = inRange (obj.transform.position, inner.transform.position, inner.range);
 							obj.SetActive (temp);
 							if (!temp) {
+							
 								break;
 							}
 						}
-						if (cont) {
-							
-							break;
-						}
+
 					}
 			
 				}

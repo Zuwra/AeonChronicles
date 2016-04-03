@@ -252,6 +252,7 @@
      <Compile Include="Assets\RaceSelectManager.cs" />
      <Compile Include="Assets\RaceSelectionManger.cs" />
      <Compile Include="Assets\RaceTipManager.cs" />
+     <Compile Include="Assets\RangeDisplayer.cs" />
      <Compile Include="Assets\RegenerativeSap.cs" />
      <Compile Include="Assets\RepairTurret.cs" />
      <Compile Include="Assets\RepairUpgrade.cs" />

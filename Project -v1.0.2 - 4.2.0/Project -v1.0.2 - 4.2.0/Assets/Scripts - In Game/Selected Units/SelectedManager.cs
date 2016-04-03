@@ -235,10 +235,31 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		targetManager.turnOff ();
 	}
 
+	public void toggleRangeIndicator(bool onOff)
+	{
+		if (onOff) {
+			foreach (List<RTSObject> obj in UIPages[currentPage].rows) {
+				if (obj != null && obj.Count > 0) {
+					if (obj[0].gameObject.GetComponent<UnitManager> ().myWeapon != null) {
+						targetManager.loadUnits (obj, obj[0].gameObject.GetComponent<UnitManager> ().myWeapon.range);
+						break;
+					}
+				}
+			}
+		} else {
+			targetManager.turnOff ();
+		}
+
+	}
+
+
+
+
     public void callAbility(int n)
 	{if (UIPages.Count > 0) {
 			
 			if (UIPages [currentPage].isTargetAbility (n)) {
+				
 				targetManager.loadUnits (UIPages [currentPage].getUnitsFromAbilities (n),
 					((TargetAbility)UIPages [currentPage].getAbility (n)).range);
 				uiManage.SwitchMode (Mode.targetAbility);
