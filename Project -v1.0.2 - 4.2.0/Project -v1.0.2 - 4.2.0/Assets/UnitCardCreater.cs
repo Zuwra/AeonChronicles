@@ -44,9 +44,9 @@ public class UnitCardCreater : MonoBehaviour {
 	void Update () {
 		if (currentUnit) {
 			
-			health.text = " "+ (int)currentUnit.myStats.health + "/" + currentUnit.myStats.Maxhealth;
+			health.text = "  "+ (int)currentUnit.myStats.health + "/" + currentUnit.myStats.Maxhealth;
 			if (currentUnit.myStats.MaxEnergy > 0) {
-				energyText.text = " "+currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
+				energyText.text = "  "+currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
 
 			}
 
@@ -72,12 +72,12 @@ public class UnitCardCreater : MonoBehaviour {
 		hasUnit = true;
 		unitIcon.sprite = manager.myStats.Icon;
 		UnitName.text = manager.UnitName;
-		health.text = " "+manager.myStats.health + "/" + manager.myStats.Maxhealth;
-		armor.text =  " " +manager.myStats.armor;
-		Mass.text = " " + manager.myStats.mass;
+		health.text = "  "+manager.myStats.health + "/" + manager.myStats.Maxhealth;
+		armor.text =  "  " +manager.myStats.armor;
+		Mass.text = "  " + manager.myStats.mass;
 		kills.text = "Kills: " + manager.myStats.kills;
 		if (manager.cMover != null) {
-			speed.text = " " + manager.cMover.getMaxSpeed();
+			speed.text = "  " + manager.cMover.getMaxSpeed();
 		} else {speed.text = "";
 		}
 
@@ -103,9 +103,9 @@ public class UnitCardCreater : MonoBehaviour {
 			range.enabled = true;
 			attackSpeedIcon.enabled = true;
 			attackSpeed.enabled = true;
-			damage.text = " " + manager.myWeapon.baseDamage;
-			attackSpeed.text = " " + manager.myWeapon.attackPeriod;
-			range.text = " " + manager.myWeapon.range;
+			damage.text = "  " + manager.myWeapon.baseDamage;
+			attackSpeed.text = "  " + manager.myWeapon.attackPeriod;
+			range.text = "  " + manager.myWeapon.range;
 			if (manager.myWeapon.numOfAttacks > 1) {
 				damage.text = " " + manager.myWeapon.baseDamage + " (X" + manager.myWeapon.numOfAttacks +")";
 			}
