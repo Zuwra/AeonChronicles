@@ -18,6 +18,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public float supplyMax;
 	public float currentSupply;
+	public float supplyCap;
 
 	public Ability UltOne;
 	public Slider slideOne;

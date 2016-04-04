@@ -59,6 +59,10 @@ public class UnitStats : MonoBehaviour {
 		if (isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 	
 		}
+		if (Time.time < 1) {
+			GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (supply);
+
+		}
 
 	}
 

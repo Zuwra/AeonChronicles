@@ -42,7 +42,7 @@ public class BuildUnit : UnitProduction {
 			mySelect.updateCoolDown (1- timer/buildTime);
 			if(timer <=0)
 			{mySelect.updateCoolDown (0);
-				Debug.Log ("Finished");
+				
 				buildingUnit = false;
 				createUnit();
 			}

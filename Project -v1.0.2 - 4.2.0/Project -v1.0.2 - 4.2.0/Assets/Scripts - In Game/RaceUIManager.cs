@@ -42,6 +42,14 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 		resourceOne.text = OneName + "" + raceManager.ResourceOne;
 		resourceTwo.text = TwoName + "" + raceManager.ResourceTwo;
+
+		if ( raceManager.currentSupply < raceManager.supplyMax - 5 ||  raceManager.supplyMax == raceManager.supplyCap) {
+			supply.color = Color.green;
+		} else if ( raceManager.currentSupply >= raceManager.supplyMax - 1) {
+			supply.color = Color.red;
+		} else {
+			supply.color = Color.yellow;
+		}
 		supply.text =  raceManager.currentSupply + "/" + raceManager.supplyMax;
 		currentProdManager = dropdowns [0];
 	}
@@ -125,13 +133,6 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	}
 
 
-
-
-
-
-
-
-
 	
 	public void updateResources(float resOne, float resTwo){
 		resourceOne.text = OneName + "   "+ resOne;
@@ -140,6 +141,13 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	
 	
 	public void updateSupply( float current, float max){
+		if (current < max - 5||  raceManager.supplyMax == raceManager.supplyCap) {
+			supply.color = Color.green;
+		} else if (current >= max - 1) {
+			supply.color = Color.red;
+		} else {
+			supply.color = Color.yellow;
+		}
 		supply.text = current + "/" + max;
 	}
 	
