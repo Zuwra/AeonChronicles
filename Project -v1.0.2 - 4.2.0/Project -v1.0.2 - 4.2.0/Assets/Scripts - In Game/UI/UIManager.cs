@@ -13,8 +13,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public Material goodPlacement;
 	public Material badPlacement;
 	//Width of GUI menu
-	private float m_GuiWidth;
-	
+
 	//Action Variables
 	private HoverOver hoverOver = HoverOver.Terrain;
 	private GameObject currentObject;
@@ -29,10 +28,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 	private IMiniMapController m_MiniMapController;
 	
 	//Building Placement variables
-	//private Action m_CallBackFunction;
-	//private Item m_ItemBeingPlaced;
+
 	public GameObject m_ObjectBeingPlaced;
-	//private bool m_PositionValid = true;
 	private bool m_Placed = false;
 
 	private RaceManager raceManager;
@@ -84,8 +81,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		eventsManager.ScreenEdgeMousePosition += MouseAtScreenEdgeHandler;
 
 		raceManager = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager>().activePlayer;
-		//Attach gui width changed event	
-		GUIEvents.MenuWidthChanged += MenuWidthChanged;
+	
 		
 		//Loader.main.FinishedLoading (this);
 	}
@@ -151,7 +147,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 				targetPoint.y += 60;
 				AbilityTargeter.transform.position =  targetPoint;
 
-
 			}
 
 			break;
@@ -176,8 +171,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 			//We're over the main screen, let's raycast
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;		
-
-
 
 		if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(5 << 12))) {
 
@@ -212,9 +205,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		}
 	
-		if (hoverOver == HoverOver.Menu || m_SelectedManager.ActiveObjectsCount() == 0 || m_GuiManager.GetSupportSelected != 0)
+		if (hoverOver == HoverOver.Menu || m_SelectedManager.ActiveObjectsCount() == 0 )
 		{
-			//Nothing orderable Selected or mouse is over menu or support is selected
+			//Nothing orderable Selected or mouse is over menu 
 			CalculateInteraction (hoverOver, ref interactionState);
 		}
 		else if (m_SelectedManager.ActiveObjectsCount() >0 && (hoverOver == HoverOver.Unit ||hoverOver == HoverOver.Building) )
@@ -229,37 +222,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 	}
 	
 	private void CalculateInteraction(HoverOver hoveringOver, ref InteractionState interactionState)
-	{
-		switch (hoveringOver)
-		{
-		case HoverOver.Menu:	
-			break;
-		case HoverOver.Terrain:
-			//Normal Interaction
+	{interactionState = InteractionState.Select;
+		if (hoveringOver == HoverOver.Terrain) {
 			interactionState = InteractionState.Nothing;
-			break;
-			
-		case HoverOver.Unit:
-			//Select interaction
-			interactionState = InteractionState.Select;
-
-			break;
-			
-			
-				
-		case HoverOver.Building:
-			interactionState = InteractionState.Select;
-			break;
-
-		case HoverOver.neutral:
-			
-			interactionState = InteractionState.Select;
-			break;
-			
 		}
+
 	}
 	
-	private void CalculateInteraction(IOrderable obj, HoverOver hoveringOver, ref InteractionState interactionState)
+	private void CalculateInteraction(RTSObject obj, HoverOver hoveringOver, ref InteractionState interactionState)
 	{	interactionState = InteractionState.Select;
 		
 		if (currentObject != null) {
@@ -296,14 +266,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 	//----------------------Mouse Button Handler------------------------------------
 	private void ButtonClickedHandler(object sender, MouseEventArgs e)
 	{
-		//If mouse is over GUI then we don't want to process the button clicks
-		if (e.X < Screen.width-m_GuiWidth)
-		{
+
 			e.Command ();
-		}
+
 	}
-	//-----------------------------------------------------------------------------
-	
+
 	//------------------------Mouse Button Commands--------------------------------------------
 	public void LeftButton_SingleClickDown(MouseEventArgs e)
 	{
@@ -319,7 +286,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 			//int currentObjLayer = currentObject.layer;
 			originalPosition = Input.mousePosition;
 			break;
-
 
 		}
 		
@@ -587,8 +553,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 					Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 					RaycastHit hit;		
 				
-				
-				
 					if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
 						Vector3 attackMovePoint = hit.point;
 			
@@ -626,20 +590,13 @@ public class UIManager : MonoBehaviour, IUIManager {
 		}
 	}
 	
-	public void RightButton_DoubleClick(MouseEventArgs e)
-	{
-		
-	}
-	
+
 	public void MiddleButton_SingleClick(MouseEventArgs e)
 	{
 		
 	}
 	
-	public void MiddleButton_DoubleClick(MouseEventArgs e)
-	{
-		
-	}
+
 	//------------------------------------------------------------------------------------------
 	
 	private void ScrollWheelHandler(object sender, ScrollWheelEventArgs e)
@@ -668,11 +625,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		return currentObject == obj.gameObject;
 	}
 	
-	public void MenuWidthChanged(float newWidth)
-	{
-		m_GuiWidth = newWidth;
-	}
-	
+
 	public void UserPlacingBuilding(GameObject item, int i)
 	{
 		currentAbilityNUmber = i;
@@ -721,8 +674,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		{
 			Destroy (m_ObjectBeingPlaced);
 		}
-		//m_CallBackFunction = null;
-		//m_ItemBeingPlaced = null;
+	
 		m_Mode = Mode.Normal;
 	}
 	

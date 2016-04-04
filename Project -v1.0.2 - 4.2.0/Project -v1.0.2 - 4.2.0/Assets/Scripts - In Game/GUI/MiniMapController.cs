@@ -46,7 +46,7 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 		
 	}
 	
-	public void LoadMiniMap(out float guiWidth)
+	public void LoadMiniMap()
 	{
 		//Properly configure camera viewport so it's a square and it's in the correct place regardless of resolution
 		//Always want the map to appear 3/4 up the screen, with a height of 1/4.5
@@ -72,10 +72,8 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 		// I commented these out because the program was originally designed with a C&C right hand side game hud, units couldn't be told to move there
 		//float miniMapX = 0;// Camera.main.ViewportToScreenPoint(new Vector3(viewPortX, viewPortY, 0)).x;
 		///float miniMapX2 = 0;// Camera.main.ViewportToScreenPoint(new Vector3(viewPortX+viewPortWidth, viewPortY, 0)).x;
-		float miniMapWidth = 0;// miniMapX2 - miniMapX;
-		float miniMapGap = 0;// Screen.width-miniMapX2;
-		
-		guiWidth = miniMapWidth+(2*miniMapGap);
+
+
 		//m_MenuWidth = guiWidth;
 		//ManagerResolver.Resolve<ICamera>().SetMenuWidth (m_MenuWidth);
 		

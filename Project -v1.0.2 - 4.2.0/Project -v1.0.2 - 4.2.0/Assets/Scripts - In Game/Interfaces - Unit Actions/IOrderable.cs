@@ -13,5 +13,4 @@ public interface IOrderable {
 	GameObject getObject();
 
 
-	bool ShouldInteract(HoverOver hoveringOver);
 }

@@ -15,6 +15,6 @@ public interface ISelectedManager {
 	
 	bool IsObjectSelected(GameObject obj);
 	
-	IOrderable FirstActiveObject();
-	List<IOrderable>ActiveObjectList();
+	RTSObject FirstActiveObject();
+	List<RTSObject>ActiveObjectList();
 }

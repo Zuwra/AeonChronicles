@@ -22,13 +22,9 @@ public class RightButton_Handler : MouseEventArgs {
 	{
 		IUIManager uiManager = ManagerResolver.Resolve<IUIManager>();
 		
-		if (doubleClick)
-		{
-			uiManager.RightButton_DoubleClick (this);
-		}
-		else
-		{
+	
+
 			uiManager.RightButton_SingleClick (this);
-		}
+
 	}
 }

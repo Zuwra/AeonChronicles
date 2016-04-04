@@ -28,16 +28,13 @@ public abstract class RTSObject : MonoBehaviour {
 		get;
 		private set;
 	}
-	
-	private float m_Health;
-	private float m_MaxHealth;
-	
+
 	public abstract void SetSelected();
 	public abstract void ToggleSelected();
 	public abstract void SetDeselected();
 	public abstract void AssignToGroup(int groupNumber);
 	public abstract void RemoveFromGroup();
-	public abstract void ChangeTeams(int team);
+
 
 
 	public List<Ability> abilityList;
@@ -48,33 +45,18 @@ public abstract class RTSObject : MonoBehaviour {
 
 
 	public abstract bool UseAbility (int n);
-
-
+	//public abstract void GiveOrder (Order order);
 	public abstract bool UseTargetAbility(GameObject obj, Vector3 loc, int n);
 
 	public abstract void autoCast (int n);
 
-	public float GetHealthRatio()
-	{
-		return m_Health/m_MaxHealth;
-	}
+
 	
 	protected void Awake()
 	{
 		UniqueID = ManagerResolver.Resolve<IManager>().GetUniqueID();
 	}
 	
-	protected void AssignDetails(Item item)
-	{
-		Name = item.Name;
-		ID = item.ID;
-		TeamIdentifier = item.TeamIdentifier;
-		m_MaxHealth = item.Health;
-		m_Health = m_MaxHealth;
-	}
-	
-	public void TakeDamage(float damage)
-	{
-		m_Health -= damage;
-	}
+
+
 }

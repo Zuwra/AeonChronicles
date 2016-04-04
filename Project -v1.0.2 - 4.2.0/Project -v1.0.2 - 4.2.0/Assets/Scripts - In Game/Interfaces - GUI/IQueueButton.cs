@@ -8,7 +8,7 @@ public interface IQueueButton : IButton
 	int BuildingID { get; }
 	
 	void UpdateRect(int Id);
-	void UpdateQueueContents(List<Item> availableItems);
+
 	void SetSelected();
 	void Resize(Rect area);
 }

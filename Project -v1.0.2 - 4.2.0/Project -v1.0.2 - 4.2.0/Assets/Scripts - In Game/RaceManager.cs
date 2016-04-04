@@ -47,8 +47,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 	private List<GameObject> resourceDropOffs = new List<GameObject> ();
-    private List<IResource> knownGatherPoints = new List<IResource>();
-
+   
 	private List<ManagerWatcher> myWatchers = new List<ManagerWatcher>();
 
 	private List<GameObject> unitList = new List<GameObject>();
@@ -477,14 +476,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
-    public void updateGatherLocations(IResource resource)
-    {
-        if (!knownGatherPoints.Contains(resource))
-        {
-            knownGatherPoints.Add(resource);
-            resource.known = true;
-        }
-    }
+   
 
 
 

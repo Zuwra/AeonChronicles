@@ -41,7 +41,7 @@ public class ResourceCarry : MonoBehaviour {
 
 		nearestDropoff = manager.getNearestDropOff (this.gameObject);
 		myState = workerState.Carry;
-		this.gameObject.GetComponent<MovementComponent> ().queueTargetLocation (nearestDropoff.transform.position);
+	this.gameObject.GetComponent<UnitManager> ().cMover.resetMoveLocation(nearestDropoff.transform.position);
 	}
 
 

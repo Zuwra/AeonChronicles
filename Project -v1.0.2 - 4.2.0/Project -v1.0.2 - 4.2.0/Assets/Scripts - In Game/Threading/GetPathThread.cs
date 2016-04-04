@@ -9,9 +9,9 @@ public class GetPathThread : ThreadedJob
 	private Tile m_TargetTile;
 	private int m_BlockingLevel;
 	
-	private RTSObject m_ObjectCalling;
+	//private RTSObject m_ObjectCalling;
 	
-	private List<Vector3> m_Result;
+//	private List<Vector3> m_Result;
 	
 	private static object m_Lock = new object();
 	
@@ -20,11 +20,11 @@ public class GetPathThread : ThreadedJob
 	
 	public GetPathThread(RTSObject objectCalling, Tile currentTile, Tile targetTile, int blockingLevel, CallBackDelegate callBackFunction = null)
 	{
-		m_ObjectCalling = objectCalling;
-		m_CurrentTile = currentTile;
-		m_TargetTile = targetTile;
-		m_BlockingLevel = blockingLevel;
-		m_CallBackFunction = callBackFunction;
+		//m_ObjectCalling = objectCalling;
+	//	m_CurrentTile = currentTile;
+		//m_TargetTile = targetTile;
+		//m_BlockingLevel = blockingLevel;
+		//m_CallBackFunction = callBackFunction;
 	}
 	
 	protected override void ThreadFunction ()
@@ -32,19 +32,18 @@ public class GetPathThread : ThreadedJob
 		//Lock the threaded function, this forces the threads to wait for eachother so they don't try to alter the grid at the same time
 		lock (m_Lock)
 		{
-			A_Star aStar = new A_Star();
-			m_Result = aStar.FindVectorPath (m_CurrentTile, m_TargetTile, m_BlockingLevel);
+			//A_Star aStar = new A_Star();
+		//	m_Result = aStar.FindVectorPath (m_CurrentTile, m_TargetTile, m_BlockingLevel);
 		}
 	}
 
 	protected override void OnFinished ()
 	{
 		//Once we're finished give the calling object it's path
-		m_ObjectCalling.GetComponent<LandMovement>().SetPath (m_Result);
-		
-		if (m_CallBackFunction != null)
-		{
-			m_CallBackFunction();
-		}
+	
+		//if (m_CallBackFunction != null)
+		//{
+		//	m_CallBackFunction();
+		//}
 	}
 }

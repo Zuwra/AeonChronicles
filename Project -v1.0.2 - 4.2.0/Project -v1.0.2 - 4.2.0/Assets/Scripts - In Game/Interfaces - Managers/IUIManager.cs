@@ -28,11 +28,9 @@ public interface IUIManager
 	void LeftButton_SingleClickUp(MouseEventArgs e);
 	
 	void RightButton_SingleClick(MouseEventArgs e);
-	void RightButton_DoubleClick(MouseEventArgs e);
-		
+
 	void MiddleButton_SingleClick(MouseEventArgs e);
-	void MiddleButton_DoubleClick(MouseEventArgs e);
-	
+
 	void UserPlacingBuilding(GameObject item, int n);
 	
 	void SwitchMode(Mode mode);

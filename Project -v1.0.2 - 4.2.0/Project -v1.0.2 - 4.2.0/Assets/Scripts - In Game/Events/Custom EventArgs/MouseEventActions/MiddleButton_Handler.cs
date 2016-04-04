@@ -11,14 +11,8 @@ public class MiddleButton_Handler : MouseEventArgs {
 	public override void Command()
 	{
 		IUIManager uiManager = ManagerResolver.Resolve<IUIManager>();
-		
-		if (doubleClick)
-		{
-			uiManager.MiddleButton_DoubleClick (this);
-		}
-		else
-		{
+
 			uiManager.MiddleButton_SingleClick (this);
-		}
+
 	}
 }

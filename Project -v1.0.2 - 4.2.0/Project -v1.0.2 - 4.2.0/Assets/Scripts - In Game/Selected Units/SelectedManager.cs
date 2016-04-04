@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class SelectedManager : MonoBehaviour, ISelectedManager
 {
 
-    private List<IOrderable> SelectedActiveObjects = new List<IOrderable>();
+
     private List<RTSObject> SelectedObjects = new List<RTSObject>();
 
     //used for UI grouping
@@ -23,6 +23,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     public UiAbilityManager abilityManager;
     private RaceManager raceMan;
 
+	//Used for the F5-F8 Selection buttons
 	public List<List<string>> globalSelection = new List<List<string>> ();
 	private TargetCircleManager targetManager;
 
@@ -40,19 +41,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		controlUI = GameObject.FindObjectOfType<ControlGroupUI> ();
 		pageUI = GameObject.FindObjectOfType<PageUIManager> ();
 		targetManager = GameObject.FindObjectOfType<TargetCircleManager> ();
-		//Debug.Log ("Current page " + UIPages.Count);
-    }
 
-    public int OverlayWidth
-    {
-        get;
-        private set;
     }
 
 
     void Update()
-    {
-
+	{
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             attackMoveO();
@@ -104,22 +98,18 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             else if (Input.GetKeyDown(KeyCode.Alpha7))
             {
                 AddUnitsToGroup(6);
-				controlUI.activateTab (6);
-			
+				controlUI.activateTab (6);			
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha8))
             {
                 AddUnitsToGroup(7);
 				controlUI.activateTab (7);
-
             }
-
-            else if (Input.GetKeyDown(KeyCode.Alpha9))
+			 else if (Input.GetKeyDown(KeyCode.Alpha9))
             {
                 AddUnitsToGroup(8);
 				controlUI.activateTab (8);
-			
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -142,59 +132,42 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             else if (Input.GetKeyDown(KeyCode.Alpha5))
             {SelectGroup(4); }
             else if (Input.GetKeyDown(KeyCode.Alpha6))
-            { SelectGroup(5);
-            }
+            { SelectGroup(5);}
             else if (Input.GetKeyDown(KeyCode.Alpha7))
-            { SelectGroup(6);
-            }
+            { SelectGroup(6);}
             else if (Input.GetKeyDown(KeyCode.Alpha8))
-            {SelectGroup(7);
-            }
+            {SelectGroup(7); }
             else if (Input.GetKeyDown(KeyCode.Alpha9))
-            {SelectGroup(8);
-            }
+            {SelectGroup(8); }
             else if (Input.GetKeyDown(KeyCode.Alpha0))
-            {SelectGroup(9);
-            }
+            {SelectGroup(9); }
 
         }
 
         if (Input.GetKeyUp(KeyCode.Q))
-        { callAbility(0);
-        }
+        { callAbility(0);}
         else if (Input.GetKeyUp(KeyCode.W))
-        {callAbility(1);
-        }
+        {callAbility(1);}
         else if (Input.GetKeyUp(KeyCode.E))
-        {callAbility(2);
-        }
+        {callAbility(2);}
         else if (Input.GetKeyUp(KeyCode.R))
-        {callAbility(3);
-        }
+        {callAbility(3);}
         else if (Input.GetKeyUp(KeyCode.A))
-        {callAbility(4);
-        }
+        {callAbility(4);}
         else if (Input.GetKeyUp(KeyCode.S))
-        {callAbility(5);
-        }
+        {callAbility(5); }
         else if (Input.GetKeyUp(KeyCode.D))
-        {callAbility(6);
-        }
+        {callAbility(6);}
         else if (Input.GetKeyUp(KeyCode.F))
-        {callAbility(7);
-        }
+        {callAbility(7);}
         else if (Input.GetKeyUp(KeyCode.Z))
-        {callAbility(8);
-        }
+        {callAbility(8); }
         else if (Input.GetKeyUp(KeyCode.X))
-        {callAbility(9);
-        }
+        {callAbility(9); }
         else if (Input.GetKeyUp(KeyCode.C))
-        {callAbility(10);
-        }
+        {callAbility(10);}
         else if (Input.GetKeyUp(KeyCode.V))
-        {callAbility(11);
-        }
+        {callAbility(11);}
 
         if (Input.GetKeyUp(KeyCode.BackQuote))
         {
@@ -276,6 +249,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
 		}
     }
+
 	public bool checkValidTarget(Vector3 location, GameObject obj, int n) 
 	{
 		if (UIPages.Count > 0) {
@@ -302,7 +276,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
         main = this;
 
-        OverlayWidth = 80;
     }
 
     /**
@@ -317,12 +290,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     public void AddObject(RTSObject obj)
     {
         if (!SelectedObjects.Contains(obj))
-        {
-            if (obj is IOrderable)
-			{
-                SelectedActiveObjects.Add((IOrderable)obj);
-            }
-
+        {       
             SelectedObjects.Add(obj);
 
             obj.SetSelected();
@@ -363,7 +331,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		}
 
 		SelectedObjects.Clear();
-		SelectedActiveObjects.Clear();
 
 		UIPages.Clear();
 		tempAbilityGroups.Clear();
@@ -393,7 +360,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		}
 
 		SelectedObjects.Clear();
-		SelectedActiveObjects.Clear();
 
 		UIPages.Clear();
 		tempAbilityGroups.Clear();
@@ -491,15 +457,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             {
 
                 n++;
-
-
-                if (n > 5)
+                if (n > 6)
                 {
                     break;
                 }
                 if (UIPages.Count <= n)
                 {
-
                     UIPages.Add(new Page());
                 }
             }
@@ -529,7 +492,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         }
 
         SelectedObjects.Clear();
-        SelectedActiveObjects.Clear();
 
         UIPages.Clear();
         tempAbilityGroups.Clear();
@@ -551,10 +513,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         if (!SelectedObjects.Contains(obj))
             return;
 
-        if (obj is IOrderable)
-        {
-            SelectedActiveObjects.Remove((IOrderable)obj);
-        }
         if (obj)
         {
             obj.SetDeselected();
@@ -588,42 +546,33 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     public void GiveOrder(Order order)
 	{//fix this once we get to multiplayer games
 
-		if(SelectedActiveObjects.Count == 0 || SelectedActiveObjects[0].getObject().GetComponent<UnitManager>().PlayerOwner != 1)
+		if(SelectedObjects.Count == 0 || SelectedObjects[0].gameObject.GetComponent<UnitManager>().PlayerOwner != 1)
 			{return;}
+			
 
-
-		//foreach (IOrderable obj in SelectedActiveObjects) {
-		//	obj.GiveOrder (order);
-		//}
-
-
-		if (order.OrderType == 1 && SelectedActiveObjects.Count > 0) {
-			Vector3 location = order.OrderLocation;
-			location.y = location.y + 30;
+		Vector3 location = order.OrderLocation;
+		location.y = location.y + 30;
+		if (order.OrderType == 1 && SelectedObjects.Count > 0) {
+			
 			Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
 
 			assignMoveCOmmand (order.OrderLocation, false);
 
-		} else if (order.OrderType == 4 && SelectedActiveObjects.Count > 0) {
-			Vector3 location = order.OrderLocation;
-			location.y = location.y + 30;
+		} else if (order.OrderType == 4 && SelectedObjects.Count > 0) {
+			
 			Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
-
 
 			assignMoveCOmmand (order.OrderLocation, true);
 
-
 		} 
-		else if (order.OrderType == 6 && SelectedActiveObjects.Count > 0) {
+		else if (order.OrderType == 6 && SelectedObjects.Count > 0) {
 			
 
 			if (order.Target.GetComponent<UnitManager> () && order.Target.GetComponent<UnitManager> ().PlayerOwner != 1) {
-				Vector3 location = order.OrderLocation;
-				location.y = location.y + 30;
+
 				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
 			} else {
-				Vector3 location = order.OrderLocation;
-				location.y = location.y + 30;
+
 				Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
 			}
 		
@@ -634,17 +583,17 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	public void assignMoveCOmmand(Vector3 targetPoint, bool attack)
 	{
 		List<Vector3> points = new List<Vector3> ();
-		for (int i = 0; i < SelectedActiveObjects.Count; i++) {
+		for (int i = 0; i < SelectedObjects.Count; i++) {
 
-			float deg = 2 * Mathf.PI * i / SelectedActiveObjects.Count;
-			Vector3 p = targetPoint + new Vector3 (Mathf.Cos (deg), 0, Mathf.Sin (deg))  *( SelectedActiveObjects.Count -1) *4;
+			float deg = 2 * Mathf.PI * i / SelectedObjects.Count;
+			Vector3 p = targetPoint + new Vector3 (Mathf.Cos (deg), 0, Mathf.Sin (deg))  *( SelectedObjects.Count -1) *4;
 			points.Add (p);
 		}
 		List<IOrderable> usedGuys = new List<IOrderable> ();
-		while (usedGuys.Count < SelectedActiveObjects.Count) {
+		while (usedGuys.Count < SelectedObjects.Count) {
 			float maxDistance = 0;
 			IOrderable closestUnit = null;
-			foreach (IOrderable obj in SelectedActiveObjects) {
+			foreach (IOrderable obj in SelectedObjects) {
 				if (!usedGuys.Contains (obj) && Vector3.Distance (obj.getObject ().transform.position, targetPoint) > maxDistance) {
 					maxDistance = Vector3.Distance (obj.getObject ().transform.position, targetPoint);
 					closestUnit = obj;
@@ -671,7 +620,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			} else {
 				Order o = Orders.CreateMoveOrder (closestSpot);
 				closestUnit.GiveOrder (o);
-				//Debug.Log ("Ordering " + closestUnit.getObject());
+
 			}
 	
 			points.Remove (closestSpot);
@@ -694,15 +643,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             Group[groupNumber].Add(obj);
 
         }
-
         CreateUIPages(0);
     }
+
 
     public void SelectGroup(int groupNumber)
     {
         DeselectAll();
-
-
         foreach (RTSObject obj in Group[groupNumber])
         {
             AddObject(obj);
@@ -712,17 +659,17 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     public int ActiveObjectsCount()
     {
-        return SelectedActiveObjects.Count;
+        return SelectedObjects.Count;
     }
 
-    public IOrderable FirstActiveObject()
+	public RTSObject FirstActiveObject()
     {
-        return SelectedActiveObjects[0];
+        return SelectedObjects[0];
     }
 
-    public List<IOrderable> ActiveObjectList()
+	public List<RTSObject> ActiveObjectList()
     {
-        return SelectedActiveObjects;
+        return SelectedObjects;
     }
 
     public bool IsObjectSelected(GameObject obj)
@@ -746,9 +693,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     public void selectAllUnbound()
     {
-
         selectAllArmy();
-
 
         foreach (List<RTSObject> obj in Group)
         {
@@ -810,8 +755,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         //We're over the main screen, let's raycast
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
-
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 16)))
         {

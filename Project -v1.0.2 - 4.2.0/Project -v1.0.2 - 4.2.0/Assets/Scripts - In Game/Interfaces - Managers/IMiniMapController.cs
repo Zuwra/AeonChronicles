@@ -3,6 +3,6 @@ using System.Collections;
 
 public interface IMiniMapController {
 
-	void LoadMiniMap(out float guiWidth);
+	void LoadMiniMap();
 	void ReCalculateViewRect();
 }
