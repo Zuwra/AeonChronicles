@@ -262,7 +262,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		if (!EventSystem.current.IsPointerOverGameObject ()) {
-			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(8))) {
+			if (Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8)) {
+
 				Vector3 spot = hit.point;
 				spot.y += 7;
 
@@ -482,7 +483,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				if (!EventSystem.current.IsPointerOverGameObject ()) {
 					ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
-					if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(11))) {
+					if (Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8)) {
 						targetPoint = hit.point;
 
 					}

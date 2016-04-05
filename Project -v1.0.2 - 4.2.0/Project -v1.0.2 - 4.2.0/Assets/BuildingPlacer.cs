@@ -9,18 +9,45 @@ public class BuildingPlacer : MonoBehaviour {
 	public GameObject building;
 	public Material good;
 	public Material bad;
+
+	private SphereCollider coll;
 	// Use this for initialization
 	void Start () {
-	
+		coll = GetComponent<SphereCollider> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		if (building) {
+			Tile t = Grid.GetClosestTile (this.gameObject.transform.position);
+		
+			if (!t.Buildable) {
+				if (Vector3.Distance (t.Center, this.gameObject.transform.position) < coll.radius ) {
+					setRenderers (bad);
+				} else {
+					setRenderers (good);
+				}
+			}else {
+				setRenderers (good);
+			}
+		}
 	}
 
 	public bool canBuild()
-	{
+	{  
+			Tile t = Grid.GetClosestTile (this.gameObject.transform.position);
+
+			if (!t.Buildable) {
+				if (Vector3.Distance (t.Center, this.gameObject.transform.position) < coll.radius) {
+					setRenderers (bad);
+				} else {
+					setRenderers (good);
+				}
+			}else {
+				setRenderers (good);
+			}
+
 		return (objects.Count == 0);
 	}
 
@@ -66,10 +93,15 @@ public class BuildingPlacer : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		objects.Add (other.gameObject);
+		UnitManager manage = other.gameObject.GetComponent<UnitManager> ();
+		if (manage) {
+			if (manage.PlayerOwner != 1 || manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+				objects.Add (other.gameObject);
 
-		if (objects.Count > 0) {
-			setRenderers (bad);}
+					setRenderers (bad);
+
+			}
+		}
 	}
 
 

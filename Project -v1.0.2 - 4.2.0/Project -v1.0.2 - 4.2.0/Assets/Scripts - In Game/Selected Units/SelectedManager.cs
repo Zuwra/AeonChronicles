@@ -37,7 +37,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
         abilityManager = GameObject.Find("GameHud").GetComponent<UiAbilityManager>();
         raceMan = GameObject.Find("GameRaceManager").GetComponent<GameManager>().activePlayer;
-
+		main = this;
 		controlUI = GameObject.FindObjectOfType<ControlGroupUI> ();
 		pageUI = GameObject.FindObjectOfType<PageUIManager> ();
 		targetManager = GameObject.FindObjectOfType<TargetCircleManager> ();

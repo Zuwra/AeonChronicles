@@ -14,7 +14,7 @@ public static class ManagerResolver {
 			TypeDictionary.Add (typeof(T), obj);
 		}
 	}
-	
+
 	public static T Resolve<T>() where T : class
 	{
 		return TypeDictionary[typeof(T)] as T;
