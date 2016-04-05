@@ -92,6 +92,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		switch (m_Mode)
 		{
 		case Mode.Normal:
+			CursorManager.main.normalMode ();
 			ModeNormalBehaviour ();
 			break;
 			
@@ -109,15 +110,22 @@ public class UIManager : MonoBehaviour, IUIManager {
 				currentObject = hit.collider.gameObject;
 
 				try{
+					
 				if (m_SelectedManager.checkValidTarget(targetPoint, currentObject, currentAbilityNUmber)) {
-					AbilityTargeter.GetComponent<Light> ().color = Color.green;
-				} else {
-					AbilityTargeter.GetComponent<Light> ().color = Color.red;
+						if(currentAbility.myTargetType == TargetAbility.targetType.ground)
+							{AbilityTargeter.GetComponent<Light> ().color = Color.green;}
+						else{CursorManager.main.targetMode();}
+							
+					} else {
+						if(currentAbility.myTargetType == TargetAbility.targetType.ground){
+							AbilityTargeter.GetComponent<Light> ().color = Color.red;}
+						else{
+							CursorManager.main.invalidMode();}
 				}
 
 				targetPoint.y += 60;
 				AbilityTargeter.transform.position =  targetPoint;
-			
+					
 				}
 				catch(NullReferenceException) {
 					
@@ -140,8 +148,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 				currentObject = hit.collider.gameObject;
 				if (currentAbility.isValidTarget (currentObject, targetPoint)) {
 					AbilityTargeter.GetComponent<Light> ().color = Color.green;
+					CursorManager.main.targetMode();
 				} else {
 					AbilityTargeter.GetComponent<Light> ().color = Color.red;
+					CursorManager.main.invalidMode();
 				}
 
 				targetPoint.y += 60;
@@ -153,7 +163,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 			
 		case Mode.PlaceBuilding:
-
+			CursorManager.main.normalMode ();
 			ModePlaceBuildingBehaviour();
 			break;
 		}
@@ -204,7 +214,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			}
 
 		}
-	
+
 		if (hoverOver == HoverOver.Menu || m_SelectedManager.ActiveObjectsCount() == 0 )
 		{
 			//Nothing orderable Selected or mouse is over menu 
@@ -224,6 +234,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	private void CalculateInteraction(HoverOver hoveringOver, ref InteractionState interactionState)
 	{interactionState = InteractionState.Select;
 		if (hoveringOver == HoverOver.Terrain) {
+			
 			interactionState = InteractionState.Nothing;
 		}
 
@@ -231,12 +242,13 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 	private void CalculateInteraction(RTSObject obj, HoverOver hoveringOver, ref InteractionState interactionState)
 	{	interactionState = InteractionState.Select;
-		
+
 		if (currentObject != null) {
 		
 			if (currentObject.GetComponentInParent<UnitManager> ().PlayerOwner != raceManager.playerNumber) {
 				interactionState = InteractionState.Attack;
-		
+				CursorManager.main.attackMode ();
+				return;
 			} 
 		}
 
@@ -518,8 +530,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public void setAbility(Ability abil, int n)
 	{currentAbilityNUmber = n;
 		currentAbility = (TargetAbility)abil;
-		AbilityTargeter.GetComponent<Light> ().cookie = currentAbility.targetArea;
-		AbilityTargeter.GetComponent<Light> ().spotAngle = currentAbility.areaSize;
+		if (currentAbility.myTargetType == TargetAbility.targetType.unit) {
+			
+		} else {
+			CursorManager.main.offMode ();
+			AbilityTargeter.SetActive (true);
+			AbilityTargeter.GetComponent<Light> ().cookie = currentAbility.targetArea;
+			AbilityTargeter.GetComponent<Light> ().spotAngle = currentAbility.areaSize;
+		}
 	}
 
 
@@ -639,7 +657,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		case Mode.Normal:
 			SwitchToModeNormal ();
 			AbilityTargeter.SetActive (false);
-
+			CursorManager.main.normalMode ();
 		
 			break;
 			
@@ -648,8 +666,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 			break;
 
 		case Mode.targetAbility:
+			CursorManager.main.targetMode ();
 			m_Mode = Mode.targetAbility;
-			AbilityTargeter.SetActive (true);
+			//AbilityTargeter.SetActive (true);
 			break;
 			
 		case Mode.Disabled:
@@ -659,6 +678,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		case Mode.globalAbility:
 			m_Mode = Mode.globalAbility;
 			AbilityTargeter.SetActive (true);
+			CursorManager.main.targetMode ();
 			break;
 
 		}

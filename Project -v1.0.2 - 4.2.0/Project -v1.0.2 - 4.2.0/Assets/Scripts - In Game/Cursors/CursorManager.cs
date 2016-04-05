@@ -2,83 +2,65 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 
-public class CursorManager : MonoBehaviour, ICursorManager {
+public class CursorManager : MonoBehaviour {
 
-	private Cursor[] Cursors;
-	private Cursor currentCursor;
-	private float cursorSize = 20.0f;
-	
-	//private bool m_ShowCursor = false;
-	//Rect pointer;
+	public Texture2D[] Cursors;
+	private int currentMode =0;
+
 	public static CursorManager main;
 	
 	void Awake()
 	{
 		main = this;
-		UnityEngine.Cursor.visible = false;
+		//UnityEngine.Cursor.visible = false;
 	}
 	
 	void Start()
-	{	// pointer = new Rect(Input.mousePosition.x-(0/2), Screen.height-Input.mousePosition.y-(0/2), cursorSize, cursorSize);
-		Cursor[] temp = GameObject.FindGameObjectWithTag ("Cursors").GetComponents<Cursor>();
-		Cursors = new Cursor[temp.Length];
-		
-		foreach (Cursor c in temp)
-		{
-			Cursors[c.ID] = c;
-		}
-		
-		currentCursor = Cursors[0];
-		
+	{	
+
+		UnityEngine.Cursor.SetCursor (Cursors [0], new Vector2 (0, 0), CursorMode.ForceSoftware);
 		
 	}
 	
 	void Update()
 	{
-		if (currentCursor.IsAnimated)
-		{
-			currentCursor.Animate (Time.deltaTime);
+
+	}
+
+
+	public void normalMode()
+	{if (currentMode != 0) {
+			currentMode = 0;
+			UnityEngine.Cursor.SetCursor (Cursors [0], new Vector2 (0, 0), CursorMode.ForceSoftware);
 		}
-		//GUI.DrawTexture (new Rect(Input.mousePosition.x-(0/2), Screen.height-Input.mousePosition.y-(0/2), cursorSize, cursorSize), currentCursor.GetCursorPicture());
 	}
-	
-	public void UpdateCursor(InteractionState interactionState)
-	{	
-		currentCursor = Cursors[(int)interactionState];		
-	}
-	
-	void OnGUI()
+
+	public void attackMode()
 	{
+		if (currentMode != 1) {
+			currentMode = 1;
+			UnityEngine.Cursor.SetCursor (Cursors [1], new Vector2 (16, 16), CursorMode.ForceSoftware);
+		}
+	}
 
-
-		GUI.DrawTexture (new Rect (Input.mousePosition.x, Screen.height - Input.mousePosition.y, cursorSize, cursorSize), currentCursor.GetCursorPicture ());		/*pointer.Set (Input.mousePosition.x-(0/2), Screen.height-Input.mousePosition.y-(0/2), cursorSize, cursorSize);
-		GUI.DrawTexture ((pointer), currentCursor.GetCursorPicture());
+	public void targetMode()
+		{if (currentMode != 2) {
+				currentMode = 2;
+		UnityEngine.Cursor.SetCursor (Cursors [2], new Vector2 (16, 16), CursorMode.ForceSoftware);
+			}}
 		
-		Debug.Log ("Here");
-		if (m_ShowCursor)
-		{
-			GUI.depth = -2;
-			//Draw Cursor
-			float offset;
-			if (currentCursor.CenterTexture)
-			{
-				offset = cursorSize;
-			}
-			else
-			{
-				offset = 0;
-			}
-			//GUI.DrawTexture (new Rect(Input.mousePosition.x-(offset/2), Screen.height-Input.mousePosition.y-(offset/2), cursorSize, cursorSize), currentCursor.GetCursorPicture());
-		}*/
-	}
-	
-	public void HideCursor()
+
+	public void invalidMode()
 	{
-		//m_ShowCursor = false;
+		if (currentMode != 3) {
+			currentMode = 3;
+			UnityEngine.Cursor.SetCursor (Cursors [3], new Vector2 (16, 16), CursorMode.ForceSoftware);
+		}
 	}
-	
-	public void ShowCursor()
+	public void offMode()
 	{
-		//m_ShowCursor = true;
-	}
+					if (currentMode != 4) {
+						currentMode = 4;
+			UnityEngine.Cursor.SetCursor (Cursors [4], new Vector2 (0, 0), CursorMode.ForceSoftware);}
+				}
 }

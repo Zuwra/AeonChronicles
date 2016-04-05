@@ -391,7 +391,7 @@ public class Grid : MonoBehaviour, IGrid
 		}
 		
 		if (levelLoader != null) levelLoader.FinishLoading ();
-		ManagerResolver.Resolve<ICursorManager>().ShowCursor ();
+
 	}
 	
 	public static void Initialise()

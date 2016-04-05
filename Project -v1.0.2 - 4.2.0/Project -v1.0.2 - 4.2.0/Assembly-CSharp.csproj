@@ -276,7 +276,6 @@
      <Compile Include="Assets\Scripts - In Game\Constants\Const.cs" />
      <Compile Include="Assets\Scripts - In Game\Core\RTSObject.cs" />
      <Compile Include="Assets\Scripts - In Game\Core\Unit.cs" />
-     <Compile Include="Assets\Scripts - In Game\Cursors\Cursor.cs" />
      <Compile Include="Assets\Scripts - In Game\Cursors\CursorManager.cs" />
      <Compile Include="Assets\Scripts - In Game\DamageTypes.cs" />
      <Compile Include="Assets\Scripts - In Game\DefaultState.cs" />
@@ -332,7 +331,6 @@
      <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IQueueContent.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\ITypeButton.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ICamera.cs" />
-     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ICursorManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IEventsManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGLManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGUIManager.cs" />

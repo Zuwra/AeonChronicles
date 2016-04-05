@@ -10,6 +10,8 @@ public abstract class TargetAbility : Ability {
 	public Vector3 location;
 	public Texture targetArea;
 	public float areaSize;
+	public enum targetType{ground, unit}
+	public targetType myTargetType;
 
 	public bool inRange(Vector3 location)
 	{
