@@ -42,6 +42,13 @@ public class airmover : IMover {
 	public void Update () {
 
 	}
+
+
+	override
+	public void stop()
+	{
+	}
+
 	override
 	public bool move()
 	{if (!workingframe) {

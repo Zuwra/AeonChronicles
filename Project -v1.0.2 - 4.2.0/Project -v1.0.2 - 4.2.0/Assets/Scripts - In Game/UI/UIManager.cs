@@ -237,6 +237,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 		if (hoveringOver == HoverOver.Terrain) {
 			
 			interactionState = InteractionState.Nothing;
+		} else {
+			if (!isPointerOverUIObject()) {
+				CursorManager.main.selectMode ();
+			}
 		}
 
 	}

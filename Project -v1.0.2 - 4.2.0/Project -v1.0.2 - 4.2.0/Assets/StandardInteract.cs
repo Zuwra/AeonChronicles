@@ -50,12 +50,14 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 			if (!manage) {
 				manage = order.Target.GetComponentInParent<UnitManager> ();
 			}
+			Debug.Log ("IN standard interact");
 			if (manage != null) {
 
 				if (manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {
 					if (this.gameObject.GetComponent<UnitManager> ().myWeapon == null) {
 						myManager.changeState (new FollowState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
 					} else {
+						Debug.Log ("Ordering to interact");
 						myManager.changeState (new InteractState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
 					}
 				} else {

@@ -61,6 +61,14 @@ public class customMover : IMover {
 	public void Update () {
 
 	}
+
+
+	override
+	public void stop()
+	{path = null;
+	}
+
+
 	override
 	public bool move()
 	{// for some reason the updates are being called out of order so this is here,

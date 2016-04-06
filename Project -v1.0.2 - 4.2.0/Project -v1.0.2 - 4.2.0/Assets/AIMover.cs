@@ -355,6 +355,10 @@ public class AIMover : IMover {
 	}
 
 
+	override
+	public void stop()
+	{
+	}
 
 	override
 	public bool move()

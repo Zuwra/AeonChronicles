@@ -121,7 +121,11 @@ public class CustomRVO : IMover {
 	public void Update () {
 		
 	}
-
+	override
+	public void stop ()
+	{
+		controller.Move (Vector3.zero);
+	}
 	override 
 	public bool move()
 	{

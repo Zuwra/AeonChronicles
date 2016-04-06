@@ -43,8 +43,9 @@ public class Poison : MonoBehaviour {
 			nextActionTime += 1f;
 
 			targetStats.TakeDamage(damageRate,null, DamageTypes.DamageType.True);
+			popper.CreatePopUp ("" + remainingPoison, Color.magenta);
 			remainingPoison -= damageRate;
-			popper.CreatePopUp ("-" + damageRate, Color.magenta);
+		
 			if(remainingPoison <=0)
 			{
 				Destroy(poisonEffect);

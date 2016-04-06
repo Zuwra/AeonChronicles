@@ -118,7 +118,7 @@ public class TurretScreenDisplayer : MonoBehaviour {
 
 		UnitManager manager = other.gameObject.GetComponent<UnitManager>();
 
-		if (manage == null) {
+		if (manage == null || manager == null) {
 			return;
 		}
 			

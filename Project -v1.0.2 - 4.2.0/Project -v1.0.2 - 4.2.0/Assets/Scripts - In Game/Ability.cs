@@ -21,6 +21,8 @@ public abstract class Ability : MonoBehaviour {
 
 	//public GameObject UIButton;
 	protected string description;
+	[Tooltip("Check this if you have programmed something for autocasting")]
+	public bool canAutoCast;
 	public bool autocast;
 	[Tooltip("Check this if this ability should show in UI but be grayed out")]
 	public bool active = false;

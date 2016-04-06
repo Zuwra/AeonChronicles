@@ -393,13 +393,17 @@ public class UiAbilityManager : MonoBehaviour {
 								cb.disabledColor = Color.white;
 								trans.GetComponent<Button> ().interactable = false;
 							}
+
 							trans.GetComponent<Button> ().colors = cb;
 
+						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
 
 						if (man.abilityList [0 + AbilityX * 4].autocast) {
+
 							trans.GetComponent<Button> ().image.color = Color.green;
 						} else {
 							trans.GetComponent<Button> ().image.color = Color.white;
+						
 						}
 
 						Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
@@ -452,11 +456,13 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.GetComponent<Button> ().colors = cb;
 
 
+							trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
 
-						
 							if (man.abilityList [1 + AbilityX * 4].autocast) {
+								
 								trans.GetComponent<Button> ().image.color = Color.green;
 							} else {
+								
 								trans.GetComponent<Button> ().image.color = Color.white;
 							}
 
@@ -514,7 +520,7 @@ public class UiAbilityManager : MonoBehaviour {
 							}
 							trans.GetComponent<Button> ().colors = cb;
 
-
+						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
 							if (man.abilityList [2 + AbilityX * 4].autocast) {
 								trans.GetComponent<Button> ().image.color = Color.green;
 							} else {
@@ -573,7 +579,7 @@ public class UiAbilityManager : MonoBehaviour {
 							}
 							trans.GetComponent<Button> ().colors = cb;
 
-
+						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
 							if (man.abilityList [3 + AbilityX * 4].autocast) {
 								trans.GetComponent<Button> ().image.color = Color.green;
 							} else {

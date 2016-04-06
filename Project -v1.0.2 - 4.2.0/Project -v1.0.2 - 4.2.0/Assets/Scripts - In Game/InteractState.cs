@@ -53,7 +53,7 @@ public class InteractState : UnitState {
 			if (!myWeapon.inRange (target)) {
 				myMover.move ();
 			} else {
-
+			myMover.stop ();
 				if (myWeapon.canAttack (target)) {
 					myWeapon.attack (target);
 
