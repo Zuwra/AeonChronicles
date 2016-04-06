@@ -29,6 +29,12 @@ public class UnitManager : Unit,IOrderable{
 	private Queue<UnitState> queuedStates = new Queue<UnitState> ();
 
 	private UnitState myState;
+	private List<Object> stunSources = new List<Object> ();
+	private List<Object> silenceSources = new List<Object> ();
+
+	private bool isStunned;
+	private bool isSilenced;
+
 
 	new void Awake()
 	{
@@ -122,39 +128,44 @@ public class UnitManager : Unit,IOrderable{
 	override
 	public bool UseAbility(int n)
 	{
+		if (!isStunned && !isSilenced) {
 
-		continueOrder order = null;
-		if (abilityList [n] != null) {
-			order = abilityList [n].canActivate ();
+			continueOrder order = null;
+			if (abilityList [n] != null) {
+				order = abilityList [n].canActivate ();
 
-			if (order.canCast) {
+				if (order.canCast) {
 
-				changeState (new CastAbilityState (abilityList [n]));
+					changeState (new CastAbilityState (abilityList [n]));
+
+				}
 
 			}
-
+			return order.nextUnitCast;
 		}
-	return order.nextUnitCast;
+		return true;
 	}
 
 
 	override
 	public bool UseTargetAbility(GameObject obj, Vector3 loc, int n)
-	{continueOrder order = null;
-		if (abilityList [n] != null) {
+	{continueOrder order = new continueOrder();
+		if (!isStunned && !isSilenced) {
+			if (abilityList [n] != null) {
 	
-			order = abilityList [n].canActivate ();
+				order = abilityList [n].canActivate ();
 		
-			if (order.canCast) {
-				if (abilityList [n] is TargetAbility) {
-					changeState (new AbilityFollowState (obj, loc, (TargetAbility)abilityList [n]));
-				} else if (abilityList [n] is Morph) {
-					changeState (new PlaceBuildingState (loc, abilityList [n]));
+				if (order.canCast) {
+					if (abilityList [n] is TargetAbility) {
+						changeState (new AbilityFollowState (obj, loc, (TargetAbility)abilityList [n]));
+					} else if (abilityList [n] is Morph) {
+						changeState (new PlaceBuildingState (loc, abilityList [n]));
+					}
+
 				}
 
 			}
-
-		}
+		} 
 		return order.nextUnitCast;
 	}
 
@@ -399,6 +410,41 @@ public class UnitManager : Unit,IOrderable{
 	
 	}
 
+	public void setStun(bool input, Object source)
+	{
+		if (input) {
+			stunSources.Add (source);
+		} else {
+			if (stunSources.Contains (source)) {
+			
+				stunSources.Remove (source);}
+		}
+
+			isStunned = (stunSources.Count > 0);
+		
+	}
+	public void setSilence(bool input, Object source)
+	{
+		if (input) {
+			silenceSources.Add (source);
+		} else {
+			if (silenceSources.Contains (source)) {
+
+				silenceSources.Remove (source);}
+		}
+
+		isSilenced= (silenceSources.Count > 0);
+	}
+
+
+	public bool Silenced()
+	{return isSilenced;
+	}
+
+	public bool Stunned()
+	{return isStunned;
+	}
+
 
 	public void setWeapon(IWeapon weap)
 		{
@@ -439,7 +485,3 @@ public class UnitManager : Unit,IOrderable{
 	{return chaseRange;}
 
 }
-
-
-
-

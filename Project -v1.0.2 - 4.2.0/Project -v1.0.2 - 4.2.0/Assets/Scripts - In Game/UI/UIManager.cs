@@ -163,6 +163,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 			
 		case Mode.PlaceBuilding:
+			ModeNormalBehaviour ();
 			CursorManager.main.normalMode ();
 			ModePlaceBuildingBehaviour();
 			break;
@@ -555,9 +556,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 
     public void RightButton_SingleClick(MouseEventArgs e)
 	{
-		
-		if (hoverOver != HoverOver.Menu) {
 
+		if (hoverOver != HoverOver.Menu) {
+			
 			switch (m_Mode) {
 			case Mode.Menu:
 				break;
@@ -600,10 +601,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 			
 			case Mode.PlaceBuilding:
-			
+
 			//Cancel building placement
-				buildingPlacer.SetActive(false);
+				buildingPlacer.SetActive (false);
 				SwitchToModeNormal ();
+
 				break;
 			}
 		}
@@ -691,12 +693,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 	public void SwitchToModeNormal()
 	{buildingPlacer.SetActive (false);
+
 		if (m_ObjectBeingPlaced)
 		{
 			Destroy (m_ObjectBeingPlaced);
 		}
 	
 		m_Mode = Mode.Normal;
+
 	}
 	
 	public void SwitchToModePlacingBuilding(GameObject item)

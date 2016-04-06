@@ -13,8 +13,8 @@ public class Grid : MonoBehaviour, IGrid
 	private static bool m_ShowGrid = false;	
 	private static bool m_ShowOpenTiles = true;
 	private static bool m_ShowClosedTiles = true;
-	private static bool m_ShowBridgeTiles = true;
-	private static bool m_ShowTunnelTiles = true;
+	//private static bool m_ShowBridgeTiles = true;
+	//private static bool m_ShowTunnelTiles = true;
 	
 	private static float m_TileSize = 7.5f;
 	private static int m_Width = 200;
@@ -70,7 +70,7 @@ public class Grid : MonoBehaviour, IGrid
 			m_ShowClosedTiles = value;
 		}
 	}
-	
+	/*
 	public static bool ShowBridgeTiles
 	{
 		get
@@ -94,7 +94,7 @@ public class Grid : MonoBehaviour, IGrid
 			m_ShowTunnelTiles = value;
 		}
 	}
-	
+	*/
 	public static float TileSize
 	{
 		get
@@ -295,7 +295,7 @@ public class Grid : MonoBehaviour, IGrid
 					}
 				}
 				
-				
+				/*
 				foreach (Tile t in tile.LayeredTiles)
 				{
 					if (t.IsBridge)
@@ -314,7 +314,8 @@ public class Grid : MonoBehaviour, IGrid
 							Gizmos.DrawWireCube (t.Center, new Vector3(m_TileSize, 0.1f, m_TileSize));
 						}
 					}
-				}
+
+				}*/
 			}
 		}
 		
@@ -327,7 +328,7 @@ public class Grid : MonoBehaviour, IGrid
 	
 	public static IEnumerator InitialiseAsRoutine()
 	{
-		ILevelLoader levelLoader = ManagerResolver.Resolve<ILevelLoader>();
+		ILevelLoader levelLoader = null;//ManagerResolver.Resolve<ILevelLoader>();
 		
 		m_Grid = new Tile[Width, Length];
 		
@@ -344,13 +345,13 @@ public class Grid : MonoBehaviour, IGrid
 				m_Grid[i,j] = new Tile(i, j, center);
 			}
 		}
-		
+
 		if (levelLoader != null) levelLoader.ChangeText ("Evaluating tiles");
 		yield return null;
-		
+
 		List<Collider> bridgeList = new List<Collider>();
 		List<Collider> tunnelList = new List<Collider>();
-		
+
 		//Evaluate
 		for (int i=0; i<Width; i++)
 		{
@@ -377,7 +378,7 @@ public class Grid : MonoBehaviour, IGrid
 		{
 			BuildTunnel(collider);
 		}
-		
+
 		if (levelLoader != null) levelLoader.ChangeText ("Populating internal array");
 		yield return null;
 		
@@ -411,7 +412,7 @@ public class Grid : MonoBehaviour, IGrid
 				m_Grid[i,j] = new Tile(i, j, center);
 			}
 		}
-		
+
 		List<Collider> bridgeList = new List<Collider>();
 		List<Collider> tunnelList = new List<Collider>();
 		
@@ -631,6 +632,194 @@ public class Grid : MonoBehaviour, IGrid
 		
 		return tileToReturn;
 	}
+
+
+
+
+
+	public static Tile GetClosestRedTile(Vector3 position)
+	{if (m_Grid == null) {
+			Initialise ();
+		}
+		int iValue = (int)((position.x - m_WidthOffset)/m_TileSize);
+		int jValue = (int)((position.z - m_LengthOffset)/m_TileSize);
+
+		if (iValue < 0) iValue = 0;
+		else if (iValue >= Width) iValue = Width-1;
+
+		if (jValue < 0) jValue = 0;
+		else if (jValue >= Length) jValue = Length-1;
+
+		Tile tileToReturn = m_Grid[iValue, jValue];
+
+		float yVal = Mathf.Abs (tileToReturn.Center.y - position.y);
+		foreach (Tile tile in tileToReturn.LayeredTiles)
+		{
+			if (Mathf.Abs (tile.Center.y - position.y) < yVal)
+			{
+				yVal = Mathf.Abs (tile.Center.y - position.y);
+				tileToReturn = tile;
+			}
+		}
+
+		if (tileToReturn.Status == Const.TILE_Blocked){
+			return tileToReturn;}
+	
+
+
+			//Need to iterate to find closest available tile
+			int directionCounter = Const.DIRECTION_Right;
+			int widthCounter = 1;
+			int lengthCounter = 1;
+			int IValue = tileToReturn.I;
+			int JValue = tileToReturn.J;
+
+			while (tileToReturn.Status != Const.TILE_Blocked)
+			{
+				int counter;
+
+				//If we're travelling left or right use the width counter, up or down use the length counter
+				if (directionCounter == Const.DIRECTION_Right || directionCounter == Const.DIRECTION_Left)
+				{
+					counter = widthCounter;
+				}
+				else
+				{
+					counter = lengthCounter;
+				}
+
+				for (int i=0; i<counter; i++)
+				{
+					switch (directionCounter)
+					{
+					case Const.DIRECTION_Right:
+						//Increase I value (go right)
+						IValue++;
+
+						//Check if we're at the width so we don't get an exception
+						if (IValue >= Width)
+						{
+							//We're past the width, decrease I value
+							IValue = Width-1;
+
+							//Set JValue to whatever it is minus lengthcounter (no point checking tiles we've already checked!)
+							JValue = JValue - lengthCounter;
+
+							//Since we've skipped all the downward tiles, go left
+							directionCounter = Const.DIRECTION_Left;
+
+							//Update the length counter as we're skipping it out
+							lengthCounter++;
+						}
+						else
+						{
+							//Have we travelled far enough?
+							if (i == widthCounter - 1)
+							{
+								//We've travelled as far as we want to, change the direction and increase the width counter
+								directionCounter = Const.DIRECTION_Down;
+								widthCounter++;
+							}
+						}
+
+						break;
+
+					case Const.DIRECTION_Down:
+
+						JValue--;
+						if (JValue < 0)
+						{
+							JValue = 0;
+
+							IValue = IValue - widthCounter;
+
+							directionCounter = Const.DIRECTION_Up;
+
+							widthCounter++;
+						}
+						else
+						{
+							if (i == lengthCounter - 1)
+							{
+								directionCounter = Const.DIRECTION_Left;
+								lengthCounter++;
+							}
+						}
+
+						break;
+
+					case Const.DIRECTION_Left:
+
+						IValue--;
+						if (IValue < 0)
+						{
+							IValue = 0;
+
+							JValue = JValue + lengthCounter;
+
+							directionCounter = Const.DIRECTION_Right;
+
+							lengthCounter++;
+						}
+						else
+						{
+							if (i == widthCounter - 1)
+							{
+								directionCounter = Const.DIRECTION_Up;
+								widthCounter++;
+							}
+						}
+
+						break;
+
+					case Const.DIRECTION_Up:
+
+						JValue++;
+						if (JValue >= Length)
+						{
+							JValue = Length-1;
+
+							IValue = IValue + widthCounter;
+
+							directionCounter = Const.DIRECTION_Down;
+
+							widthCounter++;
+						}
+						else
+						{
+							if (i == lengthCounter - 1)
+							{
+								directionCounter = Const.DIRECTION_Right;
+								lengthCounter++;
+							}
+						}
+
+						break;
+					}
+			
+					tileToReturn = m_Grid[IValue, JValue];
+
+					yVal = Mathf.Abs (tileToReturn.Center.y - position.y);
+					foreach (Tile tile in tileToReturn.LayeredTiles)
+					{
+						if (Mathf.Abs (tile.Center.y - position.y) < yVal)
+						{
+							yVal = Mathf.Abs (tile.Center.y - position.y);
+							tileToReturn = tile;
+						}
+					}
+				}
+			}
+
+
+		return tileToReturn;
+	}
+
+
+
+
+
+
 	
 	public static Tile GetClosestAvailableFreeTile(Vector3 position)
 	{
@@ -921,12 +1110,12 @@ public class Grid : MonoBehaviour, IGrid
 			}
 		}
 	}
-	
+
 	public static void SetTunnelSideTileToBlocked(int I, int J)
 	{
 		m_Grid[I, J].Status = Const.TILE_Blocked;
 	}
-	
+
 	public static void AddLayeredTile(int gridI, int gridJ, float height, bool isBridge, Collider collider)
 	{
 		Vector3 baseCenter = m_Grid[gridI, gridJ].Center;
@@ -938,7 +1127,7 @@ public class Grid : MonoBehaviour, IGrid
 	{
 		m_Grid = grid;
 	}
-	
+
 	private static void BuildBridge(Collider bridgeCollider)
 	{
 		//Find min and max tiles
@@ -1072,7 +1261,7 @@ public class Grid : MonoBehaviour, IGrid
 			}
 		}
 	}
-	
+
 	private static void BuildTunnel(Collider tunnelCollider)
 	{
 		//Find min and max tiles

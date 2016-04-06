@@ -14,7 +14,7 @@ public class BuilderUI : MonoBehaviour {
 	public Text perc;
 	private BuildManager myMan;
 	private float nextActionTime;
-	public Material defaultImage;
+	public Sprite defaultImage;
 	// Use this for initialization
 	void Start () {
 		nextActionTime = Time.time;
@@ -61,7 +61,7 @@ public class BuilderUI : MonoBehaviour {
 					que [i].image.sprite = myMan.buildOrder [i].iconPic;
 					numbers [i].SetActive (false);
 				} else {
-					que [i].image.material = defaultImage;
+					que [i].image.sprite = defaultImage;
 					numbers [i].SetActive (true);
 				}
 			}

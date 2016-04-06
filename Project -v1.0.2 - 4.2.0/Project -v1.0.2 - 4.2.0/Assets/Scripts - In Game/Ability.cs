@@ -12,6 +12,7 @@ public abstract class Ability : MonoBehaviour {
 	public AbstractCost myCost;
 	public enum type{passive, target, activated, building}
 	public type myType;
+	[Tooltip("Check this if this ability should not interrupt the units movement")]
 	public bool continueMoving;
 	//These are seperate because Unit inspector wont show dictionaries
 	public List<string> RequiredUnit = new List<string>();
@@ -21,7 +22,7 @@ public abstract class Ability : MonoBehaviour {
 	//public GameObject UIButton;
 	protected string description;
 	public bool autocast;
-	[Tooltip("Check this if this ability should break normal activities.")]
+	[Tooltip("Check this if this ability should show in UI but be grayed out")]
 	public bool active = false;
 
 	//if -1, then it is infinite

@@ -24,8 +24,12 @@ public class EconomyManager : MonoBehaviour {
 		nextActionTime = Time.time + 5;
 
 		updateWorker ();
-		ResourceOne.text = racer.OneName + ": ";
-		ResourceTwo.text = racer.TwoName + ": ";
+		if (racer.OneName.Length > 0) {
+			ResourceOne.text = racer.OneName + ": ";
+		}
+		if (racer.TwoName.Length > 0) {
+			ResourceTwo.text = racer.TwoName + ": ";
+		}
 	}
 	
 	// Update is called once per frame
@@ -44,43 +48,44 @@ public class EconomyManager : MonoBehaviour {
 
 	public void updateAverage()
 	{nextActionTime += 5;
+		if (racer.OneName.Length > 0) {
 			List<float> deleteThese = new List<float> ();
 
 			int totalResOne = 0;
-			foreach(KeyValuePair<float, int> entry in resOneMap)
-			{if (entry.Key + 15 > Time.time) {
+			foreach (KeyValuePair<float, int> entry in resOneMap) {
+				if (entry.Key + 15 > Time.time) {
 					totalResOne += entry.Value;
-			} else {
-				deleteThese.Add (entry.Key);
+				} else {
+					deleteThese.Add (entry.Key);
+				}
 			}
-		}
 
 			foreach (float f in deleteThese) {
 				resOneMap.Remove (f);
 			}
 
-			ResourceOne.text = racer.OneName + ": " + totalResOne*4;
+			ResourceOne.text = racer.OneName + ": " + totalResOne * 4;
 
-
-
+		}
+		if (racer.TwoName.Length > 0) {
 			List<float> deleteThese2 = new List<float> ();
 
 			int totalResTwo = 0;
-			foreach(KeyValuePair<float, int> entry in resTwoMap)
-			{if (entry.Key + 15 > Time.time) {
+			foreach (KeyValuePair<float, int> entry in resTwoMap) {
+				if (entry.Key + 15 > Time.time) {
 					totalResTwo += entry.Value;
-			} else {
-				deleteThese2.Add (entry.Key);
+				} else {
+					deleteThese2.Add (entry.Key);
+				}
 			}
-		}
 
 			foreach (float f in deleteThese2) {
 				resTwoMap.Remove (f);
 			}
 
-			ResourceTwo.text = racer.TwoName + ": " + totalResTwo*4;
+			ResourceTwo.text = racer.TwoName + ": " + totalResTwo * 4;
 
-
+		}
 		}
 
 

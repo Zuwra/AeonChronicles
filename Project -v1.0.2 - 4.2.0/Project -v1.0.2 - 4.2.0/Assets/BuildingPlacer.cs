@@ -20,23 +20,26 @@ public class BuildingPlacer : MonoBehaviour {
 	void Update () {
 
 		if (building) {
-			Tile t = Grid.GetClosestTile (this.gameObject.transform.position);
+			if (objects.Count == 0) {
+				Tile t = Grid.GetClosestRedTile (this.gameObject.transform.position);
 		
-			if (!t.Buildable) {
-				if (Vector3.Distance (t.Center, this.gameObject.transform.position) < coll.radius ) {
-					setRenderers (bad);
+				if (!t.Buildable) {
+					float dist = Mathf.Pow (t.Center.x - transform.position.x, 2) + Mathf.Pow (t.Center.z - transform.position.z, 2);
+					if (Mathf.Sqrt(dist) < coll.radius) {
+						setRenderers (bad);
+					} else {
+						setRenderers (good);
+					}
 				} else {
 					setRenderers (good);
 				}
-			}else {
-				setRenderers (good);
 			}
 		}
 	}
 
 	public bool canBuild()
 	{  
-			Tile t = Grid.GetClosestTile (this.gameObject.transform.position);
+		Tile t = Grid.GetClosestRedTile(this.gameObject.transform.position);
 
 			if (!t.Buildable) {
 				if (Vector3.Distance (t.Center, this.gameObject.transform.position) < coll.radius) {
@@ -98,9 +101,13 @@ public class BuildingPlacer : MonoBehaviour {
 			if (manage.PlayerOwner != 1 || manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 				objects.Add (other.gameObject);
 
-					setRenderers (bad);
+				setRenderers (bad);
 
 			}
+		} else {
+			objects.Add (other.gameObject);
+
+			setRenderers (bad);
 		}
 	}
 

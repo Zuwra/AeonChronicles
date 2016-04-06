@@ -17,9 +17,11 @@ public class Morph :  UnitProduction {
 	private float timer =0;
 	private bool Morphing = false;
 	private HealthDisplay HD;
+	private BuildManager buildMan;
 
 	// Use this for initialization
 	void Start () {
+		buildMan = GetComponent<BuildManager> ();
 		myManager = this.gameObject.GetComponent<UnitManager> ();
 		myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
@@ -62,6 +64,12 @@ public class Morph :  UnitProduction {
 		myCost.refundCost ();
 		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
 		racer.stopBuildingUnit (this);
+		myManager.setStun (false, this);
+		myManager.changeState(new DefaultState());
+
+		if (mySelect.IsSelected) {
+			SelectedManager.main.updateUI ();
+		}
 	}
 
 	public override float getProgress ()
@@ -94,14 +102,17 @@ public class Morph :  UnitProduction {
 			HD.loadIMage (iconPic);
 
 				myCost.payCost ();
-
+			buildMan.buildUnit (this);
 
 				timer = buildTime;
 				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
 				Morphing = true;
 				racer.buildingUnit (this);
 				myManager.changeState (new ChannelState ());
-
+			myManager.setStun (true, this);
+			if (mySelect.IsSelected) {
+				SelectedManager.main.updateUI ();
+			}
 		} 
 		
 		//return true;//next unit should also do this.

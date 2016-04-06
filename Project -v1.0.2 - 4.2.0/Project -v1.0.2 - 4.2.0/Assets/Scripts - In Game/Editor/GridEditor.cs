@@ -14,8 +14,8 @@ public class GridEditor : Editor
 		EditorGUILayout.LabelField ("Show Grid");
 		EditorGUILayout.LabelField ("Show Open Tiles");
 		EditorGUILayout.LabelField ("Show Closed Tiles");
-		EditorGUILayout.LabelField ("Show Bridge Tiles");
-		EditorGUILayout.LabelField ("Show Tunnel Tiles");
+		//EditorGUILayout.LabelField ("Show Bridge Tiles");
+		//EditorGUILayout.LabelField ("Show Tunnel Tiles");
 		
 		EditorGUILayout.LabelField ("Tile Size");
 		EditorGUILayout.LabelField ("Grid Width");
@@ -33,8 +33,8 @@ public class GridEditor : Editor
 		Grid.ShowGrid = EditorGUILayout.Toggle(Grid.ShowGrid);
 		Grid.ShowOpenTiles = EditorGUILayout.Toggle(Grid.ShowOpenTiles);
 		Grid.ShowClosedTiles = EditorGUILayout.Toggle(Grid.ShowClosedTiles);
-		Grid.ShowBridgeTiles = EditorGUILayout.Toggle(Grid.ShowBridgeTiles);
-		Grid.ShowTunnelTiles = EditorGUILayout.Toggle(Grid.ShowTunnelTiles);
+		//Grid.ShowBridgeTiles = EditorGUILayout.Toggle(Grid.ShowBridgeTiles);
+		//Grid.ShowTunnelTiles = EditorGUILayout.Toggle(Grid.ShowTunnelTiles);
 		
 		Grid.TileSize = EditorGUILayout.FloatField (Grid.TileSize);
 		Grid.Width = EditorGUILayout.IntField(Grid.Width);

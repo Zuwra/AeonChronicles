@@ -370,7 +370,11 @@ public class UiAbilityManager : MonoBehaviour {
 							
 						bool active = false;
 						foreach (RTSObject obj in currentPage.rows [j]) {
-							active = (obj.gameObject.GetComponent<UnitManager> ().abilityList[AbilityX * 4].active);
+							UnitManager Uman = obj.gameObject.GetComponent<UnitManager> ();
+
+							if (!Uman.Silenced() && !Uman.Stunned()) {
+								active = (Uman.abilityList [AbilityX * 4].active);
+							}
 							if (active) {
 								break;}
 							}
@@ -416,12 +420,18 @@ public class UiAbilityManager : MonoBehaviour {
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
 
-						bool active= false;
+						bool active = false;
 						foreach (RTSObject obj in currentPage.rows [j]) {
-							active = (obj.gameObject.GetComponent<UnitManager> ().abilityList[1+AbilityX * 4].active);
+							UnitManager Uman = obj.gameObject.GetComponent<UnitManager> ();
+
+							if (!Uman.Silenced() && !Uman.Stunned()) {
+								active = (Uman.abilityList [1+AbilityX * 4].active);
+							}
 							if (active) {
 								break;}
 						}
+
+
 
 						//if (man.abilityList [AbilityX * 4].active) {
 						if (active) {
@@ -472,14 +482,19 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
-							
-						bool active= false;
-						foreach (RTSObject obj in currentPage.rows [j]) {
-							active = (obj.gameObject.GetComponent<UnitManager> ().abilityList[2 + AbilityX * 4].active);
-							if (active) {
+				
 
+						bool active = false;
+						foreach (RTSObject obj in currentPage.rows [j]) {
+							UnitManager Uman = obj.gameObject.GetComponent<UnitManager> ();
+
+							if (!Uman.Silenced() && !Uman.Stunned()) {
+								active = (Uman.abilityList [AbilityX * 4].active);
+							}
+							if (active) {
 								break;}
 						}
+
 
 						//if (man.abilityList [AbilityX * 4].active) {
 						if (active) {
@@ -527,13 +542,19 @@ public class UiAbilityManager : MonoBehaviour {
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
 							
-						bool active= false;
-						foreach (RTSObject obj in currentPage.rows [j]) {
-							active = (obj.gameObject.GetComponent<UnitManager> ().abilityList[3 + AbilityX * 4].active);
-							if (active) {
 
+						bool active = false;
+						foreach (RTSObject obj in currentPage.rows [j]) {
+							UnitManager Uman = obj.gameObject.GetComponent<UnitManager> ();
+
+							if (!Uman.Silenced() && !Uman.Stunned()) {
+								active = (Uman.abilityList [3 +AbilityX * 4].active);
+							}
+							if (active) {
 								break;}
 						}
+
+
 
 						//if (man.abilityList [AbilityX * 4].active) {
 						if (active) {

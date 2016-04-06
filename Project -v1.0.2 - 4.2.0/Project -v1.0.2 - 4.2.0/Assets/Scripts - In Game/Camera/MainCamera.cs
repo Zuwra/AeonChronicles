@@ -32,7 +32,9 @@ public class MainCamera : MonoBehaviour, ICamera {
 
 	// Use this for initialization
 	void Start () 
-	{	
+	{	if (StartPoint == null) {
+			StartPoint = GameObject.FindObjectOfType<sPoint> ().gameObject;
+		}
 		//Set up camera position
 		if (StartPoint != null)
 		{
