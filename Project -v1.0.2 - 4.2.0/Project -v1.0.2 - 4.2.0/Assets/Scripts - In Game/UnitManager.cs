@@ -195,7 +195,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 		if (interactor != null) {
-			Debug.Log ("Giving ORder");
+		//	Debug.Log ("Giving ORder " + order.Target + "   " + order.OrderLocation);
 			interactor.computeInteractions (order);
 
 		}

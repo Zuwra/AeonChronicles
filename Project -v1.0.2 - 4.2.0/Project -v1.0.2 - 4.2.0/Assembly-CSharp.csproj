@@ -212,6 +212,10 @@
      <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
+     <Compile Include="Assets\FogOfWar\FogOfWar.cs" />
+     <Compile Include="Assets\FogOfWar\FogOfWarUnit.cs" />
+     <Compile Include="Assets\FogOfWar\Test\FogOfWarTestGUI.cs" />
+     <Compile Include="Assets\FogOfWar\Vector2i.cs" />
      <Compile Include="Assets\FusionWeld.cs" />
      <Compile Include="Assets\GameMenu.cs" />
      <Compile Include="Assets\GamePlayMenu.cs" />
@@ -431,6 +435,7 @@
      <Compile Include="Assets\deathTrigger.cs" />
      <Compile Include="Assets\deexaArmor.cs" />
      <Compile Include="Assets\explosion.cs" />
+     <Compile Include="Assets\fogUI.cs" />
      <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\repairReturn.cs" />
@@ -441,7 +446,9 @@
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\Poly2Tri\Poly2TriLicense.txt" />
+     <None Include="Assets\FogOfWar\TransparentShadowCaster.shader" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
+     <None Include="Assets\FogOfWar\Resources\FogOfWarShader.shader" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\dependencies.txt" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
@@ -450,6 +457,7 @@
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Light.shader" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Example8_PathTypes\SquareShader.shader" />
      <None Include="Assets\AstarPathfindingProject\Readme.txt" />
+     <None Include="Assets\FogOfWar\Resources\ClearFogShader.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\JsonFxLicense.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\NavmeshOutline.shader" />
