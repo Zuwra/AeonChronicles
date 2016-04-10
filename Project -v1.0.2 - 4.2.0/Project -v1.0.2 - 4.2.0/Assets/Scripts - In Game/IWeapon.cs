@@ -9,6 +9,9 @@ public class IWeapon : MonoBehaviour {
 
 	public UnitManager myManager;
 	public MultiShotParticle fireEffect;
+	public AudioClip attackSoundEffect;
+	private AudioSource audioSrc;
+
 
 	public float attackPeriod;
 	private float baseAttackPeriod;
@@ -71,7 +74,7 @@ public class IWeapon : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		audioSrc = GetComponent<AudioSource> ();
 		myManager = this.gameObject.GetComponent<UnitManager> ();
 		baseAttackPeriod = attackPeriod;
 		InitialBaseDamage = baseDamage;
@@ -229,7 +232,10 @@ public class IWeapon : MonoBehaviour {
 			if (target == null) {
 				myManager.cleanEnemy ();
 			}
+			if (attackSoundEffect) {
 
+				audioSrc.PlayOneShot (attackSoundEffect);
+			}
 			if (fireEffect) {
 				fireEffect.playEffect ();
 			}

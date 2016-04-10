@@ -51,8 +51,11 @@ public class TurretPickUp : TargetAbility {
 	public void Cast()
 	{ 
 		if (onSwallow) {
+			
 			if (target) {
-	
+				if (soundEffect) {
+					audioSrc.PlayOneShot (soundEffect);
+				}
 
 				if (myMount.turret != null) {
 	

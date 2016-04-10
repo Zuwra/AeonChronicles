@@ -89,7 +89,7 @@ public class TurretScreenDisplayer : MonoBehaviour {
 		if (!other.isTrigger) {
 
 			UnitManager manager = other.gameObject.GetComponent<UnitManager> ();
-			if (manage) {
+			if (manager) {
 				if (manage.PlayerOwner == manager.PlayerOwner) {
 		
 					foreach (TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ()) {

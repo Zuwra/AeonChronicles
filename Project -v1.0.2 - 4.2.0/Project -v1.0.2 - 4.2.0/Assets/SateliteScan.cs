@@ -3,11 +3,9 @@ using System.Collections;
 
 public class SateliteScan : TargetAbility{ 
 
-	private RaceManager racer;
 	public GameObject prefab;
 	// Use this for initialization
 	void Start () {
-		racer = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 
 	}
 
@@ -54,12 +52,8 @@ public class SateliteScan : TargetAbility{
 	{
 		myCost.payCost ();
 
-
-		//	myCost.payCost ();
-
 		GameObject proj = null;
 
-		Vector3 spawnLoc = location;
 
 		location.y += 5;
 		proj = (GameObject)Instantiate (prefab, location, Quaternion.identity);

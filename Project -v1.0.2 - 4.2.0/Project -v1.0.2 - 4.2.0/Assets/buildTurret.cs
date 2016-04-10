@@ -78,6 +78,9 @@ public class buildTurret :UnitProduction{
 
 
 						if (obj.turret == null ) {
+							if (soundEffect) {
+								audioSrc.PlayOneShot (soundEffect);
+							}
 							obj.placeTurret (createUnit ());
 
 				
@@ -96,6 +99,9 @@ public class buildTurret :UnitProduction{
 							return;}
 						
 						if (obj.turret == null) {
+							if (soundEffect) {
+								audioSrc.PlayOneShot (soundEffect);
+							}
 							obj.placeTurret (createUnit ());
 
 
@@ -292,7 +298,7 @@ public class buildTurret :UnitProduction{
 		Vector3 location = new Vector3(this.gameObject.transform.position.x + 25,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z);
 		chargeCount--;
 		RaceManager.upDateUI ();
-	GameObject tur = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
+		GameObject tur = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
 
 		racer.applyUpgrade (tur);
 		buildingUnit = false;

@@ -34,8 +34,8 @@ public abstract class Ability : MonoBehaviour {
 	public abstract continueOrder canActivate();
 	public abstract void Activate();  // returns whether or not the next unit in the same group should also cast it
 	public abstract void setAutoCast();
-
-
+	public AudioClip soundEffect;
+	protected AudioSource audioSrc;
 
 	private bool initialized;
 
@@ -53,6 +53,13 @@ public abstract class Ability : MonoBehaviour {
 		//	Debug.Log (this.gameObject.name + "  was created " + (requirementList.Count == 0) + "   " + (!requirementList.ContainsValue (false)));
 			active = false;
 		} 
+
+	}
+
+	void Awake()
+	{
+		audioSrc = GetComponent<AudioSource> ();
+
 
 	}
 

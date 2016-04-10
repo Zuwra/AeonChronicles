@@ -78,7 +78,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 	public  void computeInteractions (Order order)
 	{
-
+		Debug.Log ("interacting" + order.OrderType);
 		switch (order.OrderType) {
 		//Stop Order----------------------------------------
 		case Const.ORDER_STOP:
@@ -93,7 +93,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 			break;
 
 		case Const.ORDER_Interact:
-
+			
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
 			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo, Hook));
 				break;}
@@ -108,14 +108,16 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 
 			if ((order.Target.gameObject.GetComponent<TurretMount> () && order.Target.gameObject.GetComponent<TurretMount> ().enabled == true) || order.Target.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Turret))
-				{
+			{
 				myManager.changeState (new AbilityFollowState (order.Target.gameObject, order.Target.gameObject.transform.position, GetComponent<TurretPickUp>() ));}
+		
 			else if (order.Target.gameObject.GetComponentInChildren<TurretMount> () && order.Target.gameObject.GetComponentInChildren<TurretMount> ().enabled==true)
 				{GameObject obj = order.Target.gameObject.GetComponentInChildren<TurretMount> ().gameObject;
 				myManager.changeState (new AbilityFollowState (obj, order.Target.gameObject.transform.position, GetComponent<TurretPickUp>() ));
+			
 			}
 			else{
-
+				
 				myManager.changeState (new FollowState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
 			}
 		
@@ -134,8 +136,35 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 		case Const.ORDER_Follow:
 			
+			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
+			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo, Hook));
+				break;}
+
+			checkHook ();
+
+			if (order.Target) {
+				if (order.Target.GetComponent<UnitManager> () == null) {
+					order.Target = order.Target.transform.parent.gameObject;
+				}
+			}
+
+
+			if ((order.Target.gameObject.GetComponent<TurretMount> () && order.Target.gameObject.GetComponent<TurretMount> ().enabled == true) || order.Target.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Turret))
+			{
+				myManager.changeState (new AbilityFollowState (order.Target.gameObject, order.Target.gameObject.transform.position, GetComponent<TurretPickUp>() ));}
+
+			else if (order.Target.gameObject.GetComponentInChildren<TurretMount> () && order.Target.gameObject.GetComponentInChildren<TurretMount> ().enabled==true)
+			{GameObject obj = order.Target.gameObject.GetComponentInChildren<TurretMount> ().gameObject;
+				myManager.changeState (new AbilityFollowState (obj, order.Target.gameObject.transform.position, GetComponent<TurretPickUp>() ));
+
+			}
+			else{
 		
+				myManager.changeState (new FollowState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+			}
+
 			break;
+		
 
 
 

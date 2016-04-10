@@ -9,11 +9,11 @@ public class fogUI : MonoBehaviour {
 
 	public LayerMask lineOfSightMask = 0;
 
-	Transform _transform;
+	//Transform _transform;
 
 	void Start()
 	{
-		_transform = transform;
+		//_transform = transform;
 		_nextUpdate = Random.Range(0.0f, updateFrequency)/4;
 	}
 
