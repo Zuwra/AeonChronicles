@@ -28,6 +28,7 @@ public class selfDestructTimer : MonoBehaviour {
 				if (GetComponent<UnitStats> ()) {
 				GetComponent<UnitStats> ().kill (null);
 			} else {
+	
 				Destroy (this.gameObject);}
 		}
 			if(hd){

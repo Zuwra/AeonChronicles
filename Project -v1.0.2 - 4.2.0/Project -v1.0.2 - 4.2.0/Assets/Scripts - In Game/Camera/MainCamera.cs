@@ -187,7 +187,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	}
 
 	public void SetBoundries (float minX, float minY, float maxX, float maxY)
-	{
+	{//Debug.Log (minX + "   " + minY + "   " + maxX + "    " + maxY);
 		m_Boundries = new Rect();
 		m_Boundries.xMin = minX;
 		m_Boundries.xMax = maxX;

@@ -228,6 +228,7 @@
      <Compile Include="Assets\HotkeyMenu.cs" />
      <Compile Include="Assets\IEffect.cs" />
      <Compile Include="Assets\Iinteract.cs" />
+     <Compile Include="Assets\InstructionDisplayer.cs" />
      <Compile Include="Assets\KillModifier.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
      <Compile Include="Assets\LaserNode.cs" />
@@ -411,6 +412,7 @@
      <Compile Include="Assets\TargetAbility.cs" />
      <Compile Include="Assets\TargetCircle.cs" />
      <Compile Include="Assets\TargetCircleManager.cs" />
+     <Compile Include="Assets\TextTrigger.cs" />
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TurboRockets.cs" />
      <Compile Include="Assets\TurretDeathTrigger.cs" />
