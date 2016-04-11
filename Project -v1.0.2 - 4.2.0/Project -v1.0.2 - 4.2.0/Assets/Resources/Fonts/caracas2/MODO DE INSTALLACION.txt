@@ -1,0 +1,17 @@
+# MODO DE INSTALACIÓN:
+
+El modo de instalación de la tipografía Caracas es muy simple:
+
+** En Windows: Tienes dos opciones:
+
+1 - Das click derecho sobre la tipográfia y luego click en "Abrir" y seleccionas "Instalar" o "Listo".
+
+2 - Seleccionas y copias la fuente Caracas, te vas al menú Inicio > Panel de control y abres la carpeta llamada "Fuentes" o "Fonts", y pegas la fuente Caracas dentro de ella.
+
+** En Linux: También hay dos formas de instalar las fuentes:
+
+1 - Igual das click derecho, abrir con el "Visor de tipografías" (FontViewer) y clickeas en el botón "Instalar" o "Install font".
+
+2 - Copias la fuente Caracas, vas a la "Carpeta personal" (la que tiene tu nombre o el nombre del usuario activo), presionas "ctrl+h", abres la carpeta de nombre ".fonts" y pegas allí la fuente Caracas, o la pegas en "~/.local/fonts" y ya está.
+
+**"La tipografía Caracas tiene utilidad en DISEÑO GRÁFICO".

@@ -32,7 +32,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	private ControlGroupUI controlUI;
 	public PageUIManager pageUI;
-
+	public AudioClip moveSound;
+	public AudioClip attackSound;
+	private AudioSource AudioSrc;
+ 
     void Start()
 	{uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
         abilityManager = GameObject.Find("GameHud").GetComponent<UiAbilityManager>();
@@ -41,6 +44,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		controlUI = GameObject.FindObjectOfType<ControlGroupUI> ();
 		pageUI = GameObject.FindObjectOfType<PageUIManager> ();
 		targetManager = GameObject.FindObjectOfType<TargetCircleManager> ();
+		AudioSrc = GetComponent<AudioSource> ();
 
     }
 
@@ -62,60 +66,60 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             // set a control group
             if (Input.GetKeyDown(KeyCode.Alpha1))
             { AddUnitsToGroup(0); 
-				controlUI.activateTab (0);
+				controlUI.activateTab (0, Group[0].Count, Group[0][0].GetComponent<UnitStats>().Icon);
 			}
 
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 AddUnitsToGroup(1);
-				controlUI.activateTab (1);
+				controlUI.activateTab (1, Group[1].Count, Group[1][0].GetComponent<UnitStats>().Icon);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 AddUnitsToGroup(2);
-				controlUI.activateTab (2);
+				controlUI.activateTab (2, Group[2].Count, Group[2][0].GetComponent<UnitStats>().Icon);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 AddUnitsToGroup(3);
-				controlUI.activateTab (3);
+				controlUI.activateTab (3, Group[3].Count, Group[3][0].GetComponent<UnitStats>().Icon);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha5))
             {
                 AddUnitsToGroup(4);
-				controlUI.activateTab (4);
+				controlUI.activateTab (4, Group[4].Count, Group[4][0].GetComponent<UnitStats>().Icon);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha6))
             {
                 AddUnitsToGroup(5);
-				controlUI.activateTab (5);
+				controlUI.activateTab (5, Group[5].Count, Group[5][0].GetComponent<UnitStats>().Icon);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha7))
             {
                 AddUnitsToGroup(6);
-				controlUI.activateTab (6);			
+				controlUI.activateTab (6, Group[6].Count, Group[6][0].GetComponent<UnitStats>().Icon);			
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha8))
             {
                 AddUnitsToGroup(7);
-				controlUI.activateTab (7);
+				controlUI.activateTab (7, Group[7].Count, Group[7][0].GetComponent<UnitStats>().Icon);
             }
 			 else if (Input.GetKeyDown(KeyCode.Alpha9))
             {
                 AddUnitsToGroup(8);
-				controlUI.activateTab (8);
+				controlUI.activateTab (8, Group[8].Count, Group[8][0].GetComponent<UnitStats>().Icon);
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 AddUnitsToGroup(9);
-				controlUI.activateTab (9);
+				controlUI.activateTab (9, Group[9].Count, Group[9][0].GetComponent<UnitStats>().Icon);
             }
 
         }
@@ -387,6 +391,23 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     }
 
+
+	public void updateControlGroups (RTSObject obj)
+	{
+		for (int i = 0; i < 10; i++) {
+			if (Group [i].Contains (obj)) {
+				Group [i].Remove (obj);
+				if (Group [i].Count > 0) {
+					controlUI.activateTab (i, Group [i].Count, Group [i] [0].GetComponent<UnitStats> ().Icon);
+				} else {
+					controlUI.deactivate (i);
+				}
+			}
+		
+		
+		}
+	}
+
 	public void updateUI()
 	{
 		CreateUIPages (currentPage);
@@ -555,13 +576,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		if (order.OrderType == 1 && SelectedObjects.Count > 0) {
 			
 			Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
-
+			AudioSrc.PlayOneShot (moveSound);
 			assignMoveCOmmand (order.OrderLocation, false);
 
 		} else if (order.OrderType == 4 && SelectedObjects.Count > 0) {
 			
 			Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
-
+			AudioSrc.PlayOneShot (attackSound);
 			assignMoveCOmmand (order.OrderLocation, true);
 
 		} 
@@ -569,7 +590,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			
 
 			if (order.Target.GetComponent<UnitManager> () && order.Target.GetComponent<UnitManager> ().PlayerOwner != 1) {
-
+				AudioSrc.PlayOneShot (attackSound);
 				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
 				foreach (IOrderable obj in SelectedObjects) {
 					obj.GiveOrder (Orders.CreateInteractCommand(order.Target));
@@ -578,6 +599,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				foreach (IOrderable obj in SelectedObjects) {
 					obj.GiveOrder (Orders.CreateFollowCommand(order.Target));
 				}
+				AudioSrc.PlayOneShot (moveSound);
 				Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
 			}
 		

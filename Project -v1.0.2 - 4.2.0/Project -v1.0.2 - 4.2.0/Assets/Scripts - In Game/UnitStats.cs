@@ -203,7 +203,7 @@ public class UnitStats : MonoBehaviour {
 				if (deathEffect) {
 					Instantiate (deathEffect, this.gameObject.transform.position, Quaternion.identity);
 				}
-
+				SelectedManager.main.updateControlGroups (myManager);
 
 					Destroy (this.gameObject);
 				

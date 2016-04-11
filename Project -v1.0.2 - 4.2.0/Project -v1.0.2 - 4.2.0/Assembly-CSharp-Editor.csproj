@@ -71,12 +71,16 @@
      <Compile Include="Assets\Scripts - In Game\Editor\GridEditor.cs" />
      <Compile Include="Assets\Scripts - In Game\Editor\MiniMapControllerEditor.cs" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.shader" />
+     <None Include="Assets\Resources\Fonts\pieces_of_eight\Alt Map.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\Poly2Tri\Poly2TriLicense.txt" />
      <None Include="Assets\FogOfWar\TransparentShadowCaster.shader" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
+     <None Include="Assets\Resources\Fonts\oh_no\License - READ THIS.txt" />
+     <None Include="Assets\Resources\Fonts\thundercover\License.txt" />
      <None Include="Assets\FogOfWar\Resources\FogOfWarShader.shader" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
+     <None Include="Assets\Resources\Fonts\caracas2\Licence - Licencia.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\dependencies.txt" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
      <None Include="Assets\AstarPathfindingProject\Readme_upgrading.txt" />
@@ -88,6 +92,9 @@
      <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\JsonFxLicense.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\NavmeshOutline.shader" />
+     <None Include="Assets\Resources\Fonts\caracas2\MODO DE INSTALLACION.txt" />
+     <None Include="Assets\Resources\Fonts\pieces_of_eight\readme.txt" />
+     <None Include="Assets\Resources\Fonts\prototype\Prototype.txt" />
      <None Include="Assets\AstarPathfindingProject\link.xml" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>

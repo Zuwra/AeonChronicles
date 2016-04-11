@@ -5,6 +5,8 @@ public class TextTrigger : MonoBehaviour {
 
 	public string text;
 	public float duration;
+
+	public AudioClip sound;
 	// Use this for initialization
 	void Start () {
 	
@@ -20,7 +22,9 @@ public class TextTrigger : MonoBehaviour {
 
 		if (other.GetComponent<UnitManager> ())
 		if (other.GetComponent<UnitManager> ().PlayerOwner == 1) {
-			InstructionDisplayer.instance.displayText (text, duration);
+			InstructionDisplayer.instance.displayText (text, duration, sound);
+
+
 			Destroy (this.gameObject);
 		}
 	}

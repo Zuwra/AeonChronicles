@@ -78,8 +78,17 @@ public class UnitManager : Unit,IOrderable{
 
 		//	man.playerList [PlayerOwner - 1].UnitCreated (myStats.supply);
 
-		if (gameObject.GetComponent<CharacterController> ()  && visionSphere != null) {
-			visionSphere.radius = visionRange + gameObject.GetComponent<CharacterController> ().radius;
+		if (gameObject.GetComponent<CharacterController> () && visionSphere != null) {
+			float distance = visionRange + gameObject.GetComponent<CharacterController> ().radius;
+			visionSphere.radius = distance;
+			if (GetComponent<FogOfWarUnit> ()) {
+				GetComponent<FogOfWarUnit> ().radius = distance +3;
+			}
+		} else {
+			visionSphere.radius = visionRange;
+			if (GetComponent<FogOfWarUnit> ()) {
+				GetComponent<FogOfWarUnit> ().radius = visionRange +3;
+			}
 		}
 
 	

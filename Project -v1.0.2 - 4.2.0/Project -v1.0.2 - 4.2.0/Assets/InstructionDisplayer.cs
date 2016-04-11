@@ -10,7 +10,7 @@ public class InstructionDisplayer : MonoBehaviour {
 	public static InstructionDisplayer instance;
 
 	private float turnOffTime;
-
+	private AudioSource myAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +18,7 @@ public class InstructionDisplayer : MonoBehaviour {
 		instance = this;
 		myCanvas = GetComponent<Canvas> ();
 		myCanvas.enabled = false;
+		myAudio = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -30,12 +31,15 @@ public class InstructionDisplayer : MonoBehaviour {
 		}
 	}
 
-	public void displayText(string input, float duration)
+	public void displayText(string input, float duration, AudioClip sound)
 	{	this.enabled = true;
 		myText.text = input;
 		myCanvas.enabled = true;
 		turnOffTime = Time.time + duration;
-
+		MissionLogger.instance.AddLog (input);
+		if (sound != null) {
+			myAudio.PlayOneShot (sound);
+		}
 	}
 
 

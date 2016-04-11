@@ -15,6 +15,7 @@ public class GameMenu : MonoBehaviour {
 	public Button raceTipsB;
 	public Button pauseB;
 	public Button returnToGameB;
+	public Button MissionLogB;
 
 	public bool ispaused = false;
 
@@ -26,6 +27,7 @@ public class GameMenu : MonoBehaviour {
 	public Canvas graphicsMenu;
 	public Canvas Objectives;
 	public Canvas Victory;
+	public Canvas missionLog;
 
 	private Canvas currentMenu;
 
@@ -134,6 +136,9 @@ public class GameMenu : MonoBehaviour {
 	{setMenu (Objectives);
 	}
 
+	public void opeMissionLog(){
+		setMenu (missionLog);
+	}
 
 
 }
