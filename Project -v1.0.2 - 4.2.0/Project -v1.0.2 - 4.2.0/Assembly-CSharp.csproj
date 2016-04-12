@@ -193,6 +193,7 @@
      <Compile Include="Assets\BuilderUI.cs" />
      <Compile Include="Assets\BuildingInteractor.cs" />
      <Compile Include="Assets\BuildingPlacer.cs" />
+     <Compile Include="Assets\CapturableUnit.cs" />
      <Compile Include="Assets\CarryRacks.cs" />
      <Compile Include="Assets\CastAbilityState.cs" />
      <Compile Include="Assets\ChannelState.cs" />

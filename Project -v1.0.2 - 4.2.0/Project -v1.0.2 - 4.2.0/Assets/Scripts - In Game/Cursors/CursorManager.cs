@@ -68,6 +68,6 @@ public class CursorManager : MonoBehaviour {
 	{
 		if (currentMode != 5) {
 			currentMode = 5;
-			UnityEngine.Cursor.SetCursor (Cursors [5], new Vector2 (0, 0), CursorMode.ForceSoftware);}
+			UnityEngine.Cursor.SetCursor (Cursors [5], new Vector2 (16, 16), CursorMode.ForceSoftware);}
 	}
 }

@@ -14,9 +14,14 @@ public class FogOfWarUnit : MonoBehaviour
 
     void Start()
     {
-        _transform = transform;
-        _nextUpdate = Random.Range(0.0f, updateFrequency);
+		Initialize ();
     }
+
+	public void Initialize()
+	{  _transform = transform;
+		_nextUpdate = Random.Range(0.0f, updateFrequency);
+		
+	}
 
     void Update()
     {
