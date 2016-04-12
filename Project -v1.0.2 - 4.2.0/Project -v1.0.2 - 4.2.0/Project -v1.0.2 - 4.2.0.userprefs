@@ -1,16 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TurretScreenDisplayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OneShotParticleSystem.cs">
     <Files>
-      <File FileName="Assets\HealthDisplay.cs" Line="61" Column="2" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="140" Column="10" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="177" Column="21" />
-      <File FileName="Assets\TurretHealthDisplay.cs" Line="23" Column="3" />
+      <File FileName="Assets\HealthDisplay.cs" Line="18" Column="63" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="44" Column="26" />
+      <File FileName="Assets\TurretHealthDisplay.cs" Line="8" Column="2" />
       <File FileName="Assets\TurretScreenDisplayer.cs" Line="66" Column="1" />
+      <File FileName="Assets\Scripts - In Game\GatlingGun.cs" Line="15" Column="24" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="595" Column="68" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="142" Column="17" />
+      <File FileName="Assets\StandardInteract.cs" Line="54" Column="25" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="136" Column="19" />
+      <File FileName="Assets\DaexaWorkerInteract.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="166" Column="1" />
+      <File FileName="Assets\TurretMount.cs" Line="1" Column="1" />
+      <File FileName="Assets\OneShotParticleSystem.cs" Line="18" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

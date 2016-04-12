@@ -44,6 +44,7 @@ public class UnitStats : MonoBehaviour {
 
 	public GameObject deathCorpse;
 	public GameObject deathEffect;
+	public GameObject takeDamageEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -134,6 +135,10 @@ public class UnitStats : MonoBehaviour {
 						} else {
 							amount = 1;
 						}
+				}
+				if (takeDamageEffect) {
+					Debug.Log ("Taking damage " + this.gameObject);
+					Instantiate (takeDamageEffect, this.gameObject.transform.position, new Quaternion ());
 				}
 				health-= amount;
 

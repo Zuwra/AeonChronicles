@@ -566,7 +566,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     public void GiveOrder(Order order)
 	{//fix this once we get to multiplayer games
-		
+		Debug.Log("Ordering " + order.Target + "  " + order.OrderType);
 		if(SelectedObjects.Count == 0 || SelectedObjects[0].gameObject.GetComponent<UnitManager>().PlayerOwner != 1)
 			{return;}
 			
@@ -589,13 +589,16 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		else if (order.OrderType == 6 && SelectedObjects.Count > 0) {
 			
 
-			if (order.Target.GetComponent<UnitManager> () && order.Target.GetComponent<UnitManager> ().PlayerOwner != 1) {
+			if ((order.Target.GetComponent<UnitManager> () && order.Target.GetComponent<UnitManager> ().PlayerOwner != 1)
+				|| (order.Target.GetComponentInParent<UnitManager> () && order.Target.GetComponentInParent<UnitManager> ().PlayerOwner != 1)) {
 				AudioSrc.PlayOneShot (attackSound);
 				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
 				foreach (IOrderable obj in SelectedObjects) {
 					obj.GiveOrder (Orders.CreateInteractCommand(order.Target));
 				}
-			} else {
+			} 
+
+			else {
 				foreach (IOrderable obj in SelectedObjects) {
 					obj.GiveOrder (Orders.CreateFollowCommand(order.Target));
 				}

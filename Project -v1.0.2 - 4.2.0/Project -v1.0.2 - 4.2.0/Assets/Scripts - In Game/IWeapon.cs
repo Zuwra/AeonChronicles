@@ -161,7 +161,8 @@ public class IWeapon : MonoBehaviour {
 	public bool inRange(GameObject target)
 	{
 
-		if (target) {
+		if (this && target) {
+			
 			float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position) - target.GetComponent<CharacterController> ().radius;
 			float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
 			if (distance > (range + (verticalDistance * 1.2))) {

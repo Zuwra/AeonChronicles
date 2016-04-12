@@ -47,7 +47,8 @@ public class Selected : MonoBehaviour {
 
 
 		buffDisplay = GetComponentInChildren<HealthDisplay> ();
-		turretDisplay = GetComponentInChildren<TurretHealthDisplay> ();
+
+		turretDisplay = transform.FindChild("HealthDisplay").GetComponent<TurretHealthDisplay> ();
 		if (!turretDisplay) {
 			healthslider = transform.FindChild ("HealthDisplay").FindChild ("HealthBar").GetComponent<Slider> ();
 			healthFill = transform.FindChild ("HealthDisplay").FindChild ("HealthBar").transform.FindChild ("Fill Area").FindChild ("Fill").GetComponent<Image> ();
@@ -125,20 +126,22 @@ public class Selected : MonoBehaviour {
 	public void setIcon(GameObject obj)
 	{//buffDisplay.isOn = true;
 		unitIcon = obj;
-		if (healthslider.value > .55) {
+		if (!turretDisplay) {
+			if (healthslider.value > .55) {
 
 	
-				unitIcon.GetComponent<Image>().color = Color.green;
+				unitIcon.GetComponent<Image> ().color = Color.green;
 
-		} else if (healthslider.value> .25) {
+			} else if (healthslider.value > .25) {
 			
 
-				unitIcon.GetComponent<Image>().color = Color.yellow;
+				unitIcon.GetComponent<Image> ().color = Color.yellow;
 
-		} else {
+			} else {
 			
-				unitIcon.GetComponent<Image>().color = Color.red;
+				unitIcon.GetComponent<Image> ().color = Color.red;
 
+			}
 		}
 
 
@@ -158,6 +161,9 @@ public class Selected : MonoBehaviour {
 
 	public void updateHealthBar(float ratio)
 	{if (!turretDisplay) {
+			if (healthslider == null) {
+			
+				Debug.Log ("Null in " + this.gameObject);}
 			healthslider.value = ratio; 
 
 			if (mydisplayType == displayType.damaged) {

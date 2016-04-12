@@ -228,6 +228,7 @@
      <Compile Include="Assets\HookFury.cs" />
      <Compile Include="Assets\HotkeyMenu.cs" />
      <Compile Include="Assets\IEffect.cs" />
+     <Compile Include="Assets\IconAttacker.cs" />
      <Compile Include="Assets\Iinteract.cs" />
      <Compile Include="Assets\InstructionDisplayer.cs" />
      <Compile Include="Assets\KillModifier.cs" />
