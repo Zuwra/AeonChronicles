@@ -7,8 +7,7 @@ public class HealthDisplay : MonoBehaviour {
 
 	private GameObject cam;
 	public List<Image> buffList = new List<Image>();
-	public Sprite positive;
-	public Sprite negative;
+
 
 	public bool isOn;
 	public Image BuildingUnit;
@@ -47,11 +46,6 @@ public class HealthDisplay : MonoBehaviour {
 			
 			if (!i.enabled) {
 				i.enabled = true;
-				if (b) {
-					i.sprite = positive;
-				} else {
-					i.sprite = negative;
-				}
 				i.color = c;
 				break;
 			}

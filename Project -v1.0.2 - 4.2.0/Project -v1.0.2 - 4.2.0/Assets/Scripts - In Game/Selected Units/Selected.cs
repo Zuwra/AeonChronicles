@@ -11,6 +11,8 @@ public class Selected : MonoBehaviour {
 	}
 
 	public HealthDisplay buffDisplay;
+	public TurretHealthDisplay turretDisplay;
+
 	private GameObject unitIcon;
 	private Slider healthslider;
 	private Image healthFill;
@@ -45,16 +47,17 @@ public class Selected : MonoBehaviour {
 
 
 		buffDisplay = GetComponentInChildren<HealthDisplay> ();
+		turretDisplay = GetComponentInChildren<TurretHealthDisplay> ();
+		if (!turretDisplay) {
+			healthslider = transform.FindChild ("HealthDisplay").FindChild ("HealthBar").GetComponent<Slider> ();
+			healthFill = transform.FindChild ("HealthDisplay").FindChild ("HealthBar").transform.FindChild ("Fill Area").FindChild ("Fill").GetComponent<Image> ();
+		} 
+			energySlider = transform.FindChild ("HealthDisplay").FindChild ("EnergyBar").GetComponent<Slider> ();
+			//energyFill= transform.FindChild("HealthDisplay").FindChild("EnergyBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 
-		healthslider = transform.FindChild("HealthDisplay").FindChild("HealthBar").GetComponent<Slider>();
-		healthFill = transform.FindChild("HealthDisplay").FindChild("HealthBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
-
-		energySlider= transform.FindChild("HealthDisplay").FindChild("EnergyBar").GetComponent<Slider>();
-		//energyFill= transform.FindChild("HealthDisplay").FindChild("EnergyBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
-
-		coolDownSlider= transform.FindChild("HealthDisplay").FindChild("Cooldown").GetComponent<Slider>();
-		//coolFill= transform.FindChild("HealthDisplay").FindChild("Cooldown").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
-
+			coolDownSlider = transform.FindChild ("HealthDisplay").FindChild ("Cooldown").GetComponent<Slider> ();
+			//coolFill= transform.FindChild("HealthDisplay").FindChild("Cooldown").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
+	
 
 		myStats = this.gameObject.GetComponent<UnitStats> ();
 		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
@@ -76,47 +79,47 @@ public class Selected : MonoBehaviour {
 
 	public void setDisplayType(displayType t)
 	{mydisplayType = t;
-
-		switch (t) {
-		case displayType.always: 
-			buffDisplay.isOn = true;
-			healthslider.enabled = true;
-			if (myStats.MaxEnergy > 0) {
-				energySlider.gameObject.SetActive (true);
-			}
-			break;
-
-		case displayType.damaged:
-			if (!myStats.atFullHealth ()) {
+		if (!turretDisplay) {
+			switch (t) {
+			case displayType.always: 
 				buffDisplay.isOn = true;
-				healthslider.gameObject.SetActive (false);
-			} else {
-				buffDisplay.isOn = false;
-			}
-
-			if (myStats.MaxEnergy > 0) {
-				energySlider.gameObject.SetActive (true);
-				buffDisplay.isOn = true;
-			}
-			break;
-
-		case  displayType.selected:
-			if (IsSelected) {
-				buffDisplay.isOn = true;
-				healthslider.gameObject.SetActive (true);
+				healthslider.enabled = true;
 				if (myStats.MaxEnergy > 0) {
 					energySlider.gameObject.SetActive (true);
 				}
+				break;
+
+			case displayType.damaged:
+				if (!myStats.atFullHealth ()) {
+					buffDisplay.isOn = true;
+					healthslider.gameObject.SetActive (false);
+				} else {
+					buffDisplay.isOn = false;
+				}
+
+				if (myStats.MaxEnergy > 0) {
+					energySlider.gameObject.SetActive (true);
+					buffDisplay.isOn = true;
+				}
+				break;
+
+			case  displayType.selected:
+				if (IsSelected) {
+					buffDisplay.isOn = true;
+					healthslider.gameObject.SetActive (true);
+					if (myStats.MaxEnergy > 0) {
+						energySlider.gameObject.SetActive (true);
+					}
+				}
+				break;
+
+			case displayType.never:
+				buffDisplay.isOn = false;
+				healthslider.gameObject.SetActive (false);
+				energySlider.gameObject.SetActive (false);
+				break;
 			}
-			break;
-
-		case displayType.never:
-			buffDisplay.isOn = false;
-			healthslider.gameObject.SetActive (false);
-			energySlider.gameObject.SetActive (false);
-			break;
 		}
-
 	}
 
 	public void setIcon(GameObject obj)
@@ -154,39 +157,40 @@ public class Selected : MonoBehaviour {
 
 
 	public void updateHealthBar(float ratio)
-	{
-		healthslider.value = ratio; 
+	{if (!turretDisplay) {
+			healthslider.value = ratio; 
 
+			if (mydisplayType == displayType.damaged) {
 	
-		if(mydisplayType ==displayType.damaged){
+				if (ratio > .99) {
+					buffDisplay.isOn = false;
+					healthslider.gameObject.SetActive (false);
+				} else {
+					buffDisplay.isOn = true;
+					healthslider.gameObject.SetActive (true);
+				}
 	
-			if (ratio > .99) {
-				buffDisplay.isOn = false;
-				healthslider.gameObject.SetActive (false);
+
+			}
+
+			if (ratio > .55) {
+				healthFill.color = Color.green;
+				if (unitIcon) {
+					unitIcon.GetComponent<Image> ().color = Color.green;
+				}
+			} else if (ratio > .25) {
+				healthFill.color = Color.yellow;
+				if (unitIcon) {
+					unitIcon.GetComponent<Image> ().color = Color.yellow;
+				}
 			} else {
-				buffDisplay.isOn = true;
-				healthslider.gameObject.SetActive (true);
-			}
-	
-
-		}
-
-		if (ratio > .55) {
-			healthFill.color = Color.green;
-			if (unitIcon) {
-				unitIcon.GetComponent<Image>().color = Color.green;
-			}
-		} else if (ratio > .25) {
-			healthFill.color = Color.yellow;
-			if (unitIcon) {
-				unitIcon.GetComponent<Image>().color = Color.yellow;
+				healthFill.color = Color.red;
+				if (unitIcon) {
+					unitIcon.GetComponent<Image> ().color = Color.red;
+				}
 			}
 		} else {
-			healthFill.color = Color.red;
-			if (unitIcon) {
-				unitIcon.GetComponent<Image>().color = Color.red;
-			}
-		}
+			turretDisplay.updateHealth (ratio);}
 
 	}
 

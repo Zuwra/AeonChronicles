@@ -418,6 +418,7 @@
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TurboRockets.cs" />
      <Compile Include="Assets\TurretDeathTrigger.cs" />
+     <Compile Include="Assets\TurretHealthDisplay.cs" />
      <Compile Include="Assets\TurretMount.cs" />
      <Compile Include="Assets\TurretMountTwo.cs" />
      <Compile Include="Assets\TurretPickUp.cs" />
