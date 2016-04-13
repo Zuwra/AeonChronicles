@@ -1,11 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TurretHealthDisplay.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\IconAttacker.cs">
     <Files>
-      <File FileName="Assets\TurretHealthDisplay.cs" Line="26" Column="35" />
-      <File FileName="Assets\HealthDisplay.cs" Line="18" Column="63" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="163" Column="3" />
+      <File FileName="Assets\IconAttacker.cs" Line="38" Column="27" />
+      <File FileName="Assets\TurretHealthDisplay.cs" Line="105" Column="21" />
+      <File FileName="Assets\HealthDisplay.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="174" Column="2" />
       <File FileName="Assets\TurretScreenDisplayer.cs" Line="66" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="396" Column="38" />
+      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="73" Column="4" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="64" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

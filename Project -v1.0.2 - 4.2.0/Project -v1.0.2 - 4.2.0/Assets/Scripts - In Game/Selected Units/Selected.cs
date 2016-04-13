@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Selected : MonoBehaviour {
 		
@@ -22,6 +23,11 @@ public class Selected : MonoBehaviour {
 
 	private Slider coolDownSlider;
 	//private Image coolFill;
+
+	private float tempSelectTime;
+	private bool tempSelectOn;
+
+	public List<SelectionNotifier> selectionNotifiers = new List<SelectionNotifier>();
 
 	public enum displayType
 	{
@@ -144,19 +150,48 @@ public class Selected : MonoBehaviour {
 			}
 		}
 
-
-
-
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+	
+		if (tempSelectOn) {
+			if (tempSelectTime < Time.time) {
+				tempSelectOn = false;
+				if (!IsSelected) {
+					decalCircle.GetComponent<MeshRenderer> ().enabled = false;
+
+					foreach (Transform obj in this.transform) {
+
+						obj.SendMessage ("setSelect", SendMessageOptions.DontRequireReceiver);
+					}
+						
+				}
+			}
+		}
+	}
+
+	void LateUpdate()
+	{
 		
 	}
 
+	public void tempSelect()
+	{
+		if (!tempSelectOn) {
+			tempSelectOn = true;
+			decalCircle.GetComponent<MeshRenderer> ().enabled = true;
 
+			foreach (Transform obj in this.transform) {
 
+				obj.SendMessage ("setDeselect", SendMessageOptions.DontRequireReceiver);
+			}
+		}
+
+		tempSelectTime = Time.time + .05f;
+
+	}
 
 
 	public void updateHealthBar(float ratio)

@@ -407,6 +407,7 @@
      <Compile Include="Assets\Scripts - In Game\customMover.cs" />
      <Compile Include="Assets\Scripts - In Game\rotater.cs" />
      <Compile Include="Assets\Scripts - In Game\turret.cs" />
+     <Compile Include="Assets\SelectionNotifier.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />
      <Compile Include="Assets\SoundOptions.cs" />

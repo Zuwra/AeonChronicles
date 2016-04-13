@@ -239,6 +239,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 			interactionState = InteractionState.Nothing;
 		} else {
 			if (!isPointerOverUIObject()) {
+				Selected sel = currentObject.GetComponentInParent<Selected> ();
+				if (sel) {
+				sel.tempSelect ();
+				}
 				CursorManager.main.selectMode ();
 			}
 		}
@@ -249,12 +253,16 @@ public class UIManager : MonoBehaviour, IUIManager {
 	{	interactionState = InteractionState.Select;
 
 		if (currentObject != null) {
-		
+			
+			currentObject.GetComponentInParent<Selected> ().tempSelect ();
 			if (currentObject.GetComponentInParent<UnitManager> ().PlayerOwner != raceManager.playerNumber) {
 				interactionState = InteractionState.Attack;
 				CursorManager.main.attackMode ();
 				return;
-			} 
+			}
+
+
+
 		}
 
 
