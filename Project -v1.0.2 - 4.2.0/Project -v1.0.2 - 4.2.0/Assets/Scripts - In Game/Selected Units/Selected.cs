@@ -161,9 +161,7 @@ public class Selected : MonoBehaviour {
 
 	public void updateHealthBar(float ratio)
 	{if (!turretDisplay) {
-			if (healthslider == null) {
 			
-				Debug.Log ("Null in " + this.gameObject);}
 			healthslider.value = ratio; 
 
 			if (mydisplayType == displayType.damaged) {
