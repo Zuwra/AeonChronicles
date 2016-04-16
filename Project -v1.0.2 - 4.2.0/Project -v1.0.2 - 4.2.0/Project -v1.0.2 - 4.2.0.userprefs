@@ -1,15 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\IconAttacker.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ToolTip.cs">
     <Files>
-      <File FileName="Assets\IconAttacker.cs" Line="38" Column="27" />
-      <File FileName="Assets\TurretHealthDisplay.cs" Line="105" Column="21" />
+      <File FileName="Assets\ToolTip.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\bobble.cs" Line="1" Column="1" />
+      <File FileName="Assets\IconAttacker.cs" Line="1" Column="1" />
+      <File FileName="Assets\TurretHealthDisplay.cs" Line="1" Column="1" />
       <File FileName="Assets\HealthDisplay.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="174" Column="2" />
-      <File FileName="Assets\TurretScreenDisplayer.cs" Line="66" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="396" Column="38" />
-      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="73" Column="4" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="64" Column="44" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="1" Column="1" />
+      <File FileName="Assets\TurretScreenDisplayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
