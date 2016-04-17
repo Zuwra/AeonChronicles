@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 	public GameObject m_ObjectBeingPlaced;
 	private bool m_Placed = false;
-
+	private FogOfWar fog;
 	private RaceManager raceManager;
 	private Vector3 originalPosition;
 	public GameObject AbilityTargeter;
@@ -66,7 +66,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 	// Use this for initialization
 	void Start () 
-	{
+	{fog = GameObject.FindObjectOfType<FogOfWar> ();
 		//Resolve interface variables
 		m_SelectedManager = this.gameObject.GetComponent<SelectedManager>();
 		m_Camera = ManagerResolver.Resolve<ICamera>();	
@@ -197,15 +197,20 @@ public class UIManager : MonoBehaviour, IUIManager {
 					break;
 					
 				case 9:
-					hoverOver = HoverOver.Unit;
+					if (!fog.IsInCompleteFog (hit.point)) {
+						hoverOver = HoverOver.Unit;
+					}
 					break;
 					
 				case 10:
-					hoverOver = HoverOver.Building;
+					if (!fog.IsInCompleteFog (hit.point)){
+						hoverOver = HoverOver.Building;
+				}
 					break;
 
-				case 13:
-					hoverOver = HoverOver.neutral;
+				case 13:	
+					if(!fog.IsInCompleteFog(hit.point)){
+					hoverOver = HoverOver.neutral;}
 					break;
 				
 				}				
@@ -243,6 +248,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				if (sel) {
 				sel.tempSelect ();
 				}
+			
 				CursorManager.main.selectMode ();
 			}
 		}

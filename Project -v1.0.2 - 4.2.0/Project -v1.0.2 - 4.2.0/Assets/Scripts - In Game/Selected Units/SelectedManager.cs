@@ -566,7 +566,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     public void GiveOrder(Order order)
 	{//fix this once we get to multiplayer games
-		Debug.Log("Ordering " + order.Target + "  " + order.OrderType);
+		//Debug.Log("Ordering " + order.Target + "  " + order.OrderType);
 		if(SelectedObjects.Count == 0 || SelectedObjects[0].gameObject.GetComponent<UnitManager>().PlayerOwner != 1)
 			{return;}
 			

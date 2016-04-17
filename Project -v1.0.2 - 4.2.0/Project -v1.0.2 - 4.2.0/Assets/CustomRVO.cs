@@ -68,7 +68,7 @@ public class CustomRVO : IMover {
 	override
 	public void resetMoveLocation (Vector3 target) {
 		this.target = target;
-		currentWaypoint = 0;
+		currentWaypoint = 1;
 		RecalculatePath();
 	}
 
