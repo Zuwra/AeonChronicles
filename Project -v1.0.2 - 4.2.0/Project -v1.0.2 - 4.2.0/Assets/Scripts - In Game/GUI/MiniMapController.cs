@@ -35,7 +35,7 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 	// Use this for initialization
 	void Start () 
 	{
-		ManagerResolver.Resolve<IEventsManager>().MouseClick += MouseClicked;
+		//ManagerResolver.Resolve<IEventsManager>().MouseClick += MouseClicked;
 		m_MainCamera = ManagerResolver.Resolve<ICamera>();
 		
 	}

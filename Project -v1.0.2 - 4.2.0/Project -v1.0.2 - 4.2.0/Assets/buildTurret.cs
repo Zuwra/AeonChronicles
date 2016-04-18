@@ -229,7 +229,7 @@ public class buildTurret :UnitProduction{
 		timer = 0;
 		buildingUnit = false;
 		myCost.refundCost ();
-		GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
+		GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>().UnitDied(unitToBuild.GetComponent<UnitStats>().supply, null);
 		mySelect.updateCoolDown (0);
 		racer.stopBuildingUnit (this);
 

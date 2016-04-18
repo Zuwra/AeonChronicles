@@ -198,7 +198,7 @@ public class UnitStats : MonoBehaviour {
 				//fix this when we have multiplayer games
 				if (myManager.PlayerOwner == 1) {
 					
-					GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer.UnitDied (supply);
+					GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer.UnitDied (supply, this.gameObject);
 				}
 
 				if (mySelection.IsSelected) {

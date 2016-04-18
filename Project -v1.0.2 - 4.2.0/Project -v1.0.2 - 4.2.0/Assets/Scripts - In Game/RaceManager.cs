@@ -198,8 +198,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 
-	public void UnitDied(float supply)
+	public void UnitDied(float supply, GameObject obj)
 	{
+		if (unitList.Contains (obj)) {
+			unitList.Remove (obj);
+		}
+
 	if (supply < 0) {
 
 

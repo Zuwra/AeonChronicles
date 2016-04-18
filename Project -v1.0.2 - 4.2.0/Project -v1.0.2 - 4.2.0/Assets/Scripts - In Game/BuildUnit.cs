@@ -54,7 +54,7 @@ public class BuildUnit : UnitProduction {
 
 	public override void DeQueueUnit()
 	{myCost.refundCost ();
-		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
+		//racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply, null);
 	
 	}
 
@@ -72,7 +72,7 @@ public class BuildUnit : UnitProduction {
 			obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
 		}
 		//myCost.refundCost ();
-		//racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
+		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply,null);
 	}
 
 
@@ -109,8 +109,7 @@ public class BuildUnit : UnitProduction {
 				myCost.payCost();
 				myCost.resetCoolDown ();
 
-				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
-
+			
 			}
 		}
 
@@ -128,6 +127,7 @@ public class BuildUnit : UnitProduction {
 
 		HD.loadIMage(unitToBuild.GetComponent<UnitStats> ().Icon);
 		timer = buildTime;
+		GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
 
 		buildingUnit = true;
 		racer.buildingUnit (this);

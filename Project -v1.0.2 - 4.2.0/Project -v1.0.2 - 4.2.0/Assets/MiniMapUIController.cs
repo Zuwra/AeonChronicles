@@ -2,8 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using UnityEngine.EventSystems;
 
-public class MiniMapUIController : MonoBehaviour {
+public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 
     public Image img;
 	public Image ScreenTrapz;
@@ -31,12 +32,19 @@ public class MiniMapUIController : MonoBehaviour {
     private int textureHeight = 200, textureWidth = 200;
 
     private bool floatAfterInt = false;
-	private bool fogupdate = false;
+
 
     private Texture2D texture;
 
     private float nextActionTimea;
 	private float nextActionTimeb;
+
+	//Used for detecting MinimapClicks
+	private float minimapWidth;
+	private float minimapHeight;
+	private RectTransform myRect;
+
+
 
 	private FogOfWar fog;
 	Texture2D _texture;
@@ -44,6 +52,10 @@ public class MiniMapUIController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		myRect = GetComponent<RectTransform> ();
+		minimapWidth = myRect.rect.width;
+		minimapHeight = myRect.rect.height;
+
 		nextActionTimea = 0;
 		nextActionTimeb = Time.time + minimapUpdateRate/2;
 
@@ -258,10 +270,10 @@ public class MiniMapUIController : MonoBehaviour {
 			ctr += frac;
 
 
-			if (t.y < 0 && t.x > -textureWidth) {
+			//if (t.y > 0 && t.x < -textureWidth) {
 				
 				tex.SetPixel ((int)t.x, (int)t.y, Color.magenta);
-			}
+			//}
 		
 		}
 	
@@ -292,6 +304,28 @@ public class MiniMapUIController : MonoBehaviour {
 		_texture.Apply ();
 
 	}
+
+
+	public void OnPointerClick(PointerEventData eventData)
+	{
+		if (eventData.button == PointerEventData.InputButton.Left) {
+
+			Vector3 clickPos = transform.InverseTransformPoint (eventData.pressPosition);
+			float x = (clickPos.x ) /minimapWidth;
+			float y = (clickPos.y ) / minimapHeight;
+
+			Vector2 toMove = new Vector2 (x * WorldWidth,y * WorldHeight);
+			MainCamera.main.minimapMove(toMove);
+			//GetComponent<RectTransform> ().rect.width;
+		
+			Debug.Log ( "Clicked    " + toMove.x + "   " + toMove.y);
+
+		}
+
+
+	}
+
+
 
 
 }

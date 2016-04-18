@@ -62,7 +62,7 @@ public class Morph :  UnitProduction {
 		timer = 0;
 		Morphing = false;
 		myCost.refundCost ();
-		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply);
+		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply, null);
 		racer.stopBuildingUnit (this);
 		myManager.setStun (false, this);
 		myManager.changeState(new DefaultState());

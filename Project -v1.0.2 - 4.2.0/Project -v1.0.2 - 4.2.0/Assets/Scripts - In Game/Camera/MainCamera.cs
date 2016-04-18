@@ -16,14 +16,17 @@ public class MainCamera : MonoBehaviour, ICamera {
 	public float ScrollAcceleration = 30.0f;
 	
 	public float ZoomRate = 500.0f;
-	
-	private float m_MenuWidth;
+
 	
 	private bool canWeScroll = true;
 	
 	public GameObject StartPoint;
 	
 	private Rect m_Boundries;
+
+	private float worldWidth;
+	private float worldHeight;
+
 	
 	void Awake()
 	{
@@ -92,7 +95,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	private void CheckEdgeMovement()
 	{
 		Ray r1 = Camera.main.ViewportPointToRay (new Vector3(0,1,0));
-		Ray r2 = Camera.main.ScreenPointToRay (new Vector3(Screen.width-m_MenuWidth,Screen.height-1,0));
+		Ray r2 = Camera.main.ScreenPointToRay (new Vector3(Screen.width,Screen.height-1,0));
 		Ray r3 = Camera.main.ViewportPointToRay (new Vector3(0,0,0));
 		
 		float left, right, top, bottom;
@@ -175,6 +178,13 @@ public class MainCamera : MonoBehaviour, ICamera {
 		}
 
 	}
+
+	public void minimapMove(Vector2 input)
+	{
+		transform.position = new Vector3((input.x ) , this.gameObject.transform.position.y,(input.y ));
+		CheckEdgeMovement ();
+
+	}
 	
 	public void DisableScrolling()
 	{
@@ -193,10 +203,10 @@ public class MainCamera : MonoBehaviour, ICamera {
 		m_Boundries.xMax = maxX;
 		m_Boundries.yMin = minY+1;
 		m_Boundries.yMax = maxY;
+
+		worldWidth = maxX - minX;
+		worldHeight = maxY - minY;
 	}
 	
-	public void SetMenuWidth(float width)
-	{
-		m_MenuWidth = width;
-	}
+
 }

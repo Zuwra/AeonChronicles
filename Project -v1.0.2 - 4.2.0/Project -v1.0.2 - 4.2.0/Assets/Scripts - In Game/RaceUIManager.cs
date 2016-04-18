@@ -40,8 +40,18 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 		resourceTwo = this.gameObject.transform.FindChild ("Resources").FindChild("ResourceTwo").GetComponent<Text>();
 		supply = this.gameObject.transform.FindChild ("Resources").FindChild("Supply").GetComponent<Text>();
 
-		resourceOne.text = OneName + "" + raceManager.ResourceOne;
-		resourceTwo.text = TwoName + "" + raceManager.ResourceTwo;
+		if (OneName != "") {
+			resourceOne.text = OneName + "  " + raceManager.ResourceOne;
+		} else {
+			resourceOne.text = "";
+		}
+
+		if (TwoName != "") {
+			resourceTwo.text = TwoName + "  " + raceManager.ResourceTwo;
+		}
+		else {
+			resourceTwo.text = "";
+		}
 
 		if ( raceManager.currentSupply < raceManager.supplyMax - 5 ||  raceManager.supplyMax == raceManager.supplyCap) {
 			supply.color = Color.green;
@@ -135,8 +145,14 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 	
 	public void updateResources(float resOne, float resTwo){
-		resourceOne.text = OneName + "   "+ resOne;
-		resourceTwo.text = TwoName + "   "+ resTwo;
+
+		if (OneName != "") {
+			resourceOne.text = OneName + "  " + resOne;
+		}
+		if (TwoName != "") {
+			
+			resourceTwo.text = TwoName + "  " + resTwo;
+		}
 	}
 	
 	
