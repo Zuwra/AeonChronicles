@@ -51,6 +51,7 @@ public class CustomRVO : IMover {
 	#endif
 
 	public void Awake () {
+		myFogger = GetComponent<FogOfWarUnit> ();
 		initialSpeed = getMaxSpeed();
 		seeker = GetComponent<Seeker>();
 	}
@@ -169,8 +170,10 @@ public class CustomRVO : IMover {
 		//Direction to the next waypoint
 	
 		Vector3 dir = (path.vectorPath[currentWaypoint]-this.transform.position).normalized * speed;
-
-
+		if (myFogger) {
+			myFogger.move ();
+		}
+	
 		controller.Move (dir);
 
 	

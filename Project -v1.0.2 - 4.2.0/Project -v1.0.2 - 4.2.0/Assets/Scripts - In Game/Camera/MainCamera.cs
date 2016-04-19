@@ -24,8 +24,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	
 	private Rect m_Boundries;
 
-	private float worldWidth;
-	private float worldHeight;
+
 
 	
 	void Awake()
@@ -204,8 +203,6 @@ public class MainCamera : MonoBehaviour, ICamera {
 		m_Boundries.yMin = minY+1;
 		m_Boundries.yMax = maxY;
 
-		worldWidth = maxX - minX;
-		worldHeight = maxY - minY;
 	}
 	
 

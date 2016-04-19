@@ -1,12 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Camera\MainCamera.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TextTrigger.cs">
     <Files>
-      <File FileName="Assets\MiniMapUIController.cs" Line="325" Column="3" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\FogOfWar\FogOfWar.cs" Line="1" Column="1" />
-      <File FileName="Assets\FogOfWar\Test\FogOfWarTestGUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="181" Column="2" />
+      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="48" Column="24" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="90" Column="25" />
+      <File FileName="Assets\FogOfWar\FogOfWar.cs" Line="266" Column="15" />
+      <File FileName="Assets\CapturableUnit.cs" Line="46" Column="3" />
+      <File FileName="Assets\TextTrigger.cs" Line="16" Column="18" />
+      <File FileName="Assets\InstructionDisplayer.cs" Line="46" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

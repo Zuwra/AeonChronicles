@@ -50,7 +50,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 			if (!manage) {
 				manage = order.Target.GetComponentInParent<UnitManager> ();
 			}
-			Debug.Log ("IN standard interact" + manage.gameObject);
+
 			if (manage != null) {
 
 				if (manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {

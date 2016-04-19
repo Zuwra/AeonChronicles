@@ -118,6 +118,9 @@ public class customMover : IMover {
 			dir *= speed * Time.deltaTime;
 			controller.Move (dir);
 		}
+		if (myFogger) {
+			myFogger.move ();
+		}
 		//controller.SimpleMove (dir);
 		
 		//Check if we are close enough to the next waypoint

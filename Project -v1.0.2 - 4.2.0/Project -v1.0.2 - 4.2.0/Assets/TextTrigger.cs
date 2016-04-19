@@ -22,7 +22,7 @@ public class TextTrigger : MonoBehaviour {
 
 		if (other.GetComponent<UnitManager> ())
 		if (other.GetComponent<UnitManager> ().PlayerOwner == 1) {
-			InstructionDisplayer.instance.displayText (text, duration, sound);
+			InstructionDisplayer.instance.displayText (text, duration, sound, .2f);
 
 
 			Destroy (this.gameObject);

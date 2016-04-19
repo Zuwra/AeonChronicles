@@ -148,6 +148,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 			Color raceColor = getColorForRaceManager (race);
             
 			foreach (GameObject unit in race.getUnitList()) { // Loops 0 -100 ish timesif(unit){
+				if (unit == null) {
+					continue;}
 				float unitWorldX = unit.transform.position.x;
 				float unitWorldZ = unit.transform.position.z;
                

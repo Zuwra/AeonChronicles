@@ -353,7 +353,7 @@ public class UnitManager : Unit,IOrderable{
 
 	public void changeState(UnitState nextState)
 	{if (UnitName == "Coyote") {
-			Debug.Log ("Changing to " + nextState);
+		//	Debug.Log ("Changing to " + nextState);
 		}
 
 		if (Input.GetKey (KeyCode.LeftShift) && (!(nextState is DefaultState) && (queuedStates.Count > 0  || !(myState is DefaultState)))) {

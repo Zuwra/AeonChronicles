@@ -31,13 +31,14 @@ public class InstructionDisplayer : MonoBehaviour {
 		}
 	}
 
-	public void displayText(string input, float duration, AudioClip sound)
+	public void displayText(string input, float duration, AudioClip sound, float volume)
 	{	this.enabled = true;
 		myText.text = input;
 		myCanvas.enabled = true;
 		turnOffTime = Time.time + duration;
 		MissionLogger.instance.AddLog (input);
 		if (sound != null) {
+			myAudio.volume = volume;
 			myAudio.PlayOneShot (sound);
 		}
 	}

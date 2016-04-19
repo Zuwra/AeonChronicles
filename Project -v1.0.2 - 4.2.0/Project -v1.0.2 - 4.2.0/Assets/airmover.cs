@@ -73,8 +73,9 @@ public class airmover : IMover {
 		dir = (targetPosition -transform.position).normalized;
 		dir *= speed * Time.deltaTime;
 		controller.Move (dir);
-
-
+		if (myFogger) {
+			myFogger.move ();
+		}
 
 		if (Time.time > nextActionTime) {
 			nextActionTime += .6f;
