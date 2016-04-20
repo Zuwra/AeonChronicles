@@ -23,7 +23,7 @@ public class CapturableUnit : MonoBehaviour {
 	}
 
 
-	private void capture()
+	public void capture()
 	{
 		foreach(UnitManager manage in myManagers){
 

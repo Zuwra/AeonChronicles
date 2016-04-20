@@ -55,12 +55,17 @@ public class AttackMoveState : UnitState {
 
 		if (currentFrame > refreshTime) {
 			currentFrame = 0;
-			enemy = myManager.findBestEnemy ();
+			GameObject temp =  myManager.findBestEnemy ();
 
-			if(enemy){
-				myMover.resetMoveLocation(enemy.transform.position);
-				//Debug.Log("Just called th reset2" + enemy.transform.position);
+			if (temp && temp != enemy) {
+			
+				enemy = temp;
+			
+					//myManager.gameObject.transform.LookAt (enemy.transform.position);
+					myMover.resetMoveLocation (enemy.transform.position);
+					//Debug.Log("Just called th reset2" + enemy.transform.position);
 				
+
 			}
 		}
 		//still need to figure out calcualte ion for if enemy goes out of range or if a better one comes into range
@@ -73,14 +78,14 @@ public class AttackMoveState : UnitState {
 			if(myWeapon.inRange(enemy)){
 				myMover.stop ();
 				if (myWeapon.canAttack (enemy)) {
-					
+
 					myWeapon.attack (enemy);
 				} else {
 					
 				}
 			}
 			else{
-				
+
 				myMover.move();
 			}
 		}
