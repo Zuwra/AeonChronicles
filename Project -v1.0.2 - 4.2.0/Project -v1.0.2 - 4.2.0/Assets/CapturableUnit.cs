@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class CapturableUnit : MonoBehaviour {
 
 	public List<UnitManager> myManagers = new List<UnitManager>();
-
+	public bool cutscene;
 	//Add all managers in the unit to this list
 	// In order to use this, set the units playerNumber(UnitManager) to 3
 	// and disable the FogOfWarUnitScript
@@ -44,7 +44,9 @@ public class CapturableUnit : MonoBehaviour {
 		GameObject.FindObjectOfType<GameManager> ().activePlayer.addUnit (this.gameObject);
 
 
-
+		if (cutscene) {
+			GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);
+		}
 		Destroy (this);
 	}
 

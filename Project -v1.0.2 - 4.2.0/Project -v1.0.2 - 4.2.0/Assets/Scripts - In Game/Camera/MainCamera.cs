@@ -24,8 +24,10 @@ public class MainCamera : MonoBehaviour, ICamera {
 	
 	private Rect m_Boundries;
 
-
-
+	private bool ScreenSteal;
+	private Vector3 StealTarget;
+	private Vector3 CutSceneStart;
+	private float cutsceneTime;
 	
 	void Awake()
 	{
@@ -50,8 +52,32 @@ public class MainCamera : MonoBehaviour, ICamera {
 	// Update is called once per frame
 	void Update () 
 	{
+
+		if (ScreenSteal) {
+			cutsceneTime += Time.deltaTime;
+			Vector3 temploc = Vector3.Lerp (CutSceneStart, StealTarget, cutsceneTime / 2);
+			this.transform.position = temploc;
+
+
+			CheckEdgeMovement ();
+			if (this.transform.position != temploc ||  Vector3.Distance (this.transform.position, StealTarget) < 3) {
+				ScreenSteal = false;
+				canWeScroll = true;
+			}
 		
+		}
 	}
+
+
+	public void setCutScene(Vector3 vec, float cameraHeight)
+	{canWeScroll = false;
+		StealTarget = new Vector3 (vec.x, vec.y + cameraHeight, vec.z - cameraHeight);
+		Debug.Log ("target is " + StealTarget);
+		ScreenSteal = true;
+		CutSceneStart = this.gameObject.transform.position;
+
+	}
+
 	
 	public void Pan(object sender, ScreenEdgeEventArgs e)
 	{
@@ -151,9 +177,6 @@ public class MainCamera : MonoBehaviour, ICamera {
 			}
 			
 		}
-
-
-
 
 
 		transform.position = new Vector3 (this.gameObject.transform.position.x - x, HeightAboveGround, this.gameObject.transform.position.z + z);
