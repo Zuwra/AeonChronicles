@@ -31,6 +31,10 @@ public  class Projectile : MonoBehaviour {
 
 	private Vector3 lastLocation;
 
+	public GameObject TargetIndicator;
+	public Texture indicatorPic;
+	public float indicatorSize;
+	private GameObject myIndiactor;
 
 	// Use this for initialization
 	void Start () {	
@@ -55,7 +59,15 @@ public  class Projectile : MonoBehaviour {
 		} 
 
 		control = GetComponent<CharacterController> ();
-			distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+		distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+
+		if (TargetIndicator != null) {
+
+			myIndiactor = (GameObject)Instantiate (TargetIndicator, lastLocation, Quaternion.identity);
+
+			myIndiactor.GetComponentInChildren<Light>().cookie = indicatorPic;
+			myIndiactor.GetComponentInChildren<Light> ().spotAngle = indicatorSize;
+		}
 	
 	}
 
@@ -120,14 +132,6 @@ public  class Projectile : MonoBehaviour {
 	
 		}
 
-
-
-
-		//hack for hitting the ground
-		//if (!trackTarget && this.gameObject.transform.position.y < lastLocation.y +1 && this.gameObject.transform.position.y > lastLocation.y) {
-			//Terminate (null);
-		
-		//}
 	
 	}
 
@@ -203,6 +207,10 @@ public  class Projectile : MonoBehaviour {
 		
 		}
 
+		if (myIndiactor != null) {
+			Destroy (myIndiactor);
+		}
+
 		Destroy (this.gameObject);
 
 	}
@@ -215,6 +223,9 @@ public  class Projectile : MonoBehaviour {
 	{
 		
 		Source = so;
+		if (TargetIndicator != null && Source.GetComponent<UnitManager> ().PlayerOwner != 1 ) {
+			TargetIndicator.GetComponentInChildren<Light> ().color = Color.red;
+		}
 	}
 	
 	

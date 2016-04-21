@@ -43,5 +43,12 @@ public class InstructionDisplayer : MonoBehaviour {
 		}
 	}
 
+	public void TurnOff()
+	{
+		this.enabled = false;
+		myCanvas.enabled = false;
+
+	}
+
 
 }

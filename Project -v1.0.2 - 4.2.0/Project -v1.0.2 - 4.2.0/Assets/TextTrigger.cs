@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class TextTrigger : MonoBehaviour {
-
+	
+	[TextArea(3,10)]
 	public string text;
 	public float duration;
 
