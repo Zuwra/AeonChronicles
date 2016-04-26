@@ -208,6 +208,7 @@
      <Compile Include="Assets\DaexaSupplyDrop.cs" />
      <Compile Include="Assets\DaexaWorkerInteract.cs" />
      <Compile Include="Assets\DamageUpgrade.cs" />
+     <Compile Include="Assets\DeathWinTrigger.cs" />
      <Compile Include="Assets\EMPblast.cs" />
      <Compile Include="Assets\EconomyManager.cs" />
      <Compile Include="Assets\EmpMissile.cs" />
@@ -417,6 +418,7 @@
      <Compile Include="Assets\TargetAbility.cs" />
      <Compile Include="Assets\TargetCircle.cs" />
      <Compile Include="Assets\TargetCircleManager.cs" />
+     <Compile Include="Assets\TargetDeathVictory.cs" />
      <Compile Include="Assets\TextTrigger.cs" />
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TurboRockets.cs" />
@@ -435,6 +437,7 @@
      <Compile Include="Assets\UnitProduction.cs" />
      <Compile Include="Assets\Upgradable.cs" />
      <Compile Include="Assets\Upgrade.cs" />
+     <Compile Include="Assets\VictoryTrigger.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />
      <Compile Include="Assets\airmover.cs" />
      <Compile Include="Assets\animate.cs" />

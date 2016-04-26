@@ -794,6 +794,19 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     }
 
+	public void selectAllBuildings ()
+	{DeselectAll();
+		foreach (GameObject obj in raceMan.getUnitList())
+		{
+
+			if (obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure))
+			{
+				AddObject(obj.GetComponent<UnitManager>());
+			}
+		}
+		CreateUIPages(0);
+	}
+
     public void stopO()
     {
         GiveOrder(Orders.CreateStopOrder());
