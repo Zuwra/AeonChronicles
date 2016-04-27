@@ -225,9 +225,9 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 		botRightP = new Vector2 (iC, jC);
 
 		if(screenTrap == null)
-		{CreateTexture (screenTrap);
-			Debug.Log("Its nul;l");}
+		{CreateTexture (screenTrap);}
 
+	//	Debug.Log (topRightP + "   " + botRightP + "  " +hit.collider.gameObject);
 		drawLine(screenTrap, topLeftP,topRightP);
 
 		drawLine(screenTrap, botLeftP,botRightP);
@@ -272,10 +272,11 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 			ctr += frac;
 
 
-			//if (t.y > 0 && t.x < -textureWidth) {
+			if (t.x > 0 && t.y < tex.height)
+			{
 				
 				tex.SetPixel ((int)t.x, (int)t.y, Color.magenta);
-			//}
+			}
 		
 		}
 	
