@@ -55,7 +55,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 
 		if (ScreenSteal) {
 			cutsceneTime += Time.deltaTime;
-			Vector3 temploc = Vector3.Lerp (CutSceneStart, StealTarget, cutsceneTime / 2);
+			Vector3 temploc = Vector3.Lerp (CutSceneStart, StealTarget, cutsceneTime / 1.5f);
 			this.transform.position = temploc;
 
 

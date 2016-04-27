@@ -21,6 +21,7 @@ public class TurretHealthDisplay : HealthDisplay {
 	private bool pointerIn;
 	// Use this for initialization
 	void Start () {
+		updateHealth (currentHealth);
 		camy = GameObject.FindObjectOfType<MainCamera> ().gameObject;
 	}
 	
@@ -74,8 +75,10 @@ public class TurretHealthDisplay : HealthDisplay {
 
 		if (casted > 98) {
 			percentHealth.text = "";
+			Icon.enabled = false;
 		} else {
 			percentHealth.text = casted + "%";
+			Icon.enabled = true;
 		}
 
 		if (!flashing) {

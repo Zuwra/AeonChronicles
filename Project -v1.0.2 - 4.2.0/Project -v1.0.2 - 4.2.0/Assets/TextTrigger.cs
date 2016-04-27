@@ -8,6 +8,10 @@ public class TextTrigger : MonoBehaviour {
 	public float duration;
 
 	public AudioClip sound;
+
+	[Tooltip("Length of Cutsccene, Set this to 0 so it wont steal the camera, cutscene length not implemented yet")]
+
+	public float stealCamera;
 	// Use this for initialization
 	void Start () {
 	
@@ -24,7 +28,9 @@ public class TextTrigger : MonoBehaviour {
 		if (other.GetComponent<UnitManager> ())
 		if (other.GetComponent<UnitManager> ().PlayerOwner == 1) {
 			InstructionDisplayer.instance.displayText (text, duration, sound, .2f);
-
+			if (stealCamera > 0) {
+				GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);
+			}
 
 			Destroy (this.gameObject);
 		}
