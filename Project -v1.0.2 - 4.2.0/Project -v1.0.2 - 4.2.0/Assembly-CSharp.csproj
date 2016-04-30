@@ -213,6 +213,7 @@
      <Compile Include="Assets\EconomyManager.cs" />
      <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
+     <Compile Include="Assets\ExpositionTexts.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
      <Compile Include="Assets\FogOfWar\FogOfWar.cs" />
      <Compile Include="Assets\FogOfWar\FogOfWarUnit.cs" />
