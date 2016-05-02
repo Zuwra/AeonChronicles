@@ -187,6 +187,7 @@
      <Compile Include="Assets\BloodMistAura.cs" />
      <Compile Include="Assets\BloodMistCloud.cs" />
      <Compile Include="Assets\Bombardment.cs" />
+     <Compile Include="Assets\BonusObjectiveTracker.cs" />
      <Compile Include="Assets\BountyHunter.cs" />
      <Compile Include="Assets\BuildLargeTurret.cs" />
      <Compile Include="Assets\BuildManager.cs" />
@@ -242,6 +243,7 @@
      <Compile Include="Assets\LaserNode.cs" />
      <Compile Include="Assets\LaserNodeTurret.cs" />
      <Compile Include="Assets\LifeSteal.cs" />
+     <Compile Include="Assets\LocationObjective.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />
      <Compile Include="Assets\Masochism.cs" />
      <Compile Include="Assets\MassCapture.cs" />
@@ -252,6 +254,7 @@
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\MultiShotParticle.cs" />
      <Compile Include="Assets\OathFury.cs" />
+     <Compile Include="Assets\Objective.cs" />
      <Compile Include="Assets\ObjectiveManager.cs" />
      <Compile Include="Assets\ObjectiveTrigger.cs" />
      <Compile Include="Assets\OneShotParticleSystem.cs" />

@@ -3,8 +3,9 @@ using System.Collections;
 
 public class ObjectiveTrigger : MonoBehaviour {
 
-
-	public string objective;
+	// triggers new bonus objective when your troops enter an area
+	public Objective myObj;
+	public bool finishObjective;
 	// Use this for initialization
 	void Start () {
 	
@@ -21,7 +22,11 @@ public class ObjectiveTrigger : MonoBehaviour {
 
 		if (other.GetComponent<UnitManager> ())
 		if (other.GetComponent<UnitManager> ().PlayerOwner == 1) {
-			ObjectiveManager.instance.setObjective (objective);
+			if (finishObjective) {
+				myObj.complete ();
+			} else {
+				VictoryTrigger.instance.addObjective (myObj);
+			}
 			Destroy (this.gameObject);
 		}
 	}

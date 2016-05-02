@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TargetDeathVictory : MonoBehaviour {
+public class TargetDeathVictory : Objective {
 
 	public List<GameObject> targets = new List<GameObject> ();
 
@@ -30,7 +30,7 @@ public class TargetDeathVictory : MonoBehaviour {
 		if (targets.Contains (obj)) {
 			targets.Remove (obj);
 			if (targets.Count == 0) {
-				myVictory.Win ();
+				complete ();
 			}
 		}
 
