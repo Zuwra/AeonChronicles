@@ -235,6 +235,8 @@
      <Compile Include="Assets\IconAttacker.cs" />
      <Compile Include="Assets\Iinteract.cs" />
      <Compile Include="Assets\InstructionDisplayer.cs" />
+     <Compile Include="Assets\InstructionHelper.cs" />
+     <Compile Include="Assets\InstructionHelperManager.cs" />
      <Compile Include="Assets\KillModifier.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
      <Compile Include="Assets\LaserNode.cs" />
@@ -250,6 +252,8 @@
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\MultiShotParticle.cs" />
      <Compile Include="Assets\OathFury.cs" />
+     <Compile Include="Assets\ObjectiveManager.cs" />
+     <Compile Include="Assets\ObjectiveTrigger.cs" />
      <Compile Include="Assets\OneShotParticleSystem.cs" />
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />

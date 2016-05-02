@@ -188,8 +188,9 @@ public  class Projectile : MonoBehaviour {
 			foreach (Notify not in triggers) {
 				not.trigger (this.gameObject, this.gameObject, target,  damage);
 			}
-
-			target.GetComponent<UnitStats> ().TakeDamage (damage, Source, DamageTypes.DamageType.Regular);
+			if (target != null) {
+				target.GetComponent<UnitStats> ().TakeDamage (damage, Source, DamageTypes.DamageType.Regular);
+			}
 			if (target == null) {
 				{
 					Source.GetComponent<UnitManager> ().cleanEnemy ();}
