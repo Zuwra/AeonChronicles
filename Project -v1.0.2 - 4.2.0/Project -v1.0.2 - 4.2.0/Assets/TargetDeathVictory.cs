@@ -6,12 +6,9 @@ public class TargetDeathVictory : Objective {
 
 	public List<GameObject> targets = new List<GameObject> ();
 
-	VictoryTrigger myVictory;
-
 
 	// Use this for initialization
 	void Start () {
-		myVictory = GameObject.FindObjectOfType<VictoryTrigger> ();
 
 		foreach (GameObject obj in targets) {
 			obj.AddComponent<DeathWinTrigger> ();

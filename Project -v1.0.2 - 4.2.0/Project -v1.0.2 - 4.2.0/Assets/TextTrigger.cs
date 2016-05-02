@@ -28,11 +28,11 @@ public class TextTrigger : MonoBehaviour {
 		if (other.GetComponent<UnitManager> ())
 		if (other.GetComponent<UnitManager> ().PlayerOwner == 1) {
 			if (!dialogue) {
-				Debug.Log ("Opening");
+				
 				InstructionHelperManager.instance.addBUtton (text, duration);
 			}
 			else{
-				InstructionDisplayer.instance.displayText (text, duration, sound, .2f);
+				ExpositionDisplayer.instance.displayText (text, duration, sound, .2f);
 				if (stealCamera > 0) {
 					GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);
 				}
