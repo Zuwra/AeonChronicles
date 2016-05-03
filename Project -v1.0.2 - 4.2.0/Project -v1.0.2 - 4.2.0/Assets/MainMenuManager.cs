@@ -43,7 +43,8 @@ public class MainMenuManager : MonoBehaviour {
 
 
 	public void startMatch()
-	{SceneManager.LoadScene (3);
+	{
+		SceneManager.LoadScene (3);
 	}
 
 	public void toCampaign()

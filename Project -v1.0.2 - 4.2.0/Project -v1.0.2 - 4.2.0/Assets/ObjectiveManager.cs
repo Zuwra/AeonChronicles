@@ -11,11 +11,15 @@ public class ObjectiveManager : MonoBehaviour {
 
 	private Dictionary<Objective, GameObject> mainObjectives = new Dictionary<Objective, GameObject> ();
 	private Dictionary<Objective, GameObject> bonusObjectives = new Dictionary<Objective, GameObject> ();
-
+	public Text mainTitle;
 	public Text bonusTitle;
 
 
 	public static ObjectiveManager instance;
+
+	//private float turnOffTime;
+	//private bool blinking;
+
 	// Use this for initialization
 	void Awake () {
 		instance = this;
@@ -23,9 +27,26 @@ public class ObjectiveManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		//if (blinking) {
+			//if (Time.time > turnOffTime) {
+			
+			//}
+		//}
 	
 	}
 
+
+	public void blink(bool input)
+	{
+		//if (input) {
+			
+		//}
+		//blinking = input;
+		//if (input) {
+		//	blinking = true;}
+
+	}
 
 	public void setBonusObjectives(Objective input)
 	{bonusTitle.gameObject.SetActive (true);
@@ -37,7 +58,7 @@ public class ObjectiveManager : MonoBehaviour {
 		pos.z = 0;
 		obj.transform.position = pos;
 		obj.transform.SetSiblingIndex (mainObjectives.Count + bonusObjectives.Count+1);
-	
+		blink (true);
 
 	}
 
@@ -52,17 +73,20 @@ public class ObjectiveManager : MonoBehaviour {
 		obj.GetComponentInChildren<Text> ().text = "  " + input.description;
 		mainObjectives.Add (input, obj);
 		obj.transform.SetSiblingIndex (mainObjectives.Count);
+		blink (false);
 
 	}
 
 	public void completeBonus(Objective obj)
 		{
 		mainObjectives [obj].GetComponentInChildren<Toggle> ().isOn = true;
+		blink (true);
 	}
 
 	public void completeMain(Objective obj)
 		{
 		bonusObjectives [obj].GetComponentInChildren<Toggle> ().isOn = true;
+		blink (true);
 	}
 
 }

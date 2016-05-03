@@ -130,6 +130,7 @@ public class buildTurret :UnitProduction{
 	{autocast = false;
 		
 	}
+
 	public override void setAutoCast()
 	{autocast = !autocast;
 		if (autocast) {
@@ -301,7 +302,7 @@ public class buildTurret :UnitProduction{
 		GameObject tur = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
 
 		racer.applyUpgrade (tur);
-		buildingUnit = false;
+		//buildingUnit = false;
 
 	
 	return tur;

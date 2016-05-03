@@ -443,6 +443,7 @@
      <Compile Include="Assets\TurretPlacerManager.cs" />
      <Compile Include="Assets\TurretScreenDisplayer.cs" />
      <Compile Include="Assets\TurretplacerTwo.cs" />
+     <Compile Include="Assets\UIAddons\Scripts\SceneExample.cs" />
      <Compile Include="Assets\UltCooldown.cs" />
      <Compile Include="Assets\UndyingArmor.cs" />
      <Compile Include="Assets\UnitCardCreater.cs" />
@@ -469,6 +470,7 @@
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.shader" />
      <None Include="Assets\Resources\Fonts\pieces_of_eight\Alt Map.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
+     <None Include="Assets\UIAddons\Shaders\UIAddonsGrayScaleFont.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\Poly2Tri\Poly2TriLicense.txt" />
      <None Include="Assets\FogOfWar\TransparentShadowCaster.shader" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
@@ -479,6 +481,7 @@
      <None Include="Assets\Resources\Fonts\caracas2\Licence - Licencia.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\dependencies.txt" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
+     <None Include="Assets\UIAddons\Shaders\UIAddonsGrayscale.shader" />
      <None Include="Assets\AstarPathfindingProject\Readme_upgrading.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\Clipper\ClipperLicense.txt" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Light.shader" />
@@ -509,6 +512,9 @@
  </Reference>
  <Reference Include="Pathfinding.Poly2Tri">
  <HintPath>C:/Users/matthew/Desktop/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/AstarPathfindingProject/Plugins/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
+ </Reference>
+ <Reference Include="UIAddons">
+ <HintPath>C:/Users/matthew/Desktop/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/UIAddons/Plugins/UIAddons/UIAddons.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
