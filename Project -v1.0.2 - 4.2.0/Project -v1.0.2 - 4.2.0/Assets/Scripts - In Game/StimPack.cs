@@ -78,7 +78,6 @@ public class StimPack : Ability {
 	{on = false;
 		
 		BoostEffect.stopEffect ();
-		Debug.Log ("Turning off stim ");
 
 
 	}

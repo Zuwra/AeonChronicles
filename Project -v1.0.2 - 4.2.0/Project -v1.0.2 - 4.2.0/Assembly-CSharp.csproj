@@ -252,6 +252,7 @@
      <Compile Include="Assets\MiningState.cs" />
      <Compile Include="Assets\MissileArmer.cs" />
      <Compile Include="Assets\MissionLogger.cs" />
+     <Compile Include="Assets\MissionManager.cs" />
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\MultiShotParticle.cs" />
      <Compile Include="Assets\OathFury.cs" />

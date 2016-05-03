@@ -8,7 +8,7 @@ public class InstructionDisplayer : MonoBehaviour {
 	private Canvas myCanvas;
 	private Text myText;
 	public static InstructionDisplayer instance;
-
+	public Image myImage;
 	private float turnOffTime;
 	private AudioSource myAudio;
 
@@ -31,8 +31,9 @@ public class InstructionDisplayer : MonoBehaviour {
 		}
 	}
 
-	public void displayText(string input, float duration, AudioClip sound, float volume)
-	{	this.enabled = true;
+	public void displayText(string input, float duration, AudioClip sound, float volume, Sprite pic)
+	{
+		this.enabled = true;
 		myText.text = input;
 		myCanvas.enabled = true;
 		turnOffTime = Time.time + duration;
@@ -40,6 +41,13 @@ public class InstructionDisplayer : MonoBehaviour {
 		if (sound != null) {
 			myAudio.volume = volume;
 			myAudio.PlayOneShot (sound);
+		}
+
+		if (pic != null) {
+			myImage.enabled = true;
+			myImage.sprite = pic;
+		} else {
+			myImage.enabled = false;
 		}
 	}
 

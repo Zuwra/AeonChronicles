@@ -90,7 +90,7 @@ public class ExpositionTexts : MonoBehaviour {
 	{Debug.Log (currentText);
 		if(theStrings.Count-1 == currentText )
 		{
-			SceneManager.LoadScene (1);
+			SceneManager.LoadScene (3);
 		}
 		else{
 			nextText();

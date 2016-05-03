@@ -11,7 +11,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	private float turnOffTime;
 	private AudioSource myAudio;
-
+	public Image personPic;
 	// Use this for initialization
 	void Start () {
 		myText = GetComponentInChildren<Text> ();
@@ -31,12 +31,16 @@ public class ExpositionDisplayer : MonoBehaviour {
 		}
 	}
 
-	public void displayText(string input, float duration, AudioClip sound, float volume)
+	public void displayText(string input, float duration, AudioClip sound, float volume, Sprite pic)
 	{	this.enabled = true;
 		myText.text = input;
 		myCanvas.enabled = true;
 		turnOffTime = Time.time + duration;
 		MissionLogger.instance.AddLog (input);
+	
+		if (pic) {
+			personPic.sprite = pic;}
+		
 		if (sound != null) {
 			myAudio.volume = volume;
 			myAudio.PlayOneShot (sound);

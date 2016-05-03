@@ -8,7 +8,7 @@ public class InstructionHelper : MonoBehaviour {
 	public float duration;
 
 	public AudioClip sound;
-
+	public Sprite myPic;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +27,7 @@ public class InstructionHelper : MonoBehaviour {
 
 	public void OpenInstruction()
 	{
-		InstructionDisplayer.instance.displayText (text, duration, sound, .2f);
+		InstructionDisplayer.instance.displayText (text, duration, sound, .2f, myPic);
 		Destroy (this.gameObject);
 	}
 }
