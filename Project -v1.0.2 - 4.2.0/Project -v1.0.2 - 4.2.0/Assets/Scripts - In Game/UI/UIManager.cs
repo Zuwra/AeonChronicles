@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public GameObject AbilityTargeter;
 	private TargetAbility currentAbility;
 	public int currentAbilityNUmber;
-
+	private bool clickOverUI = false;
 
 	public bool IsShiftDown
 	{
@@ -113,12 +113,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 					
 				if (m_SelectedManager.checkValidTarget(targetPoint, currentObject, currentAbilityNUmber)) {
 						if(currentAbility.myTargetType == TargetAbility.targetType.ground)
-							{AbilityTargeter.GetComponent<Light> ().color = Color.green;}
+							{AbilityTargeter.GetComponentInChildren<Light> ().color = Color.green;}
 						else{CursorManager.main.targetMode();}
 							
 					} else {
 						if(currentAbility.myTargetType == TargetAbility.targetType.ground){
-							AbilityTargeter.GetComponent<Light> ().color = Color.red;}
+							AbilityTargeter.GetComponentInChildren<Light> ().color = Color.red;}
 						else{
 							CursorManager.main.invalidMode();}
 				}
@@ -147,10 +147,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 				Vector3 targetPoint = hit.point;
 				currentObject = hit.collider.gameObject;
 				if (currentAbility.isValidTarget (currentObject, targetPoint)) {
-					AbilityTargeter.GetComponent<Light> ().color = Color.green;
+					AbilityTargeter.GetComponentInChildren<Light> ().color = Color.green;
 					CursorManager.main.targetMode();
 				} else {
-					AbilityTargeter.GetComponent<Light> ().color = Color.red;
+					AbilityTargeter.GetComponentInChildren<Light> ().color = Color.red;
 					CursorManager.main.invalidMode();
 				}
 
@@ -298,14 +298,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 	//----------------------Mouse Button Handler------------------------------------
 	private void ButtonClickedHandler(object sender, MouseEventArgs e)
 	{
-
 			e.Command ();
-
 	}
 
 	//------------------------Mouse Button Commands--------------------------------------------
 	public void LeftButton_SingleClickDown(MouseEventArgs e)
-	{
+	{	clickOverUI = isPointerOverUIObject ();
 		if(hoverOver != HoverOver.Menu)
 		switch (m_Mode)
 		{
@@ -348,7 +346,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 	public void LeftButton_SingleClickUp(MouseEventArgs e)
 	{
-
+		if (clickOverUI) {
+			clickOverUI = false;
+			return;
+		}
+		Debug.Log ("Here");
 		Vector3 targetPoint = Vector3.zero;
 			Ray ray;
 		RaycastHit hit;
@@ -555,8 +557,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 		} else {
 			CursorManager.main.offMode ();
 			AbilityTargeter.SetActive (true);
-			AbilityTargeter.GetComponent<Light> ().cookie = currentAbility.targetArea;
-			AbilityTargeter.GetComponent<Light> ().spotAngle = currentAbility.areaSize;
+			AbilityTargeter.GetComponentInChildren<Light> ().cookie = currentAbility.targetArea;
+			AbilityTargeter.GetComponentInChildren<Light> ().spotAngle = currentAbility.areaSize;
 		}
 	}
 

@@ -46,10 +46,6 @@ public class GameMenu : MonoBehaviour {
 			openMenu ();
 		}
 
-		if (Time.time > 720) {
-			setMenu (Victory);
-		}
-	
 	}
 
 

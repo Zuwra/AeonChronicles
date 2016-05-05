@@ -36,12 +36,7 @@ public class SateliteScan : TargetAbility{
 	public  void setAutoCast(){}
 
 	public override bool isValidTarget (GameObject target, Vector3 location){
-		if (target == null) {
-			return true;
-		}
-
-		return (!target.GetComponent<UnitManager>());
-
+		return true;
 
 	}
 
@@ -69,10 +64,6 @@ public class SateliteScan : TargetAbility{
 
 	override
 	public void Cast(){
-
-
-
-		//myCost.payCost ();
 
 
 		Vector3 pos = this.gameObject.transform.position;

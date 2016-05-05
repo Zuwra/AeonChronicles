@@ -34,6 +34,7 @@ public class FogOfWarUnit : MonoBehaviour
 		if (Time.time > nextActionTime) {
 			nextActionTime += updateFrequency;
 			if (hasMoved) {
+		
 				clearFog();			
 			}
 		

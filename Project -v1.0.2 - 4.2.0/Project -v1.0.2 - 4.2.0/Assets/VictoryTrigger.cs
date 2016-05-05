@@ -74,6 +74,7 @@ public class VictoryTrigger : MonoBehaviour {
 	IEnumerator WinLevel ()
 	{
 		yield return new WaitForSeconds (6);
+		VictoryScreen.enabled = false;
 		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
 		DefeatScreen.enabled = false;
 		SceneManager.LoadScene (0);
@@ -82,6 +83,7 @@ public class VictoryTrigger : MonoBehaviour {
 	IEnumerator LoseLevel ()
 	{
 		yield return new WaitForSeconds (6);
+		DefeatScreen.enabled = false;
 		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
 		DefeatScreen.enabled = false;
 		SceneManager.LoadScene (0);

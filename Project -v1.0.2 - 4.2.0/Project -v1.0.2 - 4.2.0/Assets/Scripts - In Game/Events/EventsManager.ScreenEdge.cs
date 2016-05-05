@@ -26,7 +26,7 @@ public partial class EventsManager {
 			atScreenEdge = true;
 		}
 		
-		if (Input.mousePosition.x > Screen.width-1)
+		if (Input.mousePosition.x > Screen.width-2)
 		{
 			if (tempEventArgs == null)
 			{

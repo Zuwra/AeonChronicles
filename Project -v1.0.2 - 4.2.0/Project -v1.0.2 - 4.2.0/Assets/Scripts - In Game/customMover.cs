@@ -28,6 +28,7 @@ public class customMover : IMover {
 		initialSpeed = getMaxSpeed();
 		seeker = GetComponent<Seeker>();
 		controller = GetComponent<CharacterController>();
+		myFogger = GetComponent<FogOfWarUnit> ();
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
 		//seeker.StartPath (transform.position,targetPosition, OnPathComplete);
 	}
@@ -95,7 +96,7 @@ public class customMover : IMover {
 			
 			path = null;
 			pathSet = false;
-			Debug.Log ("Setting it to false");
+		
 			if (myRVO) {
 				myRVO.Move (Vector3.zero);
 			}

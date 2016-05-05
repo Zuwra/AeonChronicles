@@ -72,11 +72,29 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
 	
 	}
-	
+
+	// This is for optimization
+	private int frameUpdate = 0;
 	// Update is called once per frame
 	void Update () {
-		//slideOne.value = UltOne.myCost.cooldownProgress ();
-		if (slideTwo) {
+
+		if (frameUpdate < 5) {
+			frameUpdate++;
+			return;
+		}
+
+		if (slideOne && UltOne.active) {
+			slideOne.value = UltOne.myCost.cooldownProgress ();
+			if (slideOne.value < .99) {
+				ultBOne.interactable = false;
+			}
+			else{
+				ultBOne.interactable = true;
+			}
+
+		}
+
+		if (slideTwo && UltTwo.active) {
 			slideTwo.value = UltTwo.myCost.cooldownProgress ();
 			if (slideTwo.value < .99) {
 				ultBTwo.interactable = false;
@@ -86,7 +104,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				}
 
 		}
-		if (slideThree) {
+		if (slideThree && UltThree.active) {
 			slideThree.value = UltThree.myCost.cooldownProgress ();
 			if (slideThree.value < .99) {
 				ultBThree.interactable = false;
@@ -95,7 +113,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				ultBThree.interactable = true;
 			}
 		}
-		if (slideFour) {
+		if (slideFour && UltFour.active) {
 			slideFour.value = UltFour.myCost.cooldownProgress ();
 			if (slideFour.value < .99) {
 				ultBFour.interactable = false;
@@ -106,7 +124,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		}
 
 
-
+		frameUpdate = 0;
 
 	}
 
@@ -488,7 +506,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void useAbilityOne()
 	{if (UltOne != null) {
-			if(UltOne.canActivate().canCast)
+			if(UltOne.active &&UltOne.canActivate().canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltOne, 1);
 		}
@@ -497,7 +515,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void useAbilityTwo()
 	{
 		if (UltTwo != null) {
-			if(UltTwo.canActivate().canCast)
+			if(UltTwo.active &&UltTwo.canActivate().canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltTwo, 1);
 		}
@@ -506,7 +524,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void useAbilityThree()
 	{
 		if (UltThree != null) {
-			if(UltThree.canActivate().canCast)
+			if(UltThree.active &&UltThree.canActivate().canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltThree, 1);
 		}
@@ -515,7 +533,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void useAbilityFour()
 	{
 		if (UltFour != null) {
-			if(UltFour.canActivate().canCast)
+			if(UltFour.active && UltFour.canActivate().canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltFour, 1);
 		}

@@ -72,7 +72,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	public void setCutScene(Vector3 vec, float cameraHeight)
 	{canWeScroll = false;
 		StealTarget = new Vector3 (vec.x, vec.y + cameraHeight, vec.z - cameraHeight);
-		Debug.Log ("target is " + StealTarget);
+	
 		ScreenSteal = true;
 		CutSceneStart = this.gameObject.transform.position;
 
@@ -219,7 +219,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	}
 
 	public void SetBoundries (float minX, float minY, float maxX, float maxY)
-	{Debug.Log (minX + "   " + minY + "   " + maxX + "    " + maxY);
+	{
 		m_Boundries = new Rect();
 		m_Boundries.xMin = minX;
 		m_Boundries.xMax = maxX;
