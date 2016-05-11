@@ -350,7 +350,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			clickOverUI = false;
 			return;
 		}
-		Debug.Log ("Here");
+	
 		Vector3 targetPoint = Vector3.zero;
 			Ray ray;
 		RaycastHit hit;

@@ -442,6 +442,8 @@
      <Compile Include="Assets\TurretPlacer.cs" />
      <Compile Include="Assets\TurretPlacerManager.cs" />
      <Compile Include="Assets\TurretScreenDisplayer.cs" />
+     <Compile Include="Assets\TurretTipDisplayer.cs" />
+     <Compile Include="Assets\TurretUIPanel.cs" />
      <Compile Include="Assets\TurretplacerTwo.cs" />
      <Compile Include="Assets\UIAddons\Scripts\SceneExample.cs" />
      <Compile Include="Assets\UltCooldown.cs" />

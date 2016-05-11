@@ -321,7 +321,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 			MainCamera.main.minimapMove(toMove);
 			//GetComponent<RectTransform> ().rect.width;
 		
-			Debug.Log ( "Clicked    " + toMove.x + "   " + toMove.y);
+			//Debug.Log ( "Clicked    " + toMove.x + "   " + toMove.y);
 
 		}
 

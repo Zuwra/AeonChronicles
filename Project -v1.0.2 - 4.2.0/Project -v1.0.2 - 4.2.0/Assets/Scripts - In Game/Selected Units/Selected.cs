@@ -161,13 +161,13 @@ public class Selected : MonoBehaviour {
 				tempSelectOn = false;
 				if (!IsSelected) {
 					decalCircle.GetComponent<MeshRenderer> ().enabled = false;
-
+				}
 					foreach (Transform obj in this.transform) {
 
-						obj.SendMessage ("setSelect", SendMessageOptions.DontRequireReceiver);
+						obj.SendMessage ("setDeSelect", SendMessageOptions.DontRequireReceiver);
 					}
 						
-				}
+
 			}
 		}
 	}
@@ -185,11 +185,11 @@ public class Selected : MonoBehaviour {
 
 			foreach (Transform obj in this.transform) {
 
-				obj.SendMessage ("setDeselect", SendMessageOptions.DontRequireReceiver);
+				obj.SendMessage ("setSelect", SendMessageOptions.DontRequireReceiver);
 			}
 		}
 
-		tempSelectTime = Time.time + .05f;
+		tempSelectTime = Time.time + .08f;
 
 	}
 
@@ -268,7 +268,10 @@ public class Selected : MonoBehaviour {
 			}
 		}
 
+		foreach (Transform obj in this.transform) {
 
+			//obj.SendMessage ("setSelect", SendMessageOptions.DontRequireReceiver);
+		}
 	}
 	
 	public void SetDeselected()

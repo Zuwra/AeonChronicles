@@ -50,8 +50,12 @@ public class TurretPlacer : MonoBehaviour {
 
 				gatling.gameObject.SetActive (unitSelect.IsSelected);
 				railgun.gameObject.SetActive (unitSelect.IsSelected);
-				mortar.gameObject.SetActive (unitSelect.IsSelected);
-				repair.gameObject.SetActive (unitSelect.IsSelected);
+				if (mortar) {
+					mortar.gameObject.SetActive (unitSelect.IsSelected);
+				}
+				if (repair) {
+					repair.gameObject.SetActive (unitSelect.IsSelected);
+				}
 				buttonsOn = false;
 			}
 
@@ -86,31 +90,31 @@ public class TurretPlacer : MonoBehaviour {
 
 			if (r) {
 				lastTrueTimeR = Time.time;
-				gatling.interactable = r;
+				railgun.interactable = r;
 			} else {
 				if (Time.time > lastTrueTimeR + .1) {
 					railgun.interactable = false;
 				}
 			}
-
+			if(mortar){
 			if (m) {
 				lastTrueTimeM = Time.time;
-				gatling.interactable = m;
+				mortar.interactable = m;
 			} else {
-				if (Time.time > lastTrueTimeM + .1) {
-					mortar.interactable = false;
+					if (Time.time > lastTrueTimeM + .1 ) {
+						mortar.interactable = false;
+					}}
+			}
+			if (repair) {
+				if (p ) {
+					lastTrueTimeP = Time.time;
+					repair.interactable = p;
+				} else {
+					if (Time.time > lastTrueTimeP + .1f) {
+						repair.interactable = false;
+					}
 				}
 			}
-
-			if (p) {
-				lastTrueTimeP = Time.time;
-				gatling.interactable = p;
-			} else {
-				if (Time.time > lastTrueTimeP + .1) {
-					repair.interactable = false;
-				}
-			}
-
 
 		}
 	}
@@ -129,8 +133,11 @@ public class TurretPlacer : MonoBehaviour {
 
 		gatling.gameObject.SetActive (buttonsOn);
 		railgun.gameObject.SetActive (buttonsOn);
-		mortar.gameObject.SetActive (buttonsOn);
-		repair.gameObject.SetActive (buttonsOn);
+		if (mortar) {
+			mortar.gameObject.SetActive (buttonsOn);
+		}if (repair) {
+			repair.gameObject.SetActive (buttonsOn);
+		}
 	}
 
 	public void buildGatling()

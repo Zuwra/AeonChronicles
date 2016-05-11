@@ -61,7 +61,8 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			supply.color = Color.yellow;
 		}
 		supply.text =  raceManager.currentSupply + "/" + raceManager.supplyMax;
-		currentProdManager = dropdowns [0];
+		currentProdManager = dropdowns [1];
+		chanageDropDown ();
 	}
 	
 	// Update is called once per frame

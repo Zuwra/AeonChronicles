@@ -20,16 +20,16 @@ public class IconAttacker : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
 
 	public void OnPointerEnter(PointerEventData eventData)
-	{if (playerOwner != 1) {
-			healthDisplay.display ();
-		}
+	{
+			healthDisplay.PointerI (true);
+
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		if (playerOwner != 1) {
-			healthDisplay.unDisplay ();
-		}
+		
+			healthDisplay.PointerI (false);
+
 	}
 
 	public void OnPointerClick(PointerEventData eventData)

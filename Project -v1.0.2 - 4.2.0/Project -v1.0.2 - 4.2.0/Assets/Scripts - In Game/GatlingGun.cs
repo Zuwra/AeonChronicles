@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GatlingGun : MonoBehaviour, Notify, Validator, Modifier {
+public class GatlingGun :  Ability,Notify, Validator, Modifier {
 
 
 	public IWeapon myWeapon;
@@ -128,6 +128,26 @@ public class GatlingGun : MonoBehaviour, Notify, Validator, Modifier {
 		}
 		return 0 ;
 
+	}
+
+
+
+	public override void setAutoCast(){
+	}
+
+
+	override
+	public continueOrder canActivate ()
+	{
+
+		continueOrder order = new continueOrder ();
+		return order;
+	}
+
+	override
+	public void Activate()
+	{
+		//return true;//next unit should also do this.
 	}
 
 }

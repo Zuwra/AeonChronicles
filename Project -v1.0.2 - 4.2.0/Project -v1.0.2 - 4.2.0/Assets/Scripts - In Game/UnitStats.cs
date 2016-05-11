@@ -61,7 +61,7 @@ public class UnitStats : MonoBehaviour {
 		}
 		if (Time.time < 1 && myManager.PlayerOwner == 1) {
 			GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (supply);
-
+		
 		}
 
 	}

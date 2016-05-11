@@ -16,9 +16,9 @@ public class TurretHealthDisplay : HealthDisplay {
 	private Color currentColor;
 	private float currentHealth =1;
 
-
-
+	private bool hoverOver;
 	private bool pointerIn;
+
 	// Use this for initialization
 	void Start () {
 		updateHealth (currentHealth);
@@ -115,6 +115,24 @@ public class TurretHealthDisplay : HealthDisplay {
 
 	}
 
+	public void hover(bool input)
+	{
+		hoverOver = input;
+		if (pointerIn || hoverOver) {
+			setSelect ();
+		} else {
+			setDeselect ();
+		}}
+
+	public void PointerI(bool input)
+	{
+		pointerIn = input;
+		if (pointerIn || hoverOver) {
+			setSelect ();
+		} else {
+			setDeselect ();
+		}}
+
 	public void display()
 	{
 		pointerIn = true;
@@ -131,12 +149,13 @@ public class TurretHealthDisplay : HealthDisplay {
 
 
 	public void setSelect (){
-		
+		Icon.enabled = true;
 	}
 
 	public void setDeselect (){
 
-
+		Icon.enabled = false;
+		updateHealth (currentHealth);
 	}
 
 

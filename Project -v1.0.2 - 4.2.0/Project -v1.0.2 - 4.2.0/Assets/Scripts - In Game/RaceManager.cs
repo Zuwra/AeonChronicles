@@ -343,6 +343,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		} else {
 			unitTypeCount.Add (unitName, 1);
 		}
+		//Debug.Log ("Adding" + obj + "  " + playerNumber + "count " + unitTypeCount [unitName]);
 		//Debug.Log ("STARTING");
 	
 		//apply all existing units built to new unit
