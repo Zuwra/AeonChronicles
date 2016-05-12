@@ -585,27 +585,28 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			AudioSrc.PlayOneShot (attackSound);
 			assignMoveCOmmand (order.OrderLocation, true);
 
-		} 
-		else if (order.OrderType == 6 && SelectedObjects.Count > 0) {
+		} else if (order.OrderType == 6 && SelectedObjects.Count > 0) {
 			
 
 			if ((order.Target.GetComponent<UnitManager> () && order.Target.GetComponent<UnitManager> ().PlayerOwner != 1)
-				|| (order.Target.GetComponentInParent<UnitManager> () && order.Target.GetComponentInParent<UnitManager> ().PlayerOwner != 1)) {
+			    || (order.Target.GetComponentInParent<UnitManager> () && order.Target.GetComponentInParent<UnitManager> ().PlayerOwner != 1)) {
 				AudioSrc.PlayOneShot (attackSound);
 				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
 				foreach (IOrderable obj in SelectedObjects) {
-					obj.GiveOrder (Orders.CreateInteractCommand(order.Target));
+					obj.GiveOrder (Orders.CreateInteractCommand (order.Target));
 				}
-			} 
-
-			else {
+			} else {
 				foreach (IOrderable obj in SelectedObjects) {
-					obj.GiveOrder (Orders.CreateFollowCommand(order.Target));
+					obj.GiveOrder (Orders.CreateFollowCommand (order.Target));
 				}
 				AudioSrc.PlayOneShot (moveSound);
 				Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
 			}
 		
+		} else if (order.OrderType == 0 && SelectedObjects.Count > 0) {
+			foreach (IOrderable obj in SelectedObjects) {
+				obj.GiveOrder (Orders.CreateStopOrder ());
+			}
 		}
     }
 

@@ -28,8 +28,9 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 			switch (order.OrderType) {
 			//Stop Order----------------------------------------
-			case Const.ORDER_STOP:
+		case Const.ORDER_STOP:
 			myManager.changeState (new DefaultState ());
+			Debug.Log ("changed to defaukt");
 				break;
 
 				//Move Order ---------------------------------------------

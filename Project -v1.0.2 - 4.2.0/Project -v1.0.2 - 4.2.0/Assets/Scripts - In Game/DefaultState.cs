@@ -35,7 +35,9 @@ public class DefaultState : UnitState{
 	}
 
 	public override void initialize()
-	{
+	{if (myMover) {
+			myMover.stop ();
+		}
 	}
 
 
