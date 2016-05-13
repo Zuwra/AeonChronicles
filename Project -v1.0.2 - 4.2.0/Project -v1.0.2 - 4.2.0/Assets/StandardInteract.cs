@@ -27,10 +27,16 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	{
 
 			switch (order.OrderType) {
+		case Const.Order_HoldGround:
+			myManager.changeState (new HoldState(myManager, myManager.cMover, myManager.myWeapon));
+
+			break;
+
+
 			//Stop Order----------------------------------------
 		case Const.ORDER_STOP:
 			myManager.changeState (new DefaultState ());
-			Debug.Log ("changed to defaukt");
+
 				break;
 
 				//Move Order ---------------------------------------------

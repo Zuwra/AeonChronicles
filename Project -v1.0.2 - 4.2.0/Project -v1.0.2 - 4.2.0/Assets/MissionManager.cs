@@ -8,7 +8,7 @@ public class MissionManager : MonoBehaviour {
 	public Canvas Technology;
 	public Canvas TechTree;
 	public Canvas Intelligence;
-
+	public Canvas Victoryscreen;
 	private Canvas myCanvas;
 
 
@@ -44,6 +44,12 @@ public class MissionManager : MonoBehaviour {
 	}
 
 
+	public void toggleVictory()
+	{
+		Victoryscreen.enabled = !Victoryscreen.enabled;
+		myCanvas.enabled = !myCanvas.enabled;
+	}
+
 
 	public void StartMission()
 	{
@@ -54,5 +60,7 @@ public class MissionManager : MonoBehaviour {
 	{
 		SceneManager.LoadScene (0);
 	}
+
+
 
 }

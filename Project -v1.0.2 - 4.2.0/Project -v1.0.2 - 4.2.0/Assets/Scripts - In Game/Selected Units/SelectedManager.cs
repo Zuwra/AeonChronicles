@@ -58,7 +58,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
         if (Input.GetKeyUp(KeyCode.CapsLock))
         {
-            stopO();
+			
+			stopO ();
+			if (Input.GetKey (KeyCode.LeftShift)) {
+
+				GiveOrder(Orders.CreateHoldGroundOrder());
+			}
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -605,7 +610,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		
 		} else if (order.OrderType == 0 && SelectedObjects.Count > 0) {
 			foreach (IOrderable obj in SelectedObjects) {
-				obj.GiveOrder (Orders.CreateStopOrder ());
+				obj.GiveOrder (order);
+			}
+		}
+		else if (order.OrderType == 7 && SelectedObjects.Count > 0) {
+			foreach (IOrderable obj in SelectedObjects) {
+				obj.GiveOrder (order);
 			}
 		}
     }

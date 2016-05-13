@@ -7,6 +7,11 @@ public static class Orders {
 	{
 		return new Order("Stop", 0);
 	}
+
+	public static Order CreateHoldGroundOrder()
+	{
+		return new Order("Hold", 7);
+	}
 	
 	public static Order CreateMoveOrder(Vector3 location)
 	{

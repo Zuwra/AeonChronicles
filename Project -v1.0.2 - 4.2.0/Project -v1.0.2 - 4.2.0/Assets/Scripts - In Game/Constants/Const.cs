@@ -13,10 +13,9 @@ public static class Const {
 	public const int ORDER_AttackMove = 4;
 	public const int ORDER_Follow = 5; 
 	public const int ORDER_Interact = 6; 
-	
-	public const int BUILDING_ConYard = 0;
-	public const int BUILDING_PowerPlant = 1;
-	public const int BUILDING_Barracks = 2;
+	public const int Order_HoldGround = 7;
+
+
 	
 	public const int TYPE_Building = 0;
 	public const int TYPE_Support = 1;
@@ -24,10 +23,7 @@ public static class Const {
 	public const int TYPE_Vehicle = 3;
 	public const int TYPE_Air = 4;
 	
-	public const int MAINTENANCE_Nothing = 0;
-	public const int MAINTENANCE_Sell = 1;
-	public const int MAINTENANCE_Fix = 2;
-	public const int MAINTENANCE_Disable = 3;
+
 	
 	public const int TILE_Open = 1;
 	public const int TILE_Closed = 2;

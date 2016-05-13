@@ -9,7 +9,9 @@ public class CampUpgradeManager : MonoBehaviour {
 	public GameObject vehicleMenu;
 	public GameObject StructureMenu;
 	public int creditAmount;
-	public Text creditText;
+
+	public List<Text> creditDisplayers = new List<Text> ();
+
 	private GameObject currentMenu;
 
 	[System.Serializable]
@@ -36,7 +38,9 @@ public class CampUpgradeManager : MonoBehaviour {
 
 		TurretMenu.SetActive (false);
 		StructureMenu.SetActive (false);
-		creditText.text = ""+creditAmount;
+		changeMoney (0);
+	
+
 	}
 	
 	// Update is called once per frame
@@ -58,7 +62,9 @@ public class CampUpgradeManager : MonoBehaviour {
 	public void changeMoney(int input)
 	{
 		creditAmount += input;
-		creditText.text = ""+creditAmount;
+		foreach (Text t in creditDisplayers) {
+			t.text = ""+creditAmount;
+		}
 	}
 
 

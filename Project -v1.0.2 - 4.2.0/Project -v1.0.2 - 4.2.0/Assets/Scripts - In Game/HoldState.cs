@@ -6,7 +6,7 @@ public class HoldState : UnitState {
 
 
 
-	public HoldState(UnitManager man, customMover move, IWeapon weapon)
+	public HoldState(UnitManager man, IMover move, IWeapon weapon)
 	{
 		myManager = man;
 		myMover = move;
