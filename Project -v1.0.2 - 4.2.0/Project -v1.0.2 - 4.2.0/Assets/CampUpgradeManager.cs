@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CampUpgradeManager : MonoBehaviour {
 
 	public GameObject TurretMenu;
 	public GameObject vehicleMenu;
 	public GameObject StructureMenu;
-
+	public int creditAmount;
+	public Text creditText;
 	private GameObject currentMenu;
 
 	[System.Serializable]
@@ -34,7 +36,7 @@ public class CampUpgradeManager : MonoBehaviour {
 
 		TurretMenu.SetActive (false);
 		StructureMenu.SetActive (false);
-	
+		creditText.text = ""+creditAmount;
 	}
 	
 	// Update is called once per frame
@@ -51,6 +53,12 @@ public class CampUpgradeManager : MonoBehaviour {
 		obj.SetActive (true);
 
 
+	}
+
+	public void changeMoney(int input)
+	{
+		creditAmount += input;
+		creditText.text = ""+creditAmount;
 	}
 
 

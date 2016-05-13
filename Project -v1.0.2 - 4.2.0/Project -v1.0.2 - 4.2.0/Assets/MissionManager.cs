@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MissionManager : MonoBehaviour {
 
 	public Canvas Technology;
+	public Canvas TechTree;
 	public Canvas Intelligence;
 
 	private Canvas myCanvas;
@@ -22,6 +23,8 @@ public class MissionManager : MonoBehaviour {
 	
 	}
 
+
+
 	public void ToggleTech()
 	{
 		Technology.enabled = !Technology.enabled;
@@ -33,6 +36,13 @@ public class MissionManager : MonoBehaviour {
 		Intelligence.enabled = !Intelligence.enabled;
 
 	}
+
+	public void toggleTechTree()
+	{
+		Technology.enabled = !Technology.enabled;
+		TechTree.enabled = !TechTree.enabled;
+	}
+
 
 
 	public void StartMission()
