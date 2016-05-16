@@ -92,20 +92,29 @@ public class AttackMoveState : UnitState {
 
 		else {
 			if(!enemyDead){
-			if(commandType == MoveType.command){
+				if (commandType == MoveType.command) {
 					//Debug.Log("continuing on");
-					myMover.resetMoveLocation(endLocation);}
-				else
-				{//Debug.Log("going home");
+					myMover.resetMoveLocation (endLocation);
+				} else if (commandType == MoveType.passive) {//Debug.Log("going home");
 					
-					myMover.resetMoveLocation(home);}
+					myMover.resetMoveLocation (home);
+				} else {
+					myMover.resetMoveLocation (target);
+				}
 				enemyDead = true;
 			}
 
 			bool there = myMover.move();
 			if(there && commandType == MoveType.patrol)
-				{target = home;
-				myMover.resetMoveLocation(home);}
+			{if (target == home) {
+					
+					target = endLocation;
+				} else {
+				
+					target = home;
+				}
+				
+				myMover.resetMoveLocation(target);}
 			else if(there)
 			{
 				myManager.changeState(new DefaultState());

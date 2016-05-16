@@ -14,6 +14,7 @@ public static class Const {
 	public const int ORDER_Follow = 5; 
 	public const int ORDER_Interact = 6; 
 	public const int Order_HoldGround = 7;
+	public const int Order_Patrol = 8;
 
 
 	

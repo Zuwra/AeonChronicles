@@ -32,6 +32,10 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 			break;
 
+		case Const.Order_Patrol:
+			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, myManager, myManager.cMover, myManager.myWeapon, myManager.gameObject.transform.position));
+
+			break;
 
 			//Stop Order----------------------------------------
 		case Const.ORDER_STOP:

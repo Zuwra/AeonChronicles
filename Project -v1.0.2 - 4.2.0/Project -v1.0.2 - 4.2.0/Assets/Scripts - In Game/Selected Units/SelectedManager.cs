@@ -53,7 +53,11 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{
         if (Input.GetKeyUp(KeyCode.Tab))
         {
-            attackMoveO();
+			if (Input.GetKey (KeyCode.LeftShift)) {
+				PatrolMoveO ();
+			} else {
+				attackMoveO ();
+			}
         }
 
         if (Input.GetKeyUp(KeyCode.CapsLock))
@@ -608,16 +612,20 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
 			}
 		
-		} else if (order.OrderType == 0 && SelectedObjects.Count > 0) {
+		} else if ((order.OrderType == 0 || order.OrderType == 7) && SelectedObjects.Count > 0) {
 			foreach (IOrderable obj in SelectedObjects) {
 				obj.GiveOrder (order);
 			}
 		}
-		else if (order.OrderType == 7 && SelectedObjects.Count > 0) {
+		else if ((order.OrderType == 8) && SelectedObjects.Count > 0) {
+			Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
+			AudioSrc.PlayOneShot (attackSound);
 			foreach (IOrderable obj in SelectedObjects) {
 				obj.GiveOrder (order);
 			}
 		}
+	
+
     }
 
 	// Used  for Circular Formation movement, Mostly Broken
@@ -804,6 +812,20 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         }
 
     }
+
+	public void PatrolMoveO()
+	{
+		//We're over the main screen, let's raycast
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit;
+
+		if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 16)))
+		{
+			Vector3 attackMovePoint = hit.point;
+			GiveOrder(Orders.CreatePatrol(attackMovePoint));
+		}
+
+	}
 
 	public void selectAllBuildings ()
 	{DeselectAll();

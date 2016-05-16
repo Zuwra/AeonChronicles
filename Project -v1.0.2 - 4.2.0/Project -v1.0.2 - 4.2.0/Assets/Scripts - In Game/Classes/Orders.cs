@@ -33,6 +33,7 @@ public static class Orders {
 		return new Order ("AttackMove", 4, location);
 	}
 
+
 	public static Order CreateFollowCommand(GameObject obj)
 	{return new Order ("Follow", 5, obj);
 	}
@@ -40,6 +41,10 @@ public static class Orders {
 	public static Order CreateInteractCommand(GameObject obj)
 	{return new Order ("Interact", 6, obj);}
 
+	public static Order CreatePatrol(Vector3 location )
+	{
+		return new Order ("Patrol", 8, location);
+	}
 
 
 }

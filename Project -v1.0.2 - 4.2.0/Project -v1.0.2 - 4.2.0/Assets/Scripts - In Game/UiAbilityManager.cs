@@ -84,9 +84,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 						if (man.abilityList [AbilityX * 4] != null) {
 						if (man.abilityList [AbilityX * 4].myCost) {
-							if (man.abilityList [AbilityX * 4].myCost.cooldown == 0) {
-								certainButtons [j].QSlide.gameObject.SetActive (false);	
-							} else {
+							if (man.abilityList [AbilityX * 4].myCost.cooldown != 0) {
 
 								float maxA = 0;
 								foreach (RTSObject obj in currentPage.rows [j]) {
@@ -104,19 +102,15 @@ public class UiAbilityManager : MonoBehaviour {
 			
 								certainButtons [j].QSlide.gameObject.SetActive (certainButtons [j].QSlide.value < .98);
 							}
-						} else {
-		
-							certainButtons [j].QSlide.gameObject.SetActive (false);	
-						}
+						} 
 
 						}
 					}
 					if (man.abilityList.Count >1+ AbilityX * 4) {
 						if (man.abilityList [1 + AbilityX * 4] != null) {
 							if (man.abilityList [1 + AbilityX * 4].myCost) {
-							if (man.abilityList [1 + AbilityX * 4].myCost.cooldown == 0) {
-								certainButtons [j].WSlide.gameObject.SetActive (false);	
-							} else {
+							if (man.abilityList [1 + AbilityX * 4].myCost.cooldown != 0) {
+
 
 								float maxA = 0;
 								foreach (RTSObject obj in currentPage.rows [j]) {
@@ -136,19 +130,15 @@ public class UiAbilityManager : MonoBehaviour {
 								certainButtons [j].WSlide.gameObject.SetActive (certainButtons [j].WSlide.value < .98);
 							}
 							}
-						else {
-
-							certainButtons [j].WSlide.gameObject.SetActive (false);	
-						}
+					
 						}
 					}
 					if (man.abilityList.Count > 2 + AbilityX * 4) {
 						if (man.abilityList [2 + AbilityX * 4] != null) {
 						if (man.abilityList [2 + AbilityX * 4].myCost) {
 
-							if (man.abilityList [2 + AbilityX * 4].myCost.cooldown == 0) {
-								certainButtons [j].ESlide.gameObject.SetActive (false);	
-							} else {
+							if (man.abilityList [2 + AbilityX * 4].myCost.cooldown != 0) {
+
 
 								float maxA = 0;
 								foreach (RTSObject obj in currentPage.rows [j]) {
@@ -167,18 +157,15 @@ public class UiAbilityManager : MonoBehaviour {
 								certainButtons [j].ESlide.gameObject.SetActive (certainButtons [j].ESlide.value < .98);
 							}
 						}
-						else {
-							certainButtons [j].ESlide.gameObject.SetActive (false);	
-						}
+
 						}
 					}
 					if (man.abilityList.Count > 3 + AbilityX * 4) {
 						if (man.abilityList [3 + AbilityX * 4] != null) {
 							if (man.abilityList [3 + AbilityX * 4].myCost) {
 
-							if (man.abilityList [3 + AbilityX * 4].myCost.cooldown == 0) {
-								certainButtons [j].RSlide.gameObject.SetActive (false);	
-							} else {
+							if (man.abilityList [3 + AbilityX * 4].myCost.cooldown != 0) {
+
 
 								
 								float maxA = 0;
@@ -191,7 +178,7 @@ public class UiAbilityManager : MonoBehaviour {
 									}
 
 									if (n > .99f) {
-							
+
 										break;
 									}
 								}
@@ -199,9 +186,7 @@ public class UiAbilityManager : MonoBehaviour {
 								certainButtons [j].RSlide.value = maxA;
 								certainButtons [j].RSlide.gameObject.SetActive (certainButtons [j].RSlide.value < .98);	
 							}}
-						else {
-							certainButtons [j].RSlide.gameObject.SetActive (false);	
-						}
+					
 						}
 
 					}
@@ -238,7 +223,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public void loadUI(Page uiPage)
 	{currentPage = uiPage;
-		
+		// Clear old info in the buttons and stats
 		foreach (GameObject obj in Stats) {
 			obj.GetComponent<StatsUI> ().clear ();
 		}
@@ -262,7 +247,7 @@ public class UiAbilityManager : MonoBehaviour {
 		unitIcons.Clear ();
 
 		int totalUnit = 0;
-
+		//Set divider bars for how many abilities the units have.
 		for(int j = 0; j < 3; j ++){
 			if (uiPage.rows [j] != null) {
 				if (j != 0) {
@@ -359,7 +344,14 @@ public class UiAbilityManager : MonoBehaviour {
 						if(man.abilityList [AbilityX * 4] !=null){
 						Transform trans = certainButtons [n].QButton.transform.FindChild("QButton");
 	
+						if (man.abilityList [AbilityX * 4].myCost) {
 
+							certainButtons [j].QSlide.gameObject.SetActive (!(man.abilityList [AbilityX * 4].myCost.cooldown == 0));	
+							}
+						else
+						{
+							certainButtons [j].QSlide.gameObject.SetActive (false);
+						}
 
 
 						trans.parent.gameObject.SetActive (true);
@@ -416,6 +408,15 @@ public class UiAbilityManager : MonoBehaviour {
 			
 					if(man.abilityList.Count >1+( AbilityX * 4)){
 						if (man.abilityList [1 + AbilityX * 4] != null) {
+
+						if (man.abilityList [1 + AbilityX * 4].myCost) {
+
+							certainButtons [j].QSlide.gameObject.SetActive (!(man.abilityList [1 + AbilityX * 4].myCost.cooldown == 0));	
+						}else
+						{
+							certainButtons [j].QSlide.gameObject.SetActive (false);
+						}
+
 						Transform trans = certainButtons [n].WButton.transform.FindChild("WButton");;
 
 						trans.parent.gameObject.SetActive (true);
@@ -481,6 +482,15 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
 						if (man.abilityList [2 +AbilityX * 4] != null) {
+
+						if (man.abilityList [2 + AbilityX * 4].myCost) {
+							
+							certainButtons [j].QSlide.gameObject.SetActive (!(man.abilityList [2 + AbilityX * 4].myCost.cooldown == 0));	
+						}else
+						{
+							certainButtons [j].QSlide.gameObject.SetActive (false);
+						}
+
 						Transform trans = certainButtons [n].EButton.transform.FindChild("EButton");;
 
 						trans.parent.gameObject.SetActive (true);
@@ -540,6 +550,15 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
 						if (man.abilityList [3 +AbilityX * 4] != null) {
+
+						if (man.abilityList [3+AbilityX * 4].myCost) {
+
+							certainButtons [j].QSlide.gameObject.SetActive (!(man.abilityList [3+AbilityX * 4].myCost.cooldown == 0));	
+						}else
+						{
+							certainButtons [j].QSlide.gameObject.SetActive (false);
+						}
+
 						Transform trans = certainButtons [n].RButton.transform.FindChild("RButton");;
 	
 						trans.parent.gameObject.SetActive (true);
