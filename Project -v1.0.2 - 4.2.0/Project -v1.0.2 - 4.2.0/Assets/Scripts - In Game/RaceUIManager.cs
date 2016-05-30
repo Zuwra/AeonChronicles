@@ -4,6 +4,9 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class RaceUIManager : MonoBehaviour , ManagerWatcher{
+	// Controls all UI Information regarding resources, supply, production, 
+	// Recieves inputs for all F-Buttons commands, which can also be triggered by buttons childed under the UI objec this should be on.
+
 
 	public RaceManager raceManager;
 
@@ -14,13 +17,11 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	string TwoName;
 
 	SelectedManager selectManager;
-	public Dropdown production;
+	public Dropdown production; // Controls which Info panel to display - Production, Income, or Current total army
 
 
 	private GameObject currentProdManager;
 	public List<GameObject> dropdowns = new List<GameObject>();
-
-
 
 
 	// Use this for initialization
@@ -35,7 +36,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 		OneName = raceManager.OneName;
 		TwoName = raceManager.TwoName;
 
-	
+		
 		resourceOne = this.gameObject.transform.FindChild ("Resources").FindChild("ResourceOne").GetComponent<Text>();
 		resourceTwo = this.gameObject.transform.FindChild ("Resources").FindChild("ResourceTwo").GetComponent<Text>();
 		supply = this.gameObject.transform.FindChild ("Resources").FindChild("Supply").GetComponent<Text>();
@@ -135,13 +136,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 		}
 	}
 
-	public void changeUnits()
-	{
-	}
 
-	public void changeEconomy()
-	{
-	}
 
 
 	

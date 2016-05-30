@@ -7,9 +7,11 @@ public class Grinder : MonoBehaviour {
 
 	private List<UnitStats> enemies = new List<UnitStats> ();
 	private List<UnitStats> terrain = new List<UnitStats> ();
-	private int Owner;
+	public int Owner;
 
 	private float nextAction;
+	public float damage = 5;
+	public float massReduction = 3;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +28,8 @@ public class Grinder : MonoBehaviour {
 				enemies.RemoveAll (item => item == null);
 				foreach (UnitStats s in enemies) {
 				
-					s.TakeDamage (5 * (3 - s.mass), this.gameObject.gameObject.gameObject, DamageTypes.DamageType.True);
+				
+					s.TakeDamage (damage * (massReduction - s.mass), this.gameObject.gameObject.gameObject, DamageTypes.DamageType.True);
 			
 				}
 			}
@@ -69,7 +72,7 @@ public class Grinder : MonoBehaviour {
 		if (manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Destructable_Terrain)) {
 			terrain.Add (manage.myStats);
 		
-		} else if (manage.myStats.mass < 3) {
+		} else if (manage.myStats.mass < massReduction) {
 			enemies.Add (manage.myStats);
 		}
 			

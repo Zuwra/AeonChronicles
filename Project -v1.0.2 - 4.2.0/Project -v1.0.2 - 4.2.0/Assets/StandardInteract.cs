@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class StandardInteract : MonoBehaviour, Iinteract {
+	// Used on normal units for basic things like attacking, moving, patroling, etc.
+
 
 	private UnitManager myManager;
 	public bool attackWhileMoving;
@@ -23,27 +25,31 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 		Awake ();
 	}
 
+
+	// When creating other interactor classes, make sure to pass all relevant information into whatever new state is being created (IMover, IWeapon, UnitManager)
 	public void computeInteractions (Order order)
 	{
-
+		// HOLD GROUND -----------------------------------------------------
 			switch (order.OrderType) {
 		case Const.Order_HoldGround:
 			myManager.changeState (new HoldState(myManager, myManager.cMover, myManager.myWeapon));
 
 			break;
 
+
+		// PATROL ------------------------------------------------------
 		case Const.Order_Patrol:
 			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, myManager, myManager.cMover, myManager.myWeapon, myManager.gameObject.transform.position));
 
 			break;
 
-			//Stop Order----------------------------------------
+		//STOP----------------------------------------
 		case Const.ORDER_STOP:
 			myManager.changeState (new DefaultState ());
 
 				break;
 
-				//Move Order ---------------------------------------------
+		//MOVE - right clicked on ground ---------------------------------------------
 		case Const.ORDER_MOVE_TO:
 
 
@@ -55,6 +61,8 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 				}
 				break;
 
+
+		// Right clicked on an enemy unit
 		case Const.ORDER_Interact:
 
 			UnitManager manage = order.Target.GetComponent<UnitManager> ();
@@ -79,7 +87,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 				break;
 
-
+		// ATTACK MOVE - Move towards a location and attack enemies on the way.
 		case Const.ORDER_AttackMove:
 			if (myManager.myWeapon) {
 				
@@ -90,6 +98,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 				break;
 
 
+			// Right click on a allied unit
 			case Const.ORDER_Follow:
 
 			myManager.changeState (new FollowState (order.Target.gameObject,  myManager, myManager.cMover, myManager.myWeapon));

@@ -3,26 +3,23 @@ using System.Collections;
 
 public static class Orders {
 
+
+
 	public static Order CreateStopOrder()
 	{
 		return new Order("Stop", 0);
 	}
 
-	public static Order CreateHoldGroundOrder()
-	{
-		return new Order("Hold", 7);
-	}
-	
 	public static Order CreateMoveOrder(Vector3 location)
 	{
 		return new Order("Move", 1, location);
 	}
-	
+
 	public static Order CreateAttackOrder(GameObject obj)
 	{
 		return new Order("Attack", 2, obj);
 	}
-	
+
 	public static Order CreateDeployOrder()
 	{
 		return new Order("Deploy", 3);
@@ -40,6 +37,13 @@ public static class Orders {
 
 	public static Order CreateInteractCommand(GameObject obj)
 	{return new Order ("Interact", 6, obj);}
+
+
+	public static Order CreateHoldGroundOrder()
+	{
+		return new Order("Hold", 7);
+	}
+
 
 	public static Order CreatePatrol(Vector3 location )
 	{

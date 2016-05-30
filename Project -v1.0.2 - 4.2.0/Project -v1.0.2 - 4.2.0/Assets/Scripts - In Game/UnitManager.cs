@@ -6,30 +6,33 @@ using System.Collections.Generic;
 //this class extends RTSObject through the Unit class
 public class UnitManager : Unit,IOrderable{
 
+	//AbilityList<Ability> is in the Unit Class
 	public string UnitName;
 
+	public int PlayerOwner; // 1 = active player, 2 = enemies, 3 = nuetral
 
-	public int PlayerOwner;
 
+
+	private float chaseRange;  // how far an enemy can come into vision before I chase after him.
+	public IMover cMover;      // Pathing Interface. Classes to use here : AirMover(Flying Units), cMover (ground, uses Global Astar) , RVOMover(ground, Uses Astar and unit collisions, still in testing)
+	public IWeapon myWeapon;   // IWeapon is not actually an interface but a base class with required parameters for all weapons.
+	public UnitStats myStats; // Contains Unit health, regen, armor, supply, cost, etc
+
+	public Iinteract interactor; // Passes commands to this to determine how to interact (Right click on a friendly could be a follow command or a cast spell command, based on the Unit/)
 
 	public float visionRange;
-	private float chaseRange;
-	public IMover cMover;
-	public IWeapon myWeapon;
-	public UnitStats myStats;
-
-	public Iinteract interactor;
-
-	SphereCollider visionSphere;
-
+	SphereCollider visionSphere; // Trigger Collider that respresents vision radius. Size is set in the start function based on visionRange
+	// When Enemies enter the visionsphere, it puts them into one of these categories. They are removed when they move away or die.
 	public List<GameObject> enemies = new List<GameObject>();
 	public List<GameObject> allies = new List<GameObject>();
 	public List<GameObject> neutrals = new List<GameObject> ();
 
-	private Queue<UnitState> queuedStates = new Queue<UnitState> ();
 
-	private UnitState myState;
-	private List<Object> stunSources = new List<Object> ();
+	private Queue<UnitState> queuedStates = new Queue<UnitState> (); // Used to queue commands to be executed in succession.
+
+	private UnitState myState;     // used for StateMachine
+
+	private List<Object> stunSources = new List<Object> ();     // Used to keep track of stun lengths and duration, to ensure the strongest one is always applied.
 	private List<Object> silenceSources = new List<Object> ();
 
 	private bool isStunned;
@@ -67,20 +70,17 @@ public class UnitManager : Unit,IOrderable{
 
 	
 			GameManager man = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ();
-			if (PlayerOwner != man.playerNumber) {
-				this.gameObject.tag = "Enemy";
-			} else {
+			if (PlayerOwner == man.playerNumber) {
 				this.gameObject.tag = "Player";
-			}
+			} 
 
-			man.initialize ();
+			man.initialize (); // Initializes data, if this is the first unit to wake up.
 			man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
-
-		//	man.playerList [PlayerOwner - 1].UnitCreated (myStats.supply);
 
 		if (gameObject.GetComponent<CharacterController> () && visionSphere != null) {
 			float distance = visionRange + gameObject.GetComponent<CharacterController> ().radius;
 			visionSphere.radius = distance;
+
 			if (GetComponent<FogOfWarUnit> ()) {
 				GetComponent<FogOfWarUnit> ().radius = distance +3;
 			}
@@ -110,13 +110,7 @@ public class UnitManager : Unit,IOrderable{
 
 	}
 
-	// Use this for initialization
-	new void Start () {
-		
-	}
-
-
-
+	//Elsewhere this command is called on the RTSObject class, which is not a monobehavior, and cannot access its gameobject.
 	public new GameObject getObject()
 	{return this.gameObject;}
 
@@ -126,7 +120,6 @@ public class UnitManager : Unit,IOrderable{
 	// Update is called once per frame
 	new void Update () {
 		if (myState != null) {
-			
 
 			myState.Update ();
 		} 
@@ -157,7 +150,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 	override
-	public bool UseTargetAbility(GameObject obj, Vector3 loc, int n)
+	public bool UseTargetAbility(GameObject obj, Vector3 loc, int n) // Either the obj - target or the location can be null.
 	{continueOrder order = new continueOrder();
 		if (!isStunned && !isSilenced) {
 			if (abilityList [n] != null) {
@@ -181,7 +174,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 	override
-	public void autoCast(int n)
+	public void autoCast(int n) // Program in how it is autocast in a custom UnitState, which should be accessed/created from the interactor class
 	{
 		if (abilityList [n] != null) {
 			
@@ -192,7 +185,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public void setInteractor()
-	{Start ();
+	{Start (); // in the parent class
 	}
 
 
@@ -204,7 +197,6 @@ public class UnitManager : Unit,IOrderable{
 
 
 		if (interactor != null) {
-		//	Debug.Log ("Giving ORder " + order.Target + "   " + order.OrderLocation);
 			interactor.computeInteractions (order);
 
 		}
@@ -216,7 +208,7 @@ public class UnitManager : Unit,IOrderable{
 		abilityList.RemoveAll(item => item == null);}
 
 
-
+	//Other Units have entered vision
 	void OnTriggerEnter(Collider other)
 	{
 		//need to set up calls to listener components
@@ -247,7 +239,8 @@ public class UnitManager : Unit,IOrderable{
 
 		}
 	}
-	
+
+	// Other units have left the vision
 	void OnTriggerExit(Collider other)
 	{
 		
@@ -261,19 +254,17 @@ public class UnitManager : Unit,IOrderable{
 			neutrals.Remove (other.gameObject);
 		}
 	
-		
 	}
 
 
-
+	// Called from some of the states (ie, DefaultState, AttackMoveState)
 	public GameObject findClosestEnemy()
 	{
 
 		enemies.RemoveAll(item => item == null);
 		GameObject best = null;
-		
-		
-		float distance = 1000000;
+
+		float distance = float.MaxValue;
 	
 		
 		for (int i = 0; i < enemies.Count; i ++) {
@@ -288,17 +279,16 @@ public class UnitManager : Unit,IOrderable{
 				
 			}
 		}
-		
 		return best;
 
 	}
 	
-	public GameObject findBestEnemy()
+	public GameObject findBestEnemy() // Similar to above method but takes into account attack priority (enemy soldiers should be attacked before buildings)
 	{enemies.RemoveAll(item => item == null);
 		GameObject best = null;
 
 
-		float distance = 1000000;
+		float distance = float.MaxValue;
 		float bestPriority = -1;
 
 		for (int i = 0; i < enemies.Count; i ++) {
@@ -334,7 +324,7 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
-	public void nextState()
+	public void nextState() // Used when executing queued commands
 	{
 		if (myState is CastAbilityState) {
 			if (queuedStates.Count > 0) {
@@ -350,6 +340,7 @@ public class UnitManager : Unit,IOrderable{
 			}
 		} 
 	}
+
 
 	public void changeState(UnitState nextState)
 	{
@@ -372,7 +363,6 @@ public class UnitManager : Unit,IOrderable{
 				myState.myWeapon = myWeapon;
 				myState.myMover = cMover;
 				myState.initialize ();
-				Debug.Log ("RETURNING HERE");
 				return;
 
 			}  
@@ -388,9 +378,7 @@ public class UnitManager : Unit,IOrderable{
 		else if (nextState is AttackMoveState) {
 			((AttackMoveState)nextState).setHome (this.gameObject.transform.position);
 		}
-
-
-
+			
 			nextState.myManager = this;
 			nextState.myWeapon = myWeapon;
 			nextState.myMover = cMover;
@@ -405,7 +393,6 @@ public class UnitManager : Unit,IOrderable{
 			myState = nextState;
 			myState.initialize ();
 
-			
 	}
 
 
@@ -467,13 +454,13 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 	public bool isIdle()
-		{
+		{ // will need to be refactored if units require a custom default state
 		if(myState.GetType() == typeof(DefaultState))
 		{return true;	}
 		return false;
 	}
 
-	public void Attacked(GameObject src)
+	public void Attacked(GameObject src) //I have been attacked, what do i do?
 	{if(myState!=null)
 		myState.attackResponse (src);}
 
