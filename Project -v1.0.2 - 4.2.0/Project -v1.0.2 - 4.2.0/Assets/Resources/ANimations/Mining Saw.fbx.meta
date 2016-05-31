@@ -106,7 +106,13 @@ ModelImporter:
     4300024: pCylinder3
     4300026: pasted__pCylinder1
     4300028: pasted__pCylinder1
-    7400000: Take 001
+    7400000: StarUp
+    7400002: StrikeOne
+    7400004: StrikeTwo
+    7400006: StrikeThree
+    7400008: SliceOne
+    7400010: SLiceTwo
+    7400012: Middle
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -130,10 +136,514 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: StarUp
       takeName: Take 001
       firstFrame: -50
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: all_For_animation
+        weight: 1
+      - path: all_For_animation/group1
+        weight: 1
+      - path: all_For_animation/group1/group2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCube4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder6
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder7
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder8
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCube3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder9
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCube2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCylinder3
+        weight: 1
+      - path: all_For_animation/group1/pCube1
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__pCylinder1
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__pCylinder1 1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: StrikeOne
+      takeName: Take 001
+      firstFrame: 15
+      lastFrame: 84
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: all_For_animation
+        weight: 1
+      - path: all_For_animation/group1
+        weight: 1
+      - path: all_For_animation/group1/group2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCube4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder6
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder7
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder8
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCube3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder9
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCube2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCylinder3
+        weight: 1
+      - path: all_For_animation/group1/pCube1
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__pCylinder1
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__pCylinder1 1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: StrikeTwo
+      takeName: Take 001
+      firstFrame: 84
+      lastFrame: 145
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: all_For_animation
+        weight: 1
+      - path: all_For_animation/group1
+        weight: 1
+      - path: all_For_animation/group1/group2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCube4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder6
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder7
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder8
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCube3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder9
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCube2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCylinder3
+        weight: 1
+      - path: all_For_animation/group1/pCube1
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__pCylinder1
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__pCylinder1 1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: StrikeThree
+      takeName: Take 001
+      firstFrame: 145
+      lastFrame: 230
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: all_For_animation
+        weight: 1
+      - path: all_For_animation/group1
+        weight: 1
+      - path: all_For_animation/group1/group2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCube4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder6
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder7
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder8
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCube3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder9
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCube2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCylinder3
+        weight: 1
+      - path: all_For_animation/group1/pCube1
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__pCylinder1
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__pCylinder1 1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: SliceOne
+      takeName: Take 001
+      firstFrame: 230
+      lastFrame: 290
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: all_For_animation
+        weight: 1
+      - path: all_For_animation/group1
+        weight: 1
+      - path: all_For_animation/group1/group2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCube4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder6
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder7
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder8
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCube3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder9
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCube2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCylinder3
+        weight: 1
+      - path: all_For_animation/group1/pCube1
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__pCylinder1
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__pCylinder1 1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: SLiceTwo
+      takeName: Take 001
+      firstFrame: 290
       lastFrame: 370
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: all_For_animation
+        weight: 1
+      - path: all_For_animation/group1
+        weight: 1
+      - path: all_For_animation/group1/group2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCube4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder1
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder5
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder6
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder7
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/group3/pCylinder8
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCube3
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder4
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/joint2/pCylinder9
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCube2
+        weight: 1
+      - path: all_For_animation/group1/group2/pCylinder2/transform1/joint5/joint1/pCylinder3
+        weight: 1
+      - path: all_For_animation/group1/pCube1
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__pCylinder1
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__pCylinder1 1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Middle
+      takeName: Take 001
+      firstFrame: 15
+      lastFrame: 290
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

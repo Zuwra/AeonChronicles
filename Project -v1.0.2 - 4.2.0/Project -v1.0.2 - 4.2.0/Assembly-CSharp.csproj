@@ -250,6 +250,7 @@
      <Compile Include="Assets\Masochism.cs" />
      <Compile Include="Assets\MassCapture.cs" />
      <Compile Include="Assets\MiniMapUIController.cs" />
+     <Compile Include="Assets\MiningSaw.cs" />
      <Compile Include="Assets\MiningState.cs" />
      <Compile Include="Assets\MissileArmer.cs" />
      <Compile Include="Assets\MissionLogger.cs" />
