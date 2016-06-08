@@ -103,15 +103,15 @@ public class UnitCardCreater : MonoBehaviour {
 			range.enabled = true;
 			attackSpeedIcon.enabled = true;
 			attackSpeed.enabled = true;
-			damage.text = "  " + manager.myWeapon.baseDamage;
-			attackSpeed.text = "  " + manager.myWeapon.attackPeriod;
-			range.text = "  " + manager.myWeapon.range;
-			if (manager.myWeapon.numOfAttacks > 1) {
-				damage.text = " " + manager.myWeapon.baseDamage + " (X" + manager.myWeapon.numOfAttacks +")";
-			}
-			if (manager.myWeapon.extraDamage.Length > 0) {
-				damage.text = damage.text + " ( +" + manager.myWeapon.extraDamage [0].bonus + " v " + manager.myWeapon.extraDamage [0].type + ")";
-			}
+			//damage.text = "  " + manager.myWeapon.baseDamage;
+			//attackSpeed.text = "  " + manager.myWeapon.attackPeriod;
+			//range.text = "  " + manager.myWeapon.range;
+			//if (manager.myWeapon.numOfAttacks > 1) {
+			//	damage.text = " " + manager.myWeapon.baseDamage + " (X" + manager.myWeapon.numOfAttacks +")";
+			//}
+			//if (manager.myWeapon.extraDamage.Length > 0) {
+			//	damage.text = damage.text + " ( +" + manager.myWeapon.extraDamage [0].bonus + " v " + manager.myWeapon.extraDamage [0].type + ")";
+			//}
 
 		
 		} else {

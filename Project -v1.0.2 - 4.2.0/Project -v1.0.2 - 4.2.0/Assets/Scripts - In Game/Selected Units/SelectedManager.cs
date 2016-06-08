@@ -226,8 +226,17 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		if (onOff) {
 			foreach (List<RTSObject> obj in UIPages[currentPage].rows) {
 				if (obj != null && obj.Count > 0) {
-					if (obj[0].gameObject.GetComponent<UnitManager> ().myWeapon != null) {
-						targetManager.loadUnits (obj, obj[0].gameObject.GetComponent<UnitManager> ().myWeapon.range);
+					if (obj[0].gameObject.GetComponent<UnitManager> ().myWeapon.Count >0) {
+
+						float maxRange = 0;
+						foreach (IWeapon weap in obj[0].gameObject.GetComponent<UnitManager> ().myWeapon) {
+							if (weap.range > maxRange) {
+								maxRange = weap.range;
+							}
+	
+						}
+
+						targetManager.loadUnits (obj, maxRange);
 						break;
 					}
 				}

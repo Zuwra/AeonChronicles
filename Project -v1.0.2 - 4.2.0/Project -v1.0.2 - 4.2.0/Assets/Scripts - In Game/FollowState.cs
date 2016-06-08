@@ -10,23 +10,20 @@ public class FollowState : UnitState {
 	private int currentFrame = 0;
 
 
-	public FollowState(GameObject unit, UnitManager man, IMover move, IWeapon weapon)
+	public FollowState(GameObject unit, UnitManager man)
 	{
 		myManager = man;
-		myMover = move;
-		myWeapon = weapon;
+
 
 		target = unit;
 		//myMover.resetMoveLocation (target.transform.position);
 
-
-
 	}
 
 	public override void initialize()
-		{myMover.resetMoveLocation (target.transform.position);
+	{myManager.cMover.resetMoveLocation (target.transform.position);
 
-		refreshTime = 30 - (int)myMover.getMaxSpeed();
+		refreshTime = 30 - (int)myManager.cMover.getMaxSpeed();
 		if (refreshTime < 5) {
 			refreshTime = 8;
 		}
@@ -44,11 +41,11 @@ public class FollowState : UnitState {
 		currentFrame ++;
 		if (currentFrame > refreshTime) {
 			currentFrame = 0;
-			myMover.resetMoveLocation(target.transform.position);
+			myManager.cMover.resetMoveLocation(target.transform.position);
 		}
 
 		if(Vector3.Distance(myManager.gameObject.transform.position, target.transform.position) >13)
-			{myMover.move ();}
+		{myManager.cMover.move ();}
 		//attack
 
 

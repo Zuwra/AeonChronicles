@@ -8,18 +8,16 @@ public class MoveState : UnitState{
 	Vector3 location;
 	// Update is called once per frame
 
-	public MoveState(Vector3 loc, UnitManager man, IMover move, IWeapon weapon)
+	public MoveState(Vector3 loc, UnitManager man)
 	{
 		myManager = man;
 
-		myMover = move;
-		myWeapon = weapon;
 		location = loc;
 		//myMover.resetMoveLocation (location);
 	}
 
 	public override void initialize()
-	{myMover.resetMoveLocation (location);
+	{myManager.cMover.resetMoveLocation (location);
 	}
 
 
@@ -28,7 +26,7 @@ public class MoveState : UnitState{
 	override
 	public void Update () {
 
-		if (myMover.move ()) 
+		if (myManager.cMover.move ()) 
 			{myManager.changeState(new DefaultState());	}
 
 	}

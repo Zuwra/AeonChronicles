@@ -6,13 +6,9 @@ public class turretState : UnitState {
 
 	private GameObject enemy;
 
-	public turretState(UnitManager man, IMover move, IWeapon weapon )
+	public turretState(UnitManager man)
 	{
 		myManager = man;
-		myMover = move;
-		myWeapon = weapon;
-
-	
 
 	
 
@@ -25,11 +21,11 @@ public class turretState : UnitState {
 	// Update is called once per frame
 	override
 	public void Update () {
-		if (!myWeapon) {
+		if (myManager.myWeapon.Count ==0) {
 			return;}
-		if (!myWeapon.isOffCooldown()) {
-			return;
-		}
+		//if (!myWeapon.isOffCooldown()) {
+		//	return;
+		//}
 
 		if (myManager.enemies.Count > 0) {
 
@@ -42,11 +38,11 @@ public class turretState : UnitState {
 
 			return;
 		}
-	
-		if (myWeapon.canAttack (enemy)) {
+		IWeapon myWeap = myManager.canAttack (enemy);
+		if (myWeap) {
 				
 					//myManager.gameObject.transform.LookAt(enemy.transform.position);
-					myWeapon.attack (enemy);
+					myWeap.attack (enemy);
 
 				}
 			
@@ -72,14 +68,16 @@ public class turretState : UnitState {
 			if (myManager.enemies[i] != null) {
 
 				float currDistance = Vector3.Distance(myManager.enemies[i].transform.position, this.myManager.gameObject.transform.position);
-				if (currDistance > myWeapon.range) {
-					
-					continue;}
 
-				if (!myWeapon.isValidTarget (myManager.enemies [i])) {
+				IWeapon myWeap = myManager.isValidTarget (myManager.enemies [i]);
+				if (!myWeap) {
 
 					continue;
 				}
+				if (currDistance > myWeap.range) {
+
+					continue;}
+
 				if (myManager.enemies[i].GetComponent<UnitStats> ().attackPriority < bestPriority) {
 					
 					continue;

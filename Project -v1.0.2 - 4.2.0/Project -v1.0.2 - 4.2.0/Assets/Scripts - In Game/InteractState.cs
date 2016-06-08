@@ -11,17 +11,16 @@ public class InteractState : UnitState {
 	private int currentFrame = 0;
 
 
-	public InteractState(GameObject unit, UnitManager man, IMover move, IWeapon weapon)
+	public InteractState(GameObject unit, UnitManager man)
 	{
 		myManager = man;
-		myMover = move;
-		myWeapon = weapon;
+
 
 		target = unit;
 	//myMover.resetMoveLocation (target.transform.position);
 
 
-		refreshTime = 30 - (int)myMover.getMaxSpeed();
+		refreshTime = 30 - (int)myManager.cMover.getMaxSpeed();
 		if (refreshTime < 5) {
 			refreshTime = 8;
 		}
@@ -29,7 +28,7 @@ public class InteractState : UnitState {
 
 
 	public override void initialize()
-	{myMover.resetMoveLocation (target.transform.position);
+	{myManager.cMover.resetMoveLocation (target.transform.position);
 	}
 
 
@@ -45,19 +44,20 @@ public class InteractState : UnitState {
 		currentFrame ++;
 		if (currentFrame > refreshTime) {
 			currentFrame = 0;
-			myMover.resetMoveLocation(target.transform.position);
+			myManager.cMover.resetMoveLocation(target.transform.position);
 		}
 
 		//attack
 
-			if (!myWeapon.inRange (target)) {
-				myMover.move ();
+		if (!myManager.inRange(target)) {
+			myManager.cMover.move ();
 			} else {
-			myMover.stop ();
-				if (myWeapon.canAttack (target)) {
-					myWeapon.attack (target);
+			myManager.cMover.stop ();
+			IWeapon myWeap = myManager.canAttack (target);	
+			if (myWeap) {
+				
+					myWeap.attack (target);
 
-	
 				}
 			}
 

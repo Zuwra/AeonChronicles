@@ -48,7 +48,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		}
 		if (closest != null) {
 			
-			myManager.changeState (new MiningState (closest, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo, Hook));
+			myManager.changeState (new MiningState (closest, myManager, miningTime, resourceOne, resourceTwo, Hook));
 		}
 	}
 
@@ -88,14 +88,14 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 		//Move Order ---------------------------------------------
 		case Const.ORDER_MOVE_TO:
-			myManager.changeState (new MoveState (order.OrderLocation, myManager, myManager.cMover, myManager.myWeapon));
+			myManager.changeState (new MoveState (order.OrderLocation, myManager));
 			checkHook ();
 			break;
 
 		case Const.ORDER_Interact:
 			
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
-			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo, Hook));
+			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook));
 				break;}
 			
 			checkHook ();
@@ -118,17 +118,17 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 			}
 			else{
 				
-				myManager.changeState (new FollowState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+				myManager.changeState (new FollowState (order.Target.gameObject, myManager));
 			}
 		
 			break;
 
 
 		case Const.ORDER_AttackMove:
-			if (myManager.myWeapon)
-				myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.cMover, myManager.myWeapon, myManager.gameObject.transform.position));
+			if (myManager.myWeapon.Count >0)
+				myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager,  myManager.gameObject.transform.position));
 			else {
-				myManager.changeState (new MoveState (order.OrderLocation, myManager, myManager.cMover, myManager.myWeapon));
+				myManager.changeState (new MoveState (order.OrderLocation, myManager));
 			}
 			checkHook ();
 			break;
@@ -137,7 +137,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		case Const.ORDER_Follow:
 			
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
-			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon, miningTime, resourceOne, resourceTwo, Hook));
+			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook));
 				break;}
 
 			checkHook ();
@@ -160,7 +160,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 			}
 			else{
 		
-				myManager.changeState (new FollowState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+				myManager.changeState (new FollowState (order.Target.gameObject, myManager));
 			}
 
 			break;

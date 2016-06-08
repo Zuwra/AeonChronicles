@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BackLashAura : MonoBehaviour, Notify {
 
 	private int numberOfClouds = 0;
-	IWeapon myweap;
+	List<IWeapon> myweap;
 	UnitStats myStats;
-
+	UnitManager manage;
 	UnitStats source;
 	// Use this for initialization
 	void Start () {
@@ -20,13 +21,11 @@ public class BackLashAura : MonoBehaviour, Notify {
 	public void Initialize(UnitStats sor)
 	{source = sor;
 		if (numberOfClouds == 0) {
-			UnitManager manage =  this.gameObject.GetComponent<UnitManager> ();
+			manage =  this.gameObject.GetComponent<UnitManager> ();
 			if (manage) {
 				myStats = manage.myStats;
-				myweap= manage.myWeapon;
-				if (myweap) {
-					myweap.triggers.Add (this);
-				}
+				UnitUtility.applyWeaponTrigger (manage, this);
+			
 			}
 
 		} else {
@@ -40,12 +39,11 @@ public class BackLashAura : MonoBehaviour, Notify {
 	{
 		if (numberOfClouds > 1) {
 
-			numberOfClouds--;}
+			numberOfClouds--;
+		} else {
 
-		else{
-			if (myweap) {
-				myweap.triggers.Remove (this);
-			}
+			UnitUtility.removeWeaponTrigger (manage, this);
+
 			Destroy (this);
 
 		}

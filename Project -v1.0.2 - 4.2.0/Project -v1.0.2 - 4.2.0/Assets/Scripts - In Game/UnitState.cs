@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public abstract class  UnitState  {
 
 
 	public UnitManager myManager;
-	public IMover myMover;
-	public IWeapon myWeapon;
 
 	// Update is called once per frame
 	public abstract void Update ();

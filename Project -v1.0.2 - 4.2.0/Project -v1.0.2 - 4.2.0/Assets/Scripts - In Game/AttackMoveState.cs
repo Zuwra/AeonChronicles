@@ -16,11 +16,9 @@ public class AttackMoveState : UnitState {
 	private int currentFrame = 0;
 
 
-		public AttackMoveState(GameObject obj, Vector3 location, MoveType type,UnitManager man, IMover move, IWeapon weapon, Vector3 myhome )
+		public AttackMoveState(GameObject obj, Vector3 location, MoveType type,UnitManager man, Vector3 myhome )
 		{
 		myManager = man;
-		myMover = move;
-		myWeapon = weapon;
 
 		home = myhome;
 		enemy = obj;
@@ -43,7 +41,7 @@ public class AttackMoveState : UnitState {
 		}
 
 	public override void initialize()
-	{myMover.resetMoveLocation (target);
+	{myManager.cMover.resetMoveLocation (target);
 	}
 
 	// Update is called once per frame
@@ -62,7 +60,7 @@ public class AttackMoveState : UnitState {
 				enemy = temp;
 			
 					//myManager.gameObject.transform.LookAt (enemy.transform.position);
-					myMover.resetMoveLocation (enemy.transform.position);
+				myManager.cMover.resetMoveLocation (enemy.transform.position);
 					//Debug.Log("Just called th reset2" + enemy.transform.position);
 				
 
@@ -73,20 +71,22 @@ public class AttackMoveState : UnitState {
 			
 	
 
-		if (enemy != null && myWeapon != null) {
+		if (enemy != null && myManager.myWeapon.Count > 0) {
 			enemyDead = false;
-			if(myWeapon.inRange(enemy)){
-				myMover.stop ();
-				if (myWeapon.canAttack (enemy)) {
-
-					myWeapon.attack (enemy);
-				} else {
-					
-				}
+			bool attacked = false;
+			foreach (IWeapon weap in myManager.myWeapon) {
+				if (weap.inRange (enemy)) {
+					myManager.cMover.stop ();
+					attacked = true;
+					if (weap.canAttack (enemy)) {
+						
+						weap.attack (enemy);
+					} 
+				} 
 			}
-			else{
 
-				myMover.move();
+			if (!attacked) {
+				myManager.cMover.move ();
 			}
 		}
 
@@ -94,17 +94,17 @@ public class AttackMoveState : UnitState {
 			if(!enemyDead){
 				if (commandType == MoveType.command) {
 					//Debug.Log("continuing on");
-					myMover.resetMoveLocation (endLocation);
+					myManager.cMover.resetMoveLocation (endLocation);
 				} else if (commandType == MoveType.passive) {//Debug.Log("going home");
 					
-					myMover.resetMoveLocation (home);
+					myManager.cMover.resetMoveLocation (home);
 				} else {
-					myMover.resetMoveLocation (target);
+					myManager.cMover.resetMoveLocation (target);
 				}
 				enemyDead = true;
 			}
 
-			bool there = myMover.move();
+			bool there = myManager.cMover.move();
 			if(there && commandType == MoveType.patrol)
 			{if (target == home) {
 					
@@ -114,7 +114,7 @@ public class AttackMoveState : UnitState {
 					target = home;
 				}
 				
-				myMover.resetMoveLocation(target);}
+			myManager.cMover.resetMoveLocation(target);}
 			else if(there)
 			{
 				myManager.changeState(new DefaultState());

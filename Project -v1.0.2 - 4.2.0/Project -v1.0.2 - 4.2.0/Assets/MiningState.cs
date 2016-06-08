@@ -22,11 +22,10 @@ public class MiningState : UnitState {
 	private float resourceTwoAmount;
 
 
-	public MiningState(GameObject unit, UnitManager man, IMover move, IWeapon weapon, float mineTime, float resourceOne, float resourceTwo, GameObject hooky)
+	public MiningState(GameObject unit, UnitManager man,  float mineTime, float resourceOne, float resourceTwo, GameObject hooky)
 	{
 		myManager = man;
-		myMover = move;
-		myWeapon = weapon;
+
 		miningTime = mineTime;
 		resourceOneAmount = resourceOne;
 		resourceTwoAmount= resourceTwo;
@@ -42,7 +41,7 @@ public class MiningState : UnitState {
 	}
 
 	public override void initialize()
-	{myMover.resetMoveLocation (target.transform.position);
+	{myManager.cMover.resetMoveLocation (target.transform.position);
 		dropoff = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.getNearestDropOff (target);
 		state = miningState.traveling;
 	}
@@ -56,7 +55,7 @@ public class MiningState : UnitState {
 			foreach (GameObject obj in myManager.neutrals) {
 				if (obj.GetComponent<OreDispenser> () != null) {
 					target = obj;
-					myMover.resetMoveLocation (obj.transform.position);
+					myManager.cMover.resetMoveLocation (obj.transform.position);
 					break;
 				}
 			}
@@ -67,7 +66,7 @@ public class MiningState : UnitState {
 
 		switch (state) {
 		case miningState.traveling:
-			if (myMover.move ()) {
+			if (myManager.cMover.move ()) {
 				state = miningState.mining;
 				timer = miningTime;
 			}
@@ -83,7 +82,7 @@ public class MiningState : UnitState {
 					myManager.changeState (new DefaultState ());
 				
 				} else {
-					myMover.resetMoveLocation (dropoff.transform.position);
+					myManager.cMover.resetMoveLocation (dropoff.transform.position);
 					state = miningState.returning;
 				}
 			} else if (timer / miningTime > .75) {
@@ -101,21 +100,21 @@ public class MiningState : UnitState {
 			break;
 
 		case miningState.returning:
-			if (myMover.move ()) {
+			if (myManager.cMover.move ()) {
 				if (dropoff == null) {
 					dropoff = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.getNearestDropOff (target);
 
 					if (dropoff == null) {
 						myManager.changeState (new DefaultState ());
 					} else {
-						myMover.resetMoveLocation (dropoff.transform.position);
+						myManager.cMover.resetMoveLocation (dropoff.transform.position);
 						state = miningState.returning;
 					}
 
 
 				} else {
 					dropoff.GetComponent<ResourceDropOff> ().dropOff (resourceOneAmount, resourceTwoAmount);
-					myMover.resetMoveLocation (target.transform.position);
+					myManager.cMover.resetMoveLocation (target.transform.position);
 					state = miningState.traveling;
 				}
 			}

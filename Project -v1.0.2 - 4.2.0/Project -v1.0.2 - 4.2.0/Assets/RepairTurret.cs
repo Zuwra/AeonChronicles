@@ -45,7 +45,7 @@ public class RepairTurret : Ability, Modifier{
 
 					if (target) {
 
-						mymanager.changeState (new FollowState (target, null, null, null));
+						mymanager.changeState (new FollowState (target, null));
 						TargetHealth = target.GetComponent<UnitStats> ();
 
 						if (returner == null) {
@@ -54,7 +54,7 @@ public class RepairTurret : Ability, Modifier{
 					}
 				}
 			} else {
-				mymanager.changeState (new FollowState (target, null, null, null));
+				mymanager.changeState (new FollowState (target, null));
 			}
 		} 
 
@@ -157,7 +157,9 @@ public class RepairTurret : Ability, Modifier{
 		foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {
 
 			if (turr.turret != null) {
-				mymanager.myWeapon = turr.turret.GetComponent<IWeapon> ();
+
+				// What does this do again?
+				//mymanager.myWeapon= (turr.turret.GetComponent<IWeapon> ());
 				return 0 ;
 			}
 

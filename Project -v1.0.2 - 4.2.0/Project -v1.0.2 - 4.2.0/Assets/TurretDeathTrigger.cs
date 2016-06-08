@@ -28,11 +28,13 @@ public class TurretDeathTrigger : MonoBehaviour, Modifier {
 	{ 
 		
 
-		if (weapon.myManager.myWeapon == weapon) {
+		if (weapon.myManager.myWeapon.Contains( weapon)) {
 			foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {
 
 				if (turr.turret != null) {
-					weapon.myManager.myWeapon = turr.turret.GetComponent<IWeapon> ();
+
+					// What does this do again?
+					//weapon.myManager.myWeapon = turr.turret.GetComponent<IWeapon> ();
 					return 0 ;
 				}
 

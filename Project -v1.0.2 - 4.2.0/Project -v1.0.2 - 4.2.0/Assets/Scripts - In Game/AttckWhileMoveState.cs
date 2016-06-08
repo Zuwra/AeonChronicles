@@ -6,18 +6,16 @@ public class AttckWhileMoveState : UnitState{
 	private Vector3 location;
 
 	
-	public AttckWhileMoveState(Vector3 loca, UnitManager man, IMover move, IWeapon weapon)
+	public AttckWhileMoveState(Vector3 loca, UnitManager man)
 	{
 		myManager = man;
-		myMover = move;
-		myWeapon = weapon;
 		location = loca;
 		//myMover.resetMoveLocation (location);
 	}
 
 
 	public override void initialize()
-	{myMover.resetMoveLocation (location);
+	{myManager.cMover.resetMoveLocation (location);
 	}
 
 	override
@@ -25,13 +23,14 @@ public class AttckWhileMoveState : UnitState{
 
 		if(myManager.enemies.Count > 0){
 			GameObject closestEnemy = myManager.findClosestEnemy();
-		if (myWeapon.canAttack(closestEnemy))
-		    {
-				myWeapon.attack(closestEnemy);
-			}
+			foreach(IWeapon weap in myManager.myWeapon)
+				if (weap.canAttack(closestEnemy))
+		    		{
+					weap.attack(closestEnemy);
+					}
 			}
 
-		if (myMover.move ()) 
+		if (myManager.cMover.move ()) 
 		{myManager.changeState(new DefaultState());}
 		
 	}

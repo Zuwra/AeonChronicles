@@ -15,7 +15,8 @@ public class UnitManager : Unit,IOrderable{
 
 	private float chaseRange;  // how far an enemy can come into vision before I chase after him.
 	public IMover cMover;      // Pathing Interface. Classes to use here : AirMover(Flying Units), cMover (ground, uses Global Astar) , RVOMover(ground, Uses Astar and unit collisions, still in testing)
-	public IWeapon myWeapon;   // IWeapon is not actually an interface but a base class with required parameters for all weapons.
+	public List<IWeapon> myWeapon;   // IWeapon is not actually an interface but a base class with required parameters for all weapons.
+	public bool MultiWeaponAttack;
 	public UnitStats myStats; // Contains Unit health, regen, armor, supply, cost, etc
 
 	public Iinteract interactor; // Passes commands to this to determine how to interact (Right click on a friendly could be a follow command or a cast spell command, based on the Unit/)
@@ -60,8 +61,11 @@ public class UnitManager : Unit,IOrderable{
 		}
 
 
-		if (myWeapon == null) {
-			myWeapon = gameObject.GetComponent<IWeapon>();
+		if (myWeapon.Count == 0) {
+			IWeapon tempWeap = gameObject.GetComponent<IWeapon>();
+			if (tempWeap) {
+				myWeapon.Add (tempWeap);}
+			
 		}
 
 		if (myStats == null) {
@@ -98,15 +102,12 @@ public class UnitManager : Unit,IOrderable{
 			&& this.gameObject.gameObject.GetComponent<UnitManager>().UnitName == "Coyote"
 			&& ((StandardInteract)this.gameObject.gameObject.GetComponent<UnitManager>().interactor).attackWhileMoving) {
 
-			changeState (new turretState (this, this.cMover, this.myWeapon));
+			changeState (new turretState (this ));
 		}
 
 
-		if (myWeapon != null) {
-			chaseRange = visionRange - ((visionRange - myWeapon.range) / 2);
-		} else {
+	
 			chaseRange = visionRange;
-		}
 
 	}
 
@@ -124,6 +125,8 @@ public class UnitManager : Unit,IOrderable{
 			myState.Update ();
 		} 
 	}
+
+
 
 
 
@@ -293,7 +296,7 @@ public class UnitManager : Unit,IOrderable{
 
 		for (int i = 0; i < enemies.Count; i ++) {
 			if (enemies[i] != null) {
-				if (!myWeapon.isValidTarget (enemies [i])) {
+				if (!isValidTarget (enemies [i])) {
 					continue;
 				}
 				if (enemies[i].GetComponent<UnitStats> ().attackPriority < bestPriority) {
@@ -331,8 +334,6 @@ public class UnitManager : Unit,IOrderable{
 				myState = queuedStates.Dequeue ();
 				if (myState != null) {
 					myState.myManager = this;
-					myState.myWeapon = myWeapon;
-					myState.myMover = cMover;
 					myState.initialize ();
 				}
 			} else {
@@ -360,8 +361,6 @@ public class UnitManager : Unit,IOrderable{
 					return;
 				}
 				myState.myManager = this;
-				myState.myWeapon = myWeapon;
-				myState.myMover = cMover;
 				myState.initialize ();
 				return;
 
@@ -380,8 +379,6 @@ public class UnitManager : Unit,IOrderable{
 		}
 			
 			nextState.myManager = this;
-			nextState.myWeapon = myWeapon;
-			nextState.myMover = cMover;
 			queuedStates.Clear ();
 
 
@@ -394,6 +391,56 @@ public class UnitManager : Unit,IOrderable{
 			myState.initialize ();
 
 	}
+
+
+	// return -1 if it is not in range, else pass back the index of the weapon that is in range
+	public IWeapon inRange(GameObject obj)
+	{
+		float min= 100000000;
+		IWeapon best = null;
+		foreach (IWeapon weap in myWeapon) {
+			if (weap.inRange (obj)) {
+				if (weap.range < min) {
+					best = weap;
+					min = weap.range;
+				}
+			}
+
+		}
+		return best;
+
+	}
+
+
+	public IWeapon isValidTarget(GameObject obj)
+	{IWeapon best = null;
+		float min= 100000000;
+		foreach (IWeapon weap in myWeapon) {
+			if(weap.isValidTarget(obj)){
+				if (weap.range < min) {
+					best = weap;
+					min = weap.range;
+				}
+			}
+
+		}
+		return best;
+	}
+
+	public IWeapon canAttack(GameObject obj)
+	{IWeapon best = null;
+		float min= 100000000;
+		foreach (IWeapon weap in myWeapon) {
+			if(weap.canAttack(obj)){
+				if (weap.range < min) {
+					best = weap;
+					min = weap.range;
+				}
+			}
+		}
+		return best;
+	}
+
 
 
 
@@ -447,10 +494,10 @@ public class UnitManager : Unit,IOrderable{
 
 	public void setWeapon(IWeapon weap)
 		{
-		myWeapon = weap;
-		if (myState != null) {
-			myState.myWeapon = weap;
+		if (!myWeapon.Contains (weap)) {
+			myWeapon.Add (weap);
 		}
+
 	}
 
 	public bool isIdle()

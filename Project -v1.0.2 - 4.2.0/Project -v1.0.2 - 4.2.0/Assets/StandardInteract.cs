@@ -32,14 +32,14 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 		// HOLD GROUND -----------------------------------------------------
 			switch (order.OrderType) {
 		case Const.Order_HoldGround:
-			myManager.changeState (new HoldState(myManager, myManager.cMover, myManager.myWeapon));
+			myManager.changeState (new HoldState(myManager));
 
 			break;
 
 
 		// PATROL ------------------------------------------------------
 		case Const.Order_Patrol:
-			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, myManager, myManager.cMover, myManager.myWeapon, myManager.gameObject.transform.position));
+			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, myManager, myManager.gameObject.transform.position));
 
 			break;
 
@@ -53,11 +53,11 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 		case Const.ORDER_MOVE_TO:
 
 
-			if (attackWhileMoving &&  myManager.myWeapon) {
+			if (attackWhileMoving &&  myManager.myWeapon.Count >0) {
 
-				myManager.changeState (new AttckWhileMoveState (order.OrderLocation, myManager, myManager.cMover, myManager.myWeapon));
+				myManager.changeState (new AttckWhileMoveState (order.OrderLocation, myManager));
 				} else {
-				myManager.changeState (new MoveState (order.OrderLocation, myManager, myManager.cMover, myManager.myWeapon));
+				myManager.changeState (new MoveState (order.OrderLocation, myManager));
 				}
 				break;
 
@@ -74,13 +74,13 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 				if (manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {
 					if (this.gameObject.GetComponent<UnitManager> ().myWeapon == null) {
-						myManager.changeState (new FollowState (order.Target.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+						myManager.changeState (new FollowState (order.Target.gameObject, myManager));
 					} else {
 						//Debug.Log ("Ordering to interact " + manage.gameObject);
-						myManager.changeState (new InteractState (manage.gameObject, myManager, myManager.cMover, myManager.myWeapon));
+						myManager.changeState (new InteractState (manage.gameObject, myManager));
 					}
 				} else {
-					myManager.changeState (new FollowState (order.Target.gameObject,  myManager, myManager.cMover, myManager.myWeapon));
+					myManager.changeState (new FollowState (order.Target.gameObject,  myManager));
 						}
 				}
 				
@@ -89,11 +89,11 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 		// ATTACK MOVE - Move towards a location and attack enemies on the way.
 		case Const.ORDER_AttackMove:
-			if (myManager.myWeapon) {
+			if (myManager.myWeapon.Count > 0) {
 				
-				myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.cMover, myManager.myWeapon, myManager.gameObject.transform.position));
+				myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));
 			}else {
-				myManager.changeState (new MoveState (order.OrderLocation, myManager, myManager.cMover, myManager.myWeapon));
+				myManager.changeState (new MoveState (order.OrderLocation, myManager));
 				}
 				break;
 
@@ -101,7 +101,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 			// Right click on a allied unit
 			case Const.ORDER_Follow:
 
-			myManager.changeState (new FollowState (order.Target.gameObject,  myManager, myManager.cMover, myManager.myWeapon));
+			myManager.changeState (new FollowState (order.Target.gameObject,  myManager));
 				break;
 
 

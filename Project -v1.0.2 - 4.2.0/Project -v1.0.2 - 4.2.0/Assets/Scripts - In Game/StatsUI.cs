@@ -39,7 +39,7 @@ public class StatsUI : MonoBehaviour {
 		if (man.myWeapon != null) {
 			damageIcon.enabled = true;
 			rangeIcon.enabled = true;
-			TwoText.text += "\n" + man.myWeapon.baseDamage + "\n" + man.myWeapon.range;
+	//		TwoText.text += "\n" + man.myWeapon.baseDamage + "\n" + man.myWeapon.range;
 		} 
 		ThreeText.text = "\n# " + number;
 

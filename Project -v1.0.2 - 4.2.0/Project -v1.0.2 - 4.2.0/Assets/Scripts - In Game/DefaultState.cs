@@ -16,7 +16,7 @@ public class DefaultState : UnitState{
 
 	override
 	public void Update () {// change this later so t will only check for attackable enemies.
-		if (myWeapon != null) {
+		if (myManager.myWeapon.Count >0) {
 			if (myManager.enemies.Count > 0) {
 
 				GameObject target = myManager.findBestEnemy ();
@@ -26,7 +26,7 @@ public class DefaultState : UnitState{
 				if (Vector3.Distance (myManager.gameObject.transform.position, target.transform.position) <= myManager.getChaseRange ()) {
 					
 					myManager.changeState (new AttackMoveState (target,
-						new Vector3 (), AttackMoveState.MoveType.passive, myManager, myMover, myWeapon, myManager.gameObject.transform.position));
+						new Vector3 (), AttackMoveState.MoveType.passive, myManager, myManager.gameObject.transform.position));
 				}
 			}
 		}
@@ -35,8 +35,8 @@ public class DefaultState : UnitState{
 	}
 
 	public override void initialize()
-	{if (myMover) {
-			myMover.stop ();
+	{if (myManager.cMover) {
+			myManager.cMover.stop ();
 		}
 	}
 
@@ -50,8 +50,8 @@ public class DefaultState : UnitState{
 				if (manage.PlayerOwner != myManager.PlayerOwner) {
 	
 
-					if (myWeapon) {
-						if (myWeapon.isValidTarget (src)) {
+					if (myManager.myWeapon.Count > 0) {
+						if (myManager.isValidTarget(src)) {
 							myManager.GiveOrder (Orders.CreateAttackMove (src.transform.position));
 						} else {
 							Vector3 spot = (myManager.transform.position + (myManager.transform.position - src.transform.position) * .4f);

@@ -1,14 +1,25 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MiningSaw.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\AttackMoveState.cs">
     <Files>
-      <File FileName="Assets\MiningSaw.cs" Line="24" Column="44" />
-      <File FileName="Assets\Grinder.cs" Line="67" Column="3" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\StandardInteract.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\AttackMoveState.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="377" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="498" Column="24" />
+      <File FileName="Assets\StandardInteract.cs" Line="92" Column="39" />
+      <File FileName="Assets\Scripts - In Game\AttackMoveState.cs" Line="81" Column="35" />
+      <File FileName="Assets\DaexaWorkerInteract.cs" Line="136" Column="4" />
+      <File FileName="Assets\Scripts - In Game\UnitState.cs" Line="18" Column="2" />
+      <File FileName="Assets\AbilityFollowState.cs" Line="27" Column="18" />
+      <File FileName="Assets\Scripts - In Game\MoveState.cs" Line="22" Column="2" />
+      <File FileName="Assets\MiningState.cs" Line="36" Column="2" />
+      <File FileName="Assets\Scripts - In Game\HoldState.cs" Line="31" Column="3" />
+      <File FileName="Assets\turretState.cs" Line="78" Column="6" />
+      <File FileName="Assets\Scripts - In Game\FollowState.cs" Line="19" Column="59" />
+      <File FileName="Assets\PlaceBuildingState.cs" Line="52" Column="44" />
+      <File FileName="Assets\RepairTurret.cs" Line="159" Column="30" />
+      <File FileName="Assets\Scripts - In Game\AttckWhileMoveState.cs" Line="30" Column="7" />
+      <File FileName="Assets\Scripts - In Game\InteractState.cs" Line="17" Column="3" />
+      <File FileName="Assets\Scripts - In Game\DefaultState.cs" Line="49" Column="17" />
+      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="161" Column="39" />
+      <File FileName="Assets\TurretDeathTrigger.cs" Line="48" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -21,7 +21,7 @@ public class PlaceBuildingState :UnitState {
 
 	public override void initialize()
 	{
-		myMover.resetMoveLocation (location);
+		myManager.cMover.resetMoveLocation (location);
 	}
 
 	// Update is called once per frame
@@ -35,7 +35,7 @@ public class PlaceBuildingState :UnitState {
 		if (Vector3.Distance(myManager.gameObject.transform.position , location) > 4) {
 
 
-			myMover.move ();
+			myManager.cMover.move ();
 		} else {
 
 			myAbility.Activate();

@@ -79,11 +79,11 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 	public float modify(float damage, GameObject source)
 	{ 
 
-		if (weapon.myManager.myWeapon == weapon) {
+		if (weapon.myManager.myWeapon.Contains(weapon)) {
 			foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {
 
 				if (turr.turret != null) {
-					weapon.myManager.myWeapon = turr.turret.GetComponent<IWeapon> ();
+					weapon.myManager.myWeapon.Contains(turr.turret.GetComponent<IWeapon> ());
 					return 0 ;
 				}
 

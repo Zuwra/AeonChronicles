@@ -34,12 +34,12 @@ public class AbilityFollowState  : UnitState {
 
 	public override void initialize()
 	{
-		refreshTime = 30 - (int)myMover.getMaxSpeed ();
+		refreshTime = 30 - (int)myManager.cMover.getMaxSpeed ();
 		if (refreshTime < 5) {
 			refreshTime = 8;
 		}
 		if (target) {
-			myMover.resetMoveLocation (target.transform.position);
+			myManager.cMover.resetMoveLocation (target.transform.position);
 		}
 	}
 
@@ -56,7 +56,7 @@ public class AbilityFollowState  : UnitState {
 			if (currentFrame > refreshTime) {
 				currentFrame = 0;
 				location = target.transform.position;
-				myMover.resetMoveLocation (location);
+				myManager.cMover.resetMoveLocation (location);
 			}
 		}
 
@@ -64,7 +64,7 @@ public class AbilityFollowState  : UnitState {
 		if (!myAbility.inRange (location)) {
 
 	
-			myMover.move ();
+			myManager.cMover.move ();
 		} else {
 			
 			myAbility.Cast();
