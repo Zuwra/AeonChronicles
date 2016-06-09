@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Projectile.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MiningSaw.cs">
     <Files>
-      <File FileName="Assets\HotkeyMenu.cs" Line="59" Column="4" />
+      <File FileName="Assets\MiningSaw.cs" Line="49" Column="46" />
+      <File FileName="Assets\HotkeyMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\ToolTip.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\StandardInteract.cs" Line="1" Column="1" />
@@ -13,15 +14,9 @@
       <File FileName="Assets\Scripts - In Game\FollowState.cs" Line="1" Column="1" />
       <File FileName="Assets\PlaceBuildingState.cs" Line="1" Column="1" />
       <File FileName="Assets\RepairTurret.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\AttckWhileMoveState.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\InteractState.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\DefaultState.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\TurretDeathTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitUIBox.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitCardCreater.cs" Line="97" Column="3" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="801" Column="17" />
-      <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="168" Column="12" />
+      <File FileName="Assets\sawTrigger.cs" Line="23" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

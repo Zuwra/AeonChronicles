@@ -470,6 +470,7 @@
      <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\repairReturn.cs" />
+     <Compile Include="Assets\sawTrigger.cs" />
      <Compile Include="Assets\selfDestructTimer.cs" />
      <Compile Include="Assets\simpleROV.cs" />
      <Compile Include="Assets\testScript.cs" />
