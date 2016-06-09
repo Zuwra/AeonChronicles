@@ -2,12 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+
 public class HotkeyMenu : MonoBehaviour {
 
 
 	public GameObject raceInfo;
 
 	public GameObject grid;
+
+	public Text GroupOne;
+	public Text GroupTwo;
+	public Text GroupThree;
+	public Text GroupFour;
 
 
 
@@ -47,8 +53,32 @@ public class HotkeyMenu : MonoBehaviour {
 			n++;
 		}
 
+		string s1 = "Select all:\n";
+		foreach (string s in selected[0]) {
+			s1 += s +"s" +"\n";
+		}
+		GroupOne.text = s1;
+
+		string s2 = "Select all:\n";
+		foreach (string s in selected[1]) {
+			s2 += s +"s" +"\n";
+		}
+		GroupTwo.text = s2;
+
+		string s3 = "Select all:\n";
+		foreach (string s in selected[2]) {
+			s3 += s +"s" +"\n";
+		}
+		GroupThree.text = s3;
+
+		string s4 = "Select all:\n";
+		foreach (string s in selected[3]) {
+			s4 += s +"s" +"\n";
+		}
+		GroupFour.text = s4;
 
 
+		/*
 		if (selected [0].Count > 0) {
 			fManager.Ffive.text = "(F5) " + selected [0] [0];
 		} else {
@@ -73,7 +103,7 @@ public class HotkeyMenu : MonoBehaviour {
 			fManager.fEight.text = "(F8) ";
 		}
 	
-
+*/
 
 
 		selectMan.applyGlobalSelection(selected);

@@ -126,7 +126,7 @@ public  class Projectile : MonoBehaviour {
 
 			float yAmount;
 
-				yAmount = (( (distance/2) - currentDistance )/distance) * arcAngle *3* Time.deltaTime;
+			yAmount = (( (distance/2) - currentDistance )/distance) * arcAngle *3* Time.deltaTime;
 			control.Move (Vector3.up * yAmount);
 			//gameObject.transform.Translate (Vector3.up * yAmount );
 	
