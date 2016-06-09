@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class UnitCardCreater : MonoBehaviour {
@@ -11,9 +12,7 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text Mass;
 	public Text speed;
 
-	public Text damage;
-	public Text attackSpeed;
-	public Text range;
+	public List<GameObject> weaponIcons = new List<GameObject> ();
 
 	public Text energyText;
 	public Image energyIcon;
@@ -27,7 +26,7 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text kills;
 
 	public Text UnitDescription;
-	private UnitManager currentUnit;
+	public UnitManager currentUnit;
 
 	private bool hasUnit;
 
@@ -96,35 +95,16 @@ public class UnitCardCreater : MonoBehaviour {
 			energyText.enabled = false;
 		}
 
-		if (manager.myWeapon != null) {
-			damage.enabled = true;
-			damageIcon.enabled = true;
-			rangeIcon.enabled= true;
-			range.enabled = true;
-			attackSpeedIcon.enabled = true;
-			attackSpeed.enabled = true;
-			//damage.text = "  " + manager.myWeapon.baseDamage;
-			//attackSpeed.text = "  " + manager.myWeapon.attackPeriod;
-			//range.text = "  " + manager.myWeapon.range;
-			//if (manager.myWeapon.numOfAttacks > 1) {
-			//	damage.text = " " + manager.myWeapon.baseDamage + " (X" + manager.myWeapon.numOfAttacks +")";
-			//}
-			//if (manager.myWeapon.extraDamage.Length > 0) {
-			//	damage.text = damage.text + " ( +" + manager.myWeapon.extraDamage [0].bonus + " v " + manager.myWeapon.extraDamage [0].type + ")";
-			//}
+		// Change this if a unit ever has more than 5 weapons;
+		for (int i = 0; i < 5; i++) {
+	
+				weaponIcons [i].SetActive (manager.myWeapon.Count > i);
+			if (manager.myWeapon.Count > i) {
+				weaponIcons [i].transform.FindChild("DamageIcon").GetComponent<Image> ().sprite = manager.myWeapon [i].myIcon;
+			}
 
-		
-		} else {
-			damageIcon.enabled = false;
-			damage.enabled = false;
-			rangeIcon.enabled= false;
-			range.enabled = false;
-			attackSpeedIcon.enabled= false;
-			attackSpeed.enabled = false;
-			damage.text = "" ;
-			attackSpeed.text = "";
-			range.text = "" ;
 		}
+
 		builder.loadUnit (obj);
 
 	}

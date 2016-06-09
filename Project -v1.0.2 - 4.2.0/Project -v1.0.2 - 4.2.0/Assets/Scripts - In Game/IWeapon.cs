@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.UI;
 
 
 public class IWeapon : MonoBehaviour {
 
-
+	public string Title;
+	public Sprite myIcon;
 	public UnitManager myManager;
 	public MultiShotParticle fireEffect;
 	public AudioClip attackSoundEffect;
