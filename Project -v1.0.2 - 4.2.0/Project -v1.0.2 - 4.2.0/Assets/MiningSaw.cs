@@ -45,7 +45,7 @@ public class MiningSaw : MonoBehaviour {
 				nextActionTime += timers [state];
 
 
-				Debug.Log ("Setting state " + state);
+				//Debug.Log ("Setting state " + state);
 				//myAnimator.SetInteger ("State", state);
 			}
 
