@@ -214,8 +214,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 
-
-
 	public void UnitDied(float supply, GameObject obj)
 	{
 		if (unitList.Contains (obj)) {
@@ -324,8 +322,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void addUnit(GameObject obj )
 	{
-
-
+		
 		unitList.Add(obj);
 		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
 			if (uiManager != null) {

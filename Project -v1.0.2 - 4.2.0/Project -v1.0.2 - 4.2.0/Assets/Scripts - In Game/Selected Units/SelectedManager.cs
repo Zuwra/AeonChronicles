@@ -56,7 +56,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			if (Input.GetKey (KeyCode.LeftShift)) {
 				PatrolMoveO ();
 			} else {
-				attackMoveO ();
+				attackMoveO (Vector3.zero);
 			}
         }
 
@@ -808,17 +808,20 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
 
-    public void attackMoveO()
+	public void attackMoveO(Vector3 input)
     {
         //We're over the main screen, let's raycast
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+		if (input == Vector3.zero) {
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 16)))
-        {
-            Vector3 attackMovePoint = hit.point;
-            GiveOrder(Orders.CreateAttackMove(attackMovePoint));
-        }
+			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
+				Vector3 attackMovePoint = hit.point;
+				GiveOrder (Orders.CreateAttackMove (attackMovePoint));
+			}
+		} else {
+			GiveOrder (Orders.CreateAttackMove (input));
+		}
 
     }
 

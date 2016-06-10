@@ -37,7 +37,7 @@
 
 						s.TakeDamage (damage, this.gameObject.gameObject.gameObject, DamageTypes.DamageType.True);
 					}
-					GameObject obj = (GameObject)Instantiate (cutEffect, getImpactLocation(), Quaternion.identity);
+					Instantiate (cutEffect, getImpactLocation(), Quaternion.identity);
 					//obj.transform.SetParent (this.gameObject.transform);
 					}
 				}
@@ -68,9 +68,9 @@
 
 		void OnTriggerEnter(Collider other)
 		{
-		Debug.Log (other.name);
+
 		if (other.name == "Ground") {
-			GameObject obj = (GameObject)Instantiate (impactEffect, getImpactLocation(), Quaternion.identity);
+			Instantiate (impactEffect, getImpactLocation(), Quaternion.identity);
 		}
 			UnitManager manage = other.gameObject.GetComponent<UnitManager> ();
 			if (manage == null) {

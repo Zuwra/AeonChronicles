@@ -35,9 +35,11 @@ public class CapturableUnit : MonoBehaviour {
 
 		}
 		FogOfWarUnit foggy = GetComponent<FogOfWarUnit> ();
-		foggy.radius = myManagers[0].visionRange + 3;
-		foggy.enabled = true;
-		foggy.Initialize ();
+		if (foggy) {
+			foggy.radius = myManagers [0].visionRange + 3;
+			foggy.enabled = true;
+			foggy.Initialize ();
+		}
 
 		GameObject.FindObjectOfType<GameManager>().activePlayer.applyUpgrade (this.gameObject);
 		GameObject.FindObjectOfType<GameManager>().activePlayer.UnitCreated (GetComponent<UnitStats>().supply);

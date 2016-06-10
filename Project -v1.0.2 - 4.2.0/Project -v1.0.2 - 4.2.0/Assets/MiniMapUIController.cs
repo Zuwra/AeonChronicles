@@ -27,7 +27,6 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 
 	private float WorldHeight;
 	private float WorldWidth;
-
  
     private int textureHeight = 200, textureWidth = 200;
 
@@ -52,6 +51,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 
     // Use this for initialization
     void Start () {
+
 		myRect = GetComponent<RectTransform> ();
 		minimapWidth = myRect.rect.width;
 		minimapHeight = myRect.rect.height;
@@ -102,6 +102,12 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 			nextActionTimeb += minimapUpdateRate;
 			setFog();
 
+		}
+
+		if (Input.GetKeyUp (KeyCode.Tab)) {
+		
+			attackMoveMinimap ();
+		
 		}
       
     }
@@ -181,7 +187,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 
 		//Need to find co-ordinates for the viewing area within the camera viewport
 		//Bottom left
-		Ray ray1 = Camera.main.ScreenPointToRay (new Vector3(0,0,0));
+		Ray ray1 = Camera.main.ScreenPointToRay (new Vector3(0,180,0));
 
 		//Top left
 		Ray ray2 = Camera.main.ScreenPointToRay (new Vector3(0, Screen.height-1, 0));
@@ -190,7 +196,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 		Ray ray3 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, Screen.height-1, 0));
 
 		//Bottom right
-		Ray ray4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, 0, 0));
+		Ray ray4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, 180, 0));
 
 		//Find world co-ordinates
 		RaycastHit hit;
@@ -314,18 +320,52 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 		if (eventData.button == PointerEventData.InputButton.Left) {
 
 			Vector3 clickPos = transform.InverseTransformPoint (eventData.pressPosition);
-			float x = (clickPos.x ) /minimapWidth;
-			float y = (clickPos.y ) / minimapHeight;
+			float x = (clickPos.x) / minimapWidth;
+			float y = (clickPos.y) / minimapHeight;
 
-			Vector2 toMove = new Vector2 (x * WorldWidth,y * WorldHeight);
-			MainCamera.main.minimapMove(toMove);
+			Vector2 toMove = new Vector2 (x * WorldWidth, y * WorldHeight);
+			MainCamera.main.minimapMove (toMove);
 			//GetComponent<RectTransform> ().rect.width;
 		
 			//Debug.Log ( "Clicked    " + toMove.x + "   " + toMove.y);
 
+		} else if (eventData.button == PointerEventData.InputButton.Right) {
+		
+
+			Vector3 clickPos = transform.InverseTransformPoint (eventData.pressPosition);
+			float x = .5f +(clickPos.x) / minimapWidth;
+			float y = .5f + (clickPos.y) /minimapHeight;
+			Vector3 RayPoint = new Vector3 ((x * WorldWidth) +Left, 100, (y * WorldHeight) + bottom);
+
+			RaycastHit hit;		
+
+			if (Physics.Raycast (RayPoint, Vector3.down, out hit, 400, ~(1 << 16))) {
+	
+				//Debug.Log ("moving to " + hit.point);
+				SelectedManager.main.GiveOrder (Orders.CreateMoveOrder (hit.point));
+			}
 		}
 
 
+	}
+
+
+	public void attackMoveMinimap()
+	{
+		Vector3 clickPos =  Input.mousePosition;
+		clickPos.x -= this.GetComponent<RectTransform> ().position.x;
+		clickPos.y -=this.GetComponent<RectTransform> ().position.y;
+		float x = .5f +(clickPos.x) / minimapWidth;
+		float y = .5f + (clickPos.y) /minimapHeight;
+		Vector3 RayPoint = new Vector3 ((x * WorldWidth) +Left, 100, (y * WorldHeight) + bottom);
+
+		RaycastHit hit;		
+
+		if (Physics.Raycast (RayPoint, Vector3.down, out hit, 400, ~(1 << 16))) {
+
+			//Debug.Log ("moving to " + hit.point);
+			SelectedManager.main.attackMoveO(hit.point);
+		}
 	}
 
 

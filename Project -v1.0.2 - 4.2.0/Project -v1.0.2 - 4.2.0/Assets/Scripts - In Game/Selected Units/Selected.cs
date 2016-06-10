@@ -268,10 +268,10 @@ public class Selected : MonoBehaviour {
 			}
 		}
 
-		foreach (Transform obj in this.transform) {
+		//foreach (Transform obj in this.transform) {
 
 			//obj.SendMessage ("setSelect", SendMessageOptions.DontRequireReceiver);
-		}
+		//}
 	}
 	
 	public void SetDeselected()

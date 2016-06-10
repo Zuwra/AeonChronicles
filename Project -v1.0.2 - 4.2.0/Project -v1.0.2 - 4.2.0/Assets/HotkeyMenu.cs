@@ -22,7 +22,7 @@ public class HotkeyMenu : MonoBehaviour {
 
 	private List<GameObject> toggles = new List<GameObject> ();
 
-	private FButtonManager fManager;
+//	private FButtonManager fManager;
 
 	// Use this for initialization
 	void Start () {
@@ -53,29 +53,29 @@ public class HotkeyMenu : MonoBehaviour {
 			n++;
 		}
 
-		string s1 = "Select all:\n";
+		GroupOne.text = "Select all:\n";
 		foreach (string s in selected[0]) {
-			s1 += s +"s" +"\n";
+			GroupOne.text += s +"s, " ;
 		}
-		GroupOne.text = s1;
 
-		string s2 = "Select all:\n";
+
+		GroupTwo.text = "Select all:\n";
 		foreach (string s in selected[1]) {
-			s2 += s +"s" +"\n";
+			GroupTwo.text += s +"s, ";
 		}
-		GroupTwo.text = s2;
 
-		string s3 = "Select all:\n";
+
+		GroupThree.text = "Select all:\n";
 		foreach (string s in selected[2]) {
-			s3 += s +"s" +"\n";
+			GroupThree.text += s +"s, ";
 		}
-		GroupThree.text = s3;
+	
 
-		string s4 = "Select all:\n";
+		GroupFour.text = "Select all:\n";
 		foreach (string s in selected[3]) {
-			s4 += s +"s" +"\n";
+			GroupFour.text += s + "s, ";
 		}
-		GroupFour.text = s4;
+
 
 
 		/*
@@ -119,7 +119,7 @@ public class HotkeyMenu : MonoBehaviour {
 		yield return new WaitForSeconds(.1f);
 
 
-		fManager = GameObject.Find ("F-Buttons").GetComponent<FButtonManager>();
+		//fManager = GameObject.Find ("F-Buttons").GetComponent<FButtonManager>();
 
 		selectMan = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
 		foreach (RaceInfo info in raceInfo.GetComponents<RaceInfo>()) {

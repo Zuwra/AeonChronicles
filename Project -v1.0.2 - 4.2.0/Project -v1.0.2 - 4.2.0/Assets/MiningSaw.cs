@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class MiningSaw : MonoBehaviour {
 
 	public Animator myAnimator;
-	UnitManager myManager;
+
 	public float startTime;
 
 
@@ -24,8 +24,8 @@ public class MiningSaw : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		myManager = GetComponent<UnitManager> ();
-		//objects = myManager.enemies;
+
+
 	}
 	
 	// Update is called once per frame
