@@ -33,6 +33,7 @@ public class UnitStats : MonoBehaviour {
 	public List<UnitTypes.UnitTypeTag> unitTags = new  List<UnitTypes.UnitTypeTag> ();
 	private List<Modifier> deathTriggers = new List<Modifier> ();
 	public List<KillModifier> killMods = new List<KillModifier> ();
+
 	//Tags the units can have
 	private Selected mySelection;
 
@@ -208,6 +209,12 @@ public class UnitStats : MonoBehaviour {
 				if (deathEffect) {
 					Instantiate (deathEffect, this.gameObject.transform.position, Quaternion.identity);
 				}
+
+				//foreach (UnitManager man in GetComponentsInChildren<UnitManager>()) {
+					//Debug.Log ("Triggering children");
+					//man.myStats.kill (deathSource);
+				//}
+
 				SelectedManager.main.updateControlGroups (myManager);
 
 					Destroy (this.gameObject);

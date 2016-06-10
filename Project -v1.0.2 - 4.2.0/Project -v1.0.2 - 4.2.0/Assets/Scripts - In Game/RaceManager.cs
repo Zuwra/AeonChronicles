@@ -57,6 +57,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 
+	private List<LethalDamageinterface> lethalTrigger = new List<LethalDamageinterface>();
 	private List<LethalDamageinterface> deathTrigger = new List<LethalDamageinterface>();
 	public RaceUIManager uiManager;
 
@@ -249,7 +250,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void addDeathWatcher(LethalDamageinterface input)
 	{
-		deathTrigger.Add (input);
+		lethalTrigger.Add (input);
 	}
 
 	public void buildUnit (float supply)
@@ -266,7 +267,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		//Debug.Log ("starting triggers");
 
-		foreach (LethalDamageinterface trigger in deathTrigger) {
+		foreach (LethalDamageinterface trigger in lethalTrigger) {
 
 
 			if(trigger != null){
@@ -276,11 +277,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				}}
 		}
 
-		if (finishDeath) {
+		if (finishDeath) { 
 			if (uiManager != null) {
 				uiManager.production.GetComponent<ArmyUIManager> ().unitLost (Unit);
 			}
 		
+
 
 			string unitName = Unit.GetComponent<UnitManager> ().UnitName;
 
@@ -306,6 +308,11 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				GraphUpdateObject b =new GraphUpdateObject(Unit.GetComponent<CharacterController>().bounds); 
 
 				StartCoroutine (DeathRescan (b));
+			}
+			unitList.Remove(Unit);
+			foreach (LethalDamageinterface trigger in deathTrigger) {
+				trigger.lethalDamageTrigger (Unit, deathSource);
+
 			}
 		}
 		return finishDeath;
@@ -496,9 +503,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
-   
 
-
+	public void addActualDeathWatcher(LethalDamageinterface input){
+		deathTrigger.Add (input);
+	}
 
 
 

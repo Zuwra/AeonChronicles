@@ -30,6 +30,7 @@ public class TextTrigger : MonoBehaviour {
 			if (!dialogue) {
 				
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
+				UIHighLight.main.highLight (null, 0);
 			}
 			else{
 				ExpositionDisplayer.instance.displayText (text, duration, sound, .2f, myPic);

@@ -54,7 +54,7 @@ public class ArmyUIManager : MonoBehaviour {
 	IEnumerator addNUmber(UnitManager manage)
 	{
 		yield return new WaitForSeconds(0);
-	
+
 		iconList [manage.UnitName].transform.FindChild("Text").GetComponent<Text> ().text
 		= ""+unitList [manage.UnitName].Count;
 	}
@@ -64,16 +64,20 @@ public class ArmyUIManager : MonoBehaviour {
 
 	public void unitLost(GameObject unit)
 	{UnitManager manage = unit.GetComponent<UnitManager> ();
+
+
 		if (unitList.ContainsKey (manage.UnitName)) {
+
 			unitList [manage.UnitName].Remove (unit);
 
 			if (unitList [manage.UnitName].Count == 0) {
+	
 				GameObject obj = iconList [manage.UnitName];
 				iconList.Remove (manage.UnitName);
 				Destroy (obj);
 				unitList.Remove (manage.UnitName);
 			} else {
-				addNUmber (manage);
+				StartCoroutine (addNUmber (manage));
 			}
 		}
 	}

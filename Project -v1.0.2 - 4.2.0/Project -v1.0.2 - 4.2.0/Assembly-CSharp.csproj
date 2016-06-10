@@ -201,6 +201,7 @@
      <Compile Include="Assets\CarryRacks.cs" />
      <Compile Include="Assets\CastAbilityState.cs" />
      <Compile Include="Assets\ChannelState.cs" />
+     <Compile Include="Assets\ChildDeathTrigger.cs" />
      <Compile Include="Assets\ClickableButton.cs" />
      <Compile Include="Assets\Clock.cs" />
      <Compile Include="Assets\Coagulate.cs" />
@@ -449,9 +450,11 @@
      <Compile Include="Assets\TurretUIPanel.cs" />
      <Compile Include="Assets\TurretplacerTwo.cs" />
      <Compile Include="Assets\UIAddons\Scripts\SceneExample.cs" />
+     <Compile Include="Assets\UIHighLight.cs" />
      <Compile Include="Assets\UltCooldown.cs" />
      <Compile Include="Assets\UndyingArmor.cs" />
      <Compile Include="Assets\UnitCardCreater.cs" />
+     <Compile Include="Assets\UnitLostDefeat.cs" />
      <Compile Include="Assets\UnitProduction.cs" />
      <Compile Include="Assets\UnitUIBox.cs" />
      <Compile Include="Assets\UnitUtility.cs" />

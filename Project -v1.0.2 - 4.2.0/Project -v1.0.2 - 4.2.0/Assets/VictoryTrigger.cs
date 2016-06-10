@@ -29,12 +29,14 @@ public class VictoryTrigger : MonoBehaviour {
 			bonusObjective.Add (obj);
 
 			ObjectiveManager.instance.setBonusObjectives (obj);
+		
 		} 
 		else {
 			mainObjective.Add (obj);
 		
 			ObjectiveManager.instance.setObjective (obj);
 		}
+	
 	}
 
 	public void CompleteObject(Objective obj)

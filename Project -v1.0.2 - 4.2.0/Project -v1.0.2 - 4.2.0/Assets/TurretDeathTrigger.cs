@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TurretDeathTrigger : MonoBehaviour, Modifier {
+public class TurretDeathTrigger : MonoBehaviour, Modifier{
 
 	private UnitManager mymanager;
 	private IWeapon weapon;
@@ -27,6 +27,7 @@ public class TurretDeathTrigger : MonoBehaviour, Modifier {
 	public float modify(float damage, GameObject source)
 	{ 
 		
+		mymanager.myStats.kill (source);
 
 		if (weapon.myManager.myWeapon.Contains( weapon)) {
 			foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {

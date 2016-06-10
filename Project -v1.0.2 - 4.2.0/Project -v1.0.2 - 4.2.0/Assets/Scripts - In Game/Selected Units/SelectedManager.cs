@@ -736,7 +736,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     }
 
     public void selectAllArmy()
-    {
+	{ raceMan.getUnitList().RemoveAll (item => item == null);
         foreach (GameObject obj in raceMan.getUnitList())
         {
 

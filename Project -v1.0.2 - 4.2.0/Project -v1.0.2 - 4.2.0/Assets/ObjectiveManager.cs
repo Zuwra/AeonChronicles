@@ -59,6 +59,7 @@ public class ObjectiveManager : MonoBehaviour {
 		obj.transform.position = pos;
 		obj.transform.SetSiblingIndex (mainObjectives.Count + bonusObjectives.Count+1);
 		blink (true);
+		UIHighLight.main.highLight (bonusTitle.gameObject, 2);
 
 	}
 
@@ -74,6 +75,8 @@ public class ObjectiveManager : MonoBehaviour {
 		mainObjectives.Add (input, obj);
 		obj.transform.SetSiblingIndex (mainObjectives.Count);
 		blink (false);
+
+		UIHighLight.main.highLight (obj, 2);
 
 	}
 
