@@ -63,7 +63,7 @@ public class UIHighLight : MonoBehaviour {
 	
 
 	public void highLight(GameObject input, int size)
-	{Debug.Log ("Activating Highlighter " + size);
+	{//Debug.Log ("Activating Highlighter " + size);
 		
 		turnedOn = true;
 		turnOffTime = Time.time + 5;

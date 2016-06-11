@@ -63,6 +63,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 	private static SelectedManager statSelect;
+	//Used for end level stats
+	private int unitsLost;
+	private float totalResOne;
+	private float totalResTwo;
 
 	//public TechTree myTech;
 
@@ -309,6 +313,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 				StartCoroutine (DeathRescan (b));
 			}
+			unitsLost++;
 			unitList.Remove(Unit);
 			foreach (LethalDamageinterface trigger in deathTrigger) {
 				trigger.lethalDamageTrigger (Unit, deathSource);
@@ -389,6 +394,8 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	{bool hasNull = false;
 		ResourceOne += resOne;
 		ResourceTwo += resTwo;
+		totalResOne += resOne;
+		totalResTwo += resTwo;
 
 
 		foreach (ManagerWatcher watch in myWatchers) {
@@ -545,5 +552,14 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		}
 	}
 
+	public int UnitsLost()
+	{return unitsLost;}
+
+	public int totalResO()
+	{return (int)totalResOne;}
+
+	public int totalResT()
+	{return (int)totalResTwo;
+	}
 
 }

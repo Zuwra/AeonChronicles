@@ -10,11 +10,16 @@ public class MissionManager : MonoBehaviour {
 	public Canvas Intelligence;
 	public Canvas Victoryscreen;
 	private Canvas myCanvas;
+	public static MissionManager main;
 
+	void Awake()
+	{main = this;
+		myCanvas = GetComponent<Canvas> ();}
 
 	// Use this for initialization
 	void Start () {
-		myCanvas = GetComponent<Canvas> ();
+		
+
 	
 	}
 	

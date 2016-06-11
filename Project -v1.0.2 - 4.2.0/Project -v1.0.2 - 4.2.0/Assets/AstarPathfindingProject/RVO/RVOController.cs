@@ -168,7 +168,7 @@ namespace Pathfinding.RVO {
 			// Find the RVOSimulator in this scene
 			cachedSimulator = cachedSimulator ?? FindObjectOfType(typeof(RVOSimulator)) as RVOSimulator;
 			if (cachedSimulator == null) {
-				Debug.LogError("No RVOSimulator component found in the scene. Please add one.");
+				//Debug.LogError("No RVOSimulator component found in the scene. Please add one.");
 			} else {
 				simulator = cachedSimulator.GetSimulator();
 			}

@@ -12,12 +12,12 @@ public class GameManager : MonoBehaviour {
 	private RaceManager playerTwo;
 
 	private bool initialized = false;
-
+	public static GameManager main;
 
 
 	// Use this for initialization
 	void Awake () {
-
+		main = this;
 	//	playerList = new RaceManager[GetComponents<RaceManager>().Length];
 		if(!initialized)
 		foreach(RaceManager race in GetComponents<RaceManager> ())

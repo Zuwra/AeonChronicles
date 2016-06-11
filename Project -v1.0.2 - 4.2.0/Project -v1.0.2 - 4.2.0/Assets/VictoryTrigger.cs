@@ -11,6 +11,16 @@ public class VictoryTrigger : MonoBehaviour {
 	public List<Objective> mainObjective = new List<Objective> ();
 	public List<Objective> bonusObjective = new List<Objective> ();
 
+	private int totalBonusObj;
+	private int completeBonusObj;
+
+	public int levelNumber;
+	public int EnemiesDest;
+	public int Resources;
+	public string time;
+	public int TechCredits;
+
+
 	public static VictoryTrigger instance;
 	// Use this for initialization
 	void Awake () {
@@ -26,6 +36,7 @@ public class VictoryTrigger : MonoBehaviour {
 	public void addObjective(Objective obj)
 	{
 		if (obj.bonus) {
+			totalBonusObj++;
 			bonusObjective.Add (obj);
 
 			ObjectiveManager.instance.setBonusObjectives (obj);
@@ -42,6 +53,8 @@ public class VictoryTrigger : MonoBehaviour {
 	public void CompleteObject(Objective obj)
 	{
 		if (obj.bonus) {
+			completeBonusObj++;
+			TechCredits += obj.reward;
 			ObjectiveManager.instance.completeMain (obj);
 		} else {
 			
@@ -75,20 +88,24 @@ public class VictoryTrigger : MonoBehaviour {
 
 	IEnumerator WinLevel ()
 	{
-		yield return new WaitForSeconds (6);
+		yield return new WaitForSeconds (4);
+
+		LevelData.addLevelInfo (levelNumber, GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
+			Clock.main.getTime(), TechCredits, completeBonusObj + "/" + totalBonusObj);
+	
 		VictoryScreen.enabled = false;
 		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
 		DefeatScreen.enabled = false;
-		SceneManager.LoadScene (0);
+		SceneManager.LoadScene (3);
 	}
 
 	IEnumerator LoseLevel ()
 	{
-		yield return new WaitForSeconds (6);
+		yield return new WaitForSeconds (4);
 		DefeatScreen.enabled = false;
 		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
 		DefeatScreen.enabled = false;
-		SceneManager.LoadScene (0);
+		SceneManager.LoadScene (1);
 	}
 
 

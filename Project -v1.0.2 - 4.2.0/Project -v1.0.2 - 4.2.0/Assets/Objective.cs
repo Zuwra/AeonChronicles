@@ -4,7 +4,7 @@ using System.Collections;
 public class Objective : MonoBehaviour {
 	[TextArea(2,10)]
 	public string description;
-	public Upgrade reward;
+	public int reward;
 	public bool ActiveOnStart;
 	public bool bonus;
 	public bool completed;

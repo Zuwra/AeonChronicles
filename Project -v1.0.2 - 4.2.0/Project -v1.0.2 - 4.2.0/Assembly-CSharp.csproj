@@ -245,6 +245,7 @@
      <Compile Include="Assets\LandMineActivate.cs" />
      <Compile Include="Assets\LaserNode.cs" />
      <Compile Include="Assets\LaserNodeTurret.cs" />
+     <Compile Include="Assets\LevelData.cs" />
      <Compile Include="Assets\LifeSteal.cs" />
      <Compile Include="Assets\LocationObjective.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />

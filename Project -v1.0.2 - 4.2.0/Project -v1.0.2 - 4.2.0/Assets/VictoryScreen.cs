@@ -4,16 +4,20 @@ using UnityEngine.UI;
 
 public class VictoryScreen : MonoBehaviour {
 
-
+	public Canvas myCanvas;
 	public Text timeDisplay;
 	public Text enemyDisplay;
 	public Text allyDisplay;
 	public Text objDisplay;
 	public Text techDisplay;
+	public Text ResourceTitle;
 	public Text ResourceDisplay;
 
 	// Use this for initialization
 	void Start () {
+		if (LevelData.myLevels.Count > 0) {
+			SetResults (LevelData.myLevels [LevelData.currentLevel]);
+		}
 	
 	}
 	
@@ -24,37 +28,25 @@ public class VictoryScreen : MonoBehaviour {
 
 
 
-	public void SetResults(victoryInfo info)
+	public void SetResults(LevelData.levelInfo info)
 	{
-		timeDisplay.text = ""+info.totalTime;
-		enemyDisplay.text =""+ info.enemyDeaths;
-		allyDisplay.text = ""+info.allyLost;
-		objDisplay.text = ""+info.bonusObjectives;
-		techDisplay.text = ""+info.techEarned;
-		ResourceDisplay.text = ""+info.resourceCollected;
-	}
+		MissionManager.main.toggleVictory ();
+		//myCanvas.enabled = true;
+		timeDisplay.text = ""+info.time;
+		enemyDisplay.text =""+ info.EnemiesDest;
+		allyDisplay.text = ""+info.unitsLost;
+		objDisplay.text = ""+info.bonusObj;
+		techDisplay.text = ""+info.TechCredits;
 
-	public class victoryInfo
-	{
-		public string totalTime;
-		public int enemyDeaths;
-		public int allyLost;
-		public string bonusObjectives;
-		public int techEarned;
-		public int resourceCollected;
-
-
-
-		public victoryInfo(string totalT, int enemyD,  int allyL, int numObj, int totalObj, int techE, int collect)
-		{
-			totalTime = totalT;
-			enemyDeaths =enemyD;
-			allyLost = allyL;
-			bonusObjectives = numObj + "/" + totalObj;
-			techEarned = techE;
-			resourceCollected = collect;
+		if (info.Resources > 0) {
+			ResourceTitle.text = "Resources Collected: ";
+			ResourceDisplay.text = "" + info.Resources;
+		} else {
+			ResourceTitle.text = "";
+			ResourceDisplay.text = "";
 		}
 	}
+		
 
 
 }
