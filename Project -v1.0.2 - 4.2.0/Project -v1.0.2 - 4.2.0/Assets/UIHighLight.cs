@@ -14,7 +14,7 @@ public class UIHighLight : MonoBehaviour {
 	private bool ThingTwo;
 	private bool ThingThree;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		main = this;
 	
 	}
