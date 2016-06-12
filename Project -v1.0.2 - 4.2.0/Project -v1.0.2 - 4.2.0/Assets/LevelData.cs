@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class LevelData  {
 
-	public static int currentLevel;
-	public static int totalXP;
+	public static int currentLevel =1;
+	public static int totalXP = 11;
 
 	public static List<levelInfo> myLevels;
 

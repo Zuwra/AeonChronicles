@@ -15,10 +15,11 @@ public class VictoryScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (LevelData.myLevels.Count > 0) {
-			SetResults (LevelData.myLevels [LevelData.currentLevel]);
+		if (LevelData.myLevels != null) {
+			if (LevelData.myLevels.Count > 0) {
+				SetResults (LevelData.myLevels [LevelData.currentLevel]);
+			}
 		}
-	
 	}
 	
 	// Update is called once per frame

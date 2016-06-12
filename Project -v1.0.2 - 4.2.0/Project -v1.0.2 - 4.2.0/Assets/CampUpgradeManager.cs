@@ -8,7 +8,7 @@ public class CampUpgradeManager : MonoBehaviour {
 	public GameObject TurretMenu;
 	public GameObject vehicleMenu;
 	public GameObject StructureMenu;
-	public int creditAmount;
+
 
 	public List<Text> creditDisplayers = new List<Text> ();
 
@@ -61,9 +61,10 @@ public class CampUpgradeManager : MonoBehaviour {
 
 	public void changeMoney(int input)
 	{
-		creditAmount += input;
+		
+		LevelData.totalXP += input;
 		foreach (Text t in creditDisplayers) {
-			t.text = ""+creditAmount;
+			t.text = ""+LevelData.totalXP ;
 		}
 	}
 
