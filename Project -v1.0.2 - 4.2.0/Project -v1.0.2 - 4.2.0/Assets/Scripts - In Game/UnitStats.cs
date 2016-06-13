@@ -81,11 +81,11 @@ public class UnitStats : MonoBehaviour {
 
 
 		if (Time.time > nextActionTime ) {
-			nextActionTime += 1;
+			nextActionTime += .5f;
 
 			//Regenerate Health
 			if (health < Maxhealth) {
-				health += HealthRegenPerSec;
+				health += HealthRegenPerSec/2;
 
 				updateHealthBar ();
 			}
@@ -96,14 +96,13 @@ public class UnitStats : MonoBehaviour {
 
 			//Regenerate Energy
 			if (currentEnergy < MaxEnergy) {
-				currentEnergy += EnergyRegenPerSec;
+				currentEnergy += EnergyRegenPerSec/2;
 			
 			
 				if(currentEnergy > MaxEnergy)
 				{currentEnergy = MaxEnergy;}
 
-
-				mySelection.updateEnergyBar(currentEnergy/MaxEnergy);
+				updateEnergyBar ();
 			
 			}
 
@@ -162,6 +161,13 @@ public class UnitStats : MonoBehaviour {
 
 			mySelection.updateHealthBar (health / Maxhealth);
 	
+	}
+
+	private void updateEnergyBar()
+	{
+
+		mySelection.updateEnergyBar(currentEnergy / MaxEnergy);
+
 	}
 
 
@@ -270,6 +276,16 @@ public class UnitStats : MonoBehaviour {
 		}
 	}
 
+	public void changeEnergy(float n)
+	{
+		currentEnergy += n;
+		if (currentEnergy > MaxEnergy) {
+			currentEnergy = MaxEnergy;
+		} else if (currentEnergy < 0) {
+			currentEnergy = 0;
+		}
+		updateEnergyBar ();
+	}
 
 	public void heal(float n)
 	{
@@ -278,7 +294,7 @@ public class UnitStats : MonoBehaviour {
 			health = Maxhealth;
 		}
 
-		updateHealthBar ();
+		updateHealthBar();
 	}
 
 	public bool atFullEnergy()

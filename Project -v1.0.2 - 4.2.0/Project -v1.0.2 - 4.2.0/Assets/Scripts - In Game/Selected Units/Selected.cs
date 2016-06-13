@@ -75,7 +75,9 @@ public class Selected : MonoBehaviour {
 		if (myStats.MaxEnergy == 0) {
 			energySlider.gameObject.SetActive (false);
 		} else {
-			updateHealthBar (myStats.currentEnergy / myStats.MaxEnergy);
+
+			updateEnergyBar (myStats.currentEnergy / myStats.MaxEnergy);
+
 
 		}
 		updateHealthBar (myStats.health / myStats.Maxhealth);
@@ -236,7 +238,13 @@ public class Selected : MonoBehaviour {
 	public void updateEnergyBar(float ratio)
 	{
 		energySlider.value = ratio;
-
+		if (ratio > .99 || ratio < .01) {
+			buffDisplay.isOn = false;
+			energySlider.gameObject.SetActive (false);
+		} else {
+			buffDisplay.isOn = true;
+			energySlider.gameObject.SetActive (true);
+		}
 	}
 
 	public void updateCoolDown(float ratio)

@@ -45,7 +45,7 @@ public class UnitCardCreater : MonoBehaviour {
 			
 			health.text = "  "+ (int)currentUnit.myStats.health + "/" + currentUnit.myStats.Maxhealth;
 			if (currentUnit.myStats.MaxEnergy > 0) {
-				energyText.text = "  "+currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
+				energyText.text = "  "+ (int)currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
 
 			}
 
