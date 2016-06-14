@@ -18,6 +18,7 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 
 	private Selected healthD;
 	private bool cooldown = false; // weapon shuts down;
+	public Animator myAnim;
 
 
 	// Use this for initialization
@@ -59,6 +60,9 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 				}
 				healthD.updateCoolDown (0);
 				if (Time.time - lastFired > 1.5) {
+					if (myAnim) {
+						myAnim.SetInteger ("State", 2);
+					}
 					myWeapon.attackPeriod += speedIncrease;
 					if (myWeapon.attackPeriod > intitalSpeed) {
 						myWeapon.attackPeriod = intitalSpeed;
@@ -84,7 +88,9 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 
 		cooldown = false;
 		lastFired = Time.time;
-	
+		if (myAnim) {
+			myAnim.SetInteger ("State", 1);
+		}
 		heatLevel += .1f;
 		if((heatLevel / totalHeat) > .15f)
 		{healthD.updateCoolDown (heatLevel/totalHeat);}

@@ -29,6 +29,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     public GameObject movementInd;
     public GameObject attackInd;
+	public GameObject fogIndicator;
 
 	private ControlGroupUI controlUI;
 	public PageUIManager pageUI;
@@ -582,6 +583,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         }
     }
 
+
+
     public void GiveOrder(Order order)
 	{//fix this once we get to multiplayer games
 		//Debug.Log("Ordering " + order.Target + "  " + order.OrderType);
@@ -592,14 +595,22 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		Vector3 location = order.OrderLocation;
 		location.y = location.y + 30;
 		if (order.OrderType == 1 && SelectedObjects.Count > 0) {
+			if (FogOfWar.current.IsInCompleteFog (location)) {
+				GameObject obj = (GameObject) Instantiate (fogIndicator);
 			
-			Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
+			} else {
+				Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
+			}
 			AudioSrc.PlayOneShot (moveSound);
 			assignMoveCOmmand (order.OrderLocation, false);
 
 		} else if (order.OrderType == 4 && SelectedObjects.Count > 0) {
+			if (FogOfWar.current.IsInCompleteFog (location)) {
+				GameObject obj = (GameObject) Instantiate (fogIndicator);
 			
-			Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
+			} else {
+				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
+			}
 			AudioSrc.PlayOneShot (attackSound);
 			assignMoveCOmmand (order.OrderLocation, true);
 
@@ -609,7 +620,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			if ((order.Target.GetComponent<UnitManager> () && order.Target.GetComponent<UnitManager> ().PlayerOwner != 1)
 			    || (order.Target.GetComponentInParent<UnitManager> () && order.Target.GetComponentInParent<UnitManager> ().PlayerOwner != 1)) {
 				AudioSrc.PlayOneShot (attackSound);
-				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
+
+				if (FogOfWar.current.IsInCompleteFog (location)) {
+					GameObject obj = (GameObject) Instantiate (fogIndicator);
+
+				} else {
+					Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
+				}
 				foreach (IOrderable obj in SelectedObjects) {
 					obj.GiveOrder (Orders.CreateInteractCommand (order.Target));
 				}
@@ -618,7 +635,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 					obj.GiveOrder (Orders.CreateFollowCommand (order.Target));
 				}
 				AudioSrc.PlayOneShot (moveSound);
-				Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
+				if (FogOfWar.current.IsInCompleteFog (location)) {
+					GameObject obj = (GameObject) Instantiate (fogIndicator);
+				
+				} else {
+					Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
+				}
 			}
 		
 		} else if ((order.OrderType == 0 || order.OrderType == 7) && SelectedObjects.Count > 0) {
@@ -627,7 +649,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
 		}
 		else if ((order.OrderType == 8) && SelectedObjects.Count > 0) {
-			Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
+			if (FogOfWar.current.IsInCompleteFog (location)) {
+				GameObject obj = (GameObject) Instantiate (fogIndicator);
+
+			} else {
+				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
+			}
 			AudioSrc.PlayOneShot (attackSound);
 			foreach (IOrderable obj in SelectedObjects) {
 				obj.GiveOrder (order);

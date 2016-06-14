@@ -49,6 +49,7 @@ public class FogOfWarUnit : MonoBehaviour
 	public void clearFog()
 	{hasMoved = false;
 		//_nextUpdate = updateFrequency;
+		//FogOfWar.current.Unfog(_transform.position, 1);
 		FogOfWar.current.Unfog(_transform.position, radius, lineOfSightMask);
 	}
 }

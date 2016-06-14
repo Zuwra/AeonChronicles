@@ -222,6 +222,7 @@
      <Compile Include="Assets\ExpositionDisplayer.cs" />
      <Compile Include="Assets\ExpositionTexts.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
+     <Compile Include="Assets\FogIndicator.cs" />
      <Compile Include="Assets\FogOfWar\FogOfWar.cs" />
      <Compile Include="Assets\FogOfWar\FogOfWarUnit.cs" />
      <Compile Include="Assets\FogOfWar\Test\FogOfWarTestGUI.cs" />

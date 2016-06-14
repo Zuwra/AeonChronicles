@@ -204,10 +204,10 @@ public class Selected : MonoBehaviour {
 			if (mydisplayType == displayType.damaged) {
 	
 				if (ratio > .99) {
-					buffDisplay.isOn = false;
+					//buffDisplay.isOn = false;
 					healthslider.gameObject.SetActive (false);
 				} else {
-					buffDisplay.isOn = true;
+					//buffDisplay.isOn = true;
 					healthslider.gameObject.SetActive (true);
 				}
 	
@@ -232,6 +232,7 @@ public class Selected : MonoBehaviour {
 			}
 		} else {
 			turretDisplay.updateHealth (ratio);}
+		checkOn ();
 
 	}
 
@@ -239,26 +240,38 @@ public class Selected : MonoBehaviour {
 	{
 		energySlider.value = ratio;
 		if (ratio > .99 || ratio < .01) {
-			buffDisplay.isOn = false;
+
 			energySlider.gameObject.SetActive (false);
 		} else {
-			buffDisplay.isOn = true;
+
 			energySlider.gameObject.SetActive (true);
 		}
+		checkOn ();
+	}
+
+	public void checkOn()
+	{
+		if (coolDownSlider.value > 0 || energySlider.value < .99 || (healthslider.value < .99)) {
+			buffDisplay.isOn = true;
+		} else {
+			buffDisplay.isOn = false;
+		}
+
 	}
 
 	public void updateCoolDown(float ratio)
 	{
 		coolDownSlider.value = ratio;
 		if (ratio <= 0) {
-			buffDisplay.isOn = false;
+			//buffDisplay.isOn = false;
 
 			coolDownSlider.gameObject.SetActive (false);
 		} else {
 			
-			buffDisplay.isOn = true;
+			//buffDisplay.isOn = true;
 			coolDownSlider.gameObject.SetActive (true);
 		}
+		checkOn ();
 
 	}
 
