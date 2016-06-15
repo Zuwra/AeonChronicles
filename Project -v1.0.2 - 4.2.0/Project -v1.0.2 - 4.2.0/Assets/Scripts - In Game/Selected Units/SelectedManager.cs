@@ -596,17 +596,18 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		location.y = location.y + 30;
 		if (order.OrderType == 1 && SelectedObjects.Count > 0) {
 			if (FogOfWar.current.IsInCompleteFog (location)) {
-				GameObject obj = (GameObject) Instantiate (fogIndicator);
+				Instantiate (fogIndicator);
 			
 			} else {
-				Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
+				Instantiate (fogIndicator);
+				//Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
 			}
 			AudioSrc.PlayOneShot (moveSound);
 			assignMoveCOmmand (order.OrderLocation, false);
 
 		} else if (order.OrderType == 4 && SelectedObjects.Count > 0) {
 			if (FogOfWar.current.IsInCompleteFog (location)) {
-				GameObject obj = (GameObject) Instantiate (fogIndicator);
+				Instantiate (fogIndicator);
 			
 			} else {
 				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
@@ -622,7 +623,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				AudioSrc.PlayOneShot (attackSound);
 
 				if (FogOfWar.current.IsInCompleteFog (location)) {
-					GameObject obj = (GameObject) Instantiate (fogIndicator);
+					Instantiate (fogIndicator);
 
 				} else {
 					Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
@@ -650,7 +651,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		}
 		else if ((order.OrderType == 8) && SelectedObjects.Count > 0) {
 			if (FogOfWar.current.IsInCompleteFog (location)) {
-				GameObject obj = (GameObject) Instantiate (fogIndicator);
+				Instantiate (fogIndicator);
 
 			} else {
 				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));

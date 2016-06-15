@@ -49,7 +49,7 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		myManager = GameObject.FindObjectOfType<CampUpgradeManager> ();
+		myManager = GameObject.FindObjectOfType<LevelManager> ().levelPresets[LevelData.currentLevel];
 		List<string> options = new List<string> ();
 		foreach (UpgradesPiece up in myManager.myUpgrades) {
 			if (up.unlocked && myTypes.Contains (up.myType)) {

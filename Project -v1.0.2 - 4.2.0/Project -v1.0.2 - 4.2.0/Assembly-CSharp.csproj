@@ -413,7 +413,6 @@
      <Compile Include="Assets\Scripts - In Game\Threading\GetPathThread.cs" />
      <Compile Include="Assets\Scripts - In Game\Threading\ThreadJob.cs" />
      <Compile Include="Assets\Scripts - In Game\Threading\ThreadManager.cs" />
-     <Compile Include="Assets\Scripts - In Game\Tree.cs" />
      <Compile Include="Assets\Scripts - In Game\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts - In Game\UiAbilityManager.cs" />
      <Compile Include="Assets\Scripts - In Game\UnitManager.cs" />

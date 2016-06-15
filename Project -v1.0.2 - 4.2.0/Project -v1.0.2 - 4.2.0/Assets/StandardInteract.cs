@@ -3,6 +3,7 @@ using System.Collections;
 
 public class StandardInteract : MonoBehaviour, Iinteract {
 	// Used on normal units for basic things like attacking, moving, patroling, etc.
+	// if you want to make your own interact this class, extend this and override the commands down at the bottom
 
 
 	private UnitManager myManager;
@@ -29,79 +30,40 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	// When creating other interactor classes, make sure to pass all relevant information into whatever new state is being created (IMover, IWeapon, UnitManager)
 	public void computeInteractions (Order order)
 	{
-		// HOLD GROUND -----------------------------------------------------
-			switch (order.OrderType) {
-		case Const.Order_HoldGround:
-			myManager.changeState (new HoldState(myManager));
 
-			break;
-
-
-		// PATROL ------------------------------------------------------
-		case Const.Order_Patrol:
-			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, myManager, myManager.gameObject.transform.position));
-
-			break;
-
-		//STOP----------------------------------------
-		case Const.ORDER_STOP:
-			myManager.changeState (new DefaultState ());
-
-				break;
-
-		//MOVE - right clicked on ground ---------------------------------------------
-		case Const.ORDER_MOVE_TO:
-
-
-			if (attackWhileMoving &&  myManager.myWeapon.Count >0) {
-
-				myManager.changeState (new AttckWhileMoveState (order.OrderLocation, myManager));
-				} else {
-				myManager.changeState (new MoveState (order.OrderLocation, myManager));
-				}
+		switch (order.OrderType) {
+			case Const.Order_HoldGround:
+				HoldGround (order);
 				break;
 
 
-		// Right clicked on an enemy unit
-		case Const.ORDER_Interact:
+			case Const.Order_Patrol:
+				Patrol (order);
+				break;
 
-			UnitManager manage = order.Target.GetComponent<UnitManager> ();
-			if (!manage) {
-				manage = order.Target.GetComponentInParent<UnitManager> ();
-			}
 
-			if (manage != null) {
+			case Const.ORDER_STOP:
+				Stop (order);
+				break;
 
-				if (manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {
-					if (this.gameObject.GetComponent<UnitManager> ().myWeapon == null) {
-						myManager.changeState (new FollowState (order.Target.gameObject, myManager));
-					} else {
-						//Debug.Log ("Ordering to interact " + manage.gameObject);
-						myManager.changeState (new InteractState (manage.gameObject, myManager));
-					}
-				} else {
-					myManager.changeState (new FollowState (order.Target.gameObject,  myManager));
-						}
-				}
-				
+			case Const.ORDER_MOVE_TO:
+				Move (order);
+				break;
 
+			case Const.ORDER_Interact:
+				Interact (order);
 				break;
 
 		// ATTACK MOVE - Move towards a location and attack enemies on the way.
-		case Const.ORDER_AttackMove:
-			if (myManager.myWeapon.Count > 0) {
-				
-				myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));
-			}else {
-				myManager.changeState (new MoveState (order.OrderLocation, myManager));
-				}
+			case Const.ORDER_AttackMove:
+				AttackMove (order);
+
 				break;
 
 
 			// Right click on a allied unit
 			case Const.ORDER_Follow:
-
-			myManager.changeState (new FollowState (order.Target.gameObject,  myManager));
+				Follow (order);
 				break;
 
 
@@ -111,6 +73,76 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 	}
 
+	// Attack move towards a ground location (Tab - ground)
+	public void  AttackMove(Order order)
+	{
+		if (myManager.myWeapon.Count > 0) {
 
+			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));
+		}else {
+			myManager.changeState (new MoveState (order.OrderLocation, myManager));
+		}
+	}
+
+	// Right click on a objt/unit
+	public void Interact(Order order)
+	{
+		UnitManager manage = order.Target.GetComponent<UnitManager> ();
+		if (!manage) {
+			manage = order.Target.GetComponentInParent<UnitManager> ();
+		}
+
+		if (manage != null) {
+
+			if (manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {
+				if (this.gameObject.GetComponent<UnitManager> ().myWeapon == null) {
+					myManager.changeState (new FollowState (order.Target.gameObject, myManager));
+				} else {
+					//Debug.Log ("Ordering to interact " + manage.gameObject);
+					myManager.changeState (new InteractState (manage.gameObject, myManager));
+				}
+			} else {
+				myManager.changeState (new FollowState (order.Target.gameObject,  myManager));
+			}
+		}
+	}
+	//Right click on the ground
+	public void Move(Order order)
+	{
+		if (attackWhileMoving &&  myManager.myWeapon.Count >0) {
+
+			myManager.changeState (new AttckWhileMoveState (order.OrderLocation, myManager));
+		} else {
+			myManager.changeState (new MoveState (order.OrderLocation, myManager));
+		}
+	}
+
+	//Stop, caps lock
+	public void Stop(Order order)
+	{myManager.changeState (new DefaultState ());
+		
+	}
+
+	//Shift-Tab 
+	public void Patrol(Order order)
+	{
+		myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, myManager, myManager.gameObject.transform.position));
+	}
+
+	//Shift-Caps
+	public void HoldGround(Order order)
+	{
+		myManager.changeState (new HoldState(myManager));
+	}
+
+	//Right click on a unit/object. how is this different than interact? is it only on allied units?
+	public void Follow(Order order){
+		if (myManager.myWeapon.Count > 0) {
+
+			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));
+		}else {
+			myManager.changeState (new MoveState (order.OrderLocation, myManager));
+		}
+	}
 
 }

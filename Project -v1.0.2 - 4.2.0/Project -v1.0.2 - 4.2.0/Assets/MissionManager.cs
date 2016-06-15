@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MissionManager : MonoBehaviour {
 
-	public Canvas Technology;
-	public Canvas TechTree;
+
 	public Canvas Intelligence;
 	public Canvas Victoryscreen;
-	private Canvas myCanvas;
+	public GameObject loadingScreen;
+	public Canvas myCanvas;
 	public static MissionManager main;
 
 	void Awake()
@@ -30,23 +30,13 @@ public class MissionManager : MonoBehaviour {
 
 
 
-	public void ToggleTech()
-	{
-		Technology.enabled = !Technology.enabled;
-		myCanvas.enabled = !myCanvas.enabled;
-	}
-
 	public void ToggleIntelligence()
 	{
 		Intelligence.enabled = !Intelligence.enabled;
 
 	}
 
-	public void toggleTechTree()
-	{
-		Technology.enabled = !Technology.enabled;
-		TechTree.enabled = !TechTree.enabled;
-	}
+
 
 
 	public void toggleVictory()
@@ -58,6 +48,7 @@ public class MissionManager : MonoBehaviour {
 
 	public void StartMission()
 	{
+		loadingScreen.SetActive (true);
 		SceneManager.LoadScene (1);
 	}
 

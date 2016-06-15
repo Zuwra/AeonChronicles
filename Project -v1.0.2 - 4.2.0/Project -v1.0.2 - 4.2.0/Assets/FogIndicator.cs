@@ -28,8 +28,6 @@ public class FogIndicator : MonoBehaviour {
 	void Update () {
 		Vector3 temp = myCam.WorldToScreenPoint(location);
 
-		//temp *= 2;
-		//temp.z = 0;
 		child.transform.position = temp ;
 
 

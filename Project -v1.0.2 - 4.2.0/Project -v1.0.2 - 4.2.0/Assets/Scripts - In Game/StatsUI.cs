@@ -39,9 +39,33 @@ public class StatsUI : MonoBehaviour {
 		if (man.myWeapon != null) {
 			damageIcon.enabled = true;
 			rangeIcon.enabled = true;
-	//		TwoText.text += "\n" + man.myWeapon.baseDamage + "\n" + man.myWeapon.range;
+
+			TwoText.text += "\n";
+			for (int i = 0; i < man.myWeapon.Count; i++) {
+				TwoText.text += man.myWeapon[i].baseDamage;
+				if (man.myWeapon [i].baseDamage < 10) {
+					TwoText.text += "  ";
+				}
+				if (i < man.myWeapon.Count - 1) {
+					TwoText.text += "/";
+				
+				}
+
+			}
+			TwoText.text += "\n";
+			for (int i = 0; i < man.myWeapon.Count; i++) {
+				TwoText.text += man.myWeapon[i].range;
+				if (i < man.myWeapon.Count - 1) {
+					TwoText.text += "/";
+
+				}
+			}
 		} 
-		ThreeText.text = "\n# " + number;
+		if (number > 5) {
+			ThreeText.text = "\n# " + number;
+		} else {
+			ThreeText.text = "\n";
+		}
 
 	}
 
