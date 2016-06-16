@@ -26,7 +26,7 @@ public class UIHighLight : MonoBehaviour {
 			if (ThingOne) {
 				if (Square.transform.localScale.x >= 1) {
 					Vector3 tempScale = Square.transform.localScale;
-					tempScale *=  1 -( .993f * Time.deltaTime);
+					tempScale *=  .95f -( .9999f * Time.deltaTime);
 					Square.transform.localScale = tempScale;
 				} else if (Time.time > turnOffTime) {
 					Square.SetActive (false);
@@ -36,7 +36,7 @@ public class UIHighLight : MonoBehaviour {
 			if (ThingTwo) {
 				if (Rectangle.transform.localScale.x >= 1) {
 					Vector3 tempScale = Rectangle.transform.localScale;
-					tempScale *= 1 -( .993f * Time.deltaTime);
+					tempScale *= .95f-( .9999f * Time.deltaTime);
 					Rectangle.transform.localScale = tempScale;
 				} else if (Time.time > turnOffTime) {
 					Rectangle.SetActive (false);
@@ -46,7 +46,7 @@ public class UIHighLight : MonoBehaviour {
 			if (ThingThree ) {
 				if (wideRectangle.transform.localScale.x >= 1) {
 					Vector3 tempScale = wideRectangle.transform.localScale;
-					tempScale *=  1 - ( .993f * Time.deltaTime);
+					tempScale *=  .95f - ( .9999f * Time.deltaTime);
 					wideRectangle.transform.localScale = tempScale;
 				} else if (Time.time > turnOffTime) {
 					wideRectangle.SetActive (false);

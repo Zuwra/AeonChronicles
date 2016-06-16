@@ -15,12 +15,16 @@ public class UiAbilityManager : MonoBehaviour {
 	public struct buttonSet{
 		public GameObject QButton;
 		public Slider QSlide;
+		public Text Qtext;
 		public GameObject WButton;
 		public Slider WSlide;
+		public Text Wtext;
 		public GameObject EButton;
 		public Slider ESlide;
+		public Text Etext;
 		public GameObject RButton;
 		public Slider RSlide;
+		public Text Rtext;
 
 	}
 	public GameObject topDividerBar;
@@ -126,7 +130,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 								certainButtons [j].WSlide.value = maxA;
-						
+							
 								certainButtons [j].WSlide.gameObject.SetActive (certainButtons [j].WSlide.value < .98);
 							}
 							}
@@ -380,11 +384,14 @@ public class UiAbilityManager : MonoBehaviour {
 								trans.GetComponent<Button> ().interactable = false;
 
 							}
-						
-							if (man.abilityList [AbilityX * 4].myType == Ability.type.passive) {
-								cb.disabledColor = Color.white;
-								trans.GetComponent<Button> ().interactable = false;
-							}
+
+						if (man.abilityList [AbilityX * 4].myType == Ability.type.passive) {
+							certainButtons [j].Qtext.enabled = false;
+							cb.disabledColor = Color.white;
+							trans.GetComponent<Button> ().interactable = false;
+						} else {
+							certainButtons [j].Qtext.enabled = true;
+						}
 
 							trans.GetComponent<Button> ().colors = cb;
 
@@ -411,10 +418,11 @@ public class UiAbilityManager : MonoBehaviour {
 
 						if (man.abilityList [1 + AbilityX * 4].myCost) {
 
-							certainButtons [j].QSlide.gameObject.SetActive (!(man.abilityList [1 + AbilityX * 4].myCost.cooldown == 0));	
+							certainButtons [j].WSlide.gameObject.SetActive (!(man.abilityList [1 + AbilityX * 4].myCost.cooldown == 0));	
 						}else
 						{
-							certainButtons [j].QSlide.gameObject.SetActive (false);
+							
+							certainButtons [j].WSlide.gameObject.SetActive (false);
 						}
 
 						Transform trans = certainButtons [n].WButton.transform.FindChild("WButton");;
@@ -450,10 +458,14 @@ public class UiAbilityManager : MonoBehaviour {
 
 							}
 
-							if (man.abilityList [1+AbilityX * 4].myType == Ability.type.passive) {
-								cb.disabledColor = Color.white;
-								trans.GetComponent<Button> ().interactable = false;
-							}
+						if (man.abilityList [1 + AbilityX * 4].myType == Ability.type.passive) {
+							certainButtons [j].Wtext.enabled = false;
+						
+							cb.disabledColor = Color.white;
+							trans.GetComponent<Button> ().interactable = false;
+						} else {
+							certainButtons [j].Wtext.enabled = true;
+						}
 							trans.GetComponent<Button> ().colors = cb;
 
 
@@ -485,10 +497,10 @@ public class UiAbilityManager : MonoBehaviour {
 
 						if (man.abilityList [2 + AbilityX * 4].myCost) {
 							
-							certainButtons [j].QSlide.gameObject.SetActive (!(man.abilityList [2 + AbilityX * 4].myCost.cooldown == 0));	
+							certainButtons [j].ESlide.gameObject.SetActive (!(man.abilityList [2 + AbilityX * 4].myCost.cooldown == 0));	
 						}else
 						{
-							certainButtons [j].QSlide.gameObject.SetActive (false);
+							certainButtons [j].ESlide.gameObject.SetActive (false);
 						}
 
 						Transform trans = certainButtons [n].EButton.transform.FindChild("EButton");;
@@ -524,10 +536,13 @@ public class UiAbilityManager : MonoBehaviour {
 
 							}
 
-							if (man.abilityList [2+AbilityX * 4].myType == Ability.type.passive) {
-								cb.disabledColor = Color.white;
-								trans.GetComponent<Button> ().interactable = false;
-							}
+						if (man.abilityList [2 + AbilityX * 4].myType == Ability.type.passive) {
+							certainButtons [j].Etext.enabled = false;
+							cb.disabledColor = Color.white;
+							trans.GetComponent<Button> ().interactable = false;
+						} else {
+							certainButtons [j].Etext.enabled = true;
+						}
 							trans.GetComponent<Button> ().colors = cb;
 
 						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
@@ -553,10 +568,10 @@ public class UiAbilityManager : MonoBehaviour {
 
 						if (man.abilityList [3+AbilityX * 4].myCost) {
 
-							certainButtons [j].QSlide.gameObject.SetActive (!(man.abilityList [3+AbilityX * 4].myCost.cooldown == 0));	
+							certainButtons [j].RSlide.gameObject.SetActive (!(man.abilityList [3+AbilityX * 4].myCost.cooldown == 0));	
 						}else
 						{
-							certainButtons [j].QSlide.gameObject.SetActive (false);
+							certainButtons [j].RSlide.gameObject.SetActive (false);
 						}
 
 						Transform trans = certainButtons [n].RButton.transform.FindChild("RButton");;
@@ -592,10 +607,13 @@ public class UiAbilityManager : MonoBehaviour {
 
 							}
 
-							if (man.abilityList [3 +AbilityX * 4].myType == Ability.type.passive) {
-								cb.disabledColor = Color.white;
-								trans.GetComponent<Button> ().interactable = false;
-							}
+						if (man.abilityList [3 + AbilityX * 4].myType == Ability.type.passive) {
+							certainButtons [j].Rtext.enabled = false;
+							cb.disabledColor = Color.white;
+							trans.GetComponent<Button> ().interactable = false;
+						} else {
+							certainButtons [j].Rtext.enabled = false;
+						}
 							trans.GetComponent<Button> ().colors = cb;
 
 						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;

@@ -120,8 +120,10 @@ public class MainCamera : MonoBehaviour, ICamera {
 	private void CheckEdgeMovement()
 	{
 		Ray r1 = Camera.main.ViewportPointToRay (new Vector3(0,1,0));
-		Ray r2 = Camera.main.ScreenPointToRay (new Vector3(Screen.width,Screen.height-1,0));
+		//Ray r2 = Camera.main.ScreenPointToRay (new Vector3(Screen.width,Screen.height-1,0));
+		//Ray r2 = Camera.main.ScreenPointToRay (new Vector3(Screen.width-1,Screen.height-1,0));
 		Ray r3 = Camera.main.ViewportPointToRay (new Vector3(0,0,0));
+		Ray r4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width-1,0,0));
 		
 		float left, right, top, bottom;
 		
@@ -131,9 +133,9 @@ public class MainCamera : MonoBehaviour, ICamera {
 		left = h1.point.x;
 		top = h1.point.z;
 		
-		Physics.Raycast (r2, out h1, Mathf.Infinity, 1<< 16);
+		Physics.Raycast (r4, out h1, Mathf.Infinity, 1<< 16);
 		right = h1.point.x;
-		
+
 		Physics.Raycast (r3, out h1, Mathf.Infinity, 1<< 16);
 		bottom = h1.point.z;
 		
@@ -143,7 +145,8 @@ public class MainCamera : MonoBehaviour, ICamera {
 		}
 		else if (right > m_Boundries.xMax)
 		{
-			Camera.main.transform.Translate (new Vector3(m_Boundries.xMax-right,0,0), Space.World);
+			Debug.Log ("hit right side");
+			//Camera.main.transform.Translate (new Vector3(m_Boundries.xMax-right,0,0), Space.World);
 		}
 		
 		if (bottom < m_Boundries.yMin)

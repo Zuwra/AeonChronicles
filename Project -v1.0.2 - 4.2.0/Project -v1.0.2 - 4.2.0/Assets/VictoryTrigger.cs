@@ -11,6 +11,7 @@ public class VictoryTrigger : MonoBehaviour {
 	public List<Objective> mainObjective = new List<Objective> ();
 	public List<Objective> bonusObjective = new List<Objective> ();
 
+	public int techRewards;
 	private int totalBonusObj;
 	private int completeBonusObj;
 
@@ -91,7 +92,7 @@ public class VictoryTrigger : MonoBehaviour {
 		yield return new WaitForSeconds (4);
 
 		LevelData.addLevelInfo (levelNumber, GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
-			Clock.main.getTime(), TechCredits, completeBonusObj + "/" + totalBonusObj);
+			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
 	
 		VictoryScreen.enabled = false;
 		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();

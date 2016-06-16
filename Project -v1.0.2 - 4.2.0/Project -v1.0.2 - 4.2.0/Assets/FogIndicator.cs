@@ -7,13 +7,13 @@ public class FogIndicator : MonoBehaviour {
 	public Vector3 location;
 	private Camera myCam;
 	private RectTransform child;
-	private RectTransform myCanvas;
+
 	// Use this for initialization
 	void Start () {
 
 		myCam = GameObject.FindObjectOfType<MainCamera> ().GetComponent<Camera> ();
 		child = transform.FindChild ("Image").GetComponent<RectTransform> ();
-		myCanvas = GetComponent<RectTransform> ();
+	
 
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hit;		

@@ -19,7 +19,7 @@ public class GLManager : MonoBehaviour, IGLManager {
 	void OnPostRender()
 	{
 		foreach (GLItem item in m_ItemsToRender)
-		{
+		{Debug.Log ("Rendering stuff");
 			item.ExecuteCommand();
 		}
 	}
