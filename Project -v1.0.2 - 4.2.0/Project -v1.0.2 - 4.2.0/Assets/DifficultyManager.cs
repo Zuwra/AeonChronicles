@@ -13,7 +13,7 @@ public class DifficultyManager : MonoBehaviour {
 
 		if(LevelData.easyMode){
 		foreach (UnitManager man in GameObject.FindObjectsOfType<UnitManager>()) {
-				if (man.PlayerOwner != 1) {
+				if (man.PlayerOwner ==2) {
 					if (man.myStats) {
 						man.myStats.Maxhealth *= EasyHealth;
 						man.myStats.health *= EasyHealth;

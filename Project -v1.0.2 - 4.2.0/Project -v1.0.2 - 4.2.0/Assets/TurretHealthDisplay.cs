@@ -23,6 +23,7 @@ public class TurretHealthDisplay : HealthDisplay {
 	void Start () {
 		updateHealth (currentHealth);
 		camy = GameObject.FindObjectOfType<MainCamera> ().gameObject;
+		percentHealth.text = "";
 	}
 	
 	// Update is called once per frame
@@ -39,10 +40,10 @@ public class TurretHealthDisplay : HealthDisplay {
 				if (flashNum < 5) {
 					nextflashTime += .1f;
 					if (Icon.color == Color.red) {
-						percentHealth.color = getCurrentColor();
+						//percentHealth.color = getCurrentColor();
 						Icon.color = getCurrentColor();
 					} else {
-						percentHealth.color = Color.red;
+						//percentHealth.color = Color.red;
 						Icon.color = Color.red;
 					}
 				} else {
@@ -74,28 +75,34 @@ public class TurretHealthDisplay : HealthDisplay {
 		int casted = (int)(input * 100);
 
 		if (casted > 98) {
-			percentHealth.text = "";
+			//percentHealth.text = "";
 			Icon.enabled = false;
 		} else {
-			percentHealth.text = casted + "%";
+			//percentHealth.text = casted + "%";
 			Icon.enabled = true;
 		}
 
 		if (!flashing) {
 			if (input > .60) {
 
-				percentHealth.color = Color.green;
+				//percentHealth.color = Color.green;
 				if (!pointerIn) {
 					Icon.color = Color.green;
 				}
 
-			} else if (input > .30) {
-				percentHealth.color = Color.yellow;
+			} else if (input > .35) {
+				//percentHealth.color = Color.yellow;
 				if (!pointerIn) {
 					Icon.color = Color.yellow;
 				}
-			} else {
-				percentHealth.color = Color.red;
+			} else if (input > .15) {
+				//percentHealth.color = Color.yellow;
+				if (!pointerIn) {
+					Icon.color = new Color (1, .4f, 0);
+				}
+			}
+			else {
+				//percentHealth.color = Color.red;
 				if (!pointerIn) {
 					Icon.color = Color.red;
 				}
@@ -108,7 +115,7 @@ public class TurretHealthDisplay : HealthDisplay {
 	public void flash()
 	{flashNum = 0;
 
-		percentHealth.color = Color.red;
+		//percentHealth.color = Color.red;
 		Icon.color = Color.red;
 		nextflashTime = Time.time + .1f;
 		flashing = true;

@@ -135,17 +135,22 @@ public class Selected : MonoBehaviour {
 	{//buffDisplay.isOn = true;
 		unitIcon = obj;
 		if (!turretDisplay) {
-			if (healthslider.value > .55) {
+			if (healthslider.value > .6) {
 
 	
 				unitIcon.GetComponent<Image> ().color = Color.green;
 
-			} else if (healthslider.value > .25) {
+			} else if (healthslider.value > .35) {
 			
 
 				unitIcon.GetComponent<Image> ().color = Color.yellow;
 
-			} else {
+			} else if (healthslider.value > .15) {
+
+
+				unitIcon.GetComponent<Image> ().color = new Color (1, .4f, 0);
+
+			}else {
 			
 				unitIcon.GetComponent<Image> ().color = Color.red;
 
@@ -214,17 +219,24 @@ public class Selected : MonoBehaviour {
 
 			}
 
-			if (ratio > .55) {
+			if (ratio > .6) {
 				healthFill.color = Color.green;
 				if (unitIcon) {
 					unitIcon.GetComponent<Image> ().color = Color.green;
 				}
-			} else if (ratio > .25) {
+			} else if (ratio > .35) {
 				healthFill.color = Color.yellow;
 				if (unitIcon) {
 					unitIcon.GetComponent<Image> ().color = Color.yellow;
 				}
-			} else {
+			} 
+			else if (healthslider.value > .15) {
+				healthFill.color =new Color (1, .4f, 0);
+				if (unitIcon) {
+					unitIcon.GetComponent<Image> ().color = new Color (1, .4f, 0);
+				}
+			}
+			else {
 				healthFill.color = Color.red;
 				if (unitIcon) {
 					unitIcon.GetComponent<Image> ().color = Color.red;

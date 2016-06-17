@@ -42,13 +42,13 @@ void Start () {
 			displayer = GetComponentInChildren<HealthDisplay> ();
 		}
 
-		BuffUiId = displayer.addBuff (myColor, BuffIsGood);
+		//BuffUiId = displayer.addBuff (myColor, BuffIsGood);
 
 	}
 
 
 	public void unApplybuffUI()
-	{displayer.removeBuff (BuffUiId);
+	{//displayer.removeBuff (BuffUiId);
 	}
 
 	public void setBuffStuff(buffType b,bool s)

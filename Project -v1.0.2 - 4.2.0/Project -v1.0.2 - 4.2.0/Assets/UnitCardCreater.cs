@@ -43,7 +43,7 @@ public class UnitCardCreater : MonoBehaviour {
 	void Update () {
 		if (currentUnit) {
 			
-			health.text = "  "+ (int)currentUnit.myStats.health + "/" + currentUnit.myStats.Maxhealth;
+			health.text = "  "+ (int)currentUnit.myStats.health + "/" + (int)currentUnit.myStats.Maxhealth;
 			if (currentUnit.myStats.MaxEnergy > 0) {
 				energyText.text = "  "+ (int)currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
 
@@ -71,7 +71,7 @@ public class UnitCardCreater : MonoBehaviour {
 		hasUnit = true;
 		unitIcon.sprite = manager.myStats.Icon;
 		UnitName.text = manager.UnitName;
-		health.text = "  "+manager.myStats.health + "/" + manager.myStats.Maxhealth;
+		health.text = "  "+(int)manager.myStats.health + "/" + (int)manager.myStats.Maxhealth;
 		armor.text =  "  " +manager.myStats.armor;
 		Mass.text = "  " + manager.myStats.mass;
 		kills.text = "Kills: " + manager.myStats.kills;

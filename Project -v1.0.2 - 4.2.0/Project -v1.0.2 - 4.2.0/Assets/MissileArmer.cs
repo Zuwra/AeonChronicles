@@ -9,10 +9,13 @@ public class MissileArmer :Ability{
 	public bool missiles;
 	public bool nitro;
 	public bool repairs;
+	public bool shields;
+	public float shieldRate;
 
 	public List<missileSalvo> missileList = new List<missileSalvo> ();
 	public List<repairReturn> repairList = new List<repairReturn>();
 	public List<StimPack> stimList = new List<StimPack>();
+	public List<DayexaShield> shieldList = new List<DayexaShield> ();
 
 	private float nextActionTime;
 	private int changeNum =0;
@@ -54,6 +57,14 @@ public class MissileArmer :Ability{
 					changeNum++;
 				}
 			}
+
+			foreach (DayexaShield ds in shieldList) {
+				if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
+					ds.myStats.changeEnergy (shieldRate);
+				}
+			
+			}
+
 			if (changeNum > 0) {
 				RaceManager.upDateUI ();
 			}
@@ -105,10 +116,17 @@ public class MissileArmer :Ability{
 
 				StimPack stim = other.gameObject.GetComponent<StimPack> ();
 				if (stim) {
-					stimList.Remove (stim);}
+					stimList.Remove (stim);
+				}
 
 			}
+			if (shields) {
+				DayexaShield s = other.gameObject.GetComponent<DayexaShield> ();
+				if (s) {
+					shieldList.Remove (s);
+				}
 
+			}
 		}
 
 
@@ -157,7 +175,12 @@ public class MissileArmer :Ability{
 
 
 			}
-		
+			if (shields) {
+				DayexaShield s = other.gameObject.GetComponent<DayexaShield> ();
+				if (s) {
+					shieldList.Add (s);
+				}
+			}
 			}
 
 

@@ -1,10 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CustomRVO.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Selected Units\SelectedManager.cs">
     <Files>
-      <File FileName="Assets\LevelManager.cs" Line="78" Column="21" />
-      <File FileName="Assets\LevelData.cs" Line="11" Column="32" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\UnitCardCreater.cs" Line="53" Column="18" />
+      <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelData.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="115" Column="37" />
       <File FileName="Assets\MissionManager.cs" Line="1" Column="1" />
       <File FileName="Assets\VictoryScreen.cs" Line="1" Column="1" />
       <File FileName="Assets\CampaignUpgrade.cs" Line="1" Column="1" />
@@ -12,11 +13,8 @@
       <File FileName="Assets\CampUpgradeManager.cs" Line="1" Column="1" />
       <File FileName="Assets\ObjectiveManager.cs" Line="1" Column="1" />
       <File FileName="Assets\VictoryTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="147" Column="24" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="517" Column="3" />
-      <File FileName="Assets\Scripts - In Game\DefaultState.cs" Line="28" Column="52" />
-      <File FileName="Assets\Scripts - In Game\AttackMoveState.cs" Line="85" Column="22" />
-      <File FileName="Assets\CustomRVO.cs" Line="72" Column="24" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

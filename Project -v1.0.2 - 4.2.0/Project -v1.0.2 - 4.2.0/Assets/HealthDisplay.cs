@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthDisplay : MonoBehaviour {
 
 	private GameObject cam;
-	public List<Image> buffList = new List<Image>();
+	//public List<Image> buffList = new List<Image>();
 
 
 	public bool isOn;
@@ -39,6 +39,7 @@ public class HealthDisplay : MonoBehaviour {
 	}
 
 	//THIS METHOD RETURNS AN ID Reciept which the client class must keep so that it can turn it back in to turn of the buff icon
+	/*
 	public int addBuff(Color c, bool b)
 	{
 
@@ -57,8 +58,8 @@ public class HealthDisplay : MonoBehaviour {
 		colorList.Add (id);
 		this.enabled = true;
 			return id;
-	}
-
+	}*/
+	/*
 	public void removeBuff(int id)
 	{
 		int n = colorList.IndexOf(id);
@@ -82,6 +83,6 @@ public class HealthDisplay : MonoBehaviour {
 		}
 
 	}
-
+*/
 
 }

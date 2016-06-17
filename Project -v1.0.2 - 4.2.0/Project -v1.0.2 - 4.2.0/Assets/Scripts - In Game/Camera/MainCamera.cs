@@ -145,7 +145,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 		}
 		else if (right > m_Boundries.xMax)
 		{
-			Debug.Log ("hit right side");
+			//Debug.Log ("hit right side");
 			//Camera.main.transform.Translate (new Vector3(m_Boundries.xMax-right,0,0), Space.World);
 		}
 		

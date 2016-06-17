@@ -75,63 +75,60 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         if (Input.GetKey(KeyCode.LeftShift))
         {
             // set a control group
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            { AddUnitsToGroup(0); 
-				controlUI.activateTab (0, Group[0].Count, Group[0][0].GetComponent<UnitStats>().Icon);
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+				if (SelectedObjects.Count > 0) {
+					AddUnitsToGroup (0); 
+					controlUI.activateTab (0, Group [0].Count, Group [0] [0].GetComponent<UnitStats> ().Icon);
+				}
+			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+				if (SelectedObjects.Count > 0) {
+					AddUnitsToGroup (1);
+					controlUI.activateTab (1, Group [1].Count, Group [1] [0].GetComponent<UnitStats> ().Icon);
+				}
+			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+				if (SelectedObjects.Count > 0) {
+					AddUnitsToGroup (2);
+					controlUI.activateTab (2, Group [2].Count, Group [2] [0].GetComponent<UnitStats> ().Icon);
+				}
+			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+				if (SelectedObjects.Count > 0) {
+					AddUnitsToGroup (3);
+					controlUI.activateTab (3, Group [3].Count, Group [3] [0].GetComponent<UnitStats> ().Icon);
+				}
+			} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
+				if (SelectedObjects.Count > 0) {
+					AddUnitsToGroup (4);
+					controlUI.activateTab (4, Group [4].Count, Group [4] [0].GetComponent<UnitStats> ().Icon);
+				}
+			} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
+				if (SelectedObjects.Count > 0) {
+					AddUnitsToGroup (5);
+					controlUI.activateTab (5, Group [5].Count, Group [5] [0].GetComponent<UnitStats> ().Icon);
+				}
+			} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
+				if (SelectedObjects.Count > 0) {
+					AddUnitsToGroup (6);
+					controlUI.activateTab (6, Group [6].Count, Group [6] [0].GetComponent<UnitStats> ().Icon);			
+				}
 			}
-
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                AddUnitsToGroup(1);
-				controlUI.activateTab (1, Group[1].Count, Group[1][0].GetComponent<UnitStats>().Icon);
-            }
-
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                AddUnitsToGroup(2);
-				controlUI.activateTab (2, Group[2].Count, Group[2][0].GetComponent<UnitStats>().Icon);
-            }
-
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                AddUnitsToGroup(3);
-				controlUI.activateTab (3, Group[3].Count, Group[3][0].GetComponent<UnitStats>().Icon);
-            }
-
-            else if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                AddUnitsToGroup(4);
-				controlUI.activateTab (4, Group[4].Count, Group[4][0].GetComponent<UnitStats>().Icon);
-            }
-
-            else if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                AddUnitsToGroup(5);
-				controlUI.activateTab (5, Group[5].Count, Group[5][0].GetComponent<UnitStats>().Icon);
-            }
-
-            else if (Input.GetKeyDown(KeyCode.Alpha7))
-            {
-                AddUnitsToGroup(6);
-				controlUI.activateTab (6, Group[6].Count, Group[6][0].GetComponent<UnitStats>().Icon);			
-            }
-
-            else if (Input.GetKeyDown(KeyCode.Alpha8))
-            {
-                AddUnitsToGroup(7);
-				controlUI.activateTab (7, Group[7].Count, Group[7][0].GetComponent<UnitStats>().Icon);
-            }
+			else if (Input.GetKeyDown (KeyCode.Alpha8)) {
+				if (SelectedObjects.Count > 0) {
+					AddUnitsToGroup (7);
+					controlUI.activateTab (7, Group [7].Count, Group [7] [0].GetComponent<UnitStats> ().Icon);
+				}
+			}
 			 else if (Input.GetKeyDown(KeyCode.Alpha9))
-            {
+			{if(SelectedObjects.Count > 0){
                 AddUnitsToGroup(8);
 				controlUI.activateTab (8, Group[8].Count, Group[8][0].GetComponent<UnitStats>().Icon);
             }
-
+			}
             else if (Input.GetKeyDown(KeyCode.Alpha0))
-            {
+			{if(SelectedObjects.Count > 0){
                 AddUnitsToGroup(9);
 				controlUI.activateTab (9, Group[9].Count, Group[9][0].GetComponent<UnitStats>().Icon);
-            }
+				}
+			}
 
         }
         else {
@@ -597,7 +594,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		location.y = location.y + 30;
 		if (order.OrderType == 1 && SelectedObjects.Count > 0) {
 			if (FogOfWar.current.IsInCompleteFog (location)) {
-				Instantiate (fogIndicator);
+				//Instantiate (fogIndicator);
 			
 			} else {
 				Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
@@ -607,7 +604,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		} else if (order.OrderType == 4 && SelectedObjects.Count > 0) {
 			if (FogOfWar.current.IsInCompleteFog (location)) {
-				Instantiate (fogAttacker);
+				//Instantiate (fogAttacker);
 			
 			} else {
 				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
@@ -623,7 +620,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				AudioSrc.PlayOneShot (attackSound);
 
 				if (FogOfWar.current.IsInCompleteFog (location)) {
-					Instantiate (fogAttacker);
+					//Instantiate (fogAttacker);
 
 				} else {
 					Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
@@ -637,7 +634,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				}
 				AudioSrc.PlayOneShot (moveSound);
 				if (FogOfWar.current.IsInCompleteFog (location)) {
-					Instantiate (fogIndicator);
+					//Instantiate (fogIndicator);
 				
 				} else {
 					Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));

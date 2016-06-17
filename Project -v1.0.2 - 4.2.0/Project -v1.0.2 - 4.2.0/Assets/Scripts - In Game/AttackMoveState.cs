@@ -38,14 +38,17 @@ public class AttackMoveState : UnitState {
 		} else {
 			enemyDead = true;
 		}
-		Debug.Log ("Target is " + obj + " locat " + target);
+		//Debug.Log ("Target is " + obj + " locat " + target);
 		}
 
 	public override void initialize()
 	{if (myManager) {
 		
-			Debug.Log ("has manager");}
-		myManager.cMover.resetMoveLocation (target);
+			//Debug.Log ("has manager");
+		}
+		if (myManager.cMover) {
+			myManager.cMover.resetMoveLocation (target);
+		}
 	}
 
 	// Update is called once per frame
@@ -64,7 +67,9 @@ public class AttackMoveState : UnitState {
 				enemy = temp;
 			
 					//myManager.gameObject.transform.LookAt (enemy.transform.position);
-				myManager.cMover.resetMoveLocation (enemy.transform.position);
+				if (myManager.cMover) {
+					myManager.cMover.resetMoveLocation (enemy.transform.position);
+				}
 					//Debug.Log("Just called th reset2" + enemy.transform.position);
 				
 
@@ -80,8 +85,10 @@ public class AttackMoveState : UnitState {
 			bool attacked = false;
 			foreach (IWeapon weap in myManager.myWeapon) {
 				if (weap.inRange (enemy)) {
-					Debug.Log ("Stopping me");
-					myManager.cMover.stop ();
+					//Debug.Log ("Stopping me");
+					if (myManager.cMover) {
+						myManager.cMover.stop ();
+					}
 					attacked = true;
 					if (weap.canAttack (enemy)) {
 						
@@ -94,38 +101,40 @@ public class AttackMoveState : UnitState {
 
 				myManager.cMover.move ();
 			}
-		}
-
-		else {
-			if(!enemyDead){
+		} else {
+			if (!enemyDead) {
 				if (commandType == MoveType.command) {
 					//Debug.Log("continuing on");
 					myManager.cMover.resetMoveLocation (endLocation);
 				} else if (commandType == MoveType.passive) {//Debug.Log("going home");
-					
-					myManager.cMover.resetMoveLocation (home);
+					if (myManager.cMover) {
+						myManager.cMover.resetMoveLocation (home);
+					}
 				} else {
-					myManager.cMover.resetMoveLocation (target);
+					if (myManager.cMover) {
+						myManager.cMover.resetMoveLocation (target);
+					}
 				}
 				enemyDead = true;
 			}
 
-			bool there = myManager.cMover.move();
-			if(there && commandType == MoveType.patrol)
-			{if (target == home) {
+			if (myManager.cMover) {
+				bool there = myManager.cMover.move ();
+				if (there && commandType == MoveType.patrol) {
+					if (target == home) {
 					
-					target = endLocation;
-				} else {
+						target = endLocation;
+					} else {
 				
-					target = home;
+						target = home;
+					}
+				
+					myManager.cMover.resetMoveLocation (target);
+				} else if (there) {
+					myManager.changeState (new DefaultState ());
 				}
-				
-			myManager.cMover.resetMoveLocation(target);}
-			else if(there)
-			{
-				myManager.changeState(new DefaultState());
-			}
 
+			}
 		}
 
 
