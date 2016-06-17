@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -70,6 +71,14 @@ public class LevelManager : MonoBehaviour {
 	{
 		Technology.enabled = !Technology.enabled;
 		TechTree.enabled = !TechTree.enabled;
+	}
+
+	public void setDifficulty(Dropdown i)
+	{if(i.value == 0)
+		{LevelData.easyMode = true;}
+		else
+	{LevelData.easyMode = false;}
+	Debug.Log ("Difficulty is " + LevelData.easyMode);
 	}
 
 }

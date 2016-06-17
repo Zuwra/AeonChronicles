@@ -215,6 +215,7 @@
      <Compile Include="Assets\DamageUpgrade.cs" />
      <Compile Include="Assets\DayexaShield.cs" />
      <Compile Include="Assets\DeathWinTrigger.cs" />
+     <Compile Include="Assets\DifficultyManager.cs" />
      <Compile Include="Assets\EMPblast.cs" />
      <Compile Include="Assets\EconomyManager.cs" />
      <Compile Include="Assets\EmpMissile.cs" />

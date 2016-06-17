@@ -24,7 +24,7 @@ public class DefaultState : UnitState{
 				if (target == null) {
 					return;}
 				if (Vector3.Distance (myManager.gameObject.transform.position, target.transform.position) <= myManager.getChaseRange ()) {
-					
+					Debug.Log ("Chasing attacker " + target);
 					myManager.changeState (new AttackMoveState (target,
 						new Vector3 (), AttackMoveState.MoveType.passive, myManager, myManager.gameObject.transform.position));
 				}
@@ -43,15 +43,17 @@ public class DefaultState : UnitState{
 
 	override
 	public void attackResponse(GameObject src)
-	{	
+	{	Debug.Log ("Attack response");
 		if(src){
 		UnitManager manage = src.GetComponent<UnitManager> ();
 			if (manage) {
 				if (manage.PlayerOwner != myManager.PlayerOwner) {
 	
+					Debug.Log ("Default State damage response");
 
 					if (myManager.myWeapon.Count > 0) {
 						if (myManager.isValidTarget(src)) {
+							Debug.Log ("Attack moving");
 							myManager.GiveOrder (Orders.CreateAttackMove (src.transform.position));
 						} else {
 							Vector3 spot = (myManager.transform.position + (myManager.transform.position - src.transform.position) * .4f);

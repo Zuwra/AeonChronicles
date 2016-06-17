@@ -508,8 +508,13 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 	public void Attacked(GameObject src) //I have been attacked, what do i do?
-	{if(myState!=null)
-		myState.attackResponse (src);}
+	{
+		
+		if (myState != null) {
+
+			myState.attackResponse (src);
+		}
+	}
 
 
 

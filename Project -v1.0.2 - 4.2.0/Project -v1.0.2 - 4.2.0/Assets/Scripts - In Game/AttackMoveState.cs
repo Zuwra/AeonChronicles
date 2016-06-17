@@ -33,15 +33,19 @@ public class AttackMoveState : UnitState {
 
 		//Debug.Log("Just called th reset1" + target + "   "+ enemy);
 		if (type == MoveType.passive) {
-			target = home;
+			// This is breaking stuff so I commented it out
+			//target = home;
 		} else {
 			enemyDead = true;
 		}
-
+		Debug.Log ("Target is " + obj + " locat " + target);
 		}
 
 	public override void initialize()
-	{myManager.cMover.resetMoveLocation (target);
+	{if (myManager) {
+		
+			Debug.Log ("has manager");}
+		myManager.cMover.resetMoveLocation (target);
 	}
 
 	// Update is called once per frame
@@ -76,6 +80,7 @@ public class AttackMoveState : UnitState {
 			bool attacked = false;
 			foreach (IWeapon weap in myManager.myWeapon) {
 				if (weap.inRange (enemy)) {
+					Debug.Log ("Stopping me");
 					myManager.cMover.stop ();
 					attacked = true;
 					if (weap.canAttack (enemy)) {
@@ -86,6 +91,7 @@ public class AttackMoveState : UnitState {
 			}
 
 			if (!attacked) {
+
 				myManager.cMover.move ();
 			}
 		}

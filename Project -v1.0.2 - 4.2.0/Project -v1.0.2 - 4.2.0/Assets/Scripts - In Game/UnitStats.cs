@@ -146,9 +146,10 @@ public class UnitStats : MonoBehaviour {
 
 					if (health <= 0) {
 						kill (source);
+						}
+				Debug.Log ("Taking Damage");
 
-				}
-				if(type != DamageTypes.DamageType.True)
+				//if(type != DamageTypes.DamageType.True)
 				myManager.Attacked (source);
 			}
 			return amount;

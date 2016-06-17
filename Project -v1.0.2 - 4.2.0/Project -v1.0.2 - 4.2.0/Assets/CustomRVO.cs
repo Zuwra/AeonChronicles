@@ -68,6 +68,7 @@ public class CustomRVO : IMover {
 
 	override
 	public void resetMoveLocation (Vector3 target) {
+	//	Debug.Log ("Resetting to " + target);
 		this.target = target;
 		currentWaypoint = 1;
 		RecalculatePath();
@@ -141,9 +142,10 @@ public class CustomRVO : IMover {
 			if (controller) {
 				controller.Move (Vector3.zero);
 			}
-		
+			//Debug.Log ("Returning 3");
 			return true;
 		} else if (pathSet && path == null) {
+			//Debug.Log ("Returning 2");
 			return false;}
 
 
@@ -156,7 +158,7 @@ public class CustomRVO : IMover {
 			if (controller) {
 				controller.Move (Vector3.zero);
 			}
-		
+			//Debug.Log ("Returning 1");
 			return true;
 		}
 
@@ -176,6 +178,7 @@ public class CustomRVO : IMover {
 		}
 	
 		controller.Move (dir);
+
 
 	
 		if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < 3) {
