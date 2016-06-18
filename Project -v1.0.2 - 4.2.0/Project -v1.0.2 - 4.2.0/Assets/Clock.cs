@@ -8,29 +8,35 @@ public class Clock : MonoBehaviour {
 	public Text clockText;
 
 	public static Clock main;
+	private float timer = 0;
+	private float nextActionTime;
 	// Use this for initialization
 	void Start () {
+		nextActionTime = Time.time;
 		main = this;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		int time = (int)Time.time;
-		int minutes = time / 60;
-		int seconds = time % 60;
+		timer += Time.deltaTime;
+		if (Time.time > nextActionTime) {
+			nextActionTime += 1;
+			int time = (int)timer;
+			int minutes = time / 60;
+			int seconds = time % 60;
 
 
-		if (seconds < 10) {
-			clockText.text = minutes + ":0" + seconds;
-		} else {
-			clockText.text = minutes + ":" + seconds;
+			if (seconds < 10) {
+				clockText.text = minutes + ":0" + seconds;
+			} else {
+				clockText.text = minutes + ":" + seconds;
+			}
+
 		}
-
-	
 	}
 
 	public string getTime()
-	{int time = (int)Time.time;
+	{int time = (int)timer;
 		int minutes = time / 60;
 		int seconds = time % 60;
 		string s;

@@ -9,7 +9,8 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text UnitName;
 	public Text health;
 	public Text armor;
-	public Text Mass;
+	public Text SpellResist;
+	public Image SpellIcon;
 	public Text speed;
 
 	public List<GameObject> weaponIcons = new List<GameObject> ();
@@ -17,7 +18,9 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text energyText;
 	public Image energyIcon;
 
-	public Text unitTypes;
+	public Text ArmorTypes;
+	public Text SizeTypes;
+	public Text OtherTypes;
 
 	public Image damageIcon;
 	public Image rangeIcon;
@@ -71,20 +74,36 @@ public class UnitCardCreater : MonoBehaviour {
 		hasUnit = true;
 		unitIcon.sprite = manager.myStats.Icon;
 		UnitName.text = manager.UnitName;
-		health.text = "  "+(int)manager.myStats.health + "/" + (int)manager.myStats.Maxhealth;
-		armor.text =  "  " +manager.myStats.armor;
-		Mass.text = "  " + manager.myStats.mass;
-		kills.text = "Kills: " + manager.myStats.kills;
+		health.text = " "+(int)manager.myStats.health + "/" + (int)manager.myStats.Maxhealth;
+		armor.text =  " " +manager.myStats.armor;
+		if (manager.myStats.spellResist > 0) {
+			SpellResist.gameObject.SetActive (true);
+			SpellIcon.gameObject.SetActive (true);
+			SpellResist.text = " " + (int)(100 * manager.myStats.spellResist) + "%";
+
+		} else {
+			SpellResist.gameObject.SetActive (false);
+			SpellIcon.gameObject.SetActive (false);
+		}
+		kills.text = "Kills: " + manager.myStats.getKills ();
 		if (manager.cMover != null) {
-			speed.text = "  " + manager.cMover.getMaxSpeed();
+			speed.text = " " + manager.cMover.getMaxSpeed();
 		} else {speed.text = "";
 		}
 
-		string s = "Types - ";
-		foreach(UnitTypes.UnitTypeTag ut in manager.myStats.unitTags){
+		ArmorTypes.text = "" + manager.myStats.armorType;
+		SizeTypes.text = "" + manager.myStats.sizeType;
+		string s = "";
+
+		if(manager.myStats.otherTags.Count > 0){
+
+		s = "Types - ";
+			foreach(UnitTypes.UnitTypeTag ut in manager.myStats.otherTags){
 			s += ut + " - ";
+			}
 		}
-		unitTypes.text = s;
+		OtherTypes.text = s;
+	
 		if (currentUnit.myStats.MaxEnergy > 0) {
 			energyIcon.enabled = true;
 			energyText.enabled = true;

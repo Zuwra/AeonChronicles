@@ -181,6 +181,16 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         else if (Input.GetKeyUp(KeyCode.V))
         {callAbility(11);}
 
+		if (Input.GetKeyUp (KeyCode.Space)) {
+			if (SelectedObjects.Count > 0) {
+				if (SelectedObjects [0]) {
+					Vector3 location = SelectedObjects [0].gameObject.transform.position;
+					location.z -= 90;
+					MainCamera.main.Move (location);
+				}
+			}
+		}
+
         if (Input.GetKeyUp(KeyCode.BackQuote))
         {
 

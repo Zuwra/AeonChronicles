@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
+using System;
+
 
 public class UnitStats : MonoBehaviour {
 
@@ -20,17 +22,22 @@ public class UnitStats : MonoBehaviour {
 	public float EnergyRegenPerSec;
 	public Sprite Icon;
 
-	public float kills;
+	private int kills;
 	public float supply;    //positive gives supply, negative uses it
 	public float attackPriority =1 ;
 
-	[Tooltip("This will affect things such as specialized damage and impact effects, should be in the range of 1-12, 12 being buildings")]
-	public float mass;
+
 	public float armor;
+	public float spellResist;
 	private UnitManager myManager;
 
 	private List<Modifier> damageModifiers = new List<Modifier>();
-	public List<UnitTypes.UnitTypeTag> unitTags = new  List<UnitTypes.UnitTypeTag> ();
+	public List<UnitTypes.UnitTypeTag> otherTags = new  List<UnitTypes.UnitTypeTag> ();
+	private List<UnitTypes.UnitTypeTag> TotalTags = new  List<UnitTypes.UnitTypeTag> ();
+
+	public UnitTypes.UnitArmorTag armorType;
+	public UnitTypes.SizeTag sizeType;
+	public UnitTypes.HeightType myHeight;
 	private List<Modifier> deathTriggers = new List<Modifier> ();
 	public List<KillModifier> killMods = new List<KillModifier> ();
 
@@ -65,11 +72,20 @@ public class UnitStats : MonoBehaviour {
 		
 		}
 
+		foreach (UnitTypes.UnitTypeTag t in otherTags) {
+			
+			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,t.ToString()));
+		}
+		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,armorType.ToString()));
+		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,myHeight.ToString()));
+		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
+
+
 	}
 
 
 	public bool isUnitType(UnitTypes.UnitTypeTag type){
-		return unitTags.Contains (type);
+		return TotalTags.Contains (type);
 	}
 
 
@@ -114,7 +130,7 @@ public class UnitStats : MonoBehaviour {
 
 	public float TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
 	{
-		if (!unitTags.Contains (UnitTypes.UnitTypeTag.Invulnerable)) {
+		if (!otherTags.Contains (UnitTypes.UnitTypeTag.Invulnerable)) {
 			
 			bool setToZero = false;
 			if (type == DamageTypes.DamageType.Penetrating || type == DamageTypes.DamageType.Regular) {
@@ -175,7 +191,7 @@ public class UnitStats : MonoBehaviour {
 
 	public void kill(GameObject deathSource)
 	{bool FinishDeath= true;
-		if (!unitTags.Contains(UnitTypes.UnitTypeTag.Invulnerable)) {
+		if (!otherTags.Contains(UnitTypes.UnitTypeTag.Invulnerable)) {
 			//foreach (Method effect in lethalDamage) {
 
 			//if(call deathTrigger != true)
@@ -310,5 +326,10 @@ public class UnitStats : MonoBehaviour {
 
 	public void changeArmor(float amount)
 	{armor += amount;}
+
+	public int getKills()
+	{
+		return kills;
+	}
 
 }

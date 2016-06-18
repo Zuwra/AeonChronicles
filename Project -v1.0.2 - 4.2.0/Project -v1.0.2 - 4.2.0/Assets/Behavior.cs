@@ -15,7 +15,7 @@ public abstract class Behavior: MonoBehaviour{
 	private int BuffUiId;
 
 	private HealthDisplay displayer;
-	private Color myColor;
+	//private Color myColor;
 	private bool initialized = false;
 
 	// Use this for initialization
@@ -60,31 +60,31 @@ void Start () {
 
 		switch (b) {
 		case buffType.ability: 
-			myColor = Color.gray;
+			//myColor = Color.gray;
 			break;
 
 		case buffType.bleed: 
-			myColor = new Color(1,0,1);
+			//myColor = new Color(1,0,1);
 			break;
 
 		case buffType.movement: 
-			myColor = Color.yellow;
+			//myColor = Color.yellow;
 			break;
 
 		case buffType.energy: 
-			myColor = Color.blue;
+			//myColor = Color.blue;
 			break;
 
 		case buffType.health: 
-			myColor = Color.green;
+			//myColor = Color.green;
 			break;
 
 		case buffType.range: 
-			myColor = Color.black;
+			//myColor = Color.black;
 			break;
 
 		case buffType.damage: 
-			myColor = Color.red;
+			//myColor = Color.red;
 			break;
 
 		}

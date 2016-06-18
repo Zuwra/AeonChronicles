@@ -22,8 +22,8 @@ public class IWeapon : MonoBehaviour {
 
 	public float baseDamage;
 	private float InitialBaseDamage;
-	[Tooltip("this is multiplied by the enemy mass and added or subtracted from the damage")]
-	public float massBonus;
+	//[Tooltip("this is multiplied by the enemy mass and added or subtracted from the damage")]
+	//public float massBonus;
 
 	[Tooltip("Having arange that is longer than the vision range is not supported yet")]
 	public float range =5;
@@ -209,7 +209,7 @@ public class IWeapon : MonoBehaviour {
 					damage += tag.bonus;
 				}
 			}
-			damage += massBonus * targetStats.mass;
+
 
 			GameObject proj = null;
 			if (projectile != null) {

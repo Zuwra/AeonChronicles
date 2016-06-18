@@ -29,7 +29,7 @@ public class Grinder : MonoBehaviour {
 				foreach (UnitStats s in enemies) {
 				
 				
-					s.TakeDamage (damage * (massReduction - s.mass), this.gameObject.gameObject.gameObject, DamageTypes.DamageType.True);
+					s.TakeDamage (damage * (massReduction), this.gameObject.gameObject.gameObject, DamageTypes.DamageType.True);
 			
 				}
 			}
@@ -72,9 +72,9 @@ public class Grinder : MonoBehaviour {
 		if (manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Destructable_Terrain)) {
 			terrain.Add (manage.myStats);
 		
-		} else if (manage.myStats.mass < massReduction) {
+		} 
 			enemies.Add (manage.myStats);
-		}
+
 			
 
 

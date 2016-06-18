@@ -12,7 +12,7 @@ public class HealthDisplay : MonoBehaviour {
 	public bool isOn;
 	public Image BuildingUnit;
 
-	private List<int> colorList = new List<int>();
+	//private List<int> colorList = new List<int>();
 	// Use this for initialization
 	void Start () {
 		cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
