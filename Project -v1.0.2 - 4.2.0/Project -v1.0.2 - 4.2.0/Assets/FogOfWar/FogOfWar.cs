@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-
+using System;
 class ColliderFogRect
 {
     public Collider collider { get; private set; }
@@ -293,14 +293,19 @@ public class FogOfWar : MonoBehaviour
 
     // Returns a value between 0 (not in fog) and 255 (fully fogged)
     public byte GetFogValue(Vector3 position)
-    {
+	{
         Vector2i mappos = WorldPositionToFogPosition(position);
-        return _values[mappos.y * mapResolution + mappos.x];
+
+			return _values[mappos.y * mapResolution + mappos.x];
+		
     }
 
     public bool IsInCompleteFog(Vector3 position)
-    {
+	{	try{
         return GetFogValue(position) > 240;
+		}catch(IndexOutOfRangeException e) {
+			return true;
+		}
     }
 
     public bool IsInPartialFog(Vector3 position)

@@ -458,6 +458,7 @@
      <Compile Include="Assets\UltCooldown.cs" />
      <Compile Include="Assets\UndyingArmor.cs" />
      <Compile Include="Assets\UnitCardCreater.cs" />
+     <Compile Include="Assets\UnitIconInfo.cs" />
      <Compile Include="Assets\UnitLostDefeat.cs" />
      <Compile Include="Assets\UnitProduction.cs" />
      <Compile Include="Assets\UnitUIBox.cs" />

@@ -287,7 +287,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			}
 		
 
-
 			string unitName = Unit.GetComponent<UnitManager> ().UnitName;
 
 			if (unitTypeCount.ContainsKey (unitName)) {
@@ -309,6 +308,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 			} 
 			if (Unit.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+				//This rescans the Astar graph after the unit dies
 				GraphUpdateObject b =new GraphUpdateObject(Unit.GetComponent<CharacterController>().bounds); 
 
 				StartCoroutine (DeathRescan (b));

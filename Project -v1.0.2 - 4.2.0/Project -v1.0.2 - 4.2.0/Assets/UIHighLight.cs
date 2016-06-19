@@ -66,7 +66,7 @@ public class UIHighLight : MonoBehaviour {
 	{//Debug.Log ("Activating Highlighter " + size);
 		
 		turnedOn = true;
-		turnOffTime = Time.time + 5;
+		turnOffTime = Time.time + 4;
 
 		if (size == 0) {
 			ThingOne = true;

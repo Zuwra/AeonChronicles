@@ -34,8 +34,9 @@ public class ArmyUIManager : MonoBehaviour {
 		if (unitList.ContainsKey (manage.UnitName)) {
 			
 			unitList [manage.UnitName].Add (unit);
-			StartCoroutine (addNUmber (manage));
-
+			if (this.gameObject.activeSelf) {
+				StartCoroutine (addNUmber (manage));
+			}
 		} 
 		else {
 			
@@ -44,8 +45,9 @@ public class ArmyUIManager : MonoBehaviour {
 				unitList.Add (manage.UnitName, list);
 				unitCount++;
 
-	
-			StartCoroutine (createIcon (unit));
+			if (this.gameObject.activeSelf) {
+				StartCoroutine (createIcon (unit));
+			}
 		
 			}
 
@@ -77,7 +79,9 @@ public class ArmyUIManager : MonoBehaviour {
 				Destroy (obj);
 				unitList.Remove (manage.UnitName);
 			} else {
-				StartCoroutine (addNUmber (manage));
+				if (this.gameObject.activeSelf) {
+					StartCoroutine (addNUmber (manage));
+				}
 			}
 		}
 	}

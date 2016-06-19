@@ -153,7 +153,7 @@ public class UnitStats : MonoBehaviour {
 						}
 				}
 				if (takeDamageEffect) {
-					Debug.Log ("Taking damage " + this.gameObject);
+					//Debug.Log ("Taking damage " + this.gameObject);
 					Instantiate (takeDamageEffect, this.gameObject.transform.position, new Quaternion ());
 				}
 				health-= amount;
@@ -163,7 +163,7 @@ public class UnitStats : MonoBehaviour {
 					if (health <= 0) {
 						kill (source);
 						}
-				Debug.Log ("Taking Damage");
+				//Debug.Log ("Taking Damage");
 
 				//if(type != DamageTypes.DamageType.True)
 				myManager.Attacked (source);

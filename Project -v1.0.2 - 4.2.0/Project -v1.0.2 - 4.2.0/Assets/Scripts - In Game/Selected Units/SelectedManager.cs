@@ -420,7 +420,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
 	public void updateControlGroups (RTSObject obj)
-	{
+	{Debug.Log ("Updating control group");
 		for (int i = 0; i < 10; i++) {
 			if (Group [i].Contains (obj)) {
 				Group [i].Remove (obj);
@@ -604,7 +604,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		location.y = location.y + 30;
 		if (order.OrderType == 1 && SelectedObjects.Count > 0) {
 			if (FogOfWar.current.IsInCompleteFog (location)) {
-				//Instantiate (fogIndicator);
+				Instantiate (fogIndicator);
 			
 			} else {
 				Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));
@@ -614,7 +614,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		} else if (order.OrderType == 4 && SelectedObjects.Count > 0) {
 			if (FogOfWar.current.IsInCompleteFog (location)) {
-				//Instantiate (fogAttacker);
+				Instantiate (fogAttacker);
 			
 			} else {
 				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
@@ -630,7 +630,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				AudioSrc.PlayOneShot (attackSound);
 
 				if (FogOfWar.current.IsInCompleteFog (location)) {
-					//Instantiate (fogAttacker);
+					Instantiate (fogAttacker);
 
 				} else {
 					Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
@@ -644,7 +644,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				}
 				AudioSrc.PlayOneShot (moveSound);
 				if (FogOfWar.current.IsInCompleteFog (location)) {
-					//Instantiate (fogIndicator);
+					Instantiate (fogIndicator);
 				
 				} else {
 					Instantiate (movementInd, location, Quaternion.Euler (90, 0, 0));

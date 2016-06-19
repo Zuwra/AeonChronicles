@@ -24,7 +24,7 @@ public class DefaultState : UnitState{
 				if (target == null) {
 					return;}
 				if (Vector3.Distance (myManager.gameObject.transform.position, target.transform.position) <= myManager.getChaseRange ()) {
-					Debug.Log ("Chasing attacker " + target);
+					//Debug.Log ("Chasing attacker " + target);
 					myManager.changeState (new AttackMoveState (target,
 						new Vector3 (), AttackMoveState.MoveType.passive, myManager, myManager.gameObject.transform.position));
 				}

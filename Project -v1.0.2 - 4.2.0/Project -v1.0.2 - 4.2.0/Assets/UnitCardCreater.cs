@@ -91,8 +91,8 @@ public class UnitCardCreater : MonoBehaviour {
 		} else {speed.text = "";
 		}
 
-		ArmorTypes.text = "" + manager.myStats.armorType;
-		SizeTypes.text = "" + manager.myStats.sizeType;
+		ArmorTypes.text = "A: " + manager.myStats.armorType;
+		SizeTypes.text = "S: " + manager.myStats.sizeType;
 		string s = "";
 
 		if(manager.myStats.otherTags.Count > 0){

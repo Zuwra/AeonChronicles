@@ -314,7 +314,7 @@ public class UiAbilityManager : MonoBehaviour {
 						pos.x += currentX *this.transform.localScale.x ;
 
 						GameObject unit = (GameObject)Instantiate (buttonTemplate);
-
+						unit.GetComponent<UnitIconInfo> ().myUnit = uiPage.rows [j] [k].gameObject;
 						unit.transform.localScale = this.transform.localScale;
 					
 						unit.transform.rotation = this.transform.rotation;
