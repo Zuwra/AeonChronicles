@@ -16,6 +16,8 @@ public class CostBox : MonoBehaviour {
 	public Text requirements;
 	public Image clocker;
 	public Image BloodDrop;
+
+	Color teal = new Color(.698f, .949f, 255);
 	// Use this for initialization
 	void Start () {
 	
@@ -45,7 +47,7 @@ public class CostBox : MonoBehaviour {
 
 				} else {
 					
-					time.color = Color.black;
+					time.color =teal;
 				}
 				clocker.enabled = true;
 				time.text = "" + input.myCost.cooldown;
@@ -59,7 +61,7 @@ public class CostBox : MonoBehaviour {
 				if (order.reasonList.Contains (continueOrder.reason.resourceOne)) {
 					resOne.color = Color.red;
 				} else {
-					resOne.color = Color.black;
+					resOne.color = teal;
 				}
 
 
@@ -82,7 +84,7 @@ public class CostBox : MonoBehaviour {
 				if (order.reasonList.Contains (continueOrder.reason.requirement)) {
 					requirements.color = Color.red;
 				} else {
-					requirements.color = Color.black;
+					requirements.color = teal;
 				}
 
 
@@ -96,7 +98,7 @@ public class CostBox : MonoBehaviour {
 				if (order.reasonList.Contains (continueOrder.reason.resourceTwo)) {
 					resTwo.color = Color.red;
 				} else {
-					resTwo.color = Color.black;
+					resTwo.color = teal;
 				}
 
 				resTwo.text = "Gas: " + input.myCost.ResourceTwo;
@@ -110,7 +112,7 @@ public class CostBox : MonoBehaviour {
 				if (order.reasonList.Contains (continueOrder.reason.health)) {
 					health.color = Color.red;
 				} else {
-					health.color = Color.black;
+					health.color = teal;
 				}
 
 			} else {

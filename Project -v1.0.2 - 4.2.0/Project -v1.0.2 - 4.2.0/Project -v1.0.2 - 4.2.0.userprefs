@@ -1,19 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FadeOut.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CostBox.cs">
     <Files>
-      <File FileName="Assets\FadeOut.cs" Line="15" Column="29" />
+      <File FileName="Assets\CostBox.cs" Line="127" Column="27" />
+      <File FileName="Assets\FadeOut.cs" Line="1" Column="1" />
       <File FileName="Assets\SceneEventTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\CinematicCamera.cs" Line="81" Column="2" />
+      <File FileName="Assets\CinematicCamera.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
       <File FileName="Assets\CinematicBoxTrigger.cs" Line="1" Column="1" />
       <File FileName="Assets\ObjectiveTrigger.cs" Line="1" Column="1" />
       <File FileName="Assets\TextTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitEnterTrigger.cs" Line="11" Column="27" />
-      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="76" Column="3" />
-      <File FileName="Assets\Scripts - In Game\GUI\MiniMapController.cs" Line="16" Column="26" />
-      <File FileName="Assets\Scripts - In Game\GUI\GUIManager.cs" Line="42" Column="2" />
-      <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="197" Column="20" />
+      <File FileName="Assets\UnitEnterTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\GUI\MiniMapController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\GUI\GUIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
