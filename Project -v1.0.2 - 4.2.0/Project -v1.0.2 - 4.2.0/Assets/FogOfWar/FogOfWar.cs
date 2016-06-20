@@ -303,7 +303,7 @@ public class FogOfWar : MonoBehaviour
     public bool IsInCompleteFog(Vector3 position)
 	{	try{
         return GetFogValue(position) > 240;
-		}catch(IndexOutOfRangeException e) {
+		}catch(IndexOutOfRangeException) {
 			return true;
 		}
     }

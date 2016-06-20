@@ -16,7 +16,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	string OneName;
 	string TwoName;
 
-	SelectedManager selectManager;
+
 	public Dropdown production; // Controls which Info panel to display - Production, Income, or Current total army
 
 
@@ -26,7 +26,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 	// Use this for initialization
 	void Start () {
-		selectManager = GameObject.Find ("Manager").GetComponent<SelectedManager>();
+		
 
 		if (raceManager == null) {
 

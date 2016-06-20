@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TextTrigger : MonoBehaviour {
+public class TextTrigger : SceneEventTrigger {
 	
 	[TextArea(3,10)]
 	public string text;
@@ -21,12 +21,8 @@ public class TextTrigger : MonoBehaviour {
 	void Update () {
 	
 	}
+	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 
-	void OnTriggerEnter(Collider other)
-	{
-
-		if (other.GetComponent<UnitManager> ())
-		if (other.GetComponent<UnitManager> ().PlayerOwner == 1) {
 			if (!dialogue) {
 				
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
@@ -38,8 +34,8 @@ public class TextTrigger : MonoBehaviour {
 					GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);
 				}
 			}
-			Destroy (this.gameObject);
-		}
+
+
 	}
 
 

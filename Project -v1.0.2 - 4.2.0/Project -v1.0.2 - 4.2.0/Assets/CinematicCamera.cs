@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CinematicCamera : MonoBehaviour {
+public class CinematicCamera : SceneEventTrigger {
 
 	// Use this for initialization
 
@@ -11,9 +11,13 @@ public class CinematicCamera : MonoBehaviour {
 
 	public static CinematicCamera main;
 	private int currentScene = -1;
-	public int currentShot = 0;
-	private float sceneChangeTime;
-	private float sceneStartTime;
+	private int currentShot = 0;
+	private float shotChangeTime;
+	//private float shotStartTime;
+
+	private float nextDialogue;
+	private bool hasNextDialogue;
+	Vector3 previousCamPos;
 
 
 	void Start () {
@@ -25,18 +29,32 @@ public class CinematicCamera : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (currentScene > -1) {
-			if (Time.time > sceneChangeTime) {
-				sceneStartTime = Time.time;
+			if (Time.time > shotChangeTime) {
+				//NEW SHOT
+
+				//shotStartTime = Time.time;
 				currentShot++;
 				if (currentShot == myScenes [currentScene].myShots.Count) {
 					exitScene ();
 					return;
 				} else {
-					sceneChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration;
+					
+					shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration;
+					if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
+						hasNextDialogue = true;
+						nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay;
+					}
 				}
 			}
 
-			float perc = (sceneChangeTime - Time.time) / myScenes [currentScene].myShots [currentShot].duration;
+			if (hasNextDialogue && Time.time > nextDialogue) {
+				hasNextDialogue = false;
+				ExpositionDisplayer.instance.displayText (myScenes [currentScene].myShots [currentShot].DialogueText,myScenes [currentScene].myShots [currentShot].duration
+					,myScenes [currentScene].myShots [currentShot].dialogueAudio, .2f,myScenes [currentScene].myShots [currentShot].dialogueImage);
+			
+			}
+
+			float perc = myScenes [currentScene].myShots [currentShot].myCurve.Evaluate( (shotChangeTime - Time.time) / myScenes [currentScene].myShots [currentShot].duration);
 			this.transform.position = Vector3.Lerp
 				(myScenes [currentScene].myShots [currentShot].startLocation, myScenes [currentScene].myShots [currentShot].endLocation,1 -perc );
 
@@ -48,16 +66,23 @@ public class CinematicCamera : MonoBehaviour {
 
 	
 	}
+	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
+		previousCamPos = MainCamera.main.gameObject.transform.position;
+		Debug.Log ("Index is " + index);
 
-	public void startScene(int sceneNum)
-	{GetComponent<Camera> ().enabled = true;
-		currentScene = sceneNum;
-		sceneChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration;
+	GetComponent<Camera> ().enabled = true;
+		currentScene = index;
+		shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration;
+		if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
+			hasNextDialogue = true;
+			nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay;
+		}
 	}
 
 	public void exitScene(){
 		currentScene = -1;
 		GetComponent<Camera> ().enabled = false;
+		MainCamera.main.gameObject.transform.position = previousCamPos ;
 	}
 
 
@@ -77,6 +102,14 @@ public class CinematicCamera : MonoBehaviour {
 		public Vector3 endLocation;
 		public Vector3 endTarget;
 		public float duration;
+		public AnimationCurve myCurve;
+
+		public Sprite dialogueImage;
+		public float dialogueStartDelay;
+		public float dialogueLength;
+		public AudioClip dialogueAudio;
+		[TextArea(1,10)]
+		public string DialogueText;
 
 	}
 

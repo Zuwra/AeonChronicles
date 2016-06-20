@@ -41,7 +41,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 		}
 		//Set up camera position
 		if (StartPoint != null)
-		{
+		{goToStart ();
 			transform.position = new Vector3(StartPoint.transform.position.x, HeightAboveGround, StartPoint.transform.position.z-AngleOffset);
 		}
 		AngleOffset = 45 -((HeightAboveGround - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
@@ -65,6 +65,13 @@ public class MainCamera : MonoBehaviour, ICamera {
 				canWeScroll = true;
 			}
 		
+		}
+	}
+
+	public void goToStart()
+	{
+		if (StartPoint != null) {
+			transform.position = new Vector3 (StartPoint.transform.position.x, HeightAboveGround, StartPoint.transform.position.z - AngleOffset);
 		}
 	}
 

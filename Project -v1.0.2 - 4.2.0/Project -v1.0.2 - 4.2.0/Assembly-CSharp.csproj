@@ -225,6 +225,7 @@
      <Compile Include="Assets\ExpositionDisplayer.cs" />
      <Compile Include="Assets\ExpositionTexts.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
+     <Compile Include="Assets\FadeOut.cs" />
      <Compile Include="Assets\FogIndicator.cs" />
      <Compile Include="Assets\FogOfWar\FogOfWar.cs" />
      <Compile Include="Assets\FogOfWar\FogOfWarUnit.cs" />
@@ -296,6 +297,7 @@
      <Compile Include="Assets\SanguinAura.cs" />
      <Compile Include="Assets\Sanguinate.cs" />
      <Compile Include="Assets\SateliteScan.cs" />
+     <Compile Include="Assets\SceneEventTrigger.cs" />
      <Compile Include="Assets\Scripts - In Game\Ability.cs" />
      <Compile Include="Assets\Scripts - In Game\AbstractCost.cs" />
      <Compile Include="Assets\Scripts - In Game\AttackMoveState.cs" />
@@ -460,6 +462,7 @@
      <Compile Include="Assets\UltCooldown.cs" />
      <Compile Include="Assets\UndyingArmor.cs" />
      <Compile Include="Assets\UnitCardCreater.cs" />
+     <Compile Include="Assets\UnitEnterTrigger.cs" />
      <Compile Include="Assets\UnitIconInfo.cs" />
      <Compile Include="Assets\UnitLostDefeat.cs" />
      <Compile Include="Assets\UnitProduction.cs" />

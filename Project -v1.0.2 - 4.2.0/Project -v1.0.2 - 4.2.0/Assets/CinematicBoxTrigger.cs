@@ -20,7 +20,7 @@ public class CinematicBoxTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		CinematicCamera.main.startScene (sceneNumber);
+		CinematicCamera.main.trigger(sceneNumber, 0 , Vector3.zero,null,false);
 
 		
 
