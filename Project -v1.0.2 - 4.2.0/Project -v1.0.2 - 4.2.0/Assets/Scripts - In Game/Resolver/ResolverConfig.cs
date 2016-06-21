@@ -12,7 +12,7 @@ public class ResolverConfig : MonoBehaviour {
 		ManagerResolver.Register<IGUIManager>(GUIManager.main);
 		ManagerResolver.Register<IMiniMapController>(MiniMapController.main);
 	//	ManagerResolver.Register<IManager>(Manager.main);
-		ManagerResolver.Register<IGLManager>(GLManager.main);
+	//	ManagerResolver.Register<IGLManager>(GLManager.main);
 		ManagerResolver.Register<IGrid>(Grid.main);
 		//ManagerResolver.Register<ICursorManager>(CursorManager.main);
 		//ManagerResolver.Register<ILevelLoader>(LevelLoader.main);

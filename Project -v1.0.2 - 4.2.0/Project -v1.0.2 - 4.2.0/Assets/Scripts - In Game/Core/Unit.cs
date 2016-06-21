@@ -45,7 +45,7 @@ public class Unit : RTSObject, IOrderable {
 		selectedManager = ManagerResolver.Resolve<ISelectedManager>();
 
 		m_IsAttackable = this is IAttackable;
-		m_IsInteractable = this is IInteractable;
+	
 	}
 	
 	protected void Update()
