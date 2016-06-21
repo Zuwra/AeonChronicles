@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour {
 	public Canvas Technology;
 	public Canvas TechTree;
 
+	public Button techButton;
 	public GameObject Vehicles;
 	public GameObject Turrets;
 	public GameObject Structures;
@@ -27,6 +28,9 @@ public class LevelManager : MonoBehaviour {
 		levelIntros [LevelData.currentLevel].SetActive (true);
 		currentIntro = levelIntros [LevelData.currentLevel];
 		currentTech = Vehicles;
+		if (LevelData.currentLevel == 0) {
+			techButton.interactable = false;
+		}
 
 	}
 	
@@ -78,7 +82,7 @@ public class LevelManager : MonoBehaviour {
 		{LevelData.easyMode = true;}
 		else
 	{LevelData.easyMode = false;}
-	Debug.Log ("Difficulty is " + LevelData.easyMode);
+
 	}
 
 }

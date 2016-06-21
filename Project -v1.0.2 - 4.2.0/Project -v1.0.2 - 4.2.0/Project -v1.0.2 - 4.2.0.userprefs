@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CostBox.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ToolTip.cs">
     <Files>
-      <File FileName="Assets\CostBox.cs" Line="127" Column="27" />
+      <File FileName="Assets\Scripts - In Game\Cursors\CursorManager.cs" Line="24" Column="2" />
+      <File FileName="Assets\CostBox.cs" Line="1" Column="1" />
       <File FileName="Assets\FadeOut.cs" Line="1" Column="1" />
       <File FileName="Assets\SceneEventTrigger.cs" Line="1" Column="1" />
       <File FileName="Assets\CinematicCamera.cs" Line="1" Column="1" />
@@ -15,6 +16,10 @@
       <File FileName="Assets\Scripts - In Game\GUI\MiniMapController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\GUI\GUIManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Resolver\ResolverConfig.cs" Line="22" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Core\Unit.cs" Line="119" Column="27" />
+      <File FileName="Assets\LevelManager.cs" Line="26" Column="4" />
+      <File FileName="Assets\ToolTip.cs" Line="15" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
