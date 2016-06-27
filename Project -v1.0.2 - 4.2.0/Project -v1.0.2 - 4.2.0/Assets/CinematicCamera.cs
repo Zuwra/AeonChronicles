@@ -50,7 +50,7 @@ public class CinematicCamera : SceneEventTrigger {
 			if (hasNextDialogue && Time.time > nextDialogue) {
 				hasNextDialogue = false;
 				ExpositionDisplayer.instance.displayText (myScenes [currentScene].myShots [currentShot].DialogueText,myScenes [currentScene].myShots [currentShot].duration
-					,myScenes [currentScene].myShots [currentShot].dialogueAudio, .2f,myScenes [currentScene].myShots [currentShot].dialogueImage);
+					,myScenes [currentScene].myShots [currentShot].dialogueAudio, .45f,myScenes [currentScene].myShots [currentShot].dialogueImage);
 			
 			}
 

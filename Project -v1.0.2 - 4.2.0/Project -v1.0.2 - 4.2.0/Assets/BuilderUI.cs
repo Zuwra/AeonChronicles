@@ -15,6 +15,7 @@ public class BuilderUI : MonoBehaviour {
 	private BuildManager myMan;
 	private float nextActionTime;
 	public Sprite defaultImage;
+	private bool buildingStuff;
 	// Use this for initialization
 	void Start () {
 		nextActionTime = Time.time;
@@ -25,13 +26,30 @@ public class BuilderUI : MonoBehaviour {
 
 		if (Time.time > nextActionTime) {
 			
-			nextActionTime += .2f;
+			nextActionTime += .3f;
 			if (myMan) {
+
+			
+
 				
 				if (myMan.buildOrder.Count > 0) {
+					if (!buildingStuff) {
+						buildingStuff = true;
+						foreach (Button b in que) {
+							b.gameObject.SetActive (true);
+						}
+
+					}
+
 					
 					perc.text = (int)(myMan.buildOrder [0].getProgress () * 100) + "%";
 				} else {
+					if (buildingStuff) {
+						buildingStuff = false;
+						foreach (Button b in que) {
+							b.gameObject.SetActive (false);
+						}
+					}
 					perc.text = "";
 				}
 			}
@@ -44,15 +62,18 @@ public class BuilderUI : MonoBehaviour {
 		myMan = obj.GetComponent<BuildManager> ();
 
 		bool hasBuild = false;
-
+		buildingStuff = false;
 		if (myMan) {
 
 			hasBuild = true;
+			buildingStuff = myMan.buildOrder.Count > 0;
 		}
+	
+			
 
 
 		foreach (Button b in que) {
-			b.gameObject.SetActive (hasBuild);
+			b.gameObject.SetActive (hasBuild && buildingStuff);
 		}
 		
 		if (myMan) {

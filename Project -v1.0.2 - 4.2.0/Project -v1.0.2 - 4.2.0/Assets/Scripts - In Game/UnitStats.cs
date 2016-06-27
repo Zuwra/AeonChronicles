@@ -206,7 +206,9 @@ public class UnitStats : MonoBehaviour {
 			if (FinishDeath) {
 
 				foreach (Modifier effect in deathTriggers) {
-					effect.modify (0, deathSource);
+					if (effect != null) {
+						effect.modify (0, deathSource);
+					}
 				}
 
 

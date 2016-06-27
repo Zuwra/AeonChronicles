@@ -183,10 +183,16 @@ public  class Projectile : MonoBehaviour {
 
 	public virtual void Terminate(GameObject target)
 	{
-		if (target != null) {
+		if (explosion) {
+			GameObject explode = (GameObject)Instantiate (explosion, this.gameObject.transform.position, Quaternion.identity);
+			explode.GetComponent<explosion> ().source = Source;
+			explode.GetComponent<explosion> ().damageAmount = this.damage;
+		}
+
+		else if (target) {
 
 			foreach (Notify not in triggers) {
-				not.trigger (this.gameObject, this.gameObject, target,  damage);
+				not.trigger (this.gameObject, this.gameObject, target, damage);
 			}
 			if (target != null && target.GetComponent<UnitStats> () != null) {
 				target.GetComponent<UnitStats> ().TakeDamage (damage, Source, DamageTypes.DamageType.Regular);
@@ -195,14 +201,9 @@ public  class Projectile : MonoBehaviour {
 				{
 					Source.GetComponent<UnitManager> ().cleanEnemy ();}
 			}
-		} else {
+		} 
+	
 
-		}
-		if (explosion) {
-
-			GameObject explode = (GameObject)Instantiate (explosion,this.gameObject.transform.position, Quaternion.identity);
-			explode.GetComponent<explosion>().source = Source;
-		}
 		if (SpecialEffect) {
 			Instantiate (SpecialEffect,this.gameObject.transform.position, Quaternion.identity);
 		

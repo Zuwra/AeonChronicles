@@ -21,7 +21,9 @@ public class ChildDeathTrigger : MonoBehaviour, Modifier {
 	public float modify(float damage, GameObject source)
 	{
 
-		GetComponent<UnitManager> ().myStats.kill (source);
+		if (this) {
+			GetComponent<UnitManager> ().myStats.kill (source);
+		}
 		return 0;
 	}
 

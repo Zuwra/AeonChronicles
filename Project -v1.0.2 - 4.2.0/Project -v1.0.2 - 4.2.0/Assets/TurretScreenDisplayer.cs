@@ -24,14 +24,18 @@ public class TurretScreenDisplayer : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		mounts.RemoveAll (item => item == null);
-				foreach (TurretMount obj in mounts) {
-					if (obj.turret != null) {
+		
+		foreach (TurretMount obj in mounts) {
+			if (obj.turret != null) {
 
 				if (obj.hasDisplayer != null) {
 					destroyDisplayer (obj);
 				}
-							continue;}
+				//continue;
+			} else {
+				mounts.RemoveAll (item => item == null);
+				return;
+			}
 
 
 					if (obj.gameObject.GetComponentInParent<TurretPickUp> ()) {

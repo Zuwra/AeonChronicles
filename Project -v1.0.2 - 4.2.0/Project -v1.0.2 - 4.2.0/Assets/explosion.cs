@@ -16,6 +16,8 @@ public class explosion : MonoBehaviour {
 
 	public List<Notify> triggers = new List<Notify> ();
 
+	private List<GameObject> hitStuff= new List<GameObject>();
+
 	public IWeapon.bonusDamage[] extraDamage;
 	// Use this for initialization
 	void Start () {
@@ -43,7 +45,8 @@ public class explosion : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider other)
-		{if (!other.isTrigger) {
+	{if (!other.isTrigger && !hitStuff.Contains(other.gameObject)) {
+			hitStuff.Add (other.gameObject);
 			UnitManager manager = other.gameObject.GetComponent<UnitManager> ();
 
 			if (manager) {

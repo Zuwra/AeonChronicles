@@ -378,6 +378,7 @@ public class UiAbilityManager : MonoBehaviour {
 						//if (man.abilityList [AbilityX * 4].active) {
 						if (active) {
 								cb.disabledColor = Color.white;
+							if(trans && trans.GetComponent<Button> ())
 								trans.GetComponent<Button> ().interactable = true;
 							} else {
 								cb.disabledColor =new Color(.5f,0,0,1);
