@@ -1,25 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ChildDeathTrigger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DifficultyManager.cs">
     <Files>
-      <File FileName="Assets\TurretScreenDisplayer.cs" Line="23" Column="3" />
+      <File FileName="Assets\GameTips.cs" Line="33" Column="39" />
+      <File FileName="Assets\TurretScreenDisplayer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Cursors\CursorManager.cs" Line="1" Column="1" />
       <File FileName="Assets\CostBox.cs" Line="1" Column="1" />
       <File FileName="Assets\FadeOut.cs" Line="1" Column="1" />
       <File FileName="Assets\SceneEventTrigger.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\CinematicBoxTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\ObjectiveTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\TextTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitEnterTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\GUI\MiniMapController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\GUI\GUIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitCardCreater.cs" Line="17" Column="2" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="210" Column="7" />
-      <File FileName="Assets\BuilderUI.cs" Line="72" Column="4" />
-      <File FileName="Assets\ChildDeathTrigger.cs" Line="23" Column="3" />
+      <File FileName="Assets\DifficultyManager.cs" Line="24" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

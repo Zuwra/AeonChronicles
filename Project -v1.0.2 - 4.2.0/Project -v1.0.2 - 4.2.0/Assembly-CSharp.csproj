@@ -214,6 +214,7 @@
      <Compile Include="Assets\FusionWeld.cs" />
      <Compile Include="Assets\GameMenu.cs" />
      <Compile Include="Assets\GamePlayMenu.cs" />
+     <Compile Include="Assets\GameTips.cs" />
      <Compile Include="Assets\GraphicsMenu.cs" />
      <Compile Include="Assets\Grinder.cs" />
      <Compile Include="Assets\GuiControls.cs" />

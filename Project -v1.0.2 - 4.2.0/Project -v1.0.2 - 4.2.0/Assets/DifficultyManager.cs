@@ -19,11 +19,15 @@ public class DifficultyManager : MonoBehaviour {
 						man.myStats.health *= EasyHealth;
 					}
 					foreach (IWeapon weap in man.myWeapon) {
-						weap.baseDamage *= EasyDamage;
+						weap.changeAttackSpeed (1 +(1 - EasyDamage), 0, true, this);
 					}
 				}
 		
 				}
+
+			foreach (MiningSawDamager saw in GameObject.FindObjectsOfType<MiningSawDamager>()) {
+				saw.damage *= (EasyDamage * 1.5f);
+			}
 		}
 	}
 
