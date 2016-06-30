@@ -98,8 +98,10 @@ public class BuilderUI : MonoBehaviour {
 
 	}
 
-	public void bUpdate()
-	{loadUnit (myMan.gameObject.GetComponent<UnitManager> ());
+	public void bUpdate(GameObject obj)
+	{if (myMan && obj == myMan.gameObject) {
+			loadUnit (myMan.gameObject.GetComponent<UnitManager> ());
+		}
 	}
 
 

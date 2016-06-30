@@ -31,7 +31,9 @@ public class TurretUIPanel : MonoBehaviour {
 	}
 
 	public void displayText(string input,  Sprite pic)
-	{	this.enabled = true;
+	{	
+
+		this.enabled = true;
 		myText.text = input;
 		myCanvas.enabled = true;
 

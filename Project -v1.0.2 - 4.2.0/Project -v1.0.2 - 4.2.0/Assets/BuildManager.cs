@@ -36,7 +36,7 @@ public class BuildManager : MonoBehaviour {
 
 			}
 			if (mySelect.IsSelected) {
-				build.bUpdate ();
+				build.bUpdate (this.gameObject);
 			}
 		}
 	}
@@ -52,7 +52,7 @@ public class BuildManager : MonoBehaviour {
 				buildOrder.RemoveAt (n);
 
 				if (mySelect.IsSelected) {
-					build.bUpdate ();
+					build.bUpdate (this.gameObject);
 				}
 			}
 
@@ -68,7 +68,7 @@ public class BuildManager : MonoBehaviour {
 
 		buildOrder.Add (prod);
 		if (mySelect.IsSelected) {
-			build.bUpdate ();
+			build.bUpdate (this.gameObject);
 		}
 	
 		if (buildOrder.Count == 1) {
@@ -89,7 +89,7 @@ public class BuildManager : MonoBehaviour {
 
 		}
 		if (mySelect.IsSelected) {
-			build.bUpdate ();
+			build.bUpdate (this.gameObject);
 		}
 
 		return true;

@@ -1,14 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.EventSystems;
 public class TurretTipDisplayer: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 	public string help;
+	public string cantBuild;
 	public Sprite image;
+	private Button myButt;
+
+	void Start(){
+		myButt = GetComponent<Button> ();
+	}
 
 	public void OnPointerEnter(PointerEventData eventd)
 	{
-		TurretUIPanel.instance.displayText (help, image);
+		if (myButt.interactable) {
+			TurretUIPanel.instance.displayText (help, image);
+		} else {
+			TurretUIPanel.instance.displayText (cantBuild, image);
+		}
 
 
 		//toolbox.gameObject.GetComponentInChildren<Text> ().text = helpText;

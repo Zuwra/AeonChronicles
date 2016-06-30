@@ -366,7 +366,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				m_Placed = false;
 				return;
 			}
-
+			bool clearSelection = false;
 				//We've left clicked, have we left clicked on a unit?
 			int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
             
@@ -403,9 +403,13 @@ public class UIManager : MonoBehaviour, IUIManager {
             //or if we aren't dragging and clicked on empty air
 			else if (!m_GuiManager.Dragging) {
 				if (!isPointerOverUIObject()) {
-					if (!IsShiftDown)
-						m_SelectedManager.DeselectAll ();
-				}} else {
+					if (!IsShiftDown) {
+						
+						//m_SelectedManager.DeselectAll ();
+					
+					}
+				}
+			} else {
 				
 
 						//Get the drag area
@@ -431,7 +435,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 						}
                 //if we're dragging, deselect everything, then add everything in the drag area
                 else {
-							m_SelectedManager.DeselectAll ();
+							
+					List<GameObject> unitSel = raceManager.getUnitSelection (upperLeft, bottRight);
+					if (unitSel.Count > 0) {
+						m_SelectedManager.DeselectAll ();
+					}
 							foreach (GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight)) {
 								m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
 							}

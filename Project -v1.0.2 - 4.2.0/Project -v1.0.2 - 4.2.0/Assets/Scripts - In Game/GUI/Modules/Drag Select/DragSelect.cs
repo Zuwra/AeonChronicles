@@ -51,7 +51,7 @@ public class DragSelect : MonoBehaviour {
 					m_GuiManager.Dragging = true;
 					
 					if (!shiftDown) {
-						m_SelectedManager.DeselectAll ();
+						//m_SelectedManager.DeselectAll ();
 					}
 				}
 			}

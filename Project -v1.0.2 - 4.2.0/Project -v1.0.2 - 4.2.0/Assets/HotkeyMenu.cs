@@ -17,6 +17,7 @@ public class HotkeyMenu : MonoBehaviour {
 
 
 
+
 	private List<GameObject> objectList;
 	private SelectedManager selectMan;
 
@@ -32,6 +33,8 @@ public class HotkeyMenu : MonoBehaviour {
 		StartCoroutine(MyCoroutine());
 	
 	}
+
+
 
 
 	public void apply()

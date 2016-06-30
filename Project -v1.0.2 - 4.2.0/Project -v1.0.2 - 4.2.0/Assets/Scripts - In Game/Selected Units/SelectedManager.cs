@@ -531,7 +531,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
     public void DeselectAll()
-	{
+	{//Debug.Log ("Deselcting all");
         if (SelectedObjects.Count == 0)
             return;
         foreach (RTSObject obj in SelectedObjects)

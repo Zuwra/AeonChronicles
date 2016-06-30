@@ -473,6 +473,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public List<GameObject> getUnitSelection(Vector3 upperLeft, Vector3 bottRight)
 	{unitList.RemoveAll(item => item == null);
 		bool selectBuildings = true;
+		bool bDown = Input.GetKey (KeyCode.B);
 
 		List<GameObject> foundUnits = new List<GameObject> ();
 	
@@ -488,7 +489,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			if( tempLocation.y + obj.GetComponent<CharacterController>().radius*5 < bottRight.y)
 				{	continue;}
 				
-			if(!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure))	
+			if(!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure) && !bDown)	
 				{
 			
 				selectBuildings = false;}

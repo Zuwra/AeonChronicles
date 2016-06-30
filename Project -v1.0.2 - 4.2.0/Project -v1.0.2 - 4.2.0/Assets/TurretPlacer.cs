@@ -23,6 +23,7 @@ public class TurretPlacer : MonoBehaviour {
 	private float lastTrueTimeM;
 	private float lastTrueTimeP;
 
+
 	public TurretPlacerManager turretManager;
 
 	private bool isON = false;
@@ -78,6 +79,8 @@ public class TurretPlacer : MonoBehaviour {
 
 	public void initialize(bool g, bool r, bool m , bool p)
 	{
+
+
 		if (buttonsOn) {
 			if (g) {
 				lastTrueTimeG = Time.time;

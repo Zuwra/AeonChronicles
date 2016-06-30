@@ -28,6 +28,7 @@ public class GameMenu : MonoBehaviour {
 	public Canvas Objectives;
 	public Canvas Victory;
 	public Canvas missionLog;
+	public Canvas otherHotkeys;
 
 	private Canvas currentMenu;
 
@@ -118,6 +119,9 @@ public class GameMenu : MonoBehaviour {
 	}
 
 
+	public void openOtherHotkeys()
+	{setMenu (otherHotkeys);
+	}
 
 	public void openGamePlayMenu()
 	{setMenu (gameplayMenu);
