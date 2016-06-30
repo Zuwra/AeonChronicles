@@ -32,12 +32,19 @@ public class ExpositionDisplayer : MonoBehaviour {
 	}
 
 	public void displayText(string input, float duration, AudioClip sound, float volume, Sprite pic)
-	{	this.enabled = true;
+	{	Debug.Log ("Displaying");
+		this.enabled = true;
 		myText.text = input;
 		myCanvas.enabled = true;
 		turnOffTime = Time.time + duration;
 		MissionLogger.instance.AddLog (input);
 	
+		if (input.Length < 100) {
+			myText.fontSize = 26;
+		} else {
+			myText.fontSize = 20;
+		}
+
 		if (pic) {
 			personPic.sprite = pic;}
 		

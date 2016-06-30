@@ -16,6 +16,7 @@ public class BuilderUI : MonoBehaviour {
 	private float nextActionTime;
 	public Sprite defaultImage;
 	private bool buildingStuff;
+	public Canvas HelpBox;
 	// Use this for initialization
 	void Start () {
 		nextActionTime = Time.time;
@@ -104,7 +105,10 @@ public class BuilderUI : MonoBehaviour {
 
 	public void cancelUnit(int n )
 	{
+		
 		myMan.cancel (n);
+		if (myMan.buildOrder.Count == 0) {
+			HelpBox.enabled = false;}
 		//loadUnit (myMan.gameObject.GetComponent<UnitManager> ());
 
 	}

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Objective : MonoBehaviour {
 	[TextArea(2,10)]
@@ -8,7 +9,10 @@ public class Objective : MonoBehaviour {
 	public bool ActiveOnStart;
 	public bool bonus;
 	public bool completed;
+	public Objective nextObjective;
+	public bool UltimateObjective;
 
+	public List<SceneEventTrigger> myEvents = new List<SceneEventTrigger>();
 	// Use this for initialization
 	void Start () {
 		if (ActiveOnStart) {
@@ -25,6 +29,13 @@ public class Objective : MonoBehaviour {
 	public void complete()
 	{
 		completed = true;
+
+		foreach (SceneEventTrigger trig in myEvents) {
+			trig.trigger (0, 0, Vector3.zero, null, false);
+		}
+
+		if(nextObjective){
+			VictoryTrigger.instance.addObjective (nextObjective);}
 		VictoryTrigger.instance.CompleteObject (this);
 	}
 

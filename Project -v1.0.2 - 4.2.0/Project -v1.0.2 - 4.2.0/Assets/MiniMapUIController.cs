@@ -225,6 +225,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 
 		Physics.Raycast (ray4, out hit, Mathf.Infinity, 1 << 16);
 		Vector3 v4 = hit.point;
+		//Debug.Log ("Hit " + hit.collider.gameObject);
 		iC = (int)(((v4.x - Left) / (WorldWidth)) * textureWidth);
 		jC = (int)(((v4.z - bottom) / (WorldHeight)) * textureHeight);
 
@@ -238,6 +239,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 
 		drawLine(screenTrap, botLeftP,botRightP);
 		drawLine(screenTrap, botLeftP,topLeftP);
+		//Debug.Log ("Drawing Right Line " + botRightP + "  " + topRightP);
 		drawLine(screenTrap, botRightP,topRightP);
 
 		screenTrap.Apply();
@@ -278,7 +280,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 			ctr += frac;
 
 
-			if (t.x > 0 && t.y < tex.height)
+			if (t.x > 0 && t.y < tex.height && t.x <tex.width)
 			{
 				
 				tex.SetPixel ((int)t.x, (int)t.y, Color.magenta);

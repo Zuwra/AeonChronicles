@@ -21,7 +21,7 @@ public class HoldState : UnitState {
 			IWeapon myWeap = myManager.canAttack (enemy);
 			if (myWeap) {
 
-					myWeap.attack(enemy);
+				myWeap.attack(enemy,myManager);
 
 			}
 		}

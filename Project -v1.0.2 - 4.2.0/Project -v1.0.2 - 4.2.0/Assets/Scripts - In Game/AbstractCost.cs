@@ -44,8 +44,7 @@ public class AbstractCost : MonoBehaviour {
 			}
 			
 			stats = this.gameObject.GetComponent<UnitStats> ();
-			myGame = GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<RaceManager>();
-			
+		myGame = GameManager.main.getActivePlayer ();			
 		}
 		
 		// Update is called once per frame
@@ -65,7 +64,10 @@ public class AbstractCost : MonoBehaviour {
 		bool result = true;
 		if (!ab.active) {
 			result =  false;}
-			
+
+		if (myGame == null) {
+			Debug.Log ("Totally null");
+		}
 		if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
 
 			if (myGame.ResourceOne < this.ResourceOne) {

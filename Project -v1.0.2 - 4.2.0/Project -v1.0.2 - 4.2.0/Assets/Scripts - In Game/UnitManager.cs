@@ -456,6 +456,7 @@ public class UnitManager : Unit,IOrderable{
 	
 	}
 
+
 	public void setStun(bool input, Object source)
 	{
 		if (input) {

@@ -92,7 +92,7 @@ public class AttackMoveState : UnitState {
 					attacked = true;
 					if (weap.canAttack (enemy)) {
 						
-						weap.attack (enemy);
+						weap.attack (enemy, myManager);
 					} 
 				} 
 			}

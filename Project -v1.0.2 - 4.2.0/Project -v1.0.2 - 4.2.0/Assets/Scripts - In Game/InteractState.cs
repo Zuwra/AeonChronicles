@@ -56,7 +56,7 @@ public class InteractState : UnitState {
 			IWeapon myWeap = myManager.canAttack (target);	
 			if (myWeap) {
 				
-					myWeap.attack (target);
+				myWeap.attack (target,myManager);
 
 				}
 			}

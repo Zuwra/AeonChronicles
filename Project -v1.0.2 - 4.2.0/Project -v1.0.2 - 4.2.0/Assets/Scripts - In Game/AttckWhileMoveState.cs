@@ -26,7 +26,7 @@ public class AttckWhileMoveState : UnitState{
 			foreach(IWeapon weap in myManager.myWeapon)
 				if (weap.canAttack(closestEnemy))
 		    		{
-					weap.attack(closestEnemy);
+					weap.attack(closestEnemy, myManager);
 					}
 			}
 

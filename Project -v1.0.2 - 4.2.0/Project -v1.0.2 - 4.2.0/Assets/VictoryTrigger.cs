@@ -52,13 +52,19 @@ public class VictoryTrigger : MonoBehaviour {
 	}
 
 	public void CompleteObject(Objective obj)
-	{
+	{	TechCredits += obj.reward;
+		
 		if (obj.bonus) {
 			completeBonusObj++;
-			TechCredits += obj.reward;
+
 			ObjectiveManager.instance.completeMain (obj);
 		} else {
-			
+
+			if (obj.UltimateObjective) {
+				Win ();
+				return;
+			}
+
 			ObjectiveManager.instance.completeBonus (obj);
 			foreach (Objective o in mainObjective) {
 				if (!o.completed) {
@@ -66,6 +72,8 @@ public class VictoryTrigger : MonoBehaviour {
 			}
 			Win ();
 		}
+
+
 
 	}
 

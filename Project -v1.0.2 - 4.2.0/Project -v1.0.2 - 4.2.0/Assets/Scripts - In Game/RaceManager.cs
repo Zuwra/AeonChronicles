@@ -369,6 +369,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		}
 
 
+		foreach (BuildUnitObjective objective in GameObject.FindObjectsOfType<BuildUnitObjective>()) {
+			objective.buildUnit (obj);
+		}
 		// new unit, call update function on units abilities
 		if(unitTypeCount[unitName] ==1){
 

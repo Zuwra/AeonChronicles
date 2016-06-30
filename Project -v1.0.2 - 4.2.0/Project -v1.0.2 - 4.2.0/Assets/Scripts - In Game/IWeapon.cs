@@ -34,6 +34,13 @@ public class IWeapon : MonoBehaviour {
 	private float nextActionTime;
 	public float attackArc;
 	private GameObject enemy;
+	public float damagePoint;
+
+	public float AttackDelay;
+
+	private bool onDamagePoint;
+	private float PointEnd;
+	private UnitManager PointSource;
 
 
 	private bool offCooldown = true;
@@ -92,6 +99,12 @@ public class IWeapon : MonoBehaviour {
 			offCooldown = true;
 	
 		}
+		if (onDamagePoint && PointEnd < Time.time) {
+			onDamagePoint = false;
+			PointSource.cMover.removeSpeedBuff (this);
+
+		}
+
 		if (enemy) {
 		if(inRange(enemy))
 			{
@@ -121,8 +134,6 @@ public class IWeapon : MonoBehaviour {
 
 	public bool canAttack(GameObject target)
 	{
-
-
 		if (!offCooldown) {
 	
 			return false;}
@@ -179,10 +190,16 @@ public class IWeapon : MonoBehaviour {
 	}
 
 
-	public void attack(GameObject target)
+	public void attack(GameObject target, UnitManager toStun)
 	{nextActionTime = Time.time + attackPeriod;
+		if (toStun && damagePoint > 0) {
+			toStun.cMover.changeSpeed (-1, 0, false, this);
+			PointEnd = Time.time + damagePoint;
+			onDamagePoint = true;
+			PointSource = toStun;
+		}
 		for (int i = 0; i < numOfAttacks; i++) {
-			StartCoroutine( Fire ((i * .1f), target));
+			StartCoroutine( Fire ((i * .05f + AttackDelay), target));
 		
 		}
 

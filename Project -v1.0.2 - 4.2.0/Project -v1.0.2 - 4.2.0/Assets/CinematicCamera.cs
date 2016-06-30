@@ -66,6 +66,8 @@ public class CinematicCamera : SceneEventTrigger {
 
 	
 	}
+
+
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 		previousCamPos = MainCamera.main.gameObject.transform.position;
 		Debug.Log ("Index is " + index);
@@ -80,6 +82,10 @@ public class CinematicCamera : SceneEventTrigger {
 	}
 
 	public void exitScene(){
+		foreach(SceneEventTrigger trig in myScenes[currentScene].nextTrig){
+
+			trig.trigger (0, 0, Vector3.zero, null, false);
+		}
 		currentScene = -1;
 		GetComponent<Camera> ().enabled = false;
 		MainCamera.main.gameObject.transform.position = previousCamPos ;
@@ -91,6 +97,7 @@ public class CinematicCamera : SceneEventTrigger {
 	[System.Serializable]
 	public struct scene{
 		public List<shot> myShots;
+		public List<SceneEventTrigger> nextTrig;
 
 
 
@@ -121,9 +128,9 @@ public class CinematicCamera : SceneEventTrigger {
 				foreach(shot curr in s.myShots)
 				{Gizmos.color = Color.blue;
 					Gizmos.DrawLine (curr.startLocation,(curr.startTarget));
-					Gizmos.DrawSphere (curr.startLocation, 10);
+					Gizmos.DrawSphere (curr.startLocation, 5);
 					Gizmos.color = Color.red;
-					Gizmos.DrawSphere (curr.endLocation, 10);
+					Gizmos.DrawSphere (curr.endLocation, 5);
 					Gizmos.DrawLine (curr.endLocation, curr.endTarget);
 				}
 			

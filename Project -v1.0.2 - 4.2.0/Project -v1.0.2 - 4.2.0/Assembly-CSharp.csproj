@@ -171,6 +171,7 @@
      <Compile Include="Assets\BountyHunter.cs" />
      <Compile Include="Assets\BuildLargeTurret.cs" />
      <Compile Include="Assets\BuildManager.cs" />
+     <Compile Include="Assets\BuildUnitObjective.cs" />
      <Compile Include="Assets\BuilderUI.cs" />
      <Compile Include="Assets\BuildingInteractor.cs" />
      <Compile Include="Assets\BuildingPlacer.cs" />
@@ -268,6 +269,7 @@
      <Compile Include="Assets\RaceSelectionManger.cs" />
      <Compile Include="Assets\RaceTipManager.cs" />
      <Compile Include="Assets\RangeDisplayer.cs" />
+     <Compile Include="Assets\RefillChargeObjective.cs" />
      <Compile Include="Assets\RegenerativeSap.cs" />
      <Compile Include="Assets\RepairTurret.cs" />
      <Compile Include="Assets\RepairUpgrade.cs" />
@@ -423,6 +425,7 @@
      <Compile Include="Assets\TextTrigger.cs" />
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TurboRockets.cs" />
+     <Compile Include="Assets\TuretBuildHelper.cs" />
      <Compile Include="Assets\TurretDeathTrigger.cs" />
      <Compile Include="Assets\TurretHealthDisplay.cs" />
      <Compile Include="Assets\TurretMount.cs" />

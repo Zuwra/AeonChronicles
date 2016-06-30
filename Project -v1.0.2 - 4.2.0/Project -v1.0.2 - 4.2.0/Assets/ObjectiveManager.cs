@@ -52,7 +52,7 @@ public class ObjectiveManager : MonoBehaviour {
 	{bonusTitle.gameObject.SetActive (true);
 		GameObject obj = (GameObject)Instantiate (ObjectiveText);
 		obj.transform.SetParent (this.transform);
-		obj.GetComponentInChildren<Text> ().text ="  " +  input.description;
+		obj.GetComponentInChildren<Text> ().text ="" +  input.description;
 		bonusObjectives.Add (input, obj);
 		Vector3 pos = obj.transform.position;
 		pos.z = 0;
@@ -71,7 +71,7 @@ public class ObjectiveManager : MonoBehaviour {
 		Vector3 pos = obj.transform.position;
 		pos.z = 0;
 		obj.transform.position = pos;
-		obj.GetComponentInChildren<Text> ().text = "  " + input.description;
+		obj.GetComponentInChildren<Text> ().text = "" + input.description;
 		mainObjectives.Add (input, obj);
 		obj.transform.SetSiblingIndex (mainObjectives.Count);
 		blink (false);

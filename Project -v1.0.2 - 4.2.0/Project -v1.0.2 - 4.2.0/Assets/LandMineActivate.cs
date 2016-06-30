@@ -13,7 +13,7 @@ public class LandMineActivate : MonoBehaviour {
 	void Start () {
 		
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -34,7 +34,7 @@ public class LandMineActivate : MonoBehaviour {
 			}
 
 			if (activate) {
-				explosion.attack (otherObj);
+				explosion.attack (otherObj, null);
 				Destroy (this.gameObject);
 			}
 		}

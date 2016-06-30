@@ -6,7 +6,7 @@ public class TurretScreenDisplayer : MonoBehaviour {
 
 	private UnitManager manage;
 	public GameObject display;
-	private List<TurretMount> mounts = new List<TurretMount>();
+	public List<TurretMount> mounts = new List<TurretMount>();
 
 
 
@@ -25,33 +25,34 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		mounts.RemoveAll (item => item == null);
 		foreach (TurretMount obj in mounts) {
-			if (obj.turret != null) {
+			if (obj.turret) {
 
-				if (obj.hasDisplayer != null) {
+				if (obj.hasDisplayer) {
 					destroyDisplayer (obj);
 				}
-				//continue;
+				continue;
 			} else {
-				mounts.RemoveAll (item => item == null);
-				return;
+
+				//return;
 			}
 
 
-					if (obj.gameObject.GetComponentInParent<TurretPickUp> ()) {
+			if (obj.gameObject.GetComponentInParent<TurretPickUp> ()) {
 
-						if (!obj.gameObject.GetComponentInParent<TurretPickUp> ().autocast) {
+				if (!obj.gameObject.GetComponentInParent<TurretPickUp> ().autocast) {
 
-							continue;
-						}
+					continue;
 					}
+			}
 			if (obj.hasDisplayer == null) {
 
 				createDisplayer (obj);
 			} else {
 
 				//Debug.Log ("Updating buttons");
-				updateButtons(obj);
+				updateButtons(obj.hasDisplayer);
 			}
 				}
 
@@ -59,9 +60,16 @@ public class TurretScreenDisplayer : MonoBehaviour {
 
 
 
-	public void updateButtons(TurretMount t)
+	public void updateButtons(TurretPlacer t)
 	{
-		t.hasDisplayer.initialize (A.chargeCount > 0, B.chargeCount > 0,C.chargeCount > 0,D.chargeCount > 0);
+
+		if (C) {
+			t.initialize (A.chargeCount > 0, B.chargeCount > 0, C.chargeCount > 0, D.chargeCount > 0);
+		} else {
+			t.initialize (A.chargeCount > 0, B.chargeCount > 0, false,false);
+		}
+
+		//t.hasDisplayer.initialize (A.chargeCount > 0, B.chargeCount > 0,C.chargeCount > 0,D.chargeCount > 0);
 	}
 
 
@@ -70,7 +78,11 @@ public class TurretScreenDisplayer : MonoBehaviour {
 		GameObject obj = (GameObject)Instantiate (display);
 		obj.GetComponent<TurretPlacer> ().setUnit (t.gameObject);
 		obj.GetComponent<TurretPlacer> ().factory = this;
-		obj.GetComponent<TurretPlacer> ().initialize (A.chargeCount > 0, B.chargeCount > 0,C.chargeCount > 0,D.chargeCount > 0);
+		if (C) {
+			obj.GetComponent<TurretPlacer> ().initialize (A.chargeCount > 0, B.chargeCount > 0, C.chargeCount > 0, D.chargeCount > 0);
+		} else {
+			obj.GetComponent<TurretPlacer> ().initialize (A.chargeCount > 0, B.chargeCount > 0, false,false);
+		}
 		t.hasDisplayer = obj.GetComponent<TurretPlacer>();
 }
 

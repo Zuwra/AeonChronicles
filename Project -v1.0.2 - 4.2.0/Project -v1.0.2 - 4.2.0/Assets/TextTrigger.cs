@@ -22,7 +22,7 @@ public class TextTrigger : SceneEventTrigger {
 	
 	}
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
-
+		hasTriggered = true;
 			if (!dialogue) {
 				
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);

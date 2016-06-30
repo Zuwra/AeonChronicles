@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MassCapture : MonoBehaviour {
+public class MassCapture : SceneEventTrigger {
 
 	public List<CapturableUnit> captures = new List<CapturableUnit>();
 
@@ -18,19 +18,15 @@ public class MassCapture : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
-		UnitManager manage = other.gameObject.GetComponent<UnitManager>();
+	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 
-		if (manage) {
-			if (manage.PlayerOwner == 1) {
 				foreach (CapturableUnit u in captures) {
 					if (u != null) {
 						u.capture ();
 					}
 				}
-			}
-		}
+			
+
 	}
 
 }

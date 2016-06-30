@@ -62,6 +62,13 @@ public abstract class IMover: MonoBehaviour {
 			initialSpeed += flat;
 			initialSpeed *= perc;
 	} else {
+		// This will need to be changed if a source can apply different amounts of speed changes
+		foreach (SpeedMod a in ASMod) {
+				if (a.source == obj) {
+					return;
+			}
+		}
+
 		SpeedMod temp = new SpeedMod ();
 		temp.flat = flat;
 		temp.perc = perc;
@@ -72,6 +79,8 @@ public abstract class IMover: MonoBehaviour {
 	adjustSpeed ();
 
 }
+	
+
 
 	private void adjustSpeed()
 	{

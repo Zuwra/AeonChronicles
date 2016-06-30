@@ -26,17 +26,19 @@ public class ProductionManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Time.time > nextActionTime) {
-			nextActionTime += .5f;
+		if (this.gameObject.activeSelf) {
+			if (Time.time > nextActionTime) {
+				nextActionTime += .5f;
 
-			foreach (KeyValuePair<string, List<UnitProduction>> pair in abilityList) {
-				Transform t = iconList [pair.Key].transform.FindChild ("Percent");
-				t.GetComponent<Text>().text = 
-					"" +(int)(pair.Value [0].getProgress()*100) + "%";
+				foreach (KeyValuePair<string, List<UnitProduction>> pair in abilityList) {
+					Transform t = iconList [pair.Key].transform.FindChild ("Percent");
+					t.GetComponent<Text> ().text = 
+					"" + (int)(pair.Value [0].getProgress () * 100) + "%";
 
+
+				}
 
 			}
-
 		}
 
 	}

@@ -42,7 +42,7 @@ public class turretState : UnitState {
 		if (myWeap) {
 				
 					//myManager.gameObject.transform.LookAt(enemy.transform.position);
-					myWeap.attack (enemy);
+			myWeap.attack (enemy,myManager);
 
 				}
 			

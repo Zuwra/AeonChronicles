@@ -9,26 +9,27 @@ public class buildTurret :UnitProduction{
 
 
 	public float buildTime;
-	private RaceManager racer;
-	private float timer =0;
-	private bool buildingUnit = false;
+	protected RaceManager racer;
+	protected float timer =0;
+	protected bool buildingUnit = false;
 	public enum turretType
 	{
 		one, two
 	}
 
 	public turretType myTurretType;
-	private Selected mySelect;
-	private HealthDisplay HD;
-	private List<TurretMount> turretMounts = new List<TurretMount>();
-	private List<TurretMountTwo> turretTwoMounts = new List<TurretMountTwo>();
-	private BuildManager buildMan;
+	protected Selected mySelect;
+	protected HealthDisplay HD;
+	protected List<TurretMount> turretMounts = new List<TurretMount>();
+	protected List<TurretMountTwo> turretTwoMounts = new List<TurretMountTwo>();
+	protected BuildManager buildMan;
 
 	// Use this for initialization
 	void Start () {
 		buildMan = GetComponent<BuildManager> ();
 		manager = GetComponent<UnitManager> ();
 		mySelect = GetComponent<Selected> ();
+
 		myCost.cooldown = buildTime;
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ();
 		HD = GetComponentInChildren<HealthDisplay>();

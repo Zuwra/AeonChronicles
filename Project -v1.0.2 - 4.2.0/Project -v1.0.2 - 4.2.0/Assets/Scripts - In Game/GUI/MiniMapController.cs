@@ -42,7 +42,7 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 	}
 	
 	public void LoadMiniMap()
-	{Debug.Log ("Getting called");
+	{
 		//Properly configure camera viewport so it's a square and it's in the correct place regardless of resolution
 		//Always want the map to appear 3/4 up the screen, with a height of 1/4.5
 		float aspectRatio = (float)Screen.width/(float)Screen.height;
