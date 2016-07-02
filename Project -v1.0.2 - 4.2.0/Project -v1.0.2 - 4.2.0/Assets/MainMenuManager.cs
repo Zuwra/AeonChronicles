@@ -40,7 +40,10 @@ public class MainMenuManager : MonoBehaviour {
 	}
 
 
-
+	public void toPrologue()
+	{
+		SceneManager.LoadScene (2);
+	}
 
 	public void startMatch()
 	{

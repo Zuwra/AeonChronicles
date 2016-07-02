@@ -13,7 +13,7 @@ public class ExpositionTexts : MonoBehaviour {
 	public Text continueButton;
 	public Image backGrounda;
 	public Image backGroundb;
-
+	public GameObject StartButton;
 	public float fadeSpeed;
 	private Color startColor;
 
@@ -54,7 +54,8 @@ public class ExpositionTexts : MonoBehaviour {
 			}
 
 			if (theStrings.Count - 1 == currentText) {
-				continueButton.text = "Start Level";
+				StartButton.SetActive (true);
+				continueButton.text = "Continue";
 				
 			}
 
@@ -77,7 +78,7 @@ public class ExpositionTexts : MonoBehaviour {
 	void Update () {
 
 		if (Input.anyKeyDown) {
-			nextText ();
+		//	nextText ();
 		}
 
 		if (Time.time > nextActionTime) {
@@ -90,7 +91,7 @@ public class ExpositionTexts : MonoBehaviour {
 	{Debug.Log (currentText);
 		if(theStrings.Count-1 == currentText )
 		{
-			SceneManager.LoadScene (3);
+			SceneManager.LoadScene (0);
 		}
 		else{
 			nextText();
