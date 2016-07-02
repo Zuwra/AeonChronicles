@@ -36,6 +36,15 @@ public class UnitManager : Unit,IOrderable{
 	private List<Object> stunSources = new List<Object> ();     // Used to keep track of stun lengths and duration, to ensure the strongest one is always applied.
 	private List<Object> silenceSources = new List<Object> ();
 
+	public voiceResponse myVoices;
+
+	[System.Serializable]
+	public struct voiceResponse
+	{
+		public List<AudioClip> moving;
+		public List<AudioClip> attacking;
+	}
+
 	private bool isStunned;
 	private bool isSilenced;
 

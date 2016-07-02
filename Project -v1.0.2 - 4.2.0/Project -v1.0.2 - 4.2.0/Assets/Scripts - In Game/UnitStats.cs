@@ -18,7 +18,7 @@ public class UnitStats : MonoBehaviour {
 
 	public float MaxEnergy;
 	public float currentEnergy;
-	public float StartingEnergy;
+
 	public float EnergyRegenPerSec;
 	public Sprite Icon;
 
