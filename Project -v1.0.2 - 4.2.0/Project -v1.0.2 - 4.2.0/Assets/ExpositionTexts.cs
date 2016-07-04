@@ -17,6 +17,8 @@ public class ExpositionTexts : MonoBehaviour {
 	public float fadeSpeed;
 	private Color startColor;
 
+
+	public AudioSource audioPlayer;
 	[System.Serializable]
 	public struct textPiece{
 		
@@ -24,6 +26,7 @@ public class ExpositionTexts : MonoBehaviour {
 		[TextArea(2,10)]
 		public string myText;
 		public Sprite pic;
+		public AudioClip myclip;
 
 	}
 
@@ -50,12 +53,14 @@ public class ExpositionTexts : MonoBehaviour {
 
 				StartCoroutine (FadeIn ());
 			} else {
+				
 				textArea.text = theStrings [currentText].myText;
+			
 			}
 
 			if (theStrings.Count - 1 == currentText) {
-				StartButton.SetActive (true);
-				continueButton.text = "Continue";
+			//	StartButton.SetActive (true);
+				//continueButton.text = "Continue";
 				
 			}
 
@@ -99,7 +104,7 @@ public class ExpositionTexts : MonoBehaviour {
 	}
 
 	IEnumerator FadeIn()
-	{
+	{audioPlayer.PlayOneShot (theStrings [currentText].myclip);
 		while (backGroundb.color.a < 1) {
 // Fade in new background 
 			Color c = backGroundb.color;
@@ -122,6 +127,7 @@ public class ExpositionTexts : MonoBehaviour {
 				}
 			} 
 			else {
+				
 				textArea.text = theStrings [currentText].myText;
 				Color n = startColor;
 				n.a =  ( backGroundb.color.a);
@@ -133,6 +139,12 @@ public class ExpositionTexts : MonoBehaviour {
 			yield return new WaitForSeconds(.01f);
 
 		}
+		if (theStrings.Count - 1 == currentText) {
+			StartButton.SetActive (true);
+			continueButton.text = "Continue";
+
+		}
+		//audioPlayer.PlayOneShot (theStrings [currentText].myclip);
 		yield return new WaitForSeconds(.1f);
 		//return null;
 	}

@@ -17,7 +17,8 @@ public class VictoryScreen : MonoBehaviour {
 	void Start () {
 		if (LevelData.myLevels != null) {
 			if (LevelData.myLevels.Count > 0) {
-				SetResults (LevelData.myLevels [LevelData.currentLevel]);
+				Debug.Log ("Setting results " );
+				SetResults (LevelData.myLevels [LevelData.currentLevel-1]);
 			}
 		}
 	}

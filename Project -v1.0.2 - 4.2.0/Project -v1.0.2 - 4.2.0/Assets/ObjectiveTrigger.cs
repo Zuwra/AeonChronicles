@@ -19,7 +19,7 @@ public class ObjectiveTrigger : SceneEventTrigger {
 
 
 	void OnTriggerEnter(Collider other)
-	{
+	{/*
 		if (UnitEnter) {
 			if (other.GetComponent<UnitManager> ())
 			if (other.GetComponent<UnitManager> ().PlayerOwner == 1) {
@@ -27,7 +27,7 @@ public class ObjectiveTrigger : SceneEventTrigger {
 				trigger (0, 0, Vector3.zero, null, finishObjective);
 
 			}
-		}
+		}*/
 	}
 
 

@@ -606,6 +606,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		}
 
 			return;}
+
 		UnitManager listTop = SelectedObjects [0].gameObject.GetComponent<UnitManager> ();
 		if (attacker) {
 			if(listTop.myVoices.attacking.Count > 0)

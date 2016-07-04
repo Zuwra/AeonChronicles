@@ -23,12 +23,16 @@ public class TargetDeathVictory : Objective {
 
 
 	public void IDied(GameObject obj)
-	{
+	{Debug.Log ("I died " + obj.name);
+		
+		targets.RemoveAll(item => item == null);
 		if (targets.Contains (obj)) {
 			targets.Remove (obj);
-			if (targets.Count == 0) {
-				complete ();
-			}
+
+		}
+		if (targets.Count == 0) {
+			complete ();
+			Destroy (this);
 		}
 
 	}

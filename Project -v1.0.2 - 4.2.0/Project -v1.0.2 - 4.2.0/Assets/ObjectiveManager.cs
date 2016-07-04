@@ -11,7 +11,7 @@ public class ObjectiveManager : MonoBehaviour {
 
 	private Dictionary<Objective, GameObject> mainObjectives = new Dictionary<Objective, GameObject> ();
 	private Dictionary<Objective, GameObject> bonusObjectives = new Dictionary<Objective, GameObject> ();
-	public Text mainTitle;
+
 	public Text bonusTitle;
 
 
@@ -57,6 +57,7 @@ public class ObjectiveManager : MonoBehaviour {
 		Vector3 pos = obj.transform.position;
 		pos.z = 0;
 		obj.transform.position = pos;
+		bonusTitle.transform.SetSiblingIndex (mainObjectives.Count + bonusObjectives.Count+1);
 		obj.transform.SetSiblingIndex (mainObjectives.Count + bonusObjectives.Count+1);
 		blink (true);
 		UIHighLight.main.highLight (bonusTitle.gameObject, 2);

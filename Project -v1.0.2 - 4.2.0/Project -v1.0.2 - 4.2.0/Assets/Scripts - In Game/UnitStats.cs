@@ -68,8 +68,8 @@ public class UnitStats : MonoBehaviour {
 	
 		}
 		if (Time.time < 1 && myManager.PlayerOwner == 1) {
-			GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (supply);
-		
+			
+			GameManager.main.playerList[myManager.PlayerOwner-1].UnitCreated (supply);		
 		}
 
 		foreach (UnitTypes.UnitTypeTag t in otherTags) {
@@ -199,10 +199,9 @@ public class UnitStats : MonoBehaviour {
 
 
 			//}
-			if (myManager.PlayerOwner == 1) {
-				FinishDeath = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitDying (this.gameObject, deathSource);
-			}
-
+	
+			FinishDeath = GameManager.main.playerList[myManager.PlayerOwner-1].UnitDying (this.gameObject, deathSource);
+			
 			if (FinishDeath) {
 
 				foreach (Modifier effect in deathTriggers) {
@@ -224,7 +223,7 @@ public class UnitStats : MonoBehaviour {
 				//fix this when we have multiplayer games
 				if (myManager.PlayerOwner == 1) {
 					
-					GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer.UnitDied (supply, this.gameObject);
+					GameManager.main.playerList[myManager.PlayerOwner-1].UnitDied (supply, this.gameObject);
 				}
 
 				if (mySelection.IsSelected) {

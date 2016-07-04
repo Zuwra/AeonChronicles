@@ -11,8 +11,10 @@ public class LevelManager : MonoBehaviour {
 	public GameObject currentIntro;
 	public Canvas Technology;
 	public Canvas TechTree;
+	public Canvas UltTree;
 
 	public Button techButton;
+	public Button UltButton;
 	public GameObject Vehicles;
 	public GameObject Turrets;
 	public GameObject Structures;
@@ -20,7 +22,7 @@ public class LevelManager : MonoBehaviour {
 	private GameObject currentTech;
 	// Use this for initialization
 	void Awake () {
-	
+
 		foreach (GameObject obj in levelIntros) {
 			obj.SetActive (false);
 		}
@@ -30,6 +32,10 @@ public class LevelManager : MonoBehaviour {
 		currentTech = Vehicles;
 		if (LevelData.currentLevel == 0) {
 			techButton.interactable = false;
+			UltButton.interactable = false;
+		} else {
+			techButton.interactable = true;
+			UltButton.interactable = true;
 		}
 
 	}
@@ -75,6 +81,12 @@ public class LevelManager : MonoBehaviour {
 	{
 		Technology.enabled = !Technology.enabled;
 		TechTree.enabled = !TechTree.enabled;
+	}
+
+	public void toggleUltTree()
+	{
+		Technology.enabled = !Technology.enabled;
+		UltTree.enabled = !UltTree.enabled;
 	}
 
 	public void setDifficulty(Dropdown i)

@@ -50,7 +50,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
    
 	private List<ManagerWatcher> myWatchers = new List<ManagerWatcher>();
 
-	private List<GameObject> unitList = new List<GameObject>();
+	public List<GameObject> unitList = new List<GameObject>();
 
 	//used for unit ability validation
 	private Dictionary<string, int > unitTypeCount = new Dictionary<string, int>();
@@ -64,7 +64,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	private static SelectedManager statSelect;
 	//Used for end level stats
-	private int unitsLost;
+	public int unitsLost;
 	private float totalResOne;
 	private float totalResTwo;
 
@@ -223,6 +223,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	{
 		if (unitList.Contains (obj)) {
 			unitList.Remove (obj);
+
 		}
 
 	if (supply < 0) {
@@ -480,33 +481,48 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		foreach (GameObject obj in unitList) {
 			Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
 
-			if(tempLocation.x + obj.GetComponent<CharacterController>().radius*5  < upperLeft.x )
-				{continue;}
-			if(tempLocation.x - obj.GetComponent<CharacterController>().radius*5 > bottRight.x)
-				{continue;}
-			if(tempLocation.y - obj.GetComponent<CharacterController>().radius*5> upperLeft.y)
-				{continue;}
-			if( tempLocation.y + obj.GetComponent<CharacterController>().radius*5 < bottRight.y)
-				{	continue;}
+			if (tempLocation.x + obj.GetComponent<CharacterController> ().radius * 5 < upperLeft.x) {
+				continue;
+			}
+			if (tempLocation.x - obj.GetComponent<CharacterController> ().radius * 5 > bottRight.x) {
+				continue;
+			}
+			if (tempLocation.y - obj.GetComponent<CharacterController> ().radius * 5 > upperLeft.y) {
+				continue;
+			}
+			if (tempLocation.y + obj.GetComponent<CharacterController> ().radius * 5 < bottRight.y) {
+				continue;
+			}
 				
-			if(!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure) && !bDown)	
-				{
-			
-				selectBuildings = false;}
+			foundUnits.Add (obj);
+			if (!bDown) {
+				if (!obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+					selectBuildings = false;
+				}
 
 
-				foundUnits.Add(obj);
+
+			} else {
+				if (obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+					selectBuildings = false;
+				}
+			}
 		}
 
 
-		if (!selectBuildings) {
 
 
-			for(int i = foundUnits.Count -1; i >-1; i--)
-			{
-				if(foundUnits[i].GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure))
-				{	
-					foundUnits.Remove(foundUnits[i]);}
+			for (int i = foundUnits.Count - 1; i > -1; i--) {
+				if (!bDown ) {
+				if (!selectBuildings && foundUnits [i].GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {	
+						foundUnits.Remove (foundUnits [i]);
+					}
+				} else {
+				
+				if (!selectBuildings && !foundUnits [i].GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {	
+						foundUnits.Remove (foundUnits [i]);
+					}
+
 			}
 		}
 

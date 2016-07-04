@@ -443,12 +443,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 							foreach (GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight)) {
 								m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
 							}
-						}
+					}
 
 						//refresh GUI elements
 						m_SelectedManager.CreateUIPages (0);
-					
-
 				}
 			
 				break;

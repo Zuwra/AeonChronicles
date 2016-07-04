@@ -55,6 +55,7 @@ public class VictoryTrigger : MonoBehaviour {
 	{	TechCredits += obj.reward;
 		
 		if (obj.bonus) {
+			Debug.Log ("Completed bonus");
 			completeBonusObj++;
 
 			ObjectiveManager.instance.completeMain (obj);
@@ -99,7 +100,7 @@ public class VictoryTrigger : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (4);
 
-		LevelData.addLevelInfo (levelNumber, GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
+		LevelData.addLevelInfo (levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
 			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
 	
 		VictoryScreen.enabled = false;

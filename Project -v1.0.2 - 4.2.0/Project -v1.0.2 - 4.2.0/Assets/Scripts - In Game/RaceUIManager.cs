@@ -15,7 +15,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	Text supply;
 	string OneName;
 	string TwoName;
-
+	public bool runTabs;
 
 	public Dropdown production; // Controls which Info panel to display - Production, Income, or Current total army
 
@@ -26,44 +26,46 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 	// Use this for initialization
 	void Start () {
-		
+
 
 		if (raceManager == null) {
 
-			raceManager = GameObject.FindGameObjectWithTag("GameRaceManager").GetComponent<GameManager>().activePlayer;
+			raceManager = GameManager.main.activePlayer;
 		}
-		raceManager.addWatcher (this);
-		OneName = raceManager.OneName;
-		TwoName = raceManager.TwoName;
+
+		if (runTabs) {
+			raceManager.addWatcher (this);
+			OneName = raceManager.OneName;
+			TwoName = raceManager.TwoName;
 
 		
-		resourceOne = this.gameObject.transform.FindChild ("Resources").FindChild("ResourceOne").GetComponent<Text>();
-		resourceTwo = this.gameObject.transform.FindChild ("Resources").FindChild("ResourceTwo").GetComponent<Text>();
-		supply = this.gameObject.transform.FindChild ("Resources").FindChild("Supply").GetComponent<Text>();
+			resourceOne = this.gameObject.transform.FindChild ("Resources").FindChild ("ResourceOne").GetComponent<Text> ();
+			resourceTwo = this.gameObject.transform.FindChild ("Resources").FindChild ("ResourceTwo").GetComponent<Text> ();
+			supply = this.gameObject.transform.FindChild ("Resources").FindChild ("Supply").GetComponent<Text> ();
 
-		if (OneName != "") {
-			resourceOne.text = OneName + "  " + raceManager.ResourceOne;
-		} else {
-			resourceOne.text = "";
-		}
+			if (OneName != "") {
+				resourceOne.text = OneName + "  " + raceManager.ResourceOne;
+			} else {
+				resourceOne.text = "";
+			}
 
-		if (TwoName != "") {
-			resourceTwo.text = TwoName + "  " + raceManager.ResourceTwo;
-		}
-		else {
-			resourceTwo.text = "";
-		}
+			if (TwoName != "") {
+				resourceTwo.text = TwoName + "  " + raceManager.ResourceTwo;
+			} else {
+				resourceTwo.text = "";
+			}
 
-		if ( raceManager.currentSupply < raceManager.supplyMax - 5 ||  raceManager.supplyMax == raceManager.supplyCap) {
-			supply.color = Color.green;
-		} else if ( raceManager.currentSupply >= raceManager.supplyMax - 1) {
-			supply.color = Color.red;
-		} else {
-			supply.color = Color.yellow;
+			if (raceManager.currentSupply < raceManager.supplyMax - 5 || raceManager.supplyMax == raceManager.supplyCap) {
+				supply.color = Color.green;
+			} else if (raceManager.currentSupply >= raceManager.supplyMax - 1) {
+				supply.color = Color.red;
+			} else {
+				supply.color = Color.yellow;
+			}
+			supply.text = raceManager.currentSupply + "/" + raceManager.supplyMax;
+			currentProdManager = dropdowns [1];
+			chanageDropDown ();
 		}
-		supply.text =  raceManager.currentSupply + "/" + raceManager.supplyMax;
-		currentProdManager = dropdowns [1];
-		chanageDropDown ();
 	}
 	
 	// Update is called once per frame

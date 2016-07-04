@@ -7,7 +7,7 @@ public class BuildUnitObjective : Objective  {
 	public List<GameObject> unitsToBuild = new List<GameObject> ();
 	public bool anyCombo;
 
-	private int total = -1;
+	private int total = -3;
 
 	// Use this for initialization
 	void Start () {
