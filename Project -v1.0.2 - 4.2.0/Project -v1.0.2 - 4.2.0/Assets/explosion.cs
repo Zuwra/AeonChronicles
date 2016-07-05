@@ -19,11 +19,14 @@ public class explosion : MonoBehaviour {
 	private List<GameObject> hitStuff= new List<GameObject>();
 
 	public IWeapon.bonusDamage[] extraDamage;
+
+	UnitManager mySrcMan;
 	// Use this for initialization
 	void Start () {
 		if (particleEff) {
 			Instantiate (particleEff, this.gameObject.transform.position, Quaternion.identity);
 		}
+		mySrcMan = source.GetComponent<UnitManager> ();
 
 	}
 
@@ -60,8 +63,13 @@ public class explosion : MonoBehaviour {
 							amount += tag.bonus;
 						}
 					}
-					stats.TakeDamage (amount, source, type);
+					float total = stats.TakeDamage (amount, source, type);
 				
+
+					if (mySrcMan) {
+						mySrcMan.myStats.veteranDamage (total);
+					}
+
 					foreach (Notify not in triggers) {
 					
 						not.trigger(source,  null, other.gameObject, amount);

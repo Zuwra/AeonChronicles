@@ -51,7 +51,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	private List<ManagerWatcher> myWatchers = new List<ManagerWatcher>();
 
 	public List<GameObject> unitList = new List<GameObject>();
-
+	private MVPCalculator MVP = new MVPCalculator();
 	//used for unit ability validation
 	private Dictionary<string, int > unitTypeCount = new Dictionary<string, int>();
 
@@ -315,6 +315,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				StartCoroutine (DeathRescan (b));
 			}
 			unitsLost++;
+
 			unitList.Remove(Unit);
 			foreach (LethalDamageinterface trigger in deathTrigger) {
 				trigger.lethalDamageTrigger (Unit, deathSource);
@@ -529,6 +530,17 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		return foundUnits;
 	}
 
+	public void addVeteranStat(VeteranStats input)
+	{if (MVP == null) {
+			MVP = new MVPCalculator ();}
+		MVP.addVet (input);
+	}
+
+	public void getMVPScore()
+	{
+
+		Debug.Log (MVP.getMVP());
+	}
 
 
 	public void addActualDeathWatcher(LethalDamageinterface input){

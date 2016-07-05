@@ -26,14 +26,15 @@ public class UnitCardCreater : MonoBehaviour {
 	public Image rangeIcon;
 	public Image attackSpeedIcon;
 
-	public Text kills;
-
 	public Text UnitDescription;
 	public UnitManager currentUnit;
 
 	private bool hasUnit;
 
 	private BuilderUI builder;
+
+	public Text VetStats;
+	public GameObject VetCanvas;
 
 
 	// Use this for initialization
@@ -61,11 +62,27 @@ public class UnitCardCreater : MonoBehaviour {
 		}
 	}
 
+	public void toggleStats ()
+	{if (currentUnit) {
+			VetCanvas.SetActive (!VetCanvas.activeSelf);
+			if (!currentUnit.myStats.isHero) {
+				VetStats.text = RaceNames.getInstance ().getRank (currentUnit.myStats.veternStat.kills) + " ";
+			} else {
+				VetStats.text = "";
+			}
+			VetStats.text +=  currentUnit.myStats.veternStat.UnitName + 
+			"\nKills: " + currentUnit.myStats.veternStat.kills +
+			"\nDamage Dealt: " + currentUnit.myStats.veternStat.damageDone +
+			"\nHealing Done: " + currentUnit.myStats.veternStat.healingDone +
 
+			"\nEnergy Charged: " + currentUnit.myStats.veternStat.energyGained+
+			"\nArmor Mitigated Damage: " + currentUnit.myStats.veternStat.mitigatedDamage ;
+		}
+	}
 
 
 	public void CreateCard(RTSObject obj)
-	{
+	{VetCanvas.SetActive (false);
 		UnitManager manager = obj.gameObject.GetComponent<UnitManager> ();
 
 		obj.gameObject.GetComponent<Selected> ().setIcon (unitIcon.gameObject);
@@ -85,7 +102,7 @@ public class UnitCardCreater : MonoBehaviour {
 			SpellResist.gameObject.SetActive (false);
 			SpellIcon.gameObject.SetActive (false);
 		}
-		kills.text = "Kills: " + manager.myStats.getKills ();
+	
 		if (manager.cMover != null) {
 			speed.text = " " + manager.cMover.getMaxSpeed();
 		} else {speed.text = "";

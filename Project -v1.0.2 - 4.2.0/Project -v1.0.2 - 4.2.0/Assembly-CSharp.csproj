@@ -237,6 +237,7 @@
      <Compile Include="Assets\LevelManager.cs" />
      <Compile Include="Assets\LifeSteal.cs" />
      <Compile Include="Assets\LocationObjective.cs" />
+     <Compile Include="Assets\MVPCalculator.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />
      <Compile Include="Assets\Masochism.cs" />
      <Compile Include="Assets\MassCapture.cs" />
@@ -265,6 +266,7 @@
      <Compile Include="Assets\Prefabs\DaexaUnits\CoyoteMoveFireUpgrade.cs" />
      <Compile Include="Assets\ProductionManager.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
+     <Compile Include="Assets\RaceNames.cs" />
      <Compile Include="Assets\RaceSelectManager.cs" />
      <Compile Include="Assets\RaceSelectionManger.cs" />
      <Compile Include="Assets\RaceTipManager.cs" />
@@ -449,6 +451,7 @@
      <Compile Include="Assets\UnitUtility.cs" />
      <Compile Include="Assets\Upgradable.cs" />
      <Compile Include="Assets\Upgrade.cs" />
+     <Compile Include="Assets\VeteranStats.cs" />
      <Compile Include="Assets\VictoryScreen.cs" />
      <Compile Include="Assets\VictoryTrigger.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />

@@ -3,9 +3,9 @@ using System.Collections;
 
 public class DifficultyManager : MonoBehaviour {
 
-	[Tooltip("Percentage of health enemies will haev on easy mode")]
+	[Tooltip("Percentage of health enemies will have on easy mode")]
 	public float EasyHealth;
-	[Tooltip("Percentage of Damage enemies will haev on easy mode")]
+	[Tooltip("Percentage of Damage enemies will have on easy mode")]
 	public float EasyDamage;
 
 	// Use this for initialization
@@ -18,9 +18,12 @@ public class DifficultyManager : MonoBehaviour {
 						man.myStats.Maxhealth *= EasyHealth;
 						man.myStats.health *= EasyHealth;
 					}
-					foreach (IWeapon weap in man.myWeapon) {
-						weap.changeAttackSpeed (1 +(1 - EasyDamage), 0, true, this);
-					}
+				//	for (int i = 0; i < man.myWeapon.Count; i++) {
+						//man.myWeapon[i].changeAttackSpeed(1 +(1 - EasyDamage), 0, true, this);
+					//}
+					//foreach (IWeapon weap in man.myWeapon) {
+					//	weap.changeAttackSpeed (1 +(1 - EasyDamage), 0, true, this);
+					//}
 				}
 		
 				}

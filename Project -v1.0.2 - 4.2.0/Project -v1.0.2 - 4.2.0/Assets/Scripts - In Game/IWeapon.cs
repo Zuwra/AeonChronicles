@@ -247,6 +247,7 @@ public class IWeapon : MonoBehaviour {
 
 				//OnAttacking();
 				damage = target.GetComponent<UnitStats> ().TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
+				myManager.myStats.veteranDamage (damage);
 
 			}
 			if (target == null) {

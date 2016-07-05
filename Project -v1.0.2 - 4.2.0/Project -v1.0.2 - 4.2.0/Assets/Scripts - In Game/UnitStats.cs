@@ -9,7 +9,7 @@ public class UnitStats : MonoBehaviour {
 
 	[TextArea(2,10)]
 	public string UnitDescription;
-
+	public bool isHero;
 	public float Maxhealth;
 	public float health;
 	public float HealthRegenPerSec;
@@ -48,6 +48,7 @@ public class UnitStats : MonoBehaviour {
 
 
 	private float nextActionTime;
+	public VeteranStats veternStat;
 
 
 	public GameObject deathCorpse;
@@ -61,12 +62,15 @@ public class UnitStats : MonoBehaviour {
 			mySelection = this.gameObject.GetComponent<Selected>();
 		}
 		myManager = this.gameObject.GetComponent<UnitManager> ();
+		myManager.myStats = this;
 	
 
 		nextActionTime = Time.time;
 		if (isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 	
 		}
+
+
 		if (Time.time < 1 && myManager.PlayerOwner == 1) {
 			
 			GameManager.main.playerList[myManager.PlayerOwner-1].UnitCreated (supply);		
@@ -81,6 +85,12 @@ public class UnitStats : MonoBehaviour {
 		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
 
 
+		veternStat= new VeteranStats(!(isUnitType(UnitTypes.UnitTypeTag.Turret) || isUnitType(UnitTypes.UnitTypeTag.Structure)) );
+		GameManager.main.playerList [myManager.PlayerOwner - 1].addVeteranStat (veternStat);
+		if (isHero) {
+			veternStat.UnitName = myManager.UnitName;
+		}
+	
 	}
 
 
@@ -100,29 +110,18 @@ public class UnitStats : MonoBehaviour {
 			nextActionTime += .5f;
 
 			//Regenerate Health
-			if (health < Maxhealth) {
-				health += HealthRegenPerSec/2;
+			if (health < Maxhealth && HealthRegenPerSec > 0) {
+				veternStat.healingDone += heal (HealthRegenPerSec / 2);
 
-				updateHealthBar ();
 			}
-
-			if(health > Maxhealth)
-				{health = Maxhealth;}
 
 
 			//Regenerate Energy
-			if (currentEnergy < MaxEnergy) {
-				currentEnergy += EnergyRegenPerSec/2;
-			
-			
-				if(currentEnergy > MaxEnergy)
-				{currentEnergy = MaxEnergy;}
+			if (currentEnergy < MaxEnergy && EnergyRegenPerSec >0) {
 
-				updateEnergyBar ();
-			
+				changeEnergy (EnergyRegenPerSec / 2);
+
 			}
-
-			
 		}
 
 	}
@@ -156,6 +155,9 @@ public class UnitStats : MonoBehaviour {
 					//Debug.Log ("Taking damage " + this.gameObject);
 					Instantiate (takeDamageEffect, this.gameObject.transform.position, new Quaternion ());
 				}
+
+				veternStat.mitigatedDamage += armor;
+				veternStat.damageTaken += amount;
 				health-= amount;
 
 				updateHealthBar ();
@@ -248,10 +250,23 @@ public class UnitStats : MonoBehaviour {
 
 	}
 
+	public void veteranDamage(float amount)
+	{
+		if (otherTags.Contains (UnitTypes.UnitTypeTag.Turret)) {
+			transform.root.GetComponent<UnitManager> ().myStats.veternStat.damageDone += amount;
+
+		}
+		veternStat.damageDone += amount;
+	}
 
 	public void upKills()
 	{
 		kills++;
+		veternStat.kills++;
+		if (otherTags.Contains (UnitTypes.UnitTypeTag.Turret)) {
+			transform.root.GetComponent<UnitManager> ().myStats.upKills ();
+	
+		}
 		foreach (KillModifier km in killMods) {
 			km.incKill ();
 		}
@@ -296,23 +311,30 @@ public class UnitStats : MonoBehaviour {
 
 	public void changeEnergy(float n)
 	{
-		currentEnergy += n;
-		if (currentEnergy > MaxEnergy) {
-			currentEnergy = MaxEnergy;
-		} else if (currentEnergy < 0) {
-			currentEnergy = 0;
+		float amount;
+		if (n > 0) {
+			amount = Math.Min (n, MaxEnergy - currentEnergy);
+			currentEnergy += amount;
+			veternStat.energyGained += amount;
+		} else {
+			currentEnergy += n;
+			if (currentEnergy < 0) {
+				currentEnergy = 0;
+			}
 		}
+
 		updateEnergyBar ();
 	}
 
-	public void heal(float n)
+	public float heal(float n)
 	{
-		health += n;
-		if (health > Maxhealth) {
-			health = Maxhealth;
-		}
+		
+		float amount = Math.Min (n, Maxhealth - health);
+		health += amount;
+
 
 		updateHealthBar();
+		return amount;
 	}
 
 	public bool atFullEnergy()

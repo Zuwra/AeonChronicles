@@ -422,7 +422,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
 	public void updateControlGroups (RTSObject obj)
-	{Debug.Log ("Updating control group");
+	{//Debug.Log ("Updating control group");
 		for (int i = 0; i < 10; i++) {
 			if (Group [i].Contains (obj)) {
 				Group [i].Remove (obj);

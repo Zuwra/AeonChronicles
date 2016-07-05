@@ -195,7 +195,14 @@ public  class Projectile : MonoBehaviour {
 				not.trigger (this.gameObject, this.gameObject, target, damage);
 			}
 			if (target != null && target.GetComponent<UnitStats> () != null) {
-				target.GetComponent<UnitStats> ().TakeDamage (damage, Source, DamageTypes.DamageType.Regular);
+
+				float total =  target.GetComponent<UnitStats> ().TakeDamage (damage, Source, DamageTypes.DamageType.Regular);
+				if (Source) {
+					UnitManager man = Source.GetComponent<UnitManager> ();
+					if (man) {
+						man.myStats.veteranDamage (total);
+					}
+				}
 			}
 			if (target == null) {
 				{
