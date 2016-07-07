@@ -55,6 +55,21 @@ public class UnitStats : MonoBehaviour {
 	public GameObject deathEffect;
 	public GameObject takeDamageEffect;
 
+
+
+	void Awake()
+	{
+
+		foreach (UnitTypes.UnitTypeTag t in otherTags) {
+
+			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,t.ToString()));
+		}
+		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,armorType.ToString()));
+		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,myHeight.ToString()));
+		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
+
+
+	}
 	// Use this for initialization
 	void Start () {
 
@@ -76,13 +91,6 @@ public class UnitStats : MonoBehaviour {
 			GameManager.main.playerList[myManager.PlayerOwner-1].UnitCreated (supply);		
 		}
 
-		foreach (UnitTypes.UnitTypeTag t in otherTags) {
-			
-			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,t.ToString()));
-		}
-		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,armorType.ToString()));
-		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,myHeight.ToString()));
-		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
 
 
 		veternStat= new VeteranStats(!(isUnitType(UnitTypes.UnitTypeTag.Turret) || isUnitType(UnitTypes.UnitTypeTag.Structure)) );

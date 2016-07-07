@@ -38,7 +38,9 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 		GameObject closest = null;
 		foreach (GameObject obj in myManager.neutrals) {
-
+			if (!obj.GetComponent<OreDispenser> ()) {
+				continue;
+			}
 			float temp = Vector3.Distance (obj.transform.position, this.gameObject.transform.position);
 			if (temp < distance) {
 				distance = temp;

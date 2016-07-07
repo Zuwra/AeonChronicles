@@ -66,6 +66,8 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			currentProdManager = dropdowns [1];
 			chanageDropDown ();
 		}
+
+
 	}
 	
 	// Update is called once per frame
@@ -108,7 +110,18 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 		else if (Input.GetKeyDown (KeyCode.F12)) {
 			fTwelve();
 		}
-
+		else if (Input.GetKeyDown (KeyCode.O)) {
+			production.value = 1;
+			chanageDropDown ();
+		}
+		else if (Input.GetKeyDown (KeyCode.I)) {
+			production.value = 2;
+			chanageDropDown ();
+		}
+		else if (Input.GetKeyDown (KeyCode.U)) {
+			production.value = 0;
+			chanageDropDown ();
+		}
 	
 	}
 

@@ -76,8 +76,14 @@ public class MiningState : UnitState {
 		case miningState.mining:
 			timer -= Time.deltaTime;
 			if (timer < 0) {
-				dropoff = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.getNearestDropOff (target);
-		
+				if (myManager.GetComponent<ResourceDropOff> ()) {
+					
+					dropoff.GetComponent<ResourceDropOff> ().dropOff (resourceOneAmount, resourceTwoAmount);
+					state = miningState.traveling;
+				} else {
+
+					dropoff = GameManager.main.activePlayer.getNearestDropOff (target);
+				
 				if (dropoff == null) {
 					myManager.changeState (new DefaultState ());
 				
@@ -85,6 +91,7 @@ public class MiningState : UnitState {
 					myManager.cMover.resetMoveLocation (dropoff.transform.position);
 					state = miningState.returning;
 				}
+			}
 			} else if (timer / miningTime > .75) {
 			
 				Vector3 pos = hook.transform.position ;

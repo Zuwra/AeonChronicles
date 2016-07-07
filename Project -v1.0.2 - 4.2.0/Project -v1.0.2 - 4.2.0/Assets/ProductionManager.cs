@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 public class ProductionManager : MonoBehaviour {
 
 
@@ -30,10 +31,13 @@ public class ProductionManager : MonoBehaviour {
 			if (Time.time > nextActionTime) {
 				nextActionTime += .5f;
 
-				foreach (KeyValuePair<string, List<UnitProduction>> pair in abilityList) {
+				foreach (KeyValuePair<string, List<UnitProduction>> pair in abilityList) {try{
 					Transform t = iconList [pair.Key].transform.FindChild ("Percent");
 					t.GetComponent<Text> ().text = 
-					"" + (int)(pair.Value [0].getProgress () * 100) + "%";
+							"" + (int)(pair.Value [0].getProgress () * 100) + "%";}
+					catch(Exception e) {
+						continue;
+					}
 
 
 				}

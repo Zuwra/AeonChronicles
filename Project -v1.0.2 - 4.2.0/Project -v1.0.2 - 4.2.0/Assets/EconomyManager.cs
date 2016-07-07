@@ -7,7 +7,7 @@ public class EconomyManager : MonoBehaviour {
 
 	private RaceManager racer;
 
-	public Text Workers;
+	public Text Workers ;
 	public Text ResourceOne;
 	public Text ResourceTwo;
 
@@ -20,11 +20,13 @@ public class EconomyManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		racer = FindObjectOfType<GameManager> ().activePlayer;
-		nextActionTime = Time.time + 5;
+		racer = GameManager.main.playerList [0];
+		nextActionTime = Time.time + 5.1f;
 
 		updateWorker ();
+
 		if (racer.OneName.Length > 0) {
+			
 			ResourceOne.text = racer.OneName + ": ";
 		}
 		if (racer.TwoName.Length > 0) {
@@ -47,13 +49,14 @@ public class EconomyManager : MonoBehaviour {
 
 
 	public void updateAverage()
-	{nextActionTime += 5;
+	{nextActionTime = Time.time +  4f;
+		Debug.Log ("Averaging");
 		if (racer.OneName.Length > 0) {
 			List<float> deleteThese = new List<float> ();
 
 			int totalResOne = 0;
 			foreach (KeyValuePair<float, int> entry in resOneMap) {
-				if (entry.Key + 15 > Time.time) {
+				if (entry.Key + 10 > Time.time) {
 					totalResOne += entry.Value;
 				} else {
 					deleteThese.Add (entry.Key);
@@ -64,7 +67,7 @@ public class EconomyManager : MonoBehaviour {
 				resOneMap.Remove (f);
 			}
 
-			ResourceOne.text = racer.OneName + ": " + totalResOne * 4;
+			ResourceOne.text = racer.OneName + ": " + totalResOne * 6 + " per min";
 
 		}
 		if (racer.TwoName.Length > 0) {
@@ -72,7 +75,7 @@ public class EconomyManager : MonoBehaviour {
 
 			int totalResTwo = 0;
 			foreach (KeyValuePair<float, int> entry in resTwoMap) {
-				if (entry.Key + 15 > Time.time) {
+				if (entry.Key + 10 > Time.time) {
 					totalResTwo += entry.Value;
 				} else {
 					deleteThese2.Add (entry.Key);
@@ -83,7 +86,7 @@ public class EconomyManager : MonoBehaviour {
 				resTwoMap.Remove (f);
 			}
 
-			ResourceTwo.text = racer.TwoName + ": " + totalResTwo * 4;
+			ResourceTwo.text = racer.TwoName + ": " + totalResTwo * 6+ " per min";
 
 		}
 		}
@@ -113,6 +116,7 @@ public class EconomyManager : MonoBehaviour {
 		} else {
 			resTwoMap.Add (Time.time, resTwo);
 		}
+
 
 		updateAverage ();
 	}

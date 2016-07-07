@@ -130,7 +130,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 		frameUpdate = 0;
-		updateResources (0, 0);
+
 	}
 
 
@@ -336,9 +336,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void addUnit(GameObject obj )
 	{
-		
+		Debug.Log ("Adding " + obj.name);
 		unitList.Add(obj);
 		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+			Debug.Log ("Is a worker");
 			if (uiManager != null) {
 				uiManager.production.GetComponent<EconomyManager> ().updateWorker ();
 			}
