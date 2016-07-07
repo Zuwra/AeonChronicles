@@ -52,9 +52,10 @@ public class SateliteScan : TargetAbility{
 
 		location.y += 5;
 		proj = (GameObject)Instantiate (prefab, location, Quaternion.identity);
-		proj.GetComponent<UnitManager>().setInteractor();
-		proj.GetComponent<UnitManager> ().interactor.initialize ();
-
+		if (proj.GetComponent<UnitManager> ()) {
+			proj.GetComponent<UnitManager> ().setInteractor ();
+			proj.GetComponent<UnitManager> ().interactor.initialize ();
+		}
 
 		return false;
 

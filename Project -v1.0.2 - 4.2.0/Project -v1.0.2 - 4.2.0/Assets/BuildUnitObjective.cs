@@ -29,7 +29,7 @@ public class BuildUnitObjective : Objective  {
 			if (unitsToBuild [i].GetComponent<UnitManager> ().UnitName == obj.GetComponent<UnitManager> ().UnitName) {
 				if (anyCombo) {
 					total++;
-					Debug.Log (total +"  " +unitsToBuild.Count );
+					//Debug.Log (total +"  " +unitsToBuild.Count );
 					if (total == unitsToBuild.Count) {
 						complete ();
 					}

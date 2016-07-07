@@ -74,65 +74,82 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            // set a control group
+		if (Input.GetKey (KeyCode.LeftShift)) {
+			// set a control group
 			if (Input.GetKeyDown (KeyCode.Alpha1)) {
 				if (SelectedObjects.Count > 0) {
-					AddUnitsToGroup (0); 
+					AddUnitsToGroup (0, false); 
 					controlUI.activateTab (0, Group [0].Count, Group [0] [0].GetComponent<UnitStats> ().Icon);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
 				if (SelectedObjects.Count > 0) {
-					AddUnitsToGroup (1);
+					AddUnitsToGroup (1, false);
 					controlUI.activateTab (1, Group [1].Count, Group [1] [0].GetComponent<UnitStats> ().Icon);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
 				if (SelectedObjects.Count > 0) {
-					AddUnitsToGroup (2);
+					AddUnitsToGroup (2, false);
 					controlUI.activateTab (2, Group [2].Count, Group [2] [0].GetComponent<UnitStats> ().Icon);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
 				if (SelectedObjects.Count > 0) {
-					AddUnitsToGroup (3);
+					AddUnitsToGroup (3, false);
 					controlUI.activateTab (3, Group [3].Count, Group [3] [0].GetComponent<UnitStats> ().Icon);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
 				if (SelectedObjects.Count > 0) {
-					AddUnitsToGroup (4);
+					AddUnitsToGroup (4, false);
 					controlUI.activateTab (4, Group [4].Count, Group [4] [0].GetComponent<UnitStats> ().Icon);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
 				if (SelectedObjects.Count > 0) {
-					AddUnitsToGroup (5);
+					AddUnitsToGroup (5, false);
 					controlUI.activateTab (5, Group [5].Count, Group [5] [0].GetComponent<UnitStats> ().Icon);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
 				if (SelectedObjects.Count > 0) {
-					AddUnitsToGroup (6);
+					AddUnitsToGroup (6, false);
 					controlUI.activateTab (6, Group [6].Count, Group [6] [0].GetComponent<UnitStats> ().Icon);			
 				}
-			}
-			else if (Input.GetKeyDown (KeyCode.Alpha8)) {
+			} else if (Input.GetKeyDown (KeyCode.Alpha8)) {
 				if (SelectedObjects.Count > 0) {
-					AddUnitsToGroup (7);
+					AddUnitsToGroup (7, false);
 					controlUI.activateTab (7, Group [7].Count, Group [7] [0].GetComponent<UnitStats> ().Icon);
 				}
-			}
-			 else if (Input.GetKeyDown(KeyCode.Alpha9))
-			{if(SelectedObjects.Count > 0){
-                AddUnitsToGroup(8);
-				controlUI.activateTab (8, Group[8].Count, Group[8][0].GetComponent<UnitStats>().Icon);
-            }
-			}
-            else if (Input.GetKeyDown(KeyCode.Alpha0))
-			{if(SelectedObjects.Count > 0){
-                AddUnitsToGroup(9);
-				controlUI.activateTab (9, Group[9].Count, Group[9][0].GetComponent<UnitStats>().Icon);
+			} else if (Input.GetKeyDown (KeyCode.Alpha9)) {
+				if (SelectedObjects.Count > 0) {
+					AddUnitsToGroup (8, false);
+					controlUI.activateTab (8, Group [8].Count, Group [8] [0].GetComponent<UnitStats> ().Icon);
+				}
+			} else if (Input.GetKeyDown (KeyCode.Alpha0)) {
+				if (SelectedObjects.Count > 0) {
+					AddUnitsToGroup (9, false);
+					controlUI.activateTab (9, Group [9].Count, Group [9] [0].GetComponent<UnitStats> ().Icon);
 				}
 			}
 
-        }
+		} else if (Input.GetKeyDown (KeyCode.LeftControl)) {
+			if (Input.GetKeyDown(KeyCode.Alpha1))
+			{AddUnitsToGroup (0, true);}
+			else if (Input.GetKeyDown(KeyCode.Alpha2))
+			{AddUnitsToGroup (1, true); }
+			else if (Input.GetKeyDown(KeyCode.Alpha3))
+			{ AddUnitsToGroup (2, true); }
+			else if (Input.GetKeyDown(KeyCode.Alpha4))
+			{AddUnitsToGroup (3, true);}
+			else if (Input.GetKeyDown(KeyCode.Alpha5))
+			{AddUnitsToGroup (4, true); }
+			else if (Input.GetKeyDown(KeyCode.Alpha6))
+			{AddUnitsToGroup (5, true);}
+			else if (Input.GetKeyDown(KeyCode.Alpha7))
+			{ AddUnitsToGroup (6, true);}
+			else if (Input.GetKeyDown(KeyCode.Alpha8))
+			{AddUnitsToGroup (7, true); }
+			else if (Input.GetKeyDown(KeyCode.Alpha9))
+			{AddUnitsToGroup (8, true); }
+			else if (Input.GetKeyDown(KeyCode.Alpha0))
+			{AddUnitsToGroup (9, true);}
+		}
         else {
             // Select a control group
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -558,7 +575,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     **/
     public void DeselectObject(RTSObject obj)
     {
-
         //don't bother deselecting it if it's not selected in the first place
         if (!SelectedObjects.Contains(obj))
             return;
@@ -619,7 +635,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     public void GiveOrder(Order order)
 	{//fix this once we get to multiplayer games
-		//Debug.Log("Ordering " + order.Target + "  " + order.OrderType);
+
 		if(SelectedObjects.Count <= 0 || SelectedObjects[0].gameObject.GetComponent<UnitManager>().PlayerOwner != 1)
 			{return;}
 			
@@ -707,7 +723,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		for (int i = 0; i < SelectedObjects.Count; i++) {
 
 			float deg = 2 * Mathf.PI * i / SelectedObjects.Count;
-			Vector3 p = targetPoint + new Vector3 (Mathf.Cos (deg), 0, Mathf.Sin (deg))  *( SelectedObjects.Count -1) *4;
+			Vector3 p = targetPoint + new Vector3 (Mathf.Cos (deg), 0, Mathf.Sin (deg))  *( SelectedObjects.Count -1) *3;
 			points.Add (p);
 		}
 		List<IOrderable> usedGuys = new List<IOrderable> ();
@@ -756,9 +772,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
 
-    public void AddUnitsToGroup(int groupNumber)
-    {
-        Group[groupNumber].Clear();
+	public void AddUnitsToGroup(int groupNumber, bool clear)
+	{if (clear) {
+			Group [groupNumber].Clear ();
+		}
         foreach (RTSObject obj in SelectedObjects)
         {
             Group[groupNumber].Add(obj);

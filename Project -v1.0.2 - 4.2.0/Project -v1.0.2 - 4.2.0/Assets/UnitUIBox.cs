@@ -41,7 +41,7 @@
 		if (myUnit.currentUnit) {
 			Title.text = myUnit.currentUnit.myWeapon [index].Title;
 			Range.text = "Range: " +myUnit.currentUnit.myWeapon [index].range;
-			AttackSpeed.text = "Att. Rate: " + myUnit.currentUnit.myWeapon [index].attackPeriod;
+			AttackSpeed.text = "Att. Rate: " +myUnit.currentUnit.myWeapon [index].attackPeriod;
 
 			//if (myUnit.currentUnit.myWeapon [index].numOfAttacks > 1) {
 				//AttackNum.text = "Attacks: " + myUnit.currentUnit.myWeapon [index].numOfAttacks;

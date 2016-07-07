@@ -5,7 +5,7 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 
 
 	public IWeapon myWeapon;
-	private float intitalSpeed;
+	private float initalSpeed;
 
 	public float speedIncrease = .1f;
 
@@ -15,8 +15,10 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 	private float heatLevel = 2;
 	public float totalHeat = 2;
 	private float lastFired;
+	private float totalSpeed;
+	private bool Revved;
 
-	private Selected healthD;
+	//private Selected healthD;
 	private bool cooldown = false; // weapon shuts down;
 	public Animator myAnim;
 
@@ -27,9 +29,9 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 
 			myWeapon = this.gameObject.GetComponent<IWeapon> ();
 		}
-		intitalSpeed = myWeapon.attackPeriod;
+		initalSpeed = myWeapon.attackPeriod;
 
-		healthD = GetComponent<Selected> ();
+		//healthD = GetComponent<Selected> ();
 	
 		myWeapon.triggers.Add (this);
 		myWeapon.validators.Add (this);
@@ -51,6 +53,10 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 				}
 
 			}
+			if (!Revved) {
+				return;
+			}
+
 			if (Time.time > nextActionTime) {
 				nextActionTime += .5f;
 				heatLevel -= .12f;
@@ -58,22 +64,29 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 					heatLevel = 0;
 				
 				}
-				healthD.updateCoolDown (0);
-				if (Time.time - lastFired > 1.5) {
+				//healthD.updateCoolDown (0);
+				if (Time.time - lastFired > 1.5f) {
 					if (myAnim) {
 						myAnim.SetInteger ("State", 2);
 					}
-					myWeapon.attackPeriod += speedIncrease;
-					if (myWeapon.attackPeriod > intitalSpeed) {
-						myWeapon.attackPeriod = intitalSpeed;
+
+					myWeapon.removeAttackSpeedBuff (this);
+					totalSpeed -= speedIncrease;
+					if (totalSpeed <= 0) {
+						Revved = false;
+						totalSpeed = 0;
+					} else {
+
+						myWeapon.changeAttackSpeed (0, -totalSpeed, false, this);
 					}
+
 				}
 
 
 			}
 
-		}
-
+			}
+	
 
 	
 	}
@@ -83,22 +96,22 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 	}
 
 	public void IncreaseSpeed(float damage, GameObject source)
-	{
-	
-
+	{nextActionTime = Time.time + .5f;
+		Revved = true;
+		totalSpeed += speedIncrease;
+		if (initalSpeed - totalSpeed < MinimumPeriod) {
+			totalSpeed = initalSpeed - MinimumPeriod;
+		}
 		cooldown = false;
+		myWeapon.removeAttackSpeedBuff (this);
+		myWeapon.changeAttackSpeed (0, -totalSpeed, false, this);
 		lastFired = Time.time;
 		if (myAnim) {
 			myAnim.SetInteger ("State", 1);
 		}
 		heatLevel += .1f;
-		if((heatLevel / totalHeat) > .15f)
-		{healthD.updateCoolDown (heatLevel/totalHeat);}
 
-		myWeapon.attackPeriod *= (1 - speedIncrease);
-		if (myWeapon.attackPeriod < MinimumPeriod) {
-			myWeapon.attackPeriod = MinimumPeriod;
-		}
+
 		if (heatLevel > totalHeat) {
 			cooldown = true;
 		}

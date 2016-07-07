@@ -327,7 +327,7 @@ public class IWeapon : MonoBehaviour {
 	}
 
 	private void adjustAttackSpeed()
-	{
+	{Debug.Log ("Adjusting");
 		float speed = baseAttackPeriod;
 		foreach (attackSpeedMod a in ASMod) {
 			speed += a.flat;
@@ -337,12 +337,13 @@ public class IWeapon : MonoBehaviour {
 		foreach (attackSpeedMod a in ASMod) {
 			percent += a.perc;
 		}
-
+		Debug.Log ("Setting to " + percent);
 		speed *= percent;
 		if (speed < .05f) {
 			speed = .05f;}
 		
 		attackPeriod = speed;
+		Debug.Log ("Attack PEriod " + attackPeriod + "  " + this.gameObject.name);
 	}
 
 

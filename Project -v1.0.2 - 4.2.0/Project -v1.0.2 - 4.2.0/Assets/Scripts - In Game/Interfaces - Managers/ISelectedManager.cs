@@ -7,7 +7,7 @@ public interface ISelectedManager {
 	void AddObject(RTSObject obj);
 	void DeselectObject(RTSObject obj);
 	void DeselectAll();
-	void AddUnitsToGroup(int number);
+	void AddUnitsToGroup(int number, bool clearGroup);
 	void SelectGroup(int number);
 	void GiveOrder(Order order);
 	

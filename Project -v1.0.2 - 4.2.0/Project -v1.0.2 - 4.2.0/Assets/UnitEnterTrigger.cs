@@ -31,7 +31,7 @@ public class UnitEnterTrigger : MonoBehaviour {
 	{
 		if (other.GetComponent<UnitManager> ())
 		if (other.GetComponent<UnitManager> ().PlayerOwner == player) {
-			Debug.Log (other.gameObject);
+			//Debug.Log (other.gameObject);
 			StartCoroutine (Fire ());
 
 		}

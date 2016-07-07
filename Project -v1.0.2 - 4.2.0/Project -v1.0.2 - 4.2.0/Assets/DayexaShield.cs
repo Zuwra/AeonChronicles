@@ -42,6 +42,14 @@ public class DayexaShield : Ability,Modifier {
 		}
 	}
 
+	public void startRecharge()
+	{inCombat = true;
+	}
+	public void stopRecharge()
+	{inCombat = true;
+		rechargeTime = Time.time + RechargeDelay;
+	}
+
 	public float modify(float amount, GameObject src)
 	{
 		float energyLost = Mathf.Min ( Absorbtion, myStats.currentEnergy);

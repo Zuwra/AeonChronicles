@@ -11,6 +11,7 @@ public class HealthDisplay : MonoBehaviour {
 
 	public bool isOn;
 	public Image BuildingUnit;
+	public Image background;
 
 	//private List<int> colorList = new List<int>();
 	// Use this for initialization
@@ -31,11 +32,13 @@ public class HealthDisplay : MonoBehaviour {
 	{
 		BuildingUnit.sprite = m;
 		BuildingUnit.gameObject.SetActive(true);
+		background.gameObject.SetActive (true);
 	}
 
 	public void stopBuilding()
 	{BuildingUnit.sprite = null;
 		BuildingUnit.gameObject.SetActive(false);
+		background.gameObject.SetActive (false);
 	}
 
 	//THIS METHOD RETURNS AN ID Reciept which the client class must keep so that it can turn it back in to turn of the buff icon

@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	void Start () 
 	{fog = GameObject.FindObjectOfType<FogOfWar> ();
 		//Resolve interface variables
-		m_SelectedManager = this.gameObject.GetComponent<SelectedManager>();
+		m_SelectedManager =  GameObject.FindObjectOfType<SelectedManager>();
 		m_Camera = ManagerResolver.Resolve<ICamera>();	
 		m_GuiManager = ManagerResolver.Resolve<IGUIManager>();
 		m_MiniMapController = ManagerResolver.Resolve<IMiniMapController>();
@@ -83,8 +83,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		raceManager = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager>().activePlayer;
 	
-		
-		//Loader.main.FinishedLoading (this);
+
 	}
 	
 	// Update is called once per frame
@@ -358,12 +357,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 						m_SelectedManager.DeselectAll ();
 					}
 
-
-				foreach (GameObject obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
-					//Debug.Log ("Adding " + obj.name);
-					m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+				if (currentObject.GetComponent<UnitManager> ()) {
+					foreach (GameObject obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
+						//Debug.Log ("Adding " + obj.name);
+						m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
 					}
-
+				}
 				m_SelectedManager.CreateUIPages (0);
 			} 
 					
@@ -376,9 +375,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 	{if (Time.time < lastClickDouble+ .08f) {
 			return;
 		
-		}
-		if (e.doubleClick) {
-			return;
 		}
 
 		if (clickOverUI) {
@@ -416,43 +412,38 @@ public class UIManager : MonoBehaviour, IUIManager {
                     control deselects units without affecting others
                 */
 					//deselect if none of the modifiers are being used
-					if (!IsShiftDown && !IsControlDown) {
+					if (!IsShiftDown ) {
 						m_SelectedManager.DeselectAll ();
 					}
 
-					//if only control is down, remove the unit from selection
-					if (IsControlDown && !IsShiftDown) {
-						foreach (GameObject obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
-							//Debug.Log ("Adding " + obj.name);
-							m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
-						}
+					//if only shift is down, remove the unit from selection
+					if (IsControlDown ) {
 
+					
+							foreach (GameObject obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
+							if (!Input.GetKey (KeyCode.LeftAlt)) {
+								m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+							} else {
+								m_SelectedManager.DeselectObject (getUnitManagerFromObject (obj));
+							}
+								}
 
-					//	m_SelectedManager.DeselectObject (getUnitManagerFromObject (currentObject));
 					}
                 //if only shift is down, add the unit to selection
                 else if (!IsControlDown && IsShiftDown) {
 
 						m_SelectedManager.AddRemoveObject (getUnitManagerFromObject (currentObject));
-					} else {
-
+					} 
+				else {
 						m_SelectedManager.AddObject (getUnitManagerFromObject (currentObject));
 					}
-					m_SelectedManager.CreateUIPages (0);
+				m_SelectedManager.CreateUIPages (0);
 				}
 			}
-            //or if we aren't dragging and clicked on empty air
-			else if (!m_GuiManager.Dragging) {
-				if (!isPointerOverUIObject()) {
-					if (!IsShiftDown) {
-						
-						//m_SelectedManager.DeselectAll ();
-					
-					}
-				}
-			} else {
+            //or if we are dragging and clicked on empty air
+			 else if(m_GuiManager.Dragging){
 				
-
+				bool Refresh = false;
 						//Get the drag area
 						Vector3 upperLeft = new Vector3 ();
 						upperLeft.x = Math.Min (Input.mousePosition.x, originalPosition.x);
@@ -460,34 +451,38 @@ public class UIManager : MonoBehaviour, IUIManager {
 						Vector3 bottRight = new Vector3 ();
 						bottRight.x = Math.Max (Input.mousePosition.x, originalPosition.x);
 						bottRight.y = Math.Min (Input.mousePosition.y, originalPosition.y);
-						//TODO - control and shift are not working. Somehow it's deselecting when it starts, but I can't track where it's being deselected
-
+	
 						//if we're control-dragging, deselect everything in the drag area
-						if (IsControlDown) {
-							foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight)) {
-								m_SelectedManager.DeselectObject (getUnitManagerFromObject (obj));
-							}
-						}
+				if (IsControlDown) {
+					foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight)) {
+						m_SelectedManager.DeselectObject (getUnitManagerFromObject (obj));
+						Refresh = true;
+					}
+				}
                 //if we're shift-dragging, add everything in the drag area  
                 else if (IsShiftDown) {
-							foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight)) {
-								m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
-							}
-						}
+					foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight)) {
+						m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+						Refresh = true;
+					}
+				}
                 //if we're dragging, deselect everything, then add everything in the drag area
                 else {
 							
 					List<GameObject> unitSel = raceManager.getUnitSelection (upperLeft, bottRight);
 					if (unitSel.Count > 0) {
+						Refresh = true;
 						m_SelectedManager.DeselectAll ();
+					
+						foreach (GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight)) {
+							m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+						}
 					}
-							foreach (GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight)) {
-								m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
-							}
-					}
-
+				}
 						//refresh GUI elements
-						m_SelectedManager.CreateUIPages (0);
+				if (Refresh) {
+					m_SelectedManager.CreateUIPages (0);
+				}
 				}
 			
 				break;
