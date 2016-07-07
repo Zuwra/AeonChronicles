@@ -130,7 +130,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 		frameUpdate = 0;
-
+		updateResources (0, 0);
 	}
 
 
