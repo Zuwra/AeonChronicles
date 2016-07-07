@@ -481,7 +481,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	
 		foreach (GameObject obj in unitList) {
 			Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
-
+			//Debug.Log ("Checking " + tempLocation + "   within  "+ upperLeft + " bot " + bottRight);
 			if (tempLocation.x + obj.GetComponent<CharacterController> ().radius * 5 < upperLeft.x) {
 				continue;
 			}
@@ -510,9 +510,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			}
 		}
 
-
-
-
 			for (int i = foundUnits.Count - 1; i > -1; i--) {
 				if (!bDown ) {
 				if (!selectBuildings && foundUnits [i].GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {	
@@ -529,6 +526,44 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		return foundUnits;
 	}
+
+
+	public List<GameObject> getUnitOnScreen(bool select, string Unitname)
+	{
+		unitList.RemoveAll(item => item == null);
+
+		List<GameObject> foundUnits = new List<GameObject> ();
+
+		foreach (GameObject obj in unitList) {
+			UnitManager tempMan = obj.GetComponent<UnitManager> ();
+			if (tempMan.UnitName != Unitname) {
+				continue;
+			}
+
+			Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
+			//Debug.Log ("Checking " + tempLocation + "   within  "+ upperLeft + " bot " + bottRight);
+			if (tempLocation.x + obj.GetComponent<CharacterController> ().radius * 5 < 0) {
+				continue;
+			}
+			if (tempLocation.x - obj.GetComponent<CharacterController> ().radius * 5 > Screen.width) {
+				continue;
+			}
+			if (tempLocation.y - obj.GetComponent<CharacterController> ().radius * 5 > Screen.height) {
+				continue;
+			}
+			if (tempLocation.y + obj.GetComponent<CharacterController> ().radius * 5 < 0) {
+				continue;
+			}
+
+			foundUnits.Add (obj);
+		
+		}
+
+	
+
+		return foundUnits; 
+	}
+
 
 	public void addVeteranStat(VeteranStats input)
 	{if (MVP == null) {

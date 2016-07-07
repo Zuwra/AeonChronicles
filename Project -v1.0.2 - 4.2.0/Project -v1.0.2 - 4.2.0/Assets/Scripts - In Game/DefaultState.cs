@@ -43,13 +43,15 @@ public class DefaultState : UnitState{
 
 	override
 	public void attackResponse(GameObject src)
-	{	Debug.Log ("Attack response");
+	{	
 		if(src){
 		UnitManager manage = src.GetComponent<UnitManager> ();
 			if (manage) {
 				if (manage.PlayerOwner != myManager.PlayerOwner) {
 	
 					Debug.Log ("Default State damage response");
+
+
 
 					if (myManager.myWeapon.Count > 0) {
 						if (myManager.isValidTarget(src)) {
@@ -70,6 +72,17 @@ public class DefaultState : UnitState{
 						}
 
 					}
+					// Inform other alleis to also attack
+					foreach (GameObject ally in myManager.allies) {
+						if (ally){
+							UnitState hisState= ally.GetComponent<UnitManager> ().getState ();
+							if (hisState is DefaultState) {
+								hisState.attackResponse (src);
+							}
+
+						}
+					}
+
 				}
 			}
 		}

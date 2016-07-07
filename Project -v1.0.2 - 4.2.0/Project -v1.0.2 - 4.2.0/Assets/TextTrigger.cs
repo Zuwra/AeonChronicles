@@ -22,19 +22,20 @@ public class TextTrigger : SceneEventTrigger {
 	
 	}
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
-		hasTriggered = true;
+		if (!hasTriggered) {
+			hasTriggered = true;
+
 			if (!dialogue) {
 				
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
 				UIHighLight.main.highLight (null, 0);
-			}
-			else{
+			} else {
 				ExpositionDisplayer.instance.displayText (text, duration, sound, .2f, myPic);
 				if (stealCamera > 0) {
 					GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);
 				}
 			}
-
+		}
 
 	}
 

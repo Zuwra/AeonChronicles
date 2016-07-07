@@ -149,7 +149,27 @@ public class AttackMoveState : UnitState {
 
 	override
 	public void attackResponse(GameObject src)
-	{}
+	{
+		if(src){
+			UnitManager manage = src.GetComponent<UnitManager> ();
+			if (manage) {
+				if (manage.PlayerOwner != myManager.PlayerOwner) {
+
+			
+					foreach (GameObject ally in myManager.allies) {
+						if (ally){
+							UnitState hisState= ally.GetComponent<UnitManager> ().getState ();
+							if (hisState is DefaultState) {
+								hisState.attackResponse (src);
+							}
+
+						}
+					}
+				}
+			}
+		}
+
+	}
 
 
 }

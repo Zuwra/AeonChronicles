@@ -24,10 +24,12 @@ public class explosion : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (particleEff) {
+		
 			Instantiate (particleEff, this.gameObject.transform.position, Quaternion.identity);
 		}
-		mySrcMan = source.GetComponent<UnitManager> ();
-
+		if (source) {
+			mySrcMan = source.GetComponent<UnitManager> ();
+		}
 	}
 
 

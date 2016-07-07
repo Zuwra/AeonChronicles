@@ -5,7 +5,7 @@ using System;
 public partial class EventsManager {
 	
 	//-----------------------Double Click Paramters------------------
-	public float doubleClickTime = 300.0f;	
+	public float doubleClickTime = 500.0f;	
 	private bool checkForDoubleClick = false;	
 	private DateTime timeAtFirstClick;
 
@@ -87,7 +87,8 @@ public partial class EventsManager {
 			
 			if (timeBetweenClicks.Milliseconds < doubleClickTime)
 			{
-				e.doubleClick = true;				
+				e.doubleClick = true;	
+				Debug.Log ("It is double " + Time.frameCount);
 			}
 		}
 		else

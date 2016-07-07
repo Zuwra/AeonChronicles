@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public int currentAbilityNUmber;
 	private bool clickOverUI = false;
 
+	private float lastClickDouble;
 	public bool IsShiftDown
 	{
 		get;
@@ -337,15 +338,49 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 	public void LeftButton_DoubleClickDown(MouseEventArgs e)
 	{
-		if (currentObject.layer == 8)
-		{
+		lastClickDouble = Time.time;
+	
 			//Select all units of that type on screen
-			
+			int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
+	
+			//if we're not dragging and clicked on a unit
+			if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10)) {
+
+
+				if (!isPointerOverUIObject()) {
+				
+					/*  TARGET RULES
+                    shift selects units without affecting others
+                    control deselects units without affecting others
+                */
+					//deselect if none of the modifiers are being used
+					if (!IsShiftDown && !IsControlDown) {
+						m_SelectedManager.DeselectAll ();
+					}
+
+
+				foreach (GameObject obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
+					//Debug.Log ("Adding " + obj.name);
+					m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+					}
+
+				m_SelectedManager.CreateUIPages (0);
+			} 
+					
+	
 		}
+
 	}
 	
 	public void LeftButton_SingleClickUp(MouseEventArgs e)
-	{
+	{if (Time.time < lastClickDouble+ .08f) {
+			return;
+		
+		}
+		if (e.doubleClick) {
+			return;
+		}
+
 		if (clickOverUI) {
 			clickOverUI = false;
 			return;
@@ -387,6 +422,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 					//if only control is down, remove the unit from selection
 					if (IsControlDown && !IsShiftDown) {
+						foreach (GameObject obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
+							//Debug.Log ("Adding " + obj.name);
+							m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+						}
+
+
 					//	m_SelectedManager.DeselectObject (getUnitManagerFromObject (currentObject));
 					}
                 //if only shift is down, add the unit to selection

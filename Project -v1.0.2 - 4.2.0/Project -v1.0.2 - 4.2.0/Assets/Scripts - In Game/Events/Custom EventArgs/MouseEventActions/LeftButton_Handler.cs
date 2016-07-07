@@ -25,6 +25,8 @@ public class LeftButton_Handler : MouseEventArgs {
 		}
 		else
 		{
+
+	
 			uiManager.LeftButton_SingleClickUp(this);
 		}
 	}
