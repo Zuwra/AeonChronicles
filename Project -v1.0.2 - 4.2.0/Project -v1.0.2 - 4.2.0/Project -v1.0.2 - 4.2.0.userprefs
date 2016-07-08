@@ -1,21 +1,26 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UI\UIManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TurretPlacer.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\OreDispenser.cs" Line="37" Column="2" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="192" Column="33" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="477" Column="39" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="605" Column="3" />
       <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\DaexaWorkerInteract.cs" Line="43" Column="35" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="257" Column="4" />
-      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets\MiningState.cs" Line="79" Column="5" />
-      <File FileName="Assets\UnitCardCreater.cs" Line="163" Column="3" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="604" Column="11" />
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="239" Column="34" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="57" Column="2" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="284" Column="52" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="307" Column="4" />
       <File FileName="Assets\ProductionManager.cs" Line="40" Column="16" />
-      <File FileName="Assets\Scripts - In Game\GUI\Modules\Drag Select\DragSelect.cs" Line="17" Column="2" />
-      <File FileName="Assets\Scripts - In Game\Resolver\ManagerResolver.cs" Line="1" Column="1" />
+      <File FileName="Assets\Morph.cs" Line="64" Column="24" />
+      <File FileName="Assets\EconomyManager.cs" Line="26" Column="20" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="169" Column="34" />
+      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="81" Column="1" />
+      <File FileName="Assets\Scripts - In Game\AbstractCost.cs" Line="65" Column="20" />
+      <File FileName="Assets\AbilityBox.cs" Line="1" Column="1" />
+      <File FileName="Assets\CostBox.cs" Line="28" Column="1" />
+      <File FileName="Assets\Page.cs" Line="75" Column="11" />
+      <File FileName="Assets\Scripts - In Game\Ability.cs" Line="38" Column="33" />
+      <File FileName="Assets\airmover.cs" Line="1" Column="1" />
+      <File FileName="Assets\DaexaWorkerInteract.cs" Line="83" Column="48" />
+      <File FileName="Assets\TurretScreenDisplayer.cs" Line="67" Column="94" />
+      <File FileName="Assets\TurretPlacer.cs" Line="123" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

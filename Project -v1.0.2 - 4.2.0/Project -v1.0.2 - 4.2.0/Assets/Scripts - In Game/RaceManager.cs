@@ -314,6 +314,14 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 				StartCoroutine (DeathRescan (b));
 			}
+			if (Unit.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+				Debug.Log ("Is a worker");
+				if (uiManager != null) {
+					uiManager.production.GetComponent<EconomyManager> ().updateWorker ( -1);
+				}
+			}
+
+
 			unitsLost++;
 
 			unitList.Remove(Unit);
@@ -336,12 +344,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void addUnit(GameObject obj )
 	{
-		Debug.Log ("Adding " + obj.name);
+		//Debug.Log ("Adding " + obj.name);
 		unitList.Add(obj);
 		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
 			Debug.Log ("Is a worker");
 			if (uiManager != null) {
-				uiManager.production.GetComponent<EconomyManager> ().updateWorker ();
+				uiManager.production.GetComponent<EconomyManager> ().updateWorker (1);
 			}
 		}
 		if (uiManager != null) {
@@ -587,7 +595,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void useAbilityOne()
 	{if (UltOne != null) {
-			if(UltOne.active &&UltOne.canActivate().canCast)
+			if(UltOne.active &&UltOne.canActivate(true).canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltOne, 1);
 		}
@@ -596,7 +604,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void useAbilityTwo()
 	{
 		if (UltTwo != null) {
-			if(UltTwo.active &&UltTwo.canActivate().canCast)
+			if(UltTwo.active &&UltTwo.canActivate(true).canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltTwo, 1);
 		}
@@ -605,7 +613,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void useAbilityThree()
 	{
 		if (UltThree != null) {
-			if(UltThree.active &&UltThree.canActivate().canCast)
+			if(UltThree.active &&UltThree.canActivate(true).canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltThree, 1);
 		}
@@ -614,7 +622,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void useAbilityFour()
 	{
 		if (UltFour != null) {
-			if(UltFour.active && UltFour.canActivate().canCast)
+			if(UltFour.active && UltFour.canActivate(true).canCast)
 			uiManage.SwitchMode (Mode.globalAbility);
 			uiManage.setAbility (	UltFour, 1);
 		}

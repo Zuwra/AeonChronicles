@@ -78,7 +78,7 @@ public class BuildUnit : UnitProduction {
 
 
 	override
-	public continueOrder canActivate ()
+	public continueOrder canActivate (bool showError)
 	{
 		continueOrder order = new continueOrder();
 
@@ -86,7 +86,7 @@ public class BuildUnit : UnitProduction {
 		order.nextUnitCast = false;
 
 
-		if (!myCost.canActivate (this, order)) {
+		if (!myCost.canActivate (this, order, showError)) {
 			order.canCast = false;
 		}
 		if (!active) {

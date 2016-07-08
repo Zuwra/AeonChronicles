@@ -88,6 +88,7 @@ public class UnitManager : Unit,IOrderable{
 			} 
 
 			man.initialize (); // Initializes data, if this is the first unit to wake up.
+			myStats.Initialize();
 			man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
 
 		if (gameObject.GetComponent<CharacterController> () && visionSphere != null) {
@@ -146,7 +147,7 @@ public class UnitManager : Unit,IOrderable{
 
 			continueOrder order = null;
 			if (abilityList [n] != null) {
-				order = abilityList [n].canActivate ();
+				order = abilityList [n].canActivate (true);
 
 				if (order.canCast) {
 
@@ -167,7 +168,7 @@ public class UnitManager : Unit,IOrderable{
 		if (!isStunned && !isSilenced) {
 			if (abilityList [n] != null) {
 	
-				order = abilityList [n].canActivate ();
+				order = abilityList [n].canActivate (true);
 		
 				if (order.canCast) {
 					if (abilityList [n] is TargetAbility) {

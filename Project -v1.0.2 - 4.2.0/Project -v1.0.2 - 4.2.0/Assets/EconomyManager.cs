@@ -23,7 +23,7 @@ public class EconomyManager : MonoBehaviour {
 		racer = GameManager.main.playerList [0];
 		nextActionTime = Time.time + 5.1f;
 
-		updateWorker ();
+		updateWorker (0);
 
 		if (racer.OneName.Length > 0) {
 			
@@ -94,8 +94,8 @@ public class EconomyManager : MonoBehaviour {
 
 
 
-	public void updateWorker()
-	{totalWorkers++;
+	public void updateWorker( int input)
+	{totalWorkers += input;
 
 		Workers.text = "Workers: " + totalWorkers;
 	}

@@ -76,8 +76,10 @@ public class Morph :  UnitProduction {
 	{return (1 - timer/buildTime);}
 
 	override
-	public continueOrder canActivate ()
-		{continueOrder order = new continueOrder();
+	public continueOrder canActivate (bool showError)
+		{
+		Debug.Log ("Calling from g");
+		continueOrder order = new continueOrder();
 		if (Morphing) {
 			
 			order.nextUnitCast = true;
@@ -85,7 +87,7 @@ public class Morph :  UnitProduction {
 			return order;
 		}
 
-		if (!myCost.canActivate (this, order)) {
+		if (!myCost.canActivate (this, order,showError)) {
 			order.canCast = false;
 		}
 		if (!active) {
@@ -103,7 +105,7 @@ public class Morph :  UnitProduction {
 
 				myCost.payCost ();
 			buildMan.buildUnit (this);
-
+			myManager.cMover.stop ();
 				timer = buildTime;
 				GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
 				Morphing = true;
@@ -143,6 +145,7 @@ public class Morph :  UnitProduction {
 		}
 		racer.stopBuildingUnit (this);
 		RaceManager.removeUnitSelect (myManager);
+		GameManager.main.playerList[myManager.PlayerOwner-1].UnitDying (this.gameObject, null);
 		unit.GetComponent<Selected> ().Initialize ();
 	
 		Morphing = false;

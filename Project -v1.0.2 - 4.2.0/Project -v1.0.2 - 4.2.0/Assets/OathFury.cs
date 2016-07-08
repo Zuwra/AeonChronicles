@@ -26,7 +26,7 @@ public class OathFury : Ability, Modifier, Notify {
 
 	}
 
-	public override continueOrder canActivate(){
+	public override continueOrder canActivate(bool showError){
 		return new continueOrder ();
 	}
 	public  override void Activate(){

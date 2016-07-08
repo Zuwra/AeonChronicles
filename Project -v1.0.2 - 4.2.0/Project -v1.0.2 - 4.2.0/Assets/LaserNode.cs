@@ -56,7 +56,7 @@ public class LaserNode : Ability {
 	}
 
 	override
-	public continueOrder canActivate()
+	public continueOrder canActivate(bool showError)
 	{return new continueOrder();
 
 

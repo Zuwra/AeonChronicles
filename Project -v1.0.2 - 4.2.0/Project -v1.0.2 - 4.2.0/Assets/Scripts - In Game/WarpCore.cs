@@ -7,7 +7,7 @@ public class WarpCore : Ability {
 
 
 	override
-	public continueOrder canActivate()
+	public continueOrder canActivate(bool showError)
 	{continueOrder order = new continueOrder ();
 		order.nextUnitCast = false;
 		if (isKey) {

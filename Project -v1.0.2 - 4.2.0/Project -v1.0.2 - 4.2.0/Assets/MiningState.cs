@@ -33,7 +33,7 @@ public class MiningState : UnitState {
 		hook = hooky;
 		target = unit;
 		//myMover.resetMoveLocation (target.transform.position);
-
+		currentlyMining = target.GetComponent<OreDispenser> ();
 	
 
 	

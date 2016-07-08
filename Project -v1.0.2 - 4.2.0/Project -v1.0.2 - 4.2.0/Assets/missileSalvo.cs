@@ -45,7 +45,7 @@ public class missileSalvo : Ability, Validator, Notify{
 	}
 
 	override
-	public continueOrder canActivate()
+	public continueOrder canActivate(bool showError)
 	{
 		return new continueOrder ();
 

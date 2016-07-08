@@ -72,7 +72,7 @@ public class CarryRacks : Ability{
 
 
 	override
-	public continueOrder canActivate()
+	public continueOrder canActivate(bool showError)
 	{continueOrder ord = new continueOrder ();
 		ord.nextUnitCast = false;
 		if (researching  || disabled) {
@@ -95,7 +95,7 @@ public class CarryRacks : Ability{
 	override
 	public void Activate()
 	{
-		if (!canActivate ().canCast) {
+		if (!canActivate (false).canCast) {
 			return;
 		}
 		researching = true;

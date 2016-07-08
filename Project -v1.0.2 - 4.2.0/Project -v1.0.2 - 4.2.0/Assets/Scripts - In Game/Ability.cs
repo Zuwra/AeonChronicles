@@ -31,7 +31,7 @@ public abstract class Ability : MonoBehaviour {
 	public int chargeCount = -1;
 
 
-	public abstract continueOrder canActivate();
+	public abstract continueOrder canActivate(bool error);
 	public abstract void Activate();  // returns whether or not the next unit in the same group should also cast it
 	public abstract void setAutoCast();
 	public AudioClip soundEffect;

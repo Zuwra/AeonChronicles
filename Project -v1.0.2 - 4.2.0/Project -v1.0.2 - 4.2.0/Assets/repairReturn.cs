@@ -67,7 +67,7 @@ public class repairReturn : Ability{
 	}
 
 	override
-	public continueOrder canActivate()
+	public continueOrder canActivate(bool showError)
 	{continueOrder ord = new continueOrder ();
 		if (!active) {
 			ord.canCast = false;}

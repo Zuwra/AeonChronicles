@@ -59,7 +59,7 @@ public class AbstractCost : MonoBehaviour {
 		}
 		
 		
-	public bool canActivate(Ability ab, continueOrder order)
+	public bool canActivate(Ability ab, continueOrder order, bool showError)
 		{
 		bool result = true;
 		if (!ab.active) {
@@ -69,6 +69,11 @@ public class AbstractCost : MonoBehaviour {
 			Debug.Log ("Totally null");
 		}
 		if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
+
+			if (showError) {
+				ErrorPrompt.instance.showError ("Not Enough Resources");
+
+			}
 
 			if (myGame.ResourceOne < this.ResourceOne) {
 				order.reasonList.Add (continueOrder.reason.resourceOne);
@@ -103,31 +108,33 @@ public class AbstractCost : MonoBehaviour {
 
 
 	public bool canActivate(Ability ab)
-	{
+	{Debug.Log ("This is getting called");
 		if (!ab.active) {
 			return  false;}
 
 		if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
+			//ErrorPrompt.instance.showError ("Not Enough Resources");
+			Debug.Log ("Not enough money");
 
-		
-			GameObject.FindGameObjectWithTag ("Error").GetComponent<ErrorPrompt> ().showError ("Not Enough Resources");
 			return false;
 		}
 
 		if (stats) {
 			if (stats.health < health || stats.health < minimumHealth) {
+				Debug.Log ("A");
 				return false;
 			}
 
 			if (stats.currentEnergy < energy) {
-
+				Debug.Log ("B");
 				return false;
 			}
 		}
 
 		if (cooldownTimer > 0) {
+			Debug.Log ("C");
 			return false;}
-
+		Debug.Log ("D");
 		return true;
 
 	}

@@ -82,7 +82,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 	public  void computeInteractions (Order order)
 	{
-		Debug.Log ("interacting" + order.OrderType);
+		//Debug.Log ("interacting" + order.OrderType);
 		switch (order.OrderType) {
 		//Stop Order----------------------------------------
 		case Const.ORDER_STOP:

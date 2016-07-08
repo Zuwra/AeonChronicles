@@ -63,9 +63,12 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	public void updateButtons(TurretPlacer t)
 	{
 
-		if (C) {
+		if (D) {
 			t.initialize (A.chargeCount > 0, B.chargeCount > 0, C.chargeCount > 0, D.chargeCount > 0);
-		} else {
+		} else if (C) {
+			t.initialize (A.chargeCount > 0, B.chargeCount > 0, C.chargeCount > 0, false);
+		}
+		else {
 			t.initialize (A.chargeCount > 0, B.chargeCount > 0, false,false);
 		}
 

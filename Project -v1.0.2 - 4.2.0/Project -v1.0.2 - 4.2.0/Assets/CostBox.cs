@@ -25,13 +25,13 @@ public class CostBox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	public void setText(Ability input)
 	{if (input == null) {
 			return;}
-		continueOrder order = input.canActivate ();
+		continueOrder order = input.canActivate (false);
 		
 		MyName.text = input.Name;
 

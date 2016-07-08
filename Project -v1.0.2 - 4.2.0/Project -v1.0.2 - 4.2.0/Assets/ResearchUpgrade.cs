@@ -51,7 +51,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 
 		override
-	public continueOrder canActivate ()
+	public continueOrder canActivate (bool showError)
 		{continueOrder order = new continueOrder();
 
 		if (researching || !myCost.canActivate (this)) {

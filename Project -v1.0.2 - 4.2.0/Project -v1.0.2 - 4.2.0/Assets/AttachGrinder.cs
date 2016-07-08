@@ -69,7 +69,7 @@ public class AttachGrinder : Ability{
 
 
 	override
-	public continueOrder canActivate()
+	public continueOrder canActivate(bool showError)
 	{continueOrder ord = new continueOrder ();
 		ord.nextUnitCast = false;
 		if (researching  || disabled) {
@@ -92,7 +92,7 @@ public class AttachGrinder : Ability{
 	override
 	public void Activate()
 	{
-		if (!canActivate ().canCast) {
+		if (!canActivate (true).canCast) {
 			return;
 		}
 		researching = true;

@@ -301,14 +301,14 @@ public class UiAbilityManager : MonoBehaviour {
 				}
 					
 						totalUnit += uiPage.rows [j].Count;
-				Debug.Log ("Increasing the count");
+	
 			
 			}
 		}
 
 		if (totalUnit == 0) {
 			currentPage = null;
-			Debug.Log ("Setting page to null");
+		
 			topDividerBar.SetActive (false);
 
 			bottomBar.SetActive (false);

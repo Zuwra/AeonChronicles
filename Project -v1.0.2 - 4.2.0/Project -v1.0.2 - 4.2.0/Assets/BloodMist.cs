@@ -16,7 +16,7 @@ public class BloodMist : TargetAbility {
 	}
 
 	override
-	public continueOrder canActivate(){
+	public continueOrder canActivate(bool showError){
 
 		continueOrder order = new continueOrder ();
 

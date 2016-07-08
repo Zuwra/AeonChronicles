@@ -10,7 +10,7 @@ public class Recall : Ability, Modifier {
 	private bool isChanneling;
 
 	override
-	public  continueOrder canActivate()
+	public  continueOrder canActivate(bool showError)
 	{
 
 		return new continueOrder();

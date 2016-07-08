@@ -55,21 +55,30 @@ public class UnitStats : MonoBehaviour {
 	public GameObject deathEffect;
 	public GameObject takeDamageEffect;
 
-
+	bool tagSet = false;
 
 	void Awake()
 	{
 
-		foreach (UnitTypes.UnitTypeTag t in otherTags) {
-
-			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,t.ToString()));
-		}
-		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,armorType.ToString()));
-		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,myHeight.ToString()));
-		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
+		Initialize ();
 
 
 	}
+
+	public void Initialize()
+	{
+		if (!tagSet) {
+			tagSet = true;
+			foreach (UnitTypes.UnitTypeTag t in otherTags) {
+
+				TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,t.ToString()));
+			}
+			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,armorType.ToString()));
+			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,myHeight.ToString()));
+			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 
