@@ -50,7 +50,7 @@ public class EconomyManager : MonoBehaviour {
 
 	public void updateAverage()
 	{nextActionTime = Time.time +  4f;
-		Debug.Log ("Averaging");
+
 		if (racer.OneName.Length > 0) {
 			List<float> deleteThese = new List<float> ();
 

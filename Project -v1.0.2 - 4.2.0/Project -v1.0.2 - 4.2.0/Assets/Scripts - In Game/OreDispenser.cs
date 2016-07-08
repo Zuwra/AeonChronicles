@@ -5,52 +5,48 @@ public class OreDispenser : MonoBehaviour {
 
 
 	public float OreRemaining;
-	public float OreRegenRate;
+
 	private bool inUse;
+
+
+	public GameObject currentMinor;
 	
 	private Queue<GameObject> workers =  new Queue<GameObject >();
-	private float nextActionTime;
+
 	// Use this for initialization
-	void Start () {nextActionTime = Time.time;
+	void Start () {
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (workers.Count > 0) {
 
-		if(nextActionTime > Time.time)
-			{
-				while(workers.Count >0)
-				{
-				
-
-
-						ResourceCarry carry = workers.Dequeue().GetComponent<ResourceCarry>();
-						if(carry.myState!= ResourceCarry.workerState.Waiting)
-						{OreRemaining -= carry.ResourceOneAmount;
-							carry.loadResource(true);
-							break;
-						}
-					
-						
-
-
-				}
-			}
-		
-		}
 
 	
 	}
 
+	public bool requestWork(GameObject obj)
+	{if (!currentMinor) {
+			currentMinor = obj;
+			return true;
+		}
+		return false;
+	}
 
 
 
-	public void getOre(GameObject client, float amount)
-	{
+	public float getOre( float amount)
+	{float giveBack = Mathf.Min (OreRemaining, amount);
+		OreRemaining -= giveBack;
+		if (OreRemaining <= .5) {
 
-		workers.Enqueue(client);
+			ErrorPrompt.instance.showError ("Ore Deposit Depleted");
+			SelectedManager.main.DeselectObject (GetComponent<UnitManager> ());
+
+			Destroy (this.gameObject);
+		}
+		return Mathf.Min (OreRemaining, amount);
+
 	}
 
 	public void removeWorker(GameObject client)

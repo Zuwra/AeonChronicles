@@ -499,8 +499,6 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
         List<RTSObject> usedUnits = new List<RTSObject>();
 
-
-
         List<RTSObject> bestPick = null;
 
         while (usedUnits.Count < tempAbilityGroups.Count)
@@ -599,13 +597,20 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		}
 
         SelectedObjects.Remove(obj);
+		if (SelectedObjects.Count == 0) {
 
-        if (abilityManager != null)
+			UIPages.Clear ();
+			abilityManager.clearPage ();
+			return;
+		}
+
+        else if (abilityManager != null)
         {
             UIPages.Clear();
 
             //tempAbilityGroups.Clear();
             CreateUIPages(0);
+
         }
     }
 

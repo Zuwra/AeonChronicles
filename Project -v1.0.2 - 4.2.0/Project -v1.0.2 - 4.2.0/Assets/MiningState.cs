@@ -21,6 +21,7 @@ public class MiningState : UnitState {
 	private float resourceOneAmount;
 	private float resourceTwoAmount;
 
+	private OreDispenser currentlyMining;
 
 	public MiningState(GameObject unit, UnitManager man,  float mineTime, float resourceOne, float resourceTwo, GameObject hooky)
 	{
@@ -41,7 +42,12 @@ public class MiningState : UnitState {
 	}
 
 	public override void initialize()
-	{myManager.cMover.resetMoveLocation (target.transform.position);
+	{
+		if (target.GetComponent<OreDispenser> ().requestWork (myManager.gameObject)) {
+			currentlyMining = target.GetComponent<OreDispenser> ();
+			myManager.cMover.resetMoveLocation (target.transform.position);
+		}
+
 		dropoff = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.getNearestDropOff (target);
 		state = miningState.traveling;
 	}
@@ -49,11 +55,13 @@ public class MiningState : UnitState {
 	// Update is called once per frame
 	override
 	public void Update () {
-
+		/*
 		if (!target) {
 
 			foreach (GameObject obj in myManager.neutrals) {
-				if (obj.GetComponent<OreDispenser> () != null) {
+				OreDispenser dispense = obj.GetComponent<OreDispenser> ();
+				if (dispense && !dispense.currentMinor) {
+					currentlyMining = dispense;
 					target = obj;
 					myManager.cMover.resetMoveLocation (obj.transform.position);
 					break;
@@ -61,14 +69,19 @@ public class MiningState : UnitState {
 			}
 
 		}
-
+*/
 
 
 		switch (state) {
 		case miningState.traveling:
 			if (myManager.cMover.move ()) {
+
+
+
 				state = miningState.mining;
 				timer = miningTime;
+
+
 			}
 			break;
 
@@ -77,9 +90,10 @@ public class MiningState : UnitState {
 			timer -= Time.deltaTime;
 			if (timer < 0) {
 				if (myManager.GetComponent<ResourceDropOff> ()) {
-					
-					dropoff.GetComponent<ResourceDropOff> ().dropOff (resourceOneAmount, resourceTwoAmount);
+					float haul = currentlyMining.getOre (resourceOneAmount);
+					dropoff.GetComponent<ResourceDropOff> ().dropOff (haul, resourceTwoAmount);
 					state = miningState.traveling;
+
 				} else {
 
 					dropoff = GameManager.main.activePlayer.getNearestDropOff (target);
@@ -88,8 +102,10 @@ public class MiningState : UnitState {
 					myManager.changeState (new DefaultState ());
 				
 				} else {
+						resourceOneAmount = currentlyMining.getOre (resourceOneAmount);
 					myManager.cMover.resetMoveLocation (dropoff.transform.position);
 					state = miningState.returning;
+
 				}
 			}
 			} else if (timer / miningTime > .75) {

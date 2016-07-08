@@ -397,7 +397,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 				m_Placed = false;
 				return;
 			}
-			bool clearSelection = false;
+	
 				//We've left clicked, have we left clicked on a unit?
 			int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
             

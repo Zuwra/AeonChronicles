@@ -12,6 +12,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 	private Vector3 hookPos;
 	private bool retractHook;
 
+
 	// Use this for initialization
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
@@ -38,7 +39,8 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 		GameObject closest = null;
 		foreach (GameObject obj in myManager.neutrals) {
-			if (!obj.GetComponent<OreDispenser> ()) {
+			OreDispenser dis = obj.GetComponent<OreDispenser> ();
+			if (!dis || dis.currentMinor) {
 				continue;
 			}
 			float temp = Vector3.Distance (obj.transform.position, this.gameObject.transform.position);

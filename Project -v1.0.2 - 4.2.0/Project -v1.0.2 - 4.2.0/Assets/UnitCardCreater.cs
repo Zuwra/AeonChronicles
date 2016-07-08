@@ -36,6 +36,10 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text VetStats;
 	public GameObject VetCanvas;
 
+	public OreDispenser myDispense;
+
+	public Canvas ORECANVAS;
+	public Text OreText;
 
 	// Use this for initialization
 	void Start () {
@@ -46,11 +50,15 @@ public class UnitCardCreater : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (currentUnit) {
-			
-			health.text = "  "+ (int)currentUnit.myStats.health + "/" + (int)currentUnit.myStats.Maxhealth;
-			if (currentUnit.myStats.MaxEnergy > 0) {
-				energyText.text = "  "+ (int)currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
+			if (myDispense) {
+				OreText.text = "Remaining Ore: "+ myDispense.OreRemaining;
+			} else {
 
+				health.text = "  " + (int)currentUnit.myStats.health + "/" + (int)currentUnit.myStats.Maxhealth;
+				if (currentUnit.myStats.MaxEnergy > 0) {
+					energyText.text = "  " + (int)currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
+
+				}
 			}
 
 		} else {
@@ -82,12 +90,21 @@ public class UnitCardCreater : MonoBehaviour {
 
 
 	public void CreateCard(RTSObject obj)
-	{VetCanvas.SetActive (false);
+	{
 		UnitManager manager = obj.gameObject.GetComponent<UnitManager> ();
+		currentUnit = manager;
+		myDispense = obj.GetComponent<OreDispenser> (); 
+		if (myDispense) {
+			setForOre (obj);
+			return;
+		} 
+		ORECANVAS.enabled = false;
+		VetCanvas.SetActive (false);
+	
 
 		obj.gameObject.GetComponent<Selected> ().setIcon (unitIcon.gameObject);
 		UnitDescription.text = manager.myStats.UnitDescription;
-		currentUnit = manager;
+
 		hasUnit = true;
 		unitIcon.sprite = manager.myStats.Icon;
 		UnitName.text = manager.UnitName;
@@ -145,6 +162,22 @@ public class UnitCardCreater : MonoBehaviour {
 
 	}
 
+	public void turnOff()
+	{
+		GetComponent<Canvas> ().enabled = false;
+		ORECANVAS.enabled = false;
+	}
+
+	public void setForOre(RTSObject obj)
+	{
+
+		ORECANVAS.enabled = true;
+		OreText.text = "Remaining Ore: "+ myDispense.OreRemaining;
+		GetComponent<Canvas> ().enabled = false;
+
+
+
+	}
 
 
 }

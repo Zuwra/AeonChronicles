@@ -224,6 +224,42 @@ public class UiAbilityManager : MonoBehaviour {
 		}
 	}
 
+	public void clearPage()
+	{
+		currentPage = null;
+
+		foreach (GameObject obj in Stats) {
+			obj.GetComponent<StatsUI> ().clear ();
+		}
+		topDividerBar.SetActive (false);
+		bottomBar.SetActive (false);
+
+
+		foreach (buttonSet obj in certainButtons) {
+			obj.QButton.SetActive (false);
+			obj.WButton.SetActive (false);
+			obj.EButton.SetActive (false);
+			obj.RButton.SetActive (false);
+		}
+
+		foreach (KeyValuePair< GameObject, GameObject > del in unitIcons) {
+			Destroy (del.Key);
+		}
+
+		unitIcons.Clear ();
+
+	
+
+			currentPage = null;
+		cardCreator.turnOff ();
+
+			
+
+
+	}
+
+
+
 
 	public void loadUI(Page uiPage)
 	{currentPage = uiPage;
@@ -265,16 +301,28 @@ public class UiAbilityManager : MonoBehaviour {
 				}
 					
 						totalUnit += uiPage.rows [j].Count;
+				Debug.Log ("Increasing the count");
 			
 			}
 		}
 
-		if (totalUnit > 1 || totalUnit == 0) {
+		if (totalUnit == 0) {
+			currentPage = null;
+			Debug.Log ("Setting page to null");
+			topDividerBar.SetActive (false);
+
+			bottomBar.SetActive (false);
+			cardCreator.gameObject.GetComponent<Canvas> ().enabled = false;
+			return;
+		}
+
+		else if (totalUnit > 1 ) {
 			cardCreator.gameObject.GetComponent<Canvas> ().enabled = false;
 			if (totalUnit == 0) {
 				topDividerBar.SetActive (false);
-			
+
 				bottomBar.SetActive (false);
+				return;
 			}
 		} else {
 

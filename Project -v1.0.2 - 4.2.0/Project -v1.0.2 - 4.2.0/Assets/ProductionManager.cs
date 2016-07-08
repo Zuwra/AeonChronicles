@@ -36,6 +36,7 @@ public class ProductionManager : MonoBehaviour {
 					t.GetComponent<Text> ().text = 
 							"" + (int)(pair.Value [0].getProgress () * 100) + "%";}
 					catch(Exception e) {
+						
 						continue;
 					}
 
