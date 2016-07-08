@@ -290,8 +290,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				uiManage.setAbility (UIPages [currentPage].getAbility (n), n);
 			
 			} else if (UIPages [currentPage].isBuildingAbility (n)) {
-				
-				uiManage.UserPlacingBuilding (((UnitProduction)UIPages [currentPage].getAbility (n)).unitToBuild, n);
+
+				if (UIPages [currentPage].getAbility (n).canActivate (true).canCast) {
+					uiManage.UserPlacingBuilding (((UnitProduction)UIPages [currentPage].getAbility (n)).unitToBuild, n);
+				}
 
 			}
 			else {

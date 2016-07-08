@@ -42,6 +42,11 @@ public class TurretPlacer : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (!unit) {
+			Destroy (this.gameObject);
+			return;
+		}
+
 		if (unitSelect.IsSelected != isON) {
 			
 			isON = unitSelect.IsSelected;

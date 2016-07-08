@@ -23,7 +23,7 @@ public class MiningState : UnitState {
 
 	private OreDispenser currentlyMining;
 
-	public MiningState(GameObject unit, UnitManager man,  float mineTime, float resourceOne, float resourceTwo, GameObject hooky)
+	public MiningState(GameObject unit, UnitManager man,  float mineTime, float resourceOne, float resourceTwo, GameObject hooky, Vector3 hookStart)
 	{
 		myManager = man;
 
@@ -34,7 +34,7 @@ public class MiningState : UnitState {
 		target = unit;
 		//myMover.resetMoveLocation (target.transform.position);
 		currentlyMining = target.GetComponent<OreDispenser> ();
-	
+		hooky.transform.position = man.gameObject.transform.position - hookStart;
 
 	
 
@@ -43,12 +43,15 @@ public class MiningState : UnitState {
 
 	public override void initialize()
 	{
-		if (target.GetComponent<OreDispenser> ().requestWork (myManager.gameObject)) {
+		//if (target.GetComponent<OreDispenser> ().requestWork (myManager.gameObject)) {
 			currentlyMining = target.GetComponent<OreDispenser> ();
 			myManager.cMover.resetMoveLocation (target.transform.position);
-		}
+		//}
 
-		dropoff = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.getNearestDropOff (target);
+		dropoff = myManager.GetComponent<ResourceDropOff> ().gameObject;
+			if(!dropoff){
+			dropoff = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.getNearestDropOff (target);
+		}
 		state = miningState.traveling;
 	}
 
@@ -71,7 +74,7 @@ public class MiningState : UnitState {
 		}
 */
 
-
+		//Debug.Log ("CurrentState " + state);
 		switch (state) {
 		case miningState.traveling:
 			if (myManager.cMover.move ()) {
@@ -109,14 +112,18 @@ public class MiningState : UnitState {
 				}
 			}
 			} else if (timer / miningTime > .75) {
-			
-				Vector3 pos = hook.transform.position ;
-				pos.y -= 25f * Time.deltaTime;
-				hook.transform.position = pos;
+				
+
+				hook.transform.Translate (Vector3.down * Time.deltaTime*20, Space.Self);
+				//Vector3 pos = hook.transform.position ;
+			//	pos.y -= 25f * Time.deltaTime;
+				//hook.transform.position = pos;
 			} else if (timer / miningTime < .25) {
-				Vector3 pos = hook.transform.position;
-				pos.y += 25f * Time.deltaTime;
-				hook.transform.position = pos;
+				//Vector3 pos = hook.transform.position;
+				hook.transform.Translate(Vector3.up * Time.deltaTime *20, Space.Self);
+				//if()
+				//pos.y += 25f * Time.deltaTime;
+				//hook.transform.position = pos;
 			
 			}
 

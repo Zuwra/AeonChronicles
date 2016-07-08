@@ -29,21 +29,15 @@ public class PlaceBuildingState :UnitState {
 	public void Update () {
 
 
+			if (myManager.cMover.move ()) {
+
+				myManager.gameObject.transform.position = location;
+			//	Debug.Log ("Activating");
+				myAbility.Activate ();
+
 	
+			}
 
-
-		if (Vector3.Distance(myManager.gameObject.transform.position , location) > 4) {
-
-
-			myManager.cMover.move ();
-		} else {
-
-			myAbility.Activate();
-
-			return;
-
-		}
-		//attack
 
 
 	}

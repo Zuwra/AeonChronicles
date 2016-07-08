@@ -86,13 +86,13 @@ public class airmover : IMover {
 			if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (8))) {
 			
 
-				while (this.gameObject.transform.position.y < objecthit.point.y + 24) {
-					controller.Move (Vector3.up * .2f);
+				while (this.gameObject.transform.position.y < objecthit.point.y + flyerHeight) {
+					controller.Move (Vector3.up * Time.deltaTime);
 
 				}
 
-				while (this.gameObject.transform.position.y > objecthit.point.y + 26) {
-					controller.Move (Vector3.down * .2f);
+				while (this.gameObject.transform.position.y > objecthit.point.y + flyerHeight) {
+					controller.Move (Vector3.down *Time.deltaTime);
 			
 				}
 			}

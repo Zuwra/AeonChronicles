@@ -77,14 +77,17 @@ public class UnitStats : MonoBehaviour {
 			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,myHeight.ToString()));
 			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
 		}
+
+		veternStat= new VeteranStats(!(isUnitType(UnitTypes.UnitTypeTag.Turret) || isUnitType(UnitTypes.UnitTypeTag.Structure)) );
+		if (!mySelection) {
+			mySelection = this.gameObject.GetComponent<Selected>();
+		}
 	}
 
 	// Use this for initialization
 	void Start () {
 
-		if (!mySelection) {
-			mySelection = this.gameObject.GetComponent<Selected>();
-		}
+
 		myManager = this.gameObject.GetComponent<UnitManager> ();
 		myManager.myStats = this;
 	
@@ -101,8 +104,7 @@ public class UnitStats : MonoBehaviour {
 		}
 
 
-
-		veternStat= new VeteranStats(!(isUnitType(UnitTypes.UnitTypeTag.Turret) || isUnitType(UnitTypes.UnitTypeTag.Structure)) );
+	
 		GameManager.main.playerList [myManager.PlayerOwner - 1].addVeteranStat (veternStat);
 		if (isHero) {
 			veternStat.UnitName = myManager.UnitName;
@@ -192,6 +194,16 @@ public class UnitStats : MonoBehaviour {
 		return 0;
 	}
 
+
+	public void SetHealth (float percent)
+	{
+		Debug.Log ("health is " + percent);
+		health = Maxhealth * percent;
+
+
+		updateHealthBar ();
+	}
+
 	private void updateHealthBar()
 	{
 
@@ -219,7 +231,7 @@ public class UnitStats : MonoBehaviour {
 
 			//}
 	
-			FinishDeath = GameManager.main.playerList[myManager.PlayerOwner-1].UnitDying (this.gameObject, deathSource);
+			FinishDeath = GameManager.main.playerList[myManager.PlayerOwner-1].UnitDying (this.gameObject, deathSource, true);
 			
 			if (FinishDeath) {
 

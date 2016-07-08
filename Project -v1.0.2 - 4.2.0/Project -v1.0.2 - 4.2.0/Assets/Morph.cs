@@ -78,7 +78,7 @@ public class Morph :  UnitProduction {
 	override
 	public continueOrder canActivate (bool showError)
 		{
-		Debug.Log ("Calling from g");
+		
 		continueOrder order = new continueOrder();
 		if (Morphing) {
 			
@@ -103,6 +103,8 @@ public class Morph :  UnitProduction {
 	{if (!Morphing) {
 			HD.loadIMage (iconPic);
 
+
+			Debug.Log ("Activating");
 				myCost.payCost ();
 			buildMan.buildUnit (this);
 			myManager.cMover.stop ();
@@ -131,25 +133,32 @@ public class Morph :  UnitProduction {
 		Vector3 posit = new Vector3(gameObject.transform.position.x ,gameObject.transform.position.y+5,gameObject.transform.position.z);
 		GameObject unit = (GameObject)Instantiate(unitToBuild, posit, Quaternion.identity);
 
+		UnitManager tempManage = unit.GetComponent<UnitManager> ();
+		tempManage.setInteractor();
+		tempManage.interactor.initialize ();
 
-		unit.GetComponent<UnitManager>().setInteractor();
-		unit.GetComponent<UnitManager> ().interactor.initialize ();
 		if (myInteractor != null) {
 			if (myInteractor.rallyUnit != null) {
 
-				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateInteractCommand(myInteractor.rallyUnit));
+				tempManage.GiveOrder (Orders.CreateInteractCommand(myInteractor.rallyUnit));
 			} 
 			else if (myInteractor.rallyPoint != Vector3.zero) {
-				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateMoveOrder (myInteractor.rallyPoint));
+				tempManage.GiveOrder (Orders.CreateMoveOrder (myInteractor.rallyPoint));
 			}
 		}
 		racer.stopBuildingUnit (this);
 		RaceManager.removeUnitSelect (myManager);
-		GameManager.main.playerList[myManager.PlayerOwner-1].UnitDying (this.gameObject, null);
+		GameManager.main.playerList[myManager.PlayerOwner-1].UnitDying (this.gameObject, null, false);
 		unit.GetComponent<Selected> ().Initialize ();
 	
-		Morphing = false;
-		Destroy (this.gameObject);
+
+		if (myManager.GetComponent<Selected> ().IsSelected) {
+			SelectedManager.main.AddObject (unit.GetComponent<UnitManager>());
+		}
+		tempManage.myStats.SetHealth(myManager.myStats.health/myManager.myStats.Maxhealth );
+			Morphing = false;
+		myManager.myStats.kill (this.gameObject);
+		//Destroy (this.gameObject);
 	}
 
 

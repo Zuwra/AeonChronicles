@@ -186,7 +186,7 @@ public class CustomRVO : IMover {
 			currentWaypoint++;
 
 		}
-
+		//Debug.Log ("Returning 3");
 		return false;
 
 

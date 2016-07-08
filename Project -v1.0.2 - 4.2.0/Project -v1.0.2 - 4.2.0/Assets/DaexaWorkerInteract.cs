@@ -52,7 +52,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		}
 		if (closest != null) {
 			
-			myManager.changeState (new MiningState (closest, myManager, miningTime, resourceOne, resourceTwo, Hook));
+			myManager.changeState (new MiningState (closest, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
 		}
 	}
 
@@ -61,16 +61,16 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 	// Update is called once per frame
 	void Update () {
 		if (retractHook) {
-			Vector3 pos = Hook.transform.position;
-			pos.y += 20 * Time.deltaTime;
-		
 
-			if (pos.y > this.gameObject.transform.position.y -hookPos.y ) {
-				pos.y = this.gameObject.transform.position.y - hookPos.y;
+			Hook.transform.Translate (Vector3.up * 20 * Time.deltaTime, Space.Self);
+
+
+			if (Hook.transform.position.y > this.gameObject.transform.position.y -hookPos.y ) {
+				Hook.transform.position = this.gameObject.transform.position - hookPos;
 				retractHook = false;
 
 			}
-			Hook.transform.position = pos;
+
 
 		}
 
@@ -99,7 +99,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		case Const.ORDER_Interact:
 			
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
-			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook));
+			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook,hookPos));
 				break;}
 			
 			checkHook ();
@@ -141,7 +141,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		case Const.ORDER_Follow:
 			
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
-			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook));
+			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
 				break;}
 
 			checkHook ();

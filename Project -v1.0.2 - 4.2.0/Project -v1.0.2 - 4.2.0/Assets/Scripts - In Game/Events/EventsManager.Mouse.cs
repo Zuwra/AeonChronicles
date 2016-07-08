@@ -88,7 +88,7 @@ public partial class EventsManager {
 			if (timeBetweenClicks.Milliseconds < doubleClickTime)
 			{
 				e.doubleClick = true;	
-				Debug.Log ("It is double " + Time.frameCount);
+			//	Debug.Log ("It is double " + Time.frameCount);
 			}
 		}
 		else

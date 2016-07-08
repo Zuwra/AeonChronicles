@@ -266,20 +266,22 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
-
-	public bool UnitDying(GameObject Unit, GameObject deathSource)
+	//Truedeath applies to thing like summons and building placers. they aren't real units so they shouldnt be treated as such.
+	public bool UnitDying(GameObject Unit, GameObject deathSource, bool trueDeath)
 	{bool finishDeath = true;
 
 		//Debug.Log ("starting triggers");
 
-		foreach (LethalDamageinterface trigger in lethalTrigger) {
+		if (trueDeath) {
+			foreach (LethalDamageinterface trigger in lethalTrigger) {
 
 
-			if(trigger != null){
-				if(trigger.lethalDamageTrigger(Unit, deathSource) == false)
-				{
-					finishDeath = false;
-				}}
+				if (trigger != null) {
+					if (trigger.lethalDamageTrigger (Unit, deathSource) == false) {
+						finishDeath = false;
+					}
+				}
+			}
 		}
 
 		if (finishDeath) { 
@@ -314,20 +316,24 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 				StartCoroutine (DeathRescan (b));
 			}
-			if (Unit.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
-				Debug.Log ("Is a worker");
-				if (uiManager != null) {
-					uiManager.production.GetComponent<EconomyManager> ().updateWorker ( -1);
+
+			if (trueDeath) {
+				if (Unit.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+					Debug.Log ("Is a worker");
+					if (uiManager != null) {
+						uiManager.production.GetComponent<EconomyManager> ().updateWorker (-1);
+					}
 				}
 			}
 
-
 			unitsLost++;
 
-			unitList.Remove(Unit);
-			foreach (LethalDamageinterface trigger in deathTrigger) {
-				trigger.lethalDamageTrigger (Unit, deathSource);
 
+			unitList.Remove(Unit);
+			if (trueDeath) {
+				foreach (LethalDamageinterface trigger in deathTrigger) {
+					trigger.lethalDamageTrigger (Unit, deathSource);
+				}
 			}
 		}
 		return finishDeath;
@@ -347,7 +353,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		//Debug.Log ("Adding " + obj.name);
 		unitList.Add(obj);
 		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
-			Debug.Log ("Is a worker");
+	
 			if (uiManager != null) {
 				uiManager.production.GetComponent<EconomyManager> ().updateWorker (1);
 			}
