@@ -16,6 +16,7 @@ public class CostBox : MonoBehaviour {
 	public Text requirements;
 	public Image clocker;
 	public Image BloodDrop;
+	public Text Population;
 
 	Color teal = new Color(.698f, .949f, 255);
 	// Use this for initialization
@@ -52,7 +53,20 @@ public class CostBox : MonoBehaviour {
 				clocker.enabled = true;
 				time.text = "" + input.myCost.cooldown;
 			}
+			if (input is UnitProduction) {
+				UnitStats mwertqert = ((UnitProduction)input).unitToBuild.GetComponent<UnitStats> ();
 
+				float sup=	mwertqert.supply;
+				if (sup != 0) {
+					if (input.myCost.health > 0) {
+						Population.text = "\nPop: " + sup;
+					} else {
+						Population.text = "Pop: " + sup;
+					}
+				} else {
+					Population.text = "";
+				}
+			}
 
 
 			if (input.myCost.ResourceOne > 0) {

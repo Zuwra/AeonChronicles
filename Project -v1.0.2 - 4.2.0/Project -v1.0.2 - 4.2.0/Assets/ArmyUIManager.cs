@@ -105,7 +105,7 @@ public class ArmyUIManager : MonoBehaviour {
 			icon.transform.SetAsFirstSibling ();
 		}
 		RectTransform trans = unitPanel.GetComponent<RectTransform> ();
-
+		/*
 		if (iconList.Count > 8) {
 			trans.sizeDelta = new Vector2(trans.rect.width, 135);
 			//unitPanel.transform.Translate (0, -20, 0);
@@ -121,7 +121,7 @@ public class ArmyUIManager : MonoBehaviour {
 			//unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, unitPanel.transform.position.y, unitPanel.transform.position.z);
 			//trans.localPosition = new Vector3 (trans.position.x, trans.position.y, trans.position.z);
 		}
-
+*/
 		icon.transform.localScale = unitPanel.transform.localScale;
 		iconList.Add (manage.UnitName, icon);
 
