@@ -197,7 +197,7 @@ public class UnitStats : MonoBehaviour {
 
 	public void SetHealth (float percent)
 	{
-		Debug.Log ("health is " + percent);
+		//Debug.Log ("health is " + percent);
 		health = Maxhealth * percent;
 
 

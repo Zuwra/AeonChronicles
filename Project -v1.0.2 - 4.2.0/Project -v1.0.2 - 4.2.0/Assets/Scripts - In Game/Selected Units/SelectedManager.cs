@@ -785,7 +785,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		}
         foreach (RTSObject obj in SelectedObjects)
         {
-            Group[groupNumber].Add(obj);
+			if (!Group [groupNumber].Contains (obj)) {
+				Group [groupNumber].Add (obj);
+			}
 
         }
         CreateUIPages(0);

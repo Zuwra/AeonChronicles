@@ -17,7 +17,7 @@ public class Selected : MonoBehaviour {
 	private GameObject unitIcon;
 	private Slider healthslider;
 	private Image healthFill;
-
+	public GameObject RallyPoint;
 	private Slider energySlider;
 	//private Image energyFill;
 
@@ -168,6 +168,9 @@ public class Selected : MonoBehaviour {
 				tempSelectOn = false;
 				if (!IsSelected) {
 					decalCircle.GetComponent<MeshRenderer> ().enabled = false;
+					if (RallyPoint) {
+						RallyPoint.SetActive (false);
+					}
 				}
 					foreach (Transform obj in this.transform) {
 
@@ -189,6 +192,9 @@ public class Selected : MonoBehaviour {
 		if (!tempSelectOn) {
 			tempSelectOn = true;
 			decalCircle.GetComponent<MeshRenderer> ().enabled = true;
+			if (RallyPoint) {
+				RallyPoint.SetActive (true);
+			}
 
 			foreach (Transform obj in this.transform) {
 
@@ -292,6 +298,9 @@ public class Selected : MonoBehaviour {
 	{
 		IsSelected = true;
 		decalCircle.GetComponent<MeshRenderer> ().enabled = true;
+		if (RallyPoint) {
+			RallyPoint.SetActive (true);
+		}
 
 		if (displayType.selected == mydisplayType) {
 			buffDisplay.isOn = true;
@@ -312,6 +321,9 @@ public class Selected : MonoBehaviour {
 		IsSelected = false;
 		unitIcon = null;
 		decalCircle.GetComponent<MeshRenderer> ().enabled = false;
+		if (RallyPoint) {
+			RallyPoint.SetActive (false);
+		}
 
 		if (displayType.selected == mydisplayType) {
 			buffDisplay.isOn = false;

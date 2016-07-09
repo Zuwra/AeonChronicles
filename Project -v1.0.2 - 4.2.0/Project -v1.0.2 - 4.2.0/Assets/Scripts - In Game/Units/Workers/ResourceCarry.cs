@@ -48,7 +48,7 @@ public class ResourceCarry : MonoBehaviour {
 
 	public void dropOffResource()
 	{
-		manager.updateResources (ResourceOneAmount, ResourceTwoAmount);
+		manager.updateResources (ResourceOneAmount, ResourceTwoAmount,true);
 		carryingOne = false;
 		carryingTwo= false;
 

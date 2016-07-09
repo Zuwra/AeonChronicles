@@ -25,7 +25,7 @@ public class ResourceGenerator : MonoBehaviour {
 			nextActionTime += 1f;
 
 		
-			racemanager.updateResources(ResourceOneRate,ResourceTwoRate);
+			racemanager.updateResources(ResourceOneRate,ResourceTwoRate, true);
 				
 				
 

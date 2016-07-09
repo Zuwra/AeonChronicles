@@ -73,6 +73,7 @@ public class BuildUnit : UnitProduction {
 		}
 		//myCost.refundCost ();
 		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply,null);
+		racer.stopBuildingUnit (this);
 	}
 
 

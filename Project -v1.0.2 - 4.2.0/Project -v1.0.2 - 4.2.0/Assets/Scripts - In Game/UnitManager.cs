@@ -108,11 +108,13 @@ public class UnitManager : Unit,IOrderable{
 	
 		if (cMover != null) {
 			changeState (new DefaultState ());
-		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.Turret) 
-			&& this.gameObject.gameObject.GetComponent<UnitManager>().UnitName == "Coyote"
-			&& ((StandardInteract)this.gameObject.gameObject.GetComponent<UnitManager>().interactor).attackWhileMoving) {
+		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.Turret)
+		           && this.gameObject.gameObject.GetComponent<UnitManager> ().UnitName == "Zephyr"
+		           && ((StandardInteract)this.gameObject.gameObject.GetComponent<UnitManager> ().interactor).attackWhileMoving) {
 
-			changeState (new turretState (this ));
+			changeState (new turretState (this));
+		} else if(myWeapon.Count > 0 &&myStats.isUnitType (UnitTypes.UnitTypeTag.Turret) ){
+			changeState (new turretState (this));
 		}
 
 

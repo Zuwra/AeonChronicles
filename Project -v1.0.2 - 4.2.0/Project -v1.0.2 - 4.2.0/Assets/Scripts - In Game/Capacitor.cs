@@ -30,12 +30,12 @@ public class Capacitor : MonoBehaviour {
 				if(myEnergy + RegenRate < maxEnergy)
 					{
 					myEnergy += RegenRate;
-					racemanager.updateResources(0,RegenRate);
+					racemanager.updateResources(0,RegenRate, true);
 				}
 				else
 				{float amount = maxEnergy - myEnergy;
 					myEnergy = maxEnergy;
-				racemanager.updateResources(0,amount);
+				racemanager.updateResources(0,amount, true);
 				}
 	
 			}

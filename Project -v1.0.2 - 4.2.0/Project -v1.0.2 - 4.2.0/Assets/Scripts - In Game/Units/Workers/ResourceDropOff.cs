@@ -25,7 +25,7 @@ public class ResourceDropOff : MonoBehaviour {
 
 	public void dropOff(float one, float two)
 	{
-		raceM.updateResources (one, two);
+		raceM.updateResources (one, two, true);
 	}
 
 

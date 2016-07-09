@@ -108,33 +108,33 @@ public class AbstractCost : MonoBehaviour {
 
 
 	public bool canActivate(Ability ab)
-	{Debug.Log ("This is getting called");
+	{
 		if (!ab.active) {
 			return  false;}
 
 		if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
 			//ErrorPrompt.instance.showError ("Not Enough Resources");
-			Debug.Log ("Not enough money");
+		
 
 			return false;
 		}
 
 		if (stats) {
 			if (stats.health < health || stats.health < minimumHealth) {
-				Debug.Log ("A");
+
 				return false;
 			}
 
 			if (stats.currentEnergy < energy) {
-				Debug.Log ("B");
+
 				return false;
 			}
 		}
 
 		if (cooldownTimer > 0) {
-			Debug.Log ("C");
+			
 			return false;}
-		Debug.Log ("D");
+	
 		return true;
 
 	}
@@ -153,14 +153,14 @@ public class AbstractCost : MonoBehaviour {
 	
 	public void refundCost()
 	{
-		myGame.updateResources(ResourceOne, ResourceTwo);
+		myGame.updateResources(ResourceOne, ResourceTwo, false);
 		cooldownTimer = 0;
 	}
 
 
 	public void payCost()
 	{
-			myGame.updateResources (-ResourceOne, -ResourceTwo);
+			myGame.updateResources (-ResourceOne, -ResourceTwo, false);
 				
 		if (stats) {
 			stats.TakeDamage (health, this.gameObject, DamageTypes.DamageType.True);

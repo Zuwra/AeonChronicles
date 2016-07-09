@@ -319,7 +319,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 			if (trueDeath) {
 				if (Unit.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
-					Debug.Log ("Is a worker");
+					//Debug.Log ("Is a worker");
 					if (uiManager != null) {
 						uiManager.production.GetComponent<EconomyManager> ().updateWorker (-1);
 					}
@@ -410,7 +410,8 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		//uiManager.changeUnits ();
 	}
 
-	public void updateResources(float resOne, float resTwo)
+	//Set income to false if you dont want it to count towards your income per minute.
+	public void updateResources(float resOne, float resTwo, bool income)
 	{bool hasNull = false;
 		ResourceOne += resOne;
 		ResourceTwo += resTwo;
@@ -420,15 +421,17 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		foreach (ManagerWatcher watch in myWatchers) {
 			if(watch != null){
-				watch.updateResources(ResourceOne, ResourceTwo);}
+				watch.updateResources(ResourceOne, ResourceTwo, income);}
 			else{hasNull = true;}
 
 		}
 		if(hasNull){
 			myWatchers.RemoveAll(item => item == null);}
 
-		if (resOne >= 0 && resTwo >= 0) {
-			uiManager.production.GetComponent<EconomyManager> ().updateMoney ((int)resOne, (int)resTwo);
+		if (income) {
+			if (resOne >= 0 && resTwo >= 0) {
+				uiManager.production.GetComponent<EconomyManager> ().updateMoney ((int)resOne, (int)resTwo);
+			}
 		}
 	}
 	

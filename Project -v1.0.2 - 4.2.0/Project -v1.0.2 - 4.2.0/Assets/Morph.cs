@@ -104,7 +104,7 @@ public class Morph :  UnitProduction {
 			HD.loadIMage (iconPic);
 
 
-			Debug.Log ("Activating");
+			//Debug.Log ("Activating");
 				myCost.payCost ();
 			buildMan.buildUnit (this);
 			myManager.cMover.stop ();

@@ -57,7 +57,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 			if (raceManager.currentSupply < raceManager.supplyMax - 5 || raceManager.supplyMax == raceManager.supplyCap) {
 				supply.color = Color.green;
-			} else if (raceManager.currentSupply >= raceManager.supplyMax - 1) {
+			} else if (raceManager.currentSupply >= raceManager.supplyMax) {
 				supply.color = Color.red;
 			} else {
 				supply.color = Color.yellow;
@@ -74,52 +74,40 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	void Update () {
 
 		if (Input.GetKeyDown (KeyCode.F1)) {
-			fOne();
-		}
-		else if (Input.GetKeyDown (KeyCode.F2)) {
+			fOne ();
+		} else if (Input.GetKeyDown (KeyCode.F2)) {
 			fTwo ();	
-		}
-		else if (Input.GetKeyDown (KeyCode.F3)) {
-			fThree();
-		}
-		else if (Input.GetKeyDown (KeyCode.F4)) {
-			fFour();
-		}
-		else if (Input.GetKeyDown (KeyCode.F5)) {
-			fFive();
-		}
-		else if (Input.GetKeyDown (KeyCode.F6)) {
-			fSix();
-		}
-		else if (Input.GetKeyDown (KeyCode.F7)) {
-			fSeven();
-		}
-		else if (Input.GetKeyDown (KeyCode.F8)) {
+		} else if (Input.GetKeyDown (KeyCode.F3)) {
+			fThree ();
+		} else if (Input.GetKeyDown (KeyCode.F4)) {
+			fFour ();
+		} else if (Input.GetKeyDown (KeyCode.F5)) {
+			fFive ();
+		} else if (Input.GetKeyDown (KeyCode.F6)) {
+			fSix ();
+		} else if (Input.GetKeyDown (KeyCode.F7)) {
+			fSeven ();
+		} else if (Input.GetKeyDown (KeyCode.F8)) {
 			fEight ();
-		}
-		
-		else if (Input.GetKeyDown (KeyCode.F9)) {
-			fNine();
-		}
-		else if (Input.GetKeyDown (KeyCode.F10)) {
-			fTen();
-		}
-		else if (Input.GetKeyDown (KeyCode.F11)) {
-			fEleven();
-		}
-		else if (Input.GetKeyDown (KeyCode.F12)) {
-			fTwelve();
-		}
-		else if (Input.GetKeyDown (KeyCode.O)) {
+		} else if (Input.GetKeyDown (KeyCode.F9)) {
+			fNine ();
+		} else if (Input.GetKeyDown (KeyCode.F10)) {
+			fTen ();
+		} else if (Input.GetKeyDown (KeyCode.F11)) {
+			fEleven ();
+		} else if (Input.GetKeyDown (KeyCode.F12)) {
+			fTwelve ();
+		} else if (Input.GetKeyDown (KeyCode.P)) {
 			production.value = 1;
 			chanageDropDown ();
-		}
-		else if (Input.GetKeyDown (KeyCode.I)) {
+		} else if (Input.GetKeyDown (KeyCode.I)) {
 			production.value = 2;
 			chanageDropDown ();
-		}
-		else if (Input.GetKeyDown (KeyCode.U)) {
+		} else if (Input.GetKeyDown (KeyCode.U)) {
 			production.value = 0;
+			chanageDropDown ();
+		} else if (Input.GetKeyDown (KeyCode.O)) {
+			production.value = 3;
 			chanageDropDown ();
 		}
 	
@@ -155,7 +143,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 
 	
-	public void updateResources(float resOne, float resTwo){
+	public void updateResources(float resOne, float resTwo, bool income){
 
 		if (OneName != "") {
 			resourceOne.text = OneName + "  " + resOne;
