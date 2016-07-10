@@ -7,6 +7,7 @@ public class TurretMount : MonoBehaviour {
 
 	public TurretPlacer hasDisplayer;
 
+
 	// Use this for initialization
 	void Start () {
 	
@@ -15,6 +16,12 @@ public class TurretMount : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+		if (turret && hasDisplayer.gameObject.activeSelf) {
+			hasDisplayer.gameObject.SetActive (false);
+		} else if (!turret && !hasDisplayer.gameObject.activeSelf) {
+			hasDisplayer.gameObject.SetActive (true);
+		}
+
 	}
 
 	public void setSelect()
@@ -31,9 +38,29 @@ public class TurretMount : MonoBehaviour {
 		}
 	}
 
+	public void addShop(TurretScreenDisplayer fact)
+	{
+
+		if (hasDisplayer.addFact (fact)) {
+		
+		}
+	
+
+	}
+
+
+	public void removeShop(TurretScreenDisplayer fact)
+	{
+		if (hasDisplayer.removeFact (fact)) {
+		
+		}
+
+		
+	}
 
 	public void placeTurret(GameObject obj)
 		{turret = obj;
+		hasDisplayer.gameObject.SetActive (false);
 		Vector3 spot = this.transform.position;
 		spot.y += .5f;
 		obj.transform.position = spot;
@@ -60,7 +87,7 @@ public class TurretMount : MonoBehaviour {
 
 
 	public void unPlaceTurret()
-	{
+	{hasDisplayer.gameObject.SetActive (true);
 		turret = null;
 		UnitManager manager = this.gameObject.GetComponentInParent<UnitManager> ();
 		manager.setWeapon(null);

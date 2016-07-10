@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class TurretPlacer : MonoBehaviour {
@@ -10,9 +11,13 @@ public class TurretPlacer : MonoBehaviour {
 	public Button railgun;
 	public Button mortar;
 	public Button repair;
-	public TurretScreenDisplayer factory;
 
-	private Selected unitSelect;
+	private List<TurretScreenDisplayer> myFactories = new List<TurretScreenDisplayer>();
+
+	public Sprite armImage;
+	public Sprite NonArm;
+
+	public Selected unitSelect;
 
 	private bool buttonsOn = false;
 
@@ -22,7 +27,7 @@ public class TurretPlacer : MonoBehaviour {
 	private float lastTrueTimeR;
 	private float lastTrueTimeM;
 	private float lastTrueTimeP;
-
+	public TurretMount myMount;
 
 	public TurretPlacerManager turretManager;
 
@@ -31,6 +36,31 @@ public class TurretPlacer : MonoBehaviour {
 	void Start () {
 		cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
 	}
+
+
+	public bool addFact(TurretScreenDisplayer fact)
+	{
+
+		myFactories.Add (fact);
+		center.image.sprite = armImage;
+
+
+		return true;
+	}
+
+
+	public bool removeFact(TurretScreenDisplayer fact)
+		{myFactories.Remove (fact);
+		myFactories.RemoveAll (item => item == null);
+
+		if (myFactories.Count > 0) {
+			return true;
+		} else {
+			center.image.sprite = NonArm;
+		}
+		return false;
+	}
+
 
 	public void setUnit(GameObject u)
 	{
@@ -51,16 +81,16 @@ public class TurretPlacer : MonoBehaviour {
 			
 			isON = unitSelect.IsSelected;
 
-			center.gameObject.SetActive(unitSelect.IsSelected);
+			center.gameObject.SetActive(true);
 			if (!isON) {
 
-				gatling.gameObject.SetActive (unitSelect.IsSelected);
-				railgun.gameObject.SetActive (unitSelect.IsSelected);
+				gatling.gameObject.SetActive (false);
+				railgun.gameObject.SetActive (false);
 				if (mortar) {
-					mortar.gameObject.SetActive (unitSelect.IsSelected);
+					mortar.gameObject.SetActive (false);
 				}
 				if (repair) {
-					repair.gameObject.SetActive (unitSelect.IsSelected);
+					repair.gameObject.SetActive (false);
 				}
 				buttonsOn = false;
 			}
@@ -82,9 +112,9 @@ public class TurretPlacer : MonoBehaviour {
 
 	}
 
-	public void initialize(bool g, bool r, bool m , bool p)
+	public void initialize(bool g, bool r, bool p , bool m)
 	{
-
+		Debug.Log (g + "  " + r+ "  ");
 
 		if (buttonsOn) {
 			if (g) {
@@ -138,7 +168,11 @@ public class TurretPlacer : MonoBehaviour {
 			turretManager.deactivate ();
 			center.gameObject.SetActive (!center.gameObject.activeSelf);
 		} 
-
+		if (!Input.GetKey (KeyCode.LeftShift)) {
+			SelectedManager.main.DeselectAll ();
+		}
+		SelectedManager.main.AddObject (GetComponentInParent<UnitManager> ());
+		SelectedManager.main.CreateUIPages (0);
 		gatling.gameObject.SetActive (buttonsOn);
 		railgun.gameObject.SetActive (buttonsOn);
 		if (mortar) {
@@ -150,22 +184,40 @@ public class TurretPlacer : MonoBehaviour {
 
 	public void buildGatling()
 	{
-		factory.buildGatling (this);
+
+		foreach (TurretScreenDisplayer s in myFactories) {
+			if (s.buildGatling (this)) {
+				break;
+			}
+		}
+	
 	}
 
 	public void buildRailGun()
 	{
-		factory.buildRailGun (this);
+		foreach (TurretScreenDisplayer s in myFactories) {
+			if (s.buildRailGun (this)) {
+				break;
+			}
+		}
 	}
 
 	public void buildMortar()
 	{
-		factory.buildMortar (this);
+		foreach (TurretScreenDisplayer s in myFactories) {
+			if (s.buildMortar (this)) {
+				break;
+			}
+		}
 	}
 
 	public void buildRepair()
 	{
-		factory.buildRepair (this);
+		foreach (TurretScreenDisplayer s in myFactories) {
+			if (s.buildRepair (this)) {
+				break;
+			}
+		}
 	}
 
 

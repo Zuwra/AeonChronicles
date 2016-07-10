@@ -16,53 +16,44 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	public buildTurret D;
 
 
-
+	private float nextActionTime;
 	// Use this for initialization
 	void Start () {
 		manage = GetComponent<UnitManager> ();
+		nextActionTime = Time.time;
 	}
+
+
 
 	// Update is called once per frame
 	void Update () {
-		
-		mounts.RemoveAll (item => item == null);
-		foreach (TurretMount obj in mounts) {
-			if (obj.turret) {
 
-				if (obj.hasDisplayer) {
-					destroyDisplayer (obj);
-				}
-				continue;
-			} else {
+		if (Time.time > nextActionTime) {
+			nextActionTime = Time.time + .1f;
 
-				//return;
-			}
+			mounts.RemoveAll (item => item == null);
+			foreach (TurretMount obj in mounts) {
+				
+				if (obj.gameObject.GetComponentInParent<TurretPickUp> ()) {
 
+					if (!obj.gameObject.GetComponentInParent<TurretPickUp> ().autocast) {
 
-			if (obj.gameObject.GetComponentInParent<TurretPickUp> ()) {
-
-				if (!obj.gameObject.GetComponentInParent<TurretPickUp> ().autocast) {
-
-					continue;
+						continue;
 					}
-			}
-			if (obj.hasDisplayer == null) {
-
-				createDisplayer (obj);
-			} else {
-
-				//Debug.Log ("Updating buttons");
-				updateButtons(obj.hasDisplayer);
-			}
 				}
+			
+
+					updateButtons (obj.hasDisplayer);
+
+			}
+
+		}
 
 	}
 
-
-
 	public void updateButtons(TurretPlacer t)
-	{
-
+	{Debug.Log ("Updating buttons");
+		
 		if (D) {
 			t.initialize (A.chargeCount > 0, B.chargeCount > 0, C.chargeCount > 0, D.chargeCount > 0);
 		} else if (C) {
@@ -76,28 +67,9 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	}
 
 
-	public void createDisplayer(TurretMount t)
-{
-		GameObject obj = (GameObject)Instantiate (display);
-		obj.GetComponent<TurretPlacer> ().setUnit (t.gameObject);
-		obj.GetComponent<TurretPlacer> ().factory = this;
-		if (C) {
-			obj.GetComponent<TurretPlacer> ().initialize (A.chargeCount > 0, B.chargeCount > 0, C.chargeCount > 0, D.chargeCount > 0);
-		} else {
-			obj.GetComponent<TurretPlacer> ().initialize (A.chargeCount > 0, B.chargeCount > 0, false,false);
-		}
-		t.hasDisplayer = obj.GetComponent<TurretPlacer>();
-}
 
 
 
-
-	public void destroyDisplayer(TurretMount t)
-	{
-		if (t.hasDisplayer != null) {
-			Destroy (t.hasDisplayer.gameObject);
-		}
-	}
 
 
 
@@ -114,8 +86,9 @@ public class TurretScreenDisplayer : MonoBehaviour {
 		
 					foreach (TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ()) {
 						if (mount) {
-						
+							
 							mounts.Add (mount);
+							mount.addShop (this);
 						}
 
 					}
@@ -147,7 +120,8 @@ public class TurretScreenDisplayer : MonoBehaviour {
 			foreach (TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ()) {
 				if (mounts.Contains(mount)) {
 					mounts.Remove (mount);
-					destroyDisplayer (mount);
+
+					mount.removeShop (this);
 				}
 
 				}
@@ -156,24 +130,37 @@ public class TurretScreenDisplayer : MonoBehaviour {
 		}
 
 
-	public void buildGatling(TurretPlacer p )
+	public bool buildGatling(TurretPlacer p )
 	{
-		p.unit.GetComponent<TurretMount>().placeTurret (A.createUnit ());
+		if (A.chargeCount > 0) {
+			p.unit.GetComponent<TurretMount> ().placeTurret (A.createUnit ());
+			return true;
+		}
+		return false;
 	}
 
-	public void buildRailGun(TurretPlacer p )
-	{
-		p.unit.GetComponent<TurretMount>().placeTurret (B.createUnit ());
+	public bool buildRailGun(TurretPlacer p )
+	{if (B.chargeCount > 0) {
+			p.myMount.placeTurret (B.createUnit ());
+			return true;
+		}
+		return false;
 	}
 
-	public void buildMortar(TurretPlacer p )
-	{
+	public bool buildMortar(TurretPlacer p )
+		{if (C.chargeCount > 0) {
 		p.unit.GetComponent<TurretMount>().placeTurret (C.createUnit ());
+			return true;
+		}
+		return false;
 	}
 
-	public void buildRepair(TurretPlacer p )
-	{
+	public bool buildRepair(TurretPlacer p )
+			{if (D.chargeCount > 0) {
 		p.unit.GetComponent<TurretMount>().placeTurret (D.createUnit ());
+			return true;
+		}
+		return false;
 	}
 
 

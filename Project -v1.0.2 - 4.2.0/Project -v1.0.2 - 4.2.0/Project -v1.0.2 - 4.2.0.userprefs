@@ -1,15 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Pathfinding\Grid\Grid.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TurretPlacer.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\Pathfinding\Grid\Tile.cs" Line="277" Column="32" />
-      <File FileName="Assets\BuildingInteractor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\TurretPlacer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\BuildStructure.cs" Line="1" Column="1" />
-      <File FileName="Assets\Morph.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Pathfinding\Grid\Grid.cs" Line="35" Column="35" />
+      <File FileName="Assets\TurretMount.cs" Line="21" Column="1" />
+      <File FileName="Assets\TurretPlacer.cs" Line="171" Column="43" />
+      <File FileName="Assets\TurretScreenDisplayer.cs" Line="141" Column="2" />
+      <File FileName="Assets\TurretPlacerManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\buildTurret.cs" Line="22" Column="24" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="440" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
