@@ -30,7 +30,9 @@ public class VictoryTrigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKeyDown (KeyCode.Home)) {
+			Win ();
+		}
 	}
 
 
@@ -97,7 +99,7 @@ public class VictoryTrigger : MonoBehaviour {
 	}
 
 	IEnumerator WinLevel ()
-	{
+	{LevelData.ComingFromLevel = true;
 		yield return new WaitForSeconds (4);
 
 		LevelData.addLevelInfo (levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),

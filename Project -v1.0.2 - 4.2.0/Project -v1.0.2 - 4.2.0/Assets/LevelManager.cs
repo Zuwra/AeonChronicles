@@ -33,10 +33,17 @@ public class LevelManager : MonoBehaviour {
 		if (LevelData.currentLevel == 0) {
 			techButton.interactable = false;
 			UltButton.interactable = false;
-		} else {
+		} else if (LevelData.currentLevel == 1) {
 			techButton.interactable = true;
-			UltButton.interactable = true;
+			UltButton.interactable = false;
+		} else {
+			techButton.interactable = false;
+			UltButton.interactable = false;
 		}
+		if (!LevelData.ComingFromLevel) {
+			LevelData.totalXP = PlayerPrefs.GetInt ("TechAmount");
+		}
+
 
 	}
 	

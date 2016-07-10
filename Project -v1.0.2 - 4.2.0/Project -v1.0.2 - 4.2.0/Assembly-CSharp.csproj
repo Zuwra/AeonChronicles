@@ -237,6 +237,7 @@
      <Compile Include="Assets\LaserNodeTurret.cs" />
      <Compile Include="Assets\LevelData.cs" />
      <Compile Include="Assets\LevelManager.cs" />
+     <Compile Include="Assets\LevelSelectmanager.cs" />
      <Compile Include="Assets\LifeSteal.cs" />
      <Compile Include="Assets\LocationObjective.cs" />
      <Compile Include="Assets\MVPCalculator.cs" />

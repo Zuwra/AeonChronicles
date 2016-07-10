@@ -15,12 +15,22 @@ public class VictoryScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (LevelData.myLevels != null) {
-			if (LevelData.myLevels.Count > 0) {
-				Debug.Log ("Setting results " );
-				SetResults (LevelData.myLevels [LevelData.currentLevel-1]);
-			}
+		if (LevelData.myLevels == null) {
+			Debug.Log ("No levels");
+			return;
 		}
+
+		if (LevelData.myLevels.Count > 0 && LevelData.ComingFromLevel) {
+			Debug.Log ("Settign Results");
+			SetResults (LevelData.myLevels [LevelData.currentLevel - 1]);
+			PlayerPrefs.SetInt ("TechAmount", LevelData.myLevels [LevelData.currentLevel - 1].TechCredits);
+			if (LevelData.currentLevel > PlayerPrefs.GetInt ("LastLevel")) {
+				PlayerPrefs.SetInt ("LastLevel", LevelData.currentLevel);
+			}
+
+		}
+
+
 	}
 	
 	// Update is called once per frame

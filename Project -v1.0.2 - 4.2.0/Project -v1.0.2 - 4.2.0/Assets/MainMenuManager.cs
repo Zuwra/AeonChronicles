@@ -10,7 +10,7 @@ public class MainMenuManager : MonoBehaviour {
 	public Canvas multiplayer;
 	public Canvas campaign;
 	public Canvas Credits;
-
+	public Canvas loadCanvas;
 
 	private Canvas currentScreen;
 
@@ -47,6 +47,7 @@ public class MainMenuManager : MonoBehaviour {
 
 	public void startMatch()
 	{
+		
 		SceneManager.LoadScene (3);
 	}
 
@@ -62,6 +63,12 @@ public class MainMenuManager : MonoBehaviour {
 		#endif
 		}
 
+
+	public void LoadLevel(int n)
+	{LevelData.currentLevel = n;
+		LevelData.ComingFromLevel = false;
+		SceneManager.LoadScene (3);
+	}
 
 	public void toCredits()
 	{loadScreen (Credits);}

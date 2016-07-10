@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 public class LevelData  {
 
-	public static int currentLevel =1;
+	public static int currentLevel =0;
 	public static int totalXP = 0;
 
 	public static List<levelInfo> myLevels;
 	public static bool easyMode = true;
+	public static bool ComingFromLevel;
 
 
 
@@ -45,6 +46,18 @@ public class LevelData  {
 		Debug.Log ("Cureent Level " + currentLevel);
 	}
 
+
+	public static void reset()
+	{
+
+	currentLevel =0;
+		totalXP = 0;
+		if (myLevels != null) {
+			myLevels.Clear ();
+		}
+		easyMode = true;
+		ComingFromLevel = false;
+	}
 
 
 

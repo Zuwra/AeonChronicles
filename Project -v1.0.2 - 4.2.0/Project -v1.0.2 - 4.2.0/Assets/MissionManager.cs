@@ -46,10 +46,10 @@ public class MissionManager : MonoBehaviour {
 	}
 
 
-	public void StartMission()
+	public void StartMission(int levelNum)
 	{
 		loadingScreen.SetActive (true);
-		SceneManager.LoadScene (1);
+		SceneManager.LoadScene (levelNum);
 	}
 
 	public void QuitCampaign()
