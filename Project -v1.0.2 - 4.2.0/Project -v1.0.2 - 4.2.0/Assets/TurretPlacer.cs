@@ -43,7 +43,7 @@ public class TurretPlacer : MonoBehaviour {
 
 		myFactories.Add (fact);
 		center.image.sprite = armImage;
-
+		center.interactable = true;
 
 		return true;
 	}
@@ -56,6 +56,16 @@ public class TurretPlacer : MonoBehaviour {
 		if (myFactories.Count > 0) {
 			return true;
 		} else {
+			center.interactable = false;
+			gatling.gameObject.SetActive (false);
+			railgun.gameObject.SetActive (false);
+			if (mortar) {
+				mortar.gameObject.SetActive (false);
+			}
+			if (repair) {
+				repair.gameObject.SetActive (false);
+			}
+
 			center.image.sprite = NonArm;
 		}
 		return false;
@@ -187,6 +197,7 @@ public class TurretPlacer : MonoBehaviour {
 
 		foreach (TurretScreenDisplayer s in myFactories) {
 			if (s.buildGatling (this)) {
+				TurretUIPanel.instance.TurnOff();
 				break;
 			}
 		}
@@ -197,6 +208,7 @@ public class TurretPlacer : MonoBehaviour {
 	{
 		foreach (TurretScreenDisplayer s in myFactories) {
 			if (s.buildRailGun (this)) {
+				TurretUIPanel.instance.TurnOff();
 				break;
 			}
 		}
@@ -206,6 +218,7 @@ public class TurretPlacer : MonoBehaviour {
 	{
 		foreach (TurretScreenDisplayer s in myFactories) {
 			if (s.buildMortar (this)) {
+				TurretUIPanel.instance.TurnOff();
 				break;
 			}
 		}
@@ -215,6 +228,7 @@ public class TurretPlacer : MonoBehaviour {
 	{
 		foreach (TurretScreenDisplayer s in myFactories) {
 			if (s.buildRepair (this)) {
+				TurretUIPanel.instance.TurnOff();
 				break;
 			}
 		}

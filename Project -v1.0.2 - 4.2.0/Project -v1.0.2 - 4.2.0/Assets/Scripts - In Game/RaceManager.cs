@@ -350,8 +350,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void addUnit(GameObject obj )
 	{
-		//Debug.Log ("Adding " + obj.name);
-		unitList.Add(obj);
+		Debug.Log ("Adding " + obj.name);
+		if (!unitList.Contains (obj)) {
+			unitList.Add (obj);
+		}
 		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
 	
 			if (uiManager != null) {

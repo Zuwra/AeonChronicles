@@ -7,6 +7,7 @@ public class TurretTipDisplayer: MonoBehaviour, IPointerEnterHandler, IPointerEx
 	public string help;
 	public string cantBuild;
 	public Sprite image;
+	public Sprite badImage;
 	private Button myButt;
 
 	void Start(){
@@ -18,8 +19,13 @@ public class TurretTipDisplayer: MonoBehaviour, IPointerEnterHandler, IPointerEx
 		Debug.Log ("bvreaking " + this.gameObject);
 		if (myButt.interactable) {
 			TurretUIPanel.instance.displayText (help, image);
+
 		} else {
-			TurretUIPanel.instance.displayText (cantBuild, image);
+			if (badImage) {
+				TurretUIPanel.instance.displayText (cantBuild, badImage);
+			} else {
+				TurretUIPanel.instance.displayText (cantBuild, image);
+			}
 		}
 
 

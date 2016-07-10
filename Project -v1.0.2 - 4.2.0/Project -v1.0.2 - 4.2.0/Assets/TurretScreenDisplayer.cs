@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class TurretScreenDisplayer : MonoBehaviour {
 
 	private UnitManager manage;
-	public GameObject display;
+
 	public List<TurretMount> mounts = new List<TurretMount>();
 
 
@@ -133,7 +133,8 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	public bool buildGatling(TurretPlacer p )
 	{
 		if (A.chargeCount > 0) {
-			p.unit.GetComponent<TurretMount> ().placeTurret (A.createUnit ());
+
+			p.myMount.placeTurret (A.createUnit ());
 			return true;
 		}
 		return false;
@@ -149,7 +150,7 @@ public class TurretScreenDisplayer : MonoBehaviour {
 
 	public bool buildMortar(TurretPlacer p )
 		{if (C.chargeCount > 0) {
-		p.unit.GetComponent<TurretMount>().placeTurret (C.createUnit ());
+				p.myMount.placeTurret (C.createUnit ());
 			return true;
 		}
 		return false;
@@ -157,7 +158,7 @@ public class TurretScreenDisplayer : MonoBehaviour {
 
 	public bool buildRepair(TurretPlacer p )
 			{if (D.chargeCount > 0) {
-		p.unit.GetComponent<TurretMount>().placeTurret (D.createUnit ());
+				p.myMount.placeTurret (D.createUnit ());
 			return true;
 		}
 		return false;
