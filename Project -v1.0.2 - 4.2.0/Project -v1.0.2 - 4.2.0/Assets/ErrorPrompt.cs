@@ -9,7 +9,10 @@ public class ErrorPrompt : MonoBehaviour {
 	public static ErrorPrompt instance;
 
 	public void showError(string err)
-	{this.gameObject.GetComponent<Text> ().text = err;
+	{
+		Debug.Log ("Error callling");
+
+		this.gameObject.GetComponent<Text> ().text = err;
 		this.gameObject.GetComponent<Text> ().enabled = true;
 
 		StopCoroutine (MyCoroutine ());
@@ -25,8 +28,38 @@ public class ErrorPrompt : MonoBehaviour {
 
 	}//
 	
-	
-	
+
+	public void notEnoughResource()
+	{showError( "Not Enough Ore");
+	}
+
+	public void notEnoughSupply()
+	{showError( "Not enough Supply, Build more Aether Cores");
+		}
+
+	public void notEnoughEnergy()
+	{showError(  "Not enough Energy");
+		}
+
+	public void populationcapHit()
+	{
+		showError( "Population Limited Reached");
+
+	}
+
+	public void invalidGroundLocation()
+	{
+		showError( "Invalid Location");
+
+	}
+
+	public void invalidTarget()
+	{showError( "Invalid target.");
+		}
+
+	public void onCooldown()
+	{showError( "Ability on Cooldown");
+	}
 	
 	
 	

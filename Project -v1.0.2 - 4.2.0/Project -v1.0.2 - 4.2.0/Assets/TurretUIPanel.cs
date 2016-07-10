@@ -46,8 +46,10 @@ public class TurretUIPanel : MonoBehaviour {
 
 	public void TurnOff()
 	{
-		this.enabled = false;
-		myCanvas.enabled = false;
+		if (this) {
+			this.enabled = false;
+			myCanvas.enabled = false;
+		}
 
 	}
 }

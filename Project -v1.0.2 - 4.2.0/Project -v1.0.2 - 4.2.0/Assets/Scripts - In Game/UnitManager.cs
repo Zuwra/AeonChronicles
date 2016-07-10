@@ -175,7 +175,7 @@ public class UnitManager : Unit,IOrderable{
 				if (order.canCast) {
 					if (abilityList [n] is TargetAbility) {
 						changeState (new AbilityFollowState (obj, loc, (TargetAbility)abilityList [n]));
-					} else if (abilityList [n] is Morph) {
+					} else if (abilityList [n] is Morph || abilityList [n] is BuildStructure) {
 						changeState (new PlaceBuildingState (loc, abilityList [n]));
 					}
 
@@ -358,14 +358,12 @@ public class UnitManager : Unit,IOrderable{
 	public void changeState(UnitState nextState)
 	{
 
-		if (Input.GetKey (KeyCode.LeftShift) && (!(nextState is DefaultState) && (queuedStates.Count > 0  || !(myState is DefaultState)))) {
-				queuedStates.Enqueue (nextState);
+		if (Input.GetKey (KeyCode.LeftShift) && (!(nextState is DefaultState) && (queuedStates.Count > 0 || !(myState is DefaultState)))) {
+			queuedStates.Enqueue (nextState);
 
 			return;
 		
-		} 
-
-		else if (nextState is DefaultState) {
+		} else if (nextState is DefaultState) {
 			if (queuedStates.Count > 0) {
 
 				myState = queuedStates.Dequeue ();
@@ -377,6 +375,8 @@ public class UnitManager : Unit,IOrderable{
 				return;
 
 			}  
+		} else if (myState is PlaceBuildingState) {
+			((PlaceBuildingState)myState).cancel ();
 		}
 
 		else if (myState is ChannelState) {

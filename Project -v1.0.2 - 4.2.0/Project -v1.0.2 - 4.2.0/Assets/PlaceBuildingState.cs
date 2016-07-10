@@ -16,7 +16,13 @@ public class PlaceBuildingState :UnitState {
 
 		location = loc;
 		myAbility = abil;
+		myAbility.myCost.payCost ();
 
+	}
+
+	public void cancel()
+	{
+		myAbility.myCost.refundCost ();
 	}
 
 	public override void initialize()
@@ -30,9 +36,20 @@ public class PlaceBuildingState :UnitState {
 
 
 			if (myManager.cMover.move ()) {
+			Vector3 endSpot = location;
+			location.y += 5;
+			if (myManager.cMover is airmover) {
+				endSpot.y += ((airmover)myManager.cMover).flyerHeight;
+			}
 
-				myManager.gameObject.transform.position = location;
+			myManager.gameObject.transform.position = endSpot;
+
+
 			//	Debug.Log ("Activating");
+
+			if (myAbility is BuildStructure) {
+				((BuildStructure)myAbility).setBuildSpot (location);
+			}
 				myAbility.Activate ();
 
 	

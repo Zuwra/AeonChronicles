@@ -358,6 +358,14 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				uiManager.production.GetComponent<EconomyManager> ().updateWorker (1);
 			}
 		}
+
+		if (obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+			//This rescans the Astar graph after the unit dies
+			GraphUpdateObject b =new GraphUpdateObject(obj.GetComponent<CharacterController>().bounds); 
+
+			StartCoroutine (DeathRescan (b));
+		}
+
 		if (uiManager != null) {
 			uiManager.production.GetComponent<ArmyUIManager> ().updateUnits (obj);
 		}

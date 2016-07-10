@@ -21,7 +21,7 @@ public class BuildingPlacer : MonoBehaviour {
 
 		if (building) {
 			if (objects.Count == 0) {
-				Tile t = Grid.GetClosestRedTile (this.gameObject.transform.position);
+				Tile t = Grid.main.GetClosestRedTile (this.gameObject.transform.position);
 		
 				if (!t.Buildable) {
 					float dist = Mathf.Pow (t.Center.x - transform.position.x, 2) + Mathf.Pow (t.Center.z - transform.position.z, 2);
@@ -39,7 +39,7 @@ public class BuildingPlacer : MonoBehaviour {
 
 	public bool canBuild()
 	{  
-		Tile t = Grid.GetClosestRedTile(this.gameObject.transform.position);
+		Tile t = Grid.main.GetClosestRedTile(this.gameObject.transform.position);
 
 			if (!t.Buildable) {
 				if (Vector3.Distance (t.Center, this.gameObject.transform.position) < coll.radius) {

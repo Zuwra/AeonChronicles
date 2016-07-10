@@ -68,36 +68,23 @@ public class airmover : IMover {
 				speed = getMaxSpeed();
 			}
 		}
-
-		//Direction to the next waypoint
 		dir = (targetPosition -transform.position).normalized;
+
+		//Make sure your the right height above the terrain
+		RaycastHit objecthit;
+		Vector3 down = this.gameObject.transform.TransformDirection (Vector3.down);
+
+		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
+
+			dir.y -= Time.deltaTime *  (this.gameObject.transform.position.y -(objecthit.point.y + flyerHeight) ) *10;
+
+		}
+
 		dir *= speed * Time.deltaTime;
 		controller.Move (dir);
 		if (myFogger) {
 			myFogger.move ();
-		}
-
-		if (Time.time > nextActionTime) {
-			nextActionTime += .6f;
-
-			RaycastHit objecthit;
-			Vector3 down = this.gameObject.transform.TransformDirection (Vector3.down);
-
-			if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (8))) {
-			
-
-				while (this.gameObject.transform.position.y < objecthit.point.y + flyerHeight) {
-					controller.Move (Vector3.up * Time.deltaTime);
-
-				}
-
-				while (this.gameObject.transform.position.y > objecthit.point.y + flyerHeight) {
-					controller.Move (Vector3.down *Time.deltaTime);
-			
-				}
 			}
-		}
-
 
 		return false;
 	}

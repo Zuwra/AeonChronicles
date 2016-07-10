@@ -15,6 +15,7 @@ public class TurretTipDisplayer: MonoBehaviour, IPointerEnterHandler, IPointerEx
 
 	public void OnPointerEnter(PointerEventData eventd)
 	{
+		Debug.Log ("bvreaking " + this.gameObject);
 		if (myButt.interactable) {
 			TurretUIPanel.instance.displayText (help, image);
 		} else {

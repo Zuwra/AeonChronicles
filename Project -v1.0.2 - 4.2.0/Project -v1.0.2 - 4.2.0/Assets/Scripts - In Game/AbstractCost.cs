@@ -7,13 +7,12 @@ public class AbstractCost : MonoBehaviour {
 	public enum CostType
 	{	unit, building, ability, upkeep}
 
-	public CostType MyType;
+	//public CostType MyType;
 		//These are global resources held by any player, even though their names might change (ore, gold ,wood etc)
 		public float ResourceOne;
 		public float ResourceTwo;
 		
 
-		public float minimumHealth;
 		public float health;
 		
 		public float energy;
@@ -71,7 +70,7 @@ public class AbstractCost : MonoBehaviour {
 		if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
 
 			if (showError) {
-				ErrorPrompt.instance.showError ("Not Enough Resources");
+				ErrorPrompt.instance.notEnoughResource ();
 
 			}
 
@@ -88,19 +87,27 @@ public class AbstractCost : MonoBehaviour {
 			}
 			
 
-			if (stats.health < health || stats.health < minimumHealth) {
+			if (stats.health < health ) {
 			order.reasonList.Add (continueOrder.reason.health);
 			result =  false;
 			}
 			
 			if (stats.currentEnergy < energy) {
 			order.reasonList.Add (continueOrder.reason.energy);
-			result = false;}
+			result = false;
+			if (showError) {
+				ErrorPrompt.instance.notEnoughEnergy ();
+			}
+		}
 
 	
 			if (cooldownTimer > 0) {
 			order.reasonList.Add (continueOrder.reason.cooldown);
-			result = false;}
+			result = false;
+			if (showError) {
+				ErrorPrompt.instance.onCooldown ();
+			}
+		}
 			
 			return result;
 			
@@ -120,7 +127,7 @@ public class AbstractCost : MonoBehaviour {
 		}
 
 		if (stats) {
-			if (stats.health < health || stats.health < minimumHealth) {
+			if (stats.health < health) {
 
 				return false;
 			}
@@ -152,7 +159,7 @@ public class AbstractCost : MonoBehaviour {
 		}
 	
 	public void refundCost()
-	{
+	{Debug.Log ("Refunding");
 		myGame.updateResources(ResourceOne, ResourceTwo, false);
 		cooldownTimer = 0;
 	}

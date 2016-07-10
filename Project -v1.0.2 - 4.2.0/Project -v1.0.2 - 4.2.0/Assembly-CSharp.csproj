@@ -172,6 +172,7 @@
      <Compile Include="Assets\BountyHunter.cs" />
      <Compile Include="Assets\BuildLargeTurret.cs" />
      <Compile Include="Assets\BuildManager.cs" />
+     <Compile Include="Assets\BuildStructure.cs" />
      <Compile Include="Assets\BuildUnitObjective.cs" />
      <Compile Include="Assets\BuilderUI.cs" />
      <Compile Include="Assets\BuildingInteractor.cs" />
@@ -455,6 +456,7 @@
      <Compile Include="Assets\fogUI.cs" />
      <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\mousetracker.cs" />
+     <Compile Include="Assets\newWorkerInteract.cs" />
      <Compile Include="Assets\repairReturn.cs" />
      <Compile Include="Assets\sawTrigger.cs" />
      <Compile Include="Assets\selfDestructTimer.cs" />

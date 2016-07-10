@@ -37,7 +37,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public GameObject buttonTemplate;
 
-	public List<GameObject> Stats = new List<GameObject> ();
+	public List<StatsUI> Stats = new List<StatsUI> ();
 
 
 	//Key - Icon, Value - Unit
@@ -228,8 +228,10 @@ public class UiAbilityManager : MonoBehaviour {
 	{
 		currentPage = null;
 
-		foreach (GameObject obj in Stats) {
-			obj.GetComponent<StatsUI> ().clear ();
+		foreach (StatsUI obj in Stats) {
+			if (obj) {
+				obj.clear ();
+			}
 		}
 		topDividerBar.SetActive (false);
 		bottomBar.SetActive (false);
@@ -264,8 +266,8 @@ public class UiAbilityManager : MonoBehaviour {
 	public void loadUI(Page uiPage)
 	{currentPage = uiPage;
 		// Clear old info in the buttons and stats
-		foreach (GameObject obj in Stats) {
-			obj.GetComponent<StatsUI> ().clear ();
+		foreach (StatsUI obj in Stats) {
+			obj.clear ();
 		}
 		topDividerBar.SetActive (true);
 		bottomBar.SetActive (true);

@@ -30,8 +30,7 @@ public class Tile
 	private bool m_Occupied = false;
 	private bool m_OccupiedStatic = false;
 	private bool m_ExpectingArrival = false;
-	private bool m_BridgeTunnelEntrance = false;
-		
+
 	//Properties-----------------------------------------------------------
 	public int I
 	{
@@ -87,22 +86,8 @@ public class Tile
 		}
 	}
 	
-	public bool IsBridge
-	{
-		get
-		{
-			return m_LayeredStatus == Const.LAYEREDTILE_Bridge;
-		}
-	}
-	
-	public bool IsTunnel
-	{
-		get
-		{
-			return m_LayeredStatus == Const.LAYEREDTILE_Tunnel;
-		}
-	}
-	
+
+
 	public bool IsOccupied
 	{
 		get
@@ -201,11 +186,7 @@ public class Tile
 		}
 	}
 	
-	public Collider BridgeOrTunnelCollider
-	{
-		get;
-		private set;
-	}
+
 	
 	public bool ExpectingArrival
 	{
@@ -219,17 +200,7 @@ public class Tile
 		}
 	}
 	
-	public bool BridgeTunnelEntrance
-	{
-		get
-		{
-			return m_BridgeTunnelEntrance;
-		}
-		set
-		{
-			m_BridgeTunnelEntrance = value;
-		}
-	}
+
 	
 	public int LayeredStatus
 	{
@@ -240,39 +211,28 @@ public class Tile
 	}
 	
 	//Constructor----------------------------------------------------------
-	public Tile(int i, int j, Vector3 center, bool isBridge = false, bool isTunnel = false, Collider collider = null)
+	public Tile(int i, int j, Vector3 center, Collider collider = null)
 	{
 		m_I = i;
 		m_J = j;
-		m_Size = Grid.TileSize;
+		m_Size = Grid.main.TileSize;
 		m_Center = center;
 		Status = Const.TILE_Unvisited;
 		m_LayeredTiles = new List<Tile>();
-		
-		if (isBridge)
-		{
-			m_LayeredStatus = Const.LAYEREDTILE_Bridge;
-			m_Buildable = false;
-		}
-		else if (isTunnel)
-		{
-			m_LayeredStatus = Const.LAYEREDTILE_Tunnel;
-			m_Buildable = false;
-		}
-		
-		BridgeOrTunnelCollider = collider;
+		Evaluate();
+		//Debug.Log ("Evaluating");
+
 	}
 	
 	//Methods------------------------------------------------------------------------
 	
-	public void Evaluate(List<Collider> bridgeList, List<Collider> tunnelList)
+	public void Evaluate()
 	{
 		m_LayeredTiles.Clear ();
 		Status = Const.TILE_Unvisited;
 		m_Center.y = Terrain.activeTerrain.SampleHeight(m_Center);
 		EvaluateTile ();
-		CheckForBridges (bridgeList);
-		CheckForTunnels (tunnelList);
+
 	}
 	
 	private void EvaluateTile()
@@ -296,7 +256,7 @@ public class Tile
 		RaycastHit hitCenter;
 		
 		//Are we within the block indent?
-		if (I < Grid.BlockIndent || I >= Grid.Width-Grid.BlockIndent || J < Grid.BlockIndent || J >= Grid.Length-Grid.BlockIndent)
+		if (I < Grid.main.BlockIndent || I >= Grid.main.Width-Grid.main.BlockIndent || J < Grid.main.BlockIndent || J >= Grid.main.Length-Grid.main.BlockIndent)
 		{
 			//Within the indent
 			Status = Const.TILE_Blocked;
@@ -309,8 +269,10 @@ public class Tile
 		float minHeight = Mathf.Min (terrain.SampleHeight (m_Center), terrain.SampleHeight (bottomLeft), terrain.SampleHeight (bottomRight), terrain.SampleHeight (topRight), terrain.SampleHeight (topLeft));
 		float maxHeight = Mathf.Max (terrain.SampleHeight (m_Center), terrain.SampleHeight (bottomLeft), terrain.SampleHeight (bottomRight), terrain.SampleHeight (topRight), terrain.SampleHeight (topLeft));
 				
-		if (maxHeight-minHeight > Grid.MaxSteepness)
+		//Debug.Log ("Checking Steepness");
+		if (maxHeight-minHeight > Grid.main.MaxSteepness)
 		{
+			//Debug.Log ("Too steep " + maxHeight + "   " + minHeight);
 			//Too steep
 			Status = Const.TILE_Blocked;
 			m_Buildable = false;
@@ -318,7 +280,7 @@ public class Tile
 		}
 		
 		//Check for obstacles		
-		//We want to ignore units, terrain, tunnels and bridges, so cast against everything apart from layers 8, 9, 11, 18, 19 and 20
+		//We want to ignore units, terrain,  so cast against everything apart from layers 8, 9, 11, 18, 19 and 20
 		LayerMask layerMask = ~(1 << 8 | 1 << 9 | 1 << 11 | 1 << 18 | 1 << 19 | 1 << 20);
 		
 		//Need to raycast against center and all 4 corner points
@@ -338,7 +300,7 @@ public class Tile
 				if (Physics.Raycast(rayUp, out hitCenter, Mathf.Infinity, layerMask))
 				{
 					float distance = Vector3.Distance (m_Center, hitCenter.point);
-					if (distance < Grid.PassableHeight)
+					if (distance < Grid.main.PassableHeight)
 					{
 						Status = Const.TILE_Blocked;
 						m_Buildable = false;
@@ -352,7 +314,7 @@ public class Tile
 				if (Physics.Raycast(rayUp2, out hitCenter, Mathf.Infinity, layerMask))
 				{
 					float distance = Vector3.Distance (m_Center, hitCenter.point);
-					if (distance < Grid.PassableHeight)
+					if (distance < Grid.main.PassableHeight)
 					{
 						Status = Const.TILE_Blocked;
 						m_Buildable = false;
@@ -366,7 +328,7 @@ public class Tile
 				if (Physics.Raycast(rayUp3, out hitCenter, Mathf.Infinity, layerMask))
 				{
 					float distance = Vector3.Distance (m_Center, hitCenter.point);
-					if (distance < Grid.PassableHeight)
+					if (distance < Grid.main.PassableHeight)
 					{
 						Status = Const.TILE_Blocked;
 						m_Buildable = false;
@@ -380,7 +342,7 @@ public class Tile
 				if (Physics.Raycast(rayUp4, out hitCenter, Mathf.Infinity, layerMask))
 				{
 					float distance = Vector3.Distance (m_Center, hitCenter.point);
-					if (distance < Grid.PassableHeight)
+					if (distance < Grid.main.PassableHeight)
 					{
 						Status = Const.TILE_Blocked;
 						m_Buildable = false;
@@ -394,7 +356,7 @@ public class Tile
 				if (Physics.Raycast(rayUp5, out hitCenter, Mathf.Infinity, layerMask))
 				{
 					float distance = Vector3.Distance (m_Center, hitCenter.point);
-					if (distance < Grid.PassableHeight)
+					if (distance < Grid.main.PassableHeight)
 					{
 						Status = Const.TILE_Blocked;
 						m_Buildable = false;
@@ -410,49 +372,9 @@ public class Tile
 		}
 	}
 	
-	public void CheckForBridges(List<Collider> bridgeList)
-	{
-		//Raycast up to see if there's a bridge
-		float startOffset = 5.0f;
-		
-		Ray rayUp = new Ray(m_Center + (Vector3.down*startOffset), Vector3.up);	
-		
-		RaycastHit hitCenter;
-		
-		while (Physics.Raycast(rayUp, out hitCenter, Mathf.Infinity, 1 << 18))
-		{
-			//We've hit a bridge, add it to the list if it isn't already added
-			if (!bridgeList.Contains (hitCenter.collider))
-			{
-				bridgeList.Add (hitCenter.collider);
-			}
-			
-			//We need to cast again to check for multiple layers, update rayUp
-			rayUp.origin = hitCenter.point+Vector3.up;
-		}
-	}
+
 	
-	public void CheckForTunnels(List<Collider> tunnelList)
-	{
-		//Raycast up to see if there's a bridge
-		float startOffset = 5.0f;
-		
-		Ray rayDown = new Ray (m_Center + (Vector3.up*startOffset), Vector3.down);
-		
-		RaycastHit hitCenter;
-		
-		while (Physics.Raycast(rayDown, out hitCenter, Mathf.Infinity, 1 << 19))
-		{
-			//We've hit a bridge, add it to the list if it isn't already added
-			if (!tunnelList.Contains (hitCenter.collider))
-			{
-				tunnelList.Add (hitCenter.collider);
-			}
-			
-			//We need to cast again to check for multiple layers, update rayDown
-			rayDown.origin = hitCenter.point-Vector3.up;
-		}
-	}
+
 	
 	public void SetOccupied(RTSObject occupiedBy, bool occupiedStatic)
 	{
