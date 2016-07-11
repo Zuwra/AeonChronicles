@@ -8,7 +8,9 @@ public class MiningState : UnitState {
 	private GameObject target;
 	private GameObject dropoff;
 	private GameObject hook;
+	private Vector3 startPos;
 	private enum miningState
+
 	{
 		traveling, mining, returning
 	}
@@ -31,10 +33,11 @@ public class MiningState : UnitState {
 		resourceOneAmount = resourceOne;
 		resourceTwoAmount= resourceTwo;
 		hook = hooky;
+		startPos = hookStart;
 		target = unit;
 		//myMover.resetMoveLocation (target.transform.position);
 		currentlyMining = target.GetComponent<OreDispenser> ();
-		hooky.transform.position = man.gameObject.transform.position - hookStart;
+		//hooky.transform.position = man.gameObject.transform.position - hookStart;
 
 	
 
@@ -43,6 +46,8 @@ public class MiningState : UnitState {
 
 	public override void initialize()
 	{
+		hook.transform.position = myManager.gameObject.transform.position - startPos;
+	//	Debug.Log ("Calling");
 		//if (target.GetComponent<OreDispenser> ().requestWork (myManager.gameObject)) {
 			currentlyMining = target.GetComponent<OreDispenser> ();
 			myManager.cMover.resetMoveLocation (target.transform.position);
@@ -120,7 +125,9 @@ public class MiningState : UnitState {
 				//hook.transform.position = pos;
 			} else if (timer / miningTime < .25) {
 				//Vector3 pos = hook.transform.position;
-				hook.transform.Translate(Vector3.up * Time.deltaTime *20, Space.Self);
+				if (hook.transform.position.y < (myManager.gameObject.transform.position - startPos).y) {
+					hook.transform.Translate (Vector3.up * Time.deltaTime * 20, Space.Self);
+				}
 				//if()
 				//pos.y += 25f * Time.deltaTime;
 				//hook.transform.position = pos;

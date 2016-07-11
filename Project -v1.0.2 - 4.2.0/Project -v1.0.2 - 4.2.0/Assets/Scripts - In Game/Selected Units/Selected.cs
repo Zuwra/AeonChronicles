@@ -18,6 +18,7 @@ public class Selected : MonoBehaviour {
 	private Slider healthslider;
 	private Image healthFill;
 	public GameObject RallyPoint;
+	public GameObject RallyUnit;
 	private Slider energySlider;
 	//private Image energyFill;
 
@@ -28,6 +29,7 @@ public class Selected : MonoBehaviour {
 	private bool tempSelectOn;
 	private bool interactSelect;
 	public List<SelectionNotifier> selectionNotifiers = new List<SelectionNotifier>();
+	private LineRenderer myLine;
 
 	public enum displayType
 	{
@@ -48,7 +50,7 @@ public class Selected : MonoBehaviour {
 
 
 	public void Initialize()
-	{
+	{myLine = GetComponent<LineRenderer> ();
 		IsSelected = false;
 
 
@@ -172,6 +174,7 @@ public class Selected : MonoBehaviour {
 						decalCircle.GetComponent<MeshRenderer> ().enabled = false;
 					}
 					if (RallyPoint) {
+						
 						RallyPoint.SetActive (false);
 					}
 				}
@@ -181,6 +184,12 @@ public class Selected : MonoBehaviour {
 					}
 						
 
+			}
+		}
+		if (IsSelected || tempSelectOn) {
+			if (RallyUnit) {
+				myLine.SetPositions (new Vector3[]{ this.gameObject.transform.position, RallyUnit.transform.position });
+				RallyPoint.transform.position = RallyUnit.transform.position;
 			}
 		}
 	}
@@ -333,6 +342,9 @@ public class Selected : MonoBehaviour {
 		decalCircle.GetComponent<MeshRenderer> ().enabled = true;
 		if (RallyPoint) {
 			RallyPoint.SetActive (true);
+			if (myLine) {
+				myLine.enabled = true;
+			}
 		}
 
 		if (displayType.selected == mydisplayType) {
@@ -356,6 +368,9 @@ public class Selected : MonoBehaviour {
 		decalCircle.GetComponent<MeshRenderer> ().enabled = false;
 		if (RallyPoint) {
 			RallyPoint.SetActive (false);
+			if (myLine) {
+				myLine.enabled = false;
+			}
 		}
 
 		if (displayType.selected == mydisplayType) {

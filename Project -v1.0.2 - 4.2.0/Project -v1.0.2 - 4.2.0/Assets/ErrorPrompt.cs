@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ErrorPrompt : MonoBehaviour {
 
-
+	private AudioSource myAudio;
+	public AudioClip errorSound;
 	public static ErrorPrompt instance;
 
 	public void showError(string err)
@@ -14,7 +15,7 @@ public class ErrorPrompt : MonoBehaviour {
 
 		this.gameObject.GetComponent<Text> ().text = err;
 		this.gameObject.GetComponent<Text> ().enabled = true;
-
+		myAudio.PlayOneShot (errorSound);
 		StopCoroutine (MyCoroutine ());
 		StartCoroutine(MyCoroutine());
 	}
@@ -69,6 +70,7 @@ public class ErrorPrompt : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		instance = this;
+		myAudio = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame

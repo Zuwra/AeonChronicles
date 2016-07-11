@@ -4,13 +4,6 @@ using System.Collections;
 public class airmover : IMover {
 
 
-
-
-
-
-
-
-
 	private Vector3 targetPosition;
 	private CharacterController controller;
 	//The calculated path
@@ -110,6 +103,8 @@ public class airmover : IMover {
 
 	{
 	}
+
+
 
 
 }

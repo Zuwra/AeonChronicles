@@ -52,7 +52,7 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	}
 
 	public void updateButtons(TurretPlacer t)
-	{Debug.Log ("Updating buttons");
+	{//Debug.Log ("Updating buttons");
 		
 		if (D) {
 			t.initialize (A.chargeCount > 0, B.chargeCount > 0, C.chargeCount > 0, D.chargeCount > 0);

@@ -32,7 +32,8 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	{
 
 		switch (order.OrderType) {
-			case Const.Order_HoldGround:
+		case Const.Order_HoldGround:
+	
 				HoldGround (order);
 				break;
 
@@ -56,6 +57,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 		// ATTACK MOVE - Move towards a location and attack enemies on the way.
 			case Const.ORDER_AttackMove:
+			Debug.Log ("Setting to attack move");
 				AttackMove (order);
 
 				break;

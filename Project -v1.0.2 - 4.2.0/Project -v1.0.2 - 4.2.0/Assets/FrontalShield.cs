@@ -41,12 +41,11 @@ public class FrontalShield : Ability,Modifier {
 
 	public float modify(float amount, GameObject src)
 	{
-
 		Vector3 direction = src.transform.position - this.gameObject.transform.position;
-		Debug.Log ("Angle " + Vector3.Dot (direction, this.transform.forward));
+
 		if (Vector3.Dot (direction, this.transform.forward) > frontAngle) {
 
-			Debug.Log ("In front of");
+		
 			amount -= FrontArmorAmount;
 			if (amount < 1) {
 				amount = 1;
@@ -55,10 +54,7 @@ public class FrontalShield : Ability,Modifier {
 				GameObject obj = (GameObject)Instantiate (shieldEffect, this.gameObject.transform.position, this.gameObject.transform.rotation);
 				obj.transform.SetParent (this.gameObject.transform);
 			}
-
-
 		}
-
 
 		return amount;
 	}

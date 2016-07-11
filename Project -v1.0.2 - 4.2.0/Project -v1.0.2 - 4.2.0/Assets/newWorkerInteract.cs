@@ -11,6 +11,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	public GameObject Hook;
 	private Vector3 hookPos;
 	private bool retractHook;
+	private OreDispenser myOre;
 
 
 	// Use this for initialization
@@ -51,7 +52,8 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 		}
 		if (closest != null) {
-
+			myOre = closest.GetComponent<OreDispenser> ();
+			myOre.currentMinor = this.gameObject;
 			myManager.changeState (new MiningState (closest, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
 		}
 	}
@@ -86,6 +88,10 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 		switch (order.OrderType) {
 		//Stop Order----------------------------------------
 		case Const.ORDER_STOP:
+			if (myOre) {
+				myOre.currentMinor = null;
+				myOre = null;
+			}
 			myManager.changeState (new DefaultState ());
 			checkHook ();
 			break;
@@ -93,13 +99,32 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 			//Move Order ---------------------------------------------
 		case Const.ORDER_MOVE_TO:
 			myManager.changeState (new MoveState (order.OrderLocation, myManager));
+			if (myOre) {
+				myOre.currentMinor = null;
+				myOre = null;
+			}
 			checkHook ();
 			break;
 
 		case Const.ORDER_Interact:
 
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
-			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook,hookPos));
+			{
+				if (!order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor) {
+					if (myOre) {
+						myOre.currentMinor = null;
+						myOre = null;
+					}
+					myOre = order.Target.gameObject.GetComponent<OreDispenser> ();
+					myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
+					order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor = this.gameObject;
+				} else if (order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor == this.gameObject) {
+				}
+				else{
+					
+					myManager.changeState (new MoveState (order.Target.gameObject.transform.position, myManager));
+					ErrorPrompt.instance.showError ("Deposit already occupied");
+				}
 				break;}
 
 			checkHook ();
@@ -118,6 +143,11 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 
 		case Const.ORDER_AttackMove:
+
+			if (myOre) {
+				myOre.currentMinor = null;
+				myOre = null;
+			}
 			if (myManager.myWeapon.Count >0)
 				myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager,  myManager.gameObject.transform.position));
 			else {

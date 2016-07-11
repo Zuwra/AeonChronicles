@@ -14,7 +14,7 @@ public class RaceNames  {
 		
 	}
 
-	string[] ranks = new string[4]{"Recruit" , "Adjutant", "Executor", "Commander"};
+	string[] ranks = new string[4]{"Initiate" , "Adjutant", "Executor", "Commander"};
 	 string[] names = new string[16]{"Aelia", "Aetius", "Cato", "Domitio", "Bentin", "Silvanus", "Valerian", "Porso", "Agricola", "Metallan", "Timon", "Ethon", "Adamus", "Soren", "Mathou", "Jordana" };
 
 

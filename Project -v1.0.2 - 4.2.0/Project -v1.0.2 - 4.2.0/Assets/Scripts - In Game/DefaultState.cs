@@ -72,9 +72,11 @@ public class DefaultState : UnitState{
 					// Inform other alleis to also attack
 					foreach (GameObject ally in myManager.allies) {
 						if (ally){
-							UnitState hisState= ally.GetComponent<UnitManager> ().getState ();
-							if (hisState is DefaultState) {
-								hisState.attackResponse (src);
+							if (myManager.gameObject != ally) {
+								UnitState hisState = ally.GetComponent<UnitManager> ().getState ();
+								if (hisState is DefaultState) {
+									hisState.attackResponse (src);
+								}
 							}
 
 						}

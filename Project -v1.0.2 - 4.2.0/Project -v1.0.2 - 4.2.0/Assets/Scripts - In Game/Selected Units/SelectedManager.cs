@@ -677,7 +677,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		} else if (order.OrderType == 6 ) {
 			// INTERACT
-			order.Target.GetComponent<Selected>().interact();
+			if (order.Target.GetComponent<Selected> ()) {
+				order.Target.GetComponent<Selected> ().interact ();
+			}
 			if ((order.Target.GetComponent<UnitManager> () && order.Target.GetComponent<UnitManager> ().PlayerOwner != 1)
 			    || (order.Target.GetComponentInParent<UnitManager> () && order.Target.GetComponentInParent<UnitManager> ().PlayerOwner != 1)) {
 				AudioSrc.PlayOneShot (attackSound);

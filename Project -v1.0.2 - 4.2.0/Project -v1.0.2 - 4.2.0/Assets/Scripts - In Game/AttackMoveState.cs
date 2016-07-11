@@ -63,16 +63,16 @@ public class AttackMoveState : UnitState {
 			currentFrame = 0;
 			GameObject temp =  myManager.findBestEnemy ();
 
-			if (temp && temp != enemy) {
+			if (temp) {
 			
 				enemy = temp;
 			
 					//myManager.gameObject.transform.LookAt (enemy.transform.position);
 				if (myManager.cMover) {
+		
 					myManager.cMover.resetMoveLocation (enemy.transform.position);
 				}
 					//Debug.Log("Just called th reset2" + enemy.transform.position);
-				
 
 			}
 		}
@@ -86,19 +86,23 @@ public class AttackMoveState : UnitState {
 			bool attacked = false;
 			foreach (IWeapon weap in myManager.myWeapon) {
 				if (weap.inRange (enemy)) {
-					//Debug.Log ("Stopping me");
+
 					if (myManager.cMover) {
 						myManager.cMover.stop ();
+
 					}
 					attacked = true;
 					if (weap.canAttack (enemy)) {
-						
+	
 						weap.attack (enemy, myManager);
 					} 
 				} 
 			}
 
 			if (!attacked) {
+				if (myManager.cMover.speed == 0) {
+					myManager.cMover.resetMoveLocation (enemy.transform.position);
+				}
 
 				myManager.cMover.move ();
 			}

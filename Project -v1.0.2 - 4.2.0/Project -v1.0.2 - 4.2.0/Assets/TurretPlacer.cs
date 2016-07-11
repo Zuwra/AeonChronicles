@@ -124,7 +124,7 @@ public class TurretPlacer : MonoBehaviour {
 
 	public void initialize(bool g, bool r, bool p , bool m)
 	{
-		Debug.Log (g + "  " + r+ "  ");
+		//Debug.Log (g + "  " + r+ "  ");
 
 		if (buttonsOn) {
 			if (g) {
