@@ -1,16 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\GUI\MiniMapController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FrontalShield.cs">
     <Files>
-      <File FileName="Assets\MainMenuManager.cs" Line="26" Column="3" />
-      <File FileName="Assets\LevelManager.cs" Line="43" Column="36" />
-      <File FileName="Assets\MissionManager.cs" Line="49" Column="20" />
-      <File FileName="Assets\VictoryScreen.cs" Line="22" Column="3" />
-      <File FileName="Assets\LevelData.cs" Line="45" Column="28" />
-      <File FileName="Assets\CampUpgradeManager.cs" Line="37" Column="4" />
-      <File FileName="Assets\LevelSelectmanager.cs" Line="22" Column="3" />
-      <File FileName="Assets\VictoryTrigger.cs" Line="111" Column="30" />
-      <File FileName="Assets\Scripts - In Game\GUI\MiniMapController.cs" Line="62" Column="18" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="289" Column="35" />
+      <File FileName="Assets\HalfLife.cs" Line="1" Column="1" />
+      <File FileName="Assets\MainMenuManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="106" Column="4" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="244" Column="1" />
+      <File FileName="Assets\FrontalShield.cs" Line="50" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

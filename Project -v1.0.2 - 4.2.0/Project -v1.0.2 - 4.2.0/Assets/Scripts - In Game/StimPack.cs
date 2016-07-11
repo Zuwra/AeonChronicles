@@ -8,13 +8,21 @@ public class StimPack : Ability {
 	public float duration;
 	public float speedBoost;
 
+
 	private float timer;
 	private Selected select;
 	public MultiShotParticle BoostEffect;
 
 	// Use this for initialization
+
+	void Awake()
+	{audioSrc = GetComponent<AudioSource> ();
+		myType = type.activated;
+	}
+
 	void Start () {description = "Uses life to give a short burst of speed";
 		select = GetComponent<Selected> ();
+
 	}
 	
 	// Update is called once per frame

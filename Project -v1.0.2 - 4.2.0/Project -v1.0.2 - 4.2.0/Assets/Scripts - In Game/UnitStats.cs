@@ -181,7 +181,7 @@ public class UnitStats : MonoBehaviour {
 
 				updateHealthBar ();
 
-					if (health <= 0) {
+				if ((int)health <= 0) {
 						kill (source);
 						}
 				//Debug.Log ("Taking Damage");
@@ -282,6 +282,7 @@ public class UnitStats : MonoBehaviour {
 	public void veteranDamage(float amount)
 	{
 		if (otherTags.Contains (UnitTypes.UnitTypeTag.Turret)) {
+			
 			transform.root.GetComponent<UnitManager> ().myStats.veternStat.damageDone += amount;
 
 		}

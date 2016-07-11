@@ -23,6 +23,14 @@ public class BuildUnit : UnitProduction {
 
 	private int QueueNum;
 	// Use this for initialization
+
+	void Awake()
+	{audioSrc = GetComponent<AudioSource> ();
+		myType = type.activated;
+	}
+
+
+
 	void Start () {
 		buildMan = GetComponent<BuildManager> ();
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer;

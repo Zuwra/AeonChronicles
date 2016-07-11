@@ -48,14 +48,11 @@ public class DefaultState : UnitState{
 		UnitManager manage = src.GetComponent<UnitManager> ();
 			if (manage) {
 				if (manage.PlayerOwner != myManager.PlayerOwner) {
-	
-					Debug.Log ("Default State damage response");
-
 
 
 					if (myManager.myWeapon.Count > 0) {
 						if (myManager.isValidTarget(src)) {
-							Debug.Log ("Attack moving");
+
 							myManager.GiveOrder (Orders.CreateAttackMove (src.transform.position));
 						} else {
 							Vector3 spot = (myManager.transform.position + (myManager.transform.position - src.transform.position) * .4f);

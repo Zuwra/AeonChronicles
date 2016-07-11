@@ -104,8 +104,9 @@ public class ArmyUIManager : MonoBehaviour {
 		if (!manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			icon.transform.SetAsFirstSibling ();
 		}
-		RectTransform trans = unitPanel.GetComponent<RectTransform> ();
 		/*
+		RectTransform trans = unitPanel.GetComponent<RectTransform> ();
+
 		if (iconList.Count > 8) {
 			trans.sizeDelta = new Vector2(trans.rect.width, 135);
 			//unitPanel.transform.Translate (0, -20, 0);

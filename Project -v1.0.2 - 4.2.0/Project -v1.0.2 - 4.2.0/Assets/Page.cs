@@ -39,7 +39,7 @@ public class Page  {
 		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
 		if (rows [n / 4] [0].abilityList [X] == null) {
 			return false;}
-		if (rows [n / 4] [0].abilityList [X].myType == Ability.type.target) {
+		if (rows [n / 4] [0].abilityList [X].getMyType() == Ability.type.target) {
 			return true;
 		}
 		return false;
@@ -55,7 +55,7 @@ public class Page  {
 		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
 		if (rows [n / 4] [0].abilityList [X] == null) {
 			return false;}
-		if (rows [n / 4] [0].abilityList [X].myType == Ability.type.building) {
+		if (rows [n / 4] [0].abilityList [X].getMyType() == Ability.type.building) {
 			return true;
 		}
 		return false;

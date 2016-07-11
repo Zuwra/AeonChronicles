@@ -15,6 +15,13 @@ public class DayexaShield : Ability,Modifier {
 
 	public GameObject shieldEffect;
 
+
+	void Awake()
+	{audioSrc = GetComponent<AudioSource> ();
+		myType = type.passive;
+	}
+
+
 	// Use this for initialization
 	void Start () {
 		myStats.addModifier (this);

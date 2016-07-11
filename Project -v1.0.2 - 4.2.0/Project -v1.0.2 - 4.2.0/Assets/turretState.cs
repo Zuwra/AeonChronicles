@@ -74,7 +74,7 @@ public class turretState : UnitState {
 
 					continue;
 				}
-				if (currDistance > myWeap.range) {
+				if (!myWeap.inRange(myManager.enemies[i])) {
 
 					continue;}
 

@@ -214,6 +214,7 @@
      <Compile Include="Assets\FogOfWar\FogOfWarUnit.cs" />
      <Compile Include="Assets\FogOfWar\Test\FogOfWarTestGUI.cs" />
      <Compile Include="Assets\FogOfWar\Vector2i.cs" />
+     <Compile Include="Assets\FrontalShield.cs" />
      <Compile Include="Assets\FusionWeld.cs" />
      <Compile Include="Assets\GameMenu.cs" />
      <Compile Include="Assets\GamePlayMenu.cs" />
@@ -221,6 +222,8 @@
      <Compile Include="Assets\GraphicsMenu.cs" />
      <Compile Include="Assets\Grinder.cs" />
      <Compile Include="Assets\GuiControls.cs" />
+     <Compile Include="Assets\HalfLife.cs" />
+     <Compile Include="Assets\HalfLifeStarter.cs" />
      <Compile Include="Assets\HealthDisplay.cs" />
      <Compile Include="Assets\HealthUpgrade.cs" />
      <Compile Include="Assets\HookFury.cs" />

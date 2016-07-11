@@ -73,7 +73,11 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 		if (!spellHasBegun) {
 			nextActionTime = Time.time + 1;
 			spellHasBegun = true;
-			startTime = Time.time;}
+			startTime = Time.time;
+			foreach (IWeapon weap in myman.myWeapon) {
+				weap.triggers.Remove (this);
+			}
+		}
 	}
 
 	public void endSpell()

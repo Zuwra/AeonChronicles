@@ -47,7 +47,7 @@ public class AttackMoveState : UnitState {
 			//Debug.Log ("has manager");
 		}
 		if (myManager.cMover) {
-			Debug.Log (myManager.cMover);
+			//Debug.Log (myManager.cMover);
 			myManager.cMover.resetMoveLocation (target);
 		}
 	}

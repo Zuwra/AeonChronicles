@@ -27,10 +27,9 @@ public class airmover : IMover {
 	public float flyerHeight;
 
 
-	private float nextActionTime;
 
 	public void Start () {
-		nextActionTime = Time.time;
+
 		controller = GetComponent<CharacterController>();
 		//Start a new path to the targetPosition, return the result to the OnPathComplete function
 		//seeker.StartPath (transform.position,targetPosition, OnPathComplete);

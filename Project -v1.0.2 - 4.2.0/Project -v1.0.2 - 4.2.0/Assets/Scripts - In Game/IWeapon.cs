@@ -178,6 +178,8 @@ public class IWeapon : MonoBehaviour {
 			
 			float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position) - target.GetComponent<CharacterController> ().radius;
 			float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
+
+			//Debug.Log (this.gameObject +  "  Distance " + distance + "   range " + range + "  vert  " + (verticalDistance *1.2));
 			if (distance > (range + (verticalDistance * 1.2))) {
 			
 		
@@ -327,7 +329,7 @@ public class IWeapon : MonoBehaviour {
 	}
 
 	private void adjustAttackSpeed()
-	{Debug.Log ("Adjusting");
+	{//Debug.Log ("Adjusting");
 		float speed = baseAttackPeriod;
 		foreach (attackSpeedMod a in ASMod) {
 			speed += a.flat;
@@ -337,13 +339,13 @@ public class IWeapon : MonoBehaviour {
 		foreach (attackSpeedMod a in ASMod) {
 			percent += a.perc;
 		}
-		Debug.Log ("Setting to " + percent);
+		//Debug.Log ("Setting to " + percent);
 		speed *= percent;
 		if (speed < .05f) {
 			speed = .05f;}
 		
 		attackPeriod = speed;
-		Debug.Log ("Attack PEriod " + attackPeriod + "  " + this.gameObject.name);
+		//Debug.Log ("Attack PEriod " + attackPeriod + "  " + this.gameObject.name);
 	}
 
 

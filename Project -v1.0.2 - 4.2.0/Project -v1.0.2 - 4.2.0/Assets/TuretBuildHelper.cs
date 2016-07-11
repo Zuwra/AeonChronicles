@@ -10,6 +10,12 @@ public class TuretBuildHelper :buildTurret{
 	private bool HasBuilt ;
 
 
+	void Awake()
+	{audioSrc = GetComponent<AudioSource> ();
+		myType = type.activated;
+	}
+
+
 	// Update is called once per frame
 	void Update ()
 	{

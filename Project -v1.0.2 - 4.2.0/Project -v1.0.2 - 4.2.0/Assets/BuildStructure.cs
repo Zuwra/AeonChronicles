@@ -18,6 +18,12 @@ public class BuildStructure:  UnitProduction {
 	private BuildManager buildMan;
 	Vector3 targetLocation;
 
+	void Awake()
+	{audioSrc = GetComponent<AudioSource> ();
+		myType = type.building;
+	}
+
+
 	// Use this for initialization
 	void Start () {
 		buildMan = GetComponent<BuildManager> ();

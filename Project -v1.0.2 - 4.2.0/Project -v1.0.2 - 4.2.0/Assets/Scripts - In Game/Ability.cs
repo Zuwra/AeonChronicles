@@ -11,7 +11,7 @@ public abstract class Ability : MonoBehaviour {
 	public Sprite iconPic;
 	public AbstractCost myCost;
 	public enum type{passive, target, activated, building}
-	public type myType;
+	protected type myType;
 	[Tooltip("Check this if this ability should not interrupt the units movement")]
 	public bool continueMoving;
 	//These are seperate because Unit inspector wont show dictionaries
@@ -70,7 +70,10 @@ public abstract class Ability : MonoBehaviour {
 		
 	
 	}
-	
+
+	public type getMyType()
+	{return myType;
+	}
 	// Update is called once per frame
 	void Update () {
 	

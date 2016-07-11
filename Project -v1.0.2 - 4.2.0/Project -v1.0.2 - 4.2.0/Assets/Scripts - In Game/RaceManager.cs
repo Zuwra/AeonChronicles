@@ -350,7 +350,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void addUnit(GameObject obj )
 	{
-		Debug.Log ("Adding " + obj.name);
+		//Debug.Log ("Adding " + obj.name);
 		if (!unitList.Contains (obj)) {
 			unitList.Add (obj);
 		}

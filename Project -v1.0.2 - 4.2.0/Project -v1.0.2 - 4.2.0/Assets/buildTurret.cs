@@ -24,6 +24,13 @@ public class buildTurret :UnitProduction{
 	protected List<TurretMountTwo> turretTwoMounts = new List<TurretMountTwo>();
 	protected BuildManager buildMan;
 
+
+	void Awake()
+	{audioSrc = GetComponent<AudioSource> ();
+		myType = type.activated;
+	}
+
+
 	// Use this for initialization
 	void Start () {
 		buildMan = GetComponent<BuildManager> ();
