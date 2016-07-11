@@ -74,7 +74,7 @@ public class VictoryScreen : MonoBehaviour {
 		string ArmorS = "Damage on Armor\n";
 
 		foreach (VeteranStats vet in LevelData.myVets) {
-			if (vet.unitType != "MiniGun" && vet.unitType != "Imperio Cannon") {
+			if (vet.unitType != "MiniGun" && vet.unitType != "Imperio Cannon" && vet.unitType != "Aether Core"&& vet.unitType != "Turret Shop"&& vet.unitType != "Construction Yard") {
 		
 				Uname += vet.UnitName + "\n";
 				UType += vet.unitType + "\n";

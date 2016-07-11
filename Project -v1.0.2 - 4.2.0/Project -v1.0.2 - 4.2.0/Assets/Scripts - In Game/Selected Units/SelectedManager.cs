@@ -651,6 +651,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		location.y = location.y + 30;
 
 		if (order.OrderType == 1 ) {
+			// MOVE COMMAND
 			if (FogOfWar.current.IsInCompleteFog (location)) {
 				Instantiate (fogIndicator);
 			
@@ -664,6 +665,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			assignMoveCOmmand (order.OrderLocation, false);
 
 		} else if (order.OrderType == 4 ) {
+			// MOVE COMMAND
 			if (FogOfWar.current.IsInCompleteFog (location)) {
 				Instantiate (fogAttacker);
 			
@@ -674,8 +676,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			assignMoveCOmmand (order.OrderLocation, true);
 
 		} else if (order.OrderType == 6 ) {
-			
-
+			// INTERACT
+			order.Target.GetComponent<Selected>().interact();
 			if ((order.Target.GetComponent<UnitManager> () && order.Target.GetComponent<UnitManager> ().PlayerOwner != 1)
 			    || (order.Target.GetComponentInParent<UnitManager> () && order.Target.GetComponentInParent<UnitManager> ().PlayerOwner != 1)) {
 				AudioSrc.PlayOneShot (attackSound);

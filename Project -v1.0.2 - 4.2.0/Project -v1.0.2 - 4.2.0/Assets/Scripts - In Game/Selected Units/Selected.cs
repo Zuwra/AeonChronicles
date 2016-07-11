@@ -26,7 +26,7 @@ public class Selected : MonoBehaviour {
 
 	private float tempSelectTime;
 	private bool tempSelectOn;
-
+	private bool interactSelect;
 	public List<SelectionNotifier> selectionNotifiers = new List<SelectionNotifier>();
 
 	public enum displayType
@@ -167,7 +167,10 @@ public class Selected : MonoBehaviour {
 			if (tempSelectTime < Time.time) {
 				tempSelectOn = false;
 				if (!IsSelected) {
-					decalCircle.GetComponent<MeshRenderer> ().enabled = false;
+					
+					if (!interactSelect) {
+						decalCircle.GetComponent<MeshRenderer> ().enabled = false;
+					}
 					if (RallyPoint) {
 						RallyPoint.SetActive (false);
 					}
@@ -185,6 +188,36 @@ public class Selected : MonoBehaviour {
 	void LateUpdate()
 	{
 		
+	}
+
+	public void interact()
+	{
+		StartCoroutine (delayTurnOff ());
+	
+	}
+
+
+	IEnumerator delayTurnOff()
+	{
+		decalCircle.GetComponent<MeshRenderer> ().enabled = true;
+		interactSelect = true;
+		yield return new WaitForSeconds(.13f);
+		interactSelect = false;
+		decalCircle.GetComponent<MeshRenderer> ().enabled = false;
+		yield return new WaitForSeconds(.13f);
+		decalCircle.GetComponent<MeshRenderer> ().enabled = true;
+		yield return new WaitForSeconds(.13f);
+		decalCircle.GetComponent<MeshRenderer> ().enabled = false;
+		yield return new WaitForSeconds(.13f);
+		decalCircle.GetComponent<MeshRenderer> ().enabled = true;
+		yield return new WaitForSeconds(.13f);
+
+		if(!IsSelected && !tempSelectOn)
+		{
+			decalCircle.GetComponent<MeshRenderer> ().enabled = false;
+		}
+
+
 	}
 
 	public void tempSelect()
