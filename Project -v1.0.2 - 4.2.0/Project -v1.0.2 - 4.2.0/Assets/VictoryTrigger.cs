@@ -104,6 +104,7 @@ public class VictoryTrigger : MonoBehaviour {
 
 		LevelData.addLevelInfo (levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
 			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
+		LevelData.loadVetStats (GameManager.main.playerList [0].getUnitStats());
 	
 		VictoryScreen.enabled = false;
 		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();

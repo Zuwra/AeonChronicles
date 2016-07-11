@@ -113,8 +113,7 @@ public class UnitManager : Unit,IOrderable{
 		           && ((StandardInteract)this.gameObject.gameObject.GetComponent<UnitManager> ().interactor).attackWhileMoving) {
 
 			changeState (new turretState (this));
-		} else if(this.gameObject.gameObject.GetComponent<UnitManager> ().UnitName != "Zephyr" && 
-			myWeapon.Count > 0 &&(myStats.isUnitType (UnitTypes.UnitTypeTag.Turret) || myStats.isUnitType (UnitTypes.UnitTypeTag.Static_Defense) )){
+		} else if( myStats.isUnitType (UnitTypes.UnitTypeTag.Static_Defense) ){
 			changeState (new turretState (this));
 		}
 

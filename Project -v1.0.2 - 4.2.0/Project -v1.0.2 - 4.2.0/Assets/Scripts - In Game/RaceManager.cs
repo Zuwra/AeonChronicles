@@ -605,6 +605,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		Debug.Log (MVP.getMVP());
 	}
 
+	public List<VeteranStats> getUnitStats()
+	{
+		return MVP.UnitStats ();
+
+	}
+
 
 	public void addActualDeathWatcher(LethalDamageinterface input){
 		deathTrigger.Add (input);

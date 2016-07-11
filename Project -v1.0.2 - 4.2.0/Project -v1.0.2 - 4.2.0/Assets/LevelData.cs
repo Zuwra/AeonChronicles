@@ -11,7 +11,7 @@ public class LevelData  {
 	public static bool easyMode = true;
 	public static bool ComingFromLevel;
 
-
+	public static List<VeteranStats> myVets;
 
 	public struct levelInfo{
 		public int levelNumber;
@@ -44,6 +44,11 @@ public class LevelData  {
 		totalXP += Tech;
 		currentLevel = levelN +1;
 		Debug.Log ("Cureent Level " + currentLevel);
+	}
+
+	public static void loadVetStats(List<VeteranStats> theStats)
+	{
+		myVets = theStats;
 	}
 
 

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class VeteranStats {
 
+	public string unitType;
 	public string UnitName;
 	public float damageDone;
 	public float mitigatedDamage;
@@ -12,8 +13,10 @@ public class VeteranStats {
 	public float damageTaken;
 	public float misc;
 
-	public VeteranStats(bool hasName)
-	{if (hasName) {
+	public VeteranStats(bool hasName, string myType)
+	{unitType = myType;
+
+		if (hasName) {
 			UnitName = RaceNames.getInstance ().getName ();
 		} else {
 			UnitName = "";}

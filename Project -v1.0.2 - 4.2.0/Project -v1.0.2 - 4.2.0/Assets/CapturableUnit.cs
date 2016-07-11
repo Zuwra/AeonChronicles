@@ -41,10 +41,10 @@ public class CapturableUnit : MonoBehaviour {
 			foggy.Initialize ();
 		}
 
-		GameObject.FindObjectOfType<GameManager>().activePlayer.applyUpgrade (this.gameObject);
-		GameObject.FindObjectOfType<GameManager>().activePlayer.UnitCreated (GetComponent<UnitStats>().supply);
-		GameObject.FindObjectOfType<GameManager> ().activePlayer.addUnit (this.gameObject);
-
+		GameManager.main.activePlayer.applyUpgrade (this.gameObject);
+		GameManager.main.activePlayer.UnitCreated (GetComponent<UnitStats>().supply);
+		GameManager.main.activePlayer.addUnit (this.gameObject);
+		GameManager.main.activePlayer.addVeteranStat (GetComponent<UnitStats>().veternStat);
 
 		if (cutscene) {
 			GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);

@@ -78,7 +78,7 @@ public class UnitStats : MonoBehaviour {
 			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
 		}
 
-		veternStat= new VeteranStats(!(isUnitType(UnitTypes.UnitTypeTag.Turret) || isUnitType(UnitTypes.UnitTypeTag.Structure)) );
+		veternStat= new VeteranStats(!(isUnitType(UnitTypes.UnitTypeTag.Turret) || isUnitType(UnitTypes.UnitTypeTag.Structure)), GetComponent<UnitManager>().UnitName );
 		if (!mySelection) {
 			mySelection = this.gameObject.GetComponent<Selected>();
 		}

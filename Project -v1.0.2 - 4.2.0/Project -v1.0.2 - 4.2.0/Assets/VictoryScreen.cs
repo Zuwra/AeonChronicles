@@ -13,6 +13,14 @@ public class VictoryScreen : MonoBehaviour {
 	public Text ResourceTitle;
 	public Text ResourceDisplay;
 
+
+	public Text UnitName;
+	public Text UnitType;
+	public Text kills;
+	public Text damageDealt;
+	public Text energyRegen;
+	public Text ArmorDamage;
+
 	// Use this for initialization
 	void Start () {
 		if (LevelData.myLevels == null) {
@@ -21,7 +29,7 @@ public class VictoryScreen : MonoBehaviour {
 		}
 
 		if (LevelData.myLevels.Count > 0 && LevelData.ComingFromLevel) {
-			Debug.Log ("Settign Results");
+
 			SetResults (LevelData.myLevels [LevelData.currentLevel - 1]);
 			PlayerPrefs.SetInt ("TechAmount", LevelData.myLevels [LevelData.currentLevel - 1].TechCredits);
 			if (LevelData.currentLevel > PlayerPrefs.GetInt ("LastLevel")) {
@@ -57,6 +65,41 @@ public class VictoryScreen : MonoBehaviour {
 			ResourceTitle.text = "";
 			ResourceDisplay.text = "";
 		}
+
+		string Uname = "Name\n\n";
+		string UType = "Unit Type\n\n";
+		string killString = "Kills\n\n";
+		string damageS = "Damage Dealt\n";
+		string energyS = "Energy Regenerated\n";
+		string ArmorS = "Damage on Armor\n";
+
+		foreach (VeteranStats vet in LevelData.myVets) {
+			if (vet.unitType != "MiniGun" && vet.unitType != "Imperio Cannon") {
+		
+				Uname += vet.UnitName + "\n";
+				UType += vet.unitType + "\n";
+				killString += vet.kills + "\n";
+				damageS += vet.damageDone + "\n";
+				energyS += vet.energyGained + "\n";
+				ArmorS += vet.mitigatedDamage + "\n";
+			}
+		
+		
+		}
+
+
+
+
+		UnitName.text = Uname;
+		UnitType.text = UType;
+		kills.text = killString;
+		damageDealt.text = damageS;
+		energyRegen.text = energyS;
+		ArmorDamage.text = ArmorS;
+
+
+
+
 	}
 		
 

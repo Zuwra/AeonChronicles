@@ -32,7 +32,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 	}
 
 	public void displayText(string input, float duration, AudioClip sound, float volume, Sprite pic)
-	{	Debug.Log ("Displaying");
+	{	
 		this.enabled = true;
 		myText.text = input;
 		myCanvas.enabled = true;

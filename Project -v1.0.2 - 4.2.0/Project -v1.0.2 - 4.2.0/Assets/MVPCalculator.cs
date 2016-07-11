@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class MVPCalculator {
 
-	List<VeteranStats> myVeterans = new List<VeteranStats>();
+	public List<VeteranStats> myVeterans = new List<VeteranStats>();
 
 
 	public void addVet(VeteranStats input)
@@ -25,5 +25,12 @@ public class MVPCalculator {
 			}
 		}
 		return best;
+	}
+
+
+
+	public List<VeteranStats> UnitStats ()
+	{
+		return myVeterans;
 	}
 }
