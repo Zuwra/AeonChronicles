@@ -31,7 +31,10 @@ public class InteractState : UnitState {
 	{myManager.cMover.resetMoveLocation (target.transform.position);
 	}
 
-
+	override
+	public void endState()
+	{
+	}
 
 	// Update is called once per frame
 	override

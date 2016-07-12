@@ -18,6 +18,11 @@ public class turretState : UnitState {
 	{
 	}
 
+	override
+	public void endState()
+	{
+	}
+
 	// Update is called once per frame
 	override
 	public void Update () {

@@ -29,7 +29,10 @@ public class HoldState : UnitState {
 	public override void initialize()
 	{
 	}
-
+	override
+	public void endState()
+	{
+	}
 
 	override
 	public void attackResponse(GameObject src)

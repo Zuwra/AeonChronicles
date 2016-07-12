@@ -21,7 +21,10 @@ public class MoveState : UnitState{
 	}
 
 
-
+	override
+	public void endState()
+	{
+	}
 
 	override
 	public void Update () {

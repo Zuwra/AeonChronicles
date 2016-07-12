@@ -11,6 +11,7 @@ public class MissileArmer :Ability{
 	public bool repairs;
 	public bool shields;
 	public float shieldRate;
+	public GameObject shieldglobe;
 
 	public List<missileSalvo> missileList = new List<missileSalvo> ();
 	public List<repairReturn> repairList = new List<repairReturn>();
@@ -19,8 +20,11 @@ public class MissileArmer :Ability{
 
 	private float nextActionTime;
 	private int changeNum =0;
+
+
 	// Use this for initialization
 	void Start () {
+
 		manager = GetComponent<UnitManager> ();
 		nextActionTime = Time.time + 1;
 	}
@@ -55,20 +59,27 @@ public class MissileArmer :Ability{
 				if (stim.chargeCount < 3) {
 					stim.chargeCount++;
 					changeNum++;
+
 				}
 			}
 
-			foreach (DayexaShield ds in shieldList) {
-				if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
-					ds.myStats.changeEnergy (shieldRate);
-				}
+			if (shieldglobe) {
+				foreach (DayexaShield ds in shieldList) {
+				
+					if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
+						GameObject obj = (GameObject)Instantiate (shieldglobe, this.transform.position, Quaternion.identity);
+						obj.GetComponent<ShieldGlobe> ().target = ds.gameObject;
+						//ds.myStats.changeEnergy (shieldRate);
+					}
 			
+				}
 			}
 
 			if (changeNum > 0) {
 				RaceManager.upDateUI ();
 			}
 		}
+
 
 	}
 

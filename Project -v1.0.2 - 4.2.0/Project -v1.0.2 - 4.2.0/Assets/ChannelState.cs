@@ -54,6 +54,11 @@ public class ChannelState : UnitState{
 */
 		}
 
+	override
+	public void endState()
+	{
+	}
+
 	}
 
 

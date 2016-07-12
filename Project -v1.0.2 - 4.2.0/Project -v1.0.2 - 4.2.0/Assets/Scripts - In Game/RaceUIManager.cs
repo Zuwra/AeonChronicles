@@ -110,6 +110,10 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			production.value = 3;
 			chanageDropDown ();
 		}
+		else if (Input.GetKeyDown (KeyCode.L)) {
+			production.value = 4;
+			chanageDropDown ();
+		}
 	
 	}
 
@@ -131,6 +135,12 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 		else if (production.value == 2) {
 			currentProdManager.SetActive (false);
 			currentProdManager = dropdowns [2];
+			currentProdManager.SetActive (true);
+
+		}
+		else if (production.value == 3) {
+			currentProdManager.SetActive (false);
+			currentProdManager = dropdowns [3];
 			currentProdManager.SetActive (true);
 
 		}

@@ -27,6 +27,8 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 	}
 
+
+
 	IEnumerator delayer()
 	{
 		yield return new WaitForSeconds (1);

@@ -14,5 +14,6 @@ public abstract class  UnitState  {
 
 	public abstract void initialize();
 
+	public abstract void endState();
 
 }

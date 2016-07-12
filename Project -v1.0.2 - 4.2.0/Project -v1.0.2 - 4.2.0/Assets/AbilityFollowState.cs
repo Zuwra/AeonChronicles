@@ -78,6 +78,11 @@ public class AbilityFollowState  : UnitState {
 	}
 
 	override
+	public void endState()
+	{
+	}
+
+	override
 	public void attackResponse(GameObject src)
 	{
 	}

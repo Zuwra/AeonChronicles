@@ -64,5 +64,10 @@ public class PlaceBuildingState :UnitState {
 	{
 	}
 
+	override
+	public void endState()
+	{
+	}
+
 
 }

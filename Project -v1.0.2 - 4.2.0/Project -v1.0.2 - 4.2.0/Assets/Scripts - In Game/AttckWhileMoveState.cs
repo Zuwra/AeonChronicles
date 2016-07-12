@@ -19,6 +19,11 @@ public class AttckWhileMoveState : UnitState{
 	}
 
 	override
+	public void endState()
+	{
+	}
+
+	override
 	public void Update () {
 
 		if(myManager.enemies.Count > 0){

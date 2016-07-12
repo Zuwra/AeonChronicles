@@ -11,7 +11,7 @@ public class ErrorPrompt : MonoBehaviour {
 
 	public void showError(string err)
 	{
-		Debug.Log ("Error callling");
+
 
 		this.gameObject.GetComponent<Text> ().text = err;
 		this.gameObject.GetComponent<Text> ().enabled = true;

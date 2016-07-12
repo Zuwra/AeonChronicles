@@ -18,6 +18,11 @@ public class StunState : UnitState {
 
 
 	override
+	public void endState()
+	{
+	}
+
+	override
 	public void attackResponse(GameObject src)
 	{
 	}

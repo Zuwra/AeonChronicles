@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AIMover.cs" />
+     <Compile Include="Assets\APMCounter.cs" />
      <Compile Include="Assets\AbilityBox.cs" />
      <Compile Include="Assets\AbilityFollowState.cs" />
      <Compile Include="Assets\AetherOvercharge.cs" />
@@ -410,6 +411,7 @@
      <Compile Include="Assets\Scripts - In Game\rotater.cs" />
      <Compile Include="Assets\Scripts - In Game\turret.cs" />
      <Compile Include="Assets\SelectionNotifier.cs" />
+     <Compile Include="Assets\ShieldGlobe.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />
      <Compile Include="Assets\SoundOptions.cs" />

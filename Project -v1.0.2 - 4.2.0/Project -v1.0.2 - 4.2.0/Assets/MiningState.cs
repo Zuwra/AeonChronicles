@@ -171,4 +171,9 @@ public class MiningState : UnitState {
 	{
 	}
 
+	override
+	public void endState()
+	{currentlyMining.currentMinor = null;
+	}
+
 }

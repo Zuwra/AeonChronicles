@@ -34,12 +34,17 @@ public class DefaultState : UnitState{
 	
 	}
 
+
 	public override void initialize()
 	{if (myManager.cMover) {
 			myManager.cMover.stop ();
 		}
 	}
 
+	override
+	public void endState()
+	{
+	}
 
 	override
 	public void attackResponse(GameObject src)

@@ -35,6 +35,10 @@ public class Clock : MonoBehaviour {
 		}
 	}
 
+	public float getTotalSecond()
+	{return ((int)timer);
+	}
+
 	public string getTime()
 	{int time = (int)timer;
 		int minutes = time / 60;

@@ -365,7 +365,9 @@ public class UnitManager : Unit,IOrderable{
 		
 		} else if (nextState is DefaultState) {
 			if (queuedStates.Count > 0) {
-
+				if (myState != null) {
+					myState.endState ();
+				}
 				myState = queuedStates.Dequeue ();
 				if (myState == null) {
 					return;
@@ -398,7 +400,9 @@ public class UnitManager : Unit,IOrderable{
 
 			queuedStates.Enqueue (myState);
 		}
-	
+		if (myState != null) {
+			myState.endState ();
+		}
 			myState = nextState;
 			myState.initialize ();
 
