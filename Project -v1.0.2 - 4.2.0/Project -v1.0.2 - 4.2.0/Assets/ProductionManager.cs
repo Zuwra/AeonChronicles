@@ -35,7 +35,7 @@ public class ProductionManager : MonoBehaviour {
 					Transform t = iconList [pair.Key].transform.FindChild ("Percent");
 					t.GetComponent<Text> ().text = 
 							"" + (int)(pair.Value [0].getProgress () * 100) + "%";}
-					catch(Exception e) {
+					catch(Exception) {
 						
 						continue;
 					}

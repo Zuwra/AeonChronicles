@@ -32,12 +32,14 @@
 					foreach (UnitStats s in enemies) {
 
 					if (s.isUnitType (UnitTypes.UnitTypeTag.Turret)) {
-						s.TakeDamage (damage * (turretRatio), this.gameObject.gameObject.gameObject, DamageTypes.DamageType.True);
+						s.TakeDamage (damage * (turretRatio), this.gameObject.gameObject.gameObject, DamageTypes.DamageType.Regular);
 					} else {
 
-						s.TakeDamage (damage, this.gameObject.gameObject.gameObject, DamageTypes.DamageType.True);
+						s.TakeDamage (damage, this.gameObject.gameObject.gameObject, DamageTypes.DamageType.Regular);
 					}
-					Instantiate (cutEffect, getImpactLocation(), Quaternion.identity);
+					if (cutEffect) {
+						Instantiate (cutEffect, getImpactLocation (), Quaternion.identity);
+					}
 					//obj.transform.SetParent (this.gameObject.transform);
 					}
 				}

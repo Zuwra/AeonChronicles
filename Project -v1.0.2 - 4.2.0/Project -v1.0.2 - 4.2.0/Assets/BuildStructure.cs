@@ -6,7 +6,7 @@ public class BuildStructure:  UnitProduction {
 
 	private Selected mySelect;
 
-	private BuildingInteractor myInteractor;
+	//private BuildingInteractor myInteractor;
 
 	private UnitManager myManager;
 	private RaceManager racer;
@@ -28,7 +28,7 @@ public class BuildStructure:  UnitProduction {
 	void Start () {
 		buildMan = GetComponent<BuildManager> ();
 		myManager = this.gameObject.GetComponent<UnitManager> ();
-		myInteractor = GetComponent <BuildingInteractor> ();
+		//myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
 		myCost.cooldown = buildTime;
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ();

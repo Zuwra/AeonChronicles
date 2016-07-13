@@ -222,6 +222,7 @@
      <Compile Include="Assets\GameTips.cs" />
      <Compile Include="Assets\GraphicsMenu.cs" />
      <Compile Include="Assets\Grinder.cs" />
+     <Compile Include="Assets\GroundSetter.cs" />
      <Compile Include="Assets\GuiControls.cs" />
      <Compile Include="Assets\HalfLife.cs" />
      <Compile Include="Assets\HalfLifeStarter.cs" />

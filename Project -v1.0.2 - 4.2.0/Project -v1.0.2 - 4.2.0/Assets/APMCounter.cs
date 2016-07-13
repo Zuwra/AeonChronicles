@@ -8,11 +8,8 @@ public class APMCounter : MonoBehaviour {
 
 	public Text counter ;
 
-
-
-	private Dictionary<float, int> resOneMap = new Dictionary<float, int>();
 	List<float> actions = new List<float>();
-	private int totalWorkers = 0;
+
 
 	private float nextActionTime;
 	public int totalActions;

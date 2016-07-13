@@ -241,8 +241,13 @@ public class UiAbilityManager : MonoBehaviour {
 				obj.clear ();
 			}
 		}
-		topDividerBar.SetActive (false);
-		bottomBar.SetActive (false);
+
+		if (topDividerBar) {
+			topDividerBar.SetActive (false);
+		}
+		if (bottomBar) {
+			bottomBar.SetActive (false);
+		}
 
 
 		foreach (buttonSet obj in certainButtons) {

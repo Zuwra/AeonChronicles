@@ -72,7 +72,7 @@ public class turretState : UnitState {
 		for (int i = 0; i < myManager.enemies.Count; i ++) {
 			if (myManager.enemies[i] != null) {
 
-				float currDistance = Vector3.Distance(myManager.enemies[i].transform.position, this.myManager.gameObject.transform.position);
+				//float currDistance = Vector3.Distance(myManager.enemies[i].transform.position, this.myManager.gameObject.transform.position);
 
 				IWeapon myWeap = myManager.isValidTarget (myManager.enemies [i]);
 				if (!myWeap) {
