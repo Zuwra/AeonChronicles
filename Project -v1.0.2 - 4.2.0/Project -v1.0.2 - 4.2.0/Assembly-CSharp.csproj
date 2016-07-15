@@ -465,6 +465,7 @@
      <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\newWorkerInteract.cs" />
      <Compile Include="Assets\repairReturn.cs" />
+     <Compile Include="Assets\sawDefense.cs" />
      <Compile Include="Assets\sawTrigger.cs" />
      <Compile Include="Assets\selfDestructTimer.cs" />
      <Compile Include="Assets\simpleROV.cs" />
