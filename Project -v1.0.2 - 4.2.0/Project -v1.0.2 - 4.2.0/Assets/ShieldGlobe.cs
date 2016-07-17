@@ -19,6 +19,8 @@ public class ShieldGlobe : MonoBehaviour {
 			this.gameObject.transform.Translate ((target.gameObject.transform.position - this.gameObject.transform.position).normalized * Time.deltaTime * speed);
 			if(Vector3.Distance(this.gameObject.transform.position, target.transform.position) < 3)
 			{target.GetComponent<UnitManager> ().myStats.changeEnergy (5);
+
+				PopUpMaker.CreateGlobalPopUp ("+5", Color.blue, target.transform.position);
 				Destroy (this.gameObject);}
 		}
 		else

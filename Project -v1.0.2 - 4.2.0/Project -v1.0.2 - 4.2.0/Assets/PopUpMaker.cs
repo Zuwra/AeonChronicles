@@ -77,4 +77,17 @@ public class PopUpMaker : MonoBehaviour {
 
 	}
 
+
+
+
+	public static void CreateGlobalPopUp(string input, Color c, Vector3 loc)
+	{Vector3 location = loc;
+		location.y += 5;
+		GameObject obj = (GameObject)Instantiate (Resources.Load ("PopUp"), location, Quaternion.identity);
+		obj.GetComponentInChildren<Text> ().color = c;
+		obj.GetComponentInChildren<Text> ().text = input;
+
+
+	}
+
 }

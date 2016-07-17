@@ -10,6 +10,7 @@ public class TurretTipDisplayer: MonoBehaviour, IPointerEnterHandler, IPointerEx
 	public Sprite badImage;
 	private Button myButt;
 
+	public TurretPlacer myPlacer;
 	void Start(){
 		myButt = GetComponent<Button> ();
 	}
@@ -18,7 +19,11 @@ public class TurretTipDisplayer: MonoBehaviour, IPointerEnterHandler, IPointerEx
 	{
 
 		if (myButt.interactable) {
-			TurretUIPanel.instance.displayText (help, image);
+			if (myPlacer && myPlacer.factCount()) {
+				TurretUIPanel.instance.displayText (help, image);
+			} else {
+				TurretUIPanel.instance.displayText (cantBuild, badImage);
+			}
 
 		} else {
 			if (badImage) {

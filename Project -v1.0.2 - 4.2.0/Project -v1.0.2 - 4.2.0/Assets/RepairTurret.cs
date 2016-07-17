@@ -19,7 +19,7 @@ public class RepairTurret : Ability, Modifier{
 	// Use this for initialization
 	void Start () {
 		mymanager = gameObject.transform.parent.GetComponentInParent<UnitManager> ();
-		chargeCount = maxRepair;
+		//chargeCount = maxRepair;
 		nextActionTime = Time.time;
 		mymanager.myStats.addDeathTrigger (this);
 		popper = GetComponent<PopUpMaker> ();
@@ -32,10 +32,11 @@ public class RepairTurret : Ability, Modifier{
 	// Update is called once per frame
 	void Update () {
 
-		if (chargeCount <= 0) {
+		//if (chargeCount <= 0) {
 			
-			return;}
-
+			//return;}
+		if(Time.time > nextActionTime){
+			nextActionTime += 1;
 		if (mymanager.isIdle ()) {
 
 			if (!target) {
@@ -61,15 +62,17 @@ public class RepairTurret : Ability, Modifier{
 
 
 		if (target) {
-			if(Time.time > nextActionTime){
-				if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 18) {
+			
+				if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 16) {
 				
-					nextActionTime += 1;
+
 					int amount = (int)Mathf.Min (repairRate, TargetHealth.Maxhealth - TargetHealth.health);
 					particleEff.playEffect ();
 					TargetHealth.heal (amount);
-					returner.chargeCount -= amount;
-					chargeCount -=amount;
+					Debug.Log ("Healing " +mymanager);
+					mymanager.cMover.stop ();
+					//returner.chargeCount -= amount;
+					//chargeCount -=amount;
 					if (GetComponentInParent<Selected> ().IsSelected) {
 						RaceManager.upDateUI ();
 					}
@@ -79,6 +82,8 @@ public class RepairTurret : Ability, Modifier{
 						TargetHealth = null;
 					}
 
+				} else {
+					mymanager.changeState (new FollowState (target, null));
 				}
 			}
 		
@@ -116,9 +121,9 @@ public class RepairTurret : Ability, Modifier{
 	public bool validate(GameObject source, GameObject target)
 	{if (!active) {
 			return false;}
-		if (chargeCount > 0) {
-			return true;
-		}
+		//if (chargeCount > 0) {
+			//return true;
+	//	}
 		return false;
 	}
 

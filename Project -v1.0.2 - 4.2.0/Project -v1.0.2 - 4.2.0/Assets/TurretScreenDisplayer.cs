@@ -148,17 +148,19 @@ public class TurretScreenDisplayer : MonoBehaviour {
 		return false;
 	}
 
-	public bool buildMortar(TurretPlacer p )
-		{if (C.chargeCount > 0) {
+
+
+	public bool buildRepair(TurretPlacer p )
+			{if (C.chargeCount > 0) {
 				p.myMount.placeTurret (C.createUnit ());
 			return true;
 		}
 		return false;
 	}
 
-	public bool buildRepair(TurretPlacer p )
-			{if (D.chargeCount > 0) {
-				p.myMount.placeTurret (D.createUnit ());
+	public bool buildMortar(TurretPlacer p )
+	{if (D.chargeCount > 0) {
+			p.myMount.placeTurret (D.createUnit ());
 			return true;
 		}
 		return false;

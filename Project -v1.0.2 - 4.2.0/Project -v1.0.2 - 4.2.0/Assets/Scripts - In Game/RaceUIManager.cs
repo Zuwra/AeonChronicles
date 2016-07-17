@@ -120,26 +120,32 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 
 	public void chanageDropDown()
-	{
-		if (production.value == 0) {
+	{if (currentProdManager) {
 			currentProdManager.SetActive (false);
+			if (currentProdManager.GetComponent<ToolTip> ()) {
+				currentProdManager.GetComponent<ToolTip> ().toolbox.enabled = false;
+			}
+		}
+
+		if (production.value == 0) {
+			
 			currentProdManager = dropdowns [0];
 			currentProdManager.SetActive (true);
 		}
 		else if (production.value == 1) {
-			currentProdManager.SetActive (false);
+			
 			currentProdManager = dropdowns [1];
 			currentProdManager.SetActive (true);
 
 		}
 		else if (production.value == 2) {
-			currentProdManager.SetActive (false);
+			
 			currentProdManager = dropdowns [2];
 			currentProdManager.SetActive (true);
 
 		}
 		else if (production.value == 3) {
-			currentProdManager.SetActive (false);
+			
 			currentProdManager = dropdowns [3];
 			currentProdManager.SetActive (true);
 

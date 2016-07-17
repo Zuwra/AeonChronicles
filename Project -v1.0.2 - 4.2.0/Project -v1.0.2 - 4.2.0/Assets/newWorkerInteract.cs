@@ -25,8 +25,9 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 		}
 
-	}
+	
 
+	}
 
 
 	IEnumerator delayer()

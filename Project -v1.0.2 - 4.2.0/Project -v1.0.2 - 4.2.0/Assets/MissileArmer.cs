@@ -68,7 +68,9 @@ public class MissileArmer :Ability{
 				
 					if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
 						GameObject obj = (GameObject)Instantiate (shieldglobe, this.transform.position, Quaternion.identity);
-						obj.GetComponent<ShieldGlobe> ().target = ds.gameObject;
+						if (ds) {
+							obj.GetComponent<ShieldGlobe> ().target = ds.gameObject;
+						}
 						//ds.myStats.changeEnergy (shieldRate);
 					}
 			

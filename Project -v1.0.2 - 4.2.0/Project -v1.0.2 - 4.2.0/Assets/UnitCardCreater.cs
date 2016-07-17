@@ -14,7 +14,7 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text speed;
 
 	public List<GameObject> weaponIcons = new List<GameObject> ();
-
+	public Text weaponTitle;
 	public Text energyText;
 	public Image energyIcon;
 
@@ -71,10 +71,13 @@ public class UnitCardCreater : MonoBehaviour {
 	}
 
 	public void toggleStats ()
-	{if (currentUnit) {
+	{VetStats.text = "";
+		if (currentUnit) {
 			VetCanvas.SetActive (!VetCanvas.activeSelf);
 			if (!currentUnit.myStats.isHero) {
-				VetStats.text = RaceNames.getInstance ().getRank (currentUnit.myStats.veternStat.kills) + " ";
+				if (currentUnit.myStats.veternStat.UnitName != "") {
+					VetStats.text = RaceNames.getInstance ().getRank (currentUnit.myStats.veternStat.kills) + " ";
+				}
 			} else {
 				VetStats.text = "";
 			}
@@ -146,6 +149,12 @@ public class UnitCardCreater : MonoBehaviour {
 		} else {
 			energyIcon.enabled = false;
 			energyText.enabled = false;
+		}
+
+		if (manager.myWeapon.Count == 0) {
+			weaponTitle.enabled = false;
+		} else {
+			weaponTitle.enabled = true;
 		}
 
 		// Change this if a unit ever has more than 5 weapons;

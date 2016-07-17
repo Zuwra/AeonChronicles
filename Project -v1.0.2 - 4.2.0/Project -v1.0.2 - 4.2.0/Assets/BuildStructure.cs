@@ -18,6 +18,8 @@ public class BuildStructure:  UnitProduction {
 	private BuildManager buildMan;
 	Vector3 targetLocation;
 
+	private UnitManager inConstruction;
+
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
 		myType = type.building;
@@ -42,6 +44,13 @@ public class BuildStructure:  UnitProduction {
 
 			timer -= Time.deltaTime;
 			mySelect.updateCoolDown (1 - timer/buildTime);
+			if (!inConstruction) {
+				mySelect.updateCoolDown (0);
+				HD.stopBuilding ();
+				Morphing = false;
+			}
+			inConstruction.myStats.heal (inConstruction.myStats.Maxhealth * Time.deltaTime/ buildTime);
+
 			if(timer <=0)
 			{mySelect.updateCoolDown (0);
 				HD.stopBuilding ();
@@ -76,6 +85,8 @@ public class BuildStructure:  UnitProduction {
 		racer.stopBuildingUnit (this);
 		myManager.setStun (false, this);
 		myManager.changeState(new DefaultState());
+
+		Destroy (inConstruction.gameObject);
 
 		if (mySelect.IsSelected) {
 			SelectedManager.main.updateUI ();
@@ -127,6 +138,20 @@ public class BuildStructure:  UnitProduction {
 			if (mySelect.IsSelected) {
 				SelectedManager.main.updateUI ();
 			}
+			inConstruction = ((GameObject)Instantiate(unitToBuild, targetLocation, Quaternion.identity)).GetComponent<UnitManager>();
+		
+
+
+			foreach (Ability ab in inConstruction.abilityList) {
+				ab.active = false;
+				ab.enabled = false;
+			}
+			inConstruction.setInteractor();
+			inConstruction.interactor.initialize ();
+			inConstruction.GetComponent<Selected> ().Initialize ();
+			inConstruction.myStats.SetHealth (.05f);
+
+
 		} 
 
 		//return true;//next unit should also do this.
@@ -141,24 +166,29 @@ public class BuildStructure:  UnitProduction {
 
 		timer = 0;
 		mySelect.updateCoolDown (0);
-		GameObject unit = (GameObject)Instantiate(unitToBuild, targetLocation, Quaternion.identity);
-		GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
-		UnitManager tempManage = unit.GetComponent<UnitManager> ();
-		tempManage.setInteractor();
-		tempManage.interactor.initialize ();
+		//GameObject unit = (GameObject)Instantiate(unitToBuild, targetLocation, Quaternion.identity);
 
+		//UnitManager tempManage = unit.GetComponent<UnitManager> ();
+		//tempManage.setInteractor();
+		//tempManage.interactor.initialize ();
+		GameManager.main.playerList[myManager.PlayerOwner-1].UnitCreated(unitToBuild.GetComponent<UnitStats> ().supply);
 		myManager.setStun (false, this);
 		myManager.changeState(new DefaultState());
 		racer.stopBuildingUnit (this);
 
-		unit.GetComponent<Selected> ().Initialize ();
+		foreach (Ability ab in inConstruction.abilityList) {
+			ab.active = true;
+			ab.enabled = true;
+		}
+		//unit.GetComponent<Selected> ().Initialize ();
 
 
 		buildMan.unitFinished (this);
 		Morphing = false;
-		if (mySelect.IsSelected) {
+		if (inConstruction.GetComponent<Selected>().IsSelected || GetComponent<Selected>().IsSelected){
 			SelectedManager.main.updateUI ();
 		}
+		inConstruction = null;
 
 	}
 

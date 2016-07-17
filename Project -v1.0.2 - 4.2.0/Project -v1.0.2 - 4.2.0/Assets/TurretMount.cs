@@ -27,7 +27,10 @@ public class TurretMount : MonoBehaviour {
 	public void setSelect()
 	{
 		if (turret) {
-			turret.GetComponent<Selected> ().turretDisplay.hover (true);
+			
+			if (turret.GetComponent<Selected> ().turretDisplay) {
+				turret.GetComponent<Selected> ().turretDisplay.hover (true);
+			}
 		}
 	}
 

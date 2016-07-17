@@ -12,7 +12,7 @@ public class IWeapon : MonoBehaviour {
 	public MultiShotParticle fireEffect;
 	public AudioClip attackSoundEffect;
 	private AudioSource audioSrc;
-
+	public Animator myAnimator;
 
 	public float attackPeriod;
 	private float baseAttackPeriod;
@@ -210,8 +210,12 @@ public class IWeapon : MonoBehaviour {
 
 
 	IEnumerator Fire (float time, GameObject target)
-	{
+	{if (myAnimator) {
+			myAnimator.SetInteger ("State", 1);
+	
+		}
 		yield return new WaitForSeconds(time);
+
 
 		enemy = target;
 		if (target) {
@@ -264,6 +268,12 @@ public class IWeapon : MonoBehaviour {
 			}
 			fireTriggers (this.gameObject, proj, target, damage);
 
+		}
+
+		if (myAnimator) {
+		yield return new WaitForSeconds(.1f);
+
+			myAnimator.SetInteger ("State", 0);
 		}
 	}
 		

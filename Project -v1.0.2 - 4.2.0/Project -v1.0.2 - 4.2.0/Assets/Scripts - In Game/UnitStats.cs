@@ -174,9 +174,10 @@ public class UnitStats : MonoBehaviour {
 					//Debug.Log ("Taking damage " + this.gameObject);
 					Instantiate (takeDamageEffect, this.gameObject.transform.position, new Quaternion ());
 				}
-
-				veternStat.mitigatedDamage += armor;
-				veternStat.damageTaken += amount;
+				if (veternStat != null) {
+					veternStat.mitigatedDamage += armor;
+					veternStat.damageTaken += amount;
+				}
 				health-= amount;
 
 				updateHealthBar ();

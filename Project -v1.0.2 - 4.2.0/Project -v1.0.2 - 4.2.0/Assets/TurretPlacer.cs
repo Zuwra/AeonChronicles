@@ -43,7 +43,7 @@ public class TurretPlacer : MonoBehaviour {
 
 		myFactories.Add (fact);
 		center.image.sprite = armImage;
-		center.interactable = true;
+		//center.interactable = true;
 
 		return true;
 	}
@@ -56,7 +56,7 @@ public class TurretPlacer : MonoBehaviour {
 		if (myFactories.Count > 0) {
 			return true;
 		} else {
-			center.interactable = false;
+			//center.interactable = false;
 			gatling.gameObject.SetActive (false);
 			railgun.gameObject.SetActive (false);
 			if (mortar) {
@@ -78,6 +78,10 @@ public class TurretPlacer : MonoBehaviour {
 		unitSelect = unit.GetComponentInParent<Selected> ();
 		turretManager = unit.GetComponentInParent<TurretPlacerManager> ();
 
+	}
+
+	public bool factCount()
+	{return (myFactories.Count > 0);
 	}
 
 	// Update is called once per frame
@@ -183,12 +187,15 @@ public class TurretPlacer : MonoBehaviour {
 		}
 		SelectedManager.main.AddObject (GetComponentInParent<UnitManager> ());
 		SelectedManager.main.CreateUIPages (0);
-		gatling.gameObject.SetActive (buttonsOn);
-		railgun.gameObject.SetActive (buttonsOn);
-		if (mortar) {
-			mortar.gameObject.SetActive (buttonsOn);
-		}if (repair) {
-			repair.gameObject.SetActive (buttonsOn);
+		if (myFactories.Count > 0) {
+			gatling.gameObject.SetActive (buttonsOn);
+			railgun.gameObject.SetActive (buttonsOn);
+			if (mortar) {
+				mortar.gameObject.SetActive (buttonsOn);
+			}
+			if (repair) {
+				repair.gameObject.SetActive (buttonsOn);
+			}
 		}
 	}
 
@@ -198,6 +205,10 @@ public class TurretPlacer : MonoBehaviour {
 		foreach (TurretScreenDisplayer s in myFactories) {
 			if (s.buildGatling (this)) {
 				TurretUIPanel.instance.TurnOff();
+				Selected sel = unit.GetComponent<Selected> ();
+				if (sel && sel.IsSelected) {
+					SelectedManager.main.updateUI ();
+				}
 				break;
 			}
 		}
@@ -209,6 +220,10 @@ public class TurretPlacer : MonoBehaviour {
 		foreach (TurretScreenDisplayer s in myFactories) {
 			if (s.buildRailGun (this)) {
 				TurretUIPanel.instance.TurnOff();
+				Selected sel = unit.GetComponent<Selected> ();
+				if (sel && sel.IsSelected) {
+					SelectedManager.main.updateUI ();
+				}
 				break;
 			}
 		}
@@ -219,6 +234,10 @@ public class TurretPlacer : MonoBehaviour {
 		foreach (TurretScreenDisplayer s in myFactories) {
 			if (s.buildMortar (this)) {
 				TurretUIPanel.instance.TurnOff();
+				Selected sel = unit.GetComponent<Selected> ();
+				if (sel && sel.IsSelected) {
+					SelectedManager.main.updateUI ();
+				}
 				break;
 			}
 		}
@@ -229,6 +248,10 @@ public class TurretPlacer : MonoBehaviour {
 		foreach (TurretScreenDisplayer s in myFactories) {
 			if (s.buildRepair (this)) {
 				TurretUIPanel.instance.TurnOff();
+				Selected sel = unit.GetComponent<Selected> ();
+				if (sel && sel.IsSelected) {
+					SelectedManager.main.updateUI ();
+				}
 				break;
 			}
 		}
