@@ -75,8 +75,9 @@ public class GameMenu : MonoBehaviour {
 	else
 	{setMenu (myCanvas);
 		uimanage.setToMenu ();
-
+		pause ();
 	}
+		
 	}
 
 	public void quitGame()
@@ -97,6 +98,7 @@ public class GameMenu : MonoBehaviour {
 
 	public void pause()
 	{
+	//	Debug.Log ("Pauseing");
 		ispaused = !ispaused;
 		if (ispaused) {
 			pauseB.GetComponentInChildren<Text>().text = "Resume";
@@ -115,7 +117,7 @@ public class GameMenu : MonoBehaviour {
 	public void returnToGame()
 	{setMenu (null);
 		uimanage.SwitchToModeNormal ();
-		
+		pause ();
 	}
 
 

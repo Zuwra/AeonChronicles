@@ -354,6 +354,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		if (!unitList.Contains (obj)) {
 			unitList.Add (obj);
 		}
+		if (playerNumber == 1) {
+			if (FButtonManager.main == null) {
+				FButtonManager.main = GameObject.FindObjectOfType<FButtonManager> ();
+			}
+			FButtonManager.main.updateNumbers (unitList);
+		}
 		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
 	
 			if (uiManager != null) {

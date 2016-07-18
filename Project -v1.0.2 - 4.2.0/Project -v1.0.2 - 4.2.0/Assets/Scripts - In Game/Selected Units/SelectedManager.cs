@@ -853,9 +853,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
                 DeselectObject(rts);
             }
         }
-		foreach (RTSObject units in SelectedObjects) {
-			if (units.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
-				DeselectObject (units);
+		foreach (RTSObject u in SelectedObjects) {
+			if (u.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+				DeselectObject (u);
 			}
 		}
 

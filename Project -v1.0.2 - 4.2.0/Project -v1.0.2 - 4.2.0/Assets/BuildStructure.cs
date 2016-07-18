@@ -124,7 +124,7 @@ public class BuildStructure:  UnitProduction {
 	{if (!Morphing) {
 			HD.loadIMage (iconPic);
 
-
+	
 			//Debug.Log ("Activating");
 			myCost.payCost ();
 			buildMan.buildUnit (this);

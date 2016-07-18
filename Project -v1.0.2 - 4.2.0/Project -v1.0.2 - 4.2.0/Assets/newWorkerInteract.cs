@@ -101,6 +101,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 			//Move Order ---------------------------------------------
 		case Const.ORDER_MOVE_TO:
+			
 			myManager.changeState (new MoveState (order.OrderLocation, myManager));
 			if (myOre) {
 				myOre.currentMinor = null;
@@ -110,7 +111,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 			break;
 
 		case Const.ORDER_Interact:
-
+			
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
 			{
 				if (!order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor) {
@@ -146,7 +147,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 
 		case Const.ORDER_AttackMove:
-
+			
 			if (myOre) {
 				myOre.currentMinor = null;
 				myOre = null;
@@ -161,7 +162,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 
 		case Const.ORDER_Follow:
-
+			
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
 			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
 				break;}

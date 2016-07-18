@@ -8,9 +8,9 @@ public class FrontalShield : Ability,Modifier {
 	public float FrontArmorAmount;
 	public UnitStats myStats;
 
-
+	public GameObject hullBleeder;
 	public GameObject shieldEffect;
-
+	private float lastHit;
 
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
@@ -50,15 +50,30 @@ public class FrontalShield : Ability,Modifier {
 			if (amount < 1) {
 				amount = 1;
 			}
+			lastHit = Time.time;
+
+
 			if (shieldEffect) {
 				GameObject obj = (GameObject)Instantiate (shieldEffect, this.gameObject.transform.position, this.gameObject.transform.rotation);
 				obj.transform.SetParent (this.gameObject.transform);
 			}
+		} else {
+			StartCoroutine (delayTurnOff ());
 		}
 
 		return amount;
 	}
 
+
+	IEnumerator delayTurnOff()
+	{
+		hullBleeder.SetActive (true);
+		yield return new WaitForSeconds (.74f);
+		if(Time.time < lastHit + .7f)
+		{
+			hullBleeder.SetActive (false);
+		}
+	}
 
 
 	public override void setAutoCast(){

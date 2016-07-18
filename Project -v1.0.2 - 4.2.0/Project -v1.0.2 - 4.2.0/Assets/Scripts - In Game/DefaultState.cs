@@ -11,6 +11,8 @@ public class DefaultState : UnitState{
 		//myMover = move;
 		//myWeapon = weapon;
 
+
+
 	}
 
 
@@ -39,6 +41,8 @@ public class DefaultState : UnitState{
 	{if (myManager.cMover) {
 			myManager.cMover.stop ();
 		}
+
+
 	}
 
 	override

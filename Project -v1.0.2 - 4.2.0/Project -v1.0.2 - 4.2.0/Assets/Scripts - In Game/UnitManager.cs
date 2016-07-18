@@ -374,6 +374,7 @@ public class UnitManager : Unit,IOrderable{
 				}
 				myState.myManager = this;
 				myState.initialize ();
+				checkIdleWorker ();
 				return;
 
 			}  
@@ -405,7 +406,15 @@ public class UnitManager : Unit,IOrderable{
 		}
 			myState = nextState;
 			myState.initialize ();
+		checkIdleWorker ();
 
+	}
+
+	public void checkIdleWorker()
+	{
+		if (myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+			FButtonManager.main.changeWorkers ();
+		}
 	}
 
 
