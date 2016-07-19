@@ -213,7 +213,8 @@ public class MainCamera : MonoBehaviour, ICamera {
 
 	public void minimapMove(Vector2 input)
 	{
-		transform.position = new Vector3((input.x ) , this.gameObject.transform.position.y,(input.y ));
+		
+		transform.position = new Vector3((input.x ) , this.gameObject.transform.position.y ,(input.y ) - HeightAboveGround * .8f);
 		CheckEdgeMovement ();
 
 	}

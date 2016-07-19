@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 using UnityEngine.EventSystems;
 
-public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
+public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 
     public Image img;
 	public Image ScreenTrapz;
@@ -317,7 +317,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 	}
 
 
-	public void OnPointerClick(PointerEventData eventData)
+	public void OnPointerDown(PointerEventData eventData)
 	{
 		if (eventData.button == PointerEventData.InputButton.Left) {
 
@@ -325,7 +325,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerClickHandler  {
 			float x = (clickPos.x) / minimapWidth;
 			float y = (clickPos.y) / minimapHeight;
 
-			Vector2 toMove = new Vector2 (x * WorldWidth, y * WorldHeight);
+			Vector2 toMove = new Vector2 ((x+.5f) * WorldWidth+Left, (y+.5f) * WorldHeight+ bottom);
 			MainCamera.main.minimapMove (toMove);
 			//GetComponent<RectTransform> ().rect.width;
 		
