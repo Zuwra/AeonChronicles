@@ -12,7 +12,7 @@ public class IconAttacker : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
 	void Start()
 	{playerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
-		selManager = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
+		selManager = GameObject.FindObjectOfType<SelectedManager> ();
 		gatling = transform.parent.parent.gameObject;
 		healthDisplay = GetComponentInParent<TurretHealthDisplay> ();
 	}

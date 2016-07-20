@@ -10,8 +10,7 @@ public class ClickableButton : MonoBehaviour, IPointerClickHandler {
 
 	void Start()
 	{
-		selManager = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
-	}
+		selManager = GameObject.FindObjectOfType<SelectedManager> ();	}
 
 
 	public void OnPointerClick(PointerEventData eventData)

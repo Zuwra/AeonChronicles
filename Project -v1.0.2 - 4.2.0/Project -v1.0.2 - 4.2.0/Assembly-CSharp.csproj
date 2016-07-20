@@ -323,7 +323,6 @@
      <Compile Include="Assets\Scripts - In Game\Events\EventsManager.Mouse.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\EventsManager.ScreenEdge.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\EventsManager.cs" />
-     <Compile Include="Assets\Scripts - In Game\Events\NewBehaviourScript.cs" />
      <Compile Include="Assets\Scripts - In Game\FollowState.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\Events\GUIEvents.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\GUIManager.cs" />
@@ -378,8 +377,6 @@
      <Compile Include="Assets\Scripts - In Game\RaceManager.cs" />
      <Compile Include="Assets\Scripts - In Game\RaceUIManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Recall.cs" />
-     <Compile Include="Assets\Scripts - In Game\Resolver\ManagerResolver.cs" />
-     <Compile Include="Assets\Scripts - In Game\Resolver\ResolverConfig.cs" />
      <Compile Include="Assets\Scripts - In Game\RunicBlessing.cs" />
      <Compile Include="Assets\Scripts - In Game\Selected Units\Selected.cs" />
      <Compile Include="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" />

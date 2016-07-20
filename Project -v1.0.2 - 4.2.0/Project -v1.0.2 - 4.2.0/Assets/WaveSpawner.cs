@@ -16,8 +16,8 @@ public class WaveSpawner : MonoBehaviour {
 	private float nextActionTime = 10000;
 	private List<GameObject> nextWave ;
 
-	public GameObject rallyPoint;
-
+	public Vector3 rallyPoint;
+	public bool showPoint;
 	// Use this for initialization
 	void Start () {
 		findNextWave ();
@@ -37,7 +37,7 @@ public class WaveSpawner : MonoBehaviour {
 
 
 				StartCoroutine(MyCoroutine(delay, obj));
-				delay += .1f;
+				delay += .2f;
 
 			}
 
@@ -64,7 +64,7 @@ public class WaveSpawner : MonoBehaviour {
 		GameObject unit = (GameObject)Instantiate (obj, hitzone, Quaternion.identity);
 		yield return new WaitForSeconds(.1f);
 
-		Vector3 attackzone = rallyPoint.transform.position;
+		Vector3 attackzone = rallyPoint;
 		float radiusA = Random.Range(0, 50);
 		float angleA = Random.Range(0, 360);
 
@@ -107,6 +107,18 @@ public class WaveSpawner : MonoBehaviour {
 	
 		waveTwoTimes.Remove (nextActionTime);
 		waveThreeTimes.Remove (nextActionTime);
+
+	}
+
+
+	public void OnDrawGizmos()
+	{if (showPoint) {
+
+
+			Gizmos.color = Color.blue;
+			Gizmos.DrawLine (transform.position, rallyPoint);
+		}
+			
 
 	}
 

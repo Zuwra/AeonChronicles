@@ -140,6 +140,7 @@ public class CustomRVO : IMover {
 
 		if (path == null && !pathSet) {
 			if (controller) {
+				//Debug.Log ("Zeroa");
 				controller.Move (Vector3.zero);
 			}
 			//Debug.Log ("Returning 3");
@@ -156,6 +157,7 @@ public class CustomRVO : IMover {
 			path = null;
 			pathSet = false;
 			if (controller) {
+				//Debug.Log ("Zerob");
 				controller.Move (Vector3.zero);
 			}
 			//Debug.Log ("Returning 1");
@@ -176,7 +178,7 @@ public class CustomRVO : IMover {
 		if (myFogger) {
 			myFogger.move ();
 		}
-	
+		//Debug.Log ("Moving " + dir);
 		controller.Move (dir);
 
 
@@ -192,47 +194,6 @@ public class CustomRVO : IMover {
 
 
 
-
-
-		/*
-
-
-
-
-
-		 dir = Vector3.zero;
-
-		Vector3 pos = transform.position;
-
-		if (vectorPath != null && vectorPath.Count != 0) {
-			Vector3 waypoint = vectorPath[wp];
-			waypoint.y = pos.y;
-
-			while ((pos - waypoint).sqrMagnitude < moveNextDist*moveNextDist && wp != vectorPath.Count-1) {
-				wp++;
-				waypoint = vectorPath[wp];
-				waypoint.y = pos.y;
-			}
-
-			dir = waypoint - pos;
-			float magn = dir.magnitude;
-			if (magn > 0) {
-				float newmagn = Mathf.Min(magn, controller.maxSpeed);
-				dir *= newmagn / magn;
-			}
-			//dir = Vector3.ClampMagnitude (waypoint - pos, 1.0f) * maxSpeed;
-		}
-
-		controller.Move(dir  * MaxSpeed);
-		//AM I there yet?
-		if (Vector3.Distance (this.gameObject.transform.position, target) < 3) {
-			controller.Move (Vector3.zero);
-			return true;
-		} else {
-
-			return false;
-		}
-		*/
 	}
 
 

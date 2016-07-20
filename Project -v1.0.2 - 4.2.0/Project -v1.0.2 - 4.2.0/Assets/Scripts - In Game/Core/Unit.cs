@@ -25,24 +25,24 @@ public class Unit : RTSObject, IOrderable {
 
 
 	public override bool UseAbility (int n)
-	{Debug.Log ("calling here");
+	{
 		return true;}
 
 
 	public override bool UseTargetAbility (GameObject obj, Vector3 loc, int n)
-	{Debug.Log ("calling here");
+	{
 		return true;}
 
 	public override void autoCast (int n)
-	{Debug.Log ("calling here");
+	{
 		}
 
 	public GameObject getObject(){return this.gameObject;}
 
 	protected void Start()
 	{
-		guiManager = ManagerResolver.Resolve<IGUIManager>();
-		selectedManager = ManagerResolver.Resolve<ISelectedManager>();
+		guiManager = GameObject.FindObjectOfType<GUIManager> ();// ManagerResolver.Resolve<IGUIManager>();
+		selectedManager = GameObject.FindObjectOfType<SelectedManager>();
 
 		m_IsAttackable = this is IAttackable;
 	

@@ -357,7 +357,7 @@ public class UnitManager : Unit,IOrderable{
 
 	public void changeState(UnitState nextState)
 	{
-
+		
 		if (Input.GetKey (KeyCode.LeftShift) && (!(nextState is DefaultState) && (queuedStates.Count > 0 || !(myState is DefaultState)))) {
 			queuedStates.Enqueue (nextState);
 
@@ -406,6 +406,7 @@ public class UnitManager : Unit,IOrderable{
 		}
 			myState = nextState;
 			myState.initialize ();
+	
 		checkIdleWorker ();
 
 	}
@@ -538,7 +539,7 @@ public class UnitManager : Unit,IOrderable{
 		
 		if (myState != null) {
 
-			myState.attackResponse (src);
+			myState.attackResponse (src, 5);
 		}
 	}
 

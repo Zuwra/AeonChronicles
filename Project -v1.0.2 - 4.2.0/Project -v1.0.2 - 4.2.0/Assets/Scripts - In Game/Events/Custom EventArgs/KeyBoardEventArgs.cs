@@ -13,8 +13,8 @@ public abstract class KeyBoardEventArgs : EventArgs {
 	public KeyBoardEventArgs(KeyCode key)
 	{
 		Key = key;
-		uiManager = ManagerResolver.Resolve<IUIManager>();
-		selectedManager = ManagerResolver.Resolve<ISelectedManager>();
+		uiManager = GameObject.FindObjectOfType<UIManager> ();
+		selectedManager = GameObject.FindObjectOfType<SelectedManager> ();// ManagerResolver.Resolve<ISelectedManager>();
 	}
 	
 	public KeyBoardEventArgs(KeyCode key, bool keyDown, bool keyUp)
@@ -22,8 +22,8 @@ public abstract class KeyBoardEventArgs : EventArgs {
 		Key = key;
 		KeyDown = keyDown;
 		KeyUp = keyUp;
-		uiManager = ManagerResolver.Resolve<IUIManager>();
-		selectedManager = ManagerResolver.Resolve<ISelectedManager>();
+		uiManager =uiManager = GameObject.FindObjectOfType<UIManager> ();// ManagerResolver.Resolve<IUIManager>();
+		selectedManager =selectedManager = GameObject.FindObjectOfType<SelectedManager> ();// ManagerResolver.Resolve<ISelectedManager>();
 	}
 	
 	public abstract void Command();

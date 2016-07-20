@@ -52,7 +52,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	// Update is called once per frame
 	void Update () 
 	{
-
+		//Debug.Log ("Time scale " + Time.timeScale);
 		if (ScreenSteal) {
 			cutsceneTime += Time.deltaTime;
 			Vector3 temploc = Vector3.Lerp (CutSceneStart, StealTarget, cutsceneTime / 1.5f);
@@ -121,7 +121,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	public void Move(Vector3 worldPos)
 	{
 		transform.position = new Vector3(worldPos.x, transform.position.y, worldPos.z);
-		CheckEdgeMovement ();
+		//CheckEdgeMovement ();
 	}
 	
 	private void CheckEdgeMovement()
@@ -169,6 +169,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	public void Zoom(object sender, ScrollWheelEventArgs e)
 	{float x = 0;
 		float z = 0;
+		//Debug.Log ("Zooming");
 		if (HeightAboveGround > m_MaxFieldOfView || HeightAboveGround < m_MinFieldOfView) {
 			return;}
 
@@ -231,11 +232,13 @@ public class MainCamera : MonoBehaviour, ICamera {
 
 	public void SetBoundries (float minX, float minY, float maxX, float maxY)
 	{
+		
 		m_Boundries = new Rect();
 		m_Boundries.xMin = minX;
 		m_Boundries.xMax = maxX;
 		m_Boundries.yMin = minY+1;
 		m_Boundries.yMax = maxY;
+
 
 	}
 	

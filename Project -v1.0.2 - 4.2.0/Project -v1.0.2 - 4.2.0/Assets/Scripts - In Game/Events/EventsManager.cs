@@ -24,13 +24,17 @@ public partial class EventsManager : MonoBehaviour, IEventsManager {
 	void Awake()
 	{
 		main = this;
-		
+		//Debug.Log ("I am " + main.gameObject + "  length is " + MouseClick.GetInvocationList().Length);
 		MouseClick += DoubleClickCheck;
-	}
 	
+	}
+
+
 	// Update is called once per frame
 	void LateUpdate () 
-	{		
+	{	//Debug.Log ("Check stuff " + this.gameObject);
+		
+	//	Debug.Log("Lengtrh" + ScreenEdgeMousePosition.GetInvocationList ().Length);
 		CheckMouseClicks ();		
 		CheckKeyBoardPresses ();
 		CheckScreenEdgeEvents ();		

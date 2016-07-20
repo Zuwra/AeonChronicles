@@ -43,7 +43,7 @@ public class LevelData  {
 		myLevels.Add (myL);
 		totalXP += Tech;
 		currentLevel = levelN +1;
-		Debug.Log ("Cureent Level " + currentLevel);
+	//	Debug.Log ("Cureent Level " + currentLevel);
 	}
 
 	public static void loadVetStats(List<VeteranStats> theStats)

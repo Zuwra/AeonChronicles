@@ -20,7 +20,7 @@ public class RightButton_Handler : MouseEventArgs {
 	
 	public override void Command()
 	{
-		IUIManager uiManager = ManagerResolver.Resolve<IUIManager>();
+		IUIManager uiManager = GameObject.FindObjectOfType<UIManager> ();
 		
 	
 

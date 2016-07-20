@@ -44,7 +44,7 @@ public class UnitEnterTrigger : MonoBehaviour {
 		yield return new WaitForSeconds (delay + .0001f);
 
 		foreach (SceneEventTrigger trig in myTriggers) {
-			Debug.Log ("Triggering " + trig);
+			//Debug.Log ("Triggering " + trig);
 			trig.trigger (index, input, location, target, doIt);
 		}
 		Destroy (this.gameObject);

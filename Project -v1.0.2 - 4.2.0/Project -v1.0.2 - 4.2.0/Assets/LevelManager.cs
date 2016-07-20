@@ -27,6 +27,8 @@ public class LevelManager : MonoBehaviour {
 			obj.SetActive (false);
 		}
 
+		levelPresets [LevelData.currentLevel].enabled = true;
+
 		levelIntros [LevelData.currentLevel].SetActive (true);
 		currentIntro = levelIntros [LevelData.currentLevel];
 		currentTech = Vehicles;

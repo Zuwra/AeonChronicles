@@ -166,9 +166,9 @@ namespace Pathfinding.RVO {
 			tr = transform;
 			myMover = GetComponent<UnitManager> ().cMover;
 			// Find the RVOSimulator in this scene
-			cachedSimulator = cachedSimulator ?? FindObjectOfType(typeof(RVOSimulator)) as RVOSimulator;
+			cachedSimulator = GameObject.FindObjectOfType<RVOSimulator>();// cachedSimulator ?? FindObjectOfType(typeof(RVOSimulator)) as RVOSimulator;
 			if (cachedSimulator == null) {
-				//Debug.LogError("No RVOSimulator component found in the scene. Please add one.");
+				Debug.LogError("No RVOSimulator component found in the scene. Please add one.");
 			} else {
 				simulator = cachedSimulator.GetSimulator();
 			}
@@ -237,6 +237,7 @@ namespace Pathfinding.RVO {
 		public void Update () {
 
 
+
 			if (rvoAgent == null) return;
 
 			if (lastPosition != tr.position) {
@@ -288,14 +289,13 @@ namespace Pathfinding.RVO {
 			#endif
 			rvoAgent.DesiredVelocity = desiredVelocity + force*wallAvoidForce;
 
+
 			tr.position = realPos + Vector3.up*height*0.5f - center;
+		
 			lastPosition = tr.position;
 
 			if (enableRotation && velocity != Vector3.zero) 
 				transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity), Time.deltaTime * rotationSpeed * Mathf.Min(velocity.magnitude, 0.2f));
-
-
-
 
 
 			}

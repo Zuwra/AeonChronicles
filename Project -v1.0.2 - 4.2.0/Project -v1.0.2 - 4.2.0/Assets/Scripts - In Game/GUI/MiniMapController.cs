@@ -31,8 +31,7 @@ public class MiniMapController : MonoBehaviour, IMiniMapController {
 	void Start () 
 	{
 		
-		m_MainCamera = ManagerResolver.Resolve<ICamera>();
-		
+		m_MainCamera = GameObject.FindObjectOfType<MainCamera> ();		
 	}
 	
 	// Update is called once per frame

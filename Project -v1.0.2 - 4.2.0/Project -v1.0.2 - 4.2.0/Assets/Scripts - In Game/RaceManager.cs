@@ -72,7 +72,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	// Use this for initialization
 	void Awake () {
-		selectedManager = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
+		selectedManager = GameObject.FindObjectOfType<SelectedManager> ();
 		uiManager = FindObjectOfType <RaceUIManager>();
 		uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
 	

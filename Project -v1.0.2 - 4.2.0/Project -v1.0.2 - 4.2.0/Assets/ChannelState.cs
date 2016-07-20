@@ -24,7 +24,7 @@ public class ChannelState : UnitState{
 
 
 	override
-	public void attackResponse(GameObject src)
+	public void attackResponse(GameObject src, float amount)
 	{/*
 		UnitManager manage = src.GetComponent<UnitManager> ();
 		if (manage.PlayerOwner != myManager.PlayerOwner) {

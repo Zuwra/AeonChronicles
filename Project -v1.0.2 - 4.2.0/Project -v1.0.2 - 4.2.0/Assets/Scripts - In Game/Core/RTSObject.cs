@@ -17,12 +17,7 @@ public abstract class RTSObject : MonoBehaviour {
 		private set;
 	}
 	
-	public int UniqueID
-	{
-		get;
-		private set;
-	}
-	
+
 	public int TeamIdentifier
 	{
 		get;
@@ -54,7 +49,7 @@ public abstract class RTSObject : MonoBehaviour {
 	
 	protected void Awake()
 	{
-		UniqueID = ManagerResolver.Resolve<IManager>().GetUniqueID();
+		
 	}
 	
 

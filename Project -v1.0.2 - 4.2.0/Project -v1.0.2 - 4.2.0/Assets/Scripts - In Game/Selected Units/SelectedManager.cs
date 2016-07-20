@@ -205,6 +205,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				if (SelectedObjects [0]) {
 					Vector3 location = SelectedObjects [0].gameObject.transform.position;
 					location.z -= 90;
+					Debug.Log ("Space");
 					MainCamera.main.Move (location);
 				}
 			}

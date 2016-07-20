@@ -25,10 +25,10 @@ public class DragSelect : MonoBehaviour {
 		m_DragStyle.border.left = 1;
 		m_DragStyle.border.right = 1;
 		uiManager = GameObject.FindObjectOfType<UIManager> ();
-		m_GuiManager = ManagerResolver.Resolve<IGUIManager>();
+		m_GuiManager = GameObject.FindObjectOfType<GUIManager> ();
 		//m_SelectedManager = ManagerResolver.Resolve<ISelectedManager>();
 		
-		ManagerResolver.Resolve<IEventsManager>().MouseClick += LeftButtonPressed;
+		GameObject.FindObjectOfType<EventsManager>().MouseClick += LeftButtonPressed;
 		
 	}
 	

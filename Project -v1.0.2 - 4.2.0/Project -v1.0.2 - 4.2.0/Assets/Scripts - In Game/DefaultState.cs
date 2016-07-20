@@ -51,7 +51,7 @@ public class DefaultState : UnitState{
 	}
 
 	override
-	public void attackResponse(GameObject src)
+	public void attackResponse(GameObject src, float amount)
 	{	
 		if(src){
 		UnitManager manage = src.GetComponent<UnitManager> ();
@@ -79,15 +79,16 @@ public class DefaultState : UnitState{
 
 					}
 					// Inform other alleis to also attack
+					if(amount > 0){
 					foreach (GameObject ally in myManager.allies) {
-						if (ally){
-							if (myManager.gameObject != ally) {
-								UnitState hisState = ally.GetComponent<UnitManager> ().getState ();
-								if (hisState is DefaultState) {
-									hisState.attackResponse (src);
+							if (ally) {
+								if (myManager.gameObject != ally) {
+									UnitState hisState = ally.GetComponent<UnitManager> ().getState ();
+									if (hisState is DefaultState) {
+										hisState.attackResponse (src,0);
+									}
 								}
 							}
-
 						}
 					}
 

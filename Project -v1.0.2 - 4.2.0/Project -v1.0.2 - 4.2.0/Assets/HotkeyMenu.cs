@@ -124,7 +124,7 @@ public class HotkeyMenu : MonoBehaviour {
 
 		//fManager = GameObject.Find ("F-Buttons").GetComponent<FButtonManager>();
 
-		selectMan = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
+		selectMan = GameObject.FindObjectOfType<SelectedManager> ();
 		foreach (RaceInfo info in raceInfo.GetComponents<RaceInfo>()) {
 
 			if (info.race == GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.myRace) {

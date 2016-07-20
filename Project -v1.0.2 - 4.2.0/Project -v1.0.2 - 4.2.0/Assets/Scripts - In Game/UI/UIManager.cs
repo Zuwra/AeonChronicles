@@ -26,7 +26,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 	private ICamera m_Camera;
 	private IGUIManager m_GuiManager;
 	private IMiniMapController m_MiniMapController;
-	
+
+	private string myName;
+
 	//Building Placement variables
 
 	public GameObject m_ObjectBeingPlaced;
@@ -61,8 +63,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 	}
 	
 	void Awake()
-	{
+	{myName = this.gameObject.name;
 		main = this;
+		//Debug.Log ("Setting UI manager " + this.gameObject.name);
 	}
 
 	// Use this for initialization
@@ -70,13 +73,15 @@ public class UIManager : MonoBehaviour, IUIManager {
 	{fog = GameObject.FindObjectOfType<FogOfWar> ();
 		//Resolve interface variables
 		m_SelectedManager =  GameObject.FindObjectOfType<SelectedManager>();
-		m_Camera = ManagerResolver.Resolve<ICamera>();	
-		m_GuiManager = ManagerResolver.Resolve<IGUIManager>();
-		m_MiniMapController = ManagerResolver.Resolve<IMiniMapController>();
+		m_Camera = GameObject.FindObjectOfType<MainCamera> (); //ManagerResolver.Resolve<ICamera>();	
+		m_GuiManager =GameObject.FindObjectOfType<GUIManager>();// ManagerResolver.Resolve<IGUIManager>();
+		m_MiniMapController =  GameObject.FindObjectOfType<MiniMapController>();// ManagerResolver.Resolve<IMiniMapController>();
 		
 		//Attach Event Handlers
-		IEventsManager eventsManager = ManagerResolver.Resolve<IEventsManager>();
+		EventsManager eventsManager =GameObject.FindObjectOfType<EventsManager>();// ManagerResolver.Resolve<IEventsManager>();
+	//	Debug.Log("Addin to " + eventsManager.gameObject);
 		eventsManager.MouseClick += ButtonClickedHandler;
+		//ButtonClickedHandler (null,null);
 		eventsManager.MouseScrollWheel += ScrollWheelHandler;
 		eventsManager.KeyAction += KeyBoardPressedHandler;
 		eventsManager.ScreenEdgeMousePosition += MouseAtScreenEdgeHandler;
@@ -184,7 +189,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			RaycastHit hit;		
 
 		if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(5 << 12))) {
-
+		//	Debug.Log ("hit something " + hit.collider.gameObject + "   "+this.gameObject.name);
 			currentObject = hit.collider.gameObject;
 
 			if (!EventSystem.current.IsPointerOverGameObject ()) {
@@ -297,13 +302,15 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 	//----------------------Mouse Button Handler------------------------------------
 	private void ButtonClickedHandler(object sender, MouseEventArgs e)
-	{
+	{//Debug.Log ("Here "  + myName);
 			e.Command ();
 	}
 
 	//------------------------Mouse Button Commands--------------------------------------------
 	public void LeftButton_SingleClickDown(MouseEventArgs e)
 	{	clickOverUI = isPointerOverUIObject ();
+		//Debug.Log ("Left click" +myName );
+
 		if(hoverOver != HoverOver.Menu)
 		switch (m_Mode)
 		{
@@ -372,12 +379,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 	}
 	
 	public void LeftButton_SingleClickUp(MouseEventArgs e)
-	{if (Time.time < lastClickDouble+ .08f) {
+	{
+		if (Time.time < lastClickDouble+ .08f) {
 			return;
 		
 		}
 
 		if (clickOverUI) {
+			//Debug.Log ("Over UI");
 			clickOverUI = false;
 			return;
 		}
@@ -392,18 +401,23 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		case Mode.Normal:
 			//If we've just switched from another mode, don't execute
-				
+			//Debug.Log ("No current object " + myName +"  " +  e.GetHashCode());
 			if (m_Placed) {
+				//Debug.Log ("Was being placed");
 				m_Placed = false;
 				return;
 			}
 	
 				//We've left clicked, have we left clicked on a unit?
+			if (!currentObject) {
+				
+				break;
+			}
 			int currentObjLayer = currentObject.layer;//layer tells us what we clicked on
             
 				//if we're not dragging and clicked on a unit
 			if (!m_GuiManager.Dragging && (currentObjLayer == 9 || currentObjLayer == 10)) {
-
+				//Debug.Log ("in the loop");
 
 				if (!isPointerOverUIObject()) {
 
@@ -686,6 +700,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	private void ScrollWheelHandler(object sender, ScrollWheelEventArgs e)
 	{
 		//Zoom In/Out
+		//Debug.Log("Zooming in UI manager");
 		m_Camera.Zoom (sender, e);
 		m_MiniMapController.ReCalculateViewRect ();
 	}
@@ -765,7 +780,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 		m_Mode = Mode.Normal;
 
 	}
-	
+
+
+
 	public void SwitchToModePlacingBuilding(GameObject item)
 	{
 		m_Mode = Mode.PlaceBuilding;

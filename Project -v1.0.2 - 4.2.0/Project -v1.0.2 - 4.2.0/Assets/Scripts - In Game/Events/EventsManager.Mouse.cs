@@ -14,7 +14,7 @@ public partial class EventsManager {
 		if (Input.GetMouseButtonDown(0))
 		{
 			if (MouseClick != null) 
-			{
+			{//Debug.Log ("Checkign mouse clicks " + this.gameObject);
 				MouseClick(this, new LeftButton_Handler((int)Input.mousePosition.x, (int)Input.mousePosition.y, 0));
 			}
 		}	

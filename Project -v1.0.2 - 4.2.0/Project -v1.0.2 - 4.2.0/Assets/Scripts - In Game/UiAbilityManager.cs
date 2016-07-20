@@ -51,7 +51,7 @@ public class UiAbilityManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		nextActionTime = Time.time;
-		selectMan = GameObject.Find ("Manager").GetComponent<SelectedManager>();
+		selectMan = GameObject.FindObjectOfType<SelectedManager> ();
 	}
 	
 	// Update is called once per frame

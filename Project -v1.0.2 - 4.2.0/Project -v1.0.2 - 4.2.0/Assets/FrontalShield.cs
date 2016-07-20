@@ -69,7 +69,7 @@ public class FrontalShield : Ability,Modifier {
 	{
 		hullBleeder.SetActive (true);
 		yield return new WaitForSeconds (.74f);
-		if(Time.time < lastHit + .7f)
+		if(Time.time < lastHit + .8f)
 		{
 			hullBleeder.SetActive (false);
 		}

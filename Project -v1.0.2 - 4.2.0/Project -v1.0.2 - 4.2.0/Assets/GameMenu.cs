@@ -99,14 +99,18 @@ public class GameMenu : MonoBehaviour {
 	public void pause()
 	{
 	//	Debug.Log ("Pauseing");
-		ispaused = !ispaused;
-		if (ispaused) {
-			pauseB.GetComponentInChildren<Text>().text = "Resume";
+		ispaused = true;
+
 			Time.timeScale = 0;
-		} else {
+		
+	}
+
+	public void unpause()
+	{
+		//	Debug.Log ("Pauseing");
+		ispaused = false;
+	
 			Time.timeScale = 1;
-			pauseB.GetComponentInChildren<Text>().text = "Pause";
-		}
 
 	}
 
@@ -117,7 +121,7 @@ public class GameMenu : MonoBehaviour {
 	public void returnToGame()
 	{setMenu (null);
 		uimanage.SwitchToModeNormal ();
-		pause ();
+		unpause ();
 	}
 
 
