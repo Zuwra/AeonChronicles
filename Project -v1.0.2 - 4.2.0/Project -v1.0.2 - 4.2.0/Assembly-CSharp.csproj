@@ -250,7 +250,6 @@
      <Compile Include="Assets\Masochism.cs" />
      <Compile Include="Assets\MassCapture.cs" />
      <Compile Include="Assets\MiniMapUIController.cs" />
-     <Compile Include="Assets\MiningSaw.cs" />
      <Compile Include="Assets\MiningSawDamager.cs" />
      <Compile Include="Assets\MiningState.cs" />
      <Compile Include="Assets\MissileArmer.cs" />
@@ -466,7 +465,6 @@
      <Compile Include="Assets\newWorkerInteract.cs" />
      <Compile Include="Assets\repairReturn.cs" />
      <Compile Include="Assets\sawDefense.cs" />
-     <Compile Include="Assets\sawTrigger.cs" />
      <Compile Include="Assets\selfDestructTimer.cs" />
      <Compile Include="Assets\simpleROV.cs" />
      <Compile Include="Assets\testScript.cs" />

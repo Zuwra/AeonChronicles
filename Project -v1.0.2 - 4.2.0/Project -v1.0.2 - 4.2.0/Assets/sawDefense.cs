@@ -43,9 +43,12 @@ public class sawDefense : MonoBehaviour {
 				if (!enem) {
 				
 					return;}
-				targetlocation = (enem.transform.position - mySaw.transform.position).normalized;
+				Vector3 tempEnd = enem.transform.position;
+				tempEnd.y = mySaw.transform.position.y;
+				targetlocation = (tempEnd- mySaw.transform.position).normalized;
 
-				Debug.Log ("target is " + targetlocation);
+
+
 				inAttack = true;
 				if (attackType == 2) {
 					attackType = -2;
@@ -66,19 +69,21 @@ public class sawDefense : MonoBehaviour {
 	}
 
 	IEnumerator showInd()
-	{	yield return new WaitForSeconds (.1f);
+	{	yield return new WaitForSeconds (1f);
 		if (attackType == 2) {
 			targetSlice.gameObject.SetActive (true);
 		
 
 
 		} else {
-			targetCircle.transform.position = targetlocation* 47 + mySaw.transform.position;
+			Vector3 tempLoc = targetlocation * 47 + mySaw.transform.position;
+			tempLoc.y -= 8;
+			targetCircle.transform.position = tempLoc;
 		
 			targetCircle.gameObject.SetActive (true);
 
 		}
-		yield return new WaitForSeconds (3f);
+		yield return new WaitForSeconds (3.2f);
 		targetCircle.gameObject.SetActive (false);
 
 		targetSlice.gameObject.SetActive (false);

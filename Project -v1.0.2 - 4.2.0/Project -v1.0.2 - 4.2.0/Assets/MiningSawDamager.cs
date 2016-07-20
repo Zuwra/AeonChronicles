@@ -71,7 +71,7 @@
 		void OnTriggerEnter(Collider other)
 		{
 
-		if (other.name == "Ground") {
+		if (other.name == "Ground" && impactEffect) {
 			Instantiate (impactEffect, getImpactLocation(), Quaternion.identity);
 		}
 			UnitManager manage = other.gameObject.GetComponent<UnitManager> ();
