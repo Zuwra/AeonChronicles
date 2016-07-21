@@ -30,7 +30,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Time.time > nextActionTime) {
+		if (Clock.main.getTotalSecond()> nextActionTime) {
 
 			float delay = .1f;
 			foreach (GameObject obj in nextWave) {

@@ -164,7 +164,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public static void  findSelectMan()
 	{if (statSelect == null) {
-			statSelect = GameObject.Find ("Manager").GetComponent<SelectedManager> ();
+			statSelect = GameObject.FindObjectOfType<SelectedManager> ();
 		}
 	}
 
