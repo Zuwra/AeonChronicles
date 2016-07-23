@@ -28,7 +28,11 @@ public class MainCamera : MonoBehaviour, ICamera {
 	private Vector3 StealTarget;
 	private Vector3 CutSceneStart;
 	private float cutsceneTime;
-	
+
+	Vector2 middleStartPos;
+	Vector3 camStartPos;
+	bool middleMouseDown;
+
 	void Awake()
 	{
 		main = this;
@@ -60,12 +64,30 @@ public class MainCamera : MonoBehaviour, ICamera {
 
 
 			CheckEdgeMovement ();
-			if (this.transform.position != temploc ||  Vector3.Distance (this.transform.position, StealTarget) < 3) {
+			if (this.transform.position != temploc || Vector3.Distance (this.transform.position, StealTarget) < 3) {
 				ScreenSteal = false;
 				canWeScroll = true;
 			}
 		
+		} else if (Input.GetMouseButtonDown (2)) {
+			CursorManager.main.targetMode ();
+			middleStartPos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+			camStartPos = this.transform.position;
+			middleMouseDown = true;
+		} else if (Input.GetMouseButtonUp (2)) {
+			if (CursorManager.main.getMode () == 2) {
+				CursorManager.main.normalMode ();
+			}
+			middleMouseDown = false;
+		} else if (middleMouseDown) {
+			CursorManager.main.targetMode ();
+			if (Input.mousePosition.x > 0 && Input.mousePosition.x < Screen.width - 2 && Input.mousePosition.y > 0 && Input.mousePosition.y < Screen.height - 2) {
+				transform.Translate ((middleStartPos.x - Input.mousePosition.x) * Time.deltaTime * HeightAboveGround / 17, 0, (middleStartPos.y - Input.mousePosition.y) * Time.deltaTime* HeightAboveGround /14, Space.World);
+				middleStartPos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+				CheckEdgeMovement ();
+			}
 		}
+
 	}
 
 	public void goToStart()

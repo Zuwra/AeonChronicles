@@ -27,6 +27,11 @@ public class CursorManager : MonoBehaviour {
 
 	}
 
+	public int getMode()
+	{
+		return currentMode;
+	}
+
 
 	public void normalMode()
 	{if (currentMode != 0) {

@@ -40,7 +40,10 @@ public class TurretUIPanel : MonoBehaviour {
 	
 
 		if (pic) {
-			personPic.sprite = pic;}
+			personPic.sprite = pic;
+		} else {
+			Debug.Log ("The pic is null bro");
+		}
 
 	}
 

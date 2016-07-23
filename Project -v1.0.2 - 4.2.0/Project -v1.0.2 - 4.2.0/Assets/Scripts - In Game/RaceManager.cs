@@ -350,7 +350,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void addUnit(GameObject obj )
 	{
-		//Debug.Log ("Adding " + obj.name);
+		//Debug.Log ("Adding " + obj.name + "   " + playerNumber);
 		if (!unitList.Contains (obj)) {
 			unitList.Add (obj);
 		}
@@ -359,13 +359,21 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				FButtonManager.main = GameObject.FindObjectOfType<FButtonManager> ();
 			}
 			FButtonManager.main.updateNumbers (unitList);
-		}
-		if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
-	
-			if (uiManager != null) {
-				uiManager.production.GetComponent<EconomyManager> ().updateWorker (1);
+
+
+			if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+
+				if (uiManager != null) {
+					uiManager.production.GetComponent<EconomyManager> ().updateWorker (1);
+				}
 			}
+
+			if (uiManager != null) {
+				uiManager.production.GetComponent<ArmyUIManager> ().updateUnits (obj);
+			}
+
 		}
+	
 
 		if (obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			//This rescans the Astar graph after the unit dies
@@ -374,9 +382,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			StartCoroutine (DeathRescan (b));
 		}
 
-		if (uiManager != null) {
-			uiManager.production.GetComponent<ArmyUIManager> ().updateUnits (obj);
-		}
+	
 
 		string unitName = obj.GetComponent<UnitManager> ().UnitName;
 

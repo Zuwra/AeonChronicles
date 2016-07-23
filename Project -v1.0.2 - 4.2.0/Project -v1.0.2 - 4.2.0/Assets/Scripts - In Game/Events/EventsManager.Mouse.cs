@@ -51,7 +51,7 @@ public partial class EventsManager {
 				}
 			}
 		}
-		
+		/*
 		if (Input.GetMouseButtonDown (2))
 		{
 			if (MouseClick != null)
@@ -59,7 +59,7 @@ public partial class EventsManager {
 				MouseClick(this, new MiddleButton_Handler((int)Input.mousePosition.x, (int)Input.mousePosition.y, 2));
 			}
 		}
-		
+		*/
 		if (Input.GetAxis ("Mouse ScrollWheel") != 0)
 		{
 			if (MouseScrollWheel != null) 

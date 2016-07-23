@@ -17,8 +17,16 @@ public class SoundOptions : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		masterSLider = masterSLiderO.GetComponent<Slider> ();
+
 		musicSlider = musicSliderO.GetComponent<Slider> ();
-		music = Object.FindObjectOfType<AudioSource>();
+
+		music = GameObject.FindObjectOfType<MainCamera> ().GetComponent<AudioSource> ();
+		if (!music) {
+			music = GameObject.FindObjectOfType<Camera> ().GetComponent<AudioSource> ();
+		}
+
+		masterSLider.value = AudioListener.volume;
+		musicSlider.value = music.volume;
 	}
 	
 	// Update is called once per frame

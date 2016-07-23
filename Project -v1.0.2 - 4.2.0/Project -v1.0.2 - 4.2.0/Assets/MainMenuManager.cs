@@ -11,6 +11,7 @@ public class MainMenuManager : MonoBehaviour {
 	public Canvas campaign;
 	public Canvas Credits;
 	public Canvas loadCanvas;
+	public Canvas OptionsCan;
 
 	private Canvas currentScreen;
 
@@ -63,6 +64,12 @@ public class MainMenuManager : MonoBehaviour {
 		#endif
 		}
 
+
+	public void loadOption()
+	{
+		OptionsCan.enabled = !OptionsCan.enabled;
+
+	}
 
 	public void LoadLevel(int n)
 	{LevelData.currentLevel = n;
