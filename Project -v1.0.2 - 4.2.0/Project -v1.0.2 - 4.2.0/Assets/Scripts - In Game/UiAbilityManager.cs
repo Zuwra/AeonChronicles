@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 using UnityEngine.UI;
 public class UiAbilityManager : MonoBehaviour {
@@ -249,12 +250,15 @@ public class UiAbilityManager : MonoBehaviour {
 			bottomBar.SetActive (false);
 		}
 
-
+		try{
 		foreach (buttonSet obj in certainButtons) {
-			obj.QButton.SetActive (false);
-			obj.WButton.SetActive (false);
-			obj.EButton.SetActive (false);
-			obj.RButton.SetActive (false);
+			
+				obj.QButton.SetActive (false);
+				obj.WButton.SetActive (false);
+				obj.EButton.SetActive (false);
+				obj.RButton.SetActive (false);
+
+			}}catch(Exception){
 		}
 
 		foreach (KeyValuePair< GameObject, GameObject > del in unitIcons) {
@@ -430,7 +434,7 @@ public class UiAbilityManager : MonoBehaviour {
 							if (active) {
 								break;}
 							}
-
+					//	Debug.Log ("Ability 1 " + active);
 
 						if (active) {
 								cb.disabledColor = Color.white;
@@ -565,12 +569,12 @@ public class UiAbilityManager : MonoBehaviour {
 							UnitManager Uman = obj.gameObject.GetComponent<UnitManager> ();
 
 							if (!Uman.Silenced() && !Uman.Stunned()) {
-								active = (Uman.abilityList [AbilityX * 4].active);
+								active = (Uman.abilityList [2 + AbilityX * 4].active);
 							}
 							if (active) {
 								break;}
 						}
-
+						//Debug.Log ("Ability 3 " + active);
 
 						//if (man.abilityList [AbilityX * 4].active) {
 						if (active) {
@@ -639,7 +643,7 @@ public class UiAbilityManager : MonoBehaviour {
 						}
 
 
-
+						//Debug.Log ("Ability 4 " + active);
 						//if (man.abilityList [AbilityX * 4].active) {
 						if (active) {
 

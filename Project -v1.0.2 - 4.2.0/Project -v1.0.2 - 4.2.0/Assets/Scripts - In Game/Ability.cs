@@ -54,6 +54,8 @@ public abstract class Ability : MonoBehaviour {
 			active = false;
 		} 
 
+
+
 	}
 
 	void Awake()

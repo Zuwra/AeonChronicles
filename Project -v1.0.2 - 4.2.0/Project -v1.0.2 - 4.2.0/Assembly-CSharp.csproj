@@ -158,6 +158,8 @@
      <Compile Include="Assets\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
      <Compile Include="Assets\AttachGrinder.cs" />
+     <Compile Include="Assets\AugmentAttachPoint.cs" />
+     <Compile Include="Assets\Augmentor.cs" />
      <Compile Include="Assets\BackLashAura.cs" />
      <Compile Include="Assets\BackLashZone.cs" />
      <Compile Include="Assets\Ballistic.cs" />
@@ -201,6 +203,7 @@
      <Compile Include="Assets\DamageUpgrade.cs" />
      <Compile Include="Assets\DayexaShield.cs" />
      <Compile Include="Assets\DeathWinTrigger.cs" />
+     <Compile Include="Assets\DetachAugment.cs" />
      <Compile Include="Assets\DifficultyManager.cs" />
      <Compile Include="Assets\EMPblast.cs" />
      <Compile Include="Assets\EconomyManager.cs" />

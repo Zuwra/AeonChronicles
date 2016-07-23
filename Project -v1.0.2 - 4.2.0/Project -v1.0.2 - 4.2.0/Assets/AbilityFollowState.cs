@@ -63,7 +63,7 @@ public class AbilityFollowState  : UnitState {
 	
 		if (!myAbility.inRange (location)) {
 
-	
+		
 			myManager.cMover.move ();
 		} else {
 			

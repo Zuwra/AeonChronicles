@@ -39,47 +39,53 @@ public class MissileArmer :Ability{
 			nextActionTime += 1;
 
 			changeNum = 0;
-			foreach (missileSalvo salv in missileList) {
-				if (salv.chargeCount < salv.maxRockets) {
-					salv.chargeCount++;
-					changeNum++;
-				}
-			}
-
-			foreach (repairReturn rep in repairList) {
-				if (rep.chargeCount < rep.maxRepair) {
-					rep.chargeCount += 100;
-					if (rep.chargeCount < rep.maxRepair) {
-						rep.chargeCount = rep.maxRepair;
+			if (missiles) {
+				foreach (missileSalvo salv in missileList) {
+					if (salv.chargeCount < salv.maxRockets) {
+						salv.chargeCount++;
 						changeNum++;
 					}
 				}
 			}
-
-			foreach (StimPack stim in stimList) {
-				if (stim.chargeCount < 3) {
-					GameObject obj = (GameObject)Instantiate (OverchargeBoost, this.transform.position, Quaternion.identity);
-					if (stim) {
-						obj.GetComponent<ShieldGlobe> ().target = stim.gameObject;
-						obj.GetComponent<ShieldGlobe> ().isOverCharge = true;
+			if (repairs) {
+				foreach (repairReturn rep in repairList) {
+					if (rep.chargeCount < rep.maxRepair) {
+						rep.chargeCount += 100;
+						if (rep.chargeCount < rep.maxRepair) {
+							rep.chargeCount = rep.maxRepair;
+							changeNum++;
+						}
 					}
+				}
+			}
+			if (nitro) {
+				foreach (StimPack stim in stimList) {
+					if (stim.chargeCount < 3) {
+						GameObject obj = (GameObject)Instantiate (OverchargeBoost, this.transform.position, Quaternion.identity);
+						if (stim) {
+							obj.GetComponent<ShieldGlobe> ().target = stim.gameObject;
+							obj.GetComponent<ShieldGlobe> ().isOverCharge = true;
+						}
 				
-					changeNum++;
+						changeNum++;
 
+					}
 				}
 			}
 
-			if (shieldglobe) {
-				foreach (DayexaShield ds in shieldList) {
+			if (shields) {
+				if (shieldglobe) {
+					foreach (DayexaShield ds in shieldList) {
 				
-					if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
-						GameObject obj = (GameObject)Instantiate (shieldglobe, this.transform.position, Quaternion.identity);
-						if (ds) {
-							obj.GetComponent<ShieldGlobe> ().target = ds.gameObject;
+						if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
+							GameObject obj = (GameObject)Instantiate (shieldglobe, this.transform.position, Quaternion.identity);
+							if (ds) {
+								obj.GetComponent<ShieldGlobe> ().target = ds.gameObject;
+							}
+							//ds.myStats.changeEnergy (shieldRate);
 						}
-						//ds.myStats.changeEnergy (shieldRate);
-					}
 			
+					}
 				}
 			}
 

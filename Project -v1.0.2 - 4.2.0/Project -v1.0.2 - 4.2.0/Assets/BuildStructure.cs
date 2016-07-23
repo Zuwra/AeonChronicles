@@ -144,7 +144,7 @@ public class BuildStructure:  UnitProduction {
 
 			foreach (Ability ab in inConstruction.abilityList) {
 				ab.active = false;
-				ab.enabled = false;
+				//ab.enabled = false;
 			}
 			inConstruction.setInteractor();
 			inConstruction.interactor.initialize ();
@@ -176,9 +176,16 @@ public class BuildStructure:  UnitProduction {
 		myManager.changeState(new DefaultState());
 		racer.stopBuildingUnit (this);
 
-		foreach (Ability ab in inConstruction.abilityList) {
-			ab.active = true;
-			ab.enabled = true;
+		UnitManager template = unitToBuild.GetComponent<UnitManager> ();
+		for (int i = 0; i < inConstruction.abilityList.Count; i++) {
+	
+			if (template.abilityList [i].active) {
+				inConstruction.abilityList [i].active = true;
+			}
+			if (template.abilityList [i].enabled) {
+
+			inConstruction.abilityList [i].enabled = true;
+		}
 		}
 		//unit.GetComponent<Selected> ().Initialize ();
 

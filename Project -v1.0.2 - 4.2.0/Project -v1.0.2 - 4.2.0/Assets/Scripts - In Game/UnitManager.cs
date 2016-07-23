@@ -71,10 +71,11 @@ public class UnitManager : Unit,IOrderable{
 
 
 		if (myWeapon.Count == 0) {
-			IWeapon tempWeap = gameObject.GetComponent<IWeapon>();
-			if (tempWeap) {
-				myWeapon.Add (tempWeap);}
-			
+			foreach (IWeapon w in GetComponents<IWeapon>()) {
+				if (!myWeapon.Contains (w)) {
+					myWeapon.Add (w);
+				}
+			}
 		}
 
 		if (myStats == null) {
@@ -483,9 +484,9 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
-	public void setStun(bool input, Object source)
+	public void setStun(bool StunOrNot, Object source)
 	{
-		if (input) {
+		if (StunOrNot) {
 			stunSources.Add (source);
 		} else {
 			if (stunSources.Contains (source)) {
