@@ -21,6 +21,9 @@ public class DetachAugment : Ability {
 	public void allowDetach(bool canDoit)
 	{
 		active = canDoit;
+		if (GetComponent<Selected> ().IsSelected) {
+			RaceManager.updateActivity ();
+		}
 
 	}
 
@@ -50,7 +53,7 @@ public class DetachAugment : Ability {
 		active = false;
 		if (GetComponent<Selected> ().IsSelected) {
 			Debug.Log ("Updating UIIIII");
-			RaceManager.upDateUI ();
+			RaceManager.updateActivity ();
 		}
 		
 	}  // returns whether or not the next unit in the same group should also cast it

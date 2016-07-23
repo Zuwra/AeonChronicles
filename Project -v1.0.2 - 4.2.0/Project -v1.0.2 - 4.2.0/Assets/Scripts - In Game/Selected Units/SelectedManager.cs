@@ -175,30 +175,33 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
         }
 
-        if (Input.GetKeyUp(KeyCode.Q))
-        { callAbility(0);}
-        else if (Input.GetKeyUp(KeyCode.W))
-        {callAbility(1);}
-        else if (Input.GetKeyUp(KeyCode.E))
-        {callAbility(2);}
-        else if (Input.GetKeyUp(KeyCode.R))
-        {callAbility(3);}
-        else if (Input.GetKeyUp(KeyCode.A))
-        {callAbility(4);}
-        else if (Input.GetKeyUp(KeyCode.S))
-        {callAbility(5); }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {callAbility(6);}
-        else if (Input.GetKeyUp(KeyCode.F))
-        {callAbility(7);}
-        else if (Input.GetKeyUp(KeyCode.Z))
-        {callAbility(8); }
-        else if (Input.GetKeyUp(KeyCode.X))
-        {callAbility(9); }
-        else if (Input.GetKeyUp(KeyCode.C))
-        {callAbility(10);}
-        else if (Input.GetKeyUp(KeyCode.V))
-        {callAbility(11);}
+		if (Input.GetKeyUp (KeyCode.Q)) {
+			callAbility (0);
+		} else if (Input.GetKeyUp (KeyCode.W)) {
+			callAbility (1);
+		} else if (Input.GetKeyUp (KeyCode.E)) {
+			callAbility (2);
+		} else if (Input.GetKeyUp (KeyCode.R)) {
+			callAbility (3);
+		} else if (Input.GetKeyUp (KeyCode.A)) {
+			callAbility (4);
+		} else if (Input.GetKeyUp (KeyCode.S)) {
+			callAbility (5);
+		} else if (Input.GetKeyUp (KeyCode.D)) {
+			callAbility (6);
+		} else if (Input.GetKeyUp (KeyCode.F)) {
+			callAbility (7);
+		} else if (Input.GetKeyUp (KeyCode.Z)) {
+			callAbility (8);
+		} else if (Input.GetKeyUp (KeyCode.X)) {
+			callAbility (9);
+		} else if (Input.GetKeyUp (KeyCode.C)) {
+			callAbility (10);
+		} else if (Input.GetKeyUp (KeyCode.V)) {
+			callAbility (11);
+		} else if (Input.GetKeyUp (KeyCode.Delete)) {
+			SelectedObjects [0].GetComponent<UnitStats> ().kill (null);
+		}
 
 		if (Input.GetKeyUp (KeyCode.Space)) {
 			if (SelectedObjects.Count > 0) {

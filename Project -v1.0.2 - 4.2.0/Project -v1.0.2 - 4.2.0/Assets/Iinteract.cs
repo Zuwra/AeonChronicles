@@ -10,5 +10,6 @@ public interface Iinteract  {
 
 	void initialize();
 
+	UnitState computeState (UnitState state);
 
 }

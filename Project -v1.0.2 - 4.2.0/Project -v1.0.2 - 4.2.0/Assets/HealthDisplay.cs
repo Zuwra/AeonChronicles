@@ -12,6 +12,7 @@ public class HealthDisplay : MonoBehaviour {
 	public bool isOn;
 	public Image BuildingUnit;
 	public Image background;
+	Vector3 LookLocation;
 
 	//private List<int> colorList = new List<int>();
 	// Use this for initialization
@@ -22,9 +23,9 @@ public class HealthDisplay : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isOn) {
-			Vector3 location = cam.transform.position;
-			location.x = this.gameObject.transform.position.x;
-			gameObject.transform.LookAt (location);
+			LookLocation = cam.transform.position;
+			LookLocation.x = this.gameObject.transform.position.x;
+			gameObject.transform.LookAt (LookLocation);
 		}
 	}
 
@@ -41,51 +42,6 @@ public class HealthDisplay : MonoBehaviour {
 		background.gameObject.SetActive (false);
 	}
 
-	//THIS METHOD RETURNS AN ID Reciept which the client class must keep so that it can turn it back in to turn of the buff icon
-	/*
-	public int addBuff(Color c, bool b)
-	{
 
-		foreach (Image i in buffList) {
-			
-			if (!i.enabled) {
-				i.enabled = true;
-				i.color = c;
-				break;
-			}
-		}
-
-	
-		int id = Random.Range (0, 10000);
-
-		colorList.Add (id);
-		this.enabled = true;
-			return id;
-	}*/
-	/*
-	public void removeBuff(int id)
-	{
-		int n = colorList.IndexOf(id);
-
-		for (int i = n; i < buffList.Count; i++) {
-			if (i + 1 == buffList.Count || !buffList[i+1].enabled) {
-			
-				break;
-			}
-
-			buffList [i].color = buffList [i + 1].color;
-			buffList [i].sprite = buffList [i + 1].sprite;
-		}
-		buffList [n].enabled = false;
-
-		colorList.Remove (id);
-		if (colorList.Count == 0) {
-			if (!isOn) {
-				this.enabled = false;
-			}
-		}
-
-	}
-*/
 
 }

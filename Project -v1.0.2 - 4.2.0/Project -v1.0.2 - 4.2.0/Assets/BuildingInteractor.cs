@@ -110,6 +110,11 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 	}
 
+	public UnitState computeState(UnitState s)
+	{
+		
+		return s;
+	}
 
 
 }

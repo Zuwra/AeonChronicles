@@ -180,7 +180,7 @@ public class IWeapon : MonoBehaviour {
 			float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
 
 			//Debug.Log (this.gameObject +  "  Distance " + distance + "   range " + range + "  vert  " + (verticalDistance *1.2));
-			if (distance > (range + (verticalDistance * 1.2))) {
+			if (distance > (range + (verticalDistance ))) {
 			
 		
 				return false;

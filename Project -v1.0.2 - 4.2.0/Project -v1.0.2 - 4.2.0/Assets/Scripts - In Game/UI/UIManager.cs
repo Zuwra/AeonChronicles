@@ -521,7 +521,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 
 				if (m_SelectedManager.checkValidTarget (targetPoint, currentObject, currentAbilityNUmber)) {
-					Debug.Log ("Valid Spot");
+				//	Debug.Log ("Valid Spot");
 					m_SelectedManager.fireAbility (currentObject, targetPoint, currentAbilityNUmber);
 					SwitchMode (Mode.Normal);
 				}

@@ -25,7 +25,11 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	public void initialize(){
 		Awake ();
 	}
+	public UnitState computeState(UnitState s)
+	{
 
+		return s;
+	}
 
 	// When creating other interactor classes, make sure to pass all relevant information into whatever new state is being created (IMover, IWeapon, UnitManager)
 	public void computeInteractions (Order order)

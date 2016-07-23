@@ -369,10 +369,11 @@ public class UnitManager : Unit,IOrderable{
 				if (myState != null) {
 					myState.endState ();
 				}
-				myState = queuedStates.Dequeue ();
+				myState = interactor.computeState( queuedStates.Dequeue ());
 				if (myState == null) {
 					return;
 				}
+
 				myState.myManager = this;
 				myState.initialize ();
 				checkIdleWorker ();
@@ -405,7 +406,8 @@ public class UnitManager : Unit,IOrderable{
 		if (myState != null) {
 			myState.endState ();
 		}
-			myState = nextState;
+
+		myState =interactor.computeState (nextState);
 			myState.initialize ();
 	
 		checkIdleWorker ();

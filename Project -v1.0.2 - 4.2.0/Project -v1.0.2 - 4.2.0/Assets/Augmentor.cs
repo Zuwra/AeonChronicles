@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Augmentor : TargetAbility, Iinteract{
+public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 
 	UnitManager manager;
@@ -24,9 +24,14 @@ public class Augmentor : TargetAbility, Iinteract{
 	public void Cast(){
 		
 		Unattach ();
+		AugmentAttachPoint AAP = target.GetComponent<AugmentAttachPoint> ();
+		if (AAP.myAugment) {
+		
+			return;}
 		detacher.allowDetach (true);
 		attached = target;
-		AugmentAttachPoint AAP = target.GetComponent<AugmentAttachPoint> ();
+		target.GetComponent<UnitManager> ().myStats.addDeathTrigger (this);
+
 		AAP.myAugment = this.gameObject;
 		Vector3 attachSpot = target.transform.position+ AAP.attachPoint;
 
@@ -64,16 +69,25 @@ public class Augmentor : TargetAbility, Iinteract{
 		}
 
 		if (GetComponent<Selected> ().IsSelected) {
-			RaceManager.upDateUI ();
+			RaceManager.updateActivity ();
 		}
 
 
 	}
 
+	//Triggers if the attached building dies
+	public float modify(float d, GameObject src)
+	{
+		manager.myStats.kill(null);
+		return d;
+	}
+
+
 	public void Unattach()
 	{if (!attached) {
 			return;}
 
+		attached.GetComponent<UnitManager> ().myStats.removeDeathTrigger (this);
 		MissileArmer armer = attached.GetComponent<MissileArmer> ();
 
 		if (armer) {
@@ -98,10 +112,13 @@ public class Augmentor : TargetAbility, Iinteract{
 
 		}
 		if (GetComponent<Selected> ().IsSelected) {
-			RaceManager.upDateUI ();
+			Debug.Log ("Updating UI");
+			RaceManager.updateActivity ();
 		}
 		attached.GetComponent<AugmentAttachPoint> ().myAugment = null;
 		attached = null;
+		detacher.allowDetach (false);
+
 
 	}
 
@@ -157,11 +174,7 @@ public class Augmentor : TargetAbility, Iinteract{
 		continueOrder order = new continueOrder ();
 
 
-		//if (!myCost.canActivate (this)) {
-			//order.canCast = false;
-	//	} else {
-		//	order.nextUnitCast = false;
-		//}
+		order.nextUnitCast = false;
 		return order;
 	}
 
@@ -186,6 +199,8 @@ public class Augmentor : TargetAbility, Iinteract{
 	public void initialize(){
 		Awake ();
 	}
+
+
 
 
 	// When creating other interactor classes, make sure to pass all relevant information into whatever new state is being created (IMover, IWeapon, UnitManager)
@@ -236,6 +251,14 @@ public class Augmentor : TargetAbility, Iinteract{
 
 	}
 
+	public UnitState computeState(UnitState s)
+	{
+		if (s is AbilityFollowState) {
+			Unattach ();
+		}
+		return s;
+	}
+
 	// Attack move towards a ground location (Tab - ground)
 	public void  AttackMove(Order order)
 	{
@@ -271,26 +294,33 @@ public class Augmentor : TargetAbility, Iinteract{
 	public void Move(Order order)
 	{
 		if (!attached) {
+			
 			manager.changeState (new MoveState (order.OrderLocation, manager));
 		}
+
+		if (target) {
+			target = null;}
 	}
 
 	//Stop, caps lock
 	public void Stop(Order order)
 	{manager.changeState (new DefaultState ());
-
+		if (target) {
+			target = null;}
 	}
 
 	//Shift-Tab 
 	public void Patrol(Order order)
-	{
+	{if (target) {
+			target = null;}
 		if(!attached)
 		manager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, manager, manager.gameObject.transform.position));
 	}
 
 	//Shift-Caps
 	public void HoldGround(Order order)
-	{
+	{if (target) {
+			target = null;}
 		manager.changeState (new HoldState(manager));
 	}
 
@@ -301,6 +331,8 @@ public class Augmentor : TargetAbility, Iinteract{
 
 			manager.changeState (new MoveState (order.OrderLocation,manager));
 		}
+		if (target) {
+			target = null;}
 	}
 
 

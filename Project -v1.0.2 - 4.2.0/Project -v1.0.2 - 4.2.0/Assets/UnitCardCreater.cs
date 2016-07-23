@@ -173,8 +173,13 @@ public class UnitCardCreater : MonoBehaviour {
 
 	public void turnOff()
 	{
-		GetComponent<Canvas> ().enabled = false;
-		ORECANVAS.enabled = false;
+		Canvas c = GetComponent<Canvas> ();
+		if (c) {
+			c.enabled = false;
+		}
+		if (ORECANVAS) {
+			ORECANVAS.enabled = false;
+		}
 	}
 
 	public void setForOre(RTSObject obj)

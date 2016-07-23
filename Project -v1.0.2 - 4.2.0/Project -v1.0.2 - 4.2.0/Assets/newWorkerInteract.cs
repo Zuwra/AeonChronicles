@@ -28,7 +28,11 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	
 
 	}
+	public UnitState computeState(UnitState s)
+	{
 
+		return s;
+	}
 
 	IEnumerator delayer()
 	{

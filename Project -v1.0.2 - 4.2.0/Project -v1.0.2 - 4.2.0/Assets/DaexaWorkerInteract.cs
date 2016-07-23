@@ -179,6 +179,12 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 
 	}
+	public UnitState computeState(UnitState s)
+	{
+
+		return s;
+	}
+
 
 	public void checkHook()
 	{
