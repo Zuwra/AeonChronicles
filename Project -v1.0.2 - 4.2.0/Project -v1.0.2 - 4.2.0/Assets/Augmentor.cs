@@ -78,6 +78,8 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 		if (GetComponent<Selected> ().IsSelected) {
 			RaceManager.updateActivity ();
+		} else if (target.GetComponent<Selected> ().IsSelected) {
+			RaceManager.updateActivity ();
 		}
 
 
@@ -130,6 +132,10 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			
 			RaceManager.updateActivity ();
 		}
+		else if (target.GetComponent<Selected> ().IsSelected) {
+			RaceManager.updateActivity ();
+		}
+
 		attached.GetComponent<AugmentAttachPoint> ().myAugment = null;
 		attached = null;
 		detacher.allowDetach (false);
@@ -141,7 +147,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
 
 			down =objecthit.point;
-			manager.changeState (new MoveState (down, manager));
+			manager.changeState (new MoveState (down, manager,true));
 		}
 
 
@@ -299,7 +305,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	public void  AttackMove(Order order)
 	{
 		if (attached) {
-			manager.changeState (new MoveState (order.OrderLocation, manager));
+			manager.changeState (new MoveState (order.OrderLocation, manager,true));
 
 		}
 	}
@@ -342,7 +348,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	{
 		if (!attached) {
 			
-			manager.changeState (new MoveState (order.OrderLocation, manager));
+			manager.changeState (new MoveState (order.OrderLocation, manager,false));
 		}
 
 		if (target) {
@@ -380,7 +386,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 				Debug.Log ("Ordered to follow");
 			}
 			else{
-				manager.changeState (new MoveState (order.OrderLocation,manager));
+				manager.changeState (new MoveState (order.OrderLocation,manager,true));
 				if (target) {
 					target = null;}
 			}

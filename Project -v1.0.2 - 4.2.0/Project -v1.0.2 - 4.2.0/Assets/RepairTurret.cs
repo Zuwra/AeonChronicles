@@ -4,25 +4,30 @@ using System.Collections;
 public class RepairTurret : Ability, Modifier{
 
 
-	public int maxRepair = 600;
-	public int hiddenAmount = 600;
-	private PopUpMaker popper;
 	private UnitManager mymanager;
 
-	private UnitStats TargetHealth;
+
 	private GameObject target;
 
 	public MultiShotParticle particleEff;
 	public int repairRate = 8;
 	private float nextActionTime;
 	private repairReturn returner;
+
+	public GameObject drone;
+	RepairDrone droneScript;
+	bool DroneAway;
+
+
 	// Use this for initialization
 	void Start () {
 		mymanager = gameObject.transform.parent.GetComponentInParent<UnitManager> ();
 		//chargeCount = maxRepair;
 		nextActionTime = Time.time;
 		mymanager.myStats.addDeathTrigger (this);
-		popper = GetComponent<PopUpMaker> ();
+		droneScript = drone.GetComponent<RepairDrone> ();
+		droneScript.repairRate = repairRate;
+	
 	}
 
 	public override void setAutoCast(){
@@ -32,62 +37,62 @@ public class RepairTurret : Ability, Modifier{
 	// Update is called once per frame
 	void Update () {
 
-		//if (chargeCount <= 0) {
-			
-			//return;}
-		if(Time.time > nextActionTime){
-			nextActionTime += 1;
-		if (mymanager.isIdle ()) {
+		//Debug.Log ("Mystate is " + mymanager.getState() + "  " + DroneAway);
+		if (Time.time > nextActionTime && !DroneAway) {
+			nextActionTime = Time.time + 1;
 
-			if (!target) {
+			if (mymanager.getState () is MoveState) {
+				if (!((MoveState)mymanager.getState ()).assumedMove) {
+
+					return;
+				}
+			}
+		
+			if (!target || Vector3.Distance (target.transform.position, this.gameObject.transform.position) > 65) {
+				
 				if (mymanager.allies.Count > 0) {
 					
 					target = findHurtAlly ();
 
 					if (target) {
-
+					//	Debug.Log ("Setting to follow " + target);
 						mymanager.changeState (new FollowState (target, null));
-						TargetHealth = target.GetComponent<UnitStats> ();
+							
 
-						if (returner == null) {
-							returner = gameObject.transform.parent.GetComponentInParent<repairReturn> ();
-						}
-					}
-				}
+					} 
+				} 
 			} else {
-				mymanager.changeState (new FollowState (target, null));
-			}
-		} 
-
-
-
-		if (target) {
-			
-				if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 16) {
 				
-
-					int amount = (int)Mathf.Min (repairRate, TargetHealth.Maxhealth - TargetHealth.health);
-					particleEff.playEffect ();
-					TargetHealth.heal (amount);
-					//Debug.Log ("Healing " +mymanager);
-					mymanager.cMover.stop ();
-					//returner.chargeCount -= amount;
-					//chargeCount -=amount;
-					if (GetComponentInParent<Selected> ().IsSelected) {
-						RaceManager.upDateUI ();
-					}
-					popper.CreatePopUp ("+" + amount, Color.green, target.transform.position);
-					if (TargetHealth.atFullHealth ()) {
-						target = null;
-						TargetHealth = null;
-					}
-
-				} else {
+					//Debug.Log ("Setting to follow " + target);
 					mymanager.changeState (new FollowState (target, null));
+
 				}
+			
+
+		}
+
+		if (target && !DroneAway) {
+			
+				if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 40) {
+					mymanager.cMover.stop ();
+					mymanager.changeState (new DefaultState());
+					droneScript.setTarget (target);
+					DroneAway = true;
+					drone.transform.SetParent (null);
+				//Debug.Log ("Stopping " + mymanager);
+			
+
+
+			}
 			}
 		
-		}
+
+	}
+
+	public void doneRepairing()
+	{target = null;
+		DroneAway = false;
+
 	}
 
 
@@ -100,6 +105,7 @@ public class RepairTurret : Ability, Modifier{
 
 		for (int i = 0; i <mymanager.allies.Count; i ++) {
 			if (mymanager.allies[i] != null) {
+
 				if(!mymanager.allies[i].GetComponent<UnitStats>().atFullHealth()){
 
 					float currDistance = Vector3.Distance(mymanager.allies[i].transform.position, this.gameObject.transform.position);
@@ -159,6 +165,7 @@ public class RepairTurret : Ability, Modifier{
 	public float modify(float damage, GameObject source)
 	{ 
 
+		Destroy (drone);
 		foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {
 
 			if (turr.turret != null) {

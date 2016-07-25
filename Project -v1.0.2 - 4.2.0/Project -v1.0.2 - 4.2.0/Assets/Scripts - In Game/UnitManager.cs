@@ -252,6 +252,7 @@ public class UnitManager : Unit,IOrderable{
 
 			else{
 				allies.Add(other.gameObject);
+					//Debug.Log ( this.gameObject +"  Adding " + other.gameObject);
 				}}
 
 		}
@@ -260,12 +261,15 @@ public class UnitManager : Unit,IOrderable{
 	// Other units have left the vision
 	void OnTriggerExit(Collider other)
 	{
-		
+		if (other.isTrigger) {
+			return;
+		}
 		if (enemies.Contains (other.gameObject)) {
 			enemies.Remove (other.gameObject);
 		} 
 		else if (allies.Contains (other.gameObject)) {
 			allies.Remove (other.gameObject);
+			//Debug.Log ( this.gameObject + "  Removing " + other.gameObject);
 		} 
 		else if (neutrals.Contains (other.gameObject)) {
 			neutrals.Remove (other.gameObject);

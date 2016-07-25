@@ -86,7 +86,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));
 		}else {
-			myManager.changeState (new MoveState (order.OrderLocation, myManager));
+			myManager.changeState (new MoveState (order.OrderLocation, myManager, true));
 		}
 	}
 

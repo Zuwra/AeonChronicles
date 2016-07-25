@@ -283,6 +283,7 @@
      <Compile Include="Assets\RangeDisplayer.cs" />
      <Compile Include="Assets\RefillChargeObjective.cs" />
      <Compile Include="Assets\RegenerativeSap.cs" />
+     <Compile Include="Assets\RepairDrone.cs" />
      <Compile Include="Assets\RepairTurret.cs" />
      <Compile Include="Assets\RepairUpgrade.cs" />
      <Compile Include="Assets\ResearchUpgrade.cs" />
