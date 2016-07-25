@@ -231,9 +231,11 @@ public class UnitStats : MonoBehaviour {
 
 
 			//}
-	
-			FinishDeath = GameManager.main.playerList[myManager.PlayerOwner-1].UnitDying (this.gameObject, deathSource, true);
-			
+			FinishDeath = false;
+			if (this.gameObject) {
+				FinishDeath = GameManager.main.playerList [myManager.PlayerOwner - 1].UnitDying (this.gameObject, deathSource, true);
+			}
+
 			if (FinishDeath) {
 
 				foreach (Modifier effect in deathTriggers) {

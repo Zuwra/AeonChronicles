@@ -15,21 +15,17 @@ public class AbilityFollowState  : UnitState {
 
 	public AbilityFollowState(GameObject unit, Vector3 loc, TargetAbility abil)
 	{
-		
 		location = loc;
 		myAbility = abil;
 		abil.target = unit;
 		abil.location = loc;
 	
 		target = unit;
-
+		myAbility.target = unit;
 		if (target != null) {
 			Follow = true;
 		}
-
-
-
-
+	
 	}
 
 	public override void initialize()
@@ -68,6 +64,7 @@ public class AbilityFollowState  : UnitState {
 		} else {
 			
 			myAbility.Cast();
+		
 			myManager.changeState(new DefaultState());
 			return;
 

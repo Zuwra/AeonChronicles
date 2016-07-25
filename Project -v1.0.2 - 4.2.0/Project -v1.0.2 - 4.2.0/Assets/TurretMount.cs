@@ -93,7 +93,7 @@ public class TurretMount : MonoBehaviour {
 	{hasDisplayer.gameObject.SetActive (true);
 		turret = null;
 		UnitManager manager = this.gameObject.GetComponentInParent<UnitManager> ();
-		manager.setWeapon(null);
+		manager.removeWeapon(GetComponent<IWeapon>());
 
 		if (GetComponentInParent<repairReturn> ()) {
 			GetComponentInParent<repairReturn> ().active = false;
@@ -115,6 +115,6 @@ public class TurretMount : MonoBehaviour {
 			}
 			}
 
-
+		Debug.Log ("Deatched");
 	}
 }

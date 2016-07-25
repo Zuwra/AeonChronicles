@@ -40,7 +40,9 @@ public class FrontalShield : Ability,Modifier {
 
 
 	public float modify(float amount, GameObject src)
-	{
+	{if (!src) {
+			return amount;
+		}
 		Vector3 direction = src.transform.position - this.gameObject.transform.position;
 
 		if (Vector3.Dot (direction, this.transform.forward) > frontAngle) {

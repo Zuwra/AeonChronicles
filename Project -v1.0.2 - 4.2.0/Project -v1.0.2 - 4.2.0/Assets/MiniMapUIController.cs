@@ -8,8 +8,13 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 
     public Image img;
 	public Image ScreenTrapz;
-	private Texture2D screenTrap;
-    
+	private bool[,] virtTrapezoid;
+	private Texture2D screenTrapzoidTex;
+
+
+	private bool[,] virtUnitTexture;
+	private Texture2D UnitTexture;
+
     public RaceManager raceMan;
     private GameManager gameMan;
     public float minimapUpdateRate;
@@ -32,17 +37,20 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 
     private bool floatAfterInt = false;
 
+	public int scalingfactor =1;
 
-    private Texture2D texture;
+   
 
     private float nextActionTimea;
 	private float nextActionTimeb;
+	private float nextActionTimec;
 
 	//Used for detecting MinimapClicks
 	private float minimapWidth;
 	private float minimapHeight;
 	private RectTransform myRect;
 
+	public GameObject megaMap;
 
 
 	private FogOfWar fog;
@@ -53,11 +61,13 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
     void Start () {
 
 		myRect = GetComponent<RectTransform> ();
-		minimapWidth = myRect.rect.width;
-		minimapHeight = myRect.rect.height;
+		minimapWidth = myRect.rect.width ;
+		minimapHeight = myRect.rect.height ;
 
 		nextActionTimea = 0;
 		nextActionTimeb = Time.time + minimapUpdateRate/2;
+		nextActionTimeb = Time.time + minimapUpdateRate/3;
+
 
 		WorldHeight = top - bottom;
 		WorldWidth = Right - Left;
@@ -65,38 +75,46 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
         
         gameMan = GameObject.FindObjectOfType<GameManager>();
         
-		CreateTexture();
-		img.sprite  = Sprite.Create(texture as Texture2D, new Rect(0f, 0f, textureWidth, textureHeight), Vector2.zero);
+		textureWidth *= scalingfactor;
+		textureHeight *= scalingfactor;
+		virtUnitTexture = new bool[textureWidth,textureHeight];
+		virtTrapezoid = new bool[textureWidth,textureHeight];
+		screenTrapzoidTex = InitialTexture (screenTrapzoidTex);
+
+
+		UnitTexture = InitialTexture (UnitTexture);
+
+
+		img.sprite  = Sprite.Create(UnitTexture as Texture2D, new Rect(0f, 0f, textureWidth, textureHeight), Vector2.zero);
 
 		setFog ();
 		fogger.sprite = Sprite.Create(_texture as Texture2D, new Rect(0f, 0f, fog.texture.width, fog.texture.height), Vector2.zero);
 
-		screenTrap = CreateTexture (screenTrap);
-		ScreenTrapz.sprite = Sprite.Create (screenTrap as Texture2D, new Rect (0f, 0f, textureWidth, textureHeight), Vector2.zero);
+
+		ScreenTrapz.sprite = Sprite.Create (screenTrapzoidTex as Texture2D, new Rect (0f, 0f, textureWidth, textureHeight), Vector2.zero);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-		if (floatAfterInt)
-		{
-
-			updateUnitsOnMinimap(texture);
-			updateScreenRect ();
-			floatAfterInt = false;
-
-
-		}
+		
 
 		if (Time.time > nextActionTimea) {
 			nextActionTimea += minimapUpdateRate;
-			clearTexture (screenTrap, false);
-			clearTexture (texture, false);
-			floatAfterInt = true;
+			updateTexture (UnitTexture, virtUnitTexture);
+
 
 		} 
-			
+		if (Time.time > nextActionTimec) {
+			nextActionTimec += minimapUpdateRate;
+
+
+			updateScreenRect ();
+
+
+		} 
+
 
 		if (Time.time > nextActionTimeb) {
 			nextActionTimeb += minimapUpdateRate;
@@ -109,38 +127,46 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 			attackMoveMinimap ();
 		
 		}
-      
+
+		if (Input.GetKeyDown (KeyCode.M)) {
+			toggleMegaMap ();
+		}
     }
 
-	public Texture2D CreateTexture(Texture2D input)
+	public void toggleMegaMap()
 	{
-		input = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
+		if (megaMap) {
+			megaMap.SetActive (!megaMap.activeSelf);
+		}
+	}
+
+	private Texture2D InitialTexture(Texture2D tex )
+	{ tex = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
+
 		for (int i = 0; i < textureWidth; i++)
 		{
 			for (int j = 0; j < textureHeight; j++)
 			{
-				input.SetPixel(i, j, Color.clear);
+				tex .SetPixel(i, j, Color.clear);
 			}
 		}
-
-			input.Apply();
-		return input;
+		tex.Apply ();
+		return tex;
 	}
 
 
-    public void CreateTexture()
-    {
-        texture = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
-        clearTexture(texture ,true);
-        
-    }
-    private void clearTexture(Texture2D tex , bool apply)
+ 
+	private void clearTexture(Texture2D tex ,bool[,] virtMap, bool apply)
     {
         for (int i = 0; i < textureWidth; i++)
         {
             for (int j = 0; j < textureHeight; j++)
             {
-				tex .SetPixel(i, j, Color.clear);
+				if (virtMap [i,j]) {
+					virtMap [i,j] = false;
+					tex .SetPixel(i, j, Color.clear);
+				}
+
             }
         }
         if (apply)
@@ -148,8 +174,11 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
     }
 
 
-    private void updateUnitsOnMinimap(Texture2D tex)
+
+	private void updateTexture(Texture2D tex, bool[,] virtMap)
 	{
+		clearTexture (tex, virtMap, false);
+
 		foreach (RaceManager race in gameMan.playerList) { // Loops 3 times
 			Color raceColor = getColorForRaceManager (race);
             
@@ -161,12 +190,16 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
                
 				int iCoord = (int)(((unitWorldX - Left) / (WorldWidth)) * textureWidth);
 				int jCoord = (int)(((unitWorldZ - bottom) / (WorldHeight)) * textureHeight);
+				int chitSize = unitPixelSize;
+				if (unit.layer == 10) {
+					chitSize *= 2;
+				}
 
-				for (int i = -unitPixelSize; i <= unitPixelSize; i++)
+				for (int i = -chitSize; i <= chitSize; i++)
                 {
 
-                    for (int j = -unitPixelSize; j <= unitPixelSize; j++)
-                    {
+					for (int j = -chitSize; j <=chitSize; j++)
+					{virtMap [i+ iCoord,j+ jCoord] = true;
                         tex.SetPixel(i + iCoord, j + jCoord, raceColor);
                     }
 					}}
@@ -177,6 +210,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 
 
 		private void updateScreenRect (){
+		clearTexture (screenTrapzoidTex, virtTrapezoid, false);
+
 		// DRAWING CAMERA TRAPEZOID
 		Vector2 topLeftP = Vector2.zero;
 		Vector2 topRightP= Vector2.zero;
@@ -231,18 +266,15 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 
 		botRightP = new Vector2 (iC, jC);
 
-		if(screenTrap == null)
-		{CreateTexture (screenTrap);}
-
 	//	Debug.Log (topRightP + "   " + botRightP + "  " +hit.collider.gameObject);
-		drawLine(screenTrap, topLeftP,topRightP);
+		drawLine(screenTrapzoidTex,virtTrapezoid, topLeftP,topRightP);
 
-		drawLine(screenTrap, botLeftP,botRightP);
-		drawLine(screenTrap, botLeftP,topLeftP);
+		drawLine(screenTrapzoidTex, virtTrapezoid,botLeftP,botRightP);
+		drawLine(screenTrapzoidTex, virtTrapezoid,botLeftP,topLeftP);
 		//Debug.Log ("Drawing Right Line " + botRightP + "  " + topRightP);
-		drawLine(screenTrap, botRightP,topRightP);
+		drawLine(screenTrapzoidTex, virtTrapezoid,botRightP,topRightP);
 
-		screenTrap.Apply();
+		screenTrapzoidTex.Apply();
         
     }
 
@@ -268,7 +300,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
     }
 
 
-	public void drawLine(Texture2D tex, Vector2 p1, Vector2 p2)
+	public void drawLine(Texture2D tex,bool[,] virtMap ,Vector2 p1, Vector2 p2)
 	{
 		Vector2 t = p1;
 		float frac = 1 / (Mathf.Pow (p2.x - p1.x, 2) + Mathf.Pow (p2.y - p1.y,2));
@@ -282,7 +314,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 
 			if (t.x > 0 && t.y < tex.height && t.x <tex.width)
 			{
-				
+				virtMap [(int)t.x,(int)t.y] = true;
 				tex.SetPixel ((int)t.x, (int)t.y, Color.magenta);
 			}
 		

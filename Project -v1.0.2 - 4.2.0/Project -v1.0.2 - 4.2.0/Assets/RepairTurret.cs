@@ -69,7 +69,7 @@ public class RepairTurret : Ability, Modifier{
 					int amount = (int)Mathf.Min (repairRate, TargetHealth.Maxhealth - TargetHealth.health);
 					particleEff.playEffect ();
 					TargetHealth.heal (amount);
-					Debug.Log ("Healing " +mymanager);
+					//Debug.Log ("Healing " +mymanager);
 					mymanager.cMover.stop ();
 					//returner.chargeCount -= amount;
 					//chargeCount -=amount;

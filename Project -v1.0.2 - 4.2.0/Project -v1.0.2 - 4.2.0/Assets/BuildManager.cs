@@ -10,9 +10,11 @@ public class BuildManager : MonoBehaviour {
 
 	private Selected mySelect;
 	private BuilderUI build;
+	private RaceManager raceMan;
 
 	// Use this for initialization
 	void Start () {
+		raceMan = GameObject.FindObjectOfType<GameManager> ().activePlayer ;
 		build = GameObject.FindObjectOfType<BuilderUI> ();
 		mySelect = GetComponent<Selected> ();
 	}
@@ -32,7 +34,13 @@ public class BuildManager : MonoBehaviour {
 
 			if(buildOrder.Count > 0)
 			{
-				buildOrder [0].startBuilding();
+				float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
+
+				if (raceMan.hasSupplyAvailable (Sup)) {
+					buildOrder [0].startBuilding ();
+				} else {
+					StartCoroutine (waitOnSupply (Sup));
+				}
 
 			}
 			if (mySelect.IsSelected) {
@@ -71,9 +79,17 @@ public class BuildManager : MonoBehaviour {
 			build.bUpdate (this.gameObject);
 		}
 	
-		if (buildOrder.Count == 1) {
-			buildOrder [0].startBuilding();
+		if(buildOrder.Count > 0)
+		{
+			float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
+
+			if (raceMan.hasSupplyAvailable (Sup)) {
+				buildOrder [0].startBuilding ();
+			} else {
+				StartCoroutine (waitOnSupply (Sup));
 			}
+
+		}
 		return true;
 
 	}
@@ -85,7 +101,13 @@ public class BuildManager : MonoBehaviour {
 	
 		if(buildOrder.Count > 0)
 		{
-			buildOrder [0].startBuilding();
+			float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
+
+			if (raceMan.hasSupplyAvailable (Sup)) {
+				buildOrder [0].startBuilding ();
+			} else {
+				StartCoroutine (waitOnSupply (Sup));
+			}
 
 		}
 		if (mySelect.IsSelected) {
@@ -93,6 +115,26 @@ public class BuildManager : MonoBehaviour {
 		}
 
 		return true;
+	}
+
+
+	IEnumerator waitOnSupply(float supply)
+	{
+
+		ErrorPrompt.instance.notEnoughSupply ();
+		while (buildOrder.Count > 0) {
+			yield return new WaitForSeconds (.3f);
+			
+			if (buildOrder.Count > 0) {
+				if (raceMan.hasSupplyAvailable (supply)) {
+					buildOrder [0].startBuilding ();
+					break;
+				} 
+			} else {
+				break;
+			}
+		}
+		
 	}
 
 }

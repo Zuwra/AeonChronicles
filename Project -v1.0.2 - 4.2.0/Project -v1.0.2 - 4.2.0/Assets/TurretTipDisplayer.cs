@@ -50,7 +50,7 @@ public class TurretTipDisplayer: MonoBehaviour, IPointerEnterHandler, IPointerEx
 				if (myPlacer && myPlacer.factCount()) {
 					TurretUIPanel.instance.displayText (help, image);
 				} else {
-					Debug.Log (myPlacer + "   ");
+					//Debug.Log (myPlacer + "   ");
 					TurretUIPanel.instance.displayText (cantBuild, badImage);
 				}
 

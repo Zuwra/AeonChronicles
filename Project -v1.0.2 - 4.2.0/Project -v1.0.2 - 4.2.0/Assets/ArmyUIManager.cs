@@ -72,7 +72,7 @@ public class ArmyUIManager : MonoBehaviour {
 
 			unitList [manage.UnitName].Remove (unit);
 
-			if (unitList [manage.UnitName].Count == 0) {
+			if (!unitList.ContainsKey(manage.UnitName)) {
 	
 				GameObject obj = iconList [manage.UnitName];
 				iconList.Remove (manage.UnitName);

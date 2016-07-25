@@ -217,7 +217,11 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void stopBuildingUnit(UnitProduction abil)
 	{uiManager.production.GetComponent<ProductionManager>().unitLost(abil);		}
 
-
+	public bool hasSupplyAvailable(float sup)
+	{
+		return (sup <= (supplyMax - currentSupply));
+		
+	}
 
 	public void UnitDied(float supply, GameObject obj)
 	{
@@ -485,7 +489,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 	public List<GameObject> getUnitList()
-	{return unitList;
+	{
+		unitList.RemoveAll(item => item == null);
+		return unitList;
 	}
 
 	public void addDropOff(GameObject obj)

@@ -20,6 +20,7 @@ public class BuildUnit : UnitProduction {
 	//private UnitManager manage;
 	private HealthDisplay HD;
 	private BuildManager buildMan;
+	private float buildRate = 1;
 
 	private int QueueNum;
 	// Use this for initialization
@@ -45,7 +46,7 @@ public class BuildUnit : UnitProduction {
 	void Update () {
 		if (buildingUnit) {
 
-			timer -= Time.deltaTime;
+			timer -= Time.deltaTime * buildRate;
 
 			mySelect.updateCoolDown (1- timer/buildTime);
 			if(timer <=0)
@@ -58,12 +59,22 @@ public class BuildUnit : UnitProduction {
 	
 	}
 
+	public bool isBuilding()
+	{
+		return buildingUnit;
+	}
+
 	public override void setAutoCast(){}
 
 	public override void DeQueueUnit()
 	{myCost.refundCost ();
 		//racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply, null);
 	
+	}
+
+	public void setBuildRate(float rate)
+	{
+		buildRate = rate;
 	}
 
 	public override float getProgress ()

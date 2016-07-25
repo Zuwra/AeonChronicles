@@ -175,6 +175,7 @@ public class UnitManager : Unit,IOrderable{
 		
 				if (order.canCast) {
 					if (abilityList [n] is TargetAbility) {
+						//Debug.Log ("The target is " + obj);
 						changeState (new AbilityFollowState (obj, loc, (TargetAbility)abilityList [n]));
 					} else if (abilityList [n] is Morph || abilityList [n] is BuildStructure) {
 						changeState (new PlaceBuildingState (loc, abilityList [n]));
@@ -529,6 +530,16 @@ public class UnitManager : Unit,IOrderable{
 		}
 
 	}
+
+	public void removeWeapon(IWeapon weap)
+	{
+		if (myWeapon.Contains (weap)) {
+			myWeapon.Remove(weap);
+		}
+
+	}
+
+
 
 	public bool isIdle()
 		{ // will need to be refactored if units require a custom default state

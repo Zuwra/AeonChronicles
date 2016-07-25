@@ -173,12 +173,14 @@ public class UnitCardCreater : MonoBehaviour {
 
 	public void turnOff()
 	{
-		Canvas c = GetComponent<Canvas> ();
-		if (c) {
-			c.enabled = false;
-		}
-		if (ORECANVAS) {
-			ORECANVAS.enabled = false;
+		if (this) {
+			Canvas c = GetComponent<Canvas> ();
+			if (c) {
+				c.enabled = false;
+			}
+			if (ORECANVAS) {
+				ORECANVAS.enabled = false;
+			}
 		}
 	}
 

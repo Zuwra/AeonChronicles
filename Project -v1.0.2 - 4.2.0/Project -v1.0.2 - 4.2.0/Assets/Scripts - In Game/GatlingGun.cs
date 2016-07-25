@@ -37,7 +37,7 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 		myWeapon.validators.Add (this);
 		nextActionTime = Time.time;
 
-		myWeapon.myManager.myStats.addDeathTrigger (this);
+		//myWeapon.myManager.myStats.addDeathTrigger (this);
 	
 	}
 

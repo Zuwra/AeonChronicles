@@ -56,7 +56,7 @@ public class CostBox : MonoBehaviour {
 			if (input is UnitProduction) {
 				UnitStats mwertqert = ((UnitProduction)input).unitToBuild.GetComponent<UnitStats> ();
 
-				float sup=	mwertqert.supply;
+				float sup =	mwertqert.supply;
 				if (sup != 0) {
 					if (input.myCost.health > 0) {
 						Population.text = "\nPop: " + sup;
@@ -66,6 +66,8 @@ public class CostBox : MonoBehaviour {
 				} else {
 					Population.text = "";
 				}
+			} else {
+				Population.text = "";
 			}
 
 

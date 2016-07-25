@@ -23,7 +23,6 @@ public class MiningState : UnitState {
 	private float resourceOneAmount;
 	private float resourceTwoAmount;
 
-	private PopUpMaker popper;
 
 	private OreDispenser currentlyMining;
 
@@ -42,12 +41,7 @@ public class MiningState : UnitState {
 		//hooky.transform.position = man.gameObject.transform.position - hookStart;
 
 
-		popper = myManager.GetComponent<PopUpMaker> ();
-
-		if (myManager.GetComponent<PopUpMaker> () == null) {
-			popper = myManager.gameObject.AddComponent<PopUpMaker> ();
-		} 
-		popper.textColor = Color.blue;
+	
 	
 
 
@@ -110,7 +104,8 @@ public class MiningState : UnitState {
 					float haul = currentlyMining.getOre (resourceOneAmount);
 					dropoff.GetComponent<ResourceDropOff> ().dropOff (haul, resourceTwoAmount);
 				
-					popper.CreatePopUp ("+" +haul, Color.blue);
+					PopUpMaker.CreateGlobalPopUp ("+" + haul, Color.white,myManager.gameObject.transform.position);
+
 					state = miningState.traveling;
 
 				} else {
@@ -162,7 +157,9 @@ public class MiningState : UnitState {
 
 				} else {
 					dropoff.GetComponent<ResourceDropOff> ().dropOff (resourceOneAmount, resourceTwoAmount);
-					popper.CreatePopUp ("" +resourceOneAmount, Color.blue);
+					Debug.Log ("Spawning here");
+					PopUpMaker.CreateGlobalPopUp ("+" + +resourceOneAmount, Color.white,myManager.gameObject.transform.position);
+				
 					myManager.cMover.resetMoveLocation (target.transform.position);
 					state = miningState.traveling;
 				}

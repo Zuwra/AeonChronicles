@@ -897,6 +897,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	public void globalSelect(int n )
 	{ DeselectAll();
+
 		foreach (GameObject obj in raceMan.getUnitList())
 		{
 

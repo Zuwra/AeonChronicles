@@ -40,16 +40,8 @@ public class DetachAugment : Ability {
 	public override void Activate(){
 		
 		myAugmentor.Unattach ();
-		RaycastHit objecthit;
 
-		Vector3 down = this.gameObject.transform.TransformDirection (Vector3.down);
-
-		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
-
-			down =objecthit.point;
-
-		}
-		manager.changeState (new MoveState (down, manager));
+	
 		active = false;
 		if (GetComponent<Selected> ().IsSelected) {
 			Debug.Log ("Updating UIIIII");

@@ -28,6 +28,8 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (AAP.myAugment) {
 		
 			return;}
+
+		manager.myStats.myHeight = UnitTypes.HeightType.Ground;
 		detacher.allowDetach (true);
 		attached = target;
 		target.GetComponent<UnitManager> ().myStats.addDeathTrigger (this);
@@ -44,22 +46,28 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			armer.shields = false;
 			foreach (IWeapon w in GetComponents<IWeapon>()) {
 				if (!manager.myWeapon.Contains (w)) {
-					Debug.Log ("Adding");
+
 					manager.myWeapon.Add (w);
 				}
 
 			}
 		}
 
-		if (target.GetComponent<UnitManager> ().UnitName == "Construction Yard") {
+		OreDispenser OD = target.GetComponent<OreDispenser> ();
+		if (OD) {
+			OD.returnRate = 1.2f;
+		}
+
+		else if (target.GetComponent<UnitManager> ().UnitName == "Construction Yard") {
 			foreach (BuildUnit bu in target.GetComponents<BuildUnit>()) {
-				bu.buildTime *= .65f;
+				//bu.buildTime *= .65f;
 				bu.myCost.cooldown = bu.buildTime;
+				bu.setBuildRate (1.35f);
 			}
 
 		}
 
-		if (target.GetComponent<UnitManager> ().UnitName == "Turret Shop") {
+		else if (target.GetComponent<UnitManager> ().UnitName == "Turret Shop") {
 			foreach (buildTurret bt in target.GetComponents<buildTurret>()) {
 				if (bt.Name.Contains ("Repair")) {
 					bt.active = true;
@@ -86,7 +94,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	public void Unattach()
 	{if (!attached) {
 			return;}
-
+		manager.myStats.myHeight = UnitTypes.HeightType.Air;
 		attached.GetComponent<UnitManager> ().myStats.removeDeathTrigger (this);
 		MissileArmer armer = attached.GetComponent<MissileArmer> ();
 
@@ -95,15 +103,22 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			manager.myWeapon.Clear ();
 		}
 
-		if (attached.GetComponent<UnitManager> ().UnitName == "Construction Yard") {
+		else if (attached.GetComponent<UnitManager> ().UnitName == "Construction Yard") {
 			foreach (BuildUnit bu in attached.GetComponents<BuildUnit>()) {
-				bu.buildTime /= .65f;
+				//bu.buildTime /= .65f;
+
 				bu.myCost.cooldown = bu.buildTime;
+				bu.setBuildRate (1);
 			}
 
 		}
 
-		if (attached.GetComponent<UnitManager> ().UnitName == "Turret Shop") {
+		OreDispenser OD = target.GetComponent<OreDispenser> ();
+		if (OD) {
+			OD.returnRate = 1;
+		}
+
+		else if (attached.GetComponent<UnitManager> ().UnitName == "Turret Shop") {
 			foreach (buildTurret bt in attached.GetComponents<buildTurret>()) {
 				if (bt.Name.Contains ("Repair")) {
 					bt.active =false;
@@ -112,12 +127,22 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 		}
 		if (GetComponent<Selected> ().IsSelected) {
-			Debug.Log ("Updating UI");
+			
 			RaceManager.updateActivity ();
 		}
 		attached.GetComponent<AugmentAttachPoint> ().myAugment = null;
 		attached = null;
 		detacher.allowDetach (false);
+
+		RaycastHit objecthit;
+
+		Vector3 down = this.gameObject.transform.TransformDirection (Vector3.down);
+
+		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
+
+			down =objecthit.point;
+			manager.changeState (new MoveState (down, manager));
+		}
 
 
 	}
@@ -130,7 +155,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	public  bool Cast(GameObject tar, Vector3 location){
 		target = tar;
 		attached = tar;
-		Debug.Log ("Casting 2");
+
 		Vector3 attachSpot = target.transform.position;
 
 		this.gameObject.transform.position = attachSpot;
@@ -151,6 +176,15 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (target == null) {
 			return false;
 		}
+		AugmentAttachPoint AAP =target.GetComponent<AugmentAttachPoint> ();
+		if (!AAP) {
+			return false;}
+		if (AAP.myAugment) {
+			return false;}
+
+		if(target.GetComponent<OreDispenser> () )
+		{return true;
+		}
 
 		UnitManager m = target.GetComponent<UnitManager> ();
 		if (m == null) {
@@ -159,11 +193,9 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (m.PlayerOwner != manager.PlayerOwner) {
 			return false;}
 
-		AugmentAttachPoint AAP = m.GetComponent<AugmentAttachPoint> ();
-		if (!AAP) {
-			return false;}
-		if (AAP.myAugment) {
-			return false;}
+
+
+	
 
 		return true;
 	}
@@ -180,7 +212,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 	override
 	public void Activate()
-	{Debug.Log ("Activating");
+	{
 
 	}  // returns whether or not the next unit in the same group should also cast it
 
@@ -256,6 +288,10 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (s is AbilityFollowState) {
 			Unattach ();
 		}
+
+		if (s is DefaultState) {
+			return new HoldState(manager);
+		}
 		return s;
 	}
 
@@ -271,6 +307,16 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	// Right click on a objt/unit
 	public void Interact(Order order)
 	{
+		if (!attached) {
+			if (!attached && isValidTarget (order.Target, Vector3.zero)) {
+				manager.UseTargetAbility (order.Target, Vector3.zero, 0);
+				//Debug.Log ("Ordered to follow");
+				return;
+			}
+		}
+
+
+
 		UnitManager manage = order.Target.GetComponent<UnitManager> ();
 		if (!manage) {
 			manage = order.Target.GetComponentInParent<UnitManager> ();
@@ -279,13 +325,14 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (manage != null) {
 
 			if (!attached && manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {
-					
+
 				manager.changeState (new FollowState (order.Target.gameObject, manager));
-			} else if(attached && attached.GetComponent<MissileArmer>()){
+			} else if(!attached && isValidTarget(order.Target, Vector3.zero)){
+				manager.UseTargetAbility (order.Target, Vector3.zero, 0);
 					
-					//manager.changeState (new InteractState (manage.gameObject,manager));
 				}
 			} else {
+			
 				manager.changeState (new FollowState (order.Target.gameObject,  manager));
 			}
 
@@ -320,19 +367,25 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	//Shift-Caps
 	public void HoldGround(Order order)
 	{if (target) {
-			target = null;}
+		//	target = null;
+		}
 		manager.changeState (new HoldState(manager));
 	}
 
 	//Right click on a unit/object. how is this different than interact? is it only on allied units?
 	public void Follow(Order order){
 		if (!attached) {
-
-
-			manager.changeState (new MoveState (order.OrderLocation,manager));
+			if (!attached && isValidTarget (order.Target, Vector3.zero)) {
+				manager.UseTargetAbility (order.Target, Vector3.zero, 0);
+				Debug.Log ("Ordered to follow");
+			}
+			else{
+				manager.changeState (new MoveState (order.OrderLocation,manager));
+				if (target) {
+					target = null;}
+			}
 		}
-		if (target) {
-			target = null;}
+
 	}
 
 

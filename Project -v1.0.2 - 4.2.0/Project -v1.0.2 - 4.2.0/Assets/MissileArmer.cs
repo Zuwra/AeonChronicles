@@ -34,7 +34,9 @@ public class MissileArmer :Ability{
 	// Update is called once per frame
 	void Update () {
 
-
+		if (!active) {
+			return;}
+		
 		if (nextActionTime < Time.time) {
 			nextActionTime += 1;
 
