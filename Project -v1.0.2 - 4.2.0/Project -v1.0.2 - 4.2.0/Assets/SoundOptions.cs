@@ -19,8 +19,10 @@ public class SoundOptions : MonoBehaviour {
 		masterSLider = masterSLiderO.GetComponent<Slider> ();
 
 		musicSlider = musicSliderO.GetComponent<Slider> ();
-
-		music = GameObject.FindObjectOfType<MainCamera> ().GetComponent<AudioSource> ();
+		MainCamera mc = GameObject.FindObjectOfType<MainCamera> ();
+		if (mc) {
+			music = mc.GetComponent<AudioSource> ();
+		}
 		if (!music) {
 			music = GameObject.FindObjectOfType<Camera> ().GetComponent<AudioSource> ();
 		}

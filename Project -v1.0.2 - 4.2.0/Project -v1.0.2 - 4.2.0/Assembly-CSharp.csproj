@@ -437,6 +437,8 @@
      <Compile Include="Assets\TurretTipDisplayer.cs" />
      <Compile Include="Assets\TurretUIPanel.cs" />
      <Compile Include="Assets\TurretplacerTwo.cs" />
+     <Compile Include="Assets\TutorialManager.cs" />
+     <Compile Include="Assets\TutorialPage.cs" />
      <Compile Include="Assets\UIHighLight.cs" />
      <Compile Include="Assets\UltCooldown.cs" />
      <Compile Include="Assets\UndyingArmor.cs" />
