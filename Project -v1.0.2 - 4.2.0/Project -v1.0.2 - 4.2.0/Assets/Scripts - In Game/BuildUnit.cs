@@ -90,7 +90,8 @@ public class BuildUnit : UnitProduction {
 
 			obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
 		}
-		//myCost.refundCost ();
+		//myCost.refundCost ();deq
+		Debug.Log("Canceling the build");
 		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply,null);
 		racer.stopBuildingUnit (this);
 	}

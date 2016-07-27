@@ -11,8 +11,10 @@ public class Clock : MonoBehaviour {
 	private float timer = 0;
 	private float nextActionTime;
 	// Use this for initialization
-	void Start () {
+
+	void Awake() {
 		nextActionTime = Time.time;
+		timer = 0;
 		main = this;
 	}
 

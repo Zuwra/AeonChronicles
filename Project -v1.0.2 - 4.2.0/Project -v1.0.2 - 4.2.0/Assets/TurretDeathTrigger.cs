@@ -31,7 +31,7 @@ public class TurretDeathTrigger : MonoBehaviour, Modifier{
 
 
 
-
+		/*
 		if (weapon.myManager.myWeapon.Contains( weapon)) {
 			foreach (TurretMount turr in transform.GetComponentsInParent<TurretMount> ()) {
 
@@ -48,7 +48,7 @@ public class TurretDeathTrigger : MonoBehaviour, Modifier{
 
 
 			//weapon.myManager.changeState (new DefaultState ());
-		}
+		}*/
 		return 0 ;
 	}
 }

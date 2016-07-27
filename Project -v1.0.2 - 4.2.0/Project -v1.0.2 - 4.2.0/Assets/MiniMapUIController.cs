@@ -179,10 +179,12 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 	{
 		clearTexture (tex, virtMap, false);
 
-		foreach (RaceManager race in gameMan.playerList) { // Loops 3 times
-			Color raceColor = getColorForRaceManager (race);
+		for(int i = 2; i >-1; i --){
+		//foreach (RaceManager race in gameMan.playerList) { // Loops 3 times
+			Color raceColor = getColorForRaceManager (gameMan.playerList[i]);
             
-			foreach (GameObject unit in race.getUnitList()) { // Loops 0 -100 ish timesif(unit){
+			foreach (GameObject unit in gameMan.playerList[i].getUnitList()) { // Loops 0 -100 ish timesif(unit){
+				
 				if (unit == null) {
 					continue;}
 				float unitWorldX = unit.transform.position.x;
@@ -195,12 +197,12 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 					chitSize *= 2;
 				}
 
-				for (int i = -chitSize; i <= chitSize; i++)
+				for (int n = -chitSize; n <= chitSize; n++)
                 {
 
 					for (int j = -chitSize; j <=chitSize; j++)
-					{virtMap [i+ iCoord,j+ jCoord] = true;
-                        tex.SetPixel(i + iCoord, j + jCoord, raceColor);
+					{virtMap [n+ iCoord,j+ jCoord] = true;
+                        tex.SetPixel(n + iCoord, j + jCoord, raceColor);
                     }
 					}}
             }

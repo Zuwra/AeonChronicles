@@ -93,6 +93,7 @@ public class ArmyUIManager : MonoBehaviour {
 		UnitManager manage = unit.GetComponent<UnitManager> ();
 
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
+		icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text = manage.UnitName;
 
 		icon.transform.rotation = unitPanel.transform.rotation;
 

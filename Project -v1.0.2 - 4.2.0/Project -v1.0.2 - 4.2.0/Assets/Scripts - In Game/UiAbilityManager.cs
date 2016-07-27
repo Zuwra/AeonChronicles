@@ -40,7 +40,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public List<StatsUI> Stats = new List<StatsUI> ();
 
-
+	public List<GameObject> IconStartPoints = new List<GameObject> ();
 	//Key - Icon, Value - Unit
 	private Dictionary<GameObject, GameObject> unitIcons = new Dictionary<GameObject, GameObject> ();
  	private SelectedManager selectMan;
@@ -377,11 +377,11 @@ public class UiAbilityManager : MonoBehaviour {
 					int currentX = 140;
 					for (int k = 0; k < picCount; k++) {
 
-						Vector3 pos = Stats [j].transform.position;
+						Vector3 pos =IconStartPoints[j].transform.position;
 						pos.x += currentX *this.transform.localScale.x ;
 
 						GameObject unit = (GameObject)Instantiate (buttonTemplate);
-						unit.GetComponent<UnitIconInfo> ().myUnit = uiPage.rows [j] [k].gameObject;
+						unit.transform.FindChild("UnitIconTemplate").GetComponent<UnitIconInfo> ().myUnit = uiPage.rows [j] [k].gameObject;
 						unit.transform.localScale = this.transform.localScale;
 					
 						unit.transform.rotation = this.transform.rotation;
@@ -389,10 +389,10 @@ public class UiAbilityManager : MonoBehaviour {
 
 						unit.transform.position = pos;
 
-						unit.GetComponent<Image> ().sprite = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
+						unit.transform.FindChild("UnitIconTemplate").GetComponent<Image> ().sprite = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
 					
 						currentX += separation;
-						unit.GetComponent<Button> ().onClick.AddListener(delegate() {IconClick(unit);});
+						unit.transform.FindChild("UnitIconTemplate").GetComponent<Button> ().onClick.AddListener(delegate() {IconClick(unit);});
 					
 						unitIcons.Add (unit, uiPage.rows [j] [k].gameObject);
 						uiPage.rows [j] [k].gameObject.GetComponent<Selected> ().setIcon (unit);

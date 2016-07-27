@@ -70,19 +70,19 @@ public class MainCamera : MonoBehaviour, ICamera {
 			}
 		
 		} else if (Input.GetMouseButtonDown (2)) {
-			CursorManager.main.targetMode ();
+			CursorManager.main.MouseDragMode ();
 			middleStartPos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 			camStartPos = this.transform.position;
 			middleMouseDown = true;
 		} else if (Input.GetMouseButtonUp (2)) {
-			if (CursorManager.main.getMode () == 2) {
+			if (CursorManager.main.getMode () == 6) {
 				CursorManager.main.normalMode ();
 			}
 			middleMouseDown = false;
 		} else if (middleMouseDown) {
-			CursorManager.main.targetMode ();
+			CursorManager.main.MouseDragMode ();
 			if (Input.mousePosition.x > 0 && Input.mousePosition.x < Screen.width - 2 && Input.mousePosition.y > 0 && Input.mousePosition.y < Screen.height - 2) {
-				transform.Translate ((middleStartPos.x - Input.mousePosition.x) * Time.deltaTime * HeightAboveGround / 17, 0, (middleStartPos.y - Input.mousePosition.y) * Time.deltaTime* HeightAboveGround /14, Space.World);
+				transform.Translate ((middleStartPos.x - Input.mousePosition.x) * Time.deltaTime * HeightAboveGround / 15, 0, (middleStartPos.y - Input.mousePosition.y) * Time.deltaTime* HeightAboveGround /14, Space.World);
 				middleStartPos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 				CheckEdgeMovement ();
 			}

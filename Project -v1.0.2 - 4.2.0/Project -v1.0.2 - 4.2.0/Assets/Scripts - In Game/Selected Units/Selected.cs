@@ -15,6 +15,8 @@ public class Selected : MonoBehaviour {
 	public TurretHealthDisplay turretDisplay;
 
 	private GameObject unitIcon;
+	private Slider IconSlider;
+
 	private Slider healthslider;
 	private Image healthFill;
 	public GameObject RallyPoint;
@@ -135,7 +137,11 @@ public class Selected : MonoBehaviour {
 
 	public void setIcon(GameObject obj)
 	{//buffDisplay.isOn = true;
-		unitIcon = obj;
+		if (!obj) {
+			return;}
+		Debug.Log ("Searching " + obj);
+		unitIcon = obj.transform.FindChild("UnitIconTemplate").gameObject;
+		IconSlider = obj.transform.FindChild ("Slider").gameObject.GetComponent<Slider>();
 		if (!turretDisplay) {
 			if (healthslider.value > .6) {
 
@@ -157,7 +163,19 @@ public class Selected : MonoBehaviour {
 				unitIcon.GetComponent<Image> ().color = Color.red;
 
 			}
+			if (IconSlider) {
+				IconSlider.value = coolDownSlider.value;
+				if (IconSlider.value <= 0 || IconSlider.value >= .99f) {
+					//buffDisplay.isOn = false;
+
+					IconSlider.gameObject.SetActive (false);
+				} else {
+					IconSlider.gameObject.SetActive (true);
+				}
+			}
 		}
+
+
 
 	}
 	
@@ -331,6 +349,19 @@ public class Selected : MonoBehaviour {
 			//buffDisplay.isOn = true;
 			coolDownSlider.gameObject.SetActive (true);
 		}
+		if (IconSlider) {
+			IconSlider.value = ratio;
+			if (IconSlider.value <= 0|| IconSlider.value >= .99f) {
+				//buffDisplay.isOn = false;
+
+				IconSlider.gameObject.SetActive (false);
+			}
+			else{
+
+				//buffDisplay.isOn = true;
+				IconSlider.gameObject.SetActive (true);
+			}
+		}
 		checkOn ();
 
 	}
@@ -365,6 +396,7 @@ public class Selected : MonoBehaviour {
 	{
 		IsSelected = false;
 		unitIcon = null;
+		IconSlider = null;
 		decalCircle.GetComponent<MeshRenderer> ().enabled = false;
 		if (RallyPoint) {
 			RallyPoint.SetActive (false);

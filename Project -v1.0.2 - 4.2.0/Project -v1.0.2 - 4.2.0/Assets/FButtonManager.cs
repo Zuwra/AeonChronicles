@@ -64,4 +64,10 @@ public class FButtonManager : MonoBehaviour {
 		idleWorkers.text = "" + workerCount;
 	}
 
+	public void updateTankNumber()
+	{
+		unbound.text = "" + SelectedManager.main.getUnarmedTankCount ();
+		Debug.Log ("Updated " + SelectedManager.main.getUnarmedTankCount ());
+	}
+
 }

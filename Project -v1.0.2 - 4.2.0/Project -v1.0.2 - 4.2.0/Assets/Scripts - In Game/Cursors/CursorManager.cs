@@ -51,7 +51,7 @@ public class CursorManager : MonoBehaviour {
 	public void targetMode()
 		{if (currentMode != 2) {
 				currentMode = 2;
-		UnityEngine.Cursor.SetCursor (Cursors [2], new Vector2 (16, 16), CursorMode.ForceSoftware);
+		UnityEngine.Cursor.SetCursor (Cursors [2], new Vector2 (32, 32), CursorMode.ForceSoftware);
 			}}
 		
 
@@ -74,5 +74,12 @@ public class CursorManager : MonoBehaviour {
 		if (currentMode != 5) {
 			currentMode = 5;
 			UnityEngine.Cursor.SetCursor (Cursors [5], new Vector2 (16, 16), CursorMode.ForceSoftware);}
+	}
+
+	public void MouseDragMode()
+	{if (currentMode != 6) {
+			currentMode = 6;
+			UnityEngine.Cursor.SetCursor (Cursors [6], new Vector2 (16, 16), CursorMode.ForceSoftware);}
+		
 	}
 }

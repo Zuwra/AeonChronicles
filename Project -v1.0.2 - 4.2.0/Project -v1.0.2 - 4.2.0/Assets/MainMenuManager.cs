@@ -48,7 +48,8 @@ public class MainMenuManager : MonoBehaviour {
 
 	public void startMatch()
 	{
-		
+
+		LevelData.currentLevel = 0;
 		SceneManager.LoadScene (3);
 	}
 

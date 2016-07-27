@@ -16,6 +16,7 @@ public class StatsUI : MonoBehaviour {
 	private Text OneText;
 	private Text TwoText;
 	private Text ThreeText;
+	public Text UnitName;
 	// Use this for initialization
 	void Start () {
 		OneText = columnOne.GetComponent<Text> ();
@@ -35,12 +36,13 @@ public class StatsUI : MonoBehaviour {
 		healthIcon.enabled = true;
 		armorIcon.enabled = true;
 
-		OneText.text = unitName +"\n" + man.myStats.Maxhealth + "\n" + man.myStats.armor;
+		UnitName.text = unitName;
+		OneText.text = man.myStats.Maxhealth + "\n" + man.myStats.armor;
 		if (man.myWeapon != null) {
 			damageIcon.enabled = true;
 			rangeIcon.enabled = true;
 
-			TwoText.text += "\n";
+			TwoText.text += "";
 			for (int i = 0; i < man.myWeapon.Count; i++) {
 				TwoText.text += man.myWeapon[i].baseDamage;
 				if (man.myWeapon [i].baseDamage < 10) {
@@ -76,7 +78,7 @@ public class StatsUI : MonoBehaviour {
 		healthIcon.enabled = false;
 		armorIcon.enabled = false;
 
-
+		UnitName.text = "";
 		OneText.text = "";
 		TwoText.text = "";
 		ThreeText.text = "";}

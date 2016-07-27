@@ -90,6 +90,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		if (slideOne && UltOne.active) {
 			slideOne.value = UltOne.myCost.cooldownProgress ();
+			slideOne.gameObject.SetActive (slideOne.value < .99 && slideOne.value > .02f);
 			if (slideOne.value < .99) {
 				ultBOne.interactable = false;
 			}
@@ -101,6 +102,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		if (slideTwo && UltTwo.active) {
 			slideTwo.value = UltTwo.myCost.cooldownProgress ();
+			slideTwo.gameObject.SetActive (slideTwo.value < .99 && slideTwo.value > .01f);
 			if (slideTwo.value < .99) {
 				ultBTwo.interactable = false;
 			}
@@ -111,6 +113,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		}
 		if (slideThree && UltThree.active) {
 			slideThree.value = UltThree.myCost.cooldownProgress ();
+			slideThree.gameObject.SetActive (slideThree.value < .99 && slideThree.value > .01f);
 			if (slideThree.value < .99) {
 				ultBThree.interactable = false;
 			}
@@ -120,6 +123,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		}
 		if (slideFour && UltFour.active) {
 			slideFour.value = UltFour.myCost.cooldownProgress ();
+			slideFour.gameObject.SetActive (slideFour.value < .99 && slideFour.value > .01f);
 			if (slideFour.value < .99) {
 				ultBFour.interactable = false;
 			}
@@ -243,7 +247,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 	public void UnitCreated(float supply)
-	{
+	{Debug.Log ("Created " + supply);
 		if (supply < 0) {
 
 
@@ -340,6 +344,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				}
 			}
 		}
+		if (Unit.GetComponentInChildren<TurretMount> ()) {
+			FButtonManager.main.updateTankNumber ();
+		}
+		FButtonManager.main.updateNumbers (unitList);
 		return finishDeath;
 	}
 

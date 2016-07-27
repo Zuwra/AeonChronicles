@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UnitCardCreater : MonoBehaviour {
 
-	public Image unitIcon;
+	public GameObject unitIcon;
 	public Text UnitName;
 	public Text health;
 	public Text armor;
@@ -109,7 +109,7 @@ public class UnitCardCreater : MonoBehaviour {
 		UnitDescription.text = manager.myStats.UnitDescription;
 
 		hasUnit = true;
-		unitIcon.sprite = manager.myStats.Icon;
+		unitIcon.GetComponentInChildren<Image>().sprite = manager.myStats.Icon;
 		UnitName.text = manager.UnitName;
 		health.text = " "+(int)manager.myStats.health + "/" + (int)manager.myStats.Maxhealth;
 		armor.text =  " " +manager.myStats.armor;

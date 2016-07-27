@@ -98,7 +98,7 @@ public class UnitStats : MonoBehaviour {
 		}
 
 
-		if (Time.time < 1 && myManager.PlayerOwner == 1) {
+		if (Clock.main.getTotalSecond()< 1 && myManager.PlayerOwner == 1) {
 			
 			GameManager.main.playerList[myManager.PlayerOwner-1].UnitCreated (supply);		
 		}

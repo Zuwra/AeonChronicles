@@ -109,6 +109,7 @@ public class ProductionManager : MonoBehaviour {
 		UnitStats theStats = manage.gameObject.GetComponent<UnitStats> ();
 
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
+		icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text =produce.unitToBuild.GetComponent<UnitManager>().UnitName;
 
 		icon.transform.rotation = unitPanel.transform.rotation;
 	

@@ -11,6 +11,7 @@ public class TurretMount : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+		FButtonManager.main.updateTankNumber ();
 	}
 	
 	// Update is called once per frame
@@ -62,7 +63,9 @@ public class TurretMount : MonoBehaviour {
 	}
 
 	public void placeTurret(GameObject obj)
-		{turret = obj;
+		{
+		
+		turret = obj;
 		hasDisplayer.gameObject.SetActive (false);
 		Vector3 spot = this.transform.position;
 		spot.y += .5f;
@@ -84,7 +87,7 @@ public class TurretMount : MonoBehaviour {
 		
 		}
 		manager.PlayerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
-
+		FButtonManager.main.updateTankNumber ();
 
 	}
 
@@ -115,6 +118,7 @@ public class TurretMount : MonoBehaviour {
 			}
 			}
 
+		FButtonManager.main.updateTankNumber ();
 		Debug.Log ("Deatched");
 	}
 }

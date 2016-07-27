@@ -36,7 +36,7 @@ public class BuildManager : MonoBehaviour {
 			{
 				float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
 
-				if (raceMan.hasSupplyAvailable (Sup)) {
+				if (Sup == 0 ||raceMan.hasSupplyAvailable (Sup)) {
 					buildOrder [0].startBuilding ();
 				} else {
 					StartCoroutine (waitOnSupply (Sup));
@@ -79,11 +79,11 @@ public class BuildManager : MonoBehaviour {
 			build.bUpdate (this.gameObject);
 		}
 	
-		if(buildOrder.Count > 0)
+		if(buildOrder.Count == 1)
 		{
 			float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
 
-			if (raceMan.hasSupplyAvailable (Sup)) {
+			if (Sup == 0 ||raceMan.hasSupplyAvailable (Sup)) {
 				buildOrder [0].startBuilding ();
 			} else {
 				StartCoroutine (waitOnSupply (Sup));
@@ -103,7 +103,7 @@ public class BuildManager : MonoBehaviour {
 		{
 			float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
 
-			if (raceMan.hasSupplyAvailable (Sup)) {
+			if (Sup == 0 || raceMan.hasSupplyAvailable (Sup)) {
 				buildOrder [0].startBuilding ();
 			} else {
 				StartCoroutine (waitOnSupply (Sup));
@@ -126,7 +126,7 @@ public class BuildManager : MonoBehaviour {
 			yield return new WaitForSeconds (.3f);
 			
 			if (buildOrder.Count > 0) {
-				if (raceMan.hasSupplyAvailable (supply)) {
+				if (supply == 0 ||raceMan.hasSupplyAvailable (supply)) {
 					buildOrder [0].startBuilding ();
 					break;
 				} 

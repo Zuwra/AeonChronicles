@@ -22,6 +22,11 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 	}
 
 
+	public void turnOff()
+	{
+		toolbox.enabled = false;
+	}
+
 
 	// Use this for initialization
 	void Start () {

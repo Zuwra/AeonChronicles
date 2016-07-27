@@ -866,6 +866,36 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		CreateUIPages(0);
     }
 
+	public void selectAllUnArmedTanks()
+	{
+		selectAllArmy();
+
+		foreach (RTSObject u in SelectedObjects) 
+		{TurretMount tm = u.GetComponentInChildren<TurretMount> ();
+			if (tm && tm.turret ||u.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Structure) ) {
+				DeselectObject (u);
+			}
+
+		}
+	
+
+		CreateUIPages(0);
+	}
+
+	public float getUnarmedTankCount()
+	{float i = 0;
+		raceMan.getUnitList().RemoveAll (item => item == null);
+		foreach (GameObject obj in raceMan.getUnitList())
+		{TurretMount tm = obj.GetComponentInChildren<TurretMount> ();
+			if (tm && !tm.turret ) {
+				i++;
+			}
+
+		}
+		return i;
+	}
+
+
     public void selectIdleWorker()
     {
         {

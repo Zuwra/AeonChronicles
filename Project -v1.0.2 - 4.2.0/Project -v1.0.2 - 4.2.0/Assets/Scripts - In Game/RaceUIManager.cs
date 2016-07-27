@@ -16,6 +16,8 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	string OneName;
 	string TwoName;
 	public bool runTabs;
+	//tooltips are left open when they are deselected
+	public List<GameObject> BuggedCans;
 
 	public Dropdown production; // Controls which Info panel to display - Production, Income, or Current total army
 
@@ -120,7 +122,15 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 
 	public void chanageDropDown()
-	{if (currentProdManager) {
+	{
+		foreach (GameObject c in BuggedCans) {
+			if (c.GetComponent<ToolTip> ()) {
+				c.GetComponent<ToolTip> ().turnOff ();
+			}
+			foreach (ToolTip t in c.GetComponentsInChildren<ToolTip>()) {
+				t.turnOff ();
+			}
+		if (currentProdManager) {
 			currentProdManager.SetActive (false);
 			if (currentProdManager.GetComponent<ToolTip> ()) {
 				currentProdManager.GetComponent<ToolTip> ().toolbox.enabled = false;
@@ -152,6 +162,10 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 		}
 		else{
 			currentProdManager.SetActive (false);
+		}
+
+	
+
 		}
 	}
 
@@ -208,7 +222,9 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	{SelectedManager.main.selectAllBuildings ();}
 	
 	public void fEight()
-	{SelectedManager.main.selectAllUnbound ();}
+	{
+		SelectedManager.main.selectAllUnArmedTanks ();
+	}
 	
 	public void fNine()
 	{raceManager.useAbilityOne ();}
