@@ -158,6 +158,7 @@
      <Compile Include="Assets\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
      <Compile Include="Assets\AttachGrinder.cs" />
+     <Compile Include="Assets\AugmentAetherVictory.cs" />
      <Compile Include="Assets\AugmentAttachPoint.cs" />
      <Compile Include="Assets\Augmentor.cs" />
      <Compile Include="Assets\BackLashAura.cs" />

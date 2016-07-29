@@ -247,7 +247,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 	public void UnitCreated(float supply)
-	{Debug.Log ("Created " + supply);
+	{//Debug.Log ("Created " + supply);
 		if (supply < 0) {
 
 

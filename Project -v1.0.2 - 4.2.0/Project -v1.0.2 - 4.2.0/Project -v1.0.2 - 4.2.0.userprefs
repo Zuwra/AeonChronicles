@@ -1,23 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ProductionManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Objective.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="1188" Column="3" />
+      <File FileName="Assets\AugmentAetherVictory.cs" Line="51" Column="26" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="1" Column="1" />
       <File FileName="Assets\AstarPathfindingProject\RVO\RVOController.cs" Line="1" Column="1" />
       <File FileName="Assets\TurretDeathTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="381" Column="5" />
-      <File FileName="Assets\Scripts - In Game\StatsUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\MiniMapUIController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\ToolTip.cs" Line="1" Column="1" />
-      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="99" Column="28" />
-      <File FileName="Assets\Augmentor.cs" Line="104" Column="12" />
-      <File FileName="Assets\AetherOvercharge.cs" Line="93" Column="1" />
-      <File FileName="Assets\buildTurret.cs" Line="70" Column="49" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="138" Column="37" />
-      <File FileName="Assets\ProductionManager.cs" Line="43" Column="7" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="192" Column="1" />
+      <File FileName="Assets\LocationObjective.cs" Line="4" Column="43" />
+      <File FileName="Assets\Objective.cs" Line="27" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
