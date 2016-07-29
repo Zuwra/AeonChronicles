@@ -139,7 +139,7 @@ public class Selected : MonoBehaviour {
 	{//buffDisplay.isOn = true;
 		if (!obj) {
 			return;}
-		Debug.Log ("Searching " + obj);
+		//Debug.Log ("Searching " + obj);
 		unitIcon = obj.transform.FindChild("UnitIconTemplate").gameObject;
 		IconSlider = obj.transform.FindChild ("Slider").gameObject.GetComponent<Slider>();
 		if (!turretDisplay) {

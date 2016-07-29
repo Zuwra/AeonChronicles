@@ -1182,7 +1182,10 @@ public class UiAbilityManager : MonoBehaviour {
 	}
 
 
-
+	public void callAbility(int n)
+	{selectMan.callAbility (n);
+		
+	}
 
 	public void callAbilityOne()
 	{selectMan.callAbility (0);}

@@ -32,9 +32,11 @@ public class ProductionManager : MonoBehaviour {
 				nextActionTime += .5f;
 
 				foreach (KeyValuePair<string, List<UnitProduction>> pair in abilityList) {try{
+						
 					Transform t = iconList [pair.Key].transform.FindChild ("Percent");
-					t.GetComponent<Text> ().text = 
-							"" + (int)(pair.Value [0].getProgress () * 100) + "%";}
+
+						t.GetComponent<Slider> ().value = pair.Value [0].getProgress ();
+							}
 					catch(Exception) {
 						
 						continue;

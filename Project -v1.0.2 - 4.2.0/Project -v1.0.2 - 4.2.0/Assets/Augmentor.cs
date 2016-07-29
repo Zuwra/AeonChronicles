@@ -88,8 +88,14 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	//Triggers if the attached building dies
 	public float modify(float d, GameObject src)
 	{
+		Unattach ();
 		manager.myStats.kill(null);
 		return d;
+	}
+
+	void OnDestroy()
+	{Unattach ();
+		
 	}
 
 
@@ -115,7 +121,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 		}
 
-		OreDispenser OD = target.GetComponent<OreDispenser> ();
+		OreDispenser OD = attached.GetComponent<OreDispenser> ();
 		if (OD) {
 			OD.returnRate = 1;
 		}

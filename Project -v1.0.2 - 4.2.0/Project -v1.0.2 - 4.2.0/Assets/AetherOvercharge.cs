@@ -86,13 +86,15 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 		GetComponent<DayexaShield> ().startRecharge ();
 
 		foreach (IWeapon weap in myman.myWeapon) {
-			weap.triggers.Remove (this);
-			weap.removeAttackBuff (this);
-			weap.removeAttackSpeedBuff (this);
+			if (weap) {
+				weap.triggers.Remove (this);
+				weap.removeAttackBuff (this);
+				weap.removeAttackSpeedBuff (this);
 
-			GatlingGun gg = weap.GetComponent<GatlingGun> ();
-			if (gg) {
-				gg.MinimumPeriod /= -attackSpeed;
+				GatlingGun gg = weap.GetComponent<GatlingGun> ();
+				if (gg) {
+					gg.MinimumPeriod /= -attackSpeed;
+				}
 			}
 		}
 
