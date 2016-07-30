@@ -37,23 +37,32 @@ public class AugmentAetherVictory  : Objective {
 
 
 		while (true) {
-
+			
 			yield return new WaitForSeconds (3);
 		
 			if (myGuys.Count < numOfAugments) {
+				if (completed) {
+					completed = false;
+					unComplete ();
+				}
 		
 				continue;
 			}
 			else{
 				int n = 0;
-			
+				myGuys.RemoveAll (item => item == null);
 				foreach (AugmentAttachPoint agp in myGuys) {
 					if (agp.myAugment) {
 
 						n++;}
 				}
 				if (n >= numOfAugments) {
+					completed = true;
 					complete ();
+				}
+				else if (completed) {
+					completed = false;
+					unComplete ();
 				}
 			}
 		}

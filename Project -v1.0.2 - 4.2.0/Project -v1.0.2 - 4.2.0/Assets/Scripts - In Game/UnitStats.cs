@@ -237,7 +237,7 @@ public class UnitStats : MonoBehaviour {
 			}
 
 			if (FinishDeath) {
-
+				deathTriggers.RemoveAll (item => item == null);
 				foreach (Modifier effect in deathTriggers) {
 					if (effect != null) {
 						effect.modify (0, deathSource);

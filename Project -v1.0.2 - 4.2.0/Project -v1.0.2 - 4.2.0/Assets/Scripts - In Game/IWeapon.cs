@@ -281,7 +281,9 @@ public class IWeapon : MonoBehaviour {
 
 
 	public void fireTriggers(GameObject source, GameObject proj, GameObject target, float damage)
-	{	foreach (Notify obj in triggers) {
+	{	triggers.RemoveAll (item => item == null);
+		foreach (Notify obj in triggers) {
+			Debug.Log (obj);
 			obj.trigger(source,proj,target, damage);
 		}
 	}
@@ -315,7 +317,7 @@ public class IWeapon : MonoBehaviour {
 		for (int i = 0; i < ASMod.Count; i++) {
 			if (ASMod [i].source ==obj) {
 				ASMod.RemoveAt (i);
-			
+				break;
 			}
 		}
 		adjustAttackSpeed ();
@@ -364,10 +366,10 @@ public class IWeapon : MonoBehaviour {
 
 	public void removeAttackBuff(Object obj)
 	{
-		for (int i = 0; i < ASMod.Count; i++) {
+		for (int i = 0; i < DamageMod.Count; i++) {
 			if (DamageMod [i].source ==obj) {
 				DamageMod.RemoveAt (i);
-
+				break;
 
 			}
 		}

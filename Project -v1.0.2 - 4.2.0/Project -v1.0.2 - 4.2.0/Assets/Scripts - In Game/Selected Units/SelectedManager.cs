@@ -448,6 +448,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{//Debug.Log ("Updating control group");
 		for (int i = 0; i < 10; i++) {
 			if (Group [i].Contains (obj)) {
+				Group [i].RemoveAll (item => item == null);
 				Group [i].Remove (obj);
 				if (Group [i].Count > 0) {
 					controlUI.activateTab (i, Group [i].Count, Group [i] [0].GetComponent<UnitStats> ().Icon);

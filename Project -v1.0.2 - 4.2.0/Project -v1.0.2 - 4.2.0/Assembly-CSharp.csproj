@@ -261,6 +261,7 @@
      <Compile Include="Assets\MissionManager.cs" />
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\MultiShotParticle.cs" />
+     <Compile Include="Assets\NewUnitPanel.cs" />
      <Compile Include="Assets\OathFury.cs" />
      <Compile Include="Assets\Objective.cs" />
      <Compile Include="Assets\ObjectiveManager.cs" />

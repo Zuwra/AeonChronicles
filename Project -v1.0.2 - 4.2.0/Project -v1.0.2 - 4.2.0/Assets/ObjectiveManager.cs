@@ -83,16 +83,43 @@ public class ObjectiveManager : MonoBehaviour {
 
 	public void completeBonus(Objective obj)
 		{
+		bonusObjectives [obj].GetComponentInChildren<Toggle> ().isOn = true;
+		bonusObjectives [obj].GetComponentInChildren<Text> ().fontSize = 8;
+		bonusObjectives [obj].GetComponentInChildren<Text> ().color = new Color (.6f,1,.74f,.5f);
+		blink (true);
+	}
+
+
+	public void unCompleteBonus(Objective obj)
+	{
+		
+
+		bonusObjectives [obj].GetComponentInChildren<Toggle> ().isOn = false;
+		bonusObjectives [obj].GetComponentInChildren<Text> ().fontSize = 12;
+		bonusObjectives [obj].GetComponentInChildren<Text> ().color = Color.green;
+		blink (true);
+	}
+
+
+
+
+	public void completeMain(Objective obj)
+		{
 		mainObjectives [obj].GetComponentInChildren<Toggle> ().isOn = true;
 		mainObjectives [obj].GetComponentInChildren<Text> ().fontSize = 8;
 		mainObjectives [obj].GetComponentInChildren<Text> ().color = new Color (.6f,1,.74f,.5f);
 		blink (true);
 	}
 
-	public void completeMain(Objective obj)
-		{
-		bonusObjectives [obj].GetComponentInChildren<Toggle> ().isOn = true;
+
+	public void UnCompleteMain(Objective obj)
+	{
+		mainObjectives [obj].GetComponentInChildren<Toggle> ().isOn =false;
+		mainObjectives [obj].GetComponentInChildren<Text> ().fontSize = 12;
+		mainObjectives [obj].GetComponentInChildren<Text> ().color = Color.green;
 		blink (true);
 	}
+
+
 
 }

@@ -205,7 +205,7 @@ public class Selected : MonoBehaviour {
 			}
 		}
 		if (IsSelected || tempSelectOn) {
-			if (RallyUnit) {
+			if (RallyUnit && myLine) {
 				myLine.SetPositions (new Vector3[]{ this.gameObject.transform.position, RallyUnit.transform.position });
 				RallyPoint.transform.position = RallyUnit.transform.position;
 			}

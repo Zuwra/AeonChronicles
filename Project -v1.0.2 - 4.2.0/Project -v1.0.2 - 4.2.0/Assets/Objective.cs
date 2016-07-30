@@ -39,6 +39,11 @@ public class Objective : MonoBehaviour {
 		VictoryTrigger.instance.CompleteObject (this);
 	}
 
+	public void unComplete()
+	{completed = false;
+		Debug.Log ("uncompelted");
+		VictoryTrigger.instance.unComplete (this);
+	}
 
 
 
