@@ -20,4 +20,8 @@ public class HealthUpgrade : Upgrade {
 			}
 		}
 	}
+
+	public override void unApplyUpgrade (GameObject obj){
+
+	}
 }

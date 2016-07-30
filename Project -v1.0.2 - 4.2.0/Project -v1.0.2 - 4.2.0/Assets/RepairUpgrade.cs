@@ -19,4 +19,8 @@ public class RepairUpgrade : Upgrade {
             }
         }
     }
+
+	public override void unApplyUpgrade (GameObject obj){
+
+	}
 }

@@ -181,6 +181,7 @@
      <Compile Include="Assets\BuilderUI.cs" />
      <Compile Include="Assets\BuildingInteractor.cs" />
      <Compile Include="Assets\BuildingPlacer.cs" />
+     <Compile Include="Assets\CampShieldUpgrade.cs" />
      <Compile Include="Assets\CampUpgradeManager.cs" />
      <Compile Include="Assets\CampUpgradePurchase.cs" />
      <Compile Include="Assets\CampaignUpgrade.cs" />
@@ -195,8 +196,8 @@
      <Compile Include="Assets\Clock.cs" />
      <Compile Include="Assets\Coagulate.cs" />
      <Compile Include="Assets\CoagulateAura.cs" />
+     <Compile Include="Assets\ConcussiveUpgrade.cs" />
      <Compile Include="Assets\ControlGroupUI.cs" />
-     <Compile Include="Assets\CooledJacket.cs" />
      <Compile Include="Assets\CostBox.cs" />
      <Compile Include="Assets\CustomRVO.cs" />
      <Compile Include="Assets\DaexaSupplyDrop.cs" />
@@ -206,12 +207,14 @@
      <Compile Include="Assets\DeathWinTrigger.cs" />
      <Compile Include="Assets\DetachAugment.cs" />
      <Compile Include="Assets\DifficultyManager.cs" />
+     <Compile Include="Assets\DuplexPlating.cs" />
      <Compile Include="Assets\EMPblast.cs" />
      <Compile Include="Assets\EconomyManager.cs" />
      <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\ExpositionDisplayer.cs" />
      <Compile Include="Assets\ExpositionTexts.cs" />
+     <Compile Include="Assets\ExtendedBarrels.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
      <Compile Include="Assets\FadeOut.cs" />
      <Compile Include="Assets\FogIndicator.cs" />
@@ -269,7 +272,6 @@
      <Compile Include="Assets\OneShotParticleSystem.cs" />
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />
-     <Compile Include="Assets\PalCapacitors.cs" />
      <Compile Include="Assets\ParticleAn.cs" />
      <Compile Include="Assets\PlaceBuildingState.cs" />
      <Compile Include="Assets\PopUp.cs" />
@@ -426,6 +428,7 @@
      <Compile Include="Assets\TargetDeathVictory.cs" />
      <Compile Include="Assets\TextTrigger.cs" />
      <Compile Include="Assets\ToolTip.cs" />
+     <Compile Include="Assets\TrueUpgradeManager.cs" />
      <Compile Include="Assets\TurboRockets.cs" />
      <Compile Include="Assets\TuretBuildHelper.cs" />
      <Compile Include="Assets\TurretDeathTrigger.cs" />

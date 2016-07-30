@@ -39,6 +39,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 
 	public int scalingfactor =1;
 
+	public float heightOffset;
    
 
     private float nextActionTimea;
@@ -359,7 +360,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 			float x = (clickPos.x) / minimapWidth;
 			float y = (clickPos.y) / minimapHeight;
 
-			Vector2 toMove = new Vector2 ((x+.5f) * WorldWidth+Left, (y+.5f) * WorldHeight+ bottom);
+			Vector2 toMove = new Vector2 ((x+.5f) * WorldWidth+Left, (y+.5f) * WorldHeight+ bottom + MainCamera.main.HeightAboveGround/heightOffset - 80);// -Mathf.Tan(Mathf.Deg2Rad *MainCamera.main.AngleOffset ) * MainCamera.main.HeightAboveGround);
 			MainCamera.main.minimapMove (toMove);
 			//GetComponent<RectTransform> ().rect.width;
 		

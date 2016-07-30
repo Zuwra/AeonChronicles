@@ -18,7 +18,9 @@ public class TurboRockets  : Upgrade {
 
 		}
 	}
+	public override void unApplyUpgrade (GameObject obj){
 
+	}
 
 
 }

@@ -22,16 +22,19 @@ public class BuildingPlacer : MonoBehaviour {
 		if (building) {
 			if (objects.Count == 0) {
 				Tile t = Grid.main.GetClosestRedTile (this.gameObject.transform.position);
-		
-				if (!t.Buildable) {
-					float dist = Mathf.Pow (t.Center.x - transform.position.x, 2) + Mathf.Pow (t.Center.z - transform.position.z, 2);
-					if (Mathf.Sqrt(dist) < coll.radius) {
-						setRenderers (bad);
+				if (FogOfWar.current.IsInCompleteFog (this.gameObject.transform.position)) {
+					setRenderers (bad);
+				} else {
+					if (!t.Buildable) {
+						float dist = Mathf.Pow (t.Center.x - transform.position.x, 2) + Mathf.Pow (t.Center.z - transform.position.z, 2);
+						if (Mathf.Sqrt (dist) < coll.radius) {
+							setRenderers (bad);
+						} else {
+							setRenderers (good);
+						}
 					} else {
 						setRenderers (good);
 					}
-				} else {
-					setRenderers (good);
 				}
 			}
 		}
@@ -56,6 +59,9 @@ public class BuildingPlacer : MonoBehaviour {
 
 	public void reset(GameObject b, Material g, Material ba)
 	{
+
+		FogOfWarUnit fow = b.GetComponent<FogOfWarUnit> ();
+		fow.enabled = false;
 		GetComponent<SphereCollider> ().enabled = true;
 		GetComponent<SphereCollider> ().radius = 10;
 
@@ -63,6 +69,8 @@ public class BuildingPlacer : MonoBehaviour {
 		good = g;
 		bad = ba;
 		setRenderers (good);
+
+
 		foreach (CharacterController c in b.GetComponents<CharacterController>()) {
 			c.enabled = false;
 		}
@@ -98,12 +106,12 @@ public class BuildingPlacer : MonoBehaviour {
 	{
 		UnitManager manage = other.gameObject.GetComponent<UnitManager> ();
 		if (manage) {
-			if (manage.PlayerOwner != 1 || manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+			//if (manage.PlayerOwner != 1 || manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 				objects.Add (other.gameObject);
 
 				setRenderers (bad);
 
-			}
+			//}
 		} else {
 			objects.Add (other.gameObject);
 

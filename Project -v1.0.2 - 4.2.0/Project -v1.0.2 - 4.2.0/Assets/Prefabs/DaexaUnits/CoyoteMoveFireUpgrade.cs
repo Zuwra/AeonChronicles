@@ -11,10 +11,22 @@ public class CoyoteMoveFireUpgrade : Upgrade {
 
         if (manager)
         {
-            if (manager.UnitName == "Coyote")
+            if (manager.UnitName == "Zephyr")
             {
                 obj.GetComponent<StandardInteract>().attackWhileMoving = true;
             }
         }
     }
+
+	public override void unApplyUpgrade (GameObject obj){
+		UnitManager manager = obj.GetComponent<UnitManager>();
+
+		if (manager)
+		{
+			if (manager.UnitName == "Zephyr")
+			{
+				obj.GetComponent<StandardInteract>().attackWhileMoving = false;
+			}
+		}
+	}
 }

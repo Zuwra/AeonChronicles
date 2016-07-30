@@ -18,7 +18,11 @@ public class CampaignUpgrade : MonoBehaviour {
 	gatling, rail, repair, mortar, construction, bunker, factory}
 
 
+	Upgrade currentUpgrade;
+
 	public List<upgradeType> myTypes = new List<upgradeType> ();
+
+	public List<GameObject> unitsToUpgrade = new List<GameObject>();
 
 	[System.Serializable]
 	public struct UpgradesPiece{
@@ -30,6 +34,14 @@ public class CampaignUpgrade : MonoBehaviour {
 		public bool unlocked;
 		public Upgrade pointer;
 		public Sprite pic;
+
+		public void unlock()
+		{unlocked = true;
+			
+		}
+
+		public bool isUnlocked()
+		{return unlocked;}
 
 	}
 
@@ -43,6 +55,19 @@ public class CampaignUpgrade : MonoBehaviour {
 	
 			myPic.sprite = myUpgrades [myDropDown.value].pic;
 
+			if (currentUpgrade) {
+				foreach(GameObject o in unitsToUpgrade)
+				{
+					currentUpgrade.unApplyUpgrade (o);
+				}
+			}
+			currentUpgrade = myUpgrades [myDropDown.value].pointer;
+			if (currentUpgrade) {
+				foreach(GameObject o in unitsToUpgrade)
+				{
+					currentUpgrade.applyUpgrade (o);
+				}
+			}
 		}
 	}
 
@@ -51,8 +76,8 @@ public class CampaignUpgrade : MonoBehaviour {
 	void Start () {
 		myManager = GameObject.FindObjectOfType<LevelManager> ().levelPresets[LevelData.currentLevel];
 		List<string> options = new List<string> ();
-		foreach (UpgradesPiece up in myManager.myUpgrades) {
-			if (up.unlocked && myTypes.Contains (up.myType)) {
+		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
+			if (up.isUnlocked() && myTypes.Contains (up.myType)) {
 				myUpgrades.Add (up);
 				options.Add (up.name);
 			
@@ -69,5 +94,24 @@ public class CampaignUpgrade : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void reInitialize()
+	{
+		List<string> options = new List<string> ();
+		foreach (UpgradesPiece up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
+			Debug.Log ("Checking " + up.name);
+			if (up.isUnlocked() && myTypes.Contains (up.myType) && !myUpgrades.Contains(up) && !options.Contains(up.name)) {//up.unlocked &&
+				myUpgrades.Add (up);
+				options.Add (up.name);
+
+			}
+
+		}
+
+		myDropDown.AddOptions (options);
+
+		//setUpgrade ();
+
 	}
 }

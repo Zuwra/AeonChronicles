@@ -18,7 +18,9 @@ public class deexaArmor : Upgrade
             obj.GetComponent<UnitStats>().armor += 1;
         }
     }
+	public override void unApplyUpgrade (GameObject obj){
 
+	}
 
 
 }

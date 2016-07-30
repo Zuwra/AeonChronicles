@@ -18,6 +18,7 @@ public abstract class Upgrade : MonoBehaviour {
 
 	public  abstract void applyUpgrade (GameObject obj);
 
+	public  abstract void unApplyUpgrade (GameObject obj);
 
 
 

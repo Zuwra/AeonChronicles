@@ -23,5 +23,7 @@ public class FusionWeld  : Upgrade {
 	}
 
 
+	public override void unApplyUpgrade (GameObject obj){
 
+	}
 }

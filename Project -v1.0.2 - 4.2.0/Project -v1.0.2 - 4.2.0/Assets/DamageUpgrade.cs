@@ -37,6 +37,8 @@ public class DamageUpgrade : Upgrade {
 		}
 	}
 
+	public override void unApplyUpgrade (GameObject obj){
 
+	}
 
 }

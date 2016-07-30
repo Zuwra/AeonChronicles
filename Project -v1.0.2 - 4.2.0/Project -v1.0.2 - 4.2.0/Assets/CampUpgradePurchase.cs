@@ -11,7 +11,7 @@ public class CampUpgradePurchase : MonoBehaviour {
 	public bool purchased;
 
 	private CampUpgradeManager manager;
-
+	public CampaignUpgrade.upgradeType myType;
 	public List<CampUpgradePurchase> enables = new List<CampUpgradePurchase>();
 	// Use this for initialization
 	void Start () {
@@ -41,6 +41,10 @@ public class CampUpgradePurchase : MonoBehaviour {
 			foreach (CampUpgradePurchase up in enables) {
 				up.activate ();
 			}
+
+			if (myUpgrade) {
+				GameObject.FindObjectOfType<TrueUpgradeManager> ().upgradeBought (myUpgrade, myType);
+				}
 		}
 		
 	}
