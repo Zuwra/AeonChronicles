@@ -67,7 +67,7 @@ public class FButtonManager : MonoBehaviour {
 	public void updateTankNumber()
 	{
 		unbound.text = "" + SelectedManager.main.getUnarmedTankCount ();
-		Debug.Log ("Updated " + SelectedManager.main.getUnarmedTankCount ());
+		//Debug.Log ("Updated " + SelectedManager.main.getUnarmedTankCount ());
 	}
 
 }

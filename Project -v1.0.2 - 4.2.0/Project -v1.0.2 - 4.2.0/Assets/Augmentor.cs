@@ -381,7 +381,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	{if (target) {
 		//	target = null;
 		}
-		manager.changeState (new HoldState(manager));
+		//manager.changeState (new HoldState(manager));
 	}
 
 	//Right click on a unit/object. how is this different than interact? is it only on allied units?

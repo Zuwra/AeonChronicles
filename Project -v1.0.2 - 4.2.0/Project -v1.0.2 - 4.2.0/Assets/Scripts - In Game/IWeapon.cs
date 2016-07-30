@@ -283,7 +283,7 @@ public class IWeapon : MonoBehaviour {
 	public void fireTriggers(GameObject source, GameObject proj, GameObject target, float damage)
 	{	triggers.RemoveAll (item => item == null);
 		foreach (Notify obj in triggers) {
-			Debug.Log (obj);
+		//	Debug.Log (obj);
 			obj.trigger(source,proj,target, damage);
 		}
 	}

@@ -64,7 +64,7 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 			}
 		}
 
-		Debug.Log ("Final speed is " + unitman.myWeapon[0].attackPeriod);
+		//Debug.Log ("Final speed is " + unitman.myWeapon[0].attackPeriod);
 
 	}
 

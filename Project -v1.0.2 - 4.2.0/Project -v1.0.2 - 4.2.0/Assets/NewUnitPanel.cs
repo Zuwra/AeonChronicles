@@ -15,6 +15,8 @@ public class NewUnitPanel : MonoBehaviour {
 	public Text mydescript;
 	public Image myImage;
 
+	public int maxAllowed;
+
 	private int index =0;
 
 	[System.Serializable]
@@ -49,7 +51,7 @@ public class NewUnitPanel : MonoBehaviour {
 
 	public void next()
 	{index++;
-		if (index == units.Count - 1) {
+		if (index == maxAllowed || index ==  units.Count - 1) {
 
 			nextButton.SetActive (false);
 		} else if (index == units.Count) {
@@ -83,7 +85,26 @@ public class NewUnitPanel : MonoBehaviour {
 		myTitle.text = units [i].Title;
 		mydescript.text = units [i].Description;
 		myImage.sprite = units [i].myPic;
+		index = i;
+	}
 
+	public void setMaxAlled(int i )
+	{
+		loadUnit (i);
+		index = i;
+		maxAllowed = i;
+		GetComponent<Canvas> ().enabled = true;
+		Time.timeScale = 0;
+
+		if (index == maxAllowed || index ==  units.Count - 1) {
+
+			nextButton.SetActive (false);
+		} else if (index == units.Count) {
+			index--;
+		}
+		if (index > 0) {
+			prevButton.SetActive (true);
+		}
 	}
 
 	public void exit()

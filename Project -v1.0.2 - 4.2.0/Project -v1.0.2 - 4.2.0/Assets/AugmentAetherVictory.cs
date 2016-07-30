@@ -43,7 +43,7 @@ public class AugmentAetherVictory  : Objective {
 			if (myGuys.Count < numOfAugments) {
 				if (completed) {
 					completed = false;
-					unComplete ();
+					//unComplete ();
 				}
 		
 				continue;
@@ -56,15 +56,25 @@ public class AugmentAetherVictory  : Objective {
 
 						n++;}
 				}
-				if (n >= numOfAugments) {
+				if (n >= numOfAugments && !completed) {
 					completed = true;
 					complete ();
+					nextArea ();
 				}
 				else if (completed) {
 					completed = false;
-					unComplete ();
+					//unComplete ();
 				}
 			}
 		}
 	}
+
+	public void nextArea()
+	{
+		if(nextObjective){
+			nextObjective.GetComponent<FogOfWarUnit> ().enabled = true;
+		}
+
+	}
+
 }
