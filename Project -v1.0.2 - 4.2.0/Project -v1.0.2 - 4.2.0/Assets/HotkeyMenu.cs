@@ -135,9 +135,14 @@ public class HotkeyMenu : MonoBehaviour {
 				foreach (GameObject obj in info.unitList) {
 					objectList.Add (obj);
 				}
+
+				foreach (GameObject t in info.attachmentsList) {
+					objectList.Add (t);
+				}
 				foreach (GameObject build in info.buildingList) {
 					objectList.Add (build);
 				}
+
 
 			}
 		}

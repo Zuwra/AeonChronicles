@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 using UnityEngine.EventSystems;
 
-public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
+public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointerUpHandler {
 
     public Image img;
 	public Image ScreenTrapz;
@@ -23,7 +23,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 
     public float Left = 726f; 
   
-
+	private bool dragging;
     public float top = 1400f; 
    
 	public float Right = 1447f;
@@ -99,7 +99,9 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
     // Update is called once per frame
     void Update()
     {
-		
+		if (dragging) {
+			mapMover ();
+		}
 
 		if (Time.time > nextActionTimea) {
 			nextActionTimea += minimapUpdateRate;
@@ -351,17 +353,32 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler  {
 
 	}
 
+	public void mapMover()
+	{Vector3 clickPos = transform.InverseTransformPoint (Input.mousePosition);
+
+		float x = (clickPos.x) / this.GetComponent<RectTransform> ().rect.width;// minimapWidth;
+		float y = (clickPos.y) /this.GetComponent<RectTransform> ().rect.height;
+
+		Vector2 toMove = new Vector2 ((x + .5f) * WorldWidth + Left, (y + .5f) *MainCamera.main.getBoundries().height -50+ bottom-Mathf.Tan(Mathf.Deg2Rad *MainCamera.main.AngleOffset ) * MainCamera.main.HeightAboveGround);
+
+		MainCamera.main.minimapMove (toMove);
+	}
+
+	public void OnPointerUp(PointerEventData eventData)
+	{
+		if (eventData.button == PointerEventData.InputButton.Left) {
+			dragging = false;
+			Debug.Log ("Mouse up");
+		}
+			
+	}
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		if (eventData.button == PointerEventData.InputButton.Left) {
-
-			Vector3 clickPos = transform.InverseTransformPoint (eventData.pressPosition);
-			float x = (clickPos.x) / minimapWidth;
-			float y = (clickPos.y) / minimapHeight;
-
-			Vector2 toMove = new Vector2 ((x+.5f) * WorldWidth+Left, (y+.5f) * WorldHeight+ bottom + MainCamera.main.HeightAboveGround/heightOffset - 80);// -Mathf.Tan(Mathf.Deg2Rad *MainCamera.main.AngleOffset ) * MainCamera.main.HeightAboveGround);
-			MainCamera.main.minimapMove (toMove);
+			
+			dragging = true;
+			mapMover ();
 			//GetComponent<RectTransform> ().rect.width;
 		
 			//Debug.Log ( "Clicked    " + toMove.x + "   " + toMove.y);

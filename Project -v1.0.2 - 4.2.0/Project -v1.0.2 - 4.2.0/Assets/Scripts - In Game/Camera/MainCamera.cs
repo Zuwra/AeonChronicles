@@ -237,7 +237,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	public void minimapMove(Vector2 input)
 	{
 		
-		transform.position = new Vector3((input.x ) , this.gameObject.transform.position.y ,(input.y ) - HeightAboveGround * .8f);
+		transform.position = new Vector3((input.x ) , this.gameObject.transform.position.y ,(input.y ));
 		CheckEdgeMovement ();
 
 	}
@@ -262,6 +262,11 @@ public class MainCamera : MonoBehaviour, ICamera {
 		m_Boundries.yMax = maxY;
 
 
+	}
+
+	public Rect getBoundries()
+	{
+		return m_Boundries;
 	}
 	
 

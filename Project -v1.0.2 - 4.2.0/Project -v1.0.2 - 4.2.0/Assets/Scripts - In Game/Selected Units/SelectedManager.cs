@@ -935,7 +935,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		{
 
 			UnitManager manager = obj.GetComponent<UnitManager>();
-			if (globalSelection[n].Contains(manager.UnitName))
+			if (manager.myStats.isUnitType (UnitTypes.UnitTypeTag.Turret) && globalSelection[n].Contains(manager.UnitName)) {
+				Debug.Log ("It is a  turret " +manager.transform.root.GetComponent<UnitManager> () );
+				AddObject (manager.transform.root.GetComponent<UnitManager> ());
+				AddObject (manager);
+			}
+
+			else if (globalSelection[n].Contains(manager.UnitName))
 			{
 				AddObject(manager);
 			}

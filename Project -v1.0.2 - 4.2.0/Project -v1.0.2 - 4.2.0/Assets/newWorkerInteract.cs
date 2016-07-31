@@ -18,7 +18,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
-
+		Debug.Log ("Starting worker");
 		StartCoroutine (delayer());
 		if (Hook) {
 			hookPos = this.gameObject.transform.position - Hook.transform.position;
@@ -37,6 +37,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	IEnumerator delayer()
 	{
 		yield return new WaitForSeconds (1);
+		Debug.Log ("Finding Ore");
 		findNearestOre ();
 	}
 
@@ -44,17 +45,26 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	{
 
 		float distance = 100000;
-
+		if (myManager.getState () is MiningState) {
+			return;}
 		GameObject closest = null;
-		foreach (GameObject obj in myManager.neutrals) {
+
+		foreach (GameObject obj in GameManager.main.playerList[2].getUnitList()) {
 			OreDispenser dis = obj.GetComponent<OreDispenser> ();
+
 			if (!dis || dis.currentMinor) {
+				
 				continue;
 			}
+
 			float temp = Vector3.Distance (obj.transform.position, this.gameObject.transform.position);
 			if (temp < distance) {
+				Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
 				distance = temp;
+
 				closest = obj;
+				distance = temp;
+				Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
 			}
 
 		}
@@ -62,6 +72,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 			myOre = closest.GetComponent<OreDispenser> ();
 			myOre.currentMinor = this.gameObject;
 			myManager.changeState (new MiningState (closest, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
+		
 		}
 	}
 
