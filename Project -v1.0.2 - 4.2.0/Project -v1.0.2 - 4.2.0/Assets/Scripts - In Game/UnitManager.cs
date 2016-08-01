@@ -11,7 +11,7 @@ public class UnitManager : Unit,IOrderable{
 
 	public int PlayerOwner; // 1 = active player, 2 = enemies, 3 = nuetral
 
-
+	public Animator myAnim;
 
 	private float chaseRange;  // how far an enemy can come into vision before I chase after him.
 	public IMover cMover;      // Pathing Interface. Classes to use here : AirMover(Flying Units), cMover (ground, uses Global Astar) , RVOMover(ground, Uses Astar and unit collisions, still in testing)
@@ -378,7 +378,7 @@ public class UnitManager : Unit,IOrderable{
 				if (myState == null) {
 					return;
 				}
-
+			
 				myState.myManager = this;
 				myState.initialize ();
 				checkIdleWorker ();
@@ -418,6 +418,27 @@ public class UnitManager : Unit,IOrderable{
 		checkIdleWorker ();
 
 	}
+
+	public void animMove()
+	{if (myAnim) {
+			myAnim.SetInteger ("State", 2);
+		}
+	}
+
+	public void animAttack()
+	{if (myAnim) {
+			myAnim.SetInteger ("State", 3);
+		}
+	}
+
+	public void animStop()
+	{if (myAnim) {
+			myAnim.SetInteger ("State", 1);
+		}
+	}
+
+
+
 
 	public void checkIdleWorker()
 	{

@@ -38,7 +38,7 @@ public class airmover : IMover {
 
 	override
 	public void stop()
-	{
+	{GetComponent<UnitManager> ().animStop();
 	}
 
 	override
@@ -87,7 +87,7 @@ public class airmover : IMover {
 	{//	location.y += 2;
 
 		Vector3 destination = new Vector3(location.x, this.gameObject.transform.position.y, location.z);
-
+		GetComponent<UnitManager> ().animMove ();
 		this.gameObject.transform.LookAt(destination);
 
 		destination.y = location.y + flyerHeight;

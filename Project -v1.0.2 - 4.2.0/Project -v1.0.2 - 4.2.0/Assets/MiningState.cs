@@ -49,6 +49,8 @@ public class MiningState : UnitState {
 
 	public override void initialize()
 	{
+		
+		Debug.Log ("Setting to stop");
 		hook.transform.position = myManager.gameObject.transform.position - startPos;
 	//	Debug.Log ("Calling");
 		//if (target.GetComponent<OreDispenser> ().requestWork (myManager.gameObject)) {
@@ -91,7 +93,7 @@ public class MiningState : UnitState {
 
 				state = miningState.mining;
 				timer = miningTime;
-
+				myManager.animStop ();
 
 			}
 			break;

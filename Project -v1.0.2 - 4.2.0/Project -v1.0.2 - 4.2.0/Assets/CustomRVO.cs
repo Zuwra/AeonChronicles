@@ -128,6 +128,7 @@ public class CustomRVO : IMover {
 	{if (controller) {
 			controller.Move (Vector3.zero);
 		}
+		GetComponent<UnitManager> ().animMove ();
 	}
 	override 
 	public bool move()
