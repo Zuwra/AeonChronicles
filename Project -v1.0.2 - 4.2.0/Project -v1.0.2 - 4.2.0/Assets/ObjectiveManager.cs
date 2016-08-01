@@ -65,7 +65,7 @@ public class ObjectiveManager : MonoBehaviour {
 	}
 
 	public void setObjective(Objective input)
-	{
+	{Debug.Log ("adding objective");
 
 		GameObject obj = (GameObject)Instantiate (ObjectiveText);
 		obj.transform.SetParent (this.transform);
@@ -73,11 +73,14 @@ public class ObjectiveManager : MonoBehaviour {
 		pos.z = 0;
 		obj.transform.position = pos;
 		obj.GetComponentInChildren<Text> ().text = "" + input.description;
-		mainObjectives.Add (input, obj);
-		obj.transform.SetSiblingIndex (mainObjectives.Count);
-		blink (false);
+		if (!mainObjectives.ContainsKey (input)) {
+			mainObjectives.Add (input, obj);
+			obj.transform.SetSiblingIndex (mainObjectives.Count);
+			blink (false);
 
-		UIHighLight.main.highLight (obj, 2);
+			UIHighLight.main.highLight (obj, 2);
+		}
+
 
 	}
 

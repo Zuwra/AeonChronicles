@@ -17,9 +17,14 @@ public class sawDefense : MonoBehaviour {
 	public GameObject targetSlice;
 	Vector3 targetlocation;
 	public float turnSpeed;
+
+	public AudioSource myAudio;
+
+	public AudioClip sliceSound;
+
 	// Use this for initialization
 	void Start () {
-	
+	//	myAudio = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -72,7 +77,10 @@ public class sawDefense : MonoBehaviour {
 	{	yield return new WaitForSeconds (1f);
 		if (attackType == 2) {
 			targetSlice.gameObject.SetActive (true);
-		
+			if (sliceSound) {
+				Debug.Log ("Playing slice sound");
+				myAudio.PlayOneShot (sliceSound);
+			}
 
 
 		} else {
@@ -81,6 +89,7 @@ public class sawDefense : MonoBehaviour {
 			targetCircle.transform.position = tempLoc;
 		
 			targetCircle.gameObject.SetActive (true);
+
 
 		}
 		yield return new WaitForSeconds (3.2f);

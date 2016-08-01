@@ -13,12 +13,12 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	private bool retractHook;
 	private OreDispenser myOre;
 
-
 	// Use this for initialization
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
 		Debug.Log ("Starting worker");
+
 		StartCoroutine (delayer());
 		if (Hook) {
 			hookPos = this.gameObject.transform.position - Hook.transform.position;
@@ -37,7 +37,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	IEnumerator delayer()
 	{
 		yield return new WaitForSeconds (1);
-		Debug.Log ("Finding Ore");
+		//Debug.Log ("Finding Ore");
 		findNearestOre ();
 	}
 
@@ -59,12 +59,12 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 			float temp = Vector3.Distance (obj.transform.position, this.gameObject.transform.position);
 			if (temp < distance) {
-				Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
+				//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
 				distance = temp;
 
 				closest = obj;
 				distance = temp;
-				Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
+				//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
 			}
 
 		}

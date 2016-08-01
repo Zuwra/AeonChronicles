@@ -67,7 +67,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 		}
 
-		else if (target.GetComponent<UnitManager> ().UnitName == "Turret Shop") {
+		else if (target.GetComponent<UnitManager> ().UnitName == "Armory") {
 			foreach (buildTurret bt in target.GetComponents<buildTurret>()) {
 				if (bt.Name.Contains ("Repair")) {
 					bt.active = true;
@@ -126,7 +126,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			OD.returnRate = 1;
 		}
 
-		else if (attached.GetComponent<UnitManager> ().UnitName == "Turret Shop") {
+		else if (attached.GetComponent<UnitManager> ().UnitName == "Armory") {
 			foreach (buildTurret bt in attached.GetComponents<buildTurret>()) {
 				if (bt.Name.Contains ("Repair")) {
 					bt.active =false;

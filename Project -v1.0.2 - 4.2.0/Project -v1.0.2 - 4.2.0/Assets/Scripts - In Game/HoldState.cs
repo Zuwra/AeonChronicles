@@ -15,14 +15,16 @@ public class HoldState : UnitState {
 	// Update is called once per frame
 	override
 	public void Update () {
-		GameObject enemy = myManager.findBestEnemy();
+		if (myManager) {
+			GameObject enemy = myManager.findBestEnemy ();
 
-		if (enemy) {
-			IWeapon myWeap = myManager.canAttack (enemy);
-			if (myWeap) {
+			if (enemy) {
+				IWeapon myWeap = myManager.canAttack (enemy);
+				if (myWeap) {
 
-				myWeap.attack(enemy,myManager);
+					myWeap.attack (enemy, myManager);
 
+				}
 			}
 		}
 	}

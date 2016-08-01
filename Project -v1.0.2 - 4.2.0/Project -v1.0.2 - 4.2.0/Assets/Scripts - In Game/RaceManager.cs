@@ -294,7 +294,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		if (finishDeath) { 
 			if (uiManager != null) {
-				uiManager.production.GetComponent<ArmyUIManager> ().unitLost (Unit);
+				if (playerNumber == 1) {
+					uiManager.production.GetComponent<ArmyUIManager> ().unitLost (Unit);
+				}
 			}
 		
 
@@ -347,7 +349,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		if (Unit.GetComponentInChildren<TurretMount> ()) {
 			FButtonManager.main.updateTankNumber ();
 		}
-		FButtonManager.main.updateNumbers (unitList);
+		if (playerNumber == 1) {
+			FButtonManager.main.updateNumbers (unitList);
+		}
 		return finishDeath;
 	}
 

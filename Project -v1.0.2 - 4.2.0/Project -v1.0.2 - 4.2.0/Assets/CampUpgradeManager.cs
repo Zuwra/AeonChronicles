@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class CampUpgradeManager : MonoBehaviour {
 
-	public GameObject TurretMenu;
-	public GameObject vehicleMenu;
-	public GameObject StructureMenu;
+	public Canvas TurretMenu;
+	public Canvas vehicleMenu;
+	public Canvas StructureMenu;
 
 
 	public List<Text> creditDisplayers = new List<Text> ();
@@ -36,8 +36,9 @@ public class CampUpgradeManager : MonoBehaviour {
 		
 		}
 
-		TurretMenu.SetActive (false);
-		StructureMenu.SetActive (false);
+		TurretMenu.enabled = false;
+		StructureMenu.enabled = false;
+		vehicleMenu.enabled = false;
 		changeMoney (0);
 	
 

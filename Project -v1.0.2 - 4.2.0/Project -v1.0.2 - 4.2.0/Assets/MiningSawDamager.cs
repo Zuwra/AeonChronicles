@@ -14,10 +14,14 @@
 		private float nextAction;
 		public float damage = 5;
 		public float turretRatio = .2f;
+	private AudioSource myAudio;
+	public AudioClip chopSound;
+
 
 		// Use this for initialization
 		void Start () {
 			nextAction = Time.time;
+		myAudio = GetComponent<AudioSource> ();
 		}
 
 		// Update is called once per frame
@@ -74,6 +78,10 @@
 		if (other.name == "Ground" && impactEffect) {
 			Instantiate (impactEffect, getImpactLocation(), Quaternion.identity);
 		}
+		if (chopSound) {
+			myAudio.PlayOneShot (chopSound);
+		}
+
 			UnitManager manage = other.gameObject.GetComponent<UnitManager> ();
 			if (manage == null) {
 				return;

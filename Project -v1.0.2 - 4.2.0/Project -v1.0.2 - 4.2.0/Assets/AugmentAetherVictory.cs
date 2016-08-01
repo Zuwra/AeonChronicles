@@ -42,7 +42,7 @@ public class AugmentAetherVictory  : Objective {
 		
 			if (myGuys.Count < numOfAugments) {
 				if (completed) {
-					completed = false;
+					//completed = false;
 					//unComplete ();
 				}
 		
@@ -62,7 +62,7 @@ public class AugmentAetherVictory  : Objective {
 					nextArea ();
 				}
 				else if (completed) {
-					completed = false;
+					//completed = false;
 					//unComplete ();
 				}
 			}

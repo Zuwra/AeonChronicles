@@ -22,15 +22,27 @@ public class ConcussiveUpgrade :Upgrade{
 
 	public override void applyUpgrade (GameObject obj){
 
-		obj.GetComponent<SlowDebuff> ().enabled = true;
-
+		//obj.GetComponent<SlowDebuff> ().enabled = true;
+		IWeapon.bonusDamage bd = new IWeapon.bonusDamage();
+		bd.bonus = 10;
+		bd.type = UnitTypes.UnitTypeTag.Structure;
+		obj.GetComponent<IWeapon>().extraDamage.Add(bd);
 
 	}
 
 
 	public override void unApplyUpgrade (GameObject obj){
+		IWeapon.bonusDamage toRemove = new IWeapon.bonusDamage();
+		foreach (IWeapon.bonusDamage bd in GetComponent<IWeapon>().extraDamage) {
+			if (bd.type == UnitTypes.UnitTypeTag.Structure && bd.bonus == 10) {
+				toRemove = bd;
+			}
+		}
 
-		obj.GetComponent<SlowDebuff> ().enabled = false;
+		if (toRemove.bonus != 0) {
+			GetComponent<IWeapon> ().extraDamage.Remove (toRemove);
+		}
+		//obj.GetComponent<SlowDebuff> ().enabled = false;
 
 	}
 }

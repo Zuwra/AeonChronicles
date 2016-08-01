@@ -428,6 +428,7 @@
      <Compile Include="Assets\TargetCircleManager.cs" />
      <Compile Include="Assets\TargetDeathVictory.cs" />
      <Compile Include="Assets\TextTrigger.cs" />
+     <Compile Include="Assets\TimeDelayTrigger.cs" />
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TrueUpgradeManager.cs" />
      <Compile Include="Assets\TurboRockets.cs" />

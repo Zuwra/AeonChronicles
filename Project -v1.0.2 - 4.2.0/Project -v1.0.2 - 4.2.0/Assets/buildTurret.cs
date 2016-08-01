@@ -141,13 +141,7 @@ public class buildTurret :UnitProduction{
 
 	public override void setAutoCast()
 	{autocast = !autocast;
-		if (autocast) {
-			foreach (buildTurret build in this.gameObject.GetComponents<buildTurret>()) {
-				if (build != this) {
-					build.turnOffAutoCast ();
-				}
-			}
-		}
+		
 	}
 
 	void OnTriggerEnter(Collider other)

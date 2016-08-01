@@ -15,11 +15,11 @@ public class LevelManager : MonoBehaviour {
 
 	public Button techButton;
 	public Button UltButton;
-	public GameObject Vehicles;
-	public GameObject Turrets;
-	public GameObject Structures;
+	public Canvas Vehicles;
+	public Canvas Turrets;
+	public Canvas Structures;
 
-	private GameObject currentTech;
+	private Canvas currentTech;
 	// Use this for initialization
 	void Awake () {
 
@@ -55,21 +55,21 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void ToggleVehicle()
-	{currentTech.SetActive (false);
+	{currentTech.enabled = false;
 		currentTech = Vehicles;
-		Vehicles.SetActive (true);
+		Vehicles.enabled = true;
 	}
 
 	public void ToggleStruct()
-	{currentTech.SetActive (false);
+	{currentTech.enabled = false;
 		currentTech = Structures;
-		Structures.SetActive (true);
+		Structures.enabled = true;
 	}
 
 	public void ToggleTurret()
-	{currentTech.SetActive (false);
+	{currentTech.enabled = false;
 		currentTech = Turrets;
-		Turrets.SetActive (true);
+		Turrets.enabled = true;
 	}
 
 
