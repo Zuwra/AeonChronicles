@@ -10,12 +10,20 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	public bool AttackMoveSpawn;
 	public GameObject RallyPointObj;
 	public LineRenderer myLine;
+	private float underConstruction;
+	private bool doneConstruction;
 
+	private GameObject sourceObj;
 
 	// Use this for initialization
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
+
+		if (Clock.main.getTotalSecond () < 5) {
+			doneConstruction = true;
+			underConstruction = 1;
+		}
 
 	}
 
@@ -25,6 +33,49 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	}
 	public void initialize(){
 		Start ();
+	}
+
+
+	public void startConstruction(GameObject obj)
+	{sourceObj = obj;
+		doneConstruction = false;
+
+
+		foreach (Ability ab in  GetComponent<UnitManager>().abilityList) {
+			ab.active = false;
+			//ab.enabled = false;
+		}
+	}
+
+	public bool ConstructDone()
+	{return doneConstruction;
+	}
+
+	public float construct(float m)
+	{
+		if (doneConstruction) {
+			return 1;}
+		
+		underConstruction += m;
+		myManager.myStats.heal (myManager.myStats.Maxhealth * m);
+		if (underConstruction >= 1) {
+			doneConstruction = true;
+
+			UnitManager template = sourceObj.GetComponent<UnitManager> ();
+			for (int i = 0; i < myManager.abilityList.Count; i++) {
+
+				if (template.abilityList [i].active) {
+					myManager.abilityList [i].active = true;
+				}
+				if (template.abilityList [i].enabled) {
+
+					myManager.abilityList [i].enabled = true;
+				}
+			}
+
+			return 1;
+		}
+		return underConstruction;
 	}
 
 

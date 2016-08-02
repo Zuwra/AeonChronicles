@@ -20,14 +20,37 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	void Update () {
 	
 	}
+
+	IEnumerator delayCast()
+	{
+		yield return new WaitForSeconds (1);
+		Cast ();
+	}
+
+
 	override
 	public void Cast(){
 		
 		Unattach ();
+		if (!target) {
+			manager.changeState (new DefaultState ());
+			return;
+		}
+
 		AugmentAttachPoint AAP = target.GetComponent<AugmentAttachPoint> ();
 		if (AAP.myAugment) {
 		
 			return;}
+		//Make sure its not under construction
+		BuildingInteractor BI = target.GetComponent<BuildingInteractor> ();
+
+		if (!BI.ConstructDone ()) {
+			//Debug.Log ("Delaying check");
+			StartCoroutine (delayCast());
+			return;
+		}
+
+	//	Debug.Log ("Attaching");
 
 		manager.myStats.myHeight = UnitTypes.HeightType.Ground;
 		detacher.allowDetach (true);
@@ -389,7 +412,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (!attached) {
 			if (!attached && isValidTarget (order.Target, Vector3.zero)) {
 				manager.UseTargetAbility (order.Target, Vector3.zero, 0);
-				Debug.Log ("Ordered to follow");
+				//Debug.Log ("Ordered to follow");
 			}
 			else{
 				manager.changeState (new MoveState (order.OrderLocation,manager,true));

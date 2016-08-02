@@ -12,9 +12,11 @@ public class VeteranStats {
 	public float healingDone;
 	public float damageTaken;
 	public float misc;
+	public bool isWarrior;
 
-	public VeteranStats(bool hasName, string myType)
+	public VeteranStats(bool hasName, string myType, bool isW)
 	{unitType = myType;
+		isWarrior = isW;
 
 		if (hasName) {
 			UnitName = RaceNames.getInstance ().getName ();

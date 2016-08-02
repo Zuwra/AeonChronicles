@@ -6,12 +6,16 @@ public class RepairDrone : MonoBehaviour {
 
 	GameObject target;
 	UnitManager targetMan;
+
+	BuildingInteractor buildInter;
 	public float repairRate;
 	public MultiShotParticle particleEff;
 	bool goingHome;
 	private RepairTurret myHome;
 	public GameObject hometurret;
 	float nextActionTime;
+
+	public bool AidConstruction;
 	// Use this for initialization
 	void Start () {
 		myHome = hometurret.GetComponent<RepairTurret> ();
@@ -31,11 +35,22 @@ public class RepairDrone : MonoBehaviour {
 					nextActionTime = Time.time + 1;
 					int amount = (int)Mathf.Min (repairRate, targetMan.myStats.Maxhealth - targetMan.myStats.health);
 					particleEff.playEffect ();
-					targetMan.myStats.heal (amount);
+					if (buildInter && !buildInter.ConstructDone ()) {
+						if (AidConstruction) {
+							buildInter.construct (.012f);
+							PopUpMaker.CreateGlobalPopUp ("+" , Color.green, target.transform.position);
+						}
+					
+					} else {
+						targetMan.myStats.heal (amount);
+						if (amount > 0) {
+							PopUpMaker.CreateGlobalPopUp ("+" + amount, Color.green, target.transform.position);
+						}
+
+					}
 
 
-					PopUpMaker.CreateGlobalPopUp ("+" + amount, Color.green, target.transform.position);
-
+				
 					if (targetMan.myStats.atFullHealth ()) {
 						returnHome ();
 
@@ -43,7 +58,7 @@ public class RepairDrone : MonoBehaviour {
 				}
 			}
 		} else if (goingHome) {
-			if (Vector3.Distance (myHome.transform.position, this.gameObject.transform.position) > 2) {
+			if (Vector3.Distance (myHome.transform.position, this.gameObject.transform.position) > 3) {
 				transform.Translate (((myHome.transform.position + (Vector3.up*2)) - this.gameObject.transform.position).normalized * Time.deltaTime * 23f);
 			} else {
 				
@@ -61,7 +76,7 @@ public class RepairDrone : MonoBehaviour {
 
 	public void setTarget(GameObject t)
 	{target = t;
-		
+		buildInter = t.GetComponent<BuildingInteractor> ();
 		targetMan = target.GetComponent<UnitManager> ();
 		transform.rotation = Quaternion.identity;
 
@@ -74,6 +89,7 @@ public class RepairDrone : MonoBehaviour {
 		goingHome = true;
 		target = null;
 		targetMan = null;
+		buildInter = null;
 		myHome.doneRepairing ();
 	}
 

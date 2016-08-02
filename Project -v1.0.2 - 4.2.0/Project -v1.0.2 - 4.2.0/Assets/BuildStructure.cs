@@ -19,6 +19,7 @@ public class BuildStructure:  UnitProduction {
 	Vector3 targetLocation;
 
 	private UnitManager inConstruction;
+	private BuildingInteractor builder;
 
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
@@ -42,21 +43,20 @@ public class BuildStructure:  UnitProduction {
 		if (Morphing) {
 
 
-			timer -= Time.deltaTime;
-			mySelect.updateCoolDown (1 - timer/buildTime);
-			if (!inConstruction) {
+
+			float percent = builder.construct (Time.deltaTime / buildTime);
+			if (percent >= 1) {
 				mySelect.updateCoolDown (0);
 				HD.stopBuilding ();
 				Morphing = false;
-			}
-			inConstruction.myStats.heal (inConstruction.myStats.Maxhealth * Time.deltaTime/ buildTime);
+				createUnit ();
+			} else {
+				mySelect.updateCoolDown (percent);
 
-			if(timer <=0)
-			{mySelect.updateCoolDown (0);
-				HD.stopBuilding ();
-				Morphing = false;
-				createUnit();
 			}
+			//inConstruction.myStats.heal (inConstruction.myStats.Maxhealth * Time.deltaTime/ buildTime);
+
+			
 		}
 
 	}
@@ -139,17 +139,17 @@ public class BuildStructure:  UnitProduction {
 				SelectedManager.main.updateUI ();
 			}
 			inConstruction = ((GameObject)Instantiate(unitToBuild, targetLocation, Quaternion.identity)).GetComponent<UnitManager>();
-		
-
-
+			builder = inConstruction.GetComponent<BuildingInteractor> ();
+			builder.startConstruction (unitToBuild);
+			/*
 			foreach (Ability ab in inConstruction.abilityList) {
 				ab.active = false;
 				//ab.enabled = false;
-			}
+			}*/
 			inConstruction.setInteractor();
 			inConstruction.interactor.initialize ();
 			inConstruction.GetComponent<Selected> ().Initialize ();
-			inConstruction.myStats.SetHealth (.05f);
+			inConstruction.myStats.SetHealth (.02f);
 
 
 		} 
@@ -175,7 +175,7 @@ public class BuildStructure:  UnitProduction {
 		myManager.setStun (false, this);
 		myManager.changeState(new DefaultState());
 		racer.stopBuildingUnit (this);
-
+		/*
 		UnitManager template = unitToBuild.GetComponent<UnitManager> ();
 		for (int i = 0; i < inConstruction.abilityList.Count; i++) {
 	
@@ -186,7 +186,7 @@ public class BuildStructure:  UnitProduction {
 
 			inConstruction.abilityList [i].enabled = true;
 		}
-		}
+		}*/
 		//unit.GetComponent<Selected> ().Initialize ();
 
 
