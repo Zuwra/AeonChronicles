@@ -12,6 +12,9 @@ public class UiAbilityManager : MonoBehaviour {
 	private bool ctrlDown;
 	//public List<GameObject> UIButtons = new List<GameObject>();
 
+	public List<Button> quickButtons = new List<Button>();
+	public List<AbilityBox> quickAbility = new List<AbilityBox>();
+
 	[System.Serializable]
 	public struct buttonSet{
 		public GameObject QButton;
@@ -57,6 +60,42 @@ public class UiAbilityManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
+		if (Input.GetKeyUp (KeyCode.Q)) {
+			
+				callAbility (0);
+
+		} else if (Input.GetKeyUp (KeyCode.W)) {
+			callAbility (1);
+		} else if (Input.GetKeyUp (KeyCode.E)) {
+			callAbility (2);
+		} else if (Input.GetKeyUp (KeyCode.R)) {
+			callAbility (3);
+		} else if (Input.GetKeyUp (KeyCode.A)) {
+			callAbility (4);
+		} else if (Input.GetKeyUp (KeyCode.S)) {
+			callAbility (5);
+		} else if (Input.GetKeyUp (KeyCode.D)) {
+			callAbility (6);
+		} else if (Input.GetKeyUp (KeyCode.F)) {
+			callAbility (7);
+		} else if (Input.GetKeyUp (KeyCode.Z)) {
+			callAbility (8);
+		} else if (Input.GetKeyUp (KeyCode.X)) {
+			callAbility (9);
+		} else if (Input.GetKeyUp (KeyCode.C)) {
+			callAbility (10);
+		} else if (Input.GetKeyUp (KeyCode.V)) {
+			callAbility (11);
+		} 
+
+
+
+
+
+
+
 		if (Time.time < nextActionTime) {
 			return;
 		} 
@@ -1183,47 +1222,15 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 	public void callAbility(int n)
-	{selectMan.callAbility (n);
+	{
+		if (quickButtons [n].IsInteractable() && quickAbility[n].myAbility && quickAbility[n].myAbility.active) {
+			
+			selectMan.callAbility (n);
+		}
 		
 	}
 
-	public void callAbilityOne()
-	{selectMan.callAbility (0);}
 
-	public void callAbilityTwo()
-	{selectMan.callAbility (1);}
-
-
-	public void callAbilityThree()
-	{selectMan.callAbility (2);}
-
-
-	public void callAbilityFour()
-	{selectMan.callAbility (3);}
-
-	public void callAbilityFive()
-	{selectMan.callAbility (4);}
-
-	public void callAbilitySix()
-	{selectMan.callAbility (5);}
-
-	public void callAbilitySeven()
-	{selectMan.callAbility (6);}
-
-	public void callAbilityEight()
-	{selectMan.callAbility (7);}
-
-	public void callAbilityNine()
-	{selectMan.callAbility (8);}
-
-	public void callAbilityTen()
-	{selectMan.callAbility (9);}
-
-	public void callAbilityEleven()
-	{selectMan.callAbility (10);}
-
-	public void callAbilityTwelve()
-	{selectMan.callAbility (11);}
 
 
 

@@ -437,6 +437,10 @@ public class UnitManager : Unit,IOrderable{
 		}
 	}
 
+	public override UnitStats getUnitStats ()
+	{
+		return myStats;
+	}
 
 
 

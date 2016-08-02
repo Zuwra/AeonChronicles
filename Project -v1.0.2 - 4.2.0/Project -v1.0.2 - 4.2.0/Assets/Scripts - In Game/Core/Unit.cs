@@ -37,6 +37,11 @@ public class Unit : RTSObject, IOrderable {
 	{
 		}
 
+	public override UnitStats getUnitStats ()
+	{
+		return null;
+	}
+
 	public GameObject getObject(){return this.gameObject;}
 
 	protected void Start()

@@ -215,6 +215,8 @@ public class IWeapon : MonoBehaviour {
 			myAnimator.SetInteger ("State", 1);
 	
 		}
+
+		myManager.animAttack ();
 		yield return new WaitForSeconds(time);
 
 

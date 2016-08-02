@@ -72,6 +72,7 @@ public class CustomRVO : IMover {
 		this.target = target;
 		currentWaypoint = 1;
 		RecalculatePath();
+		GetComponent<UnitManager> ().animMove ();
 	}
 
 
@@ -128,7 +129,7 @@ public class CustomRVO : IMover {
 	{if (controller) {
 			controller.Move (Vector3.zero);
 		}
-		GetComponent<UnitManager> ().animMove ();
+		GetComponent<UnitManager> ().animStop();
 	}
 	override 
 	public bool move()

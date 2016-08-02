@@ -17,7 +17,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
-		Debug.Log ("Starting worker");
+
 
 		StartCoroutine (delayer());
 		if (Hook) {
@@ -50,6 +50,9 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 		GameObject closest = null;
 
 		foreach (GameObject obj in GameManager.main.playerList[2].getUnitList()) {
+			if (FogOfWar.current.IsInCompleteFog (obj.transform.position)) {
+				continue;
+			}
 			OreDispenser dis = obj.GetComponent<OreDispenser> ();
 
 			if (!dis || dis.currentMinor) {

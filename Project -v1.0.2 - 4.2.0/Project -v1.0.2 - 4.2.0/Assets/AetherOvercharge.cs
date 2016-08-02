@@ -17,6 +17,8 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 	private float nextActionTime;
 	private float startTime;
 	bool spellHasBegun;
+	public GameObject AetherEffect;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -43,7 +45,7 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 		}
 	}
 
-	public void initialize(UnitManager unitman,float chargeAmount, float dur, float AS, float dam)
+	public void initialize(UnitManager unitman,float chargeAmount, float dur, float AS, float dam, GameObject effect)
 	{nextActionTime = Time.time + 1;
 		attackSpeed = AS;
 		attackDamage = dam;
@@ -53,6 +55,9 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 		startTime = Time.time;
 		duration = dur;
 		unitman.myStats.changeEnergy (unitman.myStats.MaxEnergy * rechargeAmount);
+
+		AetherEffect = (GameObject)Instantiate (effect, this.gameObject.transform.position, this.gameObject.transform.rotation);
+		AetherEffect.transform.SetParent (this.gameObject.transform);
 
 		foreach (IWeapon weap in unitman.myWeapon) {
 			weap.triggers.Add (this);
@@ -93,6 +98,7 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 		Debug.Log ("Ending spell");
 		GetComponent<DayexaShield> ().startRecharge ();
 
+		Destroy (AetherEffect);
 		foreach (IWeapon weap in myman.myWeapon) {
 			if (weap) {
 				weap.triggers.Remove (this);
@@ -120,7 +126,7 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 
 				if (man.gameObject.GetComponent<DayexaShield> ()) {
 					AetherOvercharge charge = man.gameObject.AddComponent<AetherOvercharge> ();
-					charge.initialize (man, rechargeAmount, duration, attackSpeed, attackDamage);
+					charge.initialize (man, rechargeAmount, duration, attackSpeed, attackDamage,AetherEffect);
 				}
 			}
 		}

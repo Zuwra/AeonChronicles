@@ -29,6 +29,7 @@ public abstract class RTSObject : MonoBehaviour {
 	public abstract void SetDeselected();
 	public abstract void AssignToGroup(int groupNumber);
 	public abstract void RemoveFromGroup();
+	public abstract UnitStats getUnitStats ();
 
 
 

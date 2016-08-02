@@ -57,7 +57,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{
         if (Input.GetKeyUp(KeyCode.Tab))
         {
-			if (Input.GetKey (KeyCode.LeftShift)) {
+			if (Input.GetKey (KeyCode.LeftControl)) {
 				PatrolMoveO ();
 			} else {
 				attackMoveO (Vector3.zero);
@@ -68,7 +68,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         {
 			
 			stopO ();
-			if (Input.GetKey (KeyCode.LeftShift)) {
+			if (Input.GetKey (KeyCode.LeftControl)) {
 
 				GiveOrder(Orders.CreateHoldGroundOrder());
 			}
@@ -174,7 +174,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             {SelectGroup(9); }
 
         }
-
+		/*
 		if (Input.GetKeyUp (KeyCode.Q)) {
 			callAbility (0);
 		} else if (Input.GetKeyUp (KeyCode.W)) {
@@ -199,11 +199,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			callAbility (10);
 		} else if (Input.GetKeyUp (KeyCode.V)) {
 			callAbility (11);
-		} else if (Input.GetKeyUp (KeyCode.Delete)) {
+		} */
+		if (Input.GetKeyUp (KeyCode.Delete)) {
 			SelectedObjects [0].GetComponent<UnitStats> ().kill (null);
 		}
 
-		if (Input.GetKeyUp (KeyCode.Space)) {
+		else if (Input.GetKeyUp (KeyCode.Space)) {
 			if (SelectedObjects.Count > 0) {
 				if (SelectedObjects [0]) {
 					Vector3 location = SelectedObjects [0].gameObject.transform.position;
@@ -284,6 +285,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     public void callAbility(int n)
 	{if (UIPages.Count > 0) {
+			
 			
 			if (UIPages [currentPage].isTargetAbility (n)) {
 				
@@ -735,18 +737,42 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	// Used  for Circular Formation movement, Mostly Broken
 	public void assignMoveCOmmand(Vector3 targetPoint, bool attack)
 	{
-		List<Vector3> points = new List<Vector3> ();
-		for (int i = 0; i < SelectedObjects.Count; i++) {
+		List<RTSObject> realMovers = new List<RTSObject> ();
 
-			float deg = 2 * Mathf.PI * i / SelectedObjects.Count;
-			Vector3 p = targetPoint + new Vector3 (Mathf.Cos (deg), 0, Mathf.Sin (deg))  *( SelectedObjects.Count -1) *3;
+		List<RTSObject> others = new List<RTSObject> ();
+		foreach (RTSObject obj in SelectedObjects) {
+			if (obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Turret) || obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+				others.Add (obj);
+			} else {
+				realMovers.Add (obj);
+			}
+		}
+
+		foreach (IOrderable rt in others) {
+			if (attack) {
+				Order o = Orders.CreateAttackMove (targetPoint);
+
+				rt.GiveOrder (o);
+			} else {
+				Order o = Orders.CreateMoveOrder (targetPoint);
+				rt.GiveOrder (o);
+
+			}
+		}
+
+
+		List<Vector3> points = new List<Vector3> ();
+		for (int i = 0; i < realMovers.Count; i++) {
+
+			float deg = 2 * Mathf.PI * i / realMovers.Count;
+			Vector3 p = targetPoint + new Vector3 (Mathf.Cos (deg), 0, Mathf.Sin (deg))  *( realMovers.Count -1) *3;
 			points.Add (p);
 		}
 		List<IOrderable> usedGuys = new List<IOrderable> ();
-		while (usedGuys.Count < SelectedObjects.Count) {
+		while (usedGuys.Count < realMovers.Count) {
 			float maxDistance = 0;
 			IOrderable closestUnit = null;
-			foreach (IOrderable obj in SelectedObjects) {
+			foreach (IOrderable obj in realMovers) {
 				if (!usedGuys.Contains (obj) && Vector3.Distance (obj.getObject ().transform.position, targetPoint) > maxDistance) {
 					maxDistance = Vector3.Distance (obj.getObject ().transform.position, targetPoint);
 					closestUnit = obj;

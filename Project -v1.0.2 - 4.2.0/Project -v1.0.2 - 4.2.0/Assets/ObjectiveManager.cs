@@ -65,7 +65,7 @@ public class ObjectiveManager : MonoBehaviour {
 	}
 
 	public void setObjective(Objective input)
-	{Debug.Log ("adding objective");
+	{//Debug.Log ("adding objective");
 
 		GameObject obj = (GameObject)Instantiate (ObjectiveText);
 		obj.transform.SetParent (this.transform);

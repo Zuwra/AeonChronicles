@@ -177,7 +177,7 @@ public class BuildUnit : UnitProduction {
 			else if (myInteractor.rallyPoint != Vector3.zero) {
 				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateMoveOrder (myInteractor.rallyPoint));
 
-				Debug.Log ("Giving Rally Command");
+			//	Debug.Log ("Giving Rally Command");
 			}
 		}
 
