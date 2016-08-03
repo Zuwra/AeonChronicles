@@ -14,15 +14,17 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	private bool doneConstruction;
 
 	private GameObject sourceObj;
+	public Animator myAnim;
 
 	// Use this for initialization
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
 
-		if (Clock.main.getTotalSecond () < 5) {
+		if (Clock.main.getTotalSecond () < 3) {
 			doneConstruction = true;
 			underConstruction = 1;
+			myAnim.SetInteger ("State", 1);
 		}
 
 	}

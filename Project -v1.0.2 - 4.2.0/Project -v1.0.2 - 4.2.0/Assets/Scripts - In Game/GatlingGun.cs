@@ -96,7 +96,7 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 	}
 
 	public void IncreaseSpeed(float damage, GameObject source)
-	{nextActionTime = Time.time + .5f;
+	{nextActionTime = Time.time + .7f;
 		Revved = true;
 		totalSpeed += speedIncrease;
 		if (initalSpeed - totalSpeed < MinimumPeriod) {

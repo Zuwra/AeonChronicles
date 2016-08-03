@@ -60,13 +60,15 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 		AetherEffect.transform.SetParent (this.gameObject.transform);
 
 		foreach (IWeapon weap in unitman.myWeapon) {
-			weap.triggers.Add (this);
-			weap.changeAttack (attackDamage, 0, false, this);
-			weap.changeAttackSpeed (attackSpeed, 0, false, this);
 			GatlingGun gg = weap.GetComponent<GatlingGun> ();
 			if (gg) {
-				gg.MinimumPeriod *= -attackSpeed;
+				gg.MinimumPeriod =  (.14f);
+			} else {
+	
+				weap.changeAttackSpeed (attackSpeed, 0, false, this);
 			}
+			weap.triggers.Add (this);
+			weap.changeAttack (attackDamage, 0, false, this);
 		}
 
 		//Debug.Log ("Final speed is " + unitman.myWeapon[0].attackPeriod);
@@ -85,7 +87,7 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 
 	IEnumerator delayRemove()
 	{
-		yield return new WaitForSeconds (.1f);
+		yield return new WaitForSeconds (.01f);
 		foreach (IWeapon weap in myman.myWeapon) {
 			weap.triggers.Remove (this);
 		}
@@ -101,14 +103,17 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 		Destroy (AetherEffect);
 		foreach (IWeapon weap in myman.myWeapon) {
 			if (weap) {
-				weap.triggers.Remove (this);
-				weap.removeAttackBuff (this);
-				weap.removeAttackSpeedBuff (this);
-
 				GatlingGun gg = weap.GetComponent<GatlingGun> ();
 				if (gg) {
-					gg.MinimumPeriod /= -attackSpeed;
+					gg.MinimumPeriod = .2f;
 				}
+				else{
+
+					weap.removeAttackSpeedBuff (this);
+				}
+				weap.triggers.Remove (this);
+				weap.removeAttackBuff (this);
+
 			}
 		}
 
