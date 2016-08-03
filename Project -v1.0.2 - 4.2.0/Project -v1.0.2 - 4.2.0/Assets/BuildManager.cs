@@ -11,12 +11,15 @@ public class BuildManager : MonoBehaviour {
 	private Selected mySelect;
 	private BuilderUI build;
 	private RaceManager raceMan;
+	private bool isWorker;
 
 	// Use this for initialization
 	void Start () {
 		raceMan = GameObject.FindObjectOfType<GameManager> ().activePlayer ;
 		build = GameObject.FindObjectOfType<BuilderUI> ();
 		mySelect = GetComponent<Selected> ();
+		if (GetComponent<newWorkerInteract> ()) {
+			isWorker = true;}
 	}
 	
 	// Update is called once per frame
@@ -27,32 +30,58 @@ public class BuildManager : MonoBehaviour {
 
 	public void cancel()
 	{
-		if (buildOrder.Count > 0) {
-			buildOrder [0].DeQueueUnit ();
-			buildOrder [0].cancelBuilding ();
-			buildOrder.RemoveAt (0);
+		//Debug.Log ("Cancel one");
+		
+			if (buildOrder.Count > 0) {
+			if (!isWorker) {
+				buildOrder [0].DeQueueUnit ();
+		
+				buildOrder [0].cancelBuilding ();
+			}
+				buildOrder.RemoveAt (0);
 
-			if(buildOrder.Count > 0)
-			{
-				float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
+				if (buildOrder.Count > 0) {
+					float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
 
-				if (Sup == 0 ||raceMan.hasSupplyAvailable (Sup)) {
-					buildOrder [0].startBuilding ();
-				} else {
-					StartCoroutine (waitOnSupply (Sup));
+					if (Sup == 0 || raceMan.hasSupplyAvailable (Sup)) {
+						buildOrder [0].startBuilding ();
+					} else {
+						StartCoroutine (waitOnSupply (Sup));
+					}
+
+				}
+				if (mySelect.IsSelected) {
+					build.bUpdate (this.gameObject);
 				}
 
-			}
-			if (mySelect.IsSelected) {
-				build.bUpdate (this.gameObject);
-			}
 		}
 	}
 
 	public void cancel(int n)
-	{
+	{//	Debug.Log ("Cancel other");
 		if (n == 0) {
-			cancel ();
+			if (buildOrder.Count > 0) {
+
+				buildOrder [0].DeQueueUnit ();
+				buildOrder [0].cancelBuilding ();
+
+				buildOrder.RemoveAt (0);
+
+				if (buildOrder.Count > 0) {
+					float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
+
+					if (Sup == 0 || raceMan.hasSupplyAvailable (Sup)) {
+						buildOrder [0].startBuilding ();
+					} else {
+						StartCoroutine (waitOnSupply (Sup));
+					}
+
+				}
+				if (mySelect.IsSelected) {
+					build.bUpdate (this.gameObject);
+				}
+
+			}
 		} else {
 			
 			if (buildOrder.Count > n) {

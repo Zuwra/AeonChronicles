@@ -55,7 +55,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     void Update()
 	{
-        if (Input.GetKeyUp(KeyCode.Tab))
+        if (Input.GetKeyUp(KeyCode.T))
         {
 			if (Input.GetKey (KeyCode.LeftControl)) {
 				PatrolMoveO ();
@@ -64,15 +64,19 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
         }
 
-        if (Input.GetKeyUp(KeyCode.CapsLock))
-        {
+		if (Input.GetKeyUp (KeyCode.G)) {
 			
 			stopO ();
 			if (Input.GetKey (KeyCode.LeftControl)) {
 
-				GiveOrder(Orders.CreateHoldGroundOrder());
-			}
-        }
+				GiveOrder (Orders.CreateHoldGroundOrder ());
+			} 
+		} 
+		else if (Input.GetKeyUp (KeyCode.Escape)) {
+			stopO ();
+			cancel ();
+		}
+
 
 		if (Input.GetKey (KeyCode.LeftShift)) {
 			// set a control group
@@ -174,32 +178,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             {SelectGroup(9); }
 
         }
-		/*
-		if (Input.GetKeyUp (KeyCode.Q)) {
-			callAbility (0);
-		} else if (Input.GetKeyUp (KeyCode.W)) {
-			callAbility (1);
-		} else if (Input.GetKeyUp (KeyCode.E)) {
-			callAbility (2);
-		} else if (Input.GetKeyUp (KeyCode.R)) {
-			callAbility (3);
-		} else if (Input.GetKeyUp (KeyCode.A)) {
-			callAbility (4);
-		} else if (Input.GetKeyUp (KeyCode.S)) {
-			callAbility (5);
-		} else if (Input.GetKeyUp (KeyCode.D)) {
-			callAbility (6);
-		} else if (Input.GetKeyUp (KeyCode.F)) {
-			callAbility (7);
-		} else if (Input.GetKeyUp (KeyCode.Z)) {
-			callAbility (8);
-		} else if (Input.GetKeyUp (KeyCode.X)) {
-			callAbility (9);
-		} else if (Input.GetKeyUp (KeyCode.C)) {
-			callAbility (10);
-		} else if (Input.GetKeyUp (KeyCode.V)) {
-			callAbility (11);
-		} */
+
 		if (Input.GetKeyUp (KeyCode.Delete)) {
 			SelectedObjects [0].GetComponent<UnitStats> ().kill (null);
 		}
@@ -215,7 +194,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
 		}
 
-        if (Input.GetKeyUp(KeyCode.BackQuote))
+        if (Input.GetKeyUp(KeyCode.Tab))
         {
 
             if (currentPage < UIPages.Count-1)
@@ -1025,6 +1004,17 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     {
         GiveOrder(Orders.CreateStopOrder());
     }
+
+	public void cancel()
+	{
+		foreach (RTSObject obj in SelectedObjects) {
+			
+				obj.SendMessage ("cancel",SendMessageOptions.DontRequireReceiver);
+
+
+		}
+
+	}
 
 
 

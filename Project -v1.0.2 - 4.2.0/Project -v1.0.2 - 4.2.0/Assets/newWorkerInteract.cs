@@ -28,6 +28,9 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	
 
 	}
+
+
+
 	public UnitState computeState(UnitState s)
 	{
 
@@ -181,9 +184,10 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 		case Const.ORDER_Follow:
 			
-			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
-			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
-				break;}
+			if (order.Target.gameObject.GetComponent<OreDispenser> () != null) {
+				myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
+				break;
+			}
 
 			checkHook ();
 
@@ -192,12 +196,13 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 					order.Target = order.Target.transform.parent.gameObject;
 				}
 			}
+			if (!order.Target.GetComponent<BuildingInteractor> ().ConstructDone()) {
+				myManager.changeState (new buildResumeState (order.Target.gameObject));
+			} 
+			else {
 
-
-
-
-			myManager.changeState (new FollowState (order.Target.gameObject, myManager));
-
+				myManager.changeState (new FollowState (order.Target.gameObject, myManager));
+			}
 
 			break;
 

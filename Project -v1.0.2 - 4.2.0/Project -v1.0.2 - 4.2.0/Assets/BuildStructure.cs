@@ -12,7 +12,7 @@ public class BuildStructure:  UnitProduction {
 	private RaceManager racer;
 
 	public float buildTime;
-	private float timer =0;
+
 	private bool Morphing = false;
 	private HealthDisplay HD;
 	private BuildManager buildMan;
@@ -61,6 +61,18 @@ public class BuildStructure:  UnitProduction {
 
 	}
 
+	public void cancel()
+	{
+		mySelect.updateCoolDown (0);
+		HD.stopBuilding ();
+		Morphing = false;
+		myManager.setStun (false, this);
+		myManager.changeState(new DefaultState());
+		if (mySelect.IsSelected) {
+			SelectedManager.main.updateUI ();
+		}
+	}
+
 	public override void setAutoCast(){}
 
 	public void setBuildSpot(Vector3 buildSpot)
@@ -78,7 +90,7 @@ public class BuildStructure:  UnitProduction {
 	public override void cancelBuilding ()
 	{	HD.stopBuilding ();
 		mySelect.updateCoolDown (0);
-		timer = 0;
+
 		Morphing = false;
 		//myCost.refundCost ();
 		//racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply, null);
@@ -94,7 +106,7 @@ public class BuildStructure:  UnitProduction {
 	}
 
 	public override float getProgress ()
-	{return (1 - timer/buildTime);}
+	{return builder.getProgess();}
 
 	override
 	public continueOrder canActivate (bool showError)
@@ -129,7 +141,7 @@ public class BuildStructure:  UnitProduction {
 			myCost.payCost ();
 			buildMan.buildUnit (this);
 			myManager.cMover.stop ();
-			timer = buildTime;
+
 
 			Morphing = true;
 			racer.buildingUnit (this);
@@ -138,7 +150,7 @@ public class BuildStructure:  UnitProduction {
 			if (mySelect.IsSelected) {
 				SelectedManager.main.updateUI ();
 			}
-			inConstruction = ((GameObject)Instantiate(unitToBuild, targetLocation, Quaternion.identity)).GetComponent<UnitManager>();
+			inConstruction = ((GameObject)Instantiate(unitToBuild, targetLocation + Vector3.up*2, Quaternion.identity)).GetComponent<UnitManager>();
 			builder = inConstruction.GetComponent<BuildingInteractor> ();
 			builder.startConstruction (unitToBuild);
 			/*
@@ -164,7 +176,7 @@ public class BuildStructure:  UnitProduction {
 	public void createUnit()
 	{HD.stopBuilding ();
 
-		timer = 0;
+	
 		mySelect.updateCoolDown (0);
 		//GameObject unit = (GameObject)Instantiate(unitToBuild, targetLocation, Quaternion.identity);
 
@@ -197,6 +209,30 @@ public class BuildStructure:  UnitProduction {
 		}
 		inConstruction = null;
 
+	}
+
+	public void resumeBuilding(GameObject obj)
+	{
+		
+		HD.loadIMage (iconPic);
+
+
+		//Debug.Log ("Activating");
+
+		buildMan.buildUnit (this);
+		myManager.cMover.stop ();
+
+
+		Morphing = true;
+
+		myManager.changeState (new ChannelState ());
+		myManager.setStun (true, this);
+		if (mySelect.IsSelected) {
+			SelectedManager.main.updateUI ();
+		}
+		inConstruction = obj.GetComponent<UnitManager>();
+		builder = inConstruction.GetComponent<BuildingInteractor> ();
+	
 	}
 
 

@@ -464,6 +464,7 @@
      <Compile Include="Assets\WaveSpawner.cs" />
      <Compile Include="Assets\airmover.cs" />
      <Compile Include="Assets\animate.cs" />
+     <Compile Include="Assets\buildResumeState.cs" />
      <Compile Include="Assets\buildTurret.cs" />
      <Compile Include="Assets\continueOrder.cs" />
      <Compile Include="Assets\deathTrigger.cs" />

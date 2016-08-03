@@ -93,10 +93,12 @@ public class ProductionManager : MonoBehaviour {
 		abilityList [manage.UnitName].Remove (produce);
 
 		if (abilityList [manage.UnitName].Count == 0) {
-			GameObject obj = iconList [manage.UnitName];
-			iconList.Remove (manage.UnitName);
-			Destroy (obj);
-			abilityList.Remove (manage.UnitName);
+			if (iconList.ContainsKey (manage.UnitName)) {
+				GameObject obj = iconList [manage.UnitName];
+				iconList.Remove (manage.UnitName);
+				Destroy (obj);
+				abilityList.Remove (manage.UnitName);
+			}
 		} else {
 			addNUmber (manage);
 		}

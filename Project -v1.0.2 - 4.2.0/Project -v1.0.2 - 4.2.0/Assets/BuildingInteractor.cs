@@ -24,7 +24,9 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 		if (Clock.main.getTotalSecond () < 3) {
 			doneConstruction = true;
 			underConstruction = 1;
-			myAnim.SetInteger ("State", 1);
+			if (myAnim) {
+				myAnim.SetInteger ("State", 1);
+			}
 		}
 
 	}
@@ -51,6 +53,10 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 	public bool ConstructDone()
 	{return doneConstruction;
+	}
+	public float getProgess()
+	{
+		return underConstruction;
 	}
 
 	public float construct(float m)

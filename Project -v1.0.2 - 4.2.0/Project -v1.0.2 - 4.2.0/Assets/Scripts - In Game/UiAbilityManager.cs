@@ -1222,7 +1222,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 	public void callAbility(int n)
-	{Debug.Log (quickButtons [n].IsInteractable() + "   " +  quickAbility[n].myAbility + "   " +  quickAbility[n].myAbility.active);
+	{//Debug.Log (quickButtons [n].IsInteractable() + "   " +  quickAbility[n].myAbility + "   " +  quickAbility[n].myAbility.active);
 		if (quickButtons [n].IsInteractable() && quickAbility[n].myAbility && quickAbility[n].myAbility.active) {
 			
 			selectMan.callAbility (n);
