@@ -38,7 +38,7 @@ public class MissileArmer :Ability{
 			return;}
 		
 		if (nextActionTime < Time.time) {
-			nextActionTime += 1;
+			nextActionTime = Time.time + 1;
 
 			changeNum = 0;
 			if (missiles) {

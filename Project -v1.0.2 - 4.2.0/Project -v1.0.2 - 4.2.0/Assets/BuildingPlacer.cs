@@ -42,19 +42,37 @@ public class BuildingPlacer : MonoBehaviour {
 
 	public bool canBuild()
 	{  
-		Tile t = Grid.main.GetClosestRedTile(this.gameObject.transform.position);
 
-			if (!t.Buildable) {
-				if (Vector3.Distance (t.Center, this.gameObject.transform.position) < coll.radius) {
-					setRenderers (bad);
+		if (objects.Count != 0) {
+			
+			foreach (GameObject obj in objects) {
+				Debug.Log ("Has objects " + obj);
+			}
+			return false;
+		}
+			Tile t = Grid.main.GetClosestRedTile (this.gameObject.transform.position);
+			if (FogOfWar.current.IsInCompleteFog (this.gameObject.transform.position)) {
+				setRenderers (bad);
+			Debug.Log ("In fogg" );
+			return false;
+			} else {
+				if (!t.Buildable) {
+					float dist = Mathf.Pow (t.Center.x - transform.position.x, 2) + Mathf.Pow (t.Center.z - transform.position.z, 2);
+					if (Mathf.Sqrt (dist) < coll.radius) {
+						setRenderers (bad);
+					Debug.Log ("not buildable" );
+					return false;
+					} else {
+						setRenderers (good);
+					}
 				} else {
 					setRenderers (good);
 				}
-			}else {
-				setRenderers (good);
-			}
 
-		return (objects.Count == 0);
+		}
+
+
+		return true;
 	}
 
 	public void reset(GameObject b, Material g, Material ba)
@@ -64,7 +82,7 @@ public class BuildingPlacer : MonoBehaviour {
 		fow.enabled = false;
 		GetComponent<SphereCollider> ().enabled = true;
 		GetComponent<SphereCollider> ().radius = 10;
-
+		objects.Clear ();
 		building = b;
 		good = g;
 		bad = ba;

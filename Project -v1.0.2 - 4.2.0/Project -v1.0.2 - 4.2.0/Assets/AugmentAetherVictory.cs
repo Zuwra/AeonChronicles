@@ -8,8 +8,11 @@ public class AugmentAetherVictory  : Objective {
 
 	List<AugmentAttachPoint> myGuys = new List<AugmentAttachPoint> ();
 	bool routineStarted = false;
-
-	
+	public float delayVic;
+	public WaveSpawner counterAttack;
+	public int waveType;
+	bool finishedOnce;
+	public SceneEventTrigger attackTrig;
 	// Update is called once per frame
 	void Update () {
 	
@@ -49,6 +52,7 @@ public class AugmentAetherVictory  : Objective {
 				continue;
 			}
 			else{
+				if(!completed){
 				int n = 0;
 				myGuys.RemoveAll (item => item == null);
 				foreach (AugmentAttachPoint agp in myGuys) {
@@ -58,15 +62,56 @@ public class AugmentAetherVictory  : Objective {
 				}
 				if (n >= numOfAugments && !completed) {
 					completed = true;
-					complete ();
-					nextArea ();
+					
+						if (finishedOnce) {
+							complete ();
+							nextArea ();
+						} else {
+							StartCoroutine (actuallyComplete ());
+						
+						}
+					//nextArea ();
 				}
 				else if (completed) {
 					//completed = false;
 					//unComplete ();
+					}
 				}
 			}
 		}
+	}
+
+	IEnumerator actuallyComplete()
+	{Debug.Log (" delaying");
+		if (counterAttack) {
+			counterAttack.spawnWave (waveType);
+			if (attackTrig) {
+				attackTrig.trigger (0, 0, Vector3.zero, null, false);}
+
+		} else {
+			complete ();
+			nextArea ();
+			return true;
+		}
+		finishedOnce = true;
+		yield return new WaitForSeconds (delayVic);
+
+		int n = 0;
+		myGuys.RemoveAll (item => item == null);
+		foreach (AugmentAttachPoint agp in myGuys) {
+			if (agp.myAugment) {
+
+				n++;}
+		}
+		if (n >= numOfAugments && !completed) {
+			completed = true;
+			StartCoroutine (actuallyComplete ());
+			complete ();
+			nextArea ();
+		} else {
+			completed = false;}
+	
+
 	}
 
 	public void nextArea()

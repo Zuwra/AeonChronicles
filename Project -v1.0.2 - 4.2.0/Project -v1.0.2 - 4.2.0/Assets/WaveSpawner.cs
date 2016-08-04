@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class WaveSpawner : MonoBehaviour {
-	
+
+	public float attackRadius;
 	public List<GameObject> waveTypeOne = new List<GameObject> ();
 	public List<float> waveOneTimes = new List<float> ();
 
@@ -54,7 +55,7 @@ public class WaveSpawner : MonoBehaviour {
 		yield return new WaitForSeconds(amount);
 
 		Vector3 hitzone = this.gameObject.transform.position;
-		float radius = Random.Range(20, 40);
+		float radius = Random.Range(attackRadius/2, attackRadius);
 		float angle = Random.Range(0, 360);
 
 		hitzone.x += Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
@@ -110,6 +111,26 @@ public class WaveSpawner : MonoBehaviour {
 
 	}
 
+
+	public void spawnWave(int n)
+	{List<GameObject> toSpawn;
+		Debug.Log ("Spawning wave");
+		if (n == 0) {
+			toSpawn = waveTypeOne;
+		} else if (n == 1) {
+			toSpawn = waveTypeTwo;
+		} else {
+			toSpawn = waveTypeThree;
+		}
+		float delay = .1f;
+		foreach (GameObject obj in toSpawn) {
+			Debug.Log ("making unit");
+			StartCoroutine (MyCoroutine (delay, obj));
+			delay += .2f;
+
+
+		}
+	}
 
 	public void OnDrawGizmos()
 	{if (showPoint) {

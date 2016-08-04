@@ -150,7 +150,7 @@ public class BuildStructure:  UnitProduction {
 			if (mySelect.IsSelected) {
 				SelectedManager.main.updateUI ();
 			}
-			inConstruction = ((GameObject)Instantiate(unitToBuild, targetLocation + Vector3.up*2, Quaternion.identity)).GetComponent<UnitManager>();
+			inConstruction = ((GameObject)Instantiate(unitToBuild, targetLocation + Vector3.up, Quaternion.identity)).GetComponent<UnitManager>();
 			builder = inConstruction.GetComponent<BuildingInteractor> ();
 			builder.startConstruction (unitToBuild);
 			/*

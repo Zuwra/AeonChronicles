@@ -136,6 +136,12 @@ public class CustomRVO : IMover {
 	{
 		if (Time.time >= nextRepath && canSearchAgain) {
 			RecalculatePath();
+			//Debug.Log ("Recalculating  " + path.vectorPath.Count );
+			//string s = " target  " + target;
+			//foreach (Vector3 v in path.vectorPath) {
+			//	s += "   " + v;
+			//}
+			//Debug.Log ("Path " +s);
 		}
 
 
@@ -155,14 +161,19 @@ public class CustomRVO : IMover {
 
 		if (currentWaypoint >= path.vectorPath.Count) {
 			speed = 0;
+			if (Vector3.Distance (transform.position, path.vectorPath [path.vectorPath.Count - 1]) > 2) {
+				//RecalculatePath ();
+				//return false;
+			}
+			//Debug.Log ("Distance is " + Vector3.Distance (transform.position,path.vectorPath[path.vectorPath.Count-1]) + "   " + path.vectorPath.Count);
 
 			path = null;
 			pathSet = false;
 			if (controller) {
-				//Debug.Log ("Zerob");
+				
 				controller.Move (Vector3.zero);
 			}
-			//Debug.Log ("Returning 1");
+		//Debug.Log ("Returning 1");
 			return true;
 		}
 
@@ -185,12 +196,12 @@ public class CustomRVO : IMover {
 
 
 	
-		if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < 3) {
+		if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < 2) {
 
 			currentWaypoint++;
-
+		
 		}
-		//Debug.Log ("Returning 3");
+	
 		return false;
 
 

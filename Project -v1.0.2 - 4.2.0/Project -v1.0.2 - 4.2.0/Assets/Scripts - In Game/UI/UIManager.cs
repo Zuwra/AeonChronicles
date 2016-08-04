@@ -787,6 +787,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 	{
 		m_Mode = Mode.PlaceBuilding;
 		buildingPlacer.SetActive (true);
+		if (m_ObjectBeingPlaced) {
+			Destroy (m_ObjectBeingPlaced);
+		}
 		m_ObjectBeingPlaced = (GameObject)Instantiate (item);
 		raceManager.UnitDying (m_ObjectBeingPlaced, null,false);
 		buildingPlacer.GetComponent<BuildingPlacer> ().reset (m_ObjectBeingPlaced, goodPlacement, badPlacement);

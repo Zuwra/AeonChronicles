@@ -196,8 +196,10 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 					order.Target = order.Target.transform.parent.gameObject;
 				}
 			}
+			if (order.Target.GetComponent<BuildingInteractor> ()){
 			if (!order.Target.GetComponent<BuildingInteractor> ().ConstructDone()) {
 				myManager.changeState (new buildResumeState (order.Target.gameObject));
+				}
 			} 
 			else {
 

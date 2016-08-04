@@ -740,13 +740,20 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		}
 
 
-		List<Vector3> points = new List<Vector3> ();
+		List<Vector3> points = Formations.getFormation (realMovers.Count);
+		for (int t = 0; t < points.Count; t ++) {
+			points [t] += targetPoint;
+		
+		}
+
+		/*new List<Vector3> ();
 		for (int i = 0; i < realMovers.Count; i++) {
 
 			float deg = 2 * Mathf.PI * i / realMovers.Count;
 			Vector3 p = targetPoint + new Vector3 (Mathf.Cos (deg), 0, Mathf.Sin (deg))  *( realMovers.Count -1) *3;
 			points.Add (p);
-		}
+		}*/
+			
 		List<IOrderable> usedGuys = new List<IOrderable> ();
 		while (usedGuys.Count < realMovers.Count) {
 			float maxDistance = 0;

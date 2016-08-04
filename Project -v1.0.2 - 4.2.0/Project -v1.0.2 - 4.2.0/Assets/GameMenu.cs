@@ -45,6 +45,7 @@ public class GameMenu : MonoBehaviour {
 		if (Input.GetKeyUp (KeyCode.Backspace)) {
 			
 			openMenu ();
+			CursorManager.main.normalMode ();
 		}
 
 	}
