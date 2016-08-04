@@ -11,7 +11,13 @@ public class Formations{
 
 		if (count == 1) {
 			return Odd.GetRange (0, 1);
-		} 
+		} else if (count == 2) {
+
+			for (int n = 0; n < 2; n++) {
+				toReturn.Add (Even [n]* 3);
+			}
+
+		}
 		// Odd number of guys
 		else {
 			//Only two rows
@@ -20,18 +26,18 @@ public class Formations{
 				int remainder = count / 2;
 				for (int n = 0; n < remainder; n++) {
 					if (remainder % 2 == 1) {
-						toReturn.Add ((Odd [n] - Vector3.forward * 5) * 3);
+						toReturn.Add ((Odd [n] - Vector3.forward * 2.5f) * 3);
 					} else {
-						toReturn.Add ((Even [n] - Vector3.forward * 5) * 3);
+						toReturn.Add ((Even [n] - Vector3.forward * 2.5f) * 3);
 					}
 				}
 
 				int RemainB = (count - remainder);
 				for (int n = 0; n < RemainB; n++) {
 					if (RemainB % 2 == 1) {
-						toReturn.Add ((Odd [n] ) * 3);
+						toReturn.Add ((Odd [n] + Vector3.forward * 2.5f) * 3);
 					} else {
-						toReturn.Add ((Even [n] ) * 3);
+						toReturn.Add ((Even [n] + Vector3.forward * 2.5f) * 3);
 					}
 				}
 				//Three rows

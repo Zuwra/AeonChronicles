@@ -212,11 +212,6 @@ namespace Pathfinding.RVO {
 			desiredVelocity = vel;
 
 
-
-
-
-
-
 		}
 
 		/** Teleport the agent to a new position.
@@ -241,7 +236,7 @@ namespace Pathfinding.RVO {
 			if (rvoAgent == null) return;
 
 			if (lastPosition != tr.position) {
-				Teleport(tr.position);
+				Teleport(tr.position);//++++++++++++++++++++++++++++++++++++++++++++++
 			}
 
 			if (lockWhenNotMoving) {

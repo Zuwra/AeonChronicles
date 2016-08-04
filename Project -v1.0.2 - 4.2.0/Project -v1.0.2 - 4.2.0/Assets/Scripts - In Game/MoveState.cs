@@ -39,7 +39,7 @@ public class MoveState : UnitState{
 	public void Update () {
 
 		if (myManager.cMover.move ()) 
-		{Debug.Log ("Stopped");
+		{//Debug.Log ("Stopped");
 			myManager.changeState(new DefaultState());	}
 
 	}

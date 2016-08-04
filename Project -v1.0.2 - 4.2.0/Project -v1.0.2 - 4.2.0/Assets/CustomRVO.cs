@@ -70,7 +70,7 @@ public class CustomRVO : IMover {
 	public void resetMoveLocation (Vector3 target) {
 	//	Debug.Log ("Resetting to " + target);
 		this.target = target;
-		currentWaypoint = 1;
+		currentWaypoint = 0;
 		RecalculatePath();
 		GetComponent<UnitManager> ().animMove ();
 	}
@@ -81,6 +81,7 @@ public class CustomRVO : IMover {
 		pathSet = true;
 		canSearchAgain = false;
 		nextRepath = Time.time+repathRate*(Random.value+0.5f);
+		currentWaypoint = 1;
 		seeker.StartPath(transform.position, target, OnPathComplete);
 	}
 
@@ -136,7 +137,7 @@ public class CustomRVO : IMover {
 	{
 		if (Time.time >= nextRepath && canSearchAgain) {
 			RecalculatePath();
-			//Debug.Log ("Recalculating  " + path.vectorPath.Count );
+		//	Debug.Log ("Recalculating  " + path.vectorPath.Count );
 			//string s = " target  " + target;
 			//foreach (Vector3 v in path.vectorPath) {
 			//	s += "   " + v;
@@ -161,12 +162,8 @@ public class CustomRVO : IMover {
 
 		if (currentWaypoint >= path.vectorPath.Count) {
 			speed = 0;
-			if (Vector3.Distance (transform.position, path.vectorPath [path.vectorPath.Count - 1]) > 2) {
-				//RecalculatePath ();
-				//return false;
-			}
-			//Debug.Log ("Distance is " + Vector3.Distance (transform.position,path.vectorPath[path.vectorPath.Count-1]) + "   " + path.vectorPath.Count);
 
+		
 			path = null;
 			pathSet = false;
 			if (controller) {
@@ -197,7 +194,7 @@ public class CustomRVO : IMover {
 
 	
 		if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < 2) {
-
+			//Debug.Log ("Waypoint " + currentWaypoint + "   total " +path.vectorPath.Count   + "  distance  " + Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]));
 			currentWaypoint++;
 		
 		}

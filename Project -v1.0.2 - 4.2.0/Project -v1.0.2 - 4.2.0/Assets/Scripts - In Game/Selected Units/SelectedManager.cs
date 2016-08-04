@@ -719,14 +719,16 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		List<RTSObject> realMovers = new List<RTSObject> ();
 
 		List<RTSObject> others = new List<RTSObject> ();
+		Vector3 middlePoint = Vector3.zero;
 		foreach (RTSObject obj in SelectedObjects) {
 			if (obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Turret) || obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 				others.Add (obj);
 			} else {
 				realMovers.Add (obj);
+				middlePoint += obj.transform.position;
 			}
 		}
-
+		middlePoint /= realMovers.Count;
 		foreach (IOrderable rt in others) {
 			if (attack) {
 				Order o = Orders.CreateAttackMove (targetPoint);
@@ -738,29 +740,27 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 			}
 		}
-
+		float angle =Vector2.Angle (Vector2.up, new Vector2 (middlePoint.x - targetPoint.x, middlePoint.z - targetPoint.z));
+		if (middlePoint.x < targetPoint.x) {
+			angle *= -1;
+		} 
 
 		List<Vector3> points = Formations.getFormation (realMovers.Count);
 		for (int t = 0; t < points.Count; t ++) {
-			points [t] += targetPoint;
+			Vector3 newPoint = Quaternion.Euler(0,angle,0) * points [t];
+			points [t] = newPoint + targetPoint;
+
 		
 		}
 
-		/*new List<Vector3> ();
-		for (int i = 0; i < realMovers.Count; i++) {
-
-			float deg = 2 * Mathf.PI * i / realMovers.Count;
-			Vector3 p = targetPoint + new Vector3 (Mathf.Cos (deg), 0, Mathf.Sin (deg))  *( realMovers.Count -1) *3;
-			points.Add (p);
-		}*/
-			
 		List<IOrderable> usedGuys = new List<IOrderable> ();
 		while (usedGuys.Count < realMovers.Count) {
 			float maxDistance = 0;
 			IOrderable closestUnit = null;
 			foreach (IOrderable obj in realMovers) {
-				if (!usedGuys.Contains (obj) && Vector3.Distance (obj.getObject ().transform.position, targetPoint) > maxDistance) {
-					maxDistance = Vector3.Distance (obj.getObject ().transform.position, targetPoint);
+				float tempDist = Vector3.Distance (obj.getObject ().transform.position, targetPoint);
+				if (!usedGuys.Contains (obj) && tempDist > maxDistance) {
+					maxDistance = tempDist;
 					closestUnit = obj;
 				}
 			}
@@ -769,10 +769,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			float runDistance = 1000000;
 			Vector3 closestSpot = points[0];
 			for (int i = 0; i < points.Count; i++) {
-				
-					if (Vector3.Distance (closestUnit.getObject ().transform.position, points [i]) < runDistance) {
+				float tempDist = Vector3.Distance (closestUnit.getObject ().transform.position, points [i]);
+				if (tempDist < runDistance) {
 						closestSpot = points [i];
-						runDistance = Vector3.Distance (closestUnit.getObject ().transform.position, points [i]);
+					runDistance = tempDist;
 
 			
 				}
