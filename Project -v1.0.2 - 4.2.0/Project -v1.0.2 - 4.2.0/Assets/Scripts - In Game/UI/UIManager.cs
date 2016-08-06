@@ -10,8 +10,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public static UIManager main;
 
 	public GameObject buildingPlacer;
+	private GameObject tempBuildingPlacer;
 	public Material goodPlacement;
 	public Material badPlacement;
+	public GameObject thingToBeBuilt;
 	//Width of GUI menu
 
 	//Action Variables
@@ -168,9 +170,18 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 			
 		case Mode.PlaceBuilding:
-			ModeNormalBehaviour ();
-			CursorManager.main.normalMode ();
-			ModePlaceBuildingBehaviour();
+			if (Input.GetKeyUp (KeyCode.LeftShift)) {
+				Destroy (m_ObjectBeingPlaced);
+				m_ObjectBeingPlaced = null;
+				buildingPlacer.SetActive (false);
+				Destroy (tempBuildingPlacer);
+				SwitchToModeNormal ();
+			} else {
+				ModeNormalBehaviour ();
+				CursorManager.main.normalMode ();
+				ModePlaceBuildingBehaviour ();
+				break;
+			}
 			break;
 		}
 
@@ -293,7 +304,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 
 				m_ObjectBeingPlaced.transform.position = spot;
-				buildingPlacer.transform.position = spot;
+				//buildingPlacer.transform.position = spot;
+
 
 			}
 		
@@ -523,7 +535,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 				if (m_SelectedManager.checkValidTarget (targetPoint, currentObject, currentAbilityNUmber)) {
 				//	Debug.Log ("Valid Spot");
 					m_SelectedManager.fireAbility (currentObject, targetPoint, currentAbilityNUmber);
-					SwitchMode (Mode.Normal);
+					if (!Input.GetKey (KeyCode.LeftShift)) {
+						SwitchMode (Mode.Normal);
+					}
 				}
 			}
 				break;
@@ -555,7 +569,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			
 		case Mode.PlaceBuilding:
 				
-			if (buildingPlacer.GetComponent<BuildingPlacer> ().canBuild ()) {
+			if (tempBuildingPlacer.GetComponent<BuildingPlacer> ().canBuild ()) {
 			
 
 				if (!EventSystem.current.IsPointerOverGameObject ()) {
@@ -566,10 +580,17 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 					}
 
-					m_SelectedManager.fireAbility (null, targetPoint, currentAbilityNUmber);
+					m_SelectedManager.fireAbility (m_ObjectBeingPlaced, targetPoint, currentAbilityNUmber);
+				
+					if (!Input.GetKey (KeyCode.LeftShift)) {
 						
-					SwitchMode (Mode.Normal);
+						SwitchMode (Mode.Normal);
+					} else {
+						m_ObjectBeingPlaced = null;
+						SwitchToModePlacingBuilding(thingToBeBuilt);
+					}
 
+				
 				}
 
 			}
@@ -577,6 +598,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 				break;
 			}
 		
+	}
+
+	public void DestroyGhost(GameObject obj)
+	{
+		Destroy (obj);
 	}
 
 	public bool allowDrag()
@@ -680,7 +706,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 			case Mode.PlaceBuilding:
 
 			//Cancel building placement
+				Destroy (m_ObjectBeingPlaced);
+				m_ObjectBeingPlaced = null;
 				buildingPlacer.SetActive (false);
+				Destroy (tempBuildingPlacer);
 				SwitchToModeNormal ();
 
 				break;
@@ -770,11 +799,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 
 	public void SwitchToModeNormal()
-	{buildingPlacer.SetActive (false);
+	{//buildingPlacer.SetActive (false);
 
 		if (m_ObjectBeingPlaced)
 		{
-			Destroy (m_ObjectBeingPlaced);
+			//Destroy (m_ObjectBeingPlaced);
 		}
 	
 		m_Mode = Mode.Normal;
@@ -785,14 +814,28 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 	public void SwitchToModePlacingBuilding(GameObject item)
 	{
+		thingToBeBuilt = item;
 		m_Mode = Mode.PlaceBuilding;
-		buildingPlacer.SetActive (true);
+		//buildingPlacer.SetActive (true);
 		if (m_ObjectBeingPlaced) {
 			Destroy (m_ObjectBeingPlaced);
 		}
+		//Debug.Log ("Making a " + item);
 		m_ObjectBeingPlaced = (GameObject)Instantiate (item);
+		tempBuildingPlacer = (GameObject)Instantiate (buildingPlacer, m_ObjectBeingPlaced.transform.position, Quaternion.identity);
+
+		tempBuildingPlacer .SetActive (true);
+		BuildingPlacer p = tempBuildingPlacer .GetComponent<BuildingPlacer> ();
+
+		p.reset (m_ObjectBeingPlaced, goodPlacement,  badPlacement);
+
+
+		tempBuildingPlacer .transform.SetParent (m_ObjectBeingPlaced.transform);
+		p.GetComponent<SphereCollider> ().enabled = true;
 		raceManager.UnitDying (m_ObjectBeingPlaced, null,false);
-		buildingPlacer.GetComponent<BuildingPlacer> ().reset (m_ObjectBeingPlaced, goodPlacement, badPlacement);
+		//buildingPlacer.GetComponent<BuildingPlacer> ().reset (m_ObjectBeingPlaced, goodPlacement, badPlacement);
+		//Debug.Log(" Object to be place " + m_ObjectBeingPlaced);
+	
 	
 	}
 

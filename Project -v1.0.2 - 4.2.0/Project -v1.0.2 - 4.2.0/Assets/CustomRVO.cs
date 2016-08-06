@@ -9,6 +9,7 @@ using Pathfinding.RVO;
 
 [HelpURL("http://arongranberg.com/astar/docs/class_r_v_o_example_agent.php")]
 public class CustomRVO : IMover {
+
 	public float repathRate = 1;
 
 	private float nextRepath = 0;
@@ -68,9 +69,10 @@ public class CustomRVO : IMover {
 
 	override
 	public void resetMoveLocation (Vector3 target) {
+
 	//	Debug.Log ("Resetting to " + target);
 		this.target = target;
-		currentWaypoint = 0;
+		currentWaypoint = 4;
 		RecalculatePath();
 		GetComponent<UnitManager> ().animMove ();
 	}
@@ -81,8 +83,9 @@ public class CustomRVO : IMover {
 		pathSet = true;
 		canSearchAgain = false;
 		nextRepath = Time.time+repathRate*(Random.value+0.5f);
-		currentWaypoint = 1;
+		currentWaypoint = 4;
 		seeker.StartPath(transform.position, target, OnPathComplete);
+	//	Debug.Log ("Recalculating");
 	}
 
 	public void OnPathComplete (Path _p) {
@@ -205,8 +208,6 @@ public class CustomRVO : IMover {
 
 
 	}
-
-
 
 	override
 	public void resetMoveLocation(Transform targ)

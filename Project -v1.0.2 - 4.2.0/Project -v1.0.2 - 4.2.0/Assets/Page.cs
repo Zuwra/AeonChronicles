@@ -79,8 +79,9 @@ public class Page  {
 		foreach (RTSObject unit in rows[n/4]) {
 
 			continueOrder ord = unit.abilityList [X].canActivate (true);
-		
+			Debug.Log ("Checking can cast");
 			if (ord.canCast) {
+				Debug.Log ("Using the ABility");
 				unit.UseTargetAbility (obj, loc, X);
 
 				}

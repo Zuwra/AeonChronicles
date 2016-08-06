@@ -12,7 +12,6 @@ public class BuildUnit : UnitProduction {
 
 	private Selected mySelect;
 
-	public float buildTime;
 	private BuildingInteractor myInteractor;
 
 	private float timer =0;
@@ -37,7 +36,7 @@ public class BuildUnit : UnitProduction {
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer;
 		myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
-		myCost.cooldown = buildTime;
+	//	myCost.cooldown = buildTime;
 		//manage = GetComponent<UnitManager> ();
 		HD = GetComponentInChildren<HealthDisplay>();
 	}

@@ -17,6 +17,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public int playerNumber;
 
 	public float supplyMax;
+
 	public float currentSupply;
 	public float supplyCap;
 
@@ -223,7 +224,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public bool hasSupplyAvailable(float sup)
 	{
-		return (sup <= (supplyMax - currentSupply));
+		return (sup <= (Mathf.Min(supplyCap, supplyMax) - currentSupply));
 		
 	}
 
@@ -236,13 +237,15 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	if (supply < 0) {
 
-
+		
 			supplyMax += supply;
 		} else {
 			currentSupply -= supply;
 		}
 
-		updateSupply(currentSupply, supplyMax);
+	
+			updateSupply (currentSupply,  Mathf.Min(supplyCap, supplyMax));
+	
 
 	}
 
@@ -250,13 +253,14 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	{//Debug.Log ("Created " + supply);
 		if (supply < 0) {
 
-
+	
 			supplyMax -= supply;
 		} else {
 			currentSupply += supply;
 		}
-		
-		updateSupply(currentSupply, supplyMax);
+
+		updateSupply (currentSupply,  Mathf.Min(supplyCap, supplyMax));
+
 	}
 
 

@@ -39,7 +39,14 @@ public class CostBox : MonoBehaviour {
 	
 		if (input.myCost) {
 			// CLOCK ===========================================
-			if (input.myCost.cooldown == 0) {
+
+			if (input is UnitProduction) {
+				
+				clocker.enabled = true;
+				time.text = "" + ((UnitProduction)input).buildTime;
+			}
+
+			else if (input.myCost.cooldown == 0) {
 				clocker.enabled = false;
 				time.text = "";
 			} else {

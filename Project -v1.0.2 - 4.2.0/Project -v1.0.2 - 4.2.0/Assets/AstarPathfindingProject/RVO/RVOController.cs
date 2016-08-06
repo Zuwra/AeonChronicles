@@ -22,9 +22,6 @@ namespace Pathfinding.RVO {
 	[HelpURL("http://arongranberg.com/astar/docs/class_pathfinding_1_1_r_v_o_1_1_r_v_o_controller.php")]
 	public class RVOController : MonoBehaviour {
 		/** Radius of the agent */
-
-		private IMover myMover;
-
 		[Tooltip("Radius of the agent")]
 		public float radius = 5;
 
@@ -164,9 +161,9 @@ namespace Pathfinding.RVO {
 
 		public void Awake () {
 			tr = transform;
-			myMover = GetComponent<UnitManager> ().cMover;
+
 			// Find the RVOSimulator in this scene
-			cachedSimulator = GameObject.FindObjectOfType<RVOSimulator>();// cachedSimulator ?? FindObjectOfType(typeof(RVOSimulator)) as RVOSimulator;
+			cachedSimulator = cachedSimulator ?? FindObjectOfType(typeof(RVOSimulator)) as RVOSimulator;
 			if (cachedSimulator == null) {
 				Debug.LogError("No RVOSimulator component found in the scene. Please add one.");
 			} else {
@@ -193,7 +190,7 @@ namespace Pathfinding.RVO {
 
 		protected void UpdateAgentProperties () {
 			rvoAgent.Radius = radius;
-			rvoAgent.MaxSpeed = myMover.MaxSpeed;
+			rvoAgent.MaxSpeed = maxSpeed;
 			rvoAgent.Height = height;
 			rvoAgent.AgentTimeHorizon = agentTimeHorizon;
 			rvoAgent.ObstacleTimeHorizon = obstacleTimeHorizon;
@@ -210,8 +207,6 @@ namespace Pathfinding.RVO {
 		 */
 		public void Move (Vector3 vel) {
 			desiredVelocity = vel;
-
-
 		}
 
 		/** Teleport the agent to a new position.
@@ -230,13 +225,10 @@ namespace Pathfinding.RVO {
 		}
 
 		public void Update () {
-
-
-
 			if (rvoAgent == null) return;
 
 			if (lastPosition != tr.position) {
-				Teleport(tr.position);//++++++++++++++++++++++++++++++++++++++++++++++
+				Teleport(tr.position);
 			}
 
 			if (lockWhenNotMoving) {
@@ -251,7 +243,7 @@ namespace Pathfinding.RVO {
 			Vector3 realPos = rvoAgent.InterpolatedPosition;
 			realPos.y = adjustedY;
 
-			if (mask != 0 && Physics.Raycast(realPos + Vector3.up*height *3, Vector3.down, out hit, float.PositiveInfinity, mask)) {
+			if (mask != 0 && Physics.Raycast(realPos + Vector3.up*height*3f, Vector3.down, out hit, float.PositiveInfinity, mask)) {
 				adjustedY = hit.point.y;
 			} else {
 				adjustedY = 0;
@@ -279,22 +271,16 @@ namespace Pathfinding.RVO {
 					}
 			}
 
-			#if ASTARDEBUG
+	#if ASTARDEBUG
 			Debug.DrawRay(position, desiredVelocity + force*wallAvoidForce);
-			#endif
+	#endif
 			rvoAgent.DesiredVelocity = desiredVelocity + force*wallAvoidForce;
 
-
 			tr.position = realPos + Vector3.up*height*0.5f - center;
-		
 			lastPosition = tr.position;
 
-			if (enableRotation && velocity != Vector3.zero) 
-				transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity), Time.deltaTime * rotationSpeed * Mathf.Min(velocity.magnitude, 0.2f));
-
-
-			}
-
+			if (enableRotation && velocity != Vector3.zero) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity), Time.deltaTime * rotationSpeed * Mathf.Min(velocity.magnitude, 0.2f));
+		}
 
 		private static readonly Color GizmoColor = new Color(240/255f, 213/255f, 30/255f);
 

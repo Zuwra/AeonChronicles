@@ -13,7 +13,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	private BuildManager buildMan;
 		public List<Upgrade> upgrades;
 
-		public float buildTime;
+		//public float buildTime;
 		// Use this for initialization
 		void Start () {
 			mySelect = GetComponent<Selected> ();

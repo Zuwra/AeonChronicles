@@ -11,7 +11,6 @@ public class BuildStructure:  UnitProduction {
 	private UnitManager myManager;
 	private RaceManager racer;
 
-	public float buildTime;
 
 	private bool Morphing = false;
 	private HealthDisplay HD;
@@ -33,7 +32,7 @@ public class BuildStructure:  UnitProduction {
 		myManager = this.gameObject.GetComponent<UnitManager> ();
 		//myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
-		myCost.cooldown = buildTime;
+	//	myCost.cooldown = buildTime;
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ();
 		HD = GetComponentInChildren<HealthDisplay>();
 	}
@@ -114,6 +113,7 @@ public class BuildStructure:  UnitProduction {
 
 		continueOrder order = new continueOrder();
 		if (Morphing) {
+			Debug.Log (" I am morphing");
 
 			order.nextUnitCast = true;
 			order.canCast = false;
@@ -121,13 +121,15 @@ public class BuildStructure:  UnitProduction {
 		}
 
 		if (!myCost.canActivate (this, order,showError)) {
+			Debug.Log ("My cost is srong");
 			order.canCast = false;
 		}
 		if (!active) {
 			order.reasonList.Add (continueOrder.reason.requirement);
 		}
-
-		order.nextUnitCast = false;
+		if (order.canCast) {
+			order.nextUnitCast = false;
+		}
 		return order;
 	}
 

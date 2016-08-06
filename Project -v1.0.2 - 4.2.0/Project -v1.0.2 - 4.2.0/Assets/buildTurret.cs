@@ -8,7 +8,7 @@ public class buildTurret :UnitProduction{
 	public UnitManager manager;
 
 
-	public float buildTime;
+
 	protected RaceManager racer;
 	protected float timer =0;
 	protected bool buildingUnit = false;

@@ -56,15 +56,17 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			} else {
 				resourceTwo.text = "";
 			}
-
-			if (raceManager.currentSupply < raceManager.supplyMax - 5 || raceManager.supplyMax == raceManager.supplyCap) {
+			if (raceManager.supplyMax >= raceManager.supplyCap) {
+				supply.color = Color.cyan;
+			}
+			else if (raceManager.currentSupply < Mathf.Min(raceManager.supplyMax, raceManager.supplyCap) - 5  ) {
 				supply.color = Color.green;
-			} else if (raceManager.currentSupply >= raceManager.supplyMax) {
+			} else if (raceManager.currentSupply >=  Mathf.Min(raceManager.supplyMax, raceManager.supplyCap) ) {
 				supply.color = Color.red;
 			} else {
 				supply.color = Color.yellow;
 			}
-			supply.text = raceManager.currentSupply + "/" + raceManager.supplyMax;
+			supply.text = raceManager.currentSupply + "/" +  Mathf.Min(raceManager.supplyMax, raceManager.supplyCap);
 			currentProdManager = dropdowns [1];
 			chanageDropDown ();
 		}
@@ -186,7 +188,11 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	
 	
 	public void updateSupply( float current, float max){
-		if (current < max - 5||  raceManager.supplyMax == raceManager.supplyCap) {
+		if (raceManager.supplyMax >= raceManager.supplyCap) {
+			supply.color = Color.cyan;
+		}
+
+		else if (current < max - 5) {
 			supply.color = Color.green;
 		} else if (current >= max - 1) {
 			supply.color = Color.red;

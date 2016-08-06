@@ -9,11 +9,16 @@ public class PlaceBuildingState :UnitState {
 
 
 	private bool Follow;
+	GameObject myGhost;
+	BuildingPlacer myPlacer;
 
+	bool waiting;
 
-	public PlaceBuildingState(Vector3 loc, Ability abil)
+	public PlaceBuildingState(GameObject ghost,Vector3 loc, Ability abil)
 	{
-
+		myGhost = ghost;
+		Debug.Log ("Has place " + myGhost);
+		myPlacer = myGhost.GetComponentInChildren<BuildingPlacer> ();
 		location = loc;
 		myAbility = abil;
 		myAbility.myCost.payCost ();
@@ -22,6 +27,9 @@ public class PlaceBuildingState :UnitState {
 
 	public void cancel()
 	{
+		
+		UIManager.main.DestroyGhost (myGhost);
+
 		myAbility.myCost.refundCost ();
 	}
 
@@ -35,26 +43,52 @@ public class PlaceBuildingState :UnitState {
 	public void Update () {
 
 
+		if (!waiting) {
 			if (myManager.cMover.move ()) {
-			Vector3 endSpot = location;
-			location.y += 5;
-			if (myManager.cMover is airmover) {
-				endSpot.y += ((airmover)myManager.cMover).flyerHeight;
-			}
+				waiting = true;
+				Vector3 endSpot = location;
+				location.y += 5;
+				if (myManager.cMover is airmover) {
+					endSpot.y += ((airmover)myManager.cMover).flyerHeight;
+				}
 
-			myManager.gameObject.transform.position = endSpot;
+				myManager.gameObject.transform.position = endSpot;
 
 
-			//	Debug.Log ("Activating");
-
-			if (myAbility is BuildStructure) {
-				((BuildStructure)myAbility).setBuildSpot (location);
-			}
-				myAbility.Activate ();
-
+				if (myPlacer.canBuild ()) {
+					if (myAbility is BuildStructure) {
+						((BuildStructure)myAbility).setBuildSpot (location);
+					}
+					myAbility.Activate ();
+					UIManager.main.DestroyGhost (myGhost);
 	
+				} else {
+
+					myManager.StartCoroutine (waitToCheck (myPlacer, location, myAbility));
+
+			
+				}
 			}
 
+		}
+
+	}
+
+	IEnumerator waitToCheck( BuildingPlacer placer, Vector3 loc, Ability ab)
+	{
+		while (true) {
+			yield return new WaitForSeconds (1.5f);
+			Debug.Log ("Checking");
+			if (placer.canBuild ()) {
+				if (myAbility is BuildStructure) {
+					((BuildStructure)myAbility).setBuildSpot (loc);
+				}
+				ab.Activate ();
+
+				UIManager.main.DestroyGhost (myGhost);
+				break;
+			}
+		}
 
 
 	}

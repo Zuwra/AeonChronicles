@@ -4,7 +4,7 @@ using System.Collections;
 public abstract class UnitProduction: Ability {
 
 	public GameObject unitToBuild;
-
+	public float buildTime;
 	public abstract float getProgress ();
 
 

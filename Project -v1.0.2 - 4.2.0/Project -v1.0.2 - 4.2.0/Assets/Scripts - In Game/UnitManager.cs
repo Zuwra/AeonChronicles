@@ -178,7 +178,7 @@ public class UnitManager : Unit,IOrderable{
 						//Debug.Log ("The target is " + obj);
 						changeState (new AbilityFollowState (obj, loc, (TargetAbility)abilityList [n]));
 					} else if (abilityList [n] is Morph || abilityList [n] is BuildStructure) {
-						changeState (new PlaceBuildingState (loc, abilityList [n]));
+						changeState (new PlaceBuildingState (obj,loc, abilityList [n]));
 					}
 
 				}
@@ -366,6 +366,8 @@ public class UnitManager : Unit,IOrderable{
 		//Debug.Log ("new " + nextState);
 		
 		if (Input.GetKey (KeyCode.LeftShift) && (!(nextState is DefaultState) && (queuedStates.Count > 0 || !(myState is DefaultState)))) {
+
+			//Debug.Log ("Queing " + nextState);
 			queuedStates.Enqueue (nextState);
 
 			return;
@@ -397,11 +399,20 @@ public class UnitManager : Unit,IOrderable{
 			}
 
 	
-		else if (nextState is AttackMoveState) {
+		else if (nextState is AttackMoveState ) {
 			((AttackMoveState)nextState).setHome (this.gameObject.transform.position);
 		}
 			
-			nextState.myManager = this;
+
+		nextState.myManager = this;
+	
+		foreach (UnitState s in queuedStates) {
+
+			if (s is PlaceBuildingState) {
+				//Debug.Log ("Cenceling");
+				((PlaceBuildingState)s).cancel ();
+			}
+		}
 			queuedStates.Clear ();
 
 
@@ -413,12 +424,29 @@ public class UnitManager : Unit,IOrderable{
 			myState.endState ();
 		}
 
+
+
 		myState =interactor.computeState (nextState);
 			myState.initialize ();
 	
 		checkIdleWorker ();
 
 	}
+
+
+	public void cancel()
+	{
+		//Debug.Log ("Here somehow");
+		foreach (UnitState s in queuedStates) {
+
+			if (s is PlaceBuildingState) {
+
+				((PlaceBuildingState)s).cancel ();
+			}
+		}
+		queuedStates.Clear ();
+	}
+
 
 	public void animMove()
 	{if (myAnim) {

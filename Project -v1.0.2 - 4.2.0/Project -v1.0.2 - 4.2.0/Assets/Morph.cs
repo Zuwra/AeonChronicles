@@ -13,7 +13,7 @@ public class Morph :  UnitProduction {
 	private UnitManager myManager;
 	private RaceManager racer;
 
-	public float buildTime;
+	//public float buildTime;
 	private float timer =0;
 	private bool Morphing = false;
 	private HealthDisplay HD;

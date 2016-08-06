@@ -63,10 +63,10 @@ public class StatsUI : MonoBehaviour {
 				}
 			}
 		} 
-		if (number > 5) {
-			ThreeText.text = "\n# " + number;
+		if (number > 4) {
+			ThreeText.text = "( " + number + " )";
 		} else {
-			ThreeText.text = "\n";
+			ThreeText.text = "";
 		}
 
 	}
