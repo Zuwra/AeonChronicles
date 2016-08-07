@@ -51,7 +51,7 @@ public class UnitManager : Unit,IOrderable{
 
 	new void Awake()
 	{
-
+		
 		if(interactor == null)
 		{
 			interactor = (Iinteract)gameObject.GetComponent(typeof(Iinteract));

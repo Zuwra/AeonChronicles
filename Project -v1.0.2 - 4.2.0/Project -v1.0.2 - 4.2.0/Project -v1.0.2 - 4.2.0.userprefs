@@ -1,16 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AstarPathfindingProject\Modifiers\FunnelModifier.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FullExposition.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="256" Column="2" />
+      <File FileName="Assets\FullExposition.cs" Line="125" Column="38" />
       <File FileName="Assets\AstarPathfindingProject\RVO\RVOController.cs" Line="1" Column="1" />
       <File FileName="Assets\AstarPathfindingProject\ExampleScenes\Example11_RVO\RVOExampleAgent.cs" Line="1" Column="1" />
       <File FileName="Assets\AstarPathfindingProject\Core\AI\Seeker.cs" Line="1" Column="1" />
       <File FileName="Assets\CustomRVO.cs" Line="1" Column="1" />
-      <File FileName="Assets\AstarPathfindingProject\Modifiers\FunnelModifier.cs" Line="1" Column="1" />
-      <File FileName="Assets\CinematicCamera.cs" Line="1" Column="1" />
-      <File FileName="Assets\AstarPathfindingProject\Core\AstarPath.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="57" Column="27" />
+      <File FileName="Assets\CinematicCamera.cs" Line="5" Column="49" />
+      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="247" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

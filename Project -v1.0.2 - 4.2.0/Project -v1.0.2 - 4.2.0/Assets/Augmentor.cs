@@ -78,7 +78,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 		OreDispenser OD = target.GetComponent<OreDispenser> ();
 		if (OD) {
-			OD.returnRate = 1.2f;
+			OD.returnRate = 1.3f;
 		}
 
 		else if (target.GetComponent<UnitManager> ().UnitName == "Construction Yard") {

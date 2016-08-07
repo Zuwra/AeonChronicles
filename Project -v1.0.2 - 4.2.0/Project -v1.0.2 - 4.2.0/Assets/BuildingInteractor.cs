@@ -16,6 +16,9 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	private GameObject sourceObj;
 	public Animator myAnim;
 
+	private float buildTime;
+	// Last time someone did a construction action, for animation tracking
+	private float lastBuildInput;
 	// Use this for initialization
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
@@ -27,6 +30,10 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 			if (myAnim) {
 				myAnim.SetInteger ("State", 1);
 			}
+
+		}
+		if (!myAnim) {
+			myAnim = GetComponentInChildren<Animator> ();
 		}
 
 	}
@@ -40,10 +47,10 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	}
 
 
-	public void startConstruction(GameObject obj)
+	public void startConstruction(GameObject obj, float buildtime)
 	{sourceObj = obj;
 		doneConstruction = false;
-
+		buildTime = buildtime;
 
 		foreach (Ability ab in  GetComponent<UnitManager>().abilityList) {
 			ab.active = false;
@@ -63,6 +70,12 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	{
 		if (doneConstruction) {
 			return 1;}
+
+		if (myAnim) {
+			lastBuildInput = Time.time;
+			myAnim.speed = 1;
+			StartCoroutine (checkBuildAnim ());
+		}
 		
 		underConstruction += m;
 		myManager.myStats.heal (myManager.myStats.Maxhealth * m);
@@ -86,6 +99,15 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 		return underConstruction;
 	}
 
+
+	IEnumerator checkBuildAnim()
+	{
+		yield return new WaitForSeconds (1.5f);
+		if (lastBuildInput < Time.time - 1.5) {
+			myAnim.speed = 0;
+		}
+
+	}
 
 	public void computeInteractions (Order order)
 	{

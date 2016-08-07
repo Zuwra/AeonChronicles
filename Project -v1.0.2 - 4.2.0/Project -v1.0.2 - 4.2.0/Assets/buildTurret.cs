@@ -54,6 +54,7 @@ public class buildTurret :UnitProduction{
 				buildingUnit = false;
 				buildMan.unitFinished (this);
 				racer.stopBuildingUnit (this);
+
 				foreach (Transform obj in this.transform) {
 
 					obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
@@ -67,6 +68,8 @@ public class buildTurret :UnitProduction{
 		if(autocast){
 			if ( myTurretType ==  turretType.one) { 
 				if (turretMounts.Count > 0) {
+
+					turretMounts.RemoveAll (item => item == null);
 					foreach (TurretMount obj in turretMounts) {
 						if (chargeCount == 0) {
 							return;
@@ -99,6 +102,7 @@ public class buildTurret :UnitProduction{
 			} else {
 
 				if (turretTwoMounts.Count > 0) {
+					turretMounts.RemoveAll (item => item == null);
 					foreach (TurretMountTwo obj in turretTwoMounts) {
 						if (chargeCount == 0) {
 							return;
@@ -163,7 +167,7 @@ public class buildTurret :UnitProduction{
 
 			if (manage.PlayerOwner == manager.PlayerOwner) {
 			if ( myTurretType ==  turretType.one) {
-
+				turretMounts.RemoveAll (item => item == null);
 				foreach (TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ()) {
 					if (mount) {
 		
@@ -171,6 +175,7 @@ public class buildTurret :UnitProduction{
 					}
 				}
 			} else {
+				turretMounts.RemoveAll (item => item == null);
 				foreach (TurretMountTwo mount in other.gameObject.GetComponentsInChildren<TurretMountTwo> ()) {
 					if (mount) {
 

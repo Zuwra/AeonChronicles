@@ -29,7 +29,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	// Use this for initialization
 	void Start () {
 
-
+		GameMenu.main.addDisableScript (this);
 		if (raceManager == null) {
 
 			raceManager = GameManager.main.activePlayer;

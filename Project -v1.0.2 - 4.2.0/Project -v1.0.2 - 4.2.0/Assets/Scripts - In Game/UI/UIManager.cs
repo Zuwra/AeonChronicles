@@ -72,7 +72,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 	// Use this for initialization
 	void Start () 
-	{fog = GameObject.FindObjectOfType<FogOfWar> ();
+	{	GameMenu.main.addDisableScript (this);
+
+		fog = GameObject.FindObjectOfType<FogOfWar> ();
 		//Resolve interface variables
 		m_SelectedManager =  GameObject.FindObjectOfType<SelectedManager>();
 		m_Camera = GameObject.FindObjectOfType<MainCamera> (); //ManagerResolver.Resolve<ICamera>();	

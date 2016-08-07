@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 
 public class GameMenu : MonoBehaviour {
@@ -25,16 +26,27 @@ public class GameMenu : MonoBehaviour {
 	public Canvas soundMenu;
 	public Canvas gameplayMenu;
 	public Canvas graphicsMenu;
-	public Canvas Objectives;
-	public Canvas Victory;
+
 	public Canvas missionLog;
 	public Canvas otherHotkeys;
 
 	private Canvas currentMenu;
 
 	private UIManager uimanage;
+
+	//to be deactivated when the game is paused to halt their inputs.
+	private List<MonoBehaviour> disableScripts = new List<MonoBehaviour>();
+
+	public static GameMenu main;
+
+	void Awake()
+	{
+		main = this;
+	}
+
 	// Use this for initialization
 	void Start () {
+		
 		uimanage = (UIManager)FindObjectOfType<UIManager>();
 	
 	}
@@ -48,6 +60,11 @@ public class GameMenu : MonoBehaviour {
 			CursorManager.main.normalMode ();
 		}
 
+	}
+
+	public void addDisableScript(MonoBehaviour m)
+	{
+		disableScripts.Add (m);
 	}
 
 
@@ -103,6 +120,10 @@ public class GameMenu : MonoBehaviour {
 		ispaused = true;
 
 			Time.timeScale = 0;
+		foreach (MonoBehaviour m in disableScripts) {
+			m.enabled = false;
+		}
+
 		
 	}
 
@@ -112,7 +133,9 @@ public class GameMenu : MonoBehaviour {
 		ispaused = false;
 	
 			Time.timeScale = 1;
-
+		foreach (MonoBehaviour m in disableScripts) {
+			m.enabled = true;
+		}
 	}
 
 	public void openSoundMenu()
@@ -139,9 +162,7 @@ public class GameMenu : MonoBehaviour {
 		setMenu (graphicsMenu);
 	}
 
-	public void openObjectives()
-	{setMenu (Objectives);
-	}
+
 
 	public void opeMissionLog(){
 		setMenu (missionLog);

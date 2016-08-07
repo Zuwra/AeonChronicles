@@ -62,11 +62,11 @@ public class AbstractCost : MonoBehaviour {
 		{
 		bool result = true;
 		if (!ab.active) {
-			Debug.Log ("Not active");
+		//	Debug.Log ("Not active");
 			result =  false;}
 
 		if (myGame == null) {
-			Debug.Log ("Totally null");
+		//	Debug.Log ("Totally null");
 		}
 		if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
 
@@ -83,7 +83,7 @@ public class AbstractCost : MonoBehaviour {
 				order.reasonList.Add (continueOrder.reason.resourceTwo);
 			}
 			order.nextUnitCast = false;
-			Debug.Log ("Not enough money");
+		//	Debug.Log ("Not enough money");
 			//GameObject.FindGameObjectWithTag ("Error").GetComponent<ErrorPrompt> ().showError ("Not Enough Resources");
 			result =  false;
 			}
@@ -104,7 +104,7 @@ public class AbstractCost : MonoBehaviour {
 
 	
 		if (cooldown > 0 && cooldownTimer > 0) {
-			Debug.Log ("Cooldown is wrong");
+		//	Debug.Log ("Cooldown is wrong");
 			order.reasonList.Add (continueOrder.reason.cooldown);
 			result = false;
 			if (showError) {

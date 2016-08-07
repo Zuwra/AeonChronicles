@@ -8,19 +8,19 @@ public class MissileArmer :Ability{
 
 	public bool missiles;
 	public bool nitro;
-	public bool repairs;
+
 	public bool shields;
 	public float shieldRate;
 	public GameObject shieldglobe;
 	public GameObject OverchargeBoost;
 
 	public List<missileSalvo> missileList = new List<missileSalvo> ();
-	public List<repairReturn> repairList = new List<repairReturn>();
+
 	public List<StimPack> stimList = new List<StimPack>();
 	public List<DayexaShield> shieldList = new List<DayexaShield> ();
 
 	private float nextActionTime;
-	private int changeNum =0;
+
 
 
 	// Use this for initialization
@@ -40,26 +40,15 @@ public class MissileArmer :Ability{
 		if (nextActionTime < Time.time) {
 			nextActionTime = Time.time + 1;
 
-			changeNum = 0;
 			if (missiles) {
 				foreach (missileSalvo salv in missileList) {
 					if (salv.chargeCount < salv.maxRockets) {
 						salv.chargeCount++;
-						changeNum++;
+				
 					}
 				}
 			}
-			if (repairs) {
-				foreach (repairReturn rep in repairList) {
-					if (rep.chargeCount < rep.maxRepair) {
-						rep.chargeCount += 100;
-						if (rep.chargeCount < rep.maxRepair) {
-							rep.chargeCount = rep.maxRepair;
-							changeNum++;
-						}
-					}
-				}
-			}
+	
 			if (nitro) {
 				foreach (StimPack stim in stimList) {
 					if (stim.chargeCount < 3) {
@@ -69,7 +58,6 @@ public class MissileArmer :Ability{
 							obj.GetComponent<ShieldGlobe> ().isOverCharge = true;
 						}
 				
-						changeNum++;
 
 					}
 				}
@@ -91,9 +79,7 @@ public class MissileArmer :Ability{
 				}
 			}
 
-			if (changeNum > 0) {
-				RaceManager.upDateUI ();
-			}
+		
 		}
 
 
@@ -124,19 +110,14 @@ public class MissileArmer :Ability{
 		if (manage.PlayerOwner == manager.PlayerOwner) {
 
 			if (missiles) {
+				
 				missileSalvo salvo = other.gameObject.GetComponent<missileSalvo> ();
-				if (salvo)
+				if (salvo) {
 					missileList.Remove (salvo);
+				}
 			
 			}	
 
-			if (repairs) {
-				repairReturn repair = other.gameObject.GetComponent<repairReturn> ();
-				if (repair) {
-					repairList.Remove (repair);
-				}
-
-			}
 
 			if (nitro) {
 
@@ -181,24 +162,19 @@ public class MissileArmer :Ability{
 
 				//Debug.Log ("Adding missile " + other.gameObject);
 				missileSalvo salvo = other.gameObject.GetComponent<missileSalvo> ();
-				if(salvo)
-				missileList.Add (salvo);
+				if (salvo) {
+					missileList.Add (salvo);
+				}
 			}	
 
-			if (repairs) {
-
-				//Debug.Log ("Adding Repair " + other.gameObject);
-				repairReturn repair = other.gameObject.GetComponent<repairReturn> ();
-				if(repair)
-				repairList.Add (repair);
-			}
 
 			if (nitro) {
 
 				//Debug.Log ("Adding Nitro " + other.gameObject);
 				StimPack stim = other.gameObject.GetComponent<StimPack> ();
-				if(stim)
-				stimList.Add (stim);
+				if (stim) {
+					stimList.Add (stim);
+				}
 
 
 			}

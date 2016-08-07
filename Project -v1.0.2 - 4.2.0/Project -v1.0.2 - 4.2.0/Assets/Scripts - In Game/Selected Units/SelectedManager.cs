@@ -41,7 +41,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	private int soundIndex;
  
     void Start()
-	{uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
+	{
+		GameMenu.main.addDisableScript (this);
+		uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
         abilityManager = GameObject.Find("GameHud").GetComponent<UiAbilityManager>();
         raceMan = GameObject.Find("GameRaceManager").GetComponent<GameManager>().activePlayer;
 		main = this;

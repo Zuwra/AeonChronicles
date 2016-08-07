@@ -7,7 +7,7 @@ public class airmover : IMover {
 	private Vector3 targetPosition;
 	private CharacterController controller;
 	//The calculated path
-
+	public float turnSpeed;
 	//The AI's speed per second
 
 	//The max distance from the AI to a waypoint for it to continue to the next waypoint
@@ -77,7 +77,10 @@ public class airmover : IMover {
 		if (myFogger) {
 			myFogger.move ();
 			}
-
+		Vector3 turnAmount = targetPosition - transform.position;
+		turnAmount.y = 0;
+	
+		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(turnAmount), Time.deltaTime * turnSpeed *  0.2f);
 		return false;
 	}
 
@@ -88,7 +91,7 @@ public class airmover : IMover {
 
 		Vector3 destination = new Vector3(location.x, this.gameObject.transform.position.y, location.z);
 		GetComponent<UnitManager> ().animMove ();
-		this.gameObject.transform.LookAt(destination);
+		//this.gameObject.transform.LookAt(destination);
 
 		destination.y = location.y + flyerHeight;
 		workingframe = false;

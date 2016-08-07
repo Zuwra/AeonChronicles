@@ -54,6 +54,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		GameMenu.main.addDisableScript (this);
 		nextActionTime = Time.time;
 		selectMan = GameObject.FindObjectOfType<SelectedManager> ();
 	}

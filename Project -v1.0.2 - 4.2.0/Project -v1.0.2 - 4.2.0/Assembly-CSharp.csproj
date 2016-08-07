@@ -243,6 +243,7 @@
      <Compile Include="Assets\FogOfWar\Test\FogOfWarTestGUI.cs" />
      <Compile Include="Assets\FogOfWar\Vector2i.cs" />
      <Compile Include="Assets\FrontalShield.cs" />
+     <Compile Include="Assets\FullExposition.cs" />
      <Compile Include="Assets\FusionWeld.cs" />
      <Compile Include="Assets\GameMenu.cs" />
      <Compile Include="Assets\GamePlayMenu.cs" />

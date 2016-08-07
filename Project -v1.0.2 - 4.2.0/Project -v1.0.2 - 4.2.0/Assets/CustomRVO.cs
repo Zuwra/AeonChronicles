@@ -72,7 +72,7 @@ public class CustomRVO : IMover {
 
 	//	Debug.Log ("Resetting to " + target);
 		this.target = target;
-		currentWaypoint = 4;
+		currentWaypoint = 3;
 		RecalculatePath();
 		GetComponent<UnitManager> ().animMove ();
 	}
@@ -83,7 +83,7 @@ public class CustomRVO : IMover {
 		pathSet = true;
 		canSearchAgain = false;
 		nextRepath = Time.time+repathRate*(Random.value+0.5f);
-		currentWaypoint = 4;
+		currentWaypoint = 3;
 		seeker.StartPath(transform.position, target, OnPathComplete);
 	//	Debug.Log ("Recalculating");
 	}
