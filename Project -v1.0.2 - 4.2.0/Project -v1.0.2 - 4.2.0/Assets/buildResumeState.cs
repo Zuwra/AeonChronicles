@@ -44,8 +44,21 @@ public class buildResumeState : UnitState{
 	override
 	public void Update () {
 
+		if (Vector3.Distance (myManager.transform.position, location) > 23) {
+			if (myManager.cMover.move ()) {
+				Vector3 endSpot = location;
+				location.y += 5;
+				if (myManager.cMover is airmover) {
+					endSpot.y += ((airmover)myManager.cMover).flyerHeight;
+				}
 
-		if (myManager.cMover.move ()) {
+				myManager.gameObject.transform.position = endSpot;
+				myAbility.resumeBuilding (destination);
+
+
+
+			}
+		} else {
 			Vector3 endSpot = location;
 			location.y += 5;
 			if (myManager.cMover is airmover) {
@@ -54,8 +67,6 @@ public class buildResumeState : UnitState{
 
 			myManager.gameObject.transform.position = endSpot;
 			myAbility.resumeBuilding (destination);
-
-
 
 		}
 

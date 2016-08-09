@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class LevelData  {
 
-	public static int currentLevel =0;
+	public static int currentLevel =1;
 	public static int totalXP = 10;
 
 	public static List<levelInfo> myLevels;
-	public static bool easyMode = true;
+	public static bool easyMode = false;
 	public static bool ComingFromLevel;
 
 	public static List<VeteranStats> myVets;

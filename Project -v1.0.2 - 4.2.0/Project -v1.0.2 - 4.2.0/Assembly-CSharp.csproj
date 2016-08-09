@@ -214,6 +214,7 @@
      <Compile Include="Assets\CinematicCamera.cs" />
      <Compile Include="Assets\ClickableButton.cs" />
      <Compile Include="Assets\Clock.cs" />
+     <Compile Include="Assets\CloseScene.cs" />
      <Compile Include="Assets\Coagulate.cs" />
      <Compile Include="Assets\CoagulateAura.cs" />
      <Compile Include="Assets\ConcussiveUpgrade.cs" />

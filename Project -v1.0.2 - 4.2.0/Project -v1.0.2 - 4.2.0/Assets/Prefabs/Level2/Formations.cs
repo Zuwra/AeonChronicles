@@ -14,7 +14,7 @@ public class Formations{
 		} else if (count == 2) {
 
 			for (int n = 0; n < 2; n++) {
-				toReturn.Add (Even [n]* 3);
+				toReturn.Add (Even [n]);
 			}
 
 		}
@@ -26,18 +26,18 @@ public class Formations{
 				int remainder = count / 2;
 				for (int n = 0; n < remainder; n++) {
 					if (remainder % 2 == 1) {
-						toReturn.Add ((Odd [n] - Vector3.forward * 2.5f) * 3);
+						toReturn.Add ((Odd [n] - Vector3.forward * 7.5f) );
 					} else {
-						toReturn.Add ((Even [n] - Vector3.forward * 2.5f) * 3);
+						toReturn.Add ((Even [n] - Vector3.forward * 7.5f) );
 					}
 				}
 
 				int RemainB = (count - remainder);
 				for (int n = 0; n < RemainB; n++) {
 					if (RemainB % 2 == 1) {
-						toReturn.Add ((Odd [n] + Vector3.forward * 2.5f) * 3);
+						toReturn.Add ((Odd [n] + Vector3.forward * 7.5f) );
 					} else {
-						toReturn.Add ((Even [n] + Vector3.forward * 2.5f) * 3);
+						toReturn.Add ((Even [n] + Vector3.forward * 7.5f) );
 					}
 				}
 				//Three rows
@@ -46,27 +46,27 @@ public class Formations{
 				int remainder = count / 3;
 				for (int n = 0; n < remainder; n++) {
 					if (remainder % 2 == 1) {
-						toReturn.Add ((Odd [n] - Vector3.forward * 5) * 3);
+						toReturn.Add ((Odd [n] - Vector3.forward *15) );
 					} else {
-						toReturn.Add ((Even [n] - Vector3.forward * 5) * 3);
+						toReturn.Add ((Even [n] - Vector3.forward * 15) );
 					}
 				}
 
 				int RemainB = (count - remainder) / 2;
 				for (int n = 0; n < RemainB; n++) {
 					if (RemainB % 2 == 1) {
-						toReturn.Add ((Odd [n] ) * 3);
+						toReturn.Add ((Odd [n] ) );
 					} else {
-						toReturn.Add ((Even [n] ) * 3);
+						toReturn.Add ((Even [n] ) );
 					}
 				}
 
 				int RemainC= (count  - RemainB - remainder);
 				for (int n = 0; n < RemainC; n++) {
 					if (RemainC % 2 == 1) {
-						toReturn.Add ((Odd [n] + Vector3.forward * 5) * 3);
+						toReturn.Add ((Odd [n] + Vector3.forward * 15) );
 					} else {
-						toReturn.Add ((Even [n] + Vector3.forward * 5) * 3);
+						toReturn.Add ((Even [n] + Vector3.forward * 15) );
 					}
 				}
 
@@ -80,58 +80,58 @@ public class Formations{
 	}
 
 	private static List<Vector3> Even = new List<Vector3> () {	
-		new Vector3(-2.5f, 0, 0),
-		new Vector3 (2.5f, 0, 0), 
-		new Vector3(-7.5f,0,0),
+		new Vector3(-7.5f, 0, 0),
 		new Vector3 (7.5f, 0, 0), 
-		new Vector3 (-12.5f, 0, 0), 
-		new Vector3 (12.5f, 0, 0), 
-		new Vector3 (-17.5f, 0, 0), 
-		new Vector3 (17.5f, 0, 0), 
-		new Vector3 (-22.5f, 0, 0), 
+		new Vector3(-22.5f,0,0),
 		new Vector3 (22.5f, 0, 0), 
-		new Vector3 (-27.5f, 0, 0), 
-		new Vector3 (27.5f, 0, 0), 
-		new Vector3 (-32.5f, 0, 0), 
-		new Vector3 (32.5f, 0, 0), 
 		new Vector3 (-37.5f, 0, 0), 
 		new Vector3 (37.5f, 0, 0), 
-		new Vector3 (-42.5f, 0, 0), 
-		new Vector3 (42.5f, 0, 0),
-		new Vector3 (-47.5f, 0, 0), 
-		new Vector3 (47.5f, 0, 0),
 		new Vector3 (-52.5f, 0, 0), 
-		new Vector3 (52.5f, 0, 0),
-		new Vector3 (-57.5f, 0, 0), 
-		new Vector3 (57.5f, 0, 0)
+		new Vector3 (52.5f, 0, 0), 
+		new Vector3 (-67.5f, 0, 0), 
+		new Vector3 (67.5f, 0, 0), 
+		new Vector3 (-82.5f, 0, 0), 
+		new Vector3 (82.5f, 0, 0), 
+		new Vector3 (-96.5f, 0, 0), 
+		new Vector3 (96.5f, 0, 0), 
+		new Vector3 (-111.5f, 0, 0), 
+		new Vector3 (111.5f, 0, 0), 
+		new Vector3 (-127.5f, 0, 0), 
+		new Vector3 (127.5f, 0, 0),
+		new Vector3 (-142.5f, 0, 0), 
+		new Vector3 (142.5f, 0, 0),
+		new Vector3 (-157.5f, 0, 0), 
+		new Vector3 (157.5f, 0, 0),
+		new Vector3 (-172.5f, 0, 0), 
+		new Vector3 (172.5f, 0, 0)
 
 		};
 
 	private static List<Vector3> Odd = new List<Vector3> () {	
 		new Vector3(0, 0, 0),
-		new Vector3 (5, 0, 0), 
-		new Vector3(-5,0,0),
-		new Vector3 (10, 0, 0), 
-		new Vector3 (-10, 0, 0), 
 		new Vector3 (15, 0, 0), 
-		new Vector3 (-15, 0, 0), 
-		new Vector3 (20, 0, 0), 
-		new Vector3 (-20, 0, 0), 
-		new Vector3 (25, 0, 0), 
-		new Vector3 (-25, 0, 0), 
+		new Vector3(-15,0,0),
 		new Vector3 (30, 0, 0), 
 		new Vector3 (-30, 0, 0), 
-		new Vector3 (35, 0, 0), 
-		new Vector3 (-35, 0, 0), 
-		new Vector3 (40, 0, 0), 
-		new Vector3 (-40, 0, 0), 
-		new Vector3 (45, 0, 0),
+		new Vector3 (45, 0, 0), 
 		new Vector3 (-45, 0, 0), 
-		new Vector3 (50, 0, 0),
-		new Vector3 (-50, 0, 0), 
-		new Vector3 (55, 0, 0),
-		new Vector3 (-55, 0, 0), 
-		new Vector3 (60, 0, 0)
+		new Vector3 (60, 0, 0), 
+		new Vector3 (-60, 0, 0), 
+		new Vector3 (75, 0, 0), 
+		new Vector3 (-75, 0, 0), 
+		new Vector3 (90, 0, 0), 
+		new Vector3 (-90, 0, 0), 
+		new Vector3 (105, 0, 0), 
+		new Vector3 (-105, 0, 0), 
+		new Vector3 (120, 0, 0), 
+		new Vector3 (-120, 0, 0), 
+		new Vector3 (135, 0, 0),
+		new Vector3 (-135, 0, 0), 
+		new Vector3 (150, 0, 0),
+		new Vector3 (-150, 0, 0), 
+		new Vector3 (165, 0, 0),
+		new Vector3 (-165, 0, 0), 
+		new Vector3 (180, 0, 0)
 
 	};
 		

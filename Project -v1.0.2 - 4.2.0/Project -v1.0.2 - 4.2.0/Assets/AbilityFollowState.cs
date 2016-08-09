@@ -14,7 +14,7 @@ public class AbilityFollowState  : UnitState {
 
 
 	public AbilityFollowState(GameObject unit, Vector3 loc, TargetAbility abil)
-	{Debug.Log ("New ABility follow");
+	{//Debug.Log ("New ABility follow");
 		location = loc;
 		myAbility = abil;
 		abil.target = unit;

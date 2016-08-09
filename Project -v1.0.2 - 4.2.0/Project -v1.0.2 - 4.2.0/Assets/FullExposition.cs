@@ -28,6 +28,7 @@ public class FullExposition : SceneEventTrigger {
 
 	private float nextDialogue;
 	private bool hasNextDialogue;
+	public bool openOnStart;
 
 
 	[System.Serializable]
@@ -60,9 +61,14 @@ public class FullExposition : SceneEventTrigger {
 		myText = GetComponentInChildren<Text> ();
 		instance = this;
 		myCanvas = GetComponent<Canvas> ();
-		myCanvas.enabled = false;
+	
 		myAudio = GetComponent<AudioSource> ();
-
+		if (openOnStart) {
+			myCanvas.enabled = true;
+			trigger(0, 0, Vector3.zero, null, false);
+		} else {
+			myCanvas.enabled = false;
+		}
 
 
 	}
@@ -104,8 +110,10 @@ public class FullExposition : SceneEventTrigger {
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 		
-		Debug.Log ("Index is " + index);
-		MainCamera.main.DisableScrolling ();
+		//Debug.Log ("Index is " + index);
+		if (MainCamera.main) {
+			MainCamera.main.DisableScrolling ();
+		}
 	
 		currentScene = index;
 		shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration;
@@ -122,8 +130,9 @@ public class FullExposition : SceneEventTrigger {
 		}
 		myCanvas.enabled = false;
 		currentScene = -1;
-		MainCamera.main.EnableScrolling ();
-	
+		if (MainCamera.main) {
+			MainCamera.main.EnableScrolling ();
+		}
 	
 	}
 
@@ -136,8 +145,9 @@ public class FullExposition : SceneEventTrigger {
 		myText.text = input;
 		myCanvas.enabled = true;
 		turnOffTime = Time.time + duration;
-		MissionLogger.instance.AddLog (input);
-
+		if (MissionLogger.instance) {
+			MissionLogger.instance.AddLog (input);
+		}
 	
 
 		if (pic) {

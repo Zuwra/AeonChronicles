@@ -118,6 +118,7 @@ public  class Projectile : MonoBehaviour {
 			gameObject.transform.LookAt (lastLocation);
 		}
 
+	
 		gameObject.transform.Translate (Vector3.forward* speed * Time.deltaTime *40);
 
 		currentDistance += speed * Time.deltaTime * 40;

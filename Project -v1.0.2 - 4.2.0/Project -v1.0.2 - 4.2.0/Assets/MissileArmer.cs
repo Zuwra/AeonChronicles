@@ -27,7 +27,7 @@ public class MissileArmer :Ability{
 	void Start () {
 
 		manager = GetComponent<UnitManager> ();
-		nextActionTime = Time.time + 1;
+		nextActionTime = Time.time + 1.7f;
 	}
 
 
@@ -38,9 +38,10 @@ public class MissileArmer :Ability{
 			return;}
 		
 		if (nextActionTime < Time.time) {
-			nextActionTime = Time.time + 1;
+			nextActionTime = Time.time + 1.7f;
 
 			if (missiles) {
+				missileList.RemoveAll (item => item == null);
 				foreach (missileSalvo salv in missileList) {
 					if (salv.chargeCount < salv.maxRockets) {
 						salv.chargeCount++;
@@ -50,6 +51,7 @@ public class MissileArmer :Ability{
 			}
 	
 			if (nitro) {
+				stimList.RemoveAll (item => item == null);
 				foreach (StimPack stim in stimList) {
 					if (stim.chargeCount < 3) {
 						GameObject obj = (GameObject)Instantiate (OverchargeBoost, this.transform.position, Quaternion.identity);
@@ -65,6 +67,7 @@ public class MissileArmer :Ability{
 
 			if (shields) {
 				if (shieldglobe) {
+					shieldList.RemoveAll (item => item == null);
 					foreach (DayexaShield ds in shieldList) {
 				
 						if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {

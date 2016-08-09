@@ -1,14 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FullExposition.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UiAbilityManager.cs">
     <Files>
-      <File FileName="Assets\FullExposition.cs" Line="125" Column="38" />
+      <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\CustomRVO.cs" Line="1" Column="1" />
       <File FileName="Assets\AstarPathfindingProject\RVO\RVOController.cs" Line="1" Column="1" />
       <File FileName="Assets\AstarPathfindingProject\ExampleScenes\Example11_RVO\RVOExampleAgent.cs" Line="1" Column="1" />
       <File FileName="Assets\AstarPathfindingProject\Core\AI\Seeker.cs" Line="1" Column="1" />
-      <File FileName="Assets\CustomRVO.cs" Line="1" Column="1" />
-      <File FileName="Assets\CinematicCamera.cs" Line="5" Column="49" />
-      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="247" Column="10" />
+      <File FileName="Assets\CloseScene.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelData.cs" Line="9" Column="2" />
+      <File FileName="Assets\DifficultyManager.cs" Line="42" Column="44" />
+      <File FileName="Assets\WaveSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="159" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

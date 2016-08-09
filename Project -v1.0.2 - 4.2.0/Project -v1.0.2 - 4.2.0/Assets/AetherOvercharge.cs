@@ -97,7 +97,7 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 
 	public void endSpell()
 	{
-		Debug.Log ("Ending spell");
+		//Debug.Log ("Ending spell");
 		GetComponent<DayexaShield> ().startRecharge ();
 
 		Destroy (AetherEffect);

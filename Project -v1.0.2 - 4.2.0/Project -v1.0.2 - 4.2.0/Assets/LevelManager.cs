@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class LevelManager : MonoBehaviour {
 
 	public List<GameObject> levelIntros = new List<GameObject> ();
+	public List<GameObject> Expositions = new List<GameObject> ();
 	public List<CampUpgradeManager> levelPresets = new List<CampUpgradeManager> ();
 
 	public GameObject currentIntro;
@@ -27,8 +28,13 @@ public class LevelManager : MonoBehaviour {
 			obj.SetActive (false);
 		}
 
+		foreach (GameObject ob in Expositions) {
+			ob.SetActive (false);
+		}
+
 		levelPresets [LevelData.currentLevel].enabled = true;
 
+		Expositions [LevelData.currentLevel].SetActive (true);
 		levelIntros [LevelData.currentLevel].SetActive (true);
 		currentIntro = levelIntros [LevelData.currentLevel];
 		currentTech = Vehicles;

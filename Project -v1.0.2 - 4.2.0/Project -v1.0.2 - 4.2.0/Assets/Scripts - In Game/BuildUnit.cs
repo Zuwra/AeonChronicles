@@ -90,8 +90,11 @@ public class BuildUnit : UnitProduction {
 			obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
 		}
 		//myCost.refundCost ();deq
-		Debug.Log("Canceling the build");
-		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply,null);
+
+		if (!buildMan.waitingOnSupply) {
+			Debug.Log("Canceling the build");
+			racer.UnitDied (unitToBuild.GetComponent<UnitStats> ().supply, null);
+		}
 		racer.stopBuildingUnit (this);
 	}
 
@@ -178,6 +181,7 @@ public class BuildUnit : UnitProduction {
 
 			//	Debug.Log ("Giving Rally Command");
 			}
+			timer = buildTime;
 		}
 
 		foreach (Transform obj in this.transform) {

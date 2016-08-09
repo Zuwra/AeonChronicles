@@ -17,8 +17,30 @@ public class ShieldGlobe : MonoBehaviour {
 
 		if (target) {
 		
-			this.gameObject.transform.Translate ((target.gameObject.transform.position - this.gameObject.transform.position).normalized * Time.deltaTime * speed);
-			if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 3) {
+			//this.gameObject.transform.Translate ((target.gameObject.transform.position - this.gameObject.transform.position).normalized);
+
+
+
+
+			Vector3 dir = (target.gameObject.transform.position -transform.position);
+
+			//Make sure your the right height above the terrain
+			RaycastHit objecthit;
+			Vector3 down = this.gameObject.transform.TransformDirection (Vector3.down);
+
+			if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
+				if (Vector3.Distance (this.gameObject.transform.position, objecthit.point) < 2.5f) {
+
+					dir.y -=   (this.gameObject.transform.position.y -(objecthit.point.y + 2.5f) ) *speed *3f;
+				}
+
+
+			}
+			dir.Normalize ();
+			dir *= speed * Time.deltaTime;
+			this.gameObject.transform.Translate (dir);
+
+			if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 7) {
 				if (!isOverCharge) {
 					target.GetComponent<UnitManager> ().myStats.changeEnergy (5);
 

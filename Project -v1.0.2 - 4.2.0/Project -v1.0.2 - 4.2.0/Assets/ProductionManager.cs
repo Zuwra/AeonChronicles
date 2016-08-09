@@ -89,20 +89,20 @@ public class ProductionManager : MonoBehaviour {
 
 	public void unitLost(UnitProduction produce)
 	{UnitManager manage = produce.GetComponent<UnitManager> ();
-
-		abilityList [manage.UnitName].Remove (produce);
-
-		if (abilityList [manage.UnitName].Count == 0) {
-			if (iconList.ContainsKey (manage.UnitName)) {
-				GameObject obj = iconList [manage.UnitName];
-				iconList.Remove (manage.UnitName);
-				Destroy (obj);
-				abilityList.Remove (manage.UnitName);
+		if (abilityList.ContainsKey (manage.UnitName)) {
+			abilityList [manage.UnitName].Remove (produce);
+		
+			if (abilityList [manage.UnitName].Count == 0) {
+				if (iconList.ContainsKey (manage.UnitName)) {
+					GameObject obj = iconList [manage.UnitName];
+					iconList.Remove (manage.UnitName);
+					Destroy (obj);
+					abilityList.Remove (manage.UnitName);
+				}
+			} else {
+				addNUmber (manage);
 			}
-		} else {
-			addNUmber (manage);
 		}
-
 	}
 
 

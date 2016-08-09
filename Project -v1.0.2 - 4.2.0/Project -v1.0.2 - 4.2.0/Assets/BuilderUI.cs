@@ -17,6 +17,8 @@ public class BuilderUI : MonoBehaviour {
 	public Sprite defaultImage;
 	private bool buildingStuff;
 	public Canvas HelpBox;
+
+	public Text moreSupply;
 	// Use this for initialization
 	void Start () {
 		nextActionTime = Time.time;
@@ -58,6 +60,16 @@ public class BuilderUI : MonoBehaviour {
 	
 	}
 
+	public void NoSupply ()
+	{
+		moreSupply.enabled = true;
+	}
+
+	public void hasSupply()
+	{
+		moreSupply.enabled = false;
+	}
+
 	public void loadUnit(RTSObject obj)
 	{
 		myMan = obj.GetComponent<BuildManager> ();
@@ -93,6 +105,13 @@ public class BuilderUI : MonoBehaviour {
 			return;}
 		if (myMan.buildOrder.Count == 0) {
 			perc.text = "";
+			hasSupply ();
+		
+		} else if (myMan.waitingOnSupply) {
+			NoSupply ();
+			perc.text = "";
+		} else if (!myMan.waitingOnSupply) {
+			hasSupply ();
 		}
 
 

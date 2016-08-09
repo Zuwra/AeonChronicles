@@ -20,15 +20,22 @@ public class UiAbilityManager : MonoBehaviour {
 		public GameObject QButton;
 		public Slider QSlide;
 		public Text Qtext;
+		public Image QAuto;
+
 		public GameObject WButton;
 		public Slider WSlide;
 		public Text Wtext;
+		public Image WAuto;
+
 		public GameObject EButton;
 		public Slider ESlide;
 		public Text Etext;
+		public Image EAuto;
+
 		public GameObject RButton;
 		public Slider RSlide;
 		public Text Rtext;
+		public Image RAuto;
 
 	}
 	public GameObject topDividerBar;
@@ -36,6 +43,7 @@ public class UiAbilityManager : MonoBehaviour {
 	public List<buttonSet> certainButtons = new List<buttonSet> ();
 
 	public UnitCardCreater cardCreator;
+	public Canvas OreCanvas;
 	private int currentX;
 	private int currentY;
 
@@ -376,6 +384,7 @@ public class UiAbilityManager : MonoBehaviour {
 		}
 
 		else if (totalUnit > 1 ) {
+			OreCanvas.enabled = false;
 			cardCreator.gameObject.GetComponent<Canvas> ().enabled = false;
 			if (totalUnit == 0) {
 				topDividerBar.SetActive (false);
@@ -474,8 +483,7 @@ public class UiAbilityManager : MonoBehaviour {
 							if (active) {
 								break;}
 							}
-					//	Debug.Log ("Ability 1 " + active);
-
+					
 						if (active) {
 								cb.disabledColor = Color.white;
 							if(trans && trans.GetComponent<Button> ())
@@ -498,13 +506,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
 
-						if (man.abilityList [0 + AbilityX * 4].autocast) {
-
-							trans.GetComponent<Button> ().image.color = Color.green;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
-						
-						}
+						certainButtons [j].QAuto.enabled = man.abilityList [0 + AbilityX * 4].autocast;
 
 						Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
 						if (man.abilityList [AbilityX * 4].chargeCount > -1) {
@@ -525,7 +527,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 						trans.parent.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [1 + AbilityX * 4].iconPic;
-							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
+						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
 
@@ -565,15 +567,8 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.GetComponent<Button> ().colors = cb;
 
 
-							trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
-
-							if (man.abilityList [1 + AbilityX * 4].autocast) {
-								
-								trans.GetComponent<Button> ().image.color = Color.green;
-							} else {
-								
-								trans.GetComponent<Button> ().image.color = Color.white;
-							}
+							trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [1 + AbilityX * 4].canAutoCast;
+							certainButtons [j].WAuto.enabled = man.abilityList [1 + AbilityX * 4].autocast;
 
 
 							Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
@@ -614,9 +609,7 @@ public class UiAbilityManager : MonoBehaviour {
 							if (active) {
 								break;}
 						}
-						//Debug.Log ("Ability 3 " + active);
 
-						//if (man.abilityList [AbilityX * 4].active) {
 						if (active) {
 
 
@@ -637,12 +630,8 @@ public class UiAbilityManager : MonoBehaviour {
 						}
 							trans.GetComponent<Button> ().colors = cb;
 
-						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
-							if (man.abilityList [2 + AbilityX * 4].autocast) {
-								trans.GetComponent<Button> ().image.color = Color.green;
-							} else {
-								trans.GetComponent<Button> ().image.color = Color.white;
-							}
+						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [2 + AbilityX * 4].canAutoCast;
+						certainButtons [j].EAuto.enabled = man.abilityList [2+ AbilityX * 4].autocast;
 
 
 							Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
@@ -666,7 +655,7 @@ public class UiAbilityManager : MonoBehaviour {
 	
 						trans.parent.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [3 + AbilityX * 4].iconPic;
-							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
+						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
 							
@@ -683,8 +672,6 @@ public class UiAbilityManager : MonoBehaviour {
 						}
 
 
-						//Debug.Log ("Ability 4 " + active);
-						//if (man.abilityList [AbilityX * 4].active) {
 						if (active) {
 
 								cb.disabledColor = Color.white;
@@ -704,12 +691,9 @@ public class UiAbilityManager : MonoBehaviour {
 						}
 							trans.GetComponent<Button> ().colors = cb;
 
-						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
-							if (man.abilityList [3 + AbilityX * 4].autocast) {
-								trans.GetComponent<Button> ().image.color = Color.green;
-							} else {
-								trans.GetComponent<Button> ().image.color = Color.white;
-							}
+						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [3 + AbilityX * 4].canAutoCast;
+						certainButtons [j].RAuto.enabled = man.abilityList [3 + AbilityX * 4].autocast;
+
 
 
 							Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
@@ -754,53 +738,33 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > AbilityX * 4){
 						if (man.abilityList [AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].QButton.transform.FindChild("QButton");;
-							//Transform trans = UIButtons [n].transform.FindChild ("QButton");
+			
+						certainButtons [j].QAuto.enabled = man.abilityList [0 + AbilityX * 4].autocast;
 
-							if (man.abilityList [AbilityX * 4].autocast) {
-								trans.GetComponent<Button> ().image.color = Color.green;
-							} else {
-								trans.GetComponent<Button> ().image.color = Color.white;
-							}
 						}
 					}
 
 					if(man.abilityList.Count >1+( AbilityX * 4)){
 						if (man.abilityList [1 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].WButton.transform.FindChild("WButton");;
-							//Transform trans = UIButtons [n].transform.FindChild ("WButton");
-
-							if (man.abilityList [1 + AbilityX * 4].autocast) {
-								trans.GetComponent<Button> ().image.color = Color.green;
-							} else {
-								trans.GetComponent<Button> ().image.color = Color.white;
-							}
+	
+						certainButtons [j].WAuto.enabled = man.abilityList [1 + AbilityX * 4].autocast;
+					
 						}
 					}
 
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
 						if (man.abilityList [2 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].EButton.transform.FindChild("EButton");;
-							//Transform trans = UIButtons [n].transform.FindChild ("EButton");
-
-							if (man.abilityList [2 + AbilityX * 4].autocast) {
-								trans.GetComponent<Button> ().image.color = Color.green;
-							} else {
-								trans.GetComponent<Button> ().image.color = Color.white;
-							}
+		
+						certainButtons [j].EAuto.enabled = man.abilityList [2 + AbilityX * 4].autocast;
+			
 						}
 					}
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
 						if (man.abilityList [3 +AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].RButton.transform.FindChild("RButton");;
-							//Transform trans = UIButtons [n].transform.FindChild ("RButton");
 
-							if (man.abilityList [3 + AbilityX * 4].autocast) {
-								trans.GetComponent<Button> ().image.color = Color.green;
-							} else {
-								trans.GetComponent<Button> ().image.color = Color.white;
-							}
+						certainButtons [j].RAuto.enabled = man.abilityList [3 + AbilityX * 4].autocast;
+				
 						}
 					}
 
@@ -1188,8 +1152,6 @@ public class UiAbilityManager : MonoBehaviour {
 					}
 
 
-					//Debug.Log ("Ability 4 " + active);
-					//if (man.abilityList [AbilityX * 4].active) {
 					if (active) {
 
 						cb.disabledColor = Color.white;
@@ -1223,7 +1185,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 	public void callAbility(int n)
-	{//Debug.Log (quickButtons [n].IsInteractable() + "   " +  quickAbility[n].myAbility + "   " +  quickAbility[n].myAbility.active);
+	{
 		if (quickButtons [n].IsInteractable() && quickAbility[n].myAbility && quickAbility[n].myAbility.active) {
 			
 			selectMan.callAbility (n);

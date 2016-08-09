@@ -19,6 +19,7 @@ public class Seeker : MonoBehaviour, ISerializationCallbackReceiver {
 	 * \see OnDrawGizmos
 	 */
 	public bool drawGizmos = true;
+	public bool uniqueGizmo = false;
 
 	/** Enables drawing of the non-postprocessed path using Gizmos.
 	 * The path will show up in orange.
@@ -473,6 +474,9 @@ public class Seeker : MonoBehaviour, ISerializationCallbackReceiver {
 		}
 
 		Gizmos.color = new Color(0, 1F, 0, 1F);
+		if (uniqueGizmo) {
+			Gizmos.color = Color.red;
+		}
 
 		if (lastCompletedVectorPath != null) {
 			for (int i = 0; i < lastCompletedVectorPath.Count-1; i++) {

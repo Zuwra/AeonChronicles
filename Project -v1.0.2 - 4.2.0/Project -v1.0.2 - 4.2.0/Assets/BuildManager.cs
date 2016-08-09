@@ -12,6 +12,7 @@ public class BuildManager : MonoBehaviour {
 	private BuilderUI build;
 	private RaceManager raceMan;
 	private bool isWorker;
+	public bool waitingOnSupply;
 
 	// Use this for initialization
 	void Start () {
@@ -40,20 +41,50 @@ public class BuildManager : MonoBehaviour {
 			}
 				buildOrder.RemoveAt (0);
 
-				if (buildOrder.Count > 0) {
-					float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
+			if (buildOrder.Count > 0) {
+				float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
 
-					if (Sup == 0 || raceMan.hasSupplyAvailable (Sup)) {
-						buildOrder [0].startBuilding ();
-					} else {
-						StartCoroutine (waitOnSupply (Sup));
-					}
-
+				if (Sup == 0 || raceMan.hasSupplyAvailable (Sup)) {
+					buildOrder [0].startBuilding ();
+					build.hasSupply ();
+				} else {
+					build.NoSupply ();
+					StartCoroutine (waitOnSupply (Sup));
 				}
+
+			} else {
+			
+				waitingOnSupply = false;
+				if (mySelect.IsSelected) {
+					Debug.Log ("Resetting it");
+					build.hasSupply ();
+				}
+			}
 				if (mySelect.IsSelected) {
 					build.bUpdate (this.gameObject);
 				}
 
+		}
+	}
+
+
+
+	public void checkForSupply()
+	{
+		float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
+
+		if (Sup == 0 || raceMan.hasSupplyAvailable (Sup)) {
+			buildOrder [0].startBuilding ();
+			if (mySelect.IsSelected) {
+				waitingOnSupply = false;
+				build.hasSupply ();
+			
+			}
+		} else {
+			if (mySelect.IsSelected){
+				waitingOnSupply = true;
+				build.NoSupply ();}
+			StartCoroutine (waitOnSupply (Sup));
 		}
 	}
 
@@ -68,13 +99,7 @@ public class BuildManager : MonoBehaviour {
 				buildOrder.RemoveAt (0);
 
 				if (buildOrder.Count > 0) {
-					float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
-
-					if (Sup == 0 || raceMan.hasSupplyAvailable (Sup)) {
-						buildOrder [0].startBuilding ();
-					} else {
-						StartCoroutine (waitOnSupply (Sup));
-					}
+					checkForSupply ();
 
 				}
 				if (mySelect.IsSelected) {
@@ -110,13 +135,7 @@ public class BuildManager : MonoBehaviour {
 	
 		if(buildOrder.Count == 1)
 		{
-			float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
-
-			if (Sup == 0 ||raceMan.hasSupplyAvailable (Sup)) {
-				buildOrder [0].startBuilding ();
-			} else {
-				StartCoroutine (waitOnSupply (Sup));
-			}
+			checkForSupply ();
 
 		}
 		return true;
@@ -130,13 +149,7 @@ public class BuildManager : MonoBehaviour {
 	
 		if(buildOrder.Count > 0)
 		{
-			float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
-
-			if (Sup == 0 || raceMan.hasSupplyAvailable (Sup)) {
-				buildOrder [0].startBuilding ();
-			} else {
-				StartCoroutine (waitOnSupply (Sup));
-			}
+			checkForSupply ();
 
 		}
 		if (mySelect.IsSelected) {
@@ -157,6 +170,8 @@ public class BuildManager : MonoBehaviour {
 			if (buildOrder.Count > 0) {
 				if (supply == 0 ||raceMan.hasSupplyAvailable (supply)) {
 					buildOrder [0].startBuilding ();
+					build.hasSupply ();
+					waitingOnSupply = false;
 					break;
 				} 
 			} else {

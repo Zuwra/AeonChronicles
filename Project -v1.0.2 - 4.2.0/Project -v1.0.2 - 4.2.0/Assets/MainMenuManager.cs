@@ -50,7 +50,7 @@ public class MainMenuManager : MonoBehaviour {
 	{
 
 		LevelData.currentLevel = 0;
-		SceneManager.LoadScene (3);
+		SceneManager.LoadScene (1);
 	}
 
 	public void toCampaign()

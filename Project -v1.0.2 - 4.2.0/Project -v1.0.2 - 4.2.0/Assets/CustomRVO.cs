@@ -26,6 +26,7 @@ public class CustomRVO : IMover {
 	private int currentWaypoint = 0;
 
 	Path path = null;
+	private float latestDistance =0;
 
 	List<Vector3> vectorPath;
 	int wp;
@@ -69,10 +70,9 @@ public class CustomRVO : IMover {
 
 	override
 	public void resetMoveLocation (Vector3 target) {
-
+		
 	//	Debug.Log ("Resetting to " + target);
 		this.target = target;
-		currentWaypoint = 3;
 		RecalculatePath();
 		GetComponent<UnitManager> ().animMove ();
 	}
@@ -83,14 +83,17 @@ public class CustomRVO : IMover {
 		pathSet = true;
 		canSearchAgain = false;
 		nextRepath = Time.time+repathRate*(Random.value+0.5f);
-		currentWaypoint = 3;
+	
+		latestDistance = 1000000;
+
 		seeker.StartPath(transform.position, target, OnPathComplete);
-	//	Debug.Log ("Recalculating");
+	
+
 	}
 
 	public void OnPathComplete (Path _p) {
 		ABPath p = _p as ABPath;
-		//currentWaypoint = 0;
+		currentWaypoint =1;
 		canSearchAgain = true;
 
 		if (path != null) path.Release(this);
@@ -135,17 +138,15 @@ public class CustomRVO : IMover {
 		}
 		GetComponent<UnitManager> ().animStop();
 	}
+
+
 	override 
 	public bool move()
 	{
+		//Debug.Log ( this.gameObject + " is moving");
 		if (Time.time >= nextRepath && canSearchAgain) {
 			RecalculatePath();
-		//	Debug.Log ("Recalculating  " + path.vectorPath.Count );
-			//string s = " target  " + target;
-			//foreach (Vector3 v in path.vectorPath) {
-			//	s += "   " + v;
-			//}
-			//Debug.Log ("Path " +s);
+
 		}
 
 
@@ -195,8 +196,17 @@ public class CustomRVO : IMover {
 		controller.Move (dir);
 
 
-	
-		if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < 2) {
+
+		float dist = Vector3.Distance (transform.position, path.vectorPath [currentWaypoint]);
+		if (dist > latestDistance && currentWaypoint < path.vectorPath.Count -1) {
+
+			currentWaypoint++;
+			latestDistance = 100000;
+			return false;
+		} else {
+			latestDistance = dist;}
+
+		if (dist < 2) {
 			//Debug.Log ("Waypoint " + currentWaypoint + "   total " +path.vectorPath.Count   + "  distance  " + Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]));
 			currentWaypoint++;
 		
@@ -204,10 +214,11 @@ public class CustomRVO : IMover {
 	
 		return false;
 
-
-
-
 	}
+
+
+
+
 
 	override
 	public void resetMoveLocation(Transform targ)

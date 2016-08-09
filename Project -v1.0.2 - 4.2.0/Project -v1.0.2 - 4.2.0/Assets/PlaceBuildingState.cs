@@ -17,7 +17,7 @@ public class PlaceBuildingState :UnitState {
 	public PlaceBuildingState(GameObject ghost,Vector3 loc, Ability abil)
 	{
 		myGhost = ghost;
-		Debug.Log ("Has place " + myGhost);
+		//Debug.Log ("Has place " + myGhost);
 		myPlacer = myGhost.GetComponentInChildren<BuildingPlacer> ();
 		location = loc;
 		myAbility = abil;
