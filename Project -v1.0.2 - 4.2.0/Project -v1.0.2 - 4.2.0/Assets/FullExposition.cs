@@ -8,6 +8,7 @@ public class FullExposition : SceneEventTrigger {
 
 	private Canvas myCanvas;
 	private Text myText;
+	public Text charName;
 	public static FullExposition instance;
 
 	public Image backOne;
@@ -30,6 +31,8 @@ public class FullExposition : SceneEventTrigger {
 	private bool hasNextDialogue;
 	public bool openOnStart;
 
+	private Coroutine currentDialogue;
+	private string currentText;
 
 	[System.Serializable]
 	public struct scene{
@@ -42,6 +45,7 @@ public class FullExposition : SceneEventTrigger {
 	[System.Serializable]
 	public struct shot{
 
+		public string personName;
 		public float duration;
 
 		public Sprite dialogueImage;
@@ -78,6 +82,18 @@ public class FullExposition : SceneEventTrigger {
 	// Update is called once per frame
 	void Update ()
 	{ if (currentScene > -1) {
+
+			if (Input.GetKeyUp (KeyCode.Return)) {
+				if (myText.text == currentText) {
+					
+					shotChangeTime = Time.time - 1;
+				} else {
+					myText.text = currentText;
+					StopCoroutine (currentDialogue);
+				}
+
+			}
+
 		if (Time.time > shotChangeTime) {
 			//NEW SHOT
 
@@ -98,7 +114,8 @@ public class FullExposition : SceneEventTrigger {
 
 		if (hasNextDialogue && Time.time > nextDialogue) {
 			hasNextDialogue = false;
-				displayText (myScenes [currentScene].myShots [currentShot].DialogueText,myScenes [currentScene].myShots [currentShot].duration
+				displayText (myScenes [currentScene].myShots [currentShot].DialogueText,myScenes [currentScene].myShots [currentShot].personName,
+					myScenes [currentScene].myShots [currentShot].duration
 					,myScenes [currentScene].myShots [currentShot].dialogueAudio, .8f,myScenes [currentScene].myShots [currentShot].dialogueImage,
 					myScenes [currentScene].myShots [currentShot].personNum);
 
@@ -112,14 +129,15 @@ public class FullExposition : SceneEventTrigger {
 
 	IEnumerator scrollingText(string dialog)
 	{
-		
+		currentText = dialog;
 			int i = 0;
 		while (i <dialog.Length) {
 				i++;
 
 			myText.text = dialog.Substring(0,i);
 		
-				yield return new WaitForSeconds (.035f);
+			yield return new WaitForSeconds (.035f);
+
 			}
 
 
@@ -156,10 +174,15 @@ public class FullExposition : SceneEventTrigger {
 
 
 
-	public void displayText(string input, float duration, AudioClip sound, float volume, Sprite pic, int personNum)
+	public void displayText(string input, string characterName,float duration, AudioClip sound, float volume, Sprite pic, int personNum)
 	{	
 		this.enabled = true;
-		StartCoroutine (scrollingText (input));
+		charName.text = characterName;
+		if (currentDialogue != null) {
+			StopCoroutine (currentDialogue);
+		}
+
+		currentDialogue = StartCoroutine (scrollingText (input));
 		//myText.text = input;
 		myCanvas.enabled = true;
 		turnOffTime = Time.time + duration;

@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour {
 
 		if (!LevelData.ComingFromLevel) {
 			nextLevel ();
-			Debug.Log ("calling this");
+			//Debug.Log ("calling this");
 		}
 
 
@@ -67,10 +67,8 @@ public class LevelManager : MonoBehaviour {
 	public void nextLevel()
 	{
 		
-		Debug.Log ("Being called");
+		//Debug.Log ("Being called");
 		Expositions [LevelData.currentLevel].SetActive (true);
-
-
 
 	}
 

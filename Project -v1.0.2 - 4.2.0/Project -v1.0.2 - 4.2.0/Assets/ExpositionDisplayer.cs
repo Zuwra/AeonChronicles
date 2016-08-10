@@ -40,7 +40,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 			myText.text = dialog.Substring(0,i);
 
-			yield return new WaitForSeconds (.035f);
+			yield return new WaitForSeconds (.025f);
 		}
 
 

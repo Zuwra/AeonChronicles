@@ -23,7 +23,8 @@ public  class Projectile : MonoBehaviour {
 	private CharacterController control;
 
 	//If you are using an explosion , you should set the variables in the explosion prefab itself.
-	public GameObject explosion;
+	public GameObject explosionO;
+	public bool SepDamWithExplos;
 	public GameObject SpecialEffect;
 
 
@@ -35,6 +36,7 @@ public  class Projectile : MonoBehaviour {
 	public Texture indicatorPic;
 	public float indicatorSize;
 	private GameObject myIndiactor;
+
 
 	// Use this for initialization
 	void Start () {	
@@ -184,15 +186,18 @@ public  class Projectile : MonoBehaviour {
 
 	public virtual void Terminate(GameObject target)
 	{
-		if (explosion) {
-			GameObject explode = (GameObject)Instantiate (explosion, this.gameObject.transform.position, Quaternion.identity);
-			if (explode) {
+		if (explosionO) {
+			GameObject explode = (GameObject)Instantiate (explosionO, this.gameObject.transform.position, Quaternion.identity);
+
+
+			explosion Escript = explode.GetComponent<explosion> ();
+			if (Escript) {
 				explode.GetComponent<explosion> ().source = Source;
 				explode.GetComponent<explosion> ().damageAmount = this.damage;
 			}
 		}
 
-		else if (target) {
+		if (explosionO && SepDamWithExplos && target || !explosionO && target) {
 
 			foreach (Notify not in triggers) {
 				not.trigger (this.gameObject, this.gameObject, target, damage);
