@@ -58,6 +58,8 @@ public class FullExposition : SceneEventTrigger {
 
 	// Use this for initialization
 	void Start () {
+
+	
 		myText = GetComponentInChildren<Text> ();
 		instance = this;
 		myCanvas = GetComponent<Canvas> ();
@@ -108,6 +110,21 @@ public class FullExposition : SceneEventTrigger {
 
 }
 
+	IEnumerator scrollingText(string dialog)
+	{
+		
+			int i = 0;
+		while (i <dialog.Length) {
+				i++;
+
+			myText.text = dialog.Substring(0,i);
+		
+				yield return new WaitForSeconds (.035f);
+			}
+
+
+	}
+
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 		
 		//Debug.Log ("Index is " + index);
@@ -142,7 +159,8 @@ public class FullExposition : SceneEventTrigger {
 	public void displayText(string input, float duration, AudioClip sound, float volume, Sprite pic, int personNum)
 	{	
 		this.enabled = true;
-		myText.text = input;
+		StartCoroutine (scrollingText (input));
+		//myText.text = input;
 		myCanvas.enabled = true;
 		turnOffTime = Time.time + duration;
 		if (MissionLogger.instance) {

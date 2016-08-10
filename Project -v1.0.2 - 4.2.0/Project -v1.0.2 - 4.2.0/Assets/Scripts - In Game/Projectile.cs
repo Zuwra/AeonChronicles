@@ -186,8 +186,10 @@ public  class Projectile : MonoBehaviour {
 	{
 		if (explosion) {
 			GameObject explode = (GameObject)Instantiate (explosion, this.gameObject.transform.position, Quaternion.identity);
-			explode.GetComponent<explosion> ().source = Source;
-			explode.GetComponent<explosion> ().damageAmount = this.damage;
+			if (explode) {
+				explode.GetComponent<explosion> ().source = Source;
+				explode.GetComponent<explosion> ().damageAmount = this.damage;
+			}
 		}
 
 		else if (target) {

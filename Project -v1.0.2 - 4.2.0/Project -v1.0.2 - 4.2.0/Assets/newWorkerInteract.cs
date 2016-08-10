@@ -83,6 +83,51 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	}
 
 
+	public void Redistribute(GameObject targ)
+	{
+
+		float distance = 130;
+		if (myManager.getState () is MiningState) {
+			return;}
+		GameObject closest = null;
+
+		foreach (GameObject obj in GameManager.main.playerList[2].getUnitList()) {
+			if (FogOfWar.current.IsInCompleteFog (obj.transform.position)) {
+				continue;
+			}
+			OreDispenser dis = obj.GetComponent<OreDispenser> ();
+
+			if (!dis || dis.currentMinor) {
+
+				continue;
+			}
+
+			float temp = Vector3.Distance (obj.transform.position, targ.transform.position);
+			if (temp < distance) {
+				//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
+				distance = temp;
+
+				closest = obj;
+				distance = temp;
+				//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
+			}
+
+		}
+		if (closest != null) {
+			myOre = closest.GetComponent<OreDispenser> ();
+			myOre.currentMinor = this.gameObject;
+			myManager.changeState (new MiningState (closest, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
+
+		} else {
+			myManager.changeState (new MoveState (targ.gameObject.transform.position, myManager));
+		
+			ErrorPrompt.instance.showError ("Deposits already occupied");
+		}
+	}
+
+
+
+
 
 	// Update is called once per frame
 	void Update () {
@@ -146,9 +191,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 				} else if (order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor == this.gameObject) {
 				}
 				else{
-					
-					myManager.changeState (new MoveState (order.Target.gameObject.transform.position, myManager));
-					ErrorPrompt.instance.showError ("Deposit already occupied");
+					Redistribute (order.Target);
 				}
 				break;}
 

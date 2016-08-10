@@ -10,7 +10,7 @@ public class GroundSetter : MonoBehaviour {
 
 		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
 
-			this.gameObject.transform.position = new Vector3(this.transform.position.x, objecthit.point.y, this.transform.position.z);
+			this.gameObject.transform.position = new Vector3(this.transform.position.x, objecthit.point.y-2, this.transform.position.z);
 		}
 
 		Destroy (this);

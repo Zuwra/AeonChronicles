@@ -43,6 +43,15 @@ public class MissionManager : MonoBehaviour {
 	{
 		Victoryscreen.enabled = !Victoryscreen.enabled;
 		myCanvas.enabled = !myCanvas.enabled;
+
+	}
+
+	public void nextLevel(){
+		Victoryscreen.enabled = !Victoryscreen.enabled;
+		myCanvas.enabled = !myCanvas.enabled;
+	
+			LevelManager.main.nextLevel ();
+
 	}
 
 

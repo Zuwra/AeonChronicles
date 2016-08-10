@@ -17,6 +17,8 @@
 	private AudioSource myAudio;
 	public AudioClip chopSound;
 
+	private int iter = 0;
+
 
 		// Use this for initialization
 		void Start () {
@@ -28,7 +30,7 @@
 		void Update () {
 
 			if (Time.time > nextAction) {
-				nextAction += .2f;
+			nextAction = Time.time + .2f;
 
 				if (enemies.Count > 0) {
 	
@@ -40,6 +42,11 @@
 					} else {
 
 						s.TakeDamage (damage, this.gameObject.gameObject.gameObject, DamageTypes.DamageType.Regular);
+						iter++;
+						if (iter == 2) {
+								PopUpMaker.CreateGlobalPopUp (-(damage*2) + "", Color.red, s.gameObject.transform.position);
+							iter = 0;
+						}
 					}
 					if (cutEffect) {
 						Instantiate (cutEffect, getImpactLocation (), Quaternion.identity);

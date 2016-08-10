@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Objective : MonoBehaviour {
+public class Objective : SceneEventTrigger {
 	[TextArea(2,10)]
 	public string description;
 	public int reward;
@@ -24,6 +24,10 @@ public class Objective : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
+		VictoryTrigger.instance.addObjective (this);
 	}
 
 	public void complete()

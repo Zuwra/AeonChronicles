@@ -31,10 +31,27 @@ public class ExpositionDisplayer : MonoBehaviour {
 		}
 	}
 
+	IEnumerator scrollingText(string dialog)
+	{
+
+		int i = 0;
+		while (i <dialog.Length) {
+			i++;
+
+			myText.text = dialog.Substring(0,i);
+
+			yield return new WaitForSeconds (.035f);
+		}
+
+
+	}
+
+
 	public void displayText(string input, float duration, AudioClip sound, float volume, Sprite pic)
 	{	
 		this.enabled = true;
-		myText.text = input;
+		StartCoroutine (scrollingText (input));
+		//myText.text = input;
 		myCanvas.enabled = true;
 		turnOffTime = Time.time + duration;
 		MissionLogger.instance.AddLog (input);

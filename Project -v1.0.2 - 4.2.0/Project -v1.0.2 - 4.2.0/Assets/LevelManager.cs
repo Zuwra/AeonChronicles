@@ -21,9 +21,11 @@ public class LevelManager : MonoBehaviour {
 	public Canvas Structures;
 
 	private Canvas currentTech;
+
+	public static LevelManager main;
 	// Use this for initialization
 	void Awake () {
-
+		main = this;
 		foreach (GameObject obj in levelIntros) {
 			obj.SetActive (false);
 		}
@@ -32,9 +34,10 @@ public class LevelManager : MonoBehaviour {
 			ob.SetActive (false);
 		}
 
+
 		levelPresets [LevelData.currentLevel].enabled = true;
 
-		Expositions [LevelData.currentLevel].SetActive (true);
+
 		levelIntros [LevelData.currentLevel].SetActive (true);
 		currentIntro = levelIntros [LevelData.currentLevel];
 		currentTech = Vehicles;
@@ -53,11 +56,30 @@ public class LevelManager : MonoBehaviour {
 		}
 
 
+
+		if (!LevelData.ComingFromLevel) {
+			nextLevel ();
+			Debug.Log ("calling this");
+		}
+
+
 	}
-	
+	public void nextLevel()
+	{
+		
+		Debug.Log ("Being called");
+		Expositions [LevelData.currentLevel].SetActive (true);
+
+
+
+	}
+
+
 	// Update is called once per frame
 	void Update () {
 	
+
+
 	}
 
 	public void ToggleVehicle()
