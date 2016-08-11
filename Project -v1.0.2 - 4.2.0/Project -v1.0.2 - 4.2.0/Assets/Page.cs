@@ -74,22 +74,93 @@ public class Page  {
 
 			return;
 		}
+		Vector3 targetLoc = loc;
+		if (obj != null) {
+			targetLoc = obj.transform.position;
+		}
 
+		RTSObject bestGuy = null;
+		float bestDistance = 1000000;
 
-		foreach (RTSObject unit in rows[n/4]) {
+		bool foundNonFollow = false;
 
-			continueOrder ord = unit.abilityList [X].canActivate (true);
-			//Debug.Log ("Checking can cast");
-			if (ord.canCast) {
-			//	Debug.Log ("Using the ABility");
-				unit.UseTargetAbility (obj, loc, X);
+		// This finds the nearest unit to the location and orders them to fire. if that person is already casting a spell/placing a building, it tries to find one that isn't.
+		// these two parts in the if/else statement are identical except for the kind of state they are looking for.
+		rows [n / 4].RemoveAll (item => item == null);
+		if (rows [n / 4] [0].abilityList [X] is BuildStructure) {
+			foreach (RTSObject unit in rows[n/4]) {
+				if (unit) {
+					continueOrder ord = unit.abilityList [X].canActivate (true);
+					if (!ord.nextUnitCast) {
+
+						if (ord.canCast) {
+							if (((UnitManager)unit).getState () is PlaceBuildingState && foundNonFollow) {
+
+								continue;
+							}
+
+							float tempDist = Vector3.Distance (unit.transform.position, targetLoc);
+							if (tempDist < bestDistance || (!foundNonFollow && !(((UnitManager)unit).getState () is PlaceBuildingState))) {
+
+								if (!(((UnitManager)unit).getState () is PlaceBuildingState)) {
+									foundNonFollow = true;
+								
+								}
+								bestGuy = unit;
+								bestDistance = tempDist;
+							}
+								
+						}		
+					} else if (ord.canCast) {
+
+						unit.UseTargetAbility (obj, loc, X);
+
+					}
 
 				}
-			 if (!ord.nextUnitCast)
-			{
-				break;}
 
+			}
+		} else {
+			foreach (RTSObject unit in rows[n/4]) {
+				if (unit) {
+					continueOrder ord = unit.abilityList [X].canActivate (true);
+					if (!ord.nextUnitCast) {
+
+						if (ord.canCast) {
+							if (((UnitManager)unit).getState () is AbilityFollowState && foundNonFollow) {
+
+								continue;
+							}
+
+							float tempDist = Vector3.Distance (unit.transform.position, targetLoc);
+							if (tempDist < bestDistance || (!foundNonFollow && !(((UnitManager)unit).getState () is AbilityFollowState))) {
+
+								if (!(((UnitManager)unit).getState () is AbilityFollowState)) {
+									foundNonFollow = true;
+
+								}
+								bestGuy = unit;
+								bestDistance = tempDist;
+							}
+
+						}		
+					} else if (ord.canCast) {
+
+						unit.UseTargetAbility (obj, loc, X);
+
+					}
+
+				}
+
+			}
 		}
+
+		if(bestGuy)
+		{
+			bestGuy.UseTargetAbility (obj, loc, X);
+		}
+
+
 
 	}
 
@@ -208,11 +279,16 @@ public class Page  {
 
 			return;
 		}
+		bool setToTrue = false;
+		if (rows [n / 4].Count > 0) {
+			
+			setToTrue = !rows [n / 4] [0].abilityList [X].autocast;
+		}
 
 
 		foreach (RTSObject unit in rows[n/4]) {
 
-			unit.autoCast (X);
+			unit.autoCast (X, setToTrue);
 		}
 
 

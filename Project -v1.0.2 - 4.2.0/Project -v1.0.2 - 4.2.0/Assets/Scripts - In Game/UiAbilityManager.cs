@@ -1185,10 +1185,14 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 	public void callAbility(int n)
-	{
-		if (quickButtons [n].IsInteractable() && quickAbility[n].myAbility && quickAbility[n].myAbility.active) {
+	{if (Input.GetKey (KeyCode.LeftAlt)) {
+			selectMan.setAutoCast (n);
+			selectMan.AutoCastUI ();
+
+	}else if (quickButtons [n].IsInteractable() && quickAbility[n].myAbility && quickAbility[n].myAbility.active) {
+		
+				selectMan.callAbility (n);
 			
-			selectMan.callAbility (n);
 		}
 		
 	}

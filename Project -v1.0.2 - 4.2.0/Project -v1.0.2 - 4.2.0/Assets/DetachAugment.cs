@@ -50,5 +50,5 @@ public class DetachAugment : Ability {
 		
 	}  // returns whether or not the next unit in the same group should also cast it
 
-	public override void setAutoCast(){}
+	public override void setAutoCast(bool offOn){}
 }

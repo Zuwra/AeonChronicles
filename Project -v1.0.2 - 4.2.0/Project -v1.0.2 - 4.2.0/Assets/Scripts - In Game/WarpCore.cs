@@ -33,7 +33,7 @@ public class WarpCore : Ability {
 	{isKey = false;
 
 	}
-	public override void setAutoCast(){
+	public override void setAutoCast(bool offOn){
 	}
 
 

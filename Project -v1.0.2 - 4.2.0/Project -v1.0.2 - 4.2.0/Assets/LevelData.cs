@@ -8,7 +8,7 @@ public class LevelData  {
 	public static int totalXP = 10;
 
 	public static List<levelInfo> myLevels;
-	public static bool easyMode = false;
+	public static bool easyMode = true;
 	public static bool ComingFromLevel;
 
 	public static List<VeteranStats> myVets;

@@ -87,7 +87,10 @@ public class BuildingPlacer : MonoBehaviour {
 		good = g;
 		bad = ba;
 		setRenderers (good);
-
+		Animator anim = b.GetComponentInChildren<Animator> ();
+		if (anim) {
+			anim.SetInteger ("State", 1);
+		}
 
 		foreach (CharacterController c in b.GetComponents<CharacterController>()) {
 			c.enabled = false;

@@ -151,7 +151,7 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 
 
 
-	public override void setAutoCast(){
+	public override void setAutoCast(bool offOn){
 	}
 
 

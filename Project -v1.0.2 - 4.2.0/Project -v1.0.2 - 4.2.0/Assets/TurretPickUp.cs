@@ -17,8 +17,8 @@ public class TurretPickUp : TargetAbility {
 	}
 
 
-	public override void setAutoCast(){
-		autocast = !autocast;
+	public override void setAutoCast(bool offOn){
+		autocast = offOn;
 	}
 
 

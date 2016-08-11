@@ -36,7 +36,7 @@ public class StimPack : Ability {
 
 	}
 
-	public override void setAutoCast(){
+	public override void setAutoCast(bool offOn){
 	}
 
 

@@ -182,7 +182,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 	}
 
-	override public void setAutoCast()
+	override public void setAutoCast(bool offOn)
 	{
 	}
 

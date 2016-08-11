@@ -86,7 +86,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 		}
 
-		public override void setAutoCast(){}
+	public override void setAutoCast(bool offOn){}
 
 
 

@@ -47,7 +47,7 @@ public class Morph :  UnitProduction {
 
 	}
 
-	public override void setAutoCast(){}
+	public override void setAutoCast(bool offOn){}
 
 	public override void DeQueueUnit()
 	{

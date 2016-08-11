@@ -54,7 +54,7 @@ public class AttachGrinder : Ability{
 
 
 
-	public override void setAutoCast(){
+	public override void setAutoCast(bool offOn){
 	}
 
 

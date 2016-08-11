@@ -19,6 +19,8 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	private float buildTime;
 	// Last time someone did a construction action, for animation tracking
 	private float lastBuildInput;
+
+	private Coroutine currentCoRoutine;
 	// Use this for initialization
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
@@ -74,14 +76,21 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 		if (myAnim) {
 			lastBuildInput = Time.time;
 			myAnim.speed = 1;
-			StartCoroutine (checkBuildAnim ());
+			if (currentCoRoutine != null) {
+				StopCoroutine (currentCoRoutine);
+			}
+			currentCoRoutine =  StartCoroutine (checkBuildAnim ());
 		}
 		
 		underConstruction += m;
 		myManager.myStats.heal (myManager.myStats.Maxhealth * m);
 		if (underConstruction >= 1) {
 			doneConstruction = true;
-
+			myAnim.SetInteger ("State", 1);
+			if (currentCoRoutine != null) {
+				StopCoroutine (currentCoRoutine);
+			}
+			myAnim.speed = 1;
 			UnitManager template = sourceObj.GetComponent<UnitManager> ();
 			for (int i = 0; i < myManager.abilityList.Count; i++) {
 

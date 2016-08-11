@@ -143,8 +143,8 @@ public class buildTurret :UnitProduction{
 		
 	}
 
-	public override void setAutoCast()
-	{autocast = !autocast;
+	public override void setAutoCast(bool offOn)
+	{autocast = offOn;
 		
 	}
 

@@ -33,7 +33,7 @@ public class Unit : RTSObject, IOrderable {
 	{
 		return true;}
 
-	public override void autoCast (int n)
+	public override void autoCast (int n,bool offOn)
 	{
 		}
 

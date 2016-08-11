@@ -44,7 +44,7 @@ public abstract class RTSObject : MonoBehaviour {
 	//public abstract void GiveOrder (Order order);
 	public abstract bool UseTargetAbility(GameObject obj, Vector3 loc, int n);
 
-	public abstract void autoCast (int n);
+	public abstract void autoCast (int n,bool offOn);
 
 
 	

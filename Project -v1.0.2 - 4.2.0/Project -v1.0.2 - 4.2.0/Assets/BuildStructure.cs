@@ -72,7 +72,7 @@ public class BuildStructure:  UnitProduction {
 		}
 	}
 
-	public override void setAutoCast(){}
+	public override void setAutoCast(bool offOn){}
 
 	public void setBuildSpot(Vector3 buildSpot)
 	{targetLocation = buildSpot;

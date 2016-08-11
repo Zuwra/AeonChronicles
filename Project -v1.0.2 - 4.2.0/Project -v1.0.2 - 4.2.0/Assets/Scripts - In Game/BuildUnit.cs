@@ -63,7 +63,7 @@ public class BuildUnit : UnitProduction {
 		return buildingUnit;
 	}
 
-	public override void setAutoCast(){}
+	public override void setAutoCast(bool offOn){}
 
 	public override void DeQueueUnit()
 	{myCost.refundCost ();

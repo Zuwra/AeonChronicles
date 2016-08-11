@@ -36,7 +36,7 @@ public class BallisticMissile:  TargetAbility {
 
 
 	override
-	public  void setAutoCast(){}
+	public  void setAutoCast(bool offOn){}
 
 	public override bool isValidTarget (GameObject target, Vector3 location){
 

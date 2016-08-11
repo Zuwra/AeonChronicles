@@ -191,11 +191,11 @@ public class UnitManager : Unit,IOrderable{
 
 
 	override
-	public void autoCast(int n) // Program in how it is autocast in a custom UnitState, which should be accessed/created from the interactor class
+	public void autoCast(int n, bool offOn) // Program in how it is autocast in a custom UnitState, which should be accessed/created from the interactor class
 	{
 		if (abilityList [n] != null) {
 			
-				abilityList [n].setAutoCast();
+			abilityList [n].setAutoCast(offOn);
 
 		}
 	}

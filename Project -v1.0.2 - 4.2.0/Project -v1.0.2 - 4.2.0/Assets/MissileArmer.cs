@@ -93,7 +93,7 @@ public class MissileArmer :Ability{
 	}
 	public override void Activate(){
 	}
-	public  override void setAutoCast()
+	public  override void setAutoCast(bool offOn)
 	{
 	}
 

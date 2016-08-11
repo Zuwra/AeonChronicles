@@ -33,7 +33,7 @@ public abstract class Ability : MonoBehaviour {
 
 	public abstract continueOrder canActivate(bool error);
 	public abstract void Activate();  // returns whether or not the next unit in the same group should also cast it
-	public abstract void setAutoCast();
+	public abstract void setAutoCast(bool offOn);
 	public AudioClip soundEffect;
 	protected AudioSource audioSrc;
 

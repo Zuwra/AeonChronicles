@@ -78,7 +78,7 @@ public class DayexaShield : Ability,Modifier {
 
 
 
-	public override void setAutoCast(){
+	public override void setAutoCast(bool offOn){
 	}
 
 
