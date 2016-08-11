@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class VeteranStats {
+public class VeteranStats : IComparable<VeteranStats>{
 
 	public string unitType;
 	public string UnitName;
@@ -41,5 +42,21 @@ public class VeteranStats {
 		return score;
 	}
 
+
+	public int CompareTo(VeteranStats obja)
+	{
+
+
+			VeteranStats a = (VeteranStats)obja;
+		
+
+			if (a.calculateScore () < calculateScore()) {
+				return -1;
+			} else {
+				return 1;
+			}
+		
+	
+	}
 
 }

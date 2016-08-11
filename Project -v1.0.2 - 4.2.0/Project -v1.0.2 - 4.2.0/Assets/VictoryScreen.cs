@@ -53,10 +53,10 @@ public class VictoryScreen : MonoBehaviour {
 		MissionManager.main.toggleVictory ();
 		//myCanvas.enabled = true;
 		timeDisplay.text = ""+info.time;
-		enemyDisplay.text =""+ info.EnemiesDest;
-		allyDisplay.text = ""+info.unitsLost;
+		enemyDisplay.text =""+ (int)info.EnemiesDest;
+		allyDisplay.text = ""+(int)info.unitsLost;
 		objDisplay.text = ""+info.bonusObj;
-		techDisplay.text = ""+info.TechCredits;
+		techDisplay.text = ""+(int)info.TechCredits;
 
 		if (info.Resources > 0) {
 			ResourceTitle.text = "Resources Collected: ";
@@ -73,15 +73,17 @@ public class VictoryScreen : MonoBehaviour {
 		string energyS = "Energy Regenerated\n";
 		string ArmorS = "Damage on Armor\n";
 
+		int index = 1;
 		foreach (VeteranStats vet in LevelData.myVets) {
-			if (vet.unitType != "MiniGun" && vet.unitType != "Imperio Cannon" && vet.unitType != "Aether Core"&& vet.unitType != "Turret Shop"&& vet.unitType != "Construction Yard") {
+			if (vet.unitType != "MiniGun" && vet.unitType != "Imperio Cannon" && vet.unitType != "Aether Core"&& vet.unitType != "Armory"&& vet.unitType != "Construction Yard") {
 		
-				Uname += vet.UnitName + "\n";
+				Uname += index + ". " + vet.UnitName + "\n";
 				UType += vet.unitType + "\n";
-				killString += vet.kills + "\n";
-				damageS += vet.damageDone + "\n";
-				energyS += vet.energyGained + "\n";
-				ArmorS += vet.mitigatedDamage + "\n";
+				killString += (int)vet.kills + "\n";
+				damageS += (int)vet.damageDone + "\n";
+				energyS += (int)vet.energyGained + "\n";
+				ArmorS += (int)vet.mitigatedDamage + "\n";
+				index++;
 			}
 		
 		

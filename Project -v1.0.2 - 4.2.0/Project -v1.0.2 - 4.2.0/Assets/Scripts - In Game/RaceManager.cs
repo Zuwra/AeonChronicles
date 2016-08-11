@@ -642,13 +642,26 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public List<VeteranStats> getUnitStats()
 	{
 		List<VeteranStats> toReturn = new List<VeteranStats> ();
+
+		float lowestScore = 0;
+
 		foreach (VeteranStats vs in MVP.UnitStats()) {
 			if (vs.isWarrior) {
-				toReturn.Add (vs);
+
+					toReturn.Add (vs);
+
 			}
 		
 		}
-		return toReturn;
+		toReturn.Sort ();
+
+
+		List<VeteranStats> realReturn = new List<VeteranStats> ();
+		for (int i = 0; i < Mathf.Min (10, toReturn.Count); i++) {
+			realReturn.Add (toReturn [i]);
+		}
+
+		return realReturn;
 
 	}
 
