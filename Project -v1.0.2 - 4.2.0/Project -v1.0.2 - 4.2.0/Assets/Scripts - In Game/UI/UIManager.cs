@@ -587,6 +587,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 					if (!Input.GetKey (KeyCode.LeftShift)) {
 						
 						SwitchMode (Mode.Normal);
+						m_ObjectBeingPlaced = null;
 					} else {
 						m_ObjectBeingPlaced = null;
 						SwitchToModePlacingBuilding(thingToBeBuilt);
@@ -817,11 +818,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public void SwitchToModePlacingBuilding(GameObject item)
 	{
 		thingToBeBuilt = item;
+		if (m_Mode == Mode.PlaceBuilding) {
+			if (m_ObjectBeingPlaced) {
+				Destroy (m_ObjectBeingPlaced);
+			}
+		}
 		m_Mode = Mode.PlaceBuilding;
 		//buildingPlacer.SetActive (true);
-		if (m_ObjectBeingPlaced) {
-			Destroy (m_ObjectBeingPlaced);
-		}
+
 		//Debug.Log ("Making a " + item);
 		m_ObjectBeingPlaced = (GameObject)Instantiate (item);
 		tempBuildingPlacer = (GameObject)Instantiate (buildingPlacer, m_ObjectBeingPlaced.transform.position, Quaternion.identity);

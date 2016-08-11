@@ -43,7 +43,7 @@
 
 						s.TakeDamage (damage, this.gameObject.gameObject.gameObject, DamageTypes.DamageType.Regular);
 						iter++;
-						if (iter == 2) {
+						if (iter == 6) {
 								PopUpMaker.CreateGlobalPopUp (-(damage*2) + "", Color.red, s.gameObject.transform.position);
 							iter = 0;
 						}
