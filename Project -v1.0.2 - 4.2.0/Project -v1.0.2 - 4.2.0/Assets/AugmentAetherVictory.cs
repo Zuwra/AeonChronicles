@@ -10,7 +10,7 @@ public class AugmentAetherVictory  : Objective {
 	bool routineStarted = false;
 	public float delayVic;
 	public WaveSpawner counterAttack;
-	public int waveType;
+
 	bool finishedOnce;
 	public SceneEventTrigger attackTrig;
 	// Update is called once per frame
@@ -84,7 +84,7 @@ public class AugmentAetherVictory  : Objective {
 	IEnumerator actuallyComplete()
 	{Debug.Log (" delaying");
 		if (counterAttack) {
-			counterAttack.spawnWave (waveType);
+			counterAttack.spawnWave ();
 			if (attackTrig) {
 				attackTrig.trigger (0, 0, Vector3.zero, null, false);}
 

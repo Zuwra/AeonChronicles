@@ -1,35 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PulseCannon : MonoBehaviour {
+public class PulseCannon : IWeapon {
 
 	//Like the Iweapon but this fires at every person around it 
-	public float fireRate;
+
 	private float nextTime;
-	UnitManager myManager;
-	public float damage;
 
-	public AudioClip mySoundEffect;
-	public AudioSource myAudio;
 
-	public GameObject projectile;
-	// Use this for initialization
-	void Start () {
-		myManager = GetComponent<UnitManager> ();
-	}
+
+
+
 	
 	// Update is called once per frame
 	void Update () {
+
+		base.Update ();
 		if (Time.time > nextTime) {
-			nextTime = Time.time + fireRate;
+			
 
 
 			myManager.enemies.RemoveAll (item => item == null);
 			int i = 0;
 			foreach (GameObject obj in myManager.enemies) {
-				StartCoroutine( Fire ((i * .08f ),obj));
+				StartCoroutine( AttackWave ((i * .08f ),obj));
 				i++;
 			}
+			nextTime = Time.time + attackPeriod/3 + i *.08f;
 
 		}
 
@@ -37,7 +34,7 @@ public class PulseCannon : MonoBehaviour {
 	
 	}
 
-	IEnumerator Fire (float time, GameObject target)
+	IEnumerator AttackWave (float time, GameObject target)
 	{
 		myManager.animAttack ();
 		yield return new WaitForSeconds(time);
@@ -61,8 +58,8 @@ public class PulseCannon : MonoBehaviour {
 				Projectile script = proj.GetComponent<Projectile> ();
 				proj.SendMessage ("setSource", this.gameObject);
 				proj.SendMessage ("setTarget", target);
-				proj.SendMessage ("setDamage", damage);
-				script.damage = damage;
+				proj.SendMessage ("setDamage", baseDamage);
+				script.damage = baseDamage;
 
 				script.target = target;
 				script.Source = this.gameObject;
@@ -70,16 +67,16 @@ public class PulseCannon : MonoBehaviour {
 			} else {
 
 				//OnAttacking();
-				damage = target.GetComponent<UnitStats> ().TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
-				myManager.myStats.veteranDamage (damage);
+				baseDamage = target.GetComponent<UnitStats> ().TakeDamage (baseDamage, this.gameObject, DamageTypes.DamageType.Regular);
+				myManager.myStats.veteranDamage (baseDamage);
 
 			}
 			if (target == null) {
 				myManager.cleanEnemy ();
 			}
-			if (mySoundEffect) {
+			if (attackSoundEffect && audioSrc) {
 
-				myAudio.PlayOneShot (mySoundEffect);
+				audioSrc.PlayOneShot (attackSoundEffect);
 			}
 
 		}

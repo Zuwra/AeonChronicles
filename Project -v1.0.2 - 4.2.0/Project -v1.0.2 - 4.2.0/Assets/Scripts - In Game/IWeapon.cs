@@ -11,7 +11,7 @@ public class IWeapon : MonoBehaviour {
 	public UnitManager myManager;
 	public MultiShotParticle fireEffect;
 	public AudioClip attackSoundEffect;
-	private AudioSource audioSrc;
+	protected AudioSource audioSrc;
 	public Animator myAnimator;
 
 	public float attackPeriod;
@@ -93,7 +93,7 @@ public class IWeapon : MonoBehaviour {
 
 	
 	// Update is called once per frame
-	void Update () {
+	protected void Update () {
 
 
 		if (Time.time > nextActionTime) {
@@ -212,6 +212,7 @@ public class IWeapon : MonoBehaviour {
 
 	IEnumerator Fire (float time, GameObject target)
 	{if (myAnimator) {
+			Debug.Log ("Settign state to one");
 			myAnimator.SetInteger ("State", 1);
 	
 		}

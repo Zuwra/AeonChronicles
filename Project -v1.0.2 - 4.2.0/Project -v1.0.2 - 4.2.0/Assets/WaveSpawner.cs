@@ -5,20 +5,31 @@ using System.Collections.Generic;
 public class WaveSpawner : MonoBehaviour {
 
 	public float attackRadius;
-	public List<GameObject> waveTypeOne = new List<GameObject> ();
-	public List<float> waveOneTimes = new List<float> ();
-
-	public List<GameObject> waveTypeTwo = new List<GameObject> ();
-	public List<float> waveTwoTimes = new List<float> ();
-
-	public List<GameObject> waveTypeThree = new List<GameObject> ();
-	public List<float> waveThreeTimes = new List<float> ();
 
 	private float nextActionTime = 10000;
-	private List<GameObject> nextWave ;
+	private attackWave nextWave ;
 
 	public Vector3 rallyPoint;
 	public bool showPoint;
+
+
+	public List<attackWave> myWaves;
+
+	[System.Serializable]
+	public struct attackWave
+	{public List<GameObject> waveType;
+		public float releaseTime;
+		public int repeat;
+		public float repeatAddOn;
+
+		public void setRelease (float n)
+		{
+			releaseTime = n;
+		}
+
+		public List<SceneEventTrigger> myTriggers;
+	}
+
 	// Use this for initialization
 	void Start () {
 		findNextWave ();
@@ -29,12 +40,18 @@ public class WaveSpawner : MonoBehaviour {
 
 
 
+
+
 	// Update is called once per frame
 	void Update () {
 		if (Clock.main.getTotalSecond()> nextActionTime) {
 
 			float delay = .1f;
-			foreach (GameObject obj in nextWave) {
+			foreach (SceneEventTrigger trig in nextWave.myTriggers) {
+				trig.trigger (0, 0, Vector3.zero, null, false);
+			}
+
+			foreach (GameObject obj in nextWave.waveType) {
 
 
 				StartCoroutine(MyCoroutine(delay, obj));
@@ -80,50 +97,33 @@ public class WaveSpawner : MonoBehaviour {
 
 	public void findNextWave()
 		{
-		foreach (float wave in waveOneTimes) {
-			if (wave < nextActionTime) {
+
+		foreach (attackWave aw in myWaves) {
+			if (aw.releaseTime < nextActionTime) {
+				nextActionTime = aw.releaseTime;
+				nextWave = aw;
+			}
 		
-				nextActionTime = wave;
-				nextWave = waveTypeOne;
-			}
 		}
 
-		foreach (float wave in waveTwoTimes) {
-			if (wave < nextActionTime) {
-				
-				nextActionTime = wave;
-				nextWave = waveTypeTwo;
-			}
+		if (nextWave.repeat == 1) {
+			myWaves.Remove (nextWave);
+		
+		} else {
+			nextWave.repeat--;
+			nextWave.releaseTime += nextWave.repeatAddOn;
 		}
 
-		foreach (float wave in waveThreeTimes) {
-			if (wave < nextActionTime) {
-
-				nextActionTime = wave;
-				nextWave = waveTypeThree;
-			}
-		}
-
-		waveOneTimes.Remove (nextActionTime);
-	
-		waveTwoTimes.Remove (nextActionTime);
-		waveThreeTimes.Remove (nextActionTime);
 
 	}
 
 
-	public void spawnWave(int n)
-	{List<GameObject> toSpawn;
+	public void spawnWave()
+	{
 		Debug.Log ("Spawning wave");
-		if (n == 0) {
-			toSpawn = waveTypeOne;
-		} else if (n == 1) {
-			toSpawn = waveTypeTwo;
-		} else {
-			toSpawn = waveTypeThree;
-		}
+
 		float delay = .1f;
-		foreach (GameObject obj in toSpawn) {
+		foreach (GameObject obj in nextWave.waveType) {
 			Debug.Log ("making unit");
 			StartCoroutine (MyCoroutine (delay, obj));
 			delay += .2f;

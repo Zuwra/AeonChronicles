@@ -49,6 +49,7 @@
      <Compile Include="Assets\APMCounter.cs" />
      <Compile Include="Assets\AbilityBox.cs" />
      <Compile Include="Assets\AbilityFollowState.cs" />
+     <Compile Include="Assets\ActivateObject.cs" />
      <Compile Include="Assets\AetherOvercharge.cs" />
      <Compile Include="Assets\ArmyUIManager.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\AILerp.cs" />

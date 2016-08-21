@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class NewUnitTrigger  : SceneEventTrigger {
+public class ActivateObject : SceneEventTrigger {
 
-	public int currentIndex;
+	public List<GameObject> objectsToActivate = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
@@ -19,13 +20,14 @@ public class NewUnitTrigger  : SceneEventTrigger {
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 		if (!hasTriggered) {
 			hasTriggered = true;
-		//	Debug.Log ("Triggered");
-			NewUnitPanel.main.setMaxAlled (index, currentIndex);
 
+			foreach (GameObject obj in objectsToActivate) {
+				if (obj) {
+					obj.SetActive (true);
+				}
+			}
 
-	
 		}
 
 	}
-
 }

@@ -28,8 +28,9 @@ public class DayexaShield : Ability,Modifier {
 
 		//This makes it so all childed turrets get their incoming damage reduced by the tanks shields. 
 		foreach (IWeapon obj in GetComponent<UnitManager>().myWeapon) {
-			
-			obj.gameObject.GetComponent<UnitManager> ().myStats.addModifier (this);
+			if (obj) {
+				obj.gameObject.GetComponent<UnitManager> ().myStats.addModifier (this);
+			}
 
 		}
 		

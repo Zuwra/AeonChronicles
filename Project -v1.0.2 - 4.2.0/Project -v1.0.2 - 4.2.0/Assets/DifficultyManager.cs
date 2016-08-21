@@ -34,18 +34,12 @@ public class DifficultyManager : MonoBehaviour {
 			}
 		} else {
 			foreach (WaveSpawner ws in  GameObject.FindObjectsOfType<WaveSpawner>()) {
-				for(int i = 0; i < ws.waveOneTimes.Count; i++){
-					ws.waveOneTimes [i] *= HardWaveReduct;
+				for(int i = 0; i < ws.myWaves.Count; i++){
+					float releaseT = ws.myWaves [i].releaseTime;
+					ws.myWaves [i].setRelease (releaseT * HardWaveReduct);//.releaseTime =releaseT * HardWaveReduct;
 
 				}
-				for(int i = 0; i < ws.waveTwoTimes.Count; i++){
-					ws.waveTwoTimes [i] *= HardWaveReduct;
-
-				}
-				for(int i = 0; i < ws.waveThreeTimes.Count; i++){
-					ws.waveThreeTimes [i] *= HardWaveReduct;
-
-				}
+			
 			}
 		
 		}

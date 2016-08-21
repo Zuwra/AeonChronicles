@@ -165,11 +165,8 @@ public class UnitStats : MonoBehaviour {
 			if (!setToZero) {
 				if (type == DamageTypes.DamageType.Regular || type == DamageTypes.DamageType.Wound) {
 
-						if (amount - armor > 1) {
-							amount = (amount - armor);
-						} else {
-							amount = 1;
-						}
+					amount = Mathf.Max (amount - armor, 1);
+						
 				}
 				if (takeDamageEffect) {
 					//Debug.Log ("Taking damage " + this.gameObject);

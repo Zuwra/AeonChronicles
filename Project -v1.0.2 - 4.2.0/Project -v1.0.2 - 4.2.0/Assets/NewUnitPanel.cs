@@ -88,10 +88,10 @@ public class NewUnitPanel : MonoBehaviour {
 		index = i;
 	}
 
-	public void setMaxAlled(int i )
+	public void setMaxAlled(int i, int current )
 	{
-		loadUnit (i);
-		index = i;
+		loadUnit (current);
+		index = current;
 		maxAllowed = i;
 		GetComponent<Canvas> ().enabled = true;
 		Time.timeScale = 0;
