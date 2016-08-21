@@ -6,7 +6,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	// if you want to make your own interact this class, extend this and override the commands down at the bottom
 
 
-	private UnitManager myManager;
+	protected UnitManager myManager;
 	public bool attackWhileMoving;
 
 	// Use this for initialization
@@ -25,14 +25,14 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	public void initialize(){
 		Awake ();
 	}
-	public UnitState computeState(UnitState s)
+	public virtual UnitState computeState(UnitState s)
 	{
 
 		return s;
 	}
 
 	// When creating other interactor classes, make sure to pass all relevant information into whatever new state is being created (IMover, IWeapon, UnitManager)
-	public void computeInteractions (Order order)
+	public virtual void computeInteractions (Order order)
 	{
 
 		switch (order.OrderType) {
@@ -80,7 +80,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	}
 
 	// Attack move towards a ground location (Tab - ground)
-	public void  AttackMove(Order order)
+	public virtual void  AttackMove(Order order)
 	{
 		if (myManager.myWeapon.Count > 0) {
 
@@ -90,9 +90,9 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 		}
 	}
 
-	// Right click on a objt/unit
-	public void Interact(Order order)
-	{
+	// Right click on a obj/unit
+	public virtual void Interact(Order order)
+	{Debug.Log ("First Intereact");
 		UnitManager manage = order.Target.GetComponent<UnitManager> ();
 		if (!manage) {
 			manage = order.Target.GetComponentInParent<UnitManager> ();
@@ -142,7 +142,9 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	}
 
 	//Right click on a unit/object. how is this different than interact? is it only on allied units?
-	public void Follow(Order order){
+	public virtual void Follow(Order order){
+
+		Debug.Log ("First ORder");
 		if (myManager.myWeapon.Count > 0) {
 
 			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));

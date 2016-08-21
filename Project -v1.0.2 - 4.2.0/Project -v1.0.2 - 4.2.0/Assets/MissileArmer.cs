@@ -68,6 +68,8 @@ public class MissileArmer :Ability{
 			if (shields) {
 				if (shieldglobe) {
 					shieldList.RemoveAll (item => item == null);
+
+
 					foreach (DayexaShield ds in shieldList) {
 				
 						if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
@@ -131,13 +133,13 @@ public class MissileArmer :Ability{
 				}
 
 			}
-			if (shields) {
+
 				DayexaShield s = other.gameObject.GetComponent<DayexaShield> ();
 				if (s) {
 					shieldList.Remove (s);
 				}
 
-			}
+
 		}
 
 

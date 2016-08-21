@@ -29,12 +29,13 @@ public class RepairDrone : MonoBehaviour {
 			}
 
 			else if (Vector3.Distance (target.transform.position, this.gameObject.transform.position) > 5) {
-				transform.Translate (((target.transform.position + (Vector3.up*4)) - this.gameObject.transform.position).normalized * Time.deltaTime * 23f);
+				transform.Translate (((target.transform.position + (Vector3.up*4)) - this.gameObject.transform.position).normalized * Time.deltaTime * 30f);
 			} else {
 				if (Time.time > nextActionTime) {
 					nextActionTime = Time.time + 1;
 					int amount = (int)Mathf.Min (repairRate, targetMan.myStats.Maxhealth - targetMan.myStats.health);
 					particleEff.playEffect ();
+					myHome.possibleStop ();
 					if (buildInter && !buildInter.ConstructDone ()) {
 						if (AidConstruction) {
 							buildInter.construct (.012f);
@@ -59,7 +60,7 @@ public class RepairDrone : MonoBehaviour {
 			}
 		} else if (goingHome) {
 			if (Vector3.Distance (myHome.transform.position, this.gameObject.transform.position) > 3) {
-				transform.Translate (((myHome.transform.position + (Vector3.up*2)) - this.gameObject.transform.position).normalized * Time.deltaTime * 23f);
+				transform.Translate (((myHome.transform.position + (Vector3.up*2)) - this.gameObject.transform.position).normalized * Time.deltaTime * 30f);
 			} else {
 				
 				transform.position = hometurret.transform.position;
@@ -67,7 +68,7 @@ public class RepairDrone : MonoBehaviour {
 				transform.rotation = hometurret.transform.rotation;
 				transform.SetParent (hometurret.transform);
 				goingHome = false;
-				myHome.doneRepairing ();
+				myHome.doneRepairing (target);
 			}
 		}
 
@@ -85,12 +86,12 @@ public class RepairDrone : MonoBehaviour {
 
 
 	public void returnHome()
-	{
+	{myHome.doneRepairing (target);
 		goingHome = true;
 		target = null;
 		targetMan = null;
 		buildInter = null;
-		myHome.doneRepairing ();
+
 	}
 
 }

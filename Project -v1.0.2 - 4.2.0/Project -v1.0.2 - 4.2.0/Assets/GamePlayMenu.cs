@@ -9,6 +9,7 @@ public class GamePlayMenu : MonoBehaviour {
 	private bool toggled= true;
 	private MainCamera cam;
 	public Slider scrollSpeed;
+	public Text speedPercent;
 	// Use this for initialization
 	void Start () {
 
@@ -66,6 +67,13 @@ public class GamePlayMenu : MonoBehaviour {
 		}
 	}
 
+	public void setGameSpeed(Scrollbar theSlide)
+	{
+		GameSettings.gameSpeed = ((int)(theSlide.value/.2f))*.2f + .6f;
+		speedPercent.text = "("+(int)(GameSettings.gameSpeed * 100) + ")%";
+
+
+	}
 
 	public void resetScrollSpeed()
 	{cam.ScrollSpeed = scrollSpeed.value * 700 + 100;

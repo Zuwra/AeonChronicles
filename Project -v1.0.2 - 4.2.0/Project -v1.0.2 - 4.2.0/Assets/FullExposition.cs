@@ -83,12 +83,13 @@ public class FullExposition : SceneEventTrigger {
 	void Update ()
 	{ if (currentScene > -1) {
 
-			if (Input.GetKeyUp (KeyCode.Return)) {
+			if (Input.GetKeyUp (KeyCode.Return) ||Input.GetKeyUp (KeyCode.Space)  ) {
 				if (myText.text == currentText) {
-					
+					myAudio.Stop ();
 					shotChangeTime = Time.time - 1;
 				} else {
 					myText.text = currentText;
+
 					StopCoroutine (currentDialogue);
 				}
 
@@ -104,10 +105,10 @@ public class FullExposition : SceneEventTrigger {
 				return;
 			} else {
 
-				shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration;
+					shotChangeTime = Time.time + (myScenes [currentScene].myShots [currentShot].duration * GameSettings.gameSpeed);
 				if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
 					hasNextDialogue = true;
-					nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay;
+						nextDialogue = Time.time + (myScenes [currentScene].myShots [currentShot].dialogueStartDelay* GameSettings.gameSpeed);
 				}
 			}
 		}
@@ -116,7 +117,7 @@ public class FullExposition : SceneEventTrigger {
 			hasNextDialogue = false;
 				displayText (myScenes [currentScene].myShots [currentShot].DialogueText,myScenes [currentScene].myShots [currentShot].personName,
 					myScenes [currentScene].myShots [currentShot].duration
-					,myScenes [currentScene].myShots [currentShot].dialogueAudio, .8f,myScenes [currentScene].myShots [currentShot].dialogueImage,
+					,myScenes [currentScene].myShots [currentShot].dialogueAudio, 1,myScenes [currentScene].myShots [currentShot].dialogueImage,
 					myScenes [currentScene].myShots [currentShot].personNum);
 
 		}
@@ -136,7 +137,7 @@ public class FullExposition : SceneEventTrigger {
 
 			myText.text = dialog.Substring(0,i);
 		
-			yield return new WaitForSeconds (.035f);
+			yield return new WaitForSeconds (.035f* GameSettings.gameSpeed);
 
 			}
 
@@ -149,12 +150,15 @@ public class FullExposition : SceneEventTrigger {
 		if (MainCamera.main) {
 			MainCamera.main.DisableScrolling ();
 		}
+		if (GameMenu.main) {
+			GameMenu.main.disableInput ();
+		}
 	
 		currentScene = index;
-		shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration;
+		shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration* GameSettings.gameSpeed;
 		if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
 			hasNextDialogue = true;
-			nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay;
+			nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay* GameSettings.gameSpeed;
 		}
 	}
 
@@ -167,6 +171,9 @@ public class FullExposition : SceneEventTrigger {
 		currentScene = -1;
 		if (MainCamera.main) {
 			MainCamera.main.EnableScrolling ();
+		}
+		if (GameMenu.main) {
+			GameMenu.main.EnableInput();
 		}
 	
 	}

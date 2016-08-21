@@ -37,10 +37,12 @@ public  class Projectile : MonoBehaviour {
 	public float indicatorSize;
 	private GameObject myIndiactor;
 
+	private Vector3 randomOffset;
 
 	// Use this for initialization
 	void Start () {	
-		
+
+
 		if (target) {
 			if (inaccuracy > 0) {
 				Vector3 hitzone = target.transform.position;
@@ -56,8 +58,10 @@ public  class Projectile : MonoBehaviour {
 
 			
 			} else {
-				lastLocation = target.transform.position;
+				lastLocation = target.transform.position + randomOffset;
 			}
+		
+			randomOffset = UnityEngine.Random.insideUnitSphere * target.GetComponent<CharacterController> ().radius * .7f;
 		} 
 
 		control = GetComponent<CharacterController> ();
@@ -93,7 +97,7 @@ public  class Projectile : MonoBehaviour {
 
 
 		} else {
-			lastLocation = loc;
+			lastLocation = loc + randomOffset;
 		}
 
 
@@ -106,7 +110,7 @@ public  class Projectile : MonoBehaviour {
 
 
 		if (target != null) {
-			lastLocation = target.transform.position;
+			lastLocation = target.transform.position + randomOffset;
 			//Debug.Log("attacking on " +Vector3.Distance(lastLocation,this.gameObject.transform.position));
 
 		} 
@@ -264,7 +268,7 @@ public  class Projectile : MonoBehaviour {
 			
 			}
 			else{
-				lastLocation = target.transform.position;
+				lastLocation = target.transform.position + randomOffset;
 			}
 			
 			distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);

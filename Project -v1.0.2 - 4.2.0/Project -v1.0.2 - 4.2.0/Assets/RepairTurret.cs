@@ -17,7 +17,7 @@ public class RepairTurret : Ability, Modifier{
 	public GameObject drone;
 	RepairDrone droneScript;
 	bool DroneAway;
-
+	bool commandRepair;
 
 	// Use this for initialization
 	void Start () {
@@ -48,22 +48,33 @@ public class RepairTurret : Ability, Modifier{
 				}
 			}
 		
-			if (!target || Vector3.Distance (target.transform.position, this.gameObject.transform.position) > 65) {
+			if(target &&  Vector3.Distance (target.transform.position, this.gameObject.transform.position) < 40)
+			{
+				mymanager.cMover.stop ();
+				mymanager.changeState (new DefaultState());
+				droneScript.setTarget (target);
+				DroneAway = true;
+				drone.transform.SetParent (null);
+
+			}
+
+			else if (!target || (Vector3.Distance (target.transform.position, this.gameObject.transform.position) > 65 && !commandRepair)) {
+				
 				
 				if (mymanager.allies.Count > 0) {
 					
 					target = findHurtAlly ();
-
+				
+					commandRepair = false;
 					if (target) {
-					//	Debug.Log ("Setting to follow " + target);
+				
 						mymanager.changeState (new FollowState (target, null));
 							
 
 					} 
 				} 
-			} else {
+			} else if (target){
 				
-					//Debug.Log ("Setting to follow " + target);
 					mymanager.changeState (new FollowState (target, null));
 
 				}
@@ -85,12 +96,48 @@ public class RepairTurret : Ability, Modifier{
 
 			}
 			}
-		
+
 
 	}
 
-	public void doneRepairing()
-	{target = null;
+	public void possibleStop()
+	{
+
+		if (mymanager.getState () is MoveState) {
+			if (!((MoveState)mymanager.getState ()).assumedMove) {
+
+				return;
+			}
+		}
+		mymanager.changeState (new DefaultState());
+	}
+
+
+	public void setTarget(GameObject obj)
+	{commandRepair = true;
+
+		target = obj;
+		DroneAway = false;
+		if (Vector3.Distance (target.transform.position, this.gameObject.transform.position) < 40) {
+			mymanager.cMover.stop ();
+			mymanager.changeState (new DefaultState ());
+			droneScript.setTarget (target);
+			DroneAway = true;
+			drone.transform.SetParent (null);
+
+		} else {
+			mymanager.changeState (new FollowState (target, null));
+		}
+
+	
+	}
+
+	public void doneRepairing(GameObject t)
+	{if (t == target) {
+			target = null;
+			commandRepair = false;
+		}
+	
 		DroneAway = false;
 
 	}
@@ -127,9 +174,7 @@ public class RepairTurret : Ability, Modifier{
 	public bool validate(GameObject source, GameObject target)
 	{if (!active) {
 			return false;}
-		//if (chargeCount > 0) {
-			//return true;
-	//	}
+
 		return false;
 	}
 

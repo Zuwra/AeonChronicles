@@ -16,6 +16,8 @@ public class SoundOptions : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
+
 		masterSLider = masterSLiderO.GetComponent<Slider> ();
 
 		musicSlider = musicSliderO.GetComponent<Slider> ();
@@ -27,8 +29,22 @@ public class SoundOptions : MonoBehaviour {
 			music = GameObject.FindObjectOfType<Camera> ().GetComponent<AudioSource> ();
 		}
 
-		masterSLider.value = AudioListener.volume;
-		musicSlider.value = music.volume;
+
+		if (GameSettings.masterVolume > -1) {
+			masterSLider.value = GameSettings.masterVolume;
+		}
+		else{
+			masterSLider.value = AudioListener.volume;
+			GameSettings.masterVolume = masterSLider.value;
+		}
+
+
+		if (GameSettings.musicVolume > -1) {
+			musicSlider.value = GameSettings.musicVolume;
+		} else {
+			musicSlider.value = music.volume;
+			GameSettings.musicVolume = music.volume;
+		}
 	}
 	
 	// Update is called once per frame
@@ -40,14 +56,14 @@ public class SoundOptions : MonoBehaviour {
 	public void MusicVolumeChange()
 	{
 		music.volume = musicSlider.value;
-	
+		GameSettings.musicVolume = music.volume;
 	}
 
 
 	public void masterVolumeChange()
 	{
 		AudioListener.volume = masterSLider.value;
-	
+		GameSettings.masterVolume = masterSLider.value;
 	}
 
 

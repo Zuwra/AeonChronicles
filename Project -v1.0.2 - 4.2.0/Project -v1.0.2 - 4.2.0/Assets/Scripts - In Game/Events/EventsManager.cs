@@ -29,6 +29,12 @@ public partial class EventsManager : MonoBehaviour, IEventsManager {
 	
 	}
 
+	void Start()
+	{
+		if (GameMenu.main) {
+			GameMenu.main.addDisableScript (this);
+		}
+	}
 
 	// Update is called once per frame
 	void LateUpdate () 

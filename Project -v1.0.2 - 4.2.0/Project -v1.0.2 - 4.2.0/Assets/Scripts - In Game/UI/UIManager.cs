@@ -43,6 +43,13 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public int currentAbilityNUmber;
 	private bool clickOverUI = false;
 
+	//Used for right click Formations
+	private Vector2 rightClickOrigin;
+	private bool rightClickDrag;
+	private LineRenderer lineRender;
+	private Vector3 rightClickOrThree = Vector3.zero;
+
+
 	private float lastClickDouble;
 	public bool IsShiftDown
 	{
@@ -73,7 +80,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	// Use this for initialization
 	void Start () 
 	{	GameMenu.main.addDisableScript (this);
-
+		lineRender = GetComponent<LineRenderer> ();
 		fog = GameObject.FindObjectOfType<FogOfWar> ();
 		//Resolve interface variables
 		m_SelectedManager =  GameObject.FindObjectOfType<SelectedManager>();
@@ -98,6 +105,42 @@ public class UIManager : MonoBehaviour, IUIManager {
 	// Update is called once per frame
 	void Update () 
 	{
+		if (Input.GetMouseButtonDown (1)) {
+			rightClickOrigin = Input.mousePosition;
+			//lineRender.enabled = true;
+
+			Ray rayb = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hitb;
+
+			if (Physics.Raycast (rayb, out hitb, Mathf.Infinity, ~(1 << 16))) {
+				rightClickOrThree = hitb.point + Vector3.up*2;
+			}
+
+
+			rightClickDrag = true;
+
+		} 
+		if (rightClickDrag) {
+			if (Vector2.Distance (Input.mousePosition, rightClickOrigin) > 45) {
+				lineRender.enabled = true;
+			
+
+
+
+				Ray rayb = Camera.main.ScreenPointToRay (Input.mousePosition);
+				RaycastHit hitb;
+				Vector3 b = Vector3.zero;
+				if (Physics.Raycast (rayb, out hitb, Mathf.Infinity, ~(1 << 16))) {
+					b = hitb.point + Vector3.up*2;
+				}
+
+				lineRender.SetPositions (new Vector3[2] { rightClickOrThree, b });
+			} else {
+				lineRender.enabled = false;}
+
+		}
+
+
 		switch (m_Mode)
 		{
 		case Mode.Normal:
@@ -662,7 +705,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 
     public void RightButton_SingleClick(MouseEventArgs e)
 	{
-
+		
+		lineRender.enabled = false;
+		rightClickDrag = false;
 		if (hoverOver != HoverOver.Menu) {
 			
 			switch (m_Mode) {
@@ -683,7 +728,13 @@ public class UIManager : MonoBehaviour, IUIManager {
 						Vector3 attackMovePoint = hit.point;
 			
 
-						m_SelectedManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));
+						if (Vector2.Distance (rightClickOrigin, Input.mousePosition) > 45) {
+
+							m_SelectedManager.GiveMoveSpread (rightClickOrThree, attackMovePoint);
+
+						} else {
+							m_SelectedManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));
+						}
 					}
 				} else if (currentObjLayer == 9 || currentObjLayer == 10 || currentObjLayer == 13) {
 				

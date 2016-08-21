@@ -30,7 +30,7 @@ public partial class EventsManager {
 			}
 		}
 		
-		if (Input.GetMouseButtonDown (1))
+		if (Input.GetMouseButtonUp(1))
 		{
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;

@@ -37,11 +37,11 @@ public class ExpositionDisplayer : MonoBehaviour {
 		int i = 0;
 		while (i <dialog.Length) {
 			i++;
-			i++;
+	
 
 			myText.text = dialog.Substring(0,i);
 
-			yield return new WaitForSeconds (.03f);
+			yield return new WaitForSeconds (.025f);
 		}
 
 
@@ -68,7 +68,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 		
 		if (sound != null) {
 			myAudio.volume = volume;
-			myAudio.PlayOneShot (sound);
+			myAudio.PlayOneShot (sound,1);
 		}
 	}
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Formations{
 
 
-	public static List<Vector3> getFormation(int count)
+	public static List<Vector3> getFormation(int count, float sepDist)
 	{
 		List<Vector3> toReturn = new List<Vector3> ();
 
@@ -26,18 +26,18 @@ public class Formations{
 				int remainder = count / 2;
 				for (int n = 0; n < remainder; n++) {
 					if (remainder % 2 == 1) {
-						toReturn.Add ((Odd [n] - Vector3.forward * 7.5f) );
+						toReturn.Add ((Odd [n] - Vector3.forward * 7.5f) * sepDist );
 					} else {
-						toReturn.Add ((Even [n] - Vector3.forward * 7.5f) );
+						toReturn.Add ((Even [n] - Vector3.forward * 7.5f)* sepDist );
 					}
 				}
 
 				int RemainB = (count - remainder);
 				for (int n = 0; n < RemainB; n++) {
 					if (RemainB % 2 == 1) {
-						toReturn.Add ((Odd [n] + Vector3.forward * 7.5f) );
+						toReturn.Add ((Odd [n] + Vector3.forward * 7.5f) * sepDist);
 					} else {
-						toReturn.Add ((Even [n] + Vector3.forward * 7.5f) );
+						toReturn.Add ((Even [n] + Vector3.forward * 7.5f)* sepDist );
 					}
 				}
 				//Three rows
@@ -46,27 +46,27 @@ public class Formations{
 				int remainder = count / 3;
 				for (int n = 0; n < remainder; n++) {
 					if (remainder % 2 == 1) {
-						toReturn.Add ((Odd [n] - Vector3.forward *15) );
+						toReturn.Add ((Odd [n] - Vector3.forward *15)* sepDist );
 					} else {
-						toReturn.Add ((Even [n] - Vector3.forward * 15) );
+						toReturn.Add ((Even [n] - Vector3.forward * 15)* sepDist );
 					}
 				}
 
 				int RemainB = (count - remainder) / 2;
 				for (int n = 0; n < RemainB; n++) {
 					if (RemainB % 2 == 1) {
-						toReturn.Add ((Odd [n] ) );
+						toReturn.Add ((Odd [n] ) * sepDist);
 					} else {
-						toReturn.Add ((Even [n] ) );
+						toReturn.Add ((Even [n] * sepDist) );
 					}
 				}
 
 				int RemainC= (count  - RemainB - remainder);
 				for (int n = 0; n < RemainC; n++) {
 					if (RemainC % 2 == 1) {
-						toReturn.Add ((Odd [n] + Vector3.forward * 15) );
+						toReturn.Add ((Odd [n] + Vector3.forward * 15) * sepDist);
 					} else {
-						toReturn.Add ((Even [n] + Vector3.forward * 15) );
+						toReturn.Add ((Even [n] + Vector3.forward * 15)* sepDist );
 					}
 				}
 

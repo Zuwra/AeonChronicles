@@ -108,7 +108,7 @@ public class NewUnitPanel : MonoBehaviour {
 	}
 
 	public void exit()
-	{Time.timeScale = 1;
+	{Time.timeScale = GameSettings.gameSpeed;
 		GetComponent<Canvas> ().enabled = false;
 
 	}

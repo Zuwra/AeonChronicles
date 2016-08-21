@@ -248,6 +248,7 @@
      <Compile Include="Assets\FusionWeld.cs" />
      <Compile Include="Assets\GameMenu.cs" />
      <Compile Include="Assets\GamePlayMenu.cs" />
+     <Compile Include="Assets\GameSettings.cs" />
      <Compile Include="Assets\GameTips.cs" />
      <Compile Include="Assets\GraphicsMenu.cs" />
      <Compile Include="Assets\Grinder.cs" />
@@ -303,6 +304,7 @@
      <Compile Include="Assets\Prefabs\DaexaUnits\CoyoteMoveFireUpgrade.cs" />
      <Compile Include="Assets\Prefabs\Level2\Formations.cs" />
      <Compile Include="Assets\ProductionManager.cs" />
+     <Compile Include="Assets\PulseCannon.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
      <Compile Include="Assets\RaceNames.cs" />
      <Compile Include="Assets\RaceSelectManager.cs" />
@@ -339,10 +341,7 @@
      <Compile Include="Assets\Scripts - In Game\DamageTypes.cs" />
      <Compile Include="Assets\Scripts - In Game\DefaultState.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_Control.cs" />
-     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_D.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_Escape.cs" />
-     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_H.cs" />
-     <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_S.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_Shift.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventArgs.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\MouseEventActions\LeftButton_Handler.cs" />
@@ -485,6 +484,7 @@
      <Compile Include="Assets\VictoryScreen.cs" />
      <Compile Include="Assets\VictoryTrigger.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />
+     <Compile Include="Assets\ZephyrInteract.cs" />
      <Compile Include="Assets\airmover.cs" />
      <Compile Include="Assets\animate.cs" />
      <Compile Include="Assets\buildResumeState.cs" />

@@ -39,10 +39,10 @@ public class CinematicCamera : SceneEventTrigger {
 					return;
 				} else {
 					
-					shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration;
+					shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration* GameSettings.gameSpeed;
 					if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
 						hasNextDialogue = true;
-						nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay;
+						nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay* GameSettings.gameSpeed;
 					}
 				}
 			}
@@ -70,15 +70,18 @@ public class CinematicCamera : SceneEventTrigger {
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 		previousCamPos = MainCamera.main.gameObject.transform.position;
-		Debug.Log ("Index is " + index);
+
 
 	GetComponent<Camera> ().enabled = true;
 		currentScene = index;
-		shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration;
+		shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration* GameSettings.gameSpeed;
 		if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
 			hasNextDialogue = true;
-			nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay;
+			nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay * GameSettings.gameSpeed;
 		}
+		if (GameMenu.main) {
+			GameMenu.main.disableInput ();}
+
 	}
 
 	public void exitScene(){
@@ -89,6 +92,9 @@ public class CinematicCamera : SceneEventTrigger {
 		currentScene = -1;
 		GetComponent<Camera> ().enabled = false;
 		MainCamera.main.gameObject.transform.position = previousCamPos ;
+		if (GameMenu.main) {
+			GameMenu.main.EnableInput();}
+
 	}
 
 

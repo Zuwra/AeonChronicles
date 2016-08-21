@@ -91,7 +91,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		setFog ();
 		fogger.sprite = Sprite.Create(_texture as Texture2D, new Rect(0f, 0f, fog.texture.width, fog.texture.height), Vector2.zero);
 
-
+		GameMenu.main.addDisableScript (this);
 		ScreenTrapz.sprite = Sprite.Create (screenTrapzoidTex as Texture2D, new Rect (0f, 0f, textureWidth, textureHeight), Vector2.zero);
 
     }
@@ -374,7 +374,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	}
 
 	public void OnPointerDown(PointerEventData eventData)
-	{
+	{if (!this.enabled) {
+			return;}
 		if (eventData.button == PointerEventData.InputButton.Left) {
 			
 			dragging = true;
@@ -406,6 +407,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 	public void attackMoveMinimap()
 	{
+		if (!this.enabled) {
+			return;}
 		Vector3 clickPos =  Input.mousePosition;
 		clickPos.x -= this.GetComponent<RectTransform> ().position.x;
 		clickPos.y -=this.GetComponent<RectTransform> ().position.y;

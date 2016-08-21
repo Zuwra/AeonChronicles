@@ -30,7 +30,7 @@ public class TextTrigger : SceneEventTrigger {
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
 				UIHighLight.main.highLight (null, 0);
 			} else {
-				ExpositionDisplayer.instance.displayText (text, duration, sound, .2f, myPic);
+				ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic);
 				if (stealCamera > 0) {
 					GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);
 				}

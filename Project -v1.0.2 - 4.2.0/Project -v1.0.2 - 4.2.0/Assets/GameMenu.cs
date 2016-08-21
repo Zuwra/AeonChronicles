@@ -19,6 +19,7 @@ public class GameMenu : MonoBehaviour {
 	public Button MissionLogB;
 
 	public bool ispaused = false;
+	public bool isDisabled = false;
 
 	public Canvas racetipMenu;
 	public Canvas OptionMenu;
@@ -48,6 +49,9 @@ public class GameMenu : MonoBehaviour {
 	void Start () {
 		
 		uimanage = (UIManager)FindObjectOfType<UIManager>();
+		if (GameSettings.gameSpeed < 0) {
+			GameSettings.gameSpeed = 1;
+		} 
 	
 	}
 	
@@ -127,12 +131,25 @@ public class GameMenu : MonoBehaviour {
 		
 	}
 
+	public void disableInput()
+	{foreach (MonoBehaviour m in disableScripts) {
+			m.enabled = false;
+		}
+
+	}
+
+	public void EnableInput()
+	{foreach (MonoBehaviour m in disableScripts) {
+			m.enabled =true;
+		}
+	}
+
 	public void unpause()
 	{
 		//	Debug.Log ("Pauseing");
 		ispaused = false;
 	
-			Time.timeScale = 1;
+		Time.timeScale = GameSettings.gameSpeed;
 		foreach (MonoBehaviour m in disableScripts) {
 			m.enabled = true;
 		}

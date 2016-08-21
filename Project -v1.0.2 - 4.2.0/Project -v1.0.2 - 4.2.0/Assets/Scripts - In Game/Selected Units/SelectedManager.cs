@@ -85,58 +85,58 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			if (Input.GetKeyDown (KeyCode.Alpha1)) {
 				if (SelectedObjects.Count > 0) {
 					AddUnitsToGroup (0, false); 
-					controlUI.activateTab (0, Group [0].Count, Group [0] [0].GetComponent<UnitStats> ().Icon);
+
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
 				if (SelectedObjects.Count > 0) {
 					AddUnitsToGroup (1, false);
-					controlUI.activateTab (1, Group [1].Count, Group [1] [0].GetComponent<UnitStats> ().Icon);
+
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
 				if (SelectedObjects.Count > 0) {
 					AddUnitsToGroup (2, false);
-					controlUI.activateTab (2, Group [2].Count, Group [2] [0].GetComponent<UnitStats> ().Icon);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
 				if (SelectedObjects.Count > 0) {
 					AddUnitsToGroup (3, false);
-					controlUI.activateTab (3, Group [3].Count, Group [3] [0].GetComponent<UnitStats> ().Icon);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
 				if (SelectedObjects.Count > 0) {
 					AddUnitsToGroup (4, false);
-					controlUI.activateTab (4, Group [4].Count, Group [4] [0].GetComponent<UnitStats> ().Icon);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
 				if (SelectedObjects.Count > 0) {
 					AddUnitsToGroup (5, false);
-					controlUI.activateTab (5, Group [5].Count, Group [5] [0].GetComponent<UnitStats> ().Icon);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
 				if (SelectedObjects.Count > 0) {
-					AddUnitsToGroup (6, false);
-					controlUI.activateTab (6, Group [6].Count, Group [6] [0].GetComponent<UnitStats> ().Icon);			
+					AddUnitsToGroup (6, false);		
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha8)) {
 				if (SelectedObjects.Count > 0) {
 					AddUnitsToGroup (7, false);
-					controlUI.activateTab (7, Group [7].Count, Group [7] [0].GetComponent<UnitStats> ().Icon);
+
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha9)) {
 				if (SelectedObjects.Count > 0) {
 					AddUnitsToGroup (8, false);
-					controlUI.activateTab (8, Group [8].Count, Group [8] [0].GetComponent<UnitStats> ().Icon);
+
 				}
 			} else if (Input.GetKeyDown (KeyCode.Alpha0)) {
 				if (SelectedObjects.Count > 0) {
 					AddUnitsToGroup (9, false);
-					controlUI.activateTab (9, Group [9].Count, Group [9] [0].GetComponent<UnitStats> ().Icon);
+
 				}
 			}
 
-		} else if (Input.GetKeyDown (KeyCode.LeftControl)) {
+		} else if (Input.GetKey(KeyCode.LeftControl)) {
+
 			if (Input.GetKeyDown(KeyCode.Alpha1))
-			{AddUnitsToGroup (0, true);}
+			{
+				
+				AddUnitsToGroup (0, true);
+			
+			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{AddUnitsToGroup (1, true); }
 			else if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -159,7 +159,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         else {
             // Select a control group
             if (Input.GetKeyDown(KeyCode.Alpha1))
-            { SelectGroup(0); }
+            { 
+
+				SelectGroup(0); }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             { SelectGroup(1); }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -219,7 +221,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	public void setPage(int n)
 	{
 		currentPage = n;
-		abilityManager.loadUI(UIPages[currentPage]);
+		if (UIPages.Count > 0) {
+			abilityManager.loadUI (UIPages [currentPage]);
+		}
 	}
 
 
@@ -628,7 +632,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		}
 	}
 
-    public void GiveOrder(Order order)
+	public void GiveOrder(Order order)
 	{//fix this once we get to multiplayer games
 
 		if(SelectedObjects.Count <= 0 || SelectedObjects[0].gameObject.GetComponent<UnitManager>().PlayerOwner != 1)
@@ -650,7 +654,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 			voiceResponse (false);
 
-			assignMoveCOmmand (order.OrderLocation, false);
+			assignMoveCOmmand (order.OrderLocation, Vector3.zero,false ,1);
 
 		} else if (order.OrderType == 4 ) {
 			// MOVE COMMAND
@@ -661,7 +665,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
 			}
 			voiceResponse (true);
-			assignMoveCOmmand (order.OrderLocation, true);
+			assignMoveCOmmand (order.OrderLocation, Vector3.zero, true, 1);
 
 		} else if (order.OrderType == 6 ) {
 			// INTERACT
@@ -715,9 +719,35 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     }
 
+	public void GiveMoveSpread(Vector3 a,  Vector3 b)
+	{//fix this once we get to multiplayer games
+
+		if(SelectedObjects.Count <= 0 || SelectedObjects[0].gameObject.GetComponent<UnitManager>().PlayerOwner != 1)
+		{return;}
+			
+		if (FogOfWar.current.IsInCompleteFog ( Vector3.Lerp(a,b,.5f))) {
+				Instantiate (fogIndicator);
+
+			} else {
+			Instantiate (movementInd, Vector3.Lerp(a,b,.5f), Quaternion.Euler (90, 0, 0));
+			}
+
+
+			voiceResponse (false);
+
+		Debug.Log ("Moving " + a + "   " + b + "   spread  " + (1 + Vector3.Distance (a, b) / 60));
+		assignMoveCOmmand (a,b, false, 1 + Vector3.Distance(a,b)/50);
+
+		} 
+
+
+
+
 	// Used  for Circular Formation movement, Mostly Broken
-	public void assignMoveCOmmand(Vector3 targetPoint, bool attack)
+	public void assignMoveCOmmand(Vector3 targetPoint,Vector3 secondPoint, bool attack, float sepDistance)
 	{
+
+
 		List<RTSObject> realMovers = new List<RTSObject> ();
 
 		List<RTSObject> others = new List<RTSObject> ();
@@ -731,23 +761,20 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
 		}
 		middlePoint /= realMovers.Count;
-		foreach (IOrderable rt in others) {
-			if (attack) {
-				Order o = Orders.CreateAttackMove (targetPoint);
 
-				rt.GiveOrder (o);
-			} else {
-				Order o = Orders.CreateMoveOrder (targetPoint);
-				rt.GiveOrder (o);
-
-			}
+		float angle;
+		if (sepDistance == 1) {
+			angle = Vector2.Angle (Vector2.up, new Vector2 (middlePoint.x - targetPoint.x, middlePoint.z - targetPoint.z));
+		} else {
+			//Used when there is a right click drag spread formation
+			angle = Vector2.Angle (Vector2.up, new Vector2 (secondPoint.x - targetPoint.x,secondPoint.z - targetPoint.z) )+ 90;
+			targetPoint = Vector3.Lerp (targetPoint, secondPoint, .5f);
 		}
-		float angle =Vector2.Angle (Vector2.up, new Vector2 (middlePoint.x - targetPoint.x, middlePoint.z - targetPoint.z));
 		if (middlePoint.x < targetPoint.x) {
 			angle *= -1;
 		} 
 
-		List<Vector3> points = Formations.getFormation (realMovers.Count);
+		List<Vector3> points = Formations.getFormation (realMovers.Count, Mathf.Min(2, sepDistance));
 		for (int t = 0; t < points.Count; t ++) {
 			Vector3 newPoint = Quaternion.Euler(0,angle,0) * points [t];
 			points [t] = newPoint + targetPoint;
@@ -804,16 +831,20 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	public void AddUnitsToGroup(int groupNumber, bool clear)
 	{if (clear) {
+			
 			Group [groupNumber].Clear ();
 		}
         foreach (RTSObject obj in SelectedObjects)
         {
 			if (!Group [groupNumber].Contains (obj)) {
 				Group [groupNumber].Add (obj);
+				//ErrorPrompt.instance.showError ("Adding " + obj);
 			}
 
         }
         CreateUIPages(0);
+		controlUI.activateTab (groupNumber, Group [groupNumber].Count, Group [groupNumber] [0].GetComponent<UnitStats> ().Icon);
+
     }
 
 

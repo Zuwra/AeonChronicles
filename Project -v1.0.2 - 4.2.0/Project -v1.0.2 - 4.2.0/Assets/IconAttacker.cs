@@ -10,11 +10,14 @@ public class IconAttacker : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 	private GameObject gatling;
 	private TurretHealthDisplay healthDisplay;
 
+
 	void Start()
 	{playerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
 		selManager = GameObject.FindObjectOfType<SelectedManager> ();
 		gatling = transform.parent.parent.gameObject;
 		healthDisplay = GetComponentInParent<TurretHealthDisplay> ();
+	
+
 	}
 
 
@@ -43,9 +46,17 @@ public class IconAttacker : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
 
 		} else if (eventData.button == PointerEventData.InputButton.Left && !Input.GetKey(KeyCode.LeftShift)) {
-			selManager.DeselectAll ();
-			selManager.AddObject (gatling.GetComponent<UnitManager>());
-			selManager.CreateUIPages (0);
+			
+			if (gatling.transform.parent.parent.GetComponent<Selected>().IsSelected) {
+
+				selManager.DeselectAll ();
+				selManager.AddObject (gatling.GetComponent<UnitManager> ());
+				selManager.CreateUIPages (0);
+			} else {
+				selManager.DeselectAll ();
+				selManager.AddObject (gatling.transform.parent.parent.GetComponent<UnitManager>());
+				selManager.CreateUIPages (0);
+			}
 		}
 
 
