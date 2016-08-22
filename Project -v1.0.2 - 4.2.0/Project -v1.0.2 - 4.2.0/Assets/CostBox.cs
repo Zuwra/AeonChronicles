@@ -17,6 +17,9 @@ public class CostBox : MonoBehaviour {
 	public Image clocker;
 	public Image BloodDrop;
 	public Text Population;
+	public Image EnergyPic;
+	public Text EnergyText;
+
 
 	Color teal = new Color(.698f, .949f, 255);
 	// Use this for initialization
@@ -114,6 +117,15 @@ public class CostBox : MonoBehaviour {
 
 			} else {
 				requirements.text = "";
+			}
+
+			if (input.myCost.energy > 0) {
+				EnergyPic.enabled = true;
+				EnergyText.text = "" + input.myCost.energy;
+
+			} else {
+				EnergyPic.enabled = false;
+				EnergyText.text = "" ;
 			}
 
 			if (input.myCost.ResourceTwo > 0) {

@@ -86,11 +86,15 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 		myManager.myStats.heal (myManager.myStats.Maxhealth * m);
 		if (underConstruction >= 1) {
 			doneConstruction = true;
-			myAnim.SetInteger ("State", 1);
+			if (myAnim) {
+				myAnim.SetInteger ("State", 1);
+			}
 			if (currentCoRoutine != null) {
 				StopCoroutine (currentCoRoutine);
 			}
-			myAnim.speed = 1;
+			if (myAnim) {
+				myAnim.speed = 1;
+			}
 			UnitManager template = sourceObj.GetComponent<UnitManager> ();
 			for (int i = 0; i < myManager.abilityList.Count; i++) {
 

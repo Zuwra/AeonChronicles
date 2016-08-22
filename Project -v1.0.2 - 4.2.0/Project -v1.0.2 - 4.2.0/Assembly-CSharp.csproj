@@ -393,7 +393,6 @@
      <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IOrderable.cs" />
      <Compile Include="Assets\Scripts - In Game\LethalDamageinterface.cs" />
      <Compile Include="Assets\Scripts - In Game\ManagerWatcher.cs" />
-     <Compile Include="Assets\Scripts - In Game\MeleeWeaponTest.cs" />
      <Compile Include="Assets\Scripts - In Game\Misc\wayPointGizmo.cs" />
      <Compile Include="Assets\Scripts - In Game\Modifier.cs" />
      <Compile Include="Assets\Scripts - In Game\MoveState.cs" />
@@ -433,7 +432,6 @@
      <Compile Include="Assets\Scripts - In Game\Units\Workers\ResourceCarry.cs" />
      <Compile Include="Assets\Scripts - In Game\Units\Workers\ResourceDropOff.cs" />
      <Compile Include="Assets\Scripts - In Game\Validator.cs" />
-     <Compile Include="Assets\Scripts - In Game\VisionSphere.cs" />
      <Compile Include="Assets\Scripts - In Game\WarpCore.cs" />
      <Compile Include="Assets\Scripts - In Game\bobble.cs" />
      <Compile Include="Assets\Scripts - In Game\customMover.cs" />

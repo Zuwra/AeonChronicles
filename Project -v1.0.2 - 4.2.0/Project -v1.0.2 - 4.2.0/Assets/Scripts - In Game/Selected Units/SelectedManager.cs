@@ -732,10 +732,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			Instantiate (movementInd, Vector3.Lerp(a,b,.5f), Quaternion.Euler (90, 0, 0));
 			}
 
-
 			voiceResponse (false);
 
-		Debug.Log ("Moving " + a + "   " + b + "   spread  " + (1 + Vector3.Distance (a, b) / 60));
 		assignMoveCOmmand (a,b, false, 1 + Vector3.Distance(a,b)/50);
 
 		} 
@@ -760,6 +758,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				middlePoint += obj.transform.position;
 			}
 		}
+		foreach ( IOrderable io  in others) {
+			io.GiveOrder (Orders.CreateMoveOrder (targetPoint));
+		}
+
 		middlePoint /= realMovers.Count;
 
 		float angle;

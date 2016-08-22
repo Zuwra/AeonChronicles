@@ -376,7 +376,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	public void Move(Order order)
 	{
 		if (!attached) {
-			
+			Debug.Log ("Im moving");
 			manager.changeState (new MoveState (order.OrderLocation, manager,false));
 		}
 
