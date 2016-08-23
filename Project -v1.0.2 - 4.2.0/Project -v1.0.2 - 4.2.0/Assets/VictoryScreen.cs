@@ -30,8 +30,8 @@ public class VictoryScreen : MonoBehaviour {
 
 		if (LevelData.myLevels.Count > 0 && LevelData.ComingFromLevel) {
 
-			SetResults (LevelData.myLevels [LevelData.currentLevel - 1]);
-			PlayerPrefs.SetInt ("TechAmount", LevelData.myLevels [LevelData.currentLevel - 1].TechCredits);
+			SetResults (LevelData.lastInfo);
+			PlayerPrefs.SetInt ("TechAmount", LevelData.lastInfo.TechCredits);
 			if (LevelData.currentLevel > PlayerPrefs.GetInt ("LastLevel")) {
 				PlayerPrefs.SetInt ("LastLevel", LevelData.currentLevel);
 			}

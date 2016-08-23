@@ -12,7 +12,7 @@ public class HealthUpgrade : Upgrade {
 		UnitManager manager = obj.GetComponent<UnitManager> ();
 
 		if(manager){
-			if (manager.UnitName == "Coyote" ) {
+			if (manager.UnitName == "Zephyr" ) {
 
 				obj.GetComponent<UnitStats> ().Maxhealth += healthAmount;
 

@@ -20,19 +20,20 @@ public class HalfLifeStarter : MonoBehaviour, Notify{
 
 	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
 	{
-		HalfLife enemyPois = target.GetComponent<HalfLife> ();
+		Poison enemyPois = target.GetComponent<Poison> ();
 		if (enemyPois == null) {
 
-			target.AddComponent<HalfLife> ();
-			enemyPois = target.GetComponent<HalfLife> ();
-			enemyPois.startPoison(poisonEffect);
-
-
-		} else {
-
-
-			enemyPois.AddPoisonStack();
+			enemyPois = target.AddComponent<Poison> ();
+		
+			enemyPois.startPoison (poisonEffect);
 		}
+			UnitStats theirStats = target.gameObject.GetComponent<UnitStats> ();
+		float damageAmount =  Mathf.Max(50,theirStats.Maxhealth /2);
+
+			enemyPois.remainingPoison = damageAmount;
+			enemyPois.damageRate = damageAmount / 6;
+			enemyPois.setEnergyDrain (theirStats.currentEnergy / 12);
+
 	}
 
 

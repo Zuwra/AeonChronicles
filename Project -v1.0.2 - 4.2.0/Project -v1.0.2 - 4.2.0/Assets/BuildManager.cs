@@ -70,7 +70,9 @@ public class BuildManager : MonoBehaviour {
 
 
 	public void checkForSupply()
-	{
+	{if (!buildOrder [0].unitToBuild) {
+			buildOrder [0].startBuilding ();
+			return;}
 		float Sup = buildOrder [0].unitToBuild.GetComponent<UnitStats> ().supply;
 
 		if (Sup == 0 || raceMan.hasSupplyAvailable (Sup)) {

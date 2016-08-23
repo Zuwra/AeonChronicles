@@ -16,6 +16,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 		//public float buildTime;
 		// Use this for initialization
 		void Start () {
+		myType = type.activated;
 			mySelect = GetComponent<Selected> ();
 		buildMan = GetComponent<BuildManager> ();
 		HD = GetComponentInChildren<HealthDisplay>();

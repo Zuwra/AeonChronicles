@@ -10,6 +10,7 @@ public class LevelData  {
 	public static List<levelInfo> myLevels;
 	public static bool easyMode = true;
 	public static bool ComingFromLevel;
+	public static levelInfo lastInfo;
 
 	public static List<VeteranStats> myVets;
 
@@ -43,6 +44,7 @@ public class LevelData  {
 		myLevels.Add (myL);
 		totalXP += Tech;
 		currentLevel = levelN +1;
+		lastInfo = myL;
 	//	Debug.Log ("Cureent Level " + currentLevel);
 	}
 

@@ -6,7 +6,7 @@ public class PulseCannon : IWeapon {
 	//Like the Iweapon but this fires at every person around it 
 
 	private float nextTime;
-
+	public int maxPulses = 10;
 
 
 
@@ -25,6 +25,8 @@ public class PulseCannon : IWeapon {
 			foreach (GameObject obj in myManager.enemies) {
 				StartCoroutine( AttackWave ((i * .08f ),obj));
 				i++;
+				if(i >= maxPulses)
+				{break;}
 			}
 			nextTime = Time.time + attackPeriod/3 + i *.08f;
 

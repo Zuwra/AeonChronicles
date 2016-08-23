@@ -63,7 +63,7 @@ public class CostBox : MonoBehaviour {
 				clocker.enabled = true;
 				time.text = "" + input.myCost.cooldown;
 			}
-			if (input is UnitProduction) {
+			if (input is UnitProduction && ((UnitProduction)input).unitToBuild) {
 				UnitStats mwertqert = ((UnitProduction)input).unitToBuild.GetComponent<UnitStats> ();
 
 				float sup =	mwertqert.supply;

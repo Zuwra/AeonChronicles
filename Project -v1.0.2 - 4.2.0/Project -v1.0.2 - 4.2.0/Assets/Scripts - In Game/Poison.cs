@@ -13,6 +13,7 @@ public class Poison : MonoBehaviour {
 
 	private float stackAmount =12 ;
 	private PopUpMaker popper;
+	public float drainEnergyAmount=0;
 
 	// Use this for initialization
 	void Start () {targetStats = this.gameObject.GetComponent<UnitStats> ();
@@ -40,10 +41,11 @@ public class Poison : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {	if (Time.time > nextActionTime) {
 
-			nextActionTime += 1f;
+			nextActionTime = Time.time +  1f;
 
-			targetStats.TakeDamage(damageRate,null, DamageTypes.DamageType.True);
-			popper.CreatePopUp ("" + remainingPoison, Color.magenta);
+			targetStats.TakeDamage(damageRate,null, DamageTypes.DamageType.Penetrating);
+			targetStats.changeEnergy (-drainEnergyAmount);
+			popper.CreatePopUp ("" + (int)remainingPoison, Color.magenta);
 			remainingPoison -= damageRate;
 		
 			if(remainingPoison <=0)
@@ -55,6 +57,10 @@ public class Poison : MonoBehaviour {
 	
 	}
 
+	public void setEnergyDrain(float n)
+	{drainEnergyAmount = n;
+		
+	}
  
 
 	public void AddPoisonStack()

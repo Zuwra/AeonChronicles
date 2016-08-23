@@ -687,7 +687,7 @@ public class UiAbilityManager : MonoBehaviour {
 							cb.disabledColor = Color.white;
 							trans.GetComponent<Button> ().interactable = false;
 						} else {
-							certainButtons [j].Rtext.enabled = false;
+							certainButtons [j].Rtext.enabled = true;
 						}
 							trans.GetComponent<Button> ().colors = cb;
 

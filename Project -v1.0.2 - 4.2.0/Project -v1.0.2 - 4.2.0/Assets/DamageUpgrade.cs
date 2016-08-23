@@ -21,7 +21,7 @@ public class DamageUpgrade : Upgrade {
             {
                 obj.GetComponent<IWeapon>().baseDamage += gatlingDamage;
             }
-		    else if (manager.UnitName.Equals("Rail Gun"))
+		    else if (manager.UnitName.Equals("Imperio Cannon"))
             {
                 obj.GetComponent<IWeapon>().baseDamage += railgunDamage;
             }
