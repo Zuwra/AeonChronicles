@@ -41,6 +41,11 @@ public class ZephyrInteract : StandardInteract{
 
 		
 		}
+
+		else if (order.Target == this.gameObject) {
+			return;
+		}
+
 		else if (myManager.myWeapon.Count > 0) {
 
 			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));

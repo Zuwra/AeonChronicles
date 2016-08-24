@@ -19,7 +19,7 @@ public class BuildUnit : UnitProduction {
 	//private UnitManager manage;
 	private HealthDisplay HD;
 	private BuildManager buildMan;
-	private float buildRate = 1;
+
 
 	private int QueueNum;
 	// Use this for initialization
@@ -71,10 +71,7 @@ public class BuildUnit : UnitProduction {
 	
 	}
 
-	public void setBuildRate(float rate)
-	{
-		buildRate = rate;
-	}
+
 
 	public override float getProgress ()
 	{return (1 - timer/buildTime);}

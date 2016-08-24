@@ -501,6 +501,7 @@
      <Compile Include="Assets\sawDefense.cs" />
      <Compile Include="Assets\selfDestructTimer.cs" />
      <Compile Include="Assets\simpleROV.cs" />
+     <Compile Include="Assets\stunStrike.cs" />
      <Compile Include="Assets\testScript.cs" />
      <Compile Include="Assets\turretState.cs" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.shader" />

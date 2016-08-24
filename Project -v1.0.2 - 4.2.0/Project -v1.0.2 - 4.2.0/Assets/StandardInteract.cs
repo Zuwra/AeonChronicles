@@ -100,7 +100,10 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 		if (manage != null) {
 
-			if (manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {
+			if (manage ==myManager) {
+				return;
+			}
+			if (manage.PlayerOwner != myManager.PlayerOwner  ) {
 				if (this.gameObject.GetComponent<UnitManager> ().myWeapon == null) {
 					myManager.changeState (new FollowState (order.Target.gameObject, myManager));
 				} else {
@@ -144,6 +147,9 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	//Right click on a unit/object. how is this different than interact? is it only on allied units?
 	public virtual void Follow(Order order){
 
+		if (order.Target == this.gameObject) {
+			return;
+		}
 	//	Debug.Log ("First ORder");
 		if (myManager.myWeapon.Count > 0) {
 

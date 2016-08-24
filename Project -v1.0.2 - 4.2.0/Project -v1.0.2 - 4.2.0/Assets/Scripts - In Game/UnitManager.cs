@@ -175,7 +175,7 @@ public class UnitManager : Unit,IOrderable{
 		
 				if (order.canCast) {
 					if (abilityList [n] is TargetAbility) {
-						//Debug.Log ("The target is " + obj);
+						Debug.Log ("The target is " + obj + "   "+ loc);
 						changeState (new AbilityFollowState (obj, loc, (TargetAbility)abilityList [n]));
 					} else if (abilityList [n] is Morph || abilityList [n] is BuildStructure) {
 						changeState (new PlaceBuildingState (obj,loc, abilityList [n]));

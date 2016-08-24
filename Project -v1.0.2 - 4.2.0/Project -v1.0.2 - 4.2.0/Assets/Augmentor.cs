@@ -75,28 +75,31 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 			}
 		}
+		UnitManager unitMan = target.GetComponent<UnitManager> ();
 
 		OreDispenser OD = target.GetComponent<OreDispenser> ();
 		if (OD) {
 			OD.returnRate = 1.3f;
-		}
-
-		else if (target.GetComponent<UnitManager> ().UnitName == "Construction Yard") {
-			foreach (BuildUnit bu in target.GetComponents<BuildUnit>()) {
+		} else if (unitMan.UnitName == "Construction Yard") {
+			foreach (UnitProduction bu in target.GetComponents<UnitProduction>()) {
 				//bu.buildTime *= .65f;
 				bu.myCost.cooldown = bu.buildTime;
 				bu.setBuildRate (1.35f);
 			}
 
-		}
-
-		else if (target.GetComponent<UnitManager> ().UnitName == "Armory") {
+		} else if (unitMan.UnitName == "Armory") {
 			foreach (buildTurret bt in target.GetComponents<buildTurret>()) {
 				if (bt.Name.Contains ("Repair")) {
 					bt.active = true;
 				}
 			}
 
+		} else if (unitMan.UnitName == "Gadget Lab") {
+			foreach (UnitProduction bu in target.GetComponents<UnitProduction>()) {
+				//bu.buildTime *= .65f;
+				bu.myCost.cooldown = bu.buildTime;
+				bu.setBuildRate (1.35f);
+			}
 		}
 
 		if (GetComponent<Selected> ().IsSelected) {
@@ -409,6 +412,10 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 	//Right click on a unit/object. how is this different than interact? is it only on allied units?
 	public void Follow(Order order){
+		if (order.Target == this.gameObject) {
+			return;
+		}
+
 		if (!attached) {
 			if (!attached && isValidTarget (order.Target, Vector3.zero)) {
 				manager.UseTargetAbility (order.Target, Vector3.zero, 0);

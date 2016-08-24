@@ -36,6 +36,8 @@ public class AbilityFollowState  : UnitState {
 		}
 		if (target) {
 			myManager.cMover.resetMoveLocation (target.transform.position);
+		} else {
+			myManager.cMover.resetMoveLocation (location);
 		}
 	}
 
@@ -58,7 +60,7 @@ public class AbilityFollowState  : UnitState {
 
 	
 		if (!myAbility.inRange (location)) {
-
+			Debug.Log ("Im moving");
 		
 			myManager.cMover.move ();
 		} else {

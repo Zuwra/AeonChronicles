@@ -8,7 +8,7 @@ public class EmpMissile :  TargetAbility {
 	// Use this for initialization
 	void Start () {
 		manage = this.gameObject.GetComponent<UnitManager> ();
-		myType = type.activated;
+		myType = type.target;
 	}
 	
 	// Update is called once per frame
@@ -39,19 +39,22 @@ public class EmpMissile :  TargetAbility {
 	public  void setAutoCast(bool offOn){}
 
 	public override bool isValidTarget (GameObject target, Vector3 location){
-		if (target == null) {
+		if (target == null && myTargetType == targetType.unit) {
 			return false;
 		}
-
-		UnitManager m = target.GetComponent<UnitManager> ();
-		if (m == null) {
-			return false;}
-
-		if (manage.PlayerOwner != m.PlayerOwner) {
-			return true;
+		if (target) {
+			UnitManager m = target.GetComponent<UnitManager> ();
+			if (m == null) {
+				return false;}
+			if (manage.PlayerOwner != m.PlayerOwner) {
+				return true;
+			}
 		}
+	
 
-		return false;
+
+
+		return true;
 
 	}
 
@@ -60,8 +63,6 @@ public class EmpMissile :  TargetAbility {
 	public  bool Cast(GameObject target, Vector3 location)
 	{
 
-
-	
 		myCost.payCost ();
 
 		GameObject proj = null;

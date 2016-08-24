@@ -34,6 +34,10 @@ public class SpaceDrop : MonoBehaviour {
 
 		lastLocation = loc;
 		distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+		airmover myAir = GetComponent<airmover> ();
+		if (myAir) {
+			lastLocation += Vector3.up * myAir.flyerHeight/1.5f;
+		}
 		//gameObject.transform.LookAt (lastLocation);
 	}
 
@@ -41,7 +45,7 @@ public class SpaceDrop : MonoBehaviour {
 	void Update () {
 
 
-		if(distance - currentDistance <1.5)
+		if(Vector3.Distance(lastLocation ,this.transform.transform.position) < 3)
 		{
 			Terminate();
 		}

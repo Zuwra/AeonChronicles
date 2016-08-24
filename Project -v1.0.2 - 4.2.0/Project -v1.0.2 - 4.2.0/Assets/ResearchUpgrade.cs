@@ -32,7 +32,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 			if (researching) {
 			
 
-				timer -= Time.deltaTime;
+				timer -= Time.deltaTime * buildRate;
 				mySelect.updateCoolDown (1 - timer/buildTime);
 				if(timer <=0)
 				{mySelect.updateCoolDown (0);
