@@ -12,7 +12,7 @@ public class AttackMoveState : UnitState {
 	private Vector3 target; // currently moving towards
 
 	private bool enemyDead = false;
-	private int refreshTime = 4;
+	private int refreshTime = 10;
 	private int currentFrame = 0;
 
 
@@ -55,6 +55,7 @@ public class AttackMoveState : UnitState {
 	// Update is called once per frame
 	override
 	public void Update () {
+		//Debug.Log ("I am " + myManager.gameObject + "   in attackMove");
 
 		currentFrame++;
 
@@ -88,6 +89,7 @@ public class AttackMoveState : UnitState {
 				if (weap.inRange (enemy)) {
 
 					if (myManager.cMover) {
+						
 						myManager.cMover.stop ();
 
 					}

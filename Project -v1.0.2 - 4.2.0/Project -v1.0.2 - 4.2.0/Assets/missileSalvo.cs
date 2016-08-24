@@ -7,22 +7,39 @@ public class missileSalvo : Ability, Validator, Notify{
 	private IWeapon myweapon;
 	public int  maxRockets = 4;
 	private UnitManager mymanager;
+	private Selected mySelect;
+
+	private float nextCheckTime;
 	// Use this for initialization
 	void Start () {
 		mymanager = GetComponent<UnitManager> ();
 		myweapon = GetComponent<IWeapon> ();
 		myweapon.triggers.Add (this);
 		myweapon.validators.Add (this);
+		myType = type.activated;
+		mySelect = GetComponent<Selected> ();
 	
 	}
 
+	public void upRockets ()
+	{
+		chargeCount++;
+		if (mySelect.IsSelected) {
+			RaceManager.upDateUI ();
+		}
+	}
+
 	public override void setAutoCast(bool offOn){
+		autocast = offOn;
+
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
+
+
 	}
 		
 
@@ -40,7 +57,9 @@ public class missileSalvo : Ability, Validator, Notify{
 	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)	{
 		chargeCount--;
 		RaceManager.upDateUI ();
-
+		if (autocast && chargeCount == 0) {
+			Activate ();
+		}
 
 	}
 

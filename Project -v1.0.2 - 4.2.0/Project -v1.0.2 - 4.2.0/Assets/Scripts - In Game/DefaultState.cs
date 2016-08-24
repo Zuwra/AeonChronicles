@@ -20,9 +20,9 @@ public class DefaultState : UnitState{
 	public void Update () {// change this later so t will only check for attackable enemies.
 		if (myManager.myWeapon.Count >0) {
 			if (myManager.enemies.Count > 0) {
-
+				
 				GameObject target = myManager.findBestEnemy ();
-
+				//Debug.Log ("I am " + myManager.gameObject + "  target " + target);
 				if (target == null) {
 					return;}
 				if (Vector3.Distance (myManager.gameObject.transform.position, target.transform.position) <= myManager.getChaseRange ()) {

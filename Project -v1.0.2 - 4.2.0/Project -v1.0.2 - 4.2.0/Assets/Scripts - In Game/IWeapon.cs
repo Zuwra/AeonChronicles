@@ -31,6 +31,7 @@ public class IWeapon : MonoBehaviour {
 
 
 	public GameObject turret;
+	public Vector3 originPoint;
 	private float nextActionTime;
 	public float attackArc;
 	private GameObject enemy;
@@ -242,7 +243,7 @@ public class IWeapon : MonoBehaviour {
 			if (projectile != null) {
 				Vector3 pos = this.gameObject.transform.position;
 				pos.y += this.gameObject.GetComponent<CharacterController> ().radius;
-				proj = (GameObject)Instantiate (projectile, pos, Quaternion.identity);
+				proj = (GameObject)Instantiate (projectile, pos + originPoint, Quaternion.identity);
 			
 				Projectile script = proj.GetComponent<Projectile> ();
 				proj.SendMessage ("setSource", this.gameObject);
@@ -418,6 +419,13 @@ public class IWeapon : MonoBehaviour {
 
 
 
+
+	public void OnDrawGizmos()
+	{
+
+		Gizmos.DrawSphere (originPoint +this.gameObject.transform.position, 1);
+
+	}
 
 
 }

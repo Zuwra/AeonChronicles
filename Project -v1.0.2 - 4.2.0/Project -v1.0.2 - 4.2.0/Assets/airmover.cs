@@ -43,14 +43,17 @@ public class airmover : IMover {
 
 	override
 	public bool move()
-	{if (!workingframe) {
+	{
+
+		if (!workingframe) {
 			workingframe = !workingframe;
+			//Debug.Log ("Returnin 1 ");
 			return false;
 		}
 			
 		if (Vector3.Distance(transform.position, targetPosition) <= nextWaypointDistance) {
 			speed = 0;
-
+			//Debug.Log ("Returnin 2 ");
 			return true;
 		}
 		if (speed < getMaxSpeed()) {
@@ -59,6 +62,7 @@ public class airmover : IMover {
 			if (speed > getMaxSpeed()) {
 				speed = getMaxSpeed();
 			}
+
 		}
 		dir = (targetPosition -transform.position).normalized;
 
@@ -74,6 +78,7 @@ public class airmover : IMover {
 
 		dir *= speed * Time.deltaTime;
 		controller.Move (dir);
+		//Debug.Log ("air movin " + dir);
 		if (myFogger) {
 			myFogger.move ();
 			}
@@ -81,6 +86,7 @@ public class airmover : IMover {
 		turnAmount.y = 0;
 	
 		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(turnAmount), Time.deltaTime * turnSpeed *  0.2f);
+		//Debug.Log ("Returnin 3 ");
 		return false;
 	}
 
@@ -88,16 +94,18 @@ public class airmover : IMover {
 	override
 	public void resetMoveLocation(Vector3 location)
 	{//	location.y += 2;
-
-		Vector3 destination = new Vector3(location.x, this.gameObject.transform.position.y, location.z);
+		if (speed == 0) {
+			speed = .1f;
+		}
+		targetPosition = location + Vector3.up * flyerHeight;
+	//Debug.Log ("Target is " + location);
 		GetComponent<UnitManager> ().animMove ();
 		//this.gameObject.transform.LookAt(destination);
 
-		destination.y = location.y + flyerHeight;
-		workingframe = false;
-		targetPosition = destination;
 
-		//queueTargetLocation(location);
+		workingframe = false;
+	
+		//queueTargetLocation(location);s
 
 	}
 

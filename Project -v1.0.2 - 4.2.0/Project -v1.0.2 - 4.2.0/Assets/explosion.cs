@@ -50,7 +50,10 @@ public class explosion : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider other)
-	{if (!other.isTrigger && !hitStuff.Contains(other.gameObject)) {
+	{if (other.isTrigger) {
+			return;}
+		
+		if(!hitStuff.Contains(other.gameObject)) {
 			hitStuff.Add (other.gameObject);
 			UnitManager manager = other.gameObject.GetComponent<UnitManager> ();
 

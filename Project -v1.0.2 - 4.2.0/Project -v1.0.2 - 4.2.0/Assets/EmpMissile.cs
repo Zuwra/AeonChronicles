@@ -8,6 +8,7 @@ public class EmpMissile :  TargetAbility {
 	// Use this for initialization
 	void Start () {
 		manage = this.gameObject.GetComponent<UnitManager> ();
+		myType = type.activated;
 	}
 	
 	// Update is called once per frame

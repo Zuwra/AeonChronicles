@@ -61,7 +61,7 @@ public  class Projectile : MonoBehaviour {
 				lastLocation = target.transform.position + randomOffset;
 			}
 		
-			randomOffset = UnityEngine.Random.insideUnitSphere * target.GetComponent<CharacterController> ().radius * .7f;
+			randomOffset = UnityEngine.Random.insideUnitSphere * target.GetComponent<CharacterController> ().radius * .9f;
 		} 
 
 		control = GetComponent<CharacterController> ();
@@ -173,6 +173,7 @@ public  class Projectile : MonoBehaviour {
 		if (other.gameObject == target || other.gameObject.transform.IsChildOf(target.transform)) {
 				
 				Terminate (other.gameObject);
+			return;
 			}
 
 			if (currentDistance / distance < .5) {
@@ -192,7 +193,7 @@ public  class Projectile : MonoBehaviour {
 	{
 		if (explosionO) {
 			GameObject explode = (GameObject)Instantiate (explosionO, this.gameObject.transform.position, Quaternion.identity);
-
+			Debug.Log ("INstantiating explosion");
 
 			explosion Escript = explode.GetComponent<explosion> ();
 			if (Escript) {
@@ -202,7 +203,7 @@ public  class Projectile : MonoBehaviour {
 		}
 
 		if (explosionO && SepDamWithExplos && target || !explosionO && target) {
-
+			
 			foreach (Notify not in triggers) {
 				not.trigger (this.gameObject, this.gameObject, target, damage);
 			}

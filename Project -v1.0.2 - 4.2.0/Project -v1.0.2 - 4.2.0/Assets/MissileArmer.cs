@@ -44,7 +44,7 @@ public class MissileArmer :Ability{
 				missileList.RemoveAll (item => item == null);
 				foreach (missileSalvo salv in missileList) {
 					if (salv.chargeCount < salv.maxRockets) {
-						salv.chargeCount++;
+						salv.upRockets ();
 				
 					}
 				}
