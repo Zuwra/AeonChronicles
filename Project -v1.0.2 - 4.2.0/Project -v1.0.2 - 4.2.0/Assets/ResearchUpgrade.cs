@@ -12,14 +12,18 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	private HealthDisplay HD;
 	private BuildManager buildMan;
 		public List<Upgrade> upgrades;
+	private UnitManager myManager;
+	RaceManager raceMan;
 
 		//public float buildTime;
 		// Use this for initialization
 		void Start () {
+		myManager = GetComponent<UnitManager> ();
 		myType = type.activated;
 			mySelect = GetComponent<Selected> ();
 		buildMan = GetComponent<BuildManager> ();
 		HD = GetComponentInChildren<HealthDisplay>();
+		raceMan = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 		}
 
 		// Update is called once per frame
@@ -35,7 +39,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 				HD.stopBuilding ();
 				buildMan.unitFinished (this);
 				researching = false;
-				GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.addUpgrade (upgrades[currentUpgrade], GetComponent<UnitManager>().UnitName);
+				raceMan.addUpgrade (upgrades[currentUpgrade], myManager.UnitName);
 				active = true;
 				RaceManager.upDateUI ();
 					//createUnit();
@@ -90,6 +94,17 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	public override void setAutoCast(bool offOn){}
 
 
+	public void commence(object[] incoming)
+	{
+		if (myManager.UnitName == (string)incoming[2]) {
+			
+			if (upgrades [currentUpgrade].GetType () == ((Upgrade)incoming[1]).GetType ()) {
+				active = (bool)incoming[0];
+
+			}
+		}
+	}
+
 
 	public void researched (Upgrade otherUpgrade)
 	{
@@ -110,7 +125,6 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 				foreach (Upgrade up in upgrades) {
 
-				
 					Destroy (up);
 				}
 
@@ -133,6 +147,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 		timer = buildTime;
 		HD.loadIMage(iconPic);
 		myCost.resetCoolDown ();
+		raceMan.commenceUpgrade (false, upgrades [currentUpgrade], myManager.UnitName);
 
 		foreach (Transform obj in this.transform) {
 
@@ -147,6 +162,15 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 		timer = 0;
 		researching = false;
 		myCost.refundCost ();
+		active = true;
+		raceMan.commenceUpgrade (true, upgrades [currentUpgrade], myManager.UnitName);
+		if (mySelect.IsSelected) {
+			RaceManager.updateActivity ();
+		}
+		foreach (Transform obj in this.transform) {
+
+			obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
+		}
 	}
 
 

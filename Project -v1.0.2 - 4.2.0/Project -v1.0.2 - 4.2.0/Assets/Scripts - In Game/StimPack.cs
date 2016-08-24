@@ -12,6 +12,7 @@ public class StimPack : Ability {
 	private float timer;
 	private Selected select;
 	public MultiShotParticle BoostEffect;
+	UnitManager myManager;
 
 	// Use this for initialization
 
@@ -22,7 +23,7 @@ public class StimPack : Ability {
 
 	void Start () {description = "Uses life to give a short burst of speed";
 		select = GetComponent<Selected> ();
-
+		myManager = GetComponent<UnitManager> ();
 	}
 	
 	// Update is called once per frame
@@ -62,11 +63,9 @@ public class StimPack : Ability {
 
 			if (!on) {
 
+				myManager.cMover.changeSpeed (0,speedBoost,false,this);
 
-				if (GetComponent<SlowDebuff> () == null) {
-					this.gameObject.AddComponent<SlowDebuff> ();
-				}
-				GetComponent<SlowDebuff> ().initialize (duration, 0, speedBoost);
+			
 				BoostEffect.continueEffect ();
 				myCost.payCost ();
 				on = true;
@@ -84,7 +83,7 @@ public class StimPack : Ability {
 
 	public void Deactivate()
 	{on = false;
-		
+		myManager.cMover.removeSpeedBuff (this);
 		BoostEffect.stopEffect ();
 
 

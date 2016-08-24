@@ -92,7 +92,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 	// Right click on a obj/unit
 	public virtual void Interact(Order order)
-	{Debug.Log ("First Intereact");
+	{//Debug.Log ("First Intereact");
 		UnitManager manage = order.Target.GetComponent<UnitManager> ();
 		if (!manage) {
 			manage = order.Target.GetComponentInParent<UnitManager> ();
@@ -144,7 +144,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	//Right click on a unit/object. how is this different than interact? is it only on allied units?
 	public virtual void Follow(Order order){
 
-		Debug.Log ("First ORder");
+	//	Debug.Log ("First ORder");
 		if (myManager.myWeapon.Count > 0) {
 
 			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));

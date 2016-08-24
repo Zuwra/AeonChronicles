@@ -139,6 +139,23 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
+	public void commenceUpgrade(bool onOff, Upgrade upgrade, string unitname)
+	{
+
+		object[] temp = new object[3];
+		temp [0] = onOff;
+		temp [1] = upgrade;
+		temp [2] = unitname;
+		foreach (GameObject obj in unitList) {
+			if (obj.GetComponent<UnitManager> ().UnitName == unitname) {
+
+
+				obj.SendMessage ("commence", temp);
+
+			}
+		}
+	}
+
 	public void addUpgrade(Upgrade upgrade, string unitname)
 	{
 		

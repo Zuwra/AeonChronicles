@@ -14,24 +14,27 @@ public class DamageUpgrade : Upgrade {
 	public void applyUpgrade (GameObject obj){
 
         UnitManager manager = obj.GetComponent<UnitManager>();
-
-		IWeapon wep = obj.GetComponent<IWeapon> ();
+		//Debug.Log ("Checking " + obj);
+		foreach(IWeapon wep in obj.GetComponents<IWeapon>())
 		if(wep){
 			if (obj.GetComponent<GatlingGun>() != null)
             {
-                obj.GetComponent<IWeapon>().baseDamage += gatlingDamage;
+                wep.baseDamage += gatlingDamage;
             }
 		    else if (manager.UnitName.Equals("Imperio Cannon"))
             {
-                obj.GetComponent<IWeapon>().baseDamage += railgunDamage;
+					wep.baseDamage += railgunDamage;
             }
             else if (obj.GetComponent<mortarPod>() != null)
             {
-                obj.GetComponent<IWeapon>().baseDamage += mortarDamage;
+					wep.baseDamage += mortarDamage;
             }
             else if (manager.UnitName.Equals("Hornet"))
-            {
-                obj.GetComponent<IWeapon>().baseDamage += hornetDamage;
+				{Debug.Log ("Weapon is " + wep.Title);
+					wep.baseDamage += hornetDamage;
+					if (wep.baseDamage > 40) {
+						wep.baseDamage += 8;
+					}
             }
 
 		}

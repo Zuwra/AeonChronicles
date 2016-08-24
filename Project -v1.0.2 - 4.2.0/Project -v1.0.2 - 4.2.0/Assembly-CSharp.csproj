@@ -233,6 +233,7 @@
      <Compile Include="Assets\EMPblast.cs" />
      <Compile Include="Assets\EconomyManager.cs" />
      <Compile Include="Assets\EmpMissile.cs" />
+     <Compile Include="Assets\EnableAbility.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\ExpositionDisplayer.cs" />
      <Compile Include="Assets\ExpositionTexts.cs" />

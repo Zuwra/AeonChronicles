@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using Pathfinding;
+using Pathfinding.RVO;
 public abstract class IMover: MonoBehaviour {
 
 
@@ -106,6 +107,10 @@ public abstract class IMover: MonoBehaviour {
 		MaxSpeed = tempspeed;
 		if (speed > MaxSpeed) {
 			speed = MaxSpeed;}
+		
+		RVOController rvo = GetComponent<RVOController> ();
+		rvo.maxSpeed = MaxSpeed;
+	
 	}
 
 }
