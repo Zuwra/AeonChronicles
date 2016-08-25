@@ -71,7 +71,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			stopO ();
 			if (Input.GetKey (KeyCode.LeftControl)) {
 
-				GiveOrder (Orders.CreateHoldGroundOrder ());
+				GiveOrder (Orders.CreateHoldGroundOrder (Input.GetKey(KeyCode.LeftShift)));
 			} 
 		} 
 		else if (Input.GetKeyUp (KeyCode.Escape)) {
@@ -230,7 +230,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	public void fireAbility(GameObject obj , Vector3 loc, int abilNum)
 		{
 		
-		UIPages [currentPage].fireAtTarget (obj, loc, abilNum);
+		UIPages [currentPage].fireAtTarget (obj, loc, abilNum , Input.GetKey(KeyCode.LeftShift));
 		targetManager.turnOff ();
 
 	}
@@ -288,7 +288,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 			}
 			else {
-				UIPages [currentPage].useAbility (n);
+				UIPages [currentPage].useAbility (n, Input.GetKey(KeyCode.LeftShift));
 			}
 		}
     }
@@ -683,11 +683,11 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 					Instantiate (attackInd, location, Quaternion.Euler (90, 0, 0));
 				}
 				foreach (IOrderable obj in SelectedObjects) {
-					obj.GiveOrder (Orders.CreateInteractCommand (order.Target));
+					obj.GiveOrder (Orders.CreateInteractCommand (order.Target,Input.GetKey(KeyCode.LeftShift)));
 				}
 			} else {
 				foreach (IOrderable obj in SelectedObjects) {
-					obj.GiveOrder (Orders.CreateFollowCommand (order.Target));
+					obj.GiveOrder (Orders.CreateFollowCommand (order.Target,Input.GetKey(KeyCode.LeftShift)));
 				}
 				voiceResponse (false);
 				if (FogOfWar.current.IsInCompleteFog (location)) {
@@ -759,7 +759,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
 		}
 		foreach ( IOrderable io  in others) {
-			io.GiveOrder (Orders.CreateMoveOrder (targetPoint));
+			io.GiveOrder (Orders.CreateMoveOrder (targetPoint,Input.GetKey(KeyCode.LeftShift)));
 		}
 
 		middlePoint /= realMovers.Count;
@@ -810,11 +810,11 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
 
 			if (attack) {
-				Order o = Orders.CreateAttackMove (closestSpot);
+				Order o = Orders.CreateAttackMove (closestSpot, Input.GetKey(KeyCode.LeftShift));
 
 				closestUnit.GiveOrder (o);
 			} else {
-				Order o = Orders.CreateMoveOrder (closestSpot);
+				Order o = Orders.CreateMoveOrder (closestSpot, Input.GetKey(KeyCode.LeftShift));
 				closestUnit.GiveOrder (o);
 
 			}
@@ -1007,10 +1007,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 			if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
 				Vector3 attackMovePoint = hit.point;
-				GiveOrder (Orders.CreateAttackMove (attackMovePoint));
+				GiveOrder (Orders.CreateAttackMove (attackMovePoint,Input.GetKey(KeyCode.LeftShift)));
 			}
 		} else {
-			GiveOrder (Orders.CreateAttackMove (input));
+			GiveOrder (Orders.CreateAttackMove (input,Input.GetKey(KeyCode.LeftShift)));
 		}
 
     }
@@ -1024,7 +1024,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 16)))
 		{
 			Vector3 attackMovePoint = hit.point;
-			GiveOrder(Orders.CreatePatrol(attackMovePoint));
+			GiveOrder(Orders.CreatePatrol(attackMovePoint,Input.GetKey(KeyCode.LeftShift)));
 		}
 
 	}
@@ -1044,7 +1044,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
     public void stopO()
     {
-        GiveOrder(Orders.CreateStopOrder());
+		GiveOrder(Orders.CreateStopOrder(Input.GetKey(KeyCode.LeftShift)));
     }
 
 	public void cancel()

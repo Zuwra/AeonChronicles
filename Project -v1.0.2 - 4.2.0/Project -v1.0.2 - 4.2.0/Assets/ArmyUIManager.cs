@@ -130,13 +130,4 @@ public class ArmyUIManager : MonoBehaviour {
 	}
 
 
-
-
-
-
-
-
-
-
-
 }

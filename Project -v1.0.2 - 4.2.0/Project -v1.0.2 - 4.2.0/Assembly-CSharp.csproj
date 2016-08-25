@@ -184,7 +184,6 @@
      <Compile Include="Assets\Augmentor.cs" />
      <Compile Include="Assets\BackLashAura.cs" />
      <Compile Include="Assets\BackLashZone.cs" />
-     <Compile Include="Assets\Ballistic.cs" />
      <Compile Include="Assets\BallisticMissile.cs" />
      <Compile Include="Assets\Behavior.cs" />
      <Compile Include="Assets\BigTurretScreenDisplayer.cs" />
@@ -193,9 +192,7 @@
      <Compile Include="Assets\BloodMistAura.cs" />
      <Compile Include="Assets\BloodMistCloud.cs" />
      <Compile Include="Assets\Bombardment.cs" />
-     <Compile Include="Assets\BonusObjectiveTracker.cs" />
      <Compile Include="Assets\BountyHunter.cs" />
-     <Compile Include="Assets\BuildLargeTurret.cs" />
      <Compile Include="Assets\BuildManager.cs" />
      <Compile Include="Assets\BuildStructure.cs" />
      <Compile Include="Assets\BuildUnitObjective.cs" />
@@ -374,7 +371,6 @@
      <Compile Include="Assets\Scripts - In Game\ImmortalityProtocol.cs" />
      <Compile Include="Assets\Scripts - In Game\InteractState.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IButton.cs" />
-     <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IMaintenanceButtons.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IQueueButton.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IQueueContent.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\ITypeButton.cs" />

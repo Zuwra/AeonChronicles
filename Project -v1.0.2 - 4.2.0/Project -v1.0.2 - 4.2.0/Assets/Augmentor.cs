@@ -274,7 +274,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 
 	// When creating other interactor classes, make sure to pass all relevant information into whatever new state is being created (IMover, IWeapon, UnitManager)
-	public void computeInteractions (Order order)
+	public void computeInteractions (Order order )
 	{
 
 		switch (order.OrderType) {
@@ -347,7 +347,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	{
 		if (!attached) {
 			if (!attached && isValidTarget (order.Target, Vector3.zero)) {
-				manager.UseTargetAbility (order.Target, Vector3.zero, 0);
+				manager.UseTargetAbility (order.Target, Vector3.zero, 0,false);
 				//Debug.Log ("Ordered to follow");
 				return;
 			}
@@ -366,7 +366,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 				manager.changeState (new FollowState (order.Target.gameObject, manager));
 			} else if(!attached && isValidTarget(order.Target, Vector3.zero)){
-				manager.UseTargetAbility (order.Target, Vector3.zero, 0);
+				manager.UseTargetAbility (order.Target, Vector3.zero, 0, false);
 					
 				}
 			} else {
@@ -418,7 +418,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 		if (!attached) {
 			if (!attached && isValidTarget (order.Target, Vector3.zero)) {
-				manager.UseTargetAbility (order.Target, Vector3.zero, 0);
+				manager.UseTargetAbility (order.Target, Vector3.zero, 0, false);
 				//Debug.Log ("Ordered to follow");
 			}
 			else{

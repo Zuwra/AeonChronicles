@@ -14,7 +14,7 @@ public class AbilityFollowState  : UnitState {
 
 
 	public AbilityFollowState(GameObject unit, Vector3 loc, TargetAbility abil)
-	{//Debug.Log ("New ABility follow");
+	{//Debug.Log ("New ABility follow " + loc);
 		location = loc;
 		myAbility = abil;
 		abil.target = unit;
@@ -25,6 +25,7 @@ public class AbilityFollowState  : UnitState {
 		if (target != null) {
 			Follow = true;
 		}
+		//Debug.Log ("Target is " + loc);
 	
 	}
 
@@ -60,12 +61,17 @@ public class AbilityFollowState  : UnitState {
 
 	
 		if (!myAbility.inRange (location)) {
-			Debug.Log ("Im moving");
+
 		
 			myManager.cMover.move ();
 		} else {
-			
-			myAbility.Cast();
+			//Debug.Log ("Casting " + myAbility.location);
+
+			myAbility.location = location;
+			myAbility.target = target;
+			if (myAbility.canActivate (false).canCast) {
+				myAbility.Cast ();
+			}
 		
 			myManager.changeState(new DefaultState());
 			return;

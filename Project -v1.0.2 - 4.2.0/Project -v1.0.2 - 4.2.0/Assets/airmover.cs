@@ -47,13 +47,13 @@ public class airmover : IMover {
 
 		if (!workingframe) {
 			workingframe = !workingframe;
-			Debug.Log ("Returnin 1 ");
+			//Debug.Log ("Returnin 1 ");
 			return false;
 		}
 			
 		if (Vector3.Distance(transform.position, targetPosition) <= nextWaypointDistance) {
 			speed = 0;
-			Debug.Log ("Returnin 2 ");
+			//Debug.Log ("Returnin 2 ");
 			return true;
 		}
 		if (speed < getMaxSpeed()) {
@@ -87,7 +87,7 @@ public class airmover : IMover {
 		turnAmount.y = 0;
 	
 		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(turnAmount), Time.deltaTime * turnSpeed *  0.2f);
-		Debug.Log ("Returnin 3 ");
+	//	Debug.Log ("Returnin 3 ");
 		return false;
 	}
 
@@ -99,7 +99,7 @@ public class airmover : IMover {
 			speed = .1f;
 		}
 		targetPosition = location + Vector3.up * flyerHeight;
-	Debug.Log ("Target is " + location);
+	//Debug.Log ("Target is " + location);
 		GetComponent<UnitManager> ().animMove ();
 		//this.gameObject.transform.LookAt(destination);
 

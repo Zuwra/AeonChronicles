@@ -147,7 +147,8 @@ public class BuildStructure:  UnitProduction {
 
 			Morphing = true;
 			racer.buildingUnit (this);
-			myManager.changeState (new ChannelState ());
+
+			myManager.changeState (new ChannelState (),true,false);
 			myManager.setStun (true, this);
 			if (mySelect.IsSelected) {
 				SelectedManager.main.updateUI ();
@@ -227,7 +228,7 @@ public class BuildStructure:  UnitProduction {
 
 		Morphing = true;
 
-		myManager.changeState (new ChannelState ());
+		myManager.changeState (new ChannelState (), true, false);
 		myManager.setStun (true, this);
 		if (mySelect.IsSelected) {
 			SelectedManager.main.updateUI ();

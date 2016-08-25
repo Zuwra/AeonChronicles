@@ -24,12 +24,12 @@ public class Unit : RTSObject, IOrderable {
 	}
 
 
-	public override bool UseAbility (int n)
+	public override bool UseAbility (int n, bool queue)
 	{
 		return true;}
 
 
-	public override bool UseTargetAbility (GameObject obj, Vector3 loc, int n)
+	public override bool UseTargetAbility (GameObject obj, Vector3 loc, int n, bool queue)
 	{
 		return true;}
 

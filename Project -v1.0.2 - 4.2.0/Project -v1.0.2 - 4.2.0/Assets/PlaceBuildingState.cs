@@ -20,6 +20,7 @@ public class PlaceBuildingState :UnitState {
 		//Debug.Log ("Has place " + myGhost);
 		myPlacer = myGhost.GetComponentInChildren<BuildingPlacer> ();
 		location = loc;
+		Debug.Log ("Setting location to " + location + "  ghost " + ghost);
 		myAbility = abil;
 		myAbility.myCost.payCost ();
 
@@ -34,8 +35,14 @@ public class PlaceBuildingState :UnitState {
 	}
 
 	public override void initialize()
-	{
-		myManager.cMover.resetMoveLocation (location);
+	{if (!myGhost) {
+			myManager.changeState (new DefaultState ());
+		} else {
+			myManager.cMover.resetMoveLocation (location);
+		}
+		
+		Debug.Log ("Going to " + location + "   Ghost  " + myGhost);
+
 	}
 
 	// Update is called once per frame
@@ -59,6 +66,7 @@ public class PlaceBuildingState :UnitState {
 					if (myAbility is BuildStructure) {
 						((BuildStructure)myAbility).setBuildSpot (location);
 					}
+					//((TargetAbility)myAbility).target = myGhost;
 					myAbility.Activate ();
 					UIManager.main.DestroyGhost (myGhost);
 	
@@ -78,7 +86,7 @@ public class PlaceBuildingState :UnitState {
 	{
 		while (true) {
 			yield return new WaitForSeconds (1.5f);
-			Debug.Log ("Checking");
+		
 			if (placer.canBuild ()) {
 				if (myAbility is BuildStructure) {
 					((BuildStructure)myAbility).setBuildSpot (loc);

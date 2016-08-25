@@ -27,12 +27,19 @@ public class Order {
 	set;
 	}
 
+	public bool queued
+	{
+		get;
+		set;
+	}
+
 
 	
 	public Order(string name, int orderType)
 	{
 		Name = name;
 		OrderType = orderType;
+		queued = false;
 	}
 	
 	public Order(string name, int orderType, Vector3 orderLocation)
@@ -40,6 +47,7 @@ public class Order {
 		Name = name;
 		OrderType = orderType;
 		OrderLocation = orderLocation;
+		queued = false;
 	}
 	
 	public Order(string name, int orderType, GameObject target)
@@ -48,5 +56,37 @@ public class Order {
 		OrderType = orderType;
 		OrderLocation = target.transform.position;
 		Target = target;
+		queued = false;
 	}
+
+
+
+
+
+
+	public Order(string name, int orderType, bool queue)
+	{
+		Name = name;
+		OrderType = orderType;
+		queued = queue;
+	}
+
+	public Order(string name, int orderType, Vector3 orderLocation, bool queue)
+	{
+		Name = name;
+		OrderType = orderType;
+		OrderLocation = orderLocation;
+		queued = queue;
+	}
+
+	public Order(string name, int orderType, GameObject target, bool queue)
+	{
+		Name = name;
+		OrderType = orderType;
+		OrderLocation = target.transform.position;
+		Target = target;
+		queued = queue;
+	}
+
+
 }

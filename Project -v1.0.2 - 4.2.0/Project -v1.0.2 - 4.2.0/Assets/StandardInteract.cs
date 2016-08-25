@@ -34,7 +34,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	// When creating other interactor classes, make sure to pass all relevant information into whatever new state is being created (IMover, IWeapon, UnitManager)
 	public virtual void computeInteractions (Order order)
 	{
-
+		Debug.Log ("Queued " + order.queued);
 		switch (order.OrderType) {
 		case Const.Order_HoldGround:
 	
@@ -84,9 +84,9 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	{
 		if (myManager.myWeapon.Count > 0) {
 
-			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));
+			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position),false,order.queued);
 		}else {
-			myManager.changeState (new MoveState (order.OrderLocation, myManager, true));
+			myManager.changeState (new MoveState (order.OrderLocation, myManager, true),false,order.queued);
 		}
 	}
 
@@ -105,13 +105,13 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 			}
 			if (manage.PlayerOwner != myManager.PlayerOwner  ) {
 				if (this.gameObject.GetComponent<UnitManager> ().myWeapon == null) {
-					myManager.changeState (new FollowState (order.Target.gameObject, myManager));
+					myManager.changeState (new FollowState (order.Target.gameObject, myManager),false,order.queued);
 				} else {
 					//Debug.Log ("Ordering to interact " + manage.gameObject);
-					myManager.changeState (new InteractState (manage.gameObject, myManager));
+					myManager.changeState (new InteractState (manage.gameObject, myManager),false,order.queued);
 				}
 			} else {
-				myManager.changeState (new FollowState (order.Target.gameObject,  myManager));
+				myManager.changeState (new FollowState (order.Target.gameObject,  myManager),false,order.queued);
 			}
 		}
 	}
@@ -120,9 +120,9 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	{
 		if (attackWhileMoving &&  myManager.myWeapon.Count >0) {
 
-			myManager.changeState (new AttckWhileMoveState (order.OrderLocation, myManager));
+			myManager.changeState (new AttckWhileMoveState (order.OrderLocation, myManager),false,order.queued);
 		} else {
-			myManager.changeState (new MoveState (order.OrderLocation, myManager));
+			myManager.changeState (new MoveState (order.OrderLocation, myManager),false,order.queued);
 		}
 	}
 
@@ -135,7 +135,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	//Shift-Tab 
 	public void Patrol(Order order)
 	{
-		myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, myManager, myManager.gameObject.transform.position));
+		myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, myManager, myManager.gameObject.transform.position),false,order.queued);
 	}
 
 	//Shift-Caps
@@ -153,9 +153,9 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	//	Debug.Log ("First ORder");
 		if (myManager.myWeapon.Count > 0) {
 
-			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));
+			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position),false,order.queued);
 		}else {
-			myManager.changeState (new MoveState (order.OrderLocation, myManager));
+			myManager.changeState (new MoveState (order.OrderLocation, myManager),false,order.queued);
 		}
 	}
 

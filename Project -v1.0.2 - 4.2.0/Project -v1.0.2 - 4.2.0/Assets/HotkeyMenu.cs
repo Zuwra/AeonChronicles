@@ -80,41 +80,10 @@ public class HotkeyMenu : MonoBehaviour {
 		}
 
 
-
-		/*
-		if (selected [0].Count > 0) {
-			fManager.Ffive.text = "(F5) " + selected [0] [0];
-		} else {
-			fManager.Ffive.text = "(F5) ";
-		}
-
-		if (selected [1].Count > 0) {
-			fManager.Fsix.text = "(F6) " + selected [1] [0];
-		} else {
-			fManager.Fsix.text = "(F6) ";
-		}
-
-		if (selected [2].Count > 0) {
-			fManager.fSeven.text = "(F7) " + selected [2] [0];
-		} else {
-			fManager.fSeven.text = "(F7) ";
-		}
-
-		if (selected [3].Count > 0) {
-			fManager.fEight.text = "(F8) " + selected [3] [0];
-		} else {
-			fManager.fEight.text = "(F8) ";
-		}
-	
-*/
-
-
 		selectMan.applyGlobalSelection(selected);
 
 
 		}
-
-
 
 
 	IEnumerator MyCoroutine ()

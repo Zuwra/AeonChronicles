@@ -29,7 +29,7 @@ public class UnitManager : Unit,IOrderable{
 	public List<GameObject> neutrals = new List<GameObject> ();
 
 
-	private Queue<UnitState> queuedStates = new Queue<UnitState> (); // Used to queue commands to be executed in succession.
+	private LinkedList<UnitState> queuedStates = new LinkedList<UnitState> (); // Used to queue commands to be executed in succession.
 
 	private UnitState myState;     // used for StateMachine
 
@@ -144,7 +144,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 	override
-	public bool UseAbility(int n)
+	public bool UseAbility(int n, bool queue)
 	{
 		if (!isStunned && !isSilenced) {
 
@@ -154,7 +154,7 @@ public class UnitManager : Unit,IOrderable{
 
 				if (order.canCast) {
 
-					changeState (new CastAbilityState (abilityList [n]));
+					changeState (new CastAbilityState (abilityList [n]),false,queue);
 
 				}
 
@@ -166,7 +166,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 	override
-	public bool UseTargetAbility(GameObject obj, Vector3 loc, int n) // Either the obj - target or the location can be null.
+	public bool UseTargetAbility(GameObject obj, Vector3 loc, int n, bool queue) // Either the obj - target or the location can be null.
 	{continueOrder order = new continueOrder();
 		if (!isStunned && !isSilenced) {
 			if (abilityList [n] != null) {
@@ -176,9 +176,9 @@ public class UnitManager : Unit,IOrderable{
 				if (order.canCast) {
 					if (abilityList [n] is TargetAbility) {
 						Debug.Log ("The target is " + obj + "   "+ loc);
-						changeState (new AbilityFollowState (obj, loc, (TargetAbility)abilityList [n]));
+						changeState (new AbilityFollowState (obj, loc, (TargetAbility)abilityList [n]), false, queue);
 					} else if (abilityList [n] is Morph || abilityList [n] is BuildStructure) {
-						changeState (new PlaceBuildingState (obj,loc, abilityList [n]));
+						changeState (new PlaceBuildingState (obj,loc, abilityList [n]), false, queue);
 					}
 
 				}
@@ -209,6 +209,15 @@ public class UnitManager : Unit,IOrderable{
 	public new void GiveOrder (Order order)
 	{
 		if (myState is  ChannelState) {
+			//order.queued = true;
+			foreach (UnitState s in queuedStates) {
+
+				if (s is PlaceBuildingState) {
+					//Debug.Log ("Cenceling");
+					((PlaceBuildingState)s).cancel ();
+				}
+			}
+			queuedStates.Clear ();
 			return;
 		}
 
@@ -345,11 +354,26 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
+
+	private UnitState popLastState()
+	{
+		
+		UnitState us = queuedStates.Last.Value;
+		queuedStates.RemoveLast ();
+		return us;
+	}
+
+	public UnitState popFirstState()
+	{UnitState us = queuedStates.First.Value;
+		queuedStates.RemoveFirst ();
+		return us;
+	}
+
 	public void nextState() // Used when executing queued commands
 	{
 		if (myState is CastAbilityState) {
 			if (queuedStates.Count > 0) {
-				myState = queuedStates.Dequeue ();
+				myState = popFirstState();
 				if (myState != null) {
 					myState.myManager = this;
 					myState.initialize ();
@@ -360,24 +384,43 @@ public class UnitManager : Unit,IOrderable{
 		} 
 	}
 
-
 	public void changeState(UnitState nextState)
-	{
-		//Debug.Log ("new " + nextState);
-		
-		if (Input.GetKey (KeyCode.LeftShift) && (!(nextState is DefaultState) && (queuedStates.Count > 0 || !(myState is DefaultState)))) {
+	{changeState (nextState, false, false);
+	}
 
-			//Debug.Log ("Queing " + nextState);
-			queuedStates.Enqueue (nextState);
+
+	// make sure that Queue front and queueback are never both true
+	public void changeState(UnitState nextState, bool Queuefront, bool QueueBack)
+	{//Debug.Log ("Next state is " + nextState);
+		
+		
+		if (Queuefront && (!(nextState is DefaultState) && (queuedStates.Count > 0 || !(myState is DefaultState)))) {
+
+			//Debug.Log ("Queing + " +nextState);
+			queuedStates.AddFirst (myState);
+			myState =interactor.computeState (nextState);
+			myState.initialize ();
+
 
 			return;
 		
-		} else if (nextState is DefaultState) {
+		}
+		else if (QueueBack && (!(nextState is DefaultState) && (queuedStates.Count > 0 || !(myState is DefaultState)))){
+
+			queuedStates.AddLast (nextState);
+			//Debug.Log ("# of states  " + queuedStates.Count);
+			return;
+
+		}
+
+		else if (nextState is DefaultState) {
 			if (queuedStates.Count > 0) {
 				if (myState != null) {
 					myState.endState ();
 				}
-				myState = interactor.computeState( queuedStates.Dequeue ());
+				//Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
+				myState = interactor.computeState(popFirstState());
+				//Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
 				if (myState == null) {
 					return;
 				}
@@ -392,11 +435,11 @@ public class UnitManager : Unit,IOrderable{
 			((PlaceBuildingState)myState).cancel ();
 		}
 
-		else if (myState is ChannelState) {
+		//else if (myState is ChannelState) {
 			
-				queuedStates.Enqueue(nextState);
-			return;
-			}
+			//queuedStates.AddLast(nextState);
+			//return;
+			//}
 
 	
 		else if (nextState is AttackMoveState ) {
@@ -418,7 +461,7 @@ public class UnitManager : Unit,IOrderable{
 
 		if (nextState is CastAbilityState && ((CastAbilityState)nextState).myAbility.continueMoving) {
 
-			queuedStates.Enqueue (myState);
+			queuedStates.AddLast (myState);
 		}
 		if (myState != null) {
 			myState.endState ();
@@ -533,7 +576,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public void enQueueState(UnitState nextState)
-	{queuedStates.Enqueue (nextState);
+	{queuedStates.AddLast (nextState);
 	
 	}
 
@@ -626,7 +669,7 @@ public class UnitManager : Unit,IOrderable{
 
 	public UnitState checkNextState()
 	{if (queuedStates.Count > 0) {
-			return queuedStates.Peek ();
+			return queuedStates.First.Value;
 		} else {
 		return null;}
 	}

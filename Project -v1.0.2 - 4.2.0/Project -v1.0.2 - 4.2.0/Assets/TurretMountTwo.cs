@@ -38,11 +38,11 @@ public class TurretMountTwo : MonoBehaviour {
 
 
 
-		if (obj.GetComponent<Ballistic> () && GetComponentInParent<BallisticMissile> ()) {
-			GetComponentInParent<BallisticMissile> ().active = true;
-		} else {
-			GetComponentInParent<BallisticMissile> ().active = false;
-		}
+		//if (obj.GetComponent<Ballistic> () && GetComponentInParent<BallisticMissile> ()) {
+		//	GetComponentInParent<BallisticMissile> ().active = true;
+		//} else {
+		//	GetComponentInParent<BallisticMissile> ().active = false;
+		//}
 
 		manager.PlayerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
 

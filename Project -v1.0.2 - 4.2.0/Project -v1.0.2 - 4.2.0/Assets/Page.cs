@@ -61,7 +61,7 @@ public class Page  {
 		return false;
 	}
 
-	public void fireAtTarget(GameObject obj , Vector3 loc,int n)
+	public void fireAtTarget(GameObject obj , Vector3 loc,int n, bool queue)
 		{
 		if (rows [n / 4] [0] == null) {
 			return;
@@ -86,6 +86,7 @@ public class Page  {
 
 		// This finds the nearest unit to the location and orders them to fire. if that person is already casting a spell/placing a building, it tries to find one that isn't.
 		// these two parts in the if/else statement are identical except for the kind of state they are looking for.
+		bool canCast =false;
 		rows [n / 4].RemoveAll (item => item == null);
 		if (rows [n / 4] [0].abilityList [X] is BuildStructure) {
 			foreach (RTSObject unit in rows[n/4]) {
@@ -94,6 +95,7 @@ public class Page  {
 					if (!ord.nextUnitCast) {
 
 						if (ord.canCast) {
+							canCast = true;
 							if (((UnitManager)unit).getState () is PlaceBuildingState && foundNonFollow) {
 
 								continue;
@@ -112,14 +114,18 @@ public class Page  {
 								
 						}		
 					} else if (ord.canCast) {
-
-						unit.UseTargetAbility (obj, loc, X);
+						canCast = true;
+						unit.UseTargetAbility (obj, loc, X, queue);
 
 					}
 
 				}
 
 			}
+			if (!canCast) {
+				RaceManager.Destroy (obj);
+			}
+
 		} else {
 			foreach (RTSObject unit in rows[n/4]) {
 				if (unit) {
@@ -146,7 +152,7 @@ public class Page  {
 						}		
 					} else if (ord.canCast) {
 
-						unit.UseTargetAbility (obj, loc, X);
+						unit.UseTargetAbility (obj, loc, X, queue);
 
 					}
 
@@ -157,7 +163,7 @@ public class Page  {
 
 		if(bestGuy)
 		{
-			bestGuy.UseTargetAbility (obj, loc, X);
+			bestGuy.UseTargetAbility (obj, loc, X, queue);
 		}
 
 
@@ -207,7 +213,7 @@ public class Page  {
 	}
 
 
-	public void useAbility(int n)
+	public void useAbility(int n, bool queue)
 	{
 		if (rows [n / 4] == null) {
 			return;
@@ -246,7 +252,7 @@ public class Page  {
 				}
 			}
 			if (best != null) {
-				best.UseAbility (X);
+				best.UseAbility (X, queue);
 			}
 
 
@@ -256,7 +262,7 @@ public class Page  {
 			foreach (RTSObject unit in rows[n/4]) {
 
 
-				if (!unit.UseAbility (X)) {
+				if (!unit.UseAbility (X,queue)) {
 					break;
 				}
 
