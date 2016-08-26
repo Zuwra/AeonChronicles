@@ -39,7 +39,7 @@ public class CampUpgradeManager : MonoBehaviour {
 		TurretMenu.enabled = false;
 		StructureMenu.enabled = false;
 		vehicleMenu.enabled = false;
-		changeMoney (0);
+		changeMoney (20);
 	
 
 	}
@@ -67,6 +67,8 @@ public class CampUpgradeManager : MonoBehaviour {
 		foreach (Text t in creditDisplayers) {
 			t.text = ""+LevelData.totalXP ;
 		}
+
+		Debug.Log ("money " + LevelData.totalXP);
 	}
 
 

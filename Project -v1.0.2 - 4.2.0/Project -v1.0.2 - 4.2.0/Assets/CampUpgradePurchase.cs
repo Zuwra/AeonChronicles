@@ -16,6 +16,15 @@ public class CampUpgradePurchase : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		manager = GameObject.FindObjectOfType<CampUpgradeManager> ();
+
+		if(LevelData.purchasedUpgrades != null && myUpgrade != null){
+			foreach (Upgrade up in LevelData.purchasedUpgrades) {
+				if (up.GetType () == myUpgrade.GetType ()) {
+					psuedoPurchase ();
+			
+				}
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -37,6 +46,8 @@ public class CampUpgradePurchase : MonoBehaviour {
 			manager.changeMoney (-myCost);
 			GetComponent<Image> ().color = Color.green;
 			GetComponent<Button> ().interactable = false;
+			LevelData.addUpgrade (myUpgrade);
+
 			Costobject.SetActive (false);
 			foreach (CampUpgradePurchase up in enables) {
 				up.activate ();
@@ -47,6 +58,21 @@ public class CampUpgradePurchase : MonoBehaviour {
 				}
 		}
 		
+	}
+
+	private void psuedoPurchase()
+	{
+		GetComponent<Image> ().color = Color.green;
+		GetComponent<Button> ().interactable = false;
+		Costobject.SetActive (false);
+		foreach (CampUpgradePurchase up in enables) {
+			up.activate ();
+		}
+
+		if (myUpgrade) {
+			GameObject.FindObjectOfType<TrueUpgradeManager> ().upgradeBought (myUpgrade, myType);
+		}
+
 	}
 
 

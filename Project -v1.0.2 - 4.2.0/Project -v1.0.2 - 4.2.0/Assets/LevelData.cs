@@ -5,12 +5,14 @@ using System.Collections.Generic;
 public class LevelData  {
 
 	public static int currentLevel =1;
-	public static int totalXP = 10;
+	public static int totalXP = 20;
 
 	public static List<levelInfo> myLevels;
 	public static bool easyMode = true;
 	public static bool ComingFromLevel;
 	public static levelInfo lastInfo;
+	public static List<Upgrade> purchasedUpgrades;
+	public static Dictionary<string,int> appliedUpgrades;
 
 	public static List<VeteranStats> myVets;
 
@@ -53,10 +55,34 @@ public class LevelData  {
 		myVets = theStats;
 	}
 
+	public static void addUpgrade(Upgrade up)
+	{if (purchasedUpgrades == null) {
+			purchasedUpgrades = new List<Upgrade> ();
+		}
+		purchasedUpgrades.Add (up);
+	}
+
+	//Used for keeping track of which guys have upgrades applied to them
+	public static void applyUpgrade(string s, int u )
+	{
+		Debug.Log ("Adding upgrade " + s + "  " + u);
+		if(appliedUpgrades == null) {
+			appliedUpgrades = new Dictionary<string, int> ();
+		
+		}
+
+		if (appliedUpgrades.ContainsKey (s)) {
+			appliedUpgrades.Remove (s);
+		}
+
+		appliedUpgrades.Add (s, u);
+	}
+
+
 
 	public static void reset()
 	{
-
+		Debug.Log ("Resetting");
 	currentLevel =0;
 		totalXP = 0;
 		if (myLevels != null) {

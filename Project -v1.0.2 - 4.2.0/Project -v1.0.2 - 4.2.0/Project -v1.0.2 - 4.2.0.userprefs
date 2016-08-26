@@ -1,18 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AbilityFollowState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CampaignUpgrade.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="421" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="230" Column="18" />
-      <File FileName="Assets\Page.cs" Line="126" Column="31" />
-      <File FileName="Assets\BuildStructure.cs" Line="148" Column="20" />
-      <File FileName="Assets\Scripts - In Game\Classes\Order.cs" Line="80" Column="3" />
-      <File FileName="Assets\Scripts - In Game\Classes\Orders.cs" Line="92" Column="2" />
-      <File FileName="Assets\AbilityFollowState.cs" Line="76" Column="46" />
-      <File FileName="Assets\PlaceBuildingState.cs" Line="39" Column="48" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="628" Column="17" />
-      <File FileName="Assets\selfDestructTimer.cs" Line="1" Column="1" />
-      <File FileName="Assets\MiniMapUIController.cs" Line="207" Column="1" />
+      <File FileName="Assets\LevelData.cs" Line="81" Column="2" />
+      <File FileName="Assets\CampUpgradePurchase.cs" Line="12" Column="2" />
+      <File FileName="Assets\CampUpgradeManager.cs" Line="24" Column="3" />
+      <File FileName="Assets\LevelManager.cs" Line="40" Column="3" />
+      <File FileName="Assets\CampaignUpgrade.cs" Line="41" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
