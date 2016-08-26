@@ -7,11 +7,30 @@ public class TurretMount : MonoBehaviour {
 
 	public TurretPlacer hasDisplayer;
 
-
+	public bool rapidArms;
 	// Use this for initialization
 	void Start () {
 	
 		FButtonManager.main.updateTankNumber ();
+		if (rapidArms) {
+		
+			foreach (buildTurret bt in GameObject.FindObjectsOfType<buildTurret>()) {
+				
+				bt.addMount (this);
+			}
+		
+
+			foreach (TurretScreenDisplayer tm in GameObject.FindObjectsOfType<TurretScreenDisplayer>()) {
+				if (!tm.mounts.Contains (this)) {
+					tm.mounts.Add (this);
+					addShop (tm);
+				
+				}
+
+			}
+		}
+
+
 	}
 	
 	// Update is called once per frame

@@ -8,6 +8,7 @@ public class TurretScreenDisplayer : MonoBehaviour {
 
 	public List<TurretMount> mounts = new List<TurretMount>();
 
+	public bool rapidArms;
 
 
 	public buildTurret A;
@@ -21,6 +22,18 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	void Start () {
 		manage = GetComponent<UnitManager> ();
 		nextActionTime = Time.time;
+
+
+		if (rapidArms) {
+			foreach (TurretMount tm in GameObject.FindObjectsOfType<TurretMount>()) {
+				if (!mounts.Contains (tm)) {
+					mounts.Add (tm);
+					tm.addShop (this);
+				}
+
+			}
+		}
+
 	}
 
 
@@ -29,7 +42,7 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	void Update () {
 
 		if (Time.time > nextActionTime) {
-			nextActionTime = Time.time + .1f;
+			nextActionTime = Time.time + .15f;
 
 			mounts.RemoveAll (item => item == null);
 			foreach (TurretMount obj in mounts) {
@@ -75,6 +88,9 @@ public class TurretScreenDisplayer : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
+
+		if (rapidArms) {
+			return;}
 		//need to set up calls to listener components
 		//this will need to be refactored for team games
 
@@ -102,7 +118,8 @@ public class TurretScreenDisplayer : MonoBehaviour {
 
 
 	void OnTriggerExit(Collider other)
-	{
+	{if (rapidArms) {
+			return;}
 
 		//need to set up calls to listener components
 		//this will need to be refactored for team games

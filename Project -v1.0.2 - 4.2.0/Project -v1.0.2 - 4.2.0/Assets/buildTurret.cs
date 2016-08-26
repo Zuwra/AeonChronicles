@@ -24,7 +24,7 @@ public class buildTurret :UnitProduction{
 	protected List<TurretMountTwo> turretTwoMounts = new List<TurretMountTwo>();
 	protected BuildManager buildMan;
 
-
+	public bool rapidArms;
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
 		myType = type.activated;
@@ -40,6 +40,15 @@ public class buildTurret :UnitProduction{
 		myCost.cooldown = buildTime;
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ();
 		HD = GetComponentInChildren<HealthDisplay>();
+
+		if (rapidArms) {
+			foreach (TurretMount tm in GameObject.FindObjectsOfType<TurretMount>()) {
+				if (!turretMounts.Contains (tm)) {
+					turretMounts.Add (tm);
+				}
+			
+			}
+		}
 	}
 
 	// Update is called once per frame
@@ -150,7 +159,8 @@ public class buildTurret :UnitProduction{
 
 	void OnTriggerEnter(Collider other)
 	{
-
+		if (rapidArms) {
+			return;}
 		//need to set up calls to listener components
 		//this will need to be refactored for team games
 		if (other.isTrigger) {
@@ -188,10 +198,17 @@ public class buildTurret :UnitProduction{
 		}
 	}
 
+	public void addMount(TurretMount tm)
+	{if (!turretMounts.Contains (tm)) {
+			turretMounts.Add (tm);
+		}
 
+	}
 
 	void OnTriggerExit(Collider other)
 	{
+		if (rapidArms) {
+			return;}
 
 		//need to set up calls to listener components
 		//this will need to be refactored for team games

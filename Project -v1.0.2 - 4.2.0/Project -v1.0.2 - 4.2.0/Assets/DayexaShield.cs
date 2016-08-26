@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DayexaShield : Ability,Modifier {
+public class DayexaShield : Ability,Modifier , Notify{
 
 
 	public float Absorbtion;
@@ -14,7 +14,7 @@ public class DayexaShield : Ability,Modifier {
 	private bool inCombat;
 
 	public GameObject shieldEffect;
-
+	public bool AbsorbRecoil;
 
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
@@ -33,6 +33,7 @@ public class DayexaShield : Ability,Modifier {
 			}
 
 		}
+		GetComponent<UnitManager> ().addNotify (this);
 		
 	
 	}
@@ -48,6 +49,16 @@ public class DayexaShield : Ability,Modifier {
 			}
 		
 		}
+	}
+
+	 public void trigger(GameObject source,GameObject proj, GameObject target,float damage)
+	{
+		if (AbsorbRecoil) {
+			myStats.changeEnergy (damage/12);
+		}
+
+
+
 	}
 
 	public void startRecharge()

@@ -38,6 +38,9 @@ public class UnitManager : Unit,IOrderable{
 
 	public voiceResponse myVoices;
 
+	//List of weapons modifiers that need to be applied to weapons as they are put on this guy
+	private List<Notify> potentialNotify = new List<Notify>();
+
 	[System.Serializable]
 	public struct voiceResponse
 	{
@@ -140,6 +143,20 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
+
+	public void addNotify(Notify toAdd)
+	{
+		if (!potentialNotify.Contains (toAdd)) {
+			potentialNotify.Add (toAdd);
+		}
+
+		foreach (IWeapon weap in myWeapon) {
+		
+			if (!weap.triggers.Contains (toAdd)) {
+				weap.triggers.Add (toAdd);
+			}
+		}
+	}
 
 
 
@@ -628,6 +645,11 @@ public class UnitManager : Unit,IOrderable{
 		{
 		if (!myWeapon.Contains (weap)) {
 			myWeapon.Add (weap);
+			foreach (Notify not in potentialNotify) {
+				if (!weap.triggers.Contains (not)) {
+					weap.triggers.Add (not);
+				}
+			}
 		}
 
 	}
@@ -637,6 +659,12 @@ public class UnitManager : Unit,IOrderable{
 		if (myWeapon.Contains (weap)) {
 			myWeapon.Remove(weap);
 		}
+		foreach (Notify not in potentialNotify) {
+			if (weap.triggers.Contains (not)) {
+				weap.triggers.Remove (not);
+			}
+		}
+
 
 	}
 
