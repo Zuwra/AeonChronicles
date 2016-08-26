@@ -1,12 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CampaignUpgrade.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MiniMapUIController.cs">
     <Files>
-      <File FileName="Assets\LevelData.cs" Line="81" Column="2" />
-      <File FileName="Assets\CampUpgradePurchase.cs" Line="12" Column="2" />
-      <File FileName="Assets\CampUpgradeManager.cs" Line="24" Column="3" />
-      <File FileName="Assets\LevelManager.cs" Line="40" Column="3" />
-      <File FileName="Assets\CampaignUpgrade.cs" Line="41" Column="23" />
+      <File FileName="Assets\LevelData.cs" Line="24" Column="2" />
+      <File FileName="Assets\CampaignUpgrade.cs" Line="22" Column="2" />
+      <File FileName="Assets\CampUpgradePurchase.cs" Line="1" Column="1" />
+      <File FileName="Assets\CampUpgradeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\CampaignUltUpgrade.cs" Line="29" Column="4" />
+      <File FileName="Assets\SateliteScan.cs" Line="63" Column="4" />
+      <File FileName="Assets\UltimateApplier.cs" Line="33" Column="4" />
+      <File FileName="Assets\DaexaSupplyDrop.cs" Line="71" Column="19" />
+      <File FileName="Assets\AetherOvercharge.cs" Line="57" Column="77" />
+      <File FileName="Assets\MiniMapUIController.cs" Line="213" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -202,6 +202,7 @@
      <Compile Include="Assets\CampShieldUpgrade.cs" />
      <Compile Include="Assets\CampUpgradeManager.cs" />
      <Compile Include="Assets\CampUpgradePurchase.cs" />
+     <Compile Include="Assets\CampaignUltUpgrade.cs" />
      <Compile Include="Assets\CampaignUpgrade.cs" />
      <Compile Include="Assets\CapturableUnit.cs" />
      <Compile Include="Assets\CarryRacks.cs" />
@@ -466,6 +467,7 @@
      <Compile Include="Assets\TutorialPage.cs" />
      <Compile Include="Assets\UIHighLight.cs" />
      <Compile Include="Assets\UltCooldown.cs" />
+     <Compile Include="Assets\UltimateApplier.cs" />
      <Compile Include="Assets\UndyingArmor.cs" />
      <Compile Include="Assets\UnitCardCreater.cs" />
      <Compile Include="Assets\UnitEnterTrigger.cs" />

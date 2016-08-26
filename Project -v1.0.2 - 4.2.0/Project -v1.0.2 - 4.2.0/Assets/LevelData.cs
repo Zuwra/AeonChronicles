@@ -16,6 +16,12 @@ public class LevelData  {
 
 	public static List<VeteranStats> myVets;
 
+	public static int UltOneLevel = 0;
+	public static int UltTwoLevel = 0;
+	public static int UltThreeLevel = 0;
+	public static int UltFourLevel = 0;
+
+
 	public struct levelInfo{
 		public int levelNumber;
 		public int unitsLost;

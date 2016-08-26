@@ -4,9 +4,11 @@ using System.Collections;
 public class SateliteScan : TargetAbility{ 
 
 	public GameObject prefab;
+
+	UltimateApplier myApplier;
 	// Use this for initialization
 	void Start () {
-
+		myApplier = GetComponent<UltimateApplier> ();
 	}
 
 	// Update is called once per frame
@@ -55,6 +57,9 @@ public class SateliteScan : TargetAbility{
 		if (proj.GetComponent<UnitManager> ()) {
 			proj.GetComponent<UnitManager> ().setInteractor ();
 			proj.GetComponent<UnitManager> ().interactor.initialize ();
+		}
+		if (myApplier) {
+			myApplier.applyUlt (proj, this);
 		}
 
 		return false;

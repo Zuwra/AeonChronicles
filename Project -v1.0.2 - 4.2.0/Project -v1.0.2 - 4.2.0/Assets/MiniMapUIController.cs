@@ -204,8 +204,14 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
                 {
 
 					for (int j = -chitSize; j <=chitSize; j++)
-					{virtMap [n+ iCoord,j+ jCoord] = true;
-                        tex.SetPixel(n + iCoord, j + jCoord, raceColor);
+					{
+						try{
+						virtMap [n+ iCoord,j+ jCoord] = true;
+							tex.SetPixel(n + iCoord, j + jCoord, raceColor);}
+						catch(Exception e)
+						{
+							
+						}
                     }
 					}}
             }

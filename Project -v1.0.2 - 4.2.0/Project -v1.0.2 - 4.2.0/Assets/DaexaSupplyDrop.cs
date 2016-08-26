@@ -5,10 +5,11 @@ public class DaexaSupplyDrop: TargetAbility{
 
 	private RaceManager racer;
 	public GameObject prefab;
+	UltimateApplier myApplier;
 	// Use this for initialization
 	void Start () {
 		racer = GameObject.FindObjectOfType<GameManager> ().activePlayer;
-
+		myApplier = GetComponent<UltimateApplier> ();
 	}
 
 	// Update is called once per frame
@@ -67,6 +68,9 @@ public class DaexaSupplyDrop: TargetAbility{
 		proj.GetComponent<UnitManager> ().interactor.initialize ();
 		racer.applyUpgrade (proj);
 		proj.GetComponent<SpaceDrop> ().setLocation (location);
+		if (myApplier) {
+			myApplier.applyUlt (proj, this);
+		}
 		GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (-15);
 
 		return false;

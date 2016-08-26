@@ -15,7 +15,7 @@ public class CampaignUpgrade : MonoBehaviour {
 	public Image myPic;
 
 	public enum upgradeType{general, vehicle, tank, structure, turret, munition, coyote, tortoise, OreProcessor, Hornet, 
-	gatling, rail, repair, mortar, construction, bunker, factory}
+	gatling, rail, repair, mortar, construction, bunker, factory, Ult}
 
 
 	Upgrade currentUpgrade;
@@ -136,7 +136,10 @@ public class CampaignUpgrade : MonoBehaviour {
 					i = LevelData.appliedUpgrades [kv];
 					//myIndex = LevelData.appliedUpgrades [kv];
 					myDropDown.value = LevelData.appliedUpgrades[kv];
-
+					foreach(GameObject o in unitsToUpgrade)
+					{
+						currentUpgrade.unApplyUpgrade (o);
+					}
 
 
 				}

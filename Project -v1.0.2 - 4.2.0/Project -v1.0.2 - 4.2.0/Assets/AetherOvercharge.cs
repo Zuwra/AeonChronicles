@@ -56,6 +56,8 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 		duration = dur;
 		unitman.myStats.changeEnergy (unitman.myStats.MaxEnergy * rechargeAmount);
 
+		PopUpMaker.CreateGlobalPopUp ("+" + (int)(unitman.myStats.MaxEnergy * rechargeAmount), Color.blue, unitman.gameObject.transform.position);
+
 		AetherEffect = (GameObject)Instantiate (effect, this.gameObject.transform.position, this.gameObject.transform.rotation);
 		AetherEffect.transform.SetParent (this.gameObject.transform);
 
