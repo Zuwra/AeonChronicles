@@ -217,6 +217,7 @@
      <Compile Include="Assets\Coagulate.cs" />
      <Compile Include="Assets\CoagulateAura.cs" />
      <Compile Include="Assets\ConcussiveUpgrade.cs" />
+     <Compile Include="Assets\ConstructionUpgrade.cs" />
      <Compile Include="Assets\ControlGroupUI.cs" />
      <Compile Include="Assets\CostBox.cs" />
      <Compile Include="Assets\CustomRVO.cs" />
@@ -494,6 +495,7 @@
      <Compile Include="Assets\deexaArmor.cs" />
      <Compile Include="Assets\explosion.cs" />
      <Compile Include="Assets\fogUI.cs" />
+     <Compile Include="Assets\incendiaryUpgrade.cs" />
      <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\newWorkerInteract.cs" />

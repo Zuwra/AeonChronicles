@@ -24,10 +24,11 @@ public class DuplexPlating  :Upgrade{
 
 
 		UnitStats us = obj.GetComponent<UnitStats>();
-		us.armor += 4;
-		us.Maxhealth *= 1.2f;
-		us.health *= 1.2f;
-
+		if (us.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+			us.armor += 4;
+			us.Maxhealth *= 1.2f;
+			us.health *= 1.2f;
+		}
 	}
 
 
@@ -35,10 +36,11 @@ public class DuplexPlating  :Upgrade{
 
 
 		UnitStats us = obj.GetComponent<UnitStats>();
-		us.armor -= 4;
-		us.Maxhealth /= 1.2f;
-		us.health /= 1.2f;
-
+		if (us.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+			us.armor -= 4;
+			us.Maxhealth /= 1.2f;
+			us.health /= 1.2f;
+		}
 	}
 
 

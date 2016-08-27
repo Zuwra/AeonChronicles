@@ -5,6 +5,8 @@ public class PoisonStarter : MonoBehaviour, Notify{
 
 	public float damageAmount;
 	public GameObject poisonEffect;
+	public float damageRate;
+
 
 	// Use this for initialization
 	void Start () {
@@ -24,11 +26,12 @@ public class PoisonStarter : MonoBehaviour, Notify{
 		Poison enemyPois = target.GetComponent<Poison> ();
 	if (enemyPois == null) {
 
-			target.AddComponent<Poison> ();
-			enemyPois = target.GetComponent<Poison> ();
+			enemyPois = target.AddComponent<Poison> ();
+
 			enemyPois.startPoison(poisonEffect);
 
 			enemyPois.remainingPoison = damageAmount;
+			enemyPois.damageRate = damageRate;
 
 		} else {
 		
