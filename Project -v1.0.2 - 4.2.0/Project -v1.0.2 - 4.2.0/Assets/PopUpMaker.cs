@@ -80,14 +80,26 @@ public class PopUpMaker : MonoBehaviour {
 
 
 
-	public static void CreateGlobalPopUp(string input, Color c, Vector3 loc)
+	public static GameObject CreateGlobalPopUp(string input, Color c, Vector3 loc)
 	{Vector3 location = loc;
 		location.y += 5;
 		GameObject obj = (GameObject)Instantiate (Resources.Load ("PopUp"), location, Quaternion.identity);
 		obj.GetComponentInChildren<Text> ().color = c;
 		obj.GetComponentInChildren<Text> ().text = input;
 
+		return obj;
+	}
 
+	public static GameObject CreateGlobalPopUp(string input, Color c, Vector3 loc, float duration)
+	{Vector3 location = loc;
+		location.y += 5;
+		GameObject obj = (GameObject)Instantiate (Resources.Load ("PopUp"), location, Quaternion.identity);
+		obj.GetComponentInChildren<Text> ().color = c;
+		obj.GetComponentInChildren<Text> ().text = input;
+		obj.GetComponent<selfDestructTimer> ().timer = duration;
+		obj.GetComponent<PopUp> ().speed = duration / 5;
+
+		return obj;
 	}
 
 }

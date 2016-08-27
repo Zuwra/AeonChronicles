@@ -299,6 +299,7 @@
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\ParticleAn.cs" />
      <Compile Include="Assets\PlaceBuildingState.cs" />
+     <Compile Include="Assets\PlasmaDischarge.cs" />
      <Compile Include="Assets\PopUp.cs" />
      <Compile Include="Assets\PopUpMaker.cs" />
      <Compile Include="Assets\PrefabDrop.cs" />
@@ -449,6 +450,7 @@
      <Compile Include="Assets\TargetCircle.cs" />
      <Compile Include="Assets\TargetCircleManager.cs" />
      <Compile Include="Assets\TargetDeathVictory.cs" />
+     <Compile Include="Assets\Teleport.cs" />
      <Compile Include="Assets\TextTrigger.cs" />
      <Compile Include="Assets\TimeDelayTrigger.cs" />
      <Compile Include="Assets\ToolTip.cs" />

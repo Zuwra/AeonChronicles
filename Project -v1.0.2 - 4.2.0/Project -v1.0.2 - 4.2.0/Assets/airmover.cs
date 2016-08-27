@@ -73,7 +73,7 @@ public class airmover : IMover {
 		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, 1 << 8)) {
 		//if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
 
-			dir.y -= Time.deltaTime *  (this.gameObject.transform.position.y -(objecthit.point.y + flyerHeight) ) *speed/2;
+			dir.y -= Time.deltaTime *  (this.gameObject.transform.position.y -(objecthit.point.y + flyerHeight) ) *speed/3;
 
 		}
 

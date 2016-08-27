@@ -71,11 +71,12 @@ public class DayexaShield : Ability,Modifier , Notify{
 
 	public float modify(float amount, GameObject src)
 	{
+		Debug.Log ("Taking damage : " + amount);
 		float energyLost = Mathf.Min ( Absorbtion, myStats.currentEnergy);
 		if (energyLost > amount) {
 			energyLost = amount;
 		}
-
+		Debug.Log ("Energy : " + energyLost);
 		myStats.changeEnergy (-energyLost);
 		myStats.EnergyRegenPerSec = 0;
 		inCombat = true;
@@ -84,7 +85,7 @@ public class DayexaShield : Ability,Modifier , Notify{
 			GameObject obj = (GameObject)Instantiate (shieldEffect, this.gameObject.transform.position, this.gameObject.transform.rotation);
 			obj.transform.SetParent (this.gameObject.transform);
 		}
-	
+		Debug.Log ("Returning : " + (amount - energyLost));
 		return (amount - energyLost);
 	}
 

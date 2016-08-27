@@ -320,13 +320,16 @@ public class UnitStats : MonoBehaviour {
 
 
 	public void addModifier(Modifier mod)
-	{damageModifiers.Add (mod);
-
+	{
+		if (!damageModifiers.Contains (mod)) {
+			damageModifiers.Add (mod);
+		}
 	}
 
 	public void removeModifier(Modifier mod)
-	{damageModifiers.Remove(mod);
-
+	{if (damageModifiers.Contains (mod)) {
+			damageModifiers.Remove (mod);
+		}
 	}
 
 

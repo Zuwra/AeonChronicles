@@ -14,7 +14,7 @@ public class Objective : SceneEventTrigger {
 
 	public List<SceneEventTrigger> myEvents = new List<SceneEventTrigger>();
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		if (ActiveOnStart) {
 			VictoryTrigger.instance.addObjective (this);
 		}

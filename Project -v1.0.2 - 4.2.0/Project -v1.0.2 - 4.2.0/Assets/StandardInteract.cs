@@ -34,7 +34,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	// When creating other interactor classes, make sure to pass all relevant information into whatever new state is being created (IMover, IWeapon, UnitManager)
 	public virtual void computeInteractions (Order order)
 	{
-		Debug.Log ("Queued " + order.queued);
+		//Debug.Log ("Queued " + order.queued);
 		switch (order.OrderType) {
 		case Const.Order_HoldGround:
 	

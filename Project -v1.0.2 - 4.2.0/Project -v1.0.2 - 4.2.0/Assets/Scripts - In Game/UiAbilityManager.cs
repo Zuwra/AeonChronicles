@@ -358,10 +358,12 @@ public class UiAbilityManager : MonoBehaviour {
 		for(int j = 0; j < 3; j ++){
 			if (uiPage.rows [j] != null) {
 				if (j != 0) {
-					if (uiPage.rows [j] == uiPage.rows [j - 1]) {
+					if (uiPage.rows [j] == uiPage.rows [j - 1] ) {
 						if (j == 1) {
+							
 							topDividerBar.SetActive (false);
 						} else if (j == 2) {
+							
 							bottomBar.SetActive (false);}
 						continue;
 					}
