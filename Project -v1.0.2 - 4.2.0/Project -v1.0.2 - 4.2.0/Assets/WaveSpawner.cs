@@ -48,6 +48,7 @@ public class WaveSpawner : MonoBehaviour {
 
 			float delay = .1f;
 			foreach (SceneEventTrigger trig in nextWave.myTriggers) {
+				trig.hasTriggered = false;
 				trig.trigger (0, 0, Vector3.zero, null, false);
 			}
 
@@ -77,7 +78,11 @@ public class WaveSpawner : MonoBehaviour {
 
 		hitzone.x += Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
 		hitzone.z +=  Mathf.Cos(Mathf.Deg2Rad * angle)* radius;
-		hitzone.y -=10;
+		hitzone.y -=5;
+
+		if (obj.GetComponent<airmover> ()) {
+			hitzone.y += obj.GetComponent<airmover> ().flyerHeight + 5;
+		}
 
 		GameObject unit = (GameObject)Instantiate (obj, hitzone, Quaternion.identity);
 		yield return new WaitForSeconds(.1f);
@@ -120,8 +125,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	public void spawnWave()
 	{
-		Debug.Log ("Spawning wave");
-
+		
 		float delay = .1f;
 		foreach (GameObject obj in nextWave.waveType) {
 			Debug.Log ("making unit");

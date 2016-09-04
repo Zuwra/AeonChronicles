@@ -192,6 +192,7 @@
      <Compile Include="Assets\BloodMistAura.cs" />
      <Compile Include="Assets\BloodMistCloud.cs" />
      <Compile Include="Assets\Bombardment.cs" />
+     <Compile Include="Assets\BonusObjectiverTimer.cs" />
      <Compile Include="Assets\BountyHunter.cs" />
      <Compile Include="Assets\BuildManager.cs" />
      <Compile Include="Assets\BuildStructure.cs" />
@@ -276,6 +277,7 @@
      <Compile Include="Assets\LevelSelectmanager.cs" />
      <Compile Include="Assets\LifeSteal.cs" />
      <Compile Include="Assets\LocationObjective.cs" />
+     <Compile Include="Assets\LootDrop.cs" />
      <Compile Include="Assets\MVPCalculator.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />
      <Compile Include="Assets\Masochism.cs" />
@@ -286,6 +288,7 @@
      <Compile Include="Assets\MissileArmer.cs" />
      <Compile Include="Assets\MissionLogger.cs" />
      <Compile Include="Assets\MissionManager.cs" />
+     <Compile Include="Assets\MoneyPickUp.cs" />
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\MultiShotParticle.cs" />
      <Compile Include="Assets\NewUnitPanel.cs" />
@@ -441,6 +444,7 @@
      <Compile Include="Assets\Scripts - In Game\turret.cs" />
      <Compile Include="Assets\SelectionNotifier.cs" />
      <Compile Include="Assets\ShieldGlobe.cs" />
+     <Compile Include="Assets\ShieldUpgrade.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />
      <Compile Include="Assets\SoundOptions.cs" />

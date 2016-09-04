@@ -19,6 +19,8 @@ public class MissileArmer :Ability{
 	public List<StimPack> stimList = new List<StimPack>();
 	public List<DayexaShield> shieldList = new List<DayexaShield> ();
 
+	private bool missileLastTime;
+
 	private float nextActionTime;
 
 
@@ -40,7 +42,8 @@ public class MissileArmer :Ability{
 		if (nextActionTime < Time.time) {
 			nextActionTime = Time.time + 1.7f;
 
-			if (missiles) {
+			if (missiles && !missileLastTime) {
+				missileLastTime = true;
 				missileList.RemoveAll (item => item == null);
 				foreach (missileSalvo salv in missileList) {
 					if (salv.chargeCount < salv.maxRockets) {
@@ -48,6 +51,8 @@ public class MissileArmer :Ability{
 				
 					}
 				}
+			} else if (missiles && missileLastTime) {
+				missileLastTime = false;
 			}
 	
 			if (nitro) {

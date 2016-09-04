@@ -56,5 +56,20 @@ public class Clock : MonoBehaviour {
 		return s;
 	}
 
+	public static string convertToString(float toCon)
+	{int time = (int) toCon;
+		int minutes = time / 60;
+		int seconds = time % 60;
+
+		string s;
+		if (seconds < 10) {
+			s = minutes + ":0" + seconds;
+		} else {
+			s = minutes + ":" + seconds;
+		}
+
+		return s;
+	}
+
 
 }

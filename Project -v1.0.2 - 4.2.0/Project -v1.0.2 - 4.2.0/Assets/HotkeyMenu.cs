@@ -28,7 +28,7 @@ public class HotkeyMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-
+		selectMan = GameObject.FindObjectOfType<SelectedManager> ();
 		this.gameObject.GetComponent<Canvas> ().enabled = true;
 		StartCoroutine(MyCoroutine());
 	
@@ -88,11 +88,11 @@ public class HotkeyMenu : MonoBehaviour {
 
 	IEnumerator MyCoroutine ()
 	{
-		yield return new WaitForSeconds(.1f);
+		yield return new WaitForSeconds(.05f);
 
 
 		//fManager = GameObject.Find ("F-Buttons").GetComponent<FButtonManager>();
-
+	
 		selectMan = GameObject.FindObjectOfType<SelectedManager> ();
 		foreach (RaceInfo info in raceInfo.GetComponents<RaceInfo>()) {
 
@@ -142,6 +142,7 @@ public class HotkeyMenu : MonoBehaviour {
 
 
 		apply ();
+
 		this.gameObject.GetComponent<Canvas> ().enabled = false;
 	}
 	// Update is called once per frame

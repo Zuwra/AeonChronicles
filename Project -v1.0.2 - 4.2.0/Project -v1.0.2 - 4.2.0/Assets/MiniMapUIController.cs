@@ -374,7 +374,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	{
 		if (eventData.button == PointerEventData.InputButton.Left) {
 			dragging = false;
-			Debug.Log ("Mouse up");
+		
 		}
 			
 	}

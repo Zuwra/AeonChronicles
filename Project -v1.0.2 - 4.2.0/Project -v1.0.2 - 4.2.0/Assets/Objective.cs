@@ -49,6 +49,12 @@ public class Objective : SceneEventTrigger {
 		VictoryTrigger.instance.unComplete (this);
 	}
 
+	public void fail()
+	{
+		VictoryTrigger.instance.FailObjective (this);
+
+	}
+
 
 
 }

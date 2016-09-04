@@ -918,15 +918,18 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	public void selectAllUnArmedTanks()
 	{
-		selectAllArmy();
+		DeselectAll();
+		raceMan.getUnitList().RemoveAll (item => item == null);
 
-		foreach (RTSObject u in SelectedObjects) 
-		{TurretMount tm = u.GetComponentInChildren<TurretMount> ();
-			if (tm && tm.turret ||u.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Structure) ) {
-				DeselectObject (u);
+		foreach (GameObject obj in raceMan.getUnitList())
+		{TurretMount tm = obj.GetComponentInChildren<TurretMount> ();
+			if (tm && !tm.turret  ) {
+				AddObject(obj.GetComponent<UnitManager>());
+
 			}
 
 		}
+			
 	
 
 		CreateUIPages(0);

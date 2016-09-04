@@ -38,7 +38,7 @@ public class TimeDelayTrigger : MonoBehaviour {
 			//Debug.Log ("Triggering " + trig);
 			trig.trigger (index, input, location, target, doIt);
 		}
-		Destroy (this.gameObject);
+		Destroy (this);
 
 	}
 

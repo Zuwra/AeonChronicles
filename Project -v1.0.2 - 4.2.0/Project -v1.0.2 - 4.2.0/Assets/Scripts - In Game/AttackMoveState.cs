@@ -68,13 +68,15 @@ public class AttackMoveState : UnitState {
 			
 				enemy = temp;
 			
-					//myManager.gameObject.transform.LookAt (enemy.transform.position);
+				//myManager.gameObject.transform.LookAt (enemy.transform.position);
 				if (myManager.cMover) {
 		
 					myManager.cMover.resetMoveLocation (enemy.transform.position);
 				}
-					//Debug.Log("Just called th reset2" + enemy.transform.position);
+				//Debug.Log("Just called th reset2" + enemy.transform.position);
 
+			} else if(enemy && Vector3.Distance(myManager.gameObject.transform.position,enemy.transform.position) > 90){
+				myManager.cMover.resetMoveLocation (home);
 			}
 		}
 		//still need to figure out calcualte ion for if enemy goes out of range or if a better one comes into range

@@ -53,7 +53,9 @@ public class ObjectiveManager : MonoBehaviour {
 		GameObject obj = (GameObject)Instantiate (ObjectiveText);
 		obj.transform.SetParent (this.transform);
 		obj.GetComponentInChildren<Text> ().text ="" +  input.description;
-		bonusObjectives.Add (input, obj);
+		if (!bonusObjectives.ContainsKey (input)) {
+			bonusObjectives.Add (input, obj);
+		}
 		Vector3 pos = obj.transform.position;
 		pos.z = 0;
 		obj.transform.position = pos;
@@ -84,6 +86,13 @@ public class ObjectiveManager : MonoBehaviour {
 
 	}
 
+	public void updateObjective(Objective obj)
+	{
+		bonusObjectives [obj].GetComponentInChildren<Text> ().text =  "" + obj.description;
+	
+	}
+
+
 	public void completeBonus(Objective obj)
 		{
 		bonusObjectives [obj].GetComponentInChildren<Toggle> ().isOn = true;
@@ -103,6 +112,15 @@ public class ObjectiveManager : MonoBehaviour {
 		blink (true);
 	}
 
+
+	public void failObjective(Objective obj)
+	{
+
+		bonusObjectives [obj].GetComponentInChildren<Toggle> ().isOn = false;
+		bonusObjectives [obj].GetComponentInChildren<Text> ().fontSize = 8;
+		bonusObjectives [obj].GetComponentInChildren<Text> ().color = Color.red;
+
+	}
 
 
 

@@ -21,6 +21,17 @@ public class TargetDeathVictory : Objective {
 	
 	}
 
+	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
+		VictoryTrigger.instance.addObjective (this);
+
+		foreach (GameObject go in targets) {
+			foreach (FogOfWarUnit fog in go.GetComponents<FogOfWarUnit>()) {
+				fog.enabled = true;
+			}
+		
+		}
+	}
+
 
 	public void IDied(GameObject obj)
 	{Debug.Log ("I died " + obj.name);

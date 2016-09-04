@@ -92,6 +92,18 @@ public class VictoryTrigger : MonoBehaviour {
 	}
 
 
+	public void FailObjective(Objective ob)
+	{
+		ObjectiveManager.instance.failObjective(ob);
+	}
+
+
+	public void UpdateObjective(Objective ob)
+	{
+		ObjectiveManager.instance.updateObjective(ob);
+	}
+
+
 
 	public void Win()
 	{
