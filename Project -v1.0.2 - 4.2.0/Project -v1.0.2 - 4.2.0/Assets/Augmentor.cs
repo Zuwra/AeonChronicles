@@ -164,7 +164,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			
 			RaceManager.updateActivity ();
 		}
-		else if (target.GetComponent<Selected> ().IsSelected) {
+		else if (target && target.GetComponent<Selected> ().IsSelected) {
 			RaceManager.updateActivity ();
 		}
 

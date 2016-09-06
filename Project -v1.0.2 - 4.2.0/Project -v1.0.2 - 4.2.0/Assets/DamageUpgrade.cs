@@ -30,7 +30,7 @@ public class DamageUpgrade : Upgrade {
 					wep.baseDamage += mortarDamage;
             }
             else if (manager.UnitName.Equals("Hornet"))
-				{Debug.Log ("Weapon is " + wep.Title);
+				{//Debug.Log ("Weapon is " + wep.Title);
 					wep.baseDamage += hornetDamage;
 					if (wep.baseDamage > 40) {
 						wep.baseDamage += 8;

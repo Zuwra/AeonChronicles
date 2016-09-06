@@ -8,7 +8,7 @@ public class DeathWinTrigger : MonoBehaviour,Modifier {
 	// This script gets added to units that need to die. Added through the TargetDeathTrigger Script
 	void Start () {
 		GetComponent<UnitStats> ().addDeathTrigger (this);
-		Debug.Log ("Adding to " + this.gameObject);
+		//Debug.Log ("Adding to " + this.gameObject);
 	}
 
 	// Update is called once per frame

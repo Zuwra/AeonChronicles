@@ -59,6 +59,8 @@ public class ArmyUIManager : MonoBehaviour {
 
 		iconList [manage.UnitName].transform.FindChild("Text").GetComponent<Text> ().text
 		= ""+unitList [manage.UnitName].Count;
+
+
 	}
 
 
@@ -72,8 +74,8 @@ public class ArmyUIManager : MonoBehaviour {
 
 			unitList [manage.UnitName].Remove (unit);
 
-			if (!unitList.ContainsKey(manage.UnitName)) {
-	
+			//if (!unitList.ContainsKey(manage.UnitName)) {
+			if(unitList [manage.UnitName].Count == 0){
 				GameObject obj = iconList [manage.UnitName];
 				iconList.Remove (manage.UnitName);
 				Destroy (obj);

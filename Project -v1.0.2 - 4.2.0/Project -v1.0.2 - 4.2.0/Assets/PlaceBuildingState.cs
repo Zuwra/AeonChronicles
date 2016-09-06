@@ -20,7 +20,7 @@ public class PlaceBuildingState :UnitState {
 		//Debug.Log ("Has place " + myGhost);
 		myPlacer = myGhost.GetComponentInChildren<BuildingPlacer> ();
 		location = loc;
-		Debug.Log ("Setting location to " + location + "  ghost " + ghost);
+		//Debug.Log ("Setting location to " + location + "  ghost " + ghost);
 		myAbility = abil;
 		myAbility.myCost.payCost ();
 
@@ -41,7 +41,7 @@ public class PlaceBuildingState :UnitState {
 			myManager.cMover.resetMoveLocation (location);
 		}
 		
-		Debug.Log ("Going to " + location + "   Ghost  " + myGhost);
+		//Debug.Log ("Going to " + location + "   Ghost  " + myGhost);
 
 	}
 
