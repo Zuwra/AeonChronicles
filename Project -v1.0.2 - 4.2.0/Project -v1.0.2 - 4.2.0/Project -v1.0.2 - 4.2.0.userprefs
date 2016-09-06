@@ -1,13 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MissileArmer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\InteractState.cs">
     <Files>
-      <File FileName="Assets\BonusObjectiverTimer.cs" Line="38" Column="19" />
-      <File FileName="Assets\TextTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\MiniMapUIController.cs" Line="379" Column="4" />
-      <File FileName="Assets\TimeDelayTrigger.cs" Line="26" Column="46" />
-      <File FileName="Assets\TargetDeathVictory.cs" Line="54" Column="1" />
-      <File FileName="Assets\MissileArmer.cs" Line="40" Column="12" />
+      <File FileName="Assets\Scripts - In Game\InteractState.cs" Line="57" Column="4" />
+      <File FileName="Assets\Scripts - In Game\OreDispenser.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\VeteranStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="151" Column="19" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="578" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -7,9 +7,10 @@ public class InteractState : UnitState {
 
 
 
-	private int refreshTime = 5;
+	private int refreshTime = 15;
 	private int currentFrame = 0;
-
+	private float nextActionTime;
+	private IWeapon bestWeap;
 
 	public InteractState(GameObject unit, UnitManager man)
 	{
@@ -18,8 +19,8 @@ public class InteractState : UnitState {
 
 		target = unit;
 	//myMover.resetMoveLocation (target.transform.position);
-
-
+		nextActionTime = Time.time + .5f;
+		bestWeap = myManager.canAttack (target);	
 		refreshTime = 30 - (int)myManager.cMover.getMaxSpeed();
 		if (refreshTime < 5) {
 			refreshTime = 8;
@@ -44,25 +45,41 @@ public class InteractState : UnitState {
 			return;
 		}
 
-		currentFrame ++;
-		if (currentFrame > refreshTime) {
-			currentFrame = 0;
+
+		if (!myManager.inRange(target)  ) {
+
+			if (!bestWeap) {
+				bestWeap = myManager.canAttack (target);
+			}
+			if ((bestWeap && bestWeap.isOffCooldown ()) || !bestWeap) {
+				myManager.cMover.move ();
+			} else {
+			
+				return;}
+
+		} else {
+
+			myManager.cMover.stop ();
+			IWeapon myWeap = myManager.canAttack (target);	
+
+			if (myWeap) {
+
+				myWeap.attack (target,myManager);
+			
+			}
+			return;
+		}
+
+	
+		if ( Time.time > nextActionTime) {
+			nextActionTime = Time.time + .5f;
+
 			myManager.cMover.resetMoveLocation(target.transform.position);
 		}
 
 		//attack
 
-		if (!myManager.inRange(target)) {
-			myManager.cMover.move ();
-			} else {
-			myManager.cMover.stop ();
-			IWeapon myWeap = myManager.canAttack (target);	
-			if (myWeap) {
-				
-				myWeap.attack (target,myManager);
 
-				}
-			}
 
 		
 	

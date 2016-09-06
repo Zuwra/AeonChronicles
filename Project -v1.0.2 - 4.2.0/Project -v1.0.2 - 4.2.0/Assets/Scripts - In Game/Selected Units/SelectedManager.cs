@@ -747,8 +747,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
 		List<RTSObject> realMovers = new List<RTSObject> ();
-
 		List<RTSObject> others = new List<RTSObject> ();
+
 		Vector3 middlePoint = Vector3.zero;
 		foreach (RTSObject obj in SelectedObjects) {
 			if (obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Turret) || obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
@@ -758,9 +758,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				middlePoint += obj.transform.position;
 			}
 		}
-		foreach ( IOrderable io  in others) {
-			io.GiveOrder (Orders.CreateMoveOrder (targetPoint,Input.GetKey(KeyCode.LeftShift)));
-		}
+
+		// TO DO FIGURE OUT HOW TO HAVE AN ORDERED FORMATION BASES ON THE UNIT PRIORITIES, SHould be in sorted order at this point.
+		//realMovers.Sort ();
+
+
+		//give move command to all nonmovers
+		StartCoroutine(staticMove(others,targetPoint));
 
 		middlePoint /= realMovers.Count;
 
@@ -808,25 +812,37 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			
 				}
 			}
+		
+			StartCoroutine (giveCommand (attack, closestSpot, closestUnit));
 
-			if (attack) {
-				Order o = Orders.CreateAttackMove (closestSpot, Input.GetKey(KeyCode.LeftShift));
-
-				closestUnit.GiveOrder (o);
-			} else {
-				Order o = Orders.CreateMoveOrder (closestSpot, Input.GetKey(KeyCode.LeftShift));
-				closestUnit.GiveOrder (o);
-
-			}
-	
 			points.Remove (closestSpot);
 	
 
 		}
+			
+	}
+	IEnumerator giveCommand(bool attack, Vector3 closestSpot, IOrderable unittoMove)
+	{yield return new WaitForSeconds (0.001f);
+		if (attack) {
+			Order o = Orders.CreateAttackMove (closestSpot, Input.GetKey(KeyCode.LeftShift));
 
+			unittoMove.GiveOrder (o);
+		} else {
+			Order o = Orders.CreateMoveOrder (closestSpot, Input.GetKey(KeyCode.LeftShift));
+			unittoMove.GiveOrder (o);
 
+		}
+	
 	}
 
+	//Used to multithread and increase response time
+	IEnumerator staticMove(List<RTSObject> others , Vector3 targetPoint)
+	{yield return new WaitForSeconds (0.005f);
+		foreach ( IOrderable io  in others) {
+			io.GiveOrder (Orders.CreateMoveOrder (targetPoint,Input.GetKey(KeyCode.LeftShift)));
+		}
+
+	}
 
 
 
@@ -986,7 +1002,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 			UnitManager manager = obj.GetComponent<UnitManager>();
 			if (manager.myStats.isUnitType (UnitTypes.UnitTypeTag.Turret) && globalSelection[n].Contains(manager.UnitName)) {
-				Debug.Log ("It is a  turret " +manager.transform.root.GetComponent<UnitManager> () );
+				
 				AddObject (manager.transform.root.GetComponent<UnitManager> ());
 				AddObject (manager);
 			}

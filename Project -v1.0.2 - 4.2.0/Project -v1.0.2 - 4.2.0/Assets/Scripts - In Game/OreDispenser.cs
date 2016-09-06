@@ -19,12 +19,7 @@ public class OreDispenser : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
 
-
-	
-	}
 
 	public bool requestWork(GameObject obj)
 	{if (!currentMinor) {

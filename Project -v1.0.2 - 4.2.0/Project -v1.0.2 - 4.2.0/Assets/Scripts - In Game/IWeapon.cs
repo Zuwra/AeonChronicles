@@ -147,7 +147,7 @@ public class IWeapon : MonoBehaviour {
 		foreach (Validator val in validators) {
 		if(val.validate(this.gameObject,target) == false)
 			{
-
+				//Debug.Log ("Not valid");
 				return false;}
 		}
 
@@ -155,14 +155,14 @@ public class IWeapon : MonoBehaviour {
 		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position) - target.GetComponent<CharacterController>().radius -myRadius;
 		float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
 		if (distance > (range + (verticalDistance)) || distance < minimumRange) {
-
+			//Debug.Log ("Not in range");
 
 			return false;}
 
 		UnitStats targetStats= target.GetComponent<UnitStats>();
 		foreach (UnitTypes.UnitTypeTag tag in cantAttackTypes) {
 			if (targetStats.isUnitType (tag))
-			{	
+			{		//Debug.Log ("cant attack");
 				return false;	}
 		}
 
@@ -176,6 +176,15 @@ public class IWeapon : MonoBehaviour {
 	{
 
 		if (this && target) {
+
+			UnitStats targetStats= target.GetComponent<UnitStats>();
+			foreach (UnitTypes.UnitTypeTag tag in cantAttackTypes) {
+				if (targetStats.isUnitType (tag))
+				{	
+					return false;	}
+			}
+
+
 
 
 			float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position) - target.GetComponent<CharacterController> ().radius - myRadius;

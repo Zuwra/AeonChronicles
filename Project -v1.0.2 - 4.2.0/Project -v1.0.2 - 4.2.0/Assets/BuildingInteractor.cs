@@ -40,10 +40,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 	}
 
-	// Update is called once per frame
-	void Update () {
 
-	}
 	public void initialize(){
 		Start ();
 	}

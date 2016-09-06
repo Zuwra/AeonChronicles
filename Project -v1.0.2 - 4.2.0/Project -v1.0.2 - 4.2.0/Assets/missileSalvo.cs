@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class missileSalvo : Ability, Validator, Notify{
 
 
 	private IWeapon myweapon;
-	public int  maxRockets = 4;
+	public int  maxRockets = 2;
 	private UnitManager mymanager;
 	private Selected mySelect;
+
+	public List<GameObject> MissileModels = new List<GameObject> ();
 
 	private float nextCheckTime;
 	// Use this for initialization
@@ -22,11 +25,15 @@ public class missileSalvo : Ability, Validator, Notify{
 	}
 
 	public void upRockets ()
-	{
+	{if(chargeCount < maxRockets){
 		chargeCount++;
 		if (mySelect.IsSelected) {
+			
 			RaceManager.upDateUI ();
 		}
+			if(MissileModels.Count > chargeCount-1 &&chargeCount-1 >=0 ){
+			MissileModels [chargeCount-1].SetActive (true);
+	}}
 	}
 
 	public override void setAutoCast(bool offOn){
@@ -55,10 +62,14 @@ public class missileSalvo : Ability, Validator, Notify{
 
 
 	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)	{
+		
 		chargeCount--;
 		RaceManager.upDateUI ();
 		if (autocast && chargeCount == 0) {
 			Activate ();
+		}
+		if(MissileModels.Count > chargeCount && chargeCount >= 0){
+			MissileModels [chargeCount].SetActive (false);
 		}
 
 	}
