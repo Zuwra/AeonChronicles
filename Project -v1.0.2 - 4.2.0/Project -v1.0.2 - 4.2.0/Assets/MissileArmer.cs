@@ -19,7 +19,6 @@ public class MissileArmer :Ability{
 	public List<StimPack> stimList = new List<StimPack>();
 	public List<DayexaShield> shieldList = new List<DayexaShield> ();
 
-	private bool missileLastTime;
 
 	private float nextActionTime;
 
@@ -42,7 +41,7 @@ public class MissileArmer :Ability{
 		if (nextActionTime < Time.time) {
 			nextActionTime = Time.time + 1.7f;
 
-			if (missiles && !missileLastTime) {
+			if (missiles ) {
 				missileLastTime = true;
 				missileList.RemoveAll (item => item == null);
 				foreach (missileSalvo salv in missileList) {
@@ -50,10 +49,9 @@ public class MissileArmer :Ability{
 						salv.upRockets ();
 				
 					}
+					break;
 				}
-			} else if (missiles && missileLastTime) {
-				missileLastTime = false;
-			}
+			} 
 	
 			if (nitro) {
 				stimList.RemoveAll (item => item == null);
@@ -65,7 +63,7 @@ public class MissileArmer :Ability{
 							obj.GetComponent<ShieldGlobe> ().isOverCharge = true;
 						}
 				
-
+						break;
 					}
 				}
 			}
@@ -82,6 +80,7 @@ public class MissileArmer :Ability{
 							if (ds) {
 								obj.GetComponent<ShieldGlobe> ().target = ds.gameObject;
 							}
+							break;
 							//ds.myStats.changeEnergy (shieldRate);
 						}
 			

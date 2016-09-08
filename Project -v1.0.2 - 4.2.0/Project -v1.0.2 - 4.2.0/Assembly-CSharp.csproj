@@ -456,6 +456,7 @@
      <Compile Include="Assets\TargetDeathVictory.cs" />
      <Compile Include="Assets\Teleport.cs" />
      <Compile Include="Assets\TextTrigger.cs" />
+     <Compile Include="Assets\ThrasherBlade.cs" />
      <Compile Include="Assets\TimeDelayTrigger.cs" />
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TrueUpgradeManager.cs" />

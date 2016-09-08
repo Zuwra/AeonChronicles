@@ -30,7 +30,7 @@ public  class Projectile : MonoBehaviour {
 
 	public List<Notify> triggers = new List<Notify> ();
 
-	private Vector3 lastLocation;
+	protected Vector3 lastLocation;
 
 	public GameObject TargetIndicator;
 	public Texture indicatorPic;
@@ -40,7 +40,7 @@ public  class Projectile : MonoBehaviour {
 	private Vector3 randomOffset;
 
 	// Use this for initialization
-	void Start () {	
+	public void Start () {	
 
 
 		if (target) {
