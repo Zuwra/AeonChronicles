@@ -33,9 +33,9 @@ public class ThrasherBlade : Projectile {
 
 		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
 			float h = Vector3.Distance (this.gameObject.transform.position, objecthit.point);
-			if (h < 1.5f || h > 3.5) {
+			if (h < 2f || h > 4) {
 
-				dir.y -=   (this.gameObject.transform.position.y -(objecthit.point.y + 2.5f) ) *speed *8;
+				dir.y -=   (this.gameObject.transform.position.y -(objecthit.point.y + 3f) ) *speed *8;
 			}
 
 

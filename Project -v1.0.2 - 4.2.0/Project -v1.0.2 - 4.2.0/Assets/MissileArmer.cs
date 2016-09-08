@@ -42,7 +42,7 @@ public class MissileArmer :Ability{
 			nextActionTime = Time.time + 1.7f;
 
 			if (missiles ) {
-				missileLastTime = true;
+
 				missileList.RemoveAll (item => item == null);
 				foreach (missileSalvo salv in missileList) {
 					if (salv.chargeCount < salv.maxRockets) {

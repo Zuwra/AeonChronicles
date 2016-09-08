@@ -1,17 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MissileArmer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TargetDeathVictory.cs">
     <Files>
-      <File FileName="Assets\ThrasherBlade.cs" Line="36" Column="30" />
-      <File FileName="Assets\Scripts - In Game\InteractState.cs" Line="57" Column="4" />
+      <File FileName="Assets\MissileArmer.cs" Line="53" Column="6" />
+      <File FileName="Assets\ThrasherBlade.cs" Line="42" Column="4" />
+      <File FileName="Assets\Scripts - In Game\InteractState.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\OreDispenser.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="785" Column="64" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
       <File FileName="Assets\VeteranStats.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\ShieldGlobe.cs" Line="25" Column="23" />
-      <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="165" Column="3" />
-      <File FileName="Assets\MissileArmer.cs" Line="26" Column="2" />
+      <File FileName="Assets\ShieldGlobe.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="1" Column="1" />
+      <File FileName="Assets\TargetDeathVictory.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
