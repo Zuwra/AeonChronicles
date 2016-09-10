@@ -62,7 +62,7 @@ public class SpaceDrop : MonoBehaviour {
 
 	public virtual void Terminate()
 	{
-		Debug.Log ("terminating " + currentDistance);
+
 		Destroy (this);
 
 	}

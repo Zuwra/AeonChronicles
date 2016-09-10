@@ -44,7 +44,7 @@ public class DetachAugment : Ability {
 	
 		active = false;
 		if (GetComponent<Selected> ().IsSelected) {
-			Debug.Log ("Updating UIIIII");
+
 			RaceManager.updateActivity ();
 		}
 		

@@ -82,6 +82,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 		} else if (middleMouseDown) {
 			CursorManager.main.MouseDragMode ();
 			if (Input.mousePosition.x > 0 && Input.mousePosition.x < Screen.width - 2 && Input.mousePosition.y > 0 && Input.mousePosition.y < Screen.height - 2) {
+				
 				transform.Translate ((middleStartPos.x - Input.mousePosition.x) * Time.deltaTime * HeightAboveGround / 15, 0, (middleStartPos.y - Input.mousePosition.y) * Time.deltaTime* HeightAboveGround /14, Space.World);
 				middleStartPos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 				CheckEdgeMovement ();
