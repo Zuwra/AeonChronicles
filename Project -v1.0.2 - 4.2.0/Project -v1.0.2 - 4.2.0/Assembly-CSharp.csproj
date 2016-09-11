@@ -497,6 +497,8 @@
      <Compile Include="Assets\animate.cs" />
      <Compile Include="Assets\buildResumeState.cs" />
      <Compile Include="Assets\buildTurret.cs" />
+     <Compile Include="Assets\bunnyManager.cs" />
+     <Compile Include="Assets\bunnyPopulate.cs" />
      <Compile Include="Assets\continueOrder.cs" />
      <Compile Include="Assets\deathTrigger.cs" />
      <Compile Include="Assets\deexaArmor.cs" />
