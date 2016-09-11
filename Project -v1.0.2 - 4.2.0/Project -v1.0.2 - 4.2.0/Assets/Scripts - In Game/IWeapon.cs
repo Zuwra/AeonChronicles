@@ -291,7 +291,10 @@ public class IWeapon : MonoBehaviour {
 		}
 	}
 		
-
+	public void addNotifyTrigger(Notify not)
+	{
+		triggers.Add (not);
+	}
 
 	public void fireTriggers(GameObject source, GameObject proj, GameObject target, float damage)
 	{	triggers.RemoveAll (item => item == null);

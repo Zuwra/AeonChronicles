@@ -276,6 +276,7 @@
      <Compile Include="Assets\LevelManager.cs" />
      <Compile Include="Assets\LevelSelectmanager.cs" />
      <Compile Include="Assets\LifeSteal.cs" />
+     <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
      <Compile Include="Assets\LocationObjective.cs" />
      <Compile Include="Assets\LootDrop.cs" />
      <Compile Include="Assets\MVPCalculator.cs" />
@@ -519,6 +520,7 @@
      <None Include="Assets\Resources\Fonts\pieces_of_eight\Alt Map.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
      <None Include="Assets\UIAddons\Shaders\UIAddonsGrayScaleFont.shader" />
+     <None Include="Assets\LightningBolt\Readme.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\Poly2Tri\Poly2TriLicense.txt" />
      <None Include="Assets\FogOfWar\TransparentShadowCaster.shader" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />

@@ -1,19 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Pathfinding.RVO;
+using DigitalRuby.LightningBolt;
 
-public class bunnyPopulate : MonoBehaviour, Modifier {
+
+public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
 
 	public float repopulateTime;
 	public float randomSpawnRange;
 	private float nextRepopulate;
 	private UnitStats myStats;
+
+	public LightningBoltScript myLightning;
+
 	// Use this for initialization
 	void Start () {
 		GameObject.FindObjectOfType<bunnyManager> ().changeInBunnyCount (1);
 		nextRepopulate = Time.time + repopulateTime + Random.Range(0,randomSpawnRange);
 		GetComponent<UnitStats> ().addDeathTrigger (this);
 		myStats = GetComponent<UnitStats> ();
+
+		foreach(IWeapon weap in GetComponent<UnitManager>().myWeapon)
+			{
+			weap.addNotifyTrigger (this);
+		}
 	}
 	
 	// Update is called once per frame
@@ -46,4 +56,14 @@ public class bunnyPopulate : MonoBehaviour, Modifier {
 		GameObject.FindObjectOfType<bunnyManager> ().changeInBunnyCount (-1);
 		return a;
 	}
+
+	public void trigger(GameObject source, GameObject proj, GameObject target,float damage)
+	{
+
+		myLightning.Trigger ();
+
+
+
+	}
+
 }

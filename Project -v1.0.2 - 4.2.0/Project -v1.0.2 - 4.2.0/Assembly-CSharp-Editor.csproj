@@ -68,6 +68,7 @@
      <Compile Include="Assets\AstarPathfindingProject\Editor\RVOSquareObstacleEditor.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Editor\RecastMeshObjEditor.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Editor\SeekerEditor.cs" />
+     <Compile Include="Assets\LightningBolt\Editor\LightningBoltEditor.cs" />
      <Compile Include="Assets\Scripts - In Game\Editor\GridEditor.cs" />
      <Compile Include="Assets\Scripts - In Game\Editor\MiniMapControllerEditor.cs" />
      <Compile Include="Assets\UIAddons\Editor\EditorTools.cs" />
@@ -75,6 +76,7 @@
      <None Include="Assets\Resources\Fonts\pieces_of_eight\Alt Map.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
      <None Include="Assets\UIAddons\Shaders\UIAddonsGrayScaleFont.shader" />
+     <None Include="Assets\LightningBolt\Readme.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\Poly2Tri\Poly2TriLicense.txt" />
      <None Include="Assets\FogOfWar\TransparentShadowCaster.shader" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
