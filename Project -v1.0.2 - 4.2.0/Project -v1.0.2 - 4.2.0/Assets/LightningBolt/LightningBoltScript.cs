@@ -343,7 +343,7 @@ namespace DigitalRuby.LightningBolt
         /// Trigger a lightning bolt. Use this if ManualMode is true.
         /// </summary>
         public void Trigger()
-		{Debug.Log ("Getting called");
+		{
             Vector3 start, end;
             timer = Duration + Mathf.Min(0.0f, timer);
             if (StartObject == null)

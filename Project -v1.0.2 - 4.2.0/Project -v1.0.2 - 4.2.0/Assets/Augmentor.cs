@@ -80,7 +80,8 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		OreDispenser OD = target.GetComponent<OreDispenser> ();
 		if (OD) {
 			OD.returnRate = 1.3f;
-		} else if (unitMan.UnitName == "Construction Yard") {
+		} 
+		else if (unitMan.UnitName == "Construction Yard") {
 			foreach (UnitProduction bu in target.GetComponents<UnitProduction>()) {
 				//bu.buildTime *= .65f;
 				bu.myCost.cooldown = bu.buildTime;
@@ -91,16 +92,20 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			foreach (buildTurret bt in target.GetComponents<buildTurret>()) {
 				if (bt.Name.Contains ("Repair")) {
 					bt.active = true;
+				} else if (bt.Name.Contains ("Pod")) {
+					bt.active = true;
 				}
+				bt.setBuildRate (1.35f);
 			}
 
-		} else if (unitMan.UnitName == "Gadget Lab") {
+		} else if (unitMan.UnitName.Contains("Gadget") ) {
 			foreach (UnitProduction bu in target.GetComponents<UnitProduction>()) {
 				//bu.buildTime *= .65f;
 				bu.myCost.cooldown = bu.buildTime;
 				bu.setBuildRate (1.35f);
 			}
 		}
+
 
 		if (GetComponent<Selected> ().IsSelected) {
 			RaceManager.updateActivity ();
@@ -131,13 +136,13 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		manager.myStats.myHeight = UnitTypes.HeightType.Air;
 		attached.GetComponent<UnitManager> ().myStats.removeDeathTrigger (this);
 		MissileArmer armer = attached.GetComponent<MissileArmer> ();
-
+		UnitManager man = attached.GetComponent<UnitManager> ();
 		if (armer) {
 			armer.shields = true;
 			manager.myWeapon.Clear ();
 		}
 
-		else if (attached.GetComponent<UnitManager> ().UnitName == "Construction Yard") {
+		else if (man.UnitName == "Construction Yard") {
 			foreach (BuildUnit bu in attached.GetComponents<BuildUnit>()) {
 				//bu.buildTime /= .65f;
 
@@ -152,14 +157,28 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			OD.returnRate = 1;
 		}
 
-		else if (attached.GetComponent<UnitManager> ().UnitName == "Armory") {
+		else if (man.UnitName == "Armory") {
 			foreach (buildTurret bt in attached.GetComponents<buildTurret>()) {
 				if (bt.Name.Contains ("Repair")) {
 					bt.active =false;
 				}
+				else if (bt.Name.Contains ("Pod")) {
+					bt.active = false;
+				}
+				bt.setBuildRate (1);
 			}
 
 		}
+		else if (man.UnitName.Contains("Gadget") ) {
+			foreach (UnitProduction bu in target.GetComponents<UnitProduction>()) {
+				//bu.buildTime *= .65f;
+				bu.myCost.cooldown = bu.buildTime;
+				bu.setBuildRate (1f);
+			}
+		}
+
+
+
 		if (GetComponent<Selected> ().IsSelected) {
 			
 			RaceManager.updateActivity ();

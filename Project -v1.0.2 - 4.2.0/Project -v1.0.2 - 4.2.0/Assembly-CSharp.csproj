@@ -51,6 +51,7 @@
      <Compile Include="Assets\AbilityFollowState.cs" />
      <Compile Include="Assets\ActivateObject.cs" />
      <Compile Include="Assets\AetherOvercharge.cs" />
+     <Compile Include="Assets\AetherRelay.cs" />
      <Compile Include="Assets\ArmyUIManager.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\AILerp.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\AIPath.cs" />
@@ -496,6 +497,7 @@
      <Compile Include="Assets\ZephyrInteract.cs" />
      <Compile Include="Assets\airmover.cs" />
      <Compile Include="Assets\animate.cs" />
+     <Compile Include="Assets\barrierShield.cs" />
      <Compile Include="Assets\buildResumeState.cs" />
      <Compile Include="Assets\buildTurret.cs" />
      <Compile Include="Assets\bunnyManager.cs" />

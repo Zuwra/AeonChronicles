@@ -12,16 +12,12 @@ public class buildTurret :UnitProduction{
 	protected RaceManager racer;
 	protected float timer =0;
 	protected bool buildingUnit = false;
-	public enum turretType
-	{
-		one, two
-	}
 
-	public turretType myTurretType;
+
 	protected Selected mySelect;
 	protected HealthDisplay HD;
 	protected List<TurretMount> turretMounts = new List<TurretMount>();
-	protected List<TurretMountTwo> turretTwoMounts = new List<TurretMountTwo>();
+
 	protected BuildManager buildMan;
 
 	public bool rapidArms;
@@ -75,7 +71,7 @@ public class buildTurret :UnitProduction{
 			}
 		}
 		if(autocast){
-			if ( myTurretType ==  turretType.one) { 
+
 				if (turretMounts.Count > 0) {
 
 					turretMounts.RemoveAll (item => item == null);
@@ -108,30 +104,7 @@ public class buildTurret :UnitProduction{
 					}
 	
 				}
-			} else {
-
-				if (turretTwoMounts.Count > 0) {
-					turretMounts.RemoveAll (item => item == null);
-					foreach (TurretMountTwo obj in turretTwoMounts) {
-						if (chargeCount == 0) {
-							return;
-						}
-						if (obj.enabled == false) {
-							return;}
-						
-						if (obj.turret == null) {
-							if (soundEffect) {
-								audioSrc.PlayOneShot (soundEffect);
-							}
-							obj.placeTurret (createUnit ());
-
-
-						}
-					}
-
-				}
 			
-			}
 
 
 		}
@@ -176,7 +149,7 @@ public class buildTurret :UnitProduction{
 		}
 
 			if (manage.PlayerOwner == manager.PlayerOwner) {
-			if ( myTurretType ==  turretType.one) {
+
 				turretMounts.RemoveAll (item => item == null);
 				foreach (TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ()) {
 					if (mount) {
@@ -184,15 +157,7 @@ public class buildTurret :UnitProduction{
 						turretMounts.Add (mount);
 					}
 				}
-			} else {
-				turretMounts.RemoveAll (item => item == null);
-				foreach (TurretMountTwo mount in other.gameObject.GetComponentsInChildren<TurretMountTwo> ()) {
-					if (mount) {
 
-						turretTwoMounts.Add (mount);
-					}
-				}
-			}
 			
 
 		}
@@ -222,22 +187,14 @@ public class buildTurret :UnitProduction{
 		}
 
 		if (manage.PlayerOwner == manager.PlayerOwner) {
-			if ( myTurretType ==  turretType.one) {
-
+			
 				foreach (TurretMount mount in other.gameObject.GetComponentsInChildren<TurretMount> ()) {
 					if (mount) {
 
 						turretMounts.Remove(mount);
 					}
 				}
-			} else {
-				foreach (TurretMountTwo mount in other.gameObject.GetComponentsInChildren<TurretMountTwo> ()) {
-					if (mount) {
-
-						turretTwoMounts.Remove(mount);
-					}
-				}
-			}
+			
 
 
 		}

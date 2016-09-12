@@ -13,14 +13,17 @@ public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
 
 	public LightningBoltScript myLightning;
 
+	UnitManager mymanager;
+
 	// Use this for initialization
 	void Start () {
+		mymanager = GetComponent<UnitManager> ();
 		GameObject.FindObjectOfType<bunnyManager> ().changeInBunnyCount (1);
 		nextRepopulate = Time.time + repopulateTime + Random.Range(0,randomSpawnRange);
 		GetComponent<UnitStats> ().addDeathTrigger (this);
 		myStats = GetComponent<UnitStats> ();
 
-		foreach(IWeapon weap in GetComponent<UnitManager>().myWeapon)
+		foreach(IWeapon weap in mymanager.myWeapon)
 			{
 			weap.addNotifyTrigger (this);
 		}
@@ -43,10 +46,17 @@ public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
 			nextRepopulate = Time.time + repopulateTime + Random.Range(0,randomSpawnRange);
 			repopulateTime += 3;
 
-			myStats.Maxhealth += 5;
-			myStats.heal (5);
-			this.gameObject.transform.localScale = this.gameObject.transform.localScale + Vector3.one *.1f;
-			GetComponent<RVOController> ().radius += .1f;
+			myStats.Maxhealth += 10;
+			myStats.heal (10);
+			myStats.armor += .5f;
+
+			foreach(IWeapon weap in mymanager.myWeapon)
+			{
+				weap.range +=1;
+				weap.baseDamage += 1;
+			}
+			this.gameObject.transform.localScale = this.gameObject.transform.localScale + Vector3.one *.15f;
+			GetComponent<RVOController> ().radius += .15f;
 		}
 	
 	}

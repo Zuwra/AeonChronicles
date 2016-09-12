@@ -104,7 +104,7 @@ public class TurretplacerTwo : MonoBehaviour {
 		buttonsOn = !buttonsOn;
 
 		if (turretManager != null) {
-			turretManager.deactivate ();
+			turretManager.deactivate (buttonsOn);
 		}
 		center.gameObject.SetActive (!center.gameObject.activeSelf);
 		LaserNode.gameObject.SetActive (buttonsOn);

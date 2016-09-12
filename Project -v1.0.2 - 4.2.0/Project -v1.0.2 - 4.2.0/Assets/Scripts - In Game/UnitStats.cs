@@ -124,7 +124,7 @@ public class UnitStats : MonoBehaviour {
 	void Update () {
 
 		if (Time.time > nextActionTime ) {
-			nextActionTime += .5f;
+			nextActionTime = Time.time + .5f;
 
 			//Regenerate Health
 			if (health < Maxhealth && HealthRegenPerSec > 0) {
@@ -173,17 +173,19 @@ public class UnitStats : MonoBehaviour {
 					veternStat.mitigatedDamage += armor;
 					veternStat.damageTaken += amount;
 				}
-				health-= amount;
-
-				updateHealthBar ();
+				health -= amount;
 
 				if ((int)health <= 0) {
-						kill (source);
-						}
-				//Debug.Log ("Taking Damage");
+					kill (source);
+				} else {
+					updateHealthBar ();
 
-				//if(type != DamageTypes.DamageType.True)
-				myManager.Attacked (source);
+			
+					//Debug.Log ("Taking Damage");
+
+					//if(type != DamageTypes.DamageType.True)
+					myManager.Attacked (source);
+				}
 			}
 			return amount;
 		}
@@ -227,7 +229,7 @@ public class UnitStats : MonoBehaviour {
 
 			//}
 			FinishDeath = false;
-			if (this.gameObject) {
+			if (this) {
 				FinishDeath = GameManager.main.playerList [myManager.PlayerOwner - 1].UnitDying (this.gameObject, deathSource, true);
 			}
 

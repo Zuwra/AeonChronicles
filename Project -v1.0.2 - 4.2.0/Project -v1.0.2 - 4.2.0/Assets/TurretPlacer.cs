@@ -111,7 +111,7 @@ public class TurretPlacer : MonoBehaviour {
 
 		}
 
-		Vector3 pos = unit.transform.position;
+		Vector3 pos = myMount.transform.position;
 		pos.y += 5;
 		this.gameObject.GetComponent<RectTransform> ().position = pos;
 
@@ -171,16 +171,16 @@ public class TurretPlacer : MonoBehaviour {
 		}
 	}
 
-	public void ToggleOn()
+	public void ToggleOn(bool offOn)
 	{
-		center.gameObject.SetActive (!center.gameObject.activeSelf);
+		center.gameObject.SetActive (offOn);
 	}
 
 	public void showButtons(){
 		buttonsOn = !buttonsOn;
 		if (turretManager != null) {
-			turretManager.deactivate ();
-			center.gameObject.SetActive (!center.gameObject.activeSelf);
+			turretManager.deactivate (!buttonsOn);
+			center.gameObject.SetActive (true);
 		} 
 		if (!Input.GetKey (KeyCode.LeftShift)) {
 			SelectedManager.main.DeselectAll ();

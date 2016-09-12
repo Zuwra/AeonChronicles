@@ -45,7 +45,7 @@ public class TuretBuildHelper :buildTurret{
 			}
 		}
 		if (autocast) {
-			if (myTurretType == turretType.one) { 
+	
 				if (turretMounts.Count > 0) {
 					foreach (TurretMount obj in turretMounts) {
 						if (chargeCount == 0) {
@@ -74,32 +74,9 @@ public class TuretBuildHelper :buildTurret{
 
 
 						}
-					}
+
 
 				}
-			} else {
-
-				if (turretTwoMounts.Count > 0) {
-					foreach (TurretMountTwo obj in turretTwoMounts) {
-						if (chargeCount == 0) {
-							return;
-						}
-						if (obj.enabled == false) {
-							return;
-						}
-
-						if (obj.turret == null) {
-							if (soundEffect) {
-								audioSrc.PlayOneShot (soundEffect);
-							}
-							obj.placeTurret (createUnit ());
-
-
-						}
-					}
-
-				}
-
 			}
 
 

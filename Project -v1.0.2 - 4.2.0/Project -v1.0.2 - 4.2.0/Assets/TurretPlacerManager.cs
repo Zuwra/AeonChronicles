@@ -21,15 +21,15 @@ public class TurretPlacerManager : MonoBehaviour {
 
 
 
-	public void deactivate()
+	public void deactivate(bool offOn)
 	{
 		foreach (TurretMount x in mounts) {
 			if (x.hasDisplayer != null) {
-				x.hasDisplayer.ToggleOn ();
+				x.hasDisplayer.ToggleOn (offOn);
 			}
 		}
 
-		if (two.hasDisplayer != null) {
+		if (two && two.hasDisplayer != null) {
 			two.hasDisplayer.ToggleOn ();
 		}
 	}

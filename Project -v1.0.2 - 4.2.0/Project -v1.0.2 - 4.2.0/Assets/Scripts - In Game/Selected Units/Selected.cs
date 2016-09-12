@@ -17,7 +17,7 @@ public class Selected : MonoBehaviour {
 	private GameObject unitIcon;
 	private Slider IconSlider;
 
-	private Slider healthslider;
+	public Slider healthslider;
 	private Image healthFill;
 	public GameObject RallyPoint;
 	public GameObject RallyUnit;
@@ -269,7 +269,7 @@ public class Selected : MonoBehaviour {
 
 	public void updateHealthBar(float ratio)
 	{if (!turretDisplay) {
-			
+		
 			healthslider.value = ratio; 
 
 			if (mydisplayType == displayType.damaged) {

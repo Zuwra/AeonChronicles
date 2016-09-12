@@ -1,13 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LightningBolt\LightningBoltScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AetherRelay.cs">
     <Files>
-      <File FileName="Assets\LightningBolt\Readme.txt" Line="1" Column="1" />
-      <File FileName="Assets\bunnyPopulate.cs" Line="27" Column="3" />
-      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="1" Column="1" />
-      <File FileName="Assets\airmover.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="231" Column="15" />
-      <File FileName="Assets\LightningBolt\LightningBoltScript.cs" Line="338" Column="4" />
+      <File FileName="Assets\bunnyPopulate.cs" Line="57" Column="5" />
+      <File FileName="Assets\LaserNode.cs" Line="74" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="231" Column="24" />
+      <File FileName="Assets\AetherRelay.cs" Line="46" Column="44" />
+      <File FileName="Assets\TurretPlacer.cs" Line="182" Column="42" />
+      <File FileName="Assets\TurretPlacerManager.cs" Line="33" Column="33" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="273" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

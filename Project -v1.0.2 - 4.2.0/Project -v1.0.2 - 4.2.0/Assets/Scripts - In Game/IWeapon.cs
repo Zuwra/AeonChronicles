@@ -227,7 +227,9 @@ public class IWeapon : MonoBehaviour {
 	
 		}
 
-		myManager.animAttack ();
+		if (myManager) {
+			myManager.animAttack ();
+		}
 		yield return new WaitForSeconds(time);
 
 
