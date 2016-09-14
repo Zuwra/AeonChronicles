@@ -344,8 +344,12 @@ public class UnitStats : MonoBehaviour {
 
 	public void changeEnergy(float n)
 	{
+		if (MaxEnergy == 0) {
+		
+			return;}
 		float amount;
-		if (n > 0) {
+
+		if (n > 0 ) {
 			amount = Math.Min (n, MaxEnergy - currentEnergy);
 			currentEnergy += amount;
 			veternStat.energyGained += amount;

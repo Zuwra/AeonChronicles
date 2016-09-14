@@ -155,6 +155,9 @@ public class CostBox : MonoBehaviour {
 				health.text = "";
 			}
 		} else {
+			Population.text = "";
+			EnergyText.text = "";
+			EnergyPic.enabled = false;
 			time.text = "";
 			resOne.text = "";
 			resTwo.text = "";

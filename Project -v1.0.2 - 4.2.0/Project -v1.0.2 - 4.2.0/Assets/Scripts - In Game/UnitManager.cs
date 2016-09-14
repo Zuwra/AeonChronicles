@@ -136,7 +136,7 @@ public class UnitManager : Unit,IOrderable{
 	
 	// Update is called once per frame
 	new void Update () {
-		if (myState != null) {
+		if (myState != null && !isStunned) {
 
 			myState.Update ();
 		} 
@@ -612,12 +612,40 @@ public class UnitManager : Unit,IOrderable{
 		} else {
 			if (stunSources.Contains (source)) {
 			
-				stunSources.Remove (source);}
+				stunSources.Remove (source);
+			} else {stunSources.RemoveAll (item => item == null);
+			}
 		}
 
 			isStunned = (stunSources.Count > 0);
 		
 	}
+
+	public void StunForTime(Object source, float duration)
+	{
+		StartCoroutine (stunOverTime (source, duration));
+
+	}
+
+	IEnumerator stunOverTime(Object source, float duration)
+	{
+
+		stunSources.Add (source);
+		isStunned = (stunSources.Count > 0);
+		Debug.Log (this.gameObject + " isstunned " + isStunned);
+		yield return new WaitForSeconds (duration);
+		if (stunSources.Contains (source)) {
+			stunSources.Remove (source);
+		} else {
+			stunSources.RemoveAll (item => item == null);
+		}
+
+	isStunned = (stunSources.Count > 0);
+		Debug.Log (this.gameObject + " isstunned " + isStunned);
+		
+	}
+
+
 	public void setSilence(bool input, Object source)
 	{
 		if (input) {

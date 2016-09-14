@@ -106,7 +106,7 @@ public class BuildUnit : UnitProduction {
 		order.nextUnitCast = false;
 
 
-		if (!myCost.canActivate (this, order, showError)) {
+		if (myCost && !myCost.canActivate (this, order, showError)) {
 			order.canCast = false;
 		}
 		if (!active) {

@@ -209,6 +209,7 @@
      <Compile Include="Assets\CapturableUnit.cs" />
      <Compile Include="Assets\CarryRacks.cs" />
      <Compile Include="Assets\CastAbilityState.cs" />
+     <Compile Include="Assets\ChangeAmmo.cs" />
      <Compile Include="Assets\ChannelState.cs" />
      <Compile Include="Assets\ChildDeathTrigger.cs" />
      <Compile Include="Assets\CinematicBoxTrigger.cs" />
@@ -505,9 +506,12 @@
      <Compile Include="Assets\continueOrder.cs" />
      <Compile Include="Assets\deathTrigger.cs" />
      <Compile Include="Assets\deexaArmor.cs" />
+     <Compile Include="Assets\energyDrain.cs" />
      <Compile Include="Assets\explosion.cs" />
      <Compile Include="Assets\fogUI.cs" />
      <Compile Include="Assets\incendiaryUpgrade.cs" />
+     <Compile Include="Assets\inflectionBarrier.cs" />
+     <Compile Include="Assets\inflectionStarter.cs" />
      <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\newWorkerInteract.cs" />

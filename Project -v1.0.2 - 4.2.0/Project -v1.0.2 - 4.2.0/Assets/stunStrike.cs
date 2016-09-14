@@ -5,10 +5,15 @@ public class stunStrike : MonoBehaviour, Notify {
 
 
 	private explosion myexplode;
-	public float damageAmount;
+
+	public float stunTime;
+	public UnitTypes.UnitTypeTag mustTarget;
+
 
 	// Use this for initialization
 	void Start () {
+		GetComponent<Projectile> ().triggers.Add (this);
+
 		if (this.gameObject.GetComponent<explosion> ()) {
 			myexplode = this.gameObject.GetComponent<explosion>();
 			myexplode.triggers.Add (this);
@@ -28,21 +33,20 @@ public class stunStrike : MonoBehaviour, Notify {
 	}
 
 	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
-	{UnitManager manage = target.GetComponent<UnitManager> ();
-		if (manage && source != target && manage.myStats.isUnitType(UnitTypes.UnitTypeTag.Structure)) {
+	{Debug.Log ("Getting triggered");
 
+		UnitManager manage = target.GetComponent<UnitManager> ();
+		if (manage && source != target) {
+			Debug.Log ("In here");
+			if (mustTarget != UnitTypes.UnitTypeTag.Dead) {
+				if (!manage.myStats.isUnitType (mustTarget)) {
+					return;}
+			}
 
-			manage.setStun (true, this);
-			StartCoroutine (delayUnStun (manage));
+			manage.StunForTime (this, stunTime);
+
 		}
 
-	}
-
-	IEnumerator delayUnStun(UnitManager man)
-	{
-		yield return new WaitForSeconds (10);
-		man.setStun (false, this);
-			
 	}
 
 

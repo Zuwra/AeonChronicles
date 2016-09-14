@@ -10,8 +10,6 @@ public class barrierShield : MonoBehaviour {
 
 	public GameObject Effect;
 
-	private Selected select;
-
 	private float radius;
 	// Use this for initialization
 	void Start () {
@@ -42,7 +40,7 @@ public class barrierShield : MonoBehaviour {
 				float dist = Vector3.Distance (this.gameObject.transform.position, other.transform.position);
 
 				if (dist > radius - 5 && dist < radius + 5) {
-					Health -= other.gameObject.GetComponent<Projectile> ().damage;
+					Health -= proj.damage;
 					Instantiate (Effect, other.gameObject.transform.position, Quaternion.identity);
 					Destroy (other.gameObject);
 
@@ -73,7 +71,7 @@ public class barrierShield : MonoBehaviour {
 				float dist = Vector3.Distance (this.gameObject.transform.position, other.transform.position);
 
 				if (dist > radius - 5 && dist < radius + 5) {
-					Health -= other.gameObject.GetComponent<Projectile> ().damage;
+					Health -= proj.damage;
 					Instantiate (Effect, other.gameObject.transform.position, Quaternion.identity);
 					Destroy (other.gameObject);
 
