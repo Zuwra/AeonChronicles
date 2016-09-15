@@ -889,12 +889,19 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		tempBuildingPlacer .transform.SetParent (m_ObjectBeingPlaced.transform);
 		p.GetComponent<SphereCollider> ().enabled = true;
-		raceManager.UnitDying (m_ObjectBeingPlaced, null,false);
+		StartCoroutine (delayBuildDeath (m_ObjectBeingPlaced));
+		//raceManager.UnitDying (m_ObjectBeingPlaced, null,false);
 		//buildingPlacer.GetComponent<BuildingPlacer> ().reset (m_ObjectBeingPlaced, goodPlacement, badPlacement);
 		//Debug.Log(" Object to be place " + m_ObjectBeingPlaced);
 	
 	
 	}
+	IEnumerator delayBuildDeath(GameObject m_objectBeingPlaced)
+	{
+		yield return new WaitForSeconds(.01f);
+		raceManager.UnitDying (m_ObjectBeingPlaced, null,false);
+	}
+
 
 	public void setToMenu()
 	{m_Mode = Mode.Menu;

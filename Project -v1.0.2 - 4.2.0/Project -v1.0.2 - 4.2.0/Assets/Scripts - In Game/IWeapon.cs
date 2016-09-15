@@ -252,9 +252,8 @@ public class IWeapon : MonoBehaviour {
 
 			GameObject proj = null;
 			if (projectile != null) {
-				Vector3 pos = this.gameObject.transform.position;
-				pos.y += this.gameObject.GetComponent<CharacterController> ().radius;
-				proj = (GameObject)Instantiate (projectile, pos + originPoint, Quaternion.identity);
+				
+				proj = (GameObject)Instantiate (projectile,transform.rotation *  originPoint + this.gameObject.transform.position, Quaternion.identity);
 			
 				Projectile script = proj.GetComponent<Projectile> ();
 				proj.SendMessage ("setSource", this.gameObject);
@@ -437,7 +436,7 @@ public class IWeapon : MonoBehaviour {
 	public void OnDrawGizmos()
 	{
 
-		Gizmos.DrawSphere (originPoint +this.gameObject.transform.position, 1);
+		Gizmos.DrawSphere ((transform.rotation)*originPoint +this.gameObject.transform.position, 1);
 
 	}
 

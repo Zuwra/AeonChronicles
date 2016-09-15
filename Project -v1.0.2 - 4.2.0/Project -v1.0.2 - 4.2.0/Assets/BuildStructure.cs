@@ -140,7 +140,7 @@ public class BuildStructure:  UnitProduction {
 
 	
 			//Debug.Log ("Activating");
-			myCost.payCost ();
+			//myCost.payCost ();
 			buildMan.buildUnit (this);
 			myManager.cMover.stop ();
 

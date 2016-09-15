@@ -21,7 +21,7 @@ public class DamageUpgrade : Upgrade {
             {
                 wep.baseDamage += gatlingDamage;
             }
-		    else if (manager.UnitName.Equals("Imperio Cannon"))
+				else if (manager.UnitName.Contains("Imperio"))
             {
 					wep.baseDamage += railgunDamage;
             }
@@ -29,7 +29,7 @@ public class DamageUpgrade : Upgrade {
             {
 					wep.baseDamage += mortarDamage;
             }
-            else if (manager.UnitName.Equals("Hornet"))
+            else if (manager.UnitName.Equals("Harpy"))
 				{//Debug.Log ("Weapon is " + wep.Title);
 					wep.baseDamage += hornetDamage;
 					if (wep.baseDamage > 40) {

@@ -98,6 +98,9 @@ public abstract class Ability : MonoBehaviour {
 		if (!requirementList.ContainsValue (false)) {
 
 			active = true;
+			if (GetComponent<Selected> ().IsSelected) {
+				RaceManager.updateActivity ();
+			}
 		} 
 			
 
@@ -116,6 +119,9 @@ public abstract class Ability : MonoBehaviour {
 
 		if (requirementList.ContainsValue (false)) {
 			active = false;
+			if (GetComponent<Selected> ().IsSelected) {
+				RaceManager.updateActivity ();
+			}
 		}
 
 	}

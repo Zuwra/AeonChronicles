@@ -98,14 +98,11 @@ public class UnitStats : MonoBehaviour {
 	
 		}
 
-
 		if (Clock.main.getTotalSecond()< 1 && myManager.PlayerOwner == 1) {
 			
 			GameManager.main.playerList[myManager.PlayerOwner-1].UnitCreated (supply);		
 		}
 
-
-	
 		GameManager.main.playerList [myManager.PlayerOwner - 1].addVeteranStat (veternStat);
 		if (isHero) {
 			veternStat.UnitName = myManager.UnitName;

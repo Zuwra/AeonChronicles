@@ -93,7 +93,10 @@ public class UnitManager : Unit,IOrderable{
 
 			man.initialize (); // Initializes data, if this is the first unit to wake up.
 			myStats.Initialize();
+
+		if (!Clock.main || Clock.main.getTotalSecond () < 1 || !myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
+		}
 
 		if (gameObject.GetComponent<CharacterController> () && visionSphere != null) {
 			float distance = visionRange + gameObject.GetComponent<CharacterController> ().radius;
@@ -220,6 +223,8 @@ public class UnitManager : Unit,IOrderable{
 
 	public void setInteractor()
 	{Start (); // in the parent class
+		
+
 	}
 
 
@@ -632,7 +637,7 @@ public class UnitManager : Unit,IOrderable{
 
 		stunSources.Add (source);
 		isStunned = (stunSources.Count > 0);
-		Debug.Log (this.gameObject + " isstunned " + isStunned);
+
 		yield return new WaitForSeconds (duration);
 		if (stunSources.Contains (source)) {
 			stunSources.Remove (source);
@@ -641,7 +646,7 @@ public class UnitManager : Unit,IOrderable{
 		}
 
 	isStunned = (stunSources.Count > 0);
-		Debug.Log (this.gameObject + " isstunned " + isStunned);
+
 		
 	}
 

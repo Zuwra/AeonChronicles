@@ -76,10 +76,13 @@ public class ArmyUIManager : MonoBehaviour {
 
 			//if (!unitList.ContainsKey(manage.UnitName)) {
 			if(unitList [manage.UnitName].Count == 0){
-				GameObject obj = iconList [manage.UnitName];
-				iconList.Remove (manage.UnitName);
-				Destroy (obj);
-				unitList.Remove (manage.UnitName);
+				//Debug.Log ("Removing icon " + manage.UnitName + "  ");
+					GameObject obj = iconList [manage.UnitName];
+					iconList.Remove (manage.UnitName);
+					Destroy (obj);
+				
+					unitList.Remove (manage.UnitName);
+
 			} else {
 				if (this.gameObject.activeSelf) {
 					StartCoroutine (addNUmber (manage));
@@ -127,6 +130,7 @@ public class ArmyUIManager : MonoBehaviour {
 		}
 */
 		icon.transform.localScale = unitPanel.transform.localScale;
+		//Debug.Log ("Adding icon " + manage.UnitName + "  " + icon);
 		iconList.Add (manage.UnitName, icon);
 
 	}
