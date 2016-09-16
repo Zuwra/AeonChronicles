@@ -122,7 +122,7 @@ public class HotkeyMenu : MonoBehaviour {
 		foreach (GameObject obj in objectList) {
 			GameObject tempName = (GameObject)Instantiate (name, this.gameObject.transform.position, Quaternion.identity);
 			tempName.transform.SetParent (grid.transform);
-			Debug.Log ("thing " + obj);
+
 			tempName.GetComponent<Text> ().text = obj.GetComponent<UnitManager> ().UnitName;
 
 			for (int i = 0; i < 4; i++) {

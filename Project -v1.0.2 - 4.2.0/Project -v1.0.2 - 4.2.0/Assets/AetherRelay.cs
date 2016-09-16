@@ -10,6 +10,8 @@ public class AetherRelay : Ability{
 	UnitManager manager;
 	float nextActionTime;
 	private Selected select;
+	public MultiShotParticle myEffect;
+	public GameObject chargeEffect;
 
 	public float damageRate;
 	bool turnedOn;
@@ -32,6 +34,7 @@ public class AetherRelay : Ability{
 				if (manager.myStats.currentEnergy <= 0) {
 					turnedOn = !turnedOn;
 					autocast = false;
+					myEffect.stopEffect ();
 					if (select.IsSelected) {
 						RaceManager.upDateAutocast();
 					}
@@ -42,7 +45,6 @@ public class AetherRelay : Ability{
 					manager.myStats.changeEnergy (-19.9f);
 
 
-				
 					foreach (UnitStats us in enemyStats) {
 						if (us) {
 							us.TakeDamage (damageRate, this.gameObject, DamageTypes.DamageType.Regular);
@@ -56,6 +58,7 @@ public class AetherRelay : Ability{
 
 					if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
 						ds.myStats.changeEnergy (energyChargeRate);
+						Instantiate (chargeEffect, ds.transform.position, Quaternion.identity);
 					}
 
 				}
@@ -148,8 +151,13 @@ public class AetherRelay : Ability{
 		turnedOn = !turnedOn;
 		autocast = turnedOn;
 		if (turnedOn) {
-			manager.getUnitStats ().TakeDamage (.1f,this.gameObject,DamageTypes.DamageType.Regular);
+			manager.getUnitStats ().TakeDamage (.1f, this.gameObject, DamageTypes.DamageType.Regular);
 			manager.getUnitStats ().changeEnergy (.1f);
+			myEffect.continueEffect ();
+			nextActionTime = Time.time + .02f;
+		} else {
+			myEffect.stopEffect ();
+		
 		}
 
 		if (select.IsSelected) {
