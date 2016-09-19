@@ -688,11 +688,14 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 	public void removeWeapon(IWeapon weap)
-	{
+	{if (!weap) {
+			return;}
+		
 		if (myWeapon.Contains (weap)) {
 			myWeapon.Remove(weap);
 		}
 		foreach (Notify not in potentialNotify) {
+
 			if (weap.triggers.Contains (not)) {
 				weap.triggers.Remove (not);
 			}

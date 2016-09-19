@@ -161,6 +161,9 @@ ModelImporter:
     100306: transform57
     100308: transform58
     100310: transform59
+    100312: polySurface372
+    100314: polySurface373
+    100316: polySurface374
     400000: //RootNode
     400002: GattlingGun:Mesh
     400004: MechWorker:Mesh
@@ -317,6 +320,9 @@ ModelImporter:
     400306: transform57
     400308: transform58
     400310: transform59
+    400312: polySurface372
+    400314: polySurface373
+    400316: polySurface374
     2300000: polySurface363
     2300002: polySurface364
     2300004: polySurface366
@@ -324,6 +330,9 @@ ModelImporter:
     2300008: polySurface368
     2300010: polySurface370
     2300012: polySurface371
+    2300014: polySurface372
+    2300016: polySurface373
+    2300018: polySurface374
     3300000: polySurface363
     3300002: polySurface364
     3300004: polySurface366
@@ -331,6 +340,9 @@ ModelImporter:
     3300008: polySurface368
     3300010: polySurface370
     3300012: polySurface371
+    3300014: polySurface372
+    3300016: polySurface373
+    3300018: polySurface374
     4300000: polySurface363
     4300002: polySurface364
     4300004: polySurface366
@@ -338,6 +350,9 @@ ModelImporter:
     4300008: polySurface368
     4300010: polySurface370
     4300012: polySurface371
+    4300014: polySurface372
+    4300016: polySurface373
+    4300018: polySurface374
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -346,7 +361,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 

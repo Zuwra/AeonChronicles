@@ -66,7 +66,9 @@ public class buildTurret :UnitProduction{
 				}
 
 				chargeCount++;
-				RaceManager.upDateUI ();
+				if (mySelect.IsSelected) {
+					RaceManager.upDateUI ();
+				}
 
 			}
 		}
@@ -273,13 +275,22 @@ public class buildTurret :UnitProduction{
 		HD.loadIMage(unitToBuild.GetComponent<UnitStats> ().Icon);
 	}
 
+	public void changeCharge(int n)
+	{
+		chargeCount += n;
+		if (mySelect.IsSelected) {
+			RaceManager.upDateUI ();
+		}
+	}
 
 	public GameObject createUnit()
 	{
 
 		Vector3 location = new Vector3(this.gameObject.transform.position.x + 25,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z);
 		chargeCount--;
-		RaceManager.upDateUI ();
+		if (mySelect.IsSelected) {
+			RaceManager.upDateUI ();
+		}
 		GameObject tur = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
 
 		racer.applyUpgrade (tur);

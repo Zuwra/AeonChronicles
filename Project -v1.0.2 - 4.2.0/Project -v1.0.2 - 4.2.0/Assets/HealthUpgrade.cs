@@ -5,6 +5,7 @@ public class HealthUpgrade : Upgrade {
 
 
 	public float healthAmount;
+	public string unitName;
 
 	override
 	public void applyUpgrade (GameObject obj){
@@ -12,7 +13,7 @@ public class HealthUpgrade : Upgrade {
 		UnitManager manager = obj.GetComponent<UnitManager> ();
 
 		if(manager){
-			if (manager.UnitName == "Zephyr" ) {
+			if (manager.UnitName == unitName ) {
 
 				obj.GetComponent<UnitStats> ().Maxhealth += healthAmount;
 

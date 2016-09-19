@@ -111,10 +111,12 @@ public class TurretMount : MonoBehaviour {
 	}
 
 
-	public void unPlaceTurret()
+	public GameObject unPlaceTurret()
 	{hasDisplayer.gameObject.SetActive (true);
+		GameObject toReturn = turret;
 		turret = null;
 		UnitManager manager = this.gameObject.GetComponentInParent<UnitManager> ();
+
 		manager.removeWeapon(GetComponent<IWeapon>());
 
 		if (GetComponentInParent<repairReturn> ()) {
@@ -128,16 +130,19 @@ public class TurretMount : MonoBehaviour {
 			foreach (TurretMount turr in transform.parent.GetComponentsInChildren<TurretMount> ()) {
 			if (turr.turret != null && turr.turret.GetComponent<RepairTurret> () == null) {
 				manager.setWeapon (turr.turret.GetComponent<IWeapon> ());
+				turret = turr.gameObject;
 				//GetComponentInParent<repairReturn> ().removeTurret();
 
-				return;
+				return turr.turret;
 			} else if (turr.turret != null && turr.turret.GetComponent<RepairTurret> () != null) {
 				GetComponentInParent<repairReturn> ().active = true;
 				GetComponentInParent<repairReturn> ().placeTurret ();
+				turret = turr.gameObject;
 			}
 			}
 
 		FButtonManager.main.updateTankNumber ();
 		Debug.Log ("Deatched");
+		return toReturn;
 	}
 }

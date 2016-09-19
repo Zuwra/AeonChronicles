@@ -30,6 +30,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 			doneConstruction = true;
 			underConstruction = 1;
 			if (myAnim) {
+				myAnim.speed = 20;
 				myAnim.SetInteger ("State", 1);
 			}
 
