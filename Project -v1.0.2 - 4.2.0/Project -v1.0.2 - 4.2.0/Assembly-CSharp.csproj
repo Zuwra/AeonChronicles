@@ -464,6 +464,7 @@
      <Compile Include="Assets\ThrasherBlade.cs" />
      <Compile Include="Assets\TimeDelayTrigger.cs" />
      <Compile Include="Assets\ToolTip.cs" />
+     <Compile Include="Assets\TritonBarrierUpgrade.cs" />
      <Compile Include="Assets\TrueUpgradeManager.cs" />
      <Compile Include="Assets\TurboRockets.cs" />
      <Compile Include="Assets\TuretBuildHelper.cs" />
@@ -516,8 +517,10 @@
      <Compile Include="Assets\inflectionBarrier.cs" />
      <Compile Include="Assets\inflectionStarter.cs" />
      <Compile Include="Assets\missileSalvo.cs" />
+     <Compile Include="Assets\mortarUpgrade.cs" />
      <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\newWorkerInteract.cs" />
+     <Compile Include="Assets\pulsefieldupgrade.cs" />
      <Compile Include="Assets\rangeUpgrade.cs" />
      <Compile Include="Assets\repairReturn.cs" />
      <Compile Include="Assets\sawDefense.cs" />

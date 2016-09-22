@@ -13,7 +13,7 @@ public class RepairUpgrade : Upgrade {
 
         if (manager)
         {
-            if (manager.UnitName == "Repair Arm")
+			if (manager.UnitName .Contains("Repair"))
             {
                 obj.GetComponent<RepairTurret>().repairRate = repairAmount;
             }

@@ -15,6 +15,10 @@ public class DayexaShield : Ability,Modifier , Notify{
 
 	public GameObject shieldEffect;
 	public bool AbsorbRecoil;
+	public float maxDamagePerSec = 100000;
+
+	private float nextActionTime;
+	private float damageAbsorbed;
 
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
@@ -47,6 +51,11 @@ public class DayexaShield : Ability,Modifier , Notify{
 				inCombat = false;
 				myStats.EnergyRegenPerSec = rechargeRate;
 			}
+
+			if (Time.time > nextActionTime) {
+				damageAbsorbed = 0;
+				nextActionTime = Time.time + 1;
+			}
 		
 		}
 	}
@@ -73,20 +82,34 @@ public class DayexaShield : Ability,Modifier , Notify{
 	{
 		//Debug.Log ("Taking damage : " + amount);
 		float energyLost = Mathf.Min ( Absorbtion, myStats.currentEnergy);
+
 		if (energyLost > amount) {
 			energyLost = amount;
+		
 		}
+		float damageReduction = energyLost;
 		//Debug.Log ("Energy : " + energyLost);
+		//For the triton Max denergy lost per second upgrade
+		if (energyLost > 0) {
+			damageAbsorbed += energyLost;
+			if (damageAbsorbed > maxDamagePerSec) {
+				energyLost = 0;
+			}
+
+		}
+
 		myStats.changeEnergy (-energyLost);
+
+
 		myStats.EnergyRegenPerSec = 0;
 		inCombat = true;
 		rechargeTime = Time.time + RechargeDelay;
-		if (shieldEffect && energyLost > 0) {
+		if (shieldEffect && damageReduction > 0) {
 			GameObject obj = (GameObject)Instantiate (shieldEffect, this.gameObject.transform.position, this.gameObject.transform.rotation);
 			obj.transform.SetParent (this.gameObject.transform);
 		}
 		//Debug.Log ("Returning : " + (amount - energyLost));
-		return (amount - energyLost);
+		return (amount - damageReduction);
 	}
 
 

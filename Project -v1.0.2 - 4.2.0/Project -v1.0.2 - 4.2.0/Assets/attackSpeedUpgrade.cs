@@ -16,7 +16,7 @@ public class attackSpeedUpgrade : Upgrade {
 			if (manager.UnitName == unitName ) {
 
 				foreach (IWeapon weap in manager.myWeapon) {
-					weap.attackPeriod -=speedPeriodDec;
+					weap.changeAttackSpeed (0, speedPeriodDec, true, null);
 				}
 				foreach (ChangeAmmo ca in manager.GetComponents<ChangeAmmo>()) {
 					ca.attackPeriod -= speedPeriodDec;

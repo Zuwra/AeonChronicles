@@ -1,15 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\attackSpeedUpgrade.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DayexaShield.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\BuildingInteractor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\ANimations\Materials\OutlineShader.shader" Line="1" Column="1" />
-      <File FileName="Assets\deexaArmor.cs" Line="1" Column="1" />
-      <File FileName="Assets\HealthUpgrade.cs" Line="29" Column="1" />
-      <File FileName="Assets\rangeUpgrade.cs" Line="20" Column="6" />
-      <File FileName="Assets\attackSpeedUpgrade.cs" Line="21" Column="56" />
+      <File FileName="Assets\HealthUpgrade.cs" Line="1" Column="1" />
+      <File FileName="Assets\rangeUpgrade.cs" Line="1" Column="1" />
+      <File FileName="Assets\ResearchUpgrade.cs" Line="1" Column="1" />
+      <File FileName="Assets\RepairUpgrade.cs" Line="27" Column="1" />
+      <File FileName="Assets\mortarUpgrade.cs" Line="6" Column="25" />
+      <File FileName="Assets\Resources\mortarPod.cs" Line="1" Column="1" />
+      <File FileName="Assets\ShieldUpgrade.cs" Line="30" Column="1" />
+      <File FileName="Assets\pulsefieldupgrade.cs" Line="25" Column="1" />
+      <File FileName="Assets\TritonBarrierUpgrade.cs" Line="13" Column="56" />
+      <File FileName="Assets\DayexaShield.cs" Line="88" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
