@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpeedUpgrade  : Upgrade {
 
-	public float PercIncrease;
-	public float flatIncrease;
+	public List<unitAmount> unitsToUpgrade ;
+
+	[System.Serializable]
+	public struct unitAmount
+	{
+		public string UnitName;
+		public float flatamount;
+		public float percAmount;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -19,9 +27,18 @@ public class SpeedUpgrade  : Upgrade {
 	override
 	public void applyUpgrade (GameObject obj){
 
+
 		UnitManager manager = obj.GetComponent<UnitManager>();
-		//Debug.Log ("Checking " + obj);
-		manager.cMover.changeSpeed(PercIncrease,flatIncrease,true,null);
+		foreach (unitAmount ua in unitsToUpgrade) {
+			if (manager.UnitName.Contains(ua.UnitName)) {
+				
+				manager.cMover.changeSpeed(ua.percAmount,ua.flatamount,true,null);
+
+			
+
+			}
+		}
+
 
 	}
 
