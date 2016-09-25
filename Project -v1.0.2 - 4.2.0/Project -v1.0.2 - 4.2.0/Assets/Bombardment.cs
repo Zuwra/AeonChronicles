@@ -5,6 +5,8 @@ public class Bombardment : TargetAbility{
 
 
 	public GameObject Explosion;
+	public int shotCount = 35;
+	public float myDamage = 40;
 	// Use this for initialization
 	void Start () {
 		
@@ -51,9 +53,9 @@ public class Bombardment : TargetAbility{
 
 		//	myCost.payCost ();
 
-		for (int i = 0; i < 35; i++) {
+		for (int i = 0; i < shotCount; i++) {
 		
-			StartCoroutine( Fire ((i * .1f), location));
+			StartCoroutine( Fire ((i * .07f), location));
 		}
 
 
@@ -81,7 +83,7 @@ public class Bombardment : TargetAbility{
 		proj.SendMessage ("setSource", this.gameObject);
 
 
-		script.damage = 30;
+		script.damage = myDamage;
 
 		script.Source = this.gameObject;
 		script.setLocation (location);

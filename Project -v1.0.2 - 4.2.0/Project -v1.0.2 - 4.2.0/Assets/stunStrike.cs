@@ -12,8 +12,9 @@ public class stunStrike : MonoBehaviour, Notify {
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<Projectile> ().triggers.Add (this);
-
+		if (GetComponent<Projectile> ()) {
+			GetComponent<Projectile> ().triggers.Add (this);
+		}
 		if (this.gameObject.GetComponent<explosion> ()) {
 			myexplode = this.gameObject.GetComponent<explosion>();
 			myexplode.triggers.Add (this);

@@ -11,6 +11,11 @@ public class UltimateApplier : MonoBehaviour {
 
 		myRace = GetComponent<GameManager> ().activePlayer;
 
+		Bombardment bm = (Bombardment)myRace.UltFour;
+		bm.shotCount += LevelData.UltFourLevel * 15;
+		bm.myDamage += LevelData.UltFourLevel * 15;
+
+
 	
 	}
 	
@@ -40,6 +45,10 @@ public class UltimateApplier : MonoBehaviour {
 
 		}
 		else if (myRace.UltThree == ab) {
+			
+			barrierShield bs= thingy.GetComponent<barrierShield> ();
+			bs.duration *= 1 + LevelData.UltThreeLevel * .15f;
+			bs.Health *= 1 + LevelData.UltThreeLevel * .15f;
 
 		}
 		else if (myRace.UltFour == ab) {
