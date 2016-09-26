@@ -124,7 +124,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 	}
 
-	public void computeInteractions (Order order)
+	public virtual void computeInteractions (Order order)
 	{
 
 		switch (order.OrderType) {

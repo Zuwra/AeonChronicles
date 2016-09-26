@@ -12,4 +12,6 @@ public interface Iinteract  {
 
 	UnitState computeState (UnitState state);
 
+
+
 }

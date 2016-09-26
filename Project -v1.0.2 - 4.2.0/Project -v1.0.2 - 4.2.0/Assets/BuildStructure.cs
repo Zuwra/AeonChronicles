@@ -154,8 +154,14 @@ public class BuildStructure:  UnitProduction {
 				SelectedManager.main.updateUI ();
 			}
 			inConstruction = ((GameObject)Instantiate(unitToBuild, targetLocation + Vector3.up, Quaternion.identity)).GetComponent<UnitManager>();
+
 			builder = inConstruction.GetComponent<BuildingInteractor> ();
-			builder.startConstruction (unitToBuild, buildTime);
+			if (!builder) {
+				builder = (BuildingInteractor)inConstruction.GetComponent<ArmoryInteractor> ();
+
+			} 
+				builder.startConstruction (unitToBuild, buildTime);
+
 			/*
 			foreach (Ability ab in inConstruction.abilityList) {
 				ab.active = false;
