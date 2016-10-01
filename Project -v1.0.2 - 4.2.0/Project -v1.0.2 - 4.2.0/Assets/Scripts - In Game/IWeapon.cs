@@ -436,7 +436,7 @@ public class IWeapon : MonoBehaviour {
 	public void OnDrawGizmos()
 	{
 
-		Gizmos.DrawSphere ((transform.rotation)*originPoint +this.gameObject.transform.position, 1);
+		Gizmos.DrawSphere ((transform.rotation)*originPoint +this.gameObject.transform.position, .5f);
 
 	}
 

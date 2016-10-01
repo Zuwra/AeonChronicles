@@ -328,7 +328,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 				// No Units of tis type, call update function on units abilities
-				if (unitTypeCount [unitName] == 0) {
+				if (unitTypeCount [unitName] == 0 && trueDeath) {
 					unitList.RemoveAll (item => item == null);
 					foreach (GameObject o in unitList) {
 
@@ -427,22 +427,26 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			unitTypeCount [unitName]++;
 		} else {
 			unitTypeCount.Add (unitName, 1);
+
+			foreach (KeyValuePair<string, int> n in unitTypeCount) {
+
+				if (n.Value > 0 ) {
+
+					foreach (Ability ab in obj.GetComponent<UnitManager>().abilityList) {
+						if (ab != null) {
+							ab.newUnitCreated (n.Key);
+						}
+					}
+				}
+			}
+
+
 		}
 		//Debug.Log ("Adding" + obj + "  " + playerNumber + "count " + unitTypeCount [unitName]);
 		//Debug.Log ("STARTING");
 	
 		//apply all existing units built to new unit
-		foreach (KeyValuePair<string, int> n in unitTypeCount) {
-			
-			if (n.Value > 0 ) {
 	
-				foreach (Ability ab in obj.GetComponent<UnitManager>().abilityList) {
-					if (ab != null) {
-						ab.newUnitCreated (n.Key);
-					}
-				}
-			}
-		}
 
 
 		foreach (BuildUnitObjective objective in GameObject.FindObjectsOfType<BuildUnitObjective>()) {

@@ -84,7 +84,8 @@ public abstract class Ability : MonoBehaviour {
 
 
 	public void newUnitCreated(string newUnit)
-	{if (!initialized) {
+	{
+		if (!initialized) {
 			initialize ();
 		}
 		if (requirementList.Count == 0) {
