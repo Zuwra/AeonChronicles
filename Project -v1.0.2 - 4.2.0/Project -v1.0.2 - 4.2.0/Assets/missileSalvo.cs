@@ -21,12 +21,22 @@ public class missileSalvo : Ability, Validator, Notify{
 		myweapon.validators.Add (this);
 		myType = type.activated;
 		mySelect = GetComponent<Selected> ();
+		StartCoroutine (delayedUpdate());
 	
+
 	}
+	IEnumerator delayedUpdate()
+	{
+		yield return new WaitForSeconds (.1f);
+		mySelect.updateCoolDown (chargeCount / maxRockets);
+	}
+
 
 	public void upRockets ()
 	{if(chargeCount < maxRockets){
 		chargeCount++;
+			mySelect.updateCoolDown ((float)chargeCount /(float) maxRockets);
+			Debug.Log ("Setting to " + (chargeCount / maxRockets));
 		if (mySelect.IsSelected) {
 			
 			RaceManager.upDateUI ();
@@ -64,6 +74,7 @@ public class missileSalvo : Ability, Validator, Notify{
 	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)	{
 		
 		chargeCount--;
+		mySelect.updateCoolDown ((float)chargeCount /(float) maxRockets);
 		RaceManager.upDateUI ();
 		if (autocast && chargeCount == 0) {
 			Activate ();

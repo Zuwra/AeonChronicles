@@ -1,17 +1,74 @@
 fileFormatVersion: 2
-guid: f74591b7bb37cae4389099e08ec1708f
-timeCreated: 1472015786
+guid: c48c33819b28e984da9af531f2b131ad
+timeCreated: 1475369590
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pTorus19
+    100002: pCube92
+    100004: pCube93
+    100006: pCube94
+    100008: pCube95
+    100010: pCube96
+    100012: pCube97
+    100014: pSphere2
+    100016: pSphere3
+    100018: pSphere4
+    100020: pSphere5
+    100022: pTorus15
+    100024: pTorus16
+    100026: pTorus17
+    100028: pTorus18
+    100030: pTorus19
+    100032: transform425
+    100034: transform426
+    100036: transform427
+    100038: transform428
+    100040: transform429
+    100042: transform430
+    100044: transform431
+    100046: transform432
+    100048: transform433
+    100050: transform434
+    100052: transform435
+    100054: transform436
+    100056: transform437
+    100058: transform438
     400000: //RootNode
-    400002: pTorus19
+    400002: pCube92
+    400004: pCube93
+    400006: pCube94
+    400008: pCube95
+    400010: pCube96
+    400012: pCube97
+    400014: pSphere2
+    400016: pSphere3
+    400018: pSphere4
+    400020: pSphere5
+    400022: pTorus15
+    400024: pTorus16
+    400026: pTorus17
+    400028: pTorus18
+    400030: pTorus19
+    400032: transform425
+    400034: transform426
+    400036: transform427
+    400038: transform428
+    400040: transform429
+    400042: transform430
+    400044: transform431
+    400046: transform432
+    400048: transform433
+    400050: transform434
+    400052: transform435
+    400054: transform436
+    400056: transform437
+    400058: transform438
     2300000: pTorus19
     3300000: pTorus19
     4300000: pTorus19
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -19,7 +76,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -70,7 +127,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

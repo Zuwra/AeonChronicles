@@ -50,8 +50,9 @@ public class airmover : IMover {
 			//Debug.Log ("Returnin 1 ");
 			return false;
 		}
-			
-		if (Vector3.Distance(transform.position, targetPosition) <= nextWaypointDistance) {
+
+		float tempDist = Vector3.Distance (transform.position, targetPosition);
+		if (tempDist <= nextWaypointDistance) {
 			speed = 0;
 			//Debug.Log ("Returnin 2 ");
 			return true;
@@ -72,12 +73,13 @@ public class airmover : IMover {
 
 		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, 1 << 8)) {
 		//if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
-
-			dir.y -= Time.deltaTime *  (this.gameObject.transform.position.y -(objecthit.point.y + flyerHeight) ) *speed/3;
+		
+			dir.y -= Time.deltaTime *  (this.gameObject.transform.position.y -(objecthit.point.y + flyerHeight) ) *(speed/8) * Mathf.Min(3, tempDist);
 
 		}
 
 		dir *= speed * Time.deltaTime;
+
 		controller.Move (dir);
 		//Debug.Log ("air movin " + dir);
 		if (myFogger) {
