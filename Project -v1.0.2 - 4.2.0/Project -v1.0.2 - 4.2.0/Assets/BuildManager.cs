@@ -56,7 +56,7 @@ public class BuildManager : MonoBehaviour {
 			
 				waitingOnSupply = false;
 				if (mySelect.IsSelected) {
-					Debug.Log ("Resetting it");
+					//Debug.Log ("Resetting it");
 					build.hasSupply ();
 				}
 			}
@@ -114,6 +114,7 @@ public class BuildManager : MonoBehaviour {
 			if (buildOrder.Count > n) {
 				buildOrder [n].DeQueueUnit ();
 				buildOrder.RemoveAt (n);
+
 
 				if (mySelect.IsSelected) {
 					build.bUpdate (this.gameObject);

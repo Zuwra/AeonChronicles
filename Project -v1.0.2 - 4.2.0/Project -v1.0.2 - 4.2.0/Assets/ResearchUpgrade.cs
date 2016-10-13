@@ -50,8 +50,12 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 	public override void DeQueueUnit()
 	{
+		//Debug.Log (Name + " is Dqueuing");
 		myCost.refundCost ();
-
+		active = true;
+		if (mySelect.IsSelected) {
+			RaceManager.updateActivity ();
+		}
 	}
 
 
@@ -85,7 +89,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 				myCost.payCost ();
 				myCost.resetCoolDown ();
-
+				//Debug.Log (Name + " is Activating");
 			}
 			}
 
@@ -95,12 +99,12 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 
 	public void commence(object[] incoming)
-	{
+	{	//Debug.Log (Name + " is commencing");
 		if (myManager.UnitName == (string)incoming[2]) {
-			Debug.Log ("Checking " + upgrades [currentUpgrade].name +"   "+ ((Upgrade)incoming[1]).name);
+			
 			if (upgrades [currentUpgrade].Name == ((Upgrade)incoming[1]).Name) {
 				active = (bool)incoming[0];
-				Debug.Log ("setting to " +(bool)incoming[0] + Name);
+		
 			}
 		}
 	}
@@ -157,11 +161,12 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	}
 
 	public override void cancelBuilding(){
+		//Debug.Log (Name + " is canceling");
 		HD.stopBuilding ();
 		mySelect.updateCoolDown (0);
 		timer = 0;
 		researching = false;
-		myCost.refundCost ();
+		//myCost.refundCost ();
 		active = true;
 		raceMan.commenceUpgrade (true, upgrades [currentUpgrade], myManager.UnitName);
 		if (mySelect.IsSelected) {

@@ -59,8 +59,8 @@ public class MissileArmer :Ability{
 					if (stim.chargeCount < 3) {
 						GameObject obj = (GameObject)Instantiate (OverchargeBoost, this.transform.position, Quaternion.identity);
 						if (stim) {
-							obj.GetComponent<ShieldGlobe> ().target = stim.gameObject;
-							obj.GetComponent<ShieldGlobe> ().isOverCharge = true;
+							
+							obj.GetComponent<ShieldGlobe> ().setInfo (stim.gameObject, true);
 						}
 				
 						break;
@@ -78,7 +78,8 @@ public class MissileArmer :Ability{
 						if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
 							GameObject obj = (GameObject)Instantiate (shieldglobe, this.transform.position, Quaternion.identity);
 							if (ds) {
-								obj.GetComponent<ShieldGlobe> ().target = ds.gameObject;
+								obj.GetComponent<ShieldGlobe> ().setInfo (ds.gameObject, false);
+							
 							}
 							break;
 							//ds.myStats.changeEnergy (shieldRate);

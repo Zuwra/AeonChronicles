@@ -126,7 +126,7 @@ public class BuilderUI : MonoBehaviour {
 
 	public void cancelUnit(int n )
 	{
-		
+		//Debug.Log ("Pushing Cancel at " + Time.time);
 		myMan.cancel (n);
 		if (myMan.buildOrder.Count == 0) {
 			HelpBox.enabled = false;}

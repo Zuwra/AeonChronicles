@@ -7,11 +7,22 @@ public class ShieldGlobe : MonoBehaviour {
 	public GameObject target;
 	public float speed;
 	public bool isOverCharge;
+
+	float targetRadius;
 	// Use this for initialization
 	void Start () {
 	
 	}
-	
+
+
+	public void setInfo (GameObject Obj, bool b)
+	{target = Obj;
+		isOverCharge = b;
+
+		targetRadius = Obj.GetComponent<CharacterController>().radius;
+		
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -40,7 +51,7 @@ public class ShieldGlobe : MonoBehaviour {
 			dir *= speed * Time.deltaTime;
 			this.gameObject.transform.Translate (dir);
 
-			if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 7) {
+			if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 2 + targetRadius) {
 				if (!isOverCharge) {
 					target.GetComponent<UnitManager> ().myStats.changeEnergy (5);
 
@@ -67,4 +78,6 @@ public class ShieldGlobe : MonoBehaviour {
 		{Destroy(this.gameObject);}
 	
 	}
+
+
 }
