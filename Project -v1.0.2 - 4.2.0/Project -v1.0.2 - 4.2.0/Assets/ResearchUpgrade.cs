@@ -97,10 +97,10 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	public void commence(object[] incoming)
 	{
 		if (myManager.UnitName == (string)incoming[2]) {
-			
-			if (upgrades [currentUpgrade].GetType () == ((Upgrade)incoming[1]).GetType ()) {
+			Debug.Log ("Checking " + upgrades [currentUpgrade].name +"   "+ ((Upgrade)incoming[1]).name);
+			if (upgrades [currentUpgrade].Name == ((Upgrade)incoming[1]).Name) {
 				active = (bool)incoming[0];
-
+				Debug.Log ("setting to " +(bool)incoming[0] + Name);
 			}
 		}
 	}

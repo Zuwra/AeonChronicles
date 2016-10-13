@@ -415,7 +415,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		if (obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			//This rescans the Astar graph after the unit dies
 			GraphUpdateObject b =new GraphUpdateObject(obj.GetComponent<CharacterController>().bounds); 
-
 			StartCoroutine (DeathRescan (b));
 		}
 
@@ -427,13 +426,16 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			unitTypeCount [unitName]++;
 		} else {
 			unitTypeCount.Add (unitName, 1);
+		}
 
+			//apply all existing units built to new unit
 			foreach (KeyValuePair<string, int> n in unitTypeCount) {
 
 				if (n.Value > 0 ) {
 
 					foreach (Ability ab in obj.GetComponent<UnitManager>().abilityList) {
 						if (ab != null) {
+							//Debug.Log ("checking against a " + n.Key);
 							ab.newUnitCreated (n.Key);
 						}
 					}
@@ -441,17 +443,15 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			}
 
 
-		}
+
 		//Debug.Log ("Adding" + obj + "  " + playerNumber + "count " + unitTypeCount [unitName]);
 		//Debug.Log ("STARTING");
 	
-		//apply all existing units built to new unit
-	
-
 
 		foreach (BuildUnitObjective objective in GameObject.FindObjectsOfType<BuildUnitObjective>()) {
 			objective.buildUnit (obj);
 		}
+		//Debug.Log ("Just built a " + unitName);
 		// new unit, call update function on units abilities
 		if(unitTypeCount[unitName] ==1){
 
@@ -459,6 +459,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				if (o != null) {
 					foreach (Ability a in o.GetComponent<UnitManager>().abilityList) {
 						if (a != null) {
+							//Debug.Log ("checking a " + a.Name + "   " + unitName);
 							a.newUnitCreated (unitName);
 						}
 				

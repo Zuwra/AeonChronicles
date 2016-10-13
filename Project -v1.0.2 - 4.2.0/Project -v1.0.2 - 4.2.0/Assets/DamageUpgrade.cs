@@ -31,6 +31,7 @@ public class DamageUpgrade : Upgrade {
 			if (manager.UnitName.Contains(ua.UnitName)) {
 				for (int i = 0; i < manager.myWeapon.Count; i++)
 					if (manager.myWeapon [i]) {
+						Debug.Log ("Changing to "+ ua.amount[i]);
 						manager.myWeapon [i].changeAttack(0, ua.amount[i],true,null);
 						if (ua.mySpecial.Count > 0) {
 							IWeapon.bonusDamage bonus = new IWeapon.bonusDamage ();

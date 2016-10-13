@@ -345,7 +345,9 @@ public class IWeapon : MonoBehaviour {
 	public void changeAttackSpeed(float perc, float flat, bool perm, Object obj )
 	{if (perm) {
 			baseAttackPeriod += flat;
-			baseAttackPeriod *= perc;
+			if (perc > 0) {
+				baseAttackPeriod *= perc;
+			}
 		} else {
 			attackSpeedMod temp = new attackSpeedMod ();
 			temp.flat = flat;
@@ -398,7 +400,9 @@ public class IWeapon : MonoBehaviour {
 	public void changeAttack(float perc, float flat, bool perm, Object obj )
 	{if (perm) {
 			InitialBaseDamage += flat;
-			InitialBaseDamage *= perc;
+			if (perc > 0) {
+				InitialBaseDamage *= perc;
+			}
 	} else {
 		attackSpeedMod temp = new attackSpeedMod ();
 		temp.flat = flat;

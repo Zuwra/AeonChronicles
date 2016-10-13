@@ -912,119 +912,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 			int AbilityX = 0;
-			/*
-			for (int m = 0; m < man.abilityList.Count / 4 + 1; m++) {
-		
 
-					if (man.abilityList.Count > AbilityX * 4) {
-						if (man.abilityList [AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].QButton.transform.FindChild("QButton");;
-						bool active = false;
-						foreach (RTSObject obj in currentPage.rows [j]) {
-							UnitManager Uman = obj.gameObject.GetComponent<UnitManager> ();
-
-							if (!Uman.Silenced() && !Uman.Stunned()) {
-								active = (Uman.abilityList [AbilityX * 4].active);
-							}
-							if (active) {
-								break;}
-						}
-
-
-							//Transform trans = UIButtons [n].transform.FindChild ("QButton");
-							trans.GetComponent<Button> ().interactable =active;
-							if (active) {
-								trans.GetComponent<Button> ().image.color = Color.red;
-							} else {
-								trans.GetComponent<Button> ().image.color = Color.white;
-							}
-						}
-					}
-
-					if (man.abilityList.Count > 1 + (AbilityX * 4)) {
-						if (man.abilityList [1 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].WButton.transform.FindChild("WButton");;
-						//	Transform trans = UIButtons [n].transform.FindChild ("WButton");
-
-						bool active = false;
-						foreach (RTSObject obj in currentPage.rows [j]) {
-							UnitManager Uman = obj.gameObject.GetComponent<UnitManager> ();
-
-							if (!Uman.Silenced() && !Uman.Stunned()) {
-								active = (Uman.abilityList [1+AbilityX * 4].active);
-							}
-							if (active) {
-								break;}
-						}
-
-
-						//Transform trans = UIButtons [n].transform.FindChild ("QButton");
-						trans.GetComponent<Button> ().interactable =active;
-						if (active) {
-							trans.GetComponent<Button> ().image.color = Color.red;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
-						}
-						}
-					}
-
-					if (man.abilityList.Count > 2 + (AbilityX * 4)) {
-						if (man.abilityList [2 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].EButton.transform.FindChild("EButton");;
-							//Transform trans = UIButtons [n].transform.FindChild ("EButton");
-
-						bool active = false;
-						foreach (RTSObject obj in currentPage.rows [j]) {
-							UnitManager Uman = obj.gameObject.GetComponent<UnitManager> ();
-
-							if (!Uman.Silenced() && !Uman.Stunned()) {
-								active = (Uman.abilityList [2+AbilityX * 4].active);
-							}
-							if (active) {
-								break;}
-						}
-
-
-						//Transform trans = UIButtons [n].transform.FindChild ("QButton");
-						trans.GetComponent<Button> ().interactable =active;
-						if (active) {
-							trans.GetComponent<Button> ().image.color = Color.red;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
-						}
-						}
-					}
-
-					if (man.abilityList.Count > 3 + (AbilityX * 4)) {
-						if (man.abilityList [3 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].RButton.transform.FindChild("RButton");;
-							//Transform trans = UIButtons [n].transform.FindChild ("RButton");
-
-						bool active = false;
-						foreach (RTSObject obj in currentPage.rows [j]) {
-							UnitManager Uman = obj.gameObject.GetComponent<UnitManager> ();
-
-							if (!Uman.Silenced() && !Uman.Stunned()) {
-								active = (Uman.abilityList [3 + AbilityX * 4].active);
-							}
-							if (active) {
-								break;}
-						}
-
-
-						//Transform trans = UIButtons [n].transform.FindChild ("QButton");
-						trans.GetComponent<Button> ().interactable =active;
-						if (active) {
-							trans.GetComponent<Button> ().image.color = Color.red;
-						} else {
-							trans.GetComponent<Button> ().image.color = Color.white;
-						}
-						}
-					}
-
-
-				}
-			*/
 
 		for (int m = 0; m < man.abilityList.Count / 4 +1; m++) {
 
@@ -1163,14 +1051,7 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Button> ().interactable = false;
 
 					}
-
-					if (man.abilityList [3 + AbilityX * 4].getMyType() == Ability.type.passive) {
-						certainButtons [j].Rtext.enabled = false;
-						cb.disabledColor = Color.white;
-						trans.GetComponent<Button> ().interactable = false;
-					} else {
-						certainButtons [j].Rtext.enabled = false;
-					}
+							
 					trans.GetComponent<Button> ().colors = cb;
 
 				}

@@ -106,19 +106,20 @@ public class UIManager : MonoBehaviour, IUIManager {
 	void Update () 
 	{
 		if (Input.GetMouseButtonDown (1)) {
-			rightClickOrigin = Input.mousePosition;
-			//lineRender.enabled = true;
+			if (!EventSystem.current.IsPointerOverGameObject ()) {
+				rightClickOrigin = Input.mousePosition;
+				//lineRender.enabled = true;
 
-			Ray rayb = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit hitb;
+				Ray rayb = Camera.main.ScreenPointToRay (Input.mousePosition);
+				RaycastHit hitb;
 
-			if (Physics.Raycast (rayb, out hitb, Mathf.Infinity, ~(1 << 16))) {
-				rightClickOrThree = hitb.point + Vector3.up*2;
+				if (Physics.Raycast (rayb, out hitb, Mathf.Infinity, ~(1 << 16))) {
+					rightClickOrThree = hitb.point + Vector3.up * 2;
+				}
+
+
+				rightClickDrag = true;
 			}
-
-
-			rightClickDrag = true;
-
 		} 
 		if (rightClickDrag) {
 			if (Vector2.Distance (Input.mousePosition, rightClickOrigin) > 45) {
