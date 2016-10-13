@@ -80,13 +80,16 @@ public class IWeapon : MonoBehaviour {
 	//public Effect spawnEffect;
 
 
-
+	void Awake()
+	{
+		baseAttackPeriod = attackPeriod;
+		InitialBaseDamage = baseDamage;
+	}
 	// Use this for initialization
 	void Start () {
 		audioSrc = GetComponent<AudioSource> ();
 		myManager = this.gameObject.GetComponent<UnitManager> ();
-		baseAttackPeriod = attackPeriod;
-		InitialBaseDamage = baseDamage;
+
 		myRadius = GetComponent<CharacterController> ().radius;
 	}
 
@@ -222,7 +225,7 @@ public class IWeapon : MonoBehaviour {
 
 	IEnumerator Fire (float time, GameObject target)
 	{if (myAnimator) {
-			Debug.Log ("Settign state to one");
+			//Debug.Log ("Settign state to one");
 			myAnimator.SetInteger ("State", 1);
 	
 		}
@@ -398,7 +401,8 @@ public class IWeapon : MonoBehaviour {
 
 
 	public void changeAttack(float perc, float flat, bool perm, Object obj )
-	{if (perm) {
+	{//Debug.Log ("initials is " + InitialBaseDamage);
+		if (perm) {
 			InitialBaseDamage += flat;
 			if (perc > 0) {
 				InitialBaseDamage *= perc;
@@ -412,7 +416,7 @@ public class IWeapon : MonoBehaviour {
 	}
 
 	adjustAttack();
-
+		//Debug.Log ("after is " + InitialBaseDamage);
 }
 
 	private void adjustAttack()
@@ -426,7 +430,7 @@ public class IWeapon : MonoBehaviour {
 		foreach (attackSpeedMod a in DamageMod) {
 			percent += a.perc;
 		}
-
+	//	Debug.Log ("Before multiple " + InitialBaseDamage);
 		myDamage *= percent;
 		if (myDamage < .05f) {
 			myDamage = .05f;}

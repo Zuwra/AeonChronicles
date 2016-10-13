@@ -162,6 +162,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		Component temp = upgradeBall.AddComponent (upgrade.GetType ());
 
 
+
 		foreach(FieldInfo f in temp.GetType().GetFields())
 		{
 			f.SetValue (temp, f.GetValue (upgrade));
@@ -410,7 +411,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			}
 
 		}
+
 	
+
+
 
 		if (obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			//This rescans the Astar graph after the unit dies
@@ -423,8 +427,13 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		string unitName = obj.GetComponent<UnitManager> ().UnitName;
 
 		if (unitTypeCount.ContainsKey (unitName)) {
+			
 			unitTypeCount [unitName]++;
+			if (unitTypeCount [unitName] < 1) {
+				unitTypeCount [unitName] = 1;
+			}
 		} else {
+			
 			unitTypeCount.Add (unitName, 1);
 		}
 
@@ -451,7 +460,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		foreach (BuildUnitObjective objective in GameObject.FindObjectsOfType<BuildUnitObjective>()) {
 			objective.buildUnit (obj);
 		}
-		//Debug.Log ("Just built a " + unitName);
+		//Debug.Log ("Just built a " + unitName + "    " + unitTypeCount[unitName]);
 		// new unit, call update function on units abilities
 		if(unitTypeCount[unitName] ==1){
 
