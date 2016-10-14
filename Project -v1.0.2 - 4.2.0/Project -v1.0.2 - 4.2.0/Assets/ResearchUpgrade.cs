@@ -82,6 +82,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	
 			if (buildMan.buildUnit (this)) {
 				timer = buildTime;
+				Debug.Log ("Name " + Name + "   is false" );
 				active = false;
 				if (mySelect.IsSelected) {
 					RaceManager.updateActivity ();
@@ -101,8 +102,9 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	public void commence(object[] incoming)
 	{	//Debug.Log (Name + " is commencing");
 		if (myManager.UnitName == (string)incoming[2]) {
-			
-			if (upgrades [currentUpgrade].Name == ((Upgrade)incoming[1]).Name) {
+			Debug.Log ("Name " + upgrades [currentUpgrade].Name + "   is  " + ((Upgrade)incoming[1]).Name);
+			if (Name == ((Upgrade)incoming[1]).Name) {
+				
 				active = (bool)incoming[0];
 		
 			}

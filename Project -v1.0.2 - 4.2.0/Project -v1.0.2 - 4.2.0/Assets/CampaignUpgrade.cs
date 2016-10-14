@@ -124,7 +124,7 @@ public class CampaignUpgrade : MonoBehaviour {
 		currentUpgrade = myUpgrades [myDropDown.value].pointer;
 
 
-		int i = 0;
+	
 		if (LevelData.appliedUpgrades != null) {
 
 			List<string > keyList = new List<string > (LevelData.appliedUpgrades.Keys);
@@ -133,7 +133,7 @@ public class CampaignUpgrade : MonoBehaviour {
 
 				if (kv == this.gameObject.ToString ()) {
 					//Debug.Log ("Setting the thing " + LevelData.appliedUpgrades[kv] + "   real size " + myUpgrades.Count);
-					i = LevelData.appliedUpgrades [kv];
+					//i = LevelData.appliedUpgrades [kv];
 					//myIndex = LevelData.appliedUpgrades [kv];
 					myDropDown.value = LevelData.appliedUpgrades[kv];
 					foreach(GameObject o in unitsToUpgrade)

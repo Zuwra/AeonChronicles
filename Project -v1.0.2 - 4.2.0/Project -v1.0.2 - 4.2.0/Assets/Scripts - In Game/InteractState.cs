@@ -8,7 +8,7 @@ public class InteractState : UnitState {
 
 
 	private int refreshTime = 15;
-	private int currentFrame = 0;
+	//private int currentFrame = 0;
 	private float nextActionTime;
 	private IWeapon bestWeap;
 

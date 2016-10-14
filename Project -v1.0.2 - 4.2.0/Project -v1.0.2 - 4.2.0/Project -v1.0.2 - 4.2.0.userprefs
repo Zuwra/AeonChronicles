@@ -1,17 +1,24 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\IWeapon.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\repairReturn.cs">
     <Files>
-      <File FileName="Assets\HealthUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\DamageUpgrade.cs" Line="33" Column="33" />
-      <File FileName="Assets\Augmentor.cs" Line="1" Column="1" />
-      <File FileName="Assets\ResearchUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\BuildManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\AbstractCost.cs" Line="1" Column="1" />
-      <File FileName="Assets\BuilderUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\ShieldGlobe.cs" Line="1" Column="1" />
-      <File FileName="Assets\MissileArmer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="440" Column="2" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\BuildingInteractor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\ArmoryInteractor.cs" Line="61" Column="33" />
+      <File FileName="Assets\TurretMount.cs" Line="152" Column="38" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="679" Column="36" />
+      <File FileName="Assets\TurretDeathTrigger.cs" Line="16" Column="18" />
+      <File FileName="Assets\inflectionBarrier.cs" Line="16" Column="2" />
+      <File FileName="Assets\Teleport.cs" Line="51" Column="3" />
+      <File FileName="Assets\SpaceDrop.cs" Line="65" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="75" Column="3" />
+      <File FileName="Assets\Scripts - In Game\InteractState.cs" Line="26" Column="20" />
+      <File FileName="Assets\repairReturn.cs" Line="94" Column="6" />
+      <File FileName="Assets\ActivateObjAbil.cs" Line="85" Column="3" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="321" Column="2" />
+      <File FileName="Assets\CampaignUpgrade.cs" Line="151" Column="3" />
+      <File FileName="Assets\MiniMapUIController.cs" Line="213" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

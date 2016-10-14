@@ -5,14 +5,14 @@ public class repairReturn : Ability{
 
 
 	public int maxRepair = 400;
-	private UnitManager mymanager;
+	//private UnitManager mymanager;
 
 	public int hiddenAmount;
 	private UnitStats TargetHealth;
 	private GameObject target;
 	// Use this for initialization
 	void Start () {
-		mymanager = GetComponent<UnitManager> ();
+		//mymanager = GetComponent<UnitManager> ();
 
 
 	}
@@ -82,8 +82,8 @@ public class repairReturn : Ability{
 	public void Activate()
 	{
 
-		GameObject home = null;
-		float distance = 100000;
+		//GameObject home = null;
+		//float distance = 100000;
 		/*
 		foreach (MissileArmer arm in Object.FindObjectsOfType<MissileArmer>()) {
 			if (arm.repairs) {
@@ -95,9 +95,9 @@ public class repairReturn : Ability{
 			}
 		}
 */
-		if (home != null) {
-			mymanager.GiveOrder (Orders.CreateMoveOrder (home.transform.position));
-		}
+		//if (home != null) {
+		//	mymanager.GiveOrder (Orders.CreateMoveOrder (home.transform.position));
+		//}
 		//return true;
 
 	}

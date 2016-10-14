@@ -41,6 +41,12 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 	}
 
+	public void cancelBuilding()
+	{
+		myManager.myStats.kill (null);
+
+	}
+
 
 	public void initialize(){
 		Start ();
@@ -117,8 +123,8 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 	IEnumerator checkBuildAnim()
 	{
-		yield return new WaitForSeconds (1.5f);
-		if (lastBuildInput < Time.time - 1.5) {
+		yield return new WaitForSeconds (.75f);
+		if (lastBuildInput < Time.time - .75) {
 			myAnim.speed = 0;
 		}
 

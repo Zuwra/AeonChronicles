@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class Selected : MonoBehaviour {
 		
 	public bool IsSelected
@@ -21,7 +22,7 @@ public class Selected : MonoBehaviour {
 	private Image healthFill;
 	public GameObject RallyPoint;
 	public GameObject RallyUnit;
-	private Slider energySlider;
+	public Slider energySlider;
 	//private Image energyFill;
 
 	private Slider coolDownSlider;
@@ -268,7 +269,8 @@ public class Selected : MonoBehaviour {
 
 
 	public void updateHealthBar(float ratio)
-	{if (!turretDisplay) {
+	{try{
+		if (!turretDisplay) {
 		
 			healthslider.value = ratio; 
 
@@ -310,7 +312,10 @@ public class Selected : MonoBehaviour {
 			}
 		} else {
 			turretDisplay.updateHealth (ratio);}
-		checkOn ();
+			checkOn ();}
+		catch(MissingReferenceException) {
+			
+		}
 
 	}
 

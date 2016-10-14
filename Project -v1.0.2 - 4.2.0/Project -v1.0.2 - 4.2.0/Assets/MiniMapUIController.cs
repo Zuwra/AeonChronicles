@@ -208,7 +208,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 						try{
 						virtMap [n+ iCoord,j+ jCoord] = true;
 							tex.SetPixel(n + iCoord, j + jCoord, raceColor);}
-						catch(Exception e)
+						catch(Exception)
 						{
 							
 						}

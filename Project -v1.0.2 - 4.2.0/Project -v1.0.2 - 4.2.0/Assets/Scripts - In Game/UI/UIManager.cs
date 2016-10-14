@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	private IGUIManager m_GuiManager;
 	private IMiniMapController m_MiniMapController;
 
-	private string myName;
+
 
 	//Building Placement variables
 
@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	}
 	
 	void Awake()
-	{myName = this.gameObject.name;
+	{
 		main = this;
 		//Debug.Log ("Setting UI manager " + this.gameObject.name);
 	}

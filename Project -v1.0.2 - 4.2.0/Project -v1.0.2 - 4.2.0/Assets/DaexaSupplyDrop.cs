@@ -71,7 +71,7 @@ public class DaexaSupplyDrop: TargetAbility{
 		if (myApplier) {
 			myApplier.applyUlt (proj, this);
 		}
-		GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (-15);
+		//GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (-15);
 
 		return false;
 

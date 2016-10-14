@@ -41,7 +41,7 @@ public class BuildStructure:  UnitProduction {
 	void Update () {
 		if (Morphing) {
 
-
+			Debug.Log ("morphing is " + Morphing + "   " + this.gameObject) ;
 
 			float percent = builder.construct (Time.deltaTime / buildTime);
 			if (percent >= 1) {
@@ -58,15 +58,17 @@ public class BuildStructure:  UnitProduction {
 			
 		}
 
-	}
-
+	} 
+	// this only halts construction
 	public void cancel()
-	{
+	{Debug.Log ("Canceling the build");
 		mySelect.updateCoolDown (0);
 		HD.stopBuilding ();
 		Morphing = false;
 		myManager.setStun (false, this);
+
 		myManager.changeState(new DefaultState());
+		//builder.cancelBuilding ();
 		if (mySelect.IsSelected) {
 			SelectedManager.main.updateUI ();
 		}
@@ -80,17 +82,20 @@ public class BuildStructure:  UnitProduction {
 
 
 	public override void DeQueueUnit()
-	{
+	{Debug.Log ("Dequeing");
 		myCost.refundCost ();
 
 	}
 
 
 	public override void cancelBuilding ()
-	{	HD.stopBuilding ();
+	{	
+		
+		HD.stopBuilding ();
 		mySelect.updateCoolDown (0);
 
 		Morphing = false;
+		Debug.Log ("morphing is " + Morphing + "   " + this.gameObject) ;
 		//myCost.refundCost ();
 		//racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply, null);
 		racer.stopBuildingUnit (this);
@@ -144,7 +149,7 @@ public class BuildStructure:  UnitProduction {
 			buildMan.buildUnit (this);
 			myManager.cMover.stop ();
 
-
+			Debug.Log ("Turnign on");
 			Morphing = true;
 			racer.buildingUnit (this);
 
@@ -231,10 +236,10 @@ public class BuildStructure:  UnitProduction {
 		buildMan.buildUnit (this);
 		myManager.cMover.stop ();
 
-
+		Debug.Log ("Turning on 2");
 		Morphing = true;
 
-		myManager.changeState (new ChannelState (), true, false);
+		myManager.changeState (new ChannelState (), false, false);
 		myManager.setStun (true, this);
 		if (mySelect.IsSelected) {
 			SelectedManager.main.updateUI ();

@@ -14,10 +14,10 @@ public class inflectionBarrier : MonoBehaviour {
 	public void setSource(GameObject o)
 	{source = o;}
 
-	private float radius;
+	//private float radius;
 	// Use this for initialization
 	void Start () {
-		radius = GetComponent<SphereCollider> ().radius;
+		//radius = GetComponent<SphereCollider> ().radius;
 
 	}
 

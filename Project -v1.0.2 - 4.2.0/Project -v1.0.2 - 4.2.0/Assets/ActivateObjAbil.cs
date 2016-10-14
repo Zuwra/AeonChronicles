@@ -11,11 +11,11 @@ public class ActivateObjAbil : Ability {
 
 
 	private float timer;
-	private Selected select;
+	//private Selected select;
 	public MultiShotParticle BoostEffect;
 	UnitManager myManager;
 	public GameObject ThingToTurnOn;
-	private GameObject popUp;
+	//private GameObject popUp;
 
 	// Use this for initialization
 
@@ -25,7 +25,7 @@ public class ActivateObjAbil : Ability {
 	}
 
 	void Start () {
-		select = GetComponent<Selected> ();
+		//select = GetComponent<Selected> ();
 		myManager = GetComponent<UnitManager> ();
 	}
 
@@ -81,7 +81,7 @@ public class ActivateObjAbil : Ability {
 			BoostEffect.stopEffect ();
 		}
 		ThingToTurnOn.SetActive (false);
-		Destroy (popUp);
+	//	Destroy (popUp);
 
 	}
 

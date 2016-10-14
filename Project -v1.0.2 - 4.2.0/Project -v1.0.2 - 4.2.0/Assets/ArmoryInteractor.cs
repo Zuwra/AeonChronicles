@@ -61,16 +61,19 @@ public class ArmoryInteractor: BuildingInteractor {
 						GameObject turret = tm.unPlaceTurret ();
 						if (turret) {
 							UnitManager um = turret.GetComponent<UnitManager> ();
-
+							Debug.Log (turret + " :   " + um);
 
 							foreach (buildTurret bt in GetComponents<buildTurret>()) {
-
+								Debug.Log ("Chcking for " + bt.Name);
 								if (bt.Name.Contains (um.UnitName)) {
 									bt.changeCharge (1);
+									um.myStats.kill (null);
+									GameManager.main.activePlayer.unitsLost--;
+									break;
 								}
 							}
-							um.myStats.kill (null);
-							GameManager.main.activePlayer.unitsLost--;
+
+						
 						}
 					}
 				}

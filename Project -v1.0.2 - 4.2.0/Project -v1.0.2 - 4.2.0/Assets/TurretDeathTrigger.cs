@@ -4,10 +4,10 @@ using System.Collections;
 public class TurretDeathTrigger : MonoBehaviour, Modifier{
 
 	private UnitManager mymanager;
-	private IWeapon weapon;
+	//private IWeapon weapon;
 	// Use this for initialization
 	void Start () {
-		weapon = GetComponent<IWeapon> ();
+		//weapon = GetComponent<IWeapon> ();
 		mymanager = GetComponent<UnitManager> ();
 		mymanager.myStats.addDeathTrigger (this);
 	}

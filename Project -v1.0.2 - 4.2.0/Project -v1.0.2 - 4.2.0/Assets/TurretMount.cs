@@ -47,7 +47,7 @@ public class TurretMount : MonoBehaviour {
 	public void setSelect()
 	{
 		if (turret) {
-			
+		//	Debug.Log ("Showing turret " + turret);
 			if (turret.GetComponent<Selected> ().turretDisplay) {
 				turret.GetComponent<Selected> ().turretDisplay.hover (true);
 			}
@@ -57,6 +57,7 @@ public class TurretMount : MonoBehaviour {
 	public void setDeSelect()
 	{
 		if (turret) {
+			//Debug.Log ("Deslect " + turret);
 			turret.GetComponent<Selected> ().turretDisplay.hover (false);
 		}
 	}
@@ -112,12 +113,18 @@ public class TurretMount : MonoBehaviour {
 
 
 	public GameObject unPlaceTurret()
-	{hasDisplayer.gameObject.SetActive (true);
+	{if (!turret) {
+			return null;
+		}
+
+
+		hasDisplayer.gameObject.SetActive (true);
 		GameObject toReturn = turret;
+	//	Debug.Log ("Returning " + toReturn);
 		turret = null;
 		UnitManager manager = this.gameObject.GetComponentInParent<UnitManager> ();
 
-		manager.removeWeapon(GetComponent<IWeapon>());
+		manager.removeWeapon(toReturn.GetComponent<IWeapon>());
 
 		if (GetComponentInParent<repairReturn> ()) {
 			GetComponentInParent<repairReturn> ().active = false;
@@ -129,20 +136,20 @@ public class TurretMount : MonoBehaviour {
 
 			foreach (TurretMount turr in transform.parent.GetComponentsInChildren<TurretMount> ()) {
 			if (turr.turret != null && turr.turret.GetComponent<RepairTurret> () == null) {
-				manager.setWeapon (turr.turret.GetComponent<IWeapon> ());
-				turret = turr.gameObject;
+				//manager.setWeapon (turr.turret.GetComponent<IWeapon> ());
+				//turret = turr.gameObject;
 				//GetComponentInParent<repairReturn> ().removeTurret();
 
-				return turr.turret;
+				//return turr.turret;
 			} else if (turr.turret != null && turr.turret.GetComponent<RepairTurret> () != null) {
-				GetComponentInParent<repairReturn> ().active = true;
-				GetComponentInParent<repairReturn> ().placeTurret ();
-				turret = turr.gameObject;
+				//GetComponentInParent<repairReturn> ().active = true;
+				//GetComponentInParent<repairReturn> ().placeTurret ();
+				//turret = turr.gameObject;
 			}
 			}
 
 		FButtonManager.main.updateTankNumber ();
-		Debug.Log ("Deatched");
+		//Debug.Log ("Deatched " + turret);
 		return toReturn;
 	}
 }

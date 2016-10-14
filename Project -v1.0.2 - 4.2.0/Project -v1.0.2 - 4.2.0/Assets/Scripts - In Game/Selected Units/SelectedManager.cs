@@ -192,7 +192,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				if (SelectedObjects [0]) {
 					Vector3 location = SelectedObjects [0].gameObject.transform.position;
 					location.z -= 90;
-					Debug.Log ("Space");
+
 					MainCamera.main.Move (location);
 				}
 			}
@@ -273,7 +273,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			
 			
 			if (UIPages [currentPage].isTargetAbility (n)) {
-				
+				//Debug.Log ("In here 1 ");
 				targetManager.loadUnits (UIPages [currentPage].getUnitsFromAbilities (n),
 					((TargetAbility)UIPages [currentPage].getAbility (n)).range);
 				uiManage.SwitchMode (Mode.targetAbility);
@@ -281,13 +281,14 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				uiManage.setAbility (UIPages [currentPage].getAbility (n), n);
 			
 			} else if (UIPages [currentPage].isBuildingAbility (n)) {
-
-				if (UIPages [currentPage].getAbility (n).canActivate (true).canCast) {
+				//Debug.Log ("In here 2 ");
+				if (UIPages [currentPage].canCast(n)) {
 					uiManage.UserPlacingBuilding (((UnitProduction)UIPages [currentPage].getAbility (n)).unitToBuild, n);
 				}
 
 			}
 			else {
+				//Debug.Log ("In here 3 ");
 				UIPages [currentPage].useAbility (n, Input.GetKey(KeyCode.LeftShift));
 			}
 		}

@@ -6,7 +6,7 @@ public class SpaceDrop : MonoBehaviour {
 	public float speed;
 
 
-	private float distance;
+	//private float distance;
 	private float currentDistance;
 
 	//public ProjectileMover mover;
@@ -33,7 +33,7 @@ public class SpaceDrop : MonoBehaviour {
 
 
 		lastLocation = loc;
-		distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+		//distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
 		airmover myAir = GetComponent<airmover> ();
 		if (myAir) {
 			lastLocation += Vector3.up * myAir.flyerHeight/1.5f;

@@ -56,11 +56,13 @@ public class ArmyUIManager : MonoBehaviour {
 	IEnumerator addNUmber(UnitManager manage)
 	{
 		yield return new WaitForSeconds(0);
-
+		try{
 		iconList [manage.UnitName].transform.FindChild("Text").GetComponent<Text> ().text
 		= ""+unitList [manage.UnitName].Count;
 
-
+		}catch(KeyNotFoundException){
+		
+		}
 	}
 
 

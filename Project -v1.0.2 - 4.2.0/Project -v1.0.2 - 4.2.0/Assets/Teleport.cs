@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Teleport :  TargetAbility {
 
-	private UnitManager manage;
+	//private UnitManager manage;
 
 	// Use this for initialization
 	void Start () {
-		manage = this.gameObject.GetComponent<UnitManager> ();
+		//manage = this.gameObject.GetComponent<UnitManager> ();
 		myType = type.target;
 	}
 
@@ -51,7 +51,7 @@ public class Teleport :  TargetAbility {
 
 		myCost.payCost ();
 
-		GameObject proj = null;
+		//GameObject proj = null;
 		if (GetComponent<airmover> ()) {
 			this.gameObject.transform.position = location + Vector3.up * GetComponent<airmover> ().flyerHeight;
 		} else {
@@ -69,7 +69,7 @@ public class Teleport :  TargetAbility {
 
 		myCost.payCost ();
 
-		GameObject proj = null;
+		//GameObject proj = null;
 		if (GetComponent<airmover> ()) {
 			this.gameObject.transform.position = location + Vector3.up * GetComponent<airmover> ().flyerHeight;
 		} else {

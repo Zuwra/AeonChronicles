@@ -675,16 +675,16 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public void setWeapon(IWeapon weap)
-		{
-		if (!myWeapon.Contains (weap)) {
-			myWeapon.Add (weap);
-			foreach (Notify not in potentialNotify) {
-				if (!weap.triggers.Contains (not)) {
-					weap.triggers.Add (not);
+	{if (weap) {
+			if (!myWeapon.Contains (weap)) {
+				myWeapon.Add (weap);
+				foreach (Notify not in potentialNotify) {
+					if (!weap.triggers.Contains (not)) {
+						weap.triggers.Add (not);
+					}
 				}
 			}
 		}
-
 	}
 
 	public void removeWeapon(IWeapon weap)

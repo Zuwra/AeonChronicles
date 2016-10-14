@@ -185,6 +185,19 @@ public class Page  {
 
 	}
 
+	public bool canCast(int n)
+	{
+		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
+		foreach (RTSObject unit in rows[n/4]) {
+			Debug.Log ("Checking " + unit.Name);
+			if (unit.abilityList [X].canActivate (false).canCast) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
 	public Ability getAbility(int n)
 	{	int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
 		return rows [n / 4] [0].abilityList [X];
@@ -215,13 +228,14 @@ public class Page  {
 
 	public void useAbility(int n, bool queue)
 	{
+		
 		if (rows [n / 4] == null) {
 			return;
 		}
 
 		if (rows [n / 4] [0] == null) {
 			return;
-		}
+		} 
 
 		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
 
@@ -238,11 +252,17 @@ public class Page  {
 		
 			return;}
 
-		if (rows [n / 4] [0].abilityList[X].GetType().IsSubclassOf(typeof(UnitProduction))) {
+	
 
+		if (rows [n / 4] [0].abilityList[X].GetType().IsSubclassOf(typeof(UnitProduction))) {
+			
 			int min = 1000;
 			RTSObject best = null;
+		
 			foreach (RTSObject unit in rows[n/4]) {
+				
+				if (!unit.abilityList [X].canActivate (false).canCast) {
+					continue;}
 				
 				int man = unit.GetComponent<BuildManager> ().buildOrder.Count;
 			

@@ -62,7 +62,6 @@ public class UnitStats : MonoBehaviour {
 
 		Initialize ();
 
-
 	}
 
 	public void Initialize()
