@@ -8,7 +8,7 @@ public class ChangeAmmo : Ability {
 
 	private Selected select;
 
-	UnitManager myManager;
+	//UnitManager myManager;
 	public GameObject myAmmo;
 	public IWeapon myWeapon;
 	public float range;
@@ -25,7 +25,7 @@ public class ChangeAmmo : Ability {
 	void Start () {
 		
 		select = GetComponent<Selected> ();
-		myManager = GetComponent<UnitManager> ();
+		//myManager = GetComponent<UnitManager> ();
 		if (autocast) {
 			Activate ();
 		}

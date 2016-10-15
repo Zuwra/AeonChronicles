@@ -16,7 +16,8 @@ public class BonusObjectiverTimer : Objective {
 	string basicDescript;
 
 	// Use this for initialization
-	void Start () {
+	new void Start () {
+		base.Start ();
 		basicDescript = description;
 		base.Start ();
 		foreach (GameObject obj in targets) {

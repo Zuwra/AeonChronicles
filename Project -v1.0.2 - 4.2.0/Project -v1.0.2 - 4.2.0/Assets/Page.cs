@@ -189,8 +189,8 @@ public class Page  {
 	{
 		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
 		foreach (RTSObject unit in rows[n/4]) {
-			Debug.Log ("Checking " + unit.Name);
-			if (unit.abilityList [X].canActivate (false).canCast) {
+			
+			if (unit.abilityList [X].canActivate (true).canCast) {
 				return true;
 			}
 		}
@@ -261,7 +261,7 @@ public class Page  {
 		
 			foreach (RTSObject unit in rows[n/4]) {
 				
-				if (!unit.abilityList [X].canActivate (false).canCast) {
+				if (!unit.abilityList [X].canActivate (true).canCast) {
 					continue;}
 				
 				int man = unit.GetComponent<BuildManager> ().buildOrder.Count;

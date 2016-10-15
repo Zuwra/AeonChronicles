@@ -13,7 +13,7 @@ public class ActivateObjAbil : Ability {
 	private float timer;
 	//private Selected select;
 	public MultiShotParticle BoostEffect;
-	UnitManager myManager;
+	//UnitManager myManager;
 	public GameObject ThingToTurnOn;
 	//private GameObject popUp;
 
@@ -26,7 +26,7 @@ public class ActivateObjAbil : Ability {
 
 	void Start () {
 		//select = GetComponent<Selected> ();
-		myManager = GetComponent<UnitManager> ();
+		//myManager = GetComponent<UnitManager> ();
 	}
 
 	// Update is called once per frame

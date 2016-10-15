@@ -16,6 +16,7 @@ public class UnitStats : MonoBehaviour {
 
 
 
+
 	public float MaxEnergy;
 	public float currentEnergy;
 

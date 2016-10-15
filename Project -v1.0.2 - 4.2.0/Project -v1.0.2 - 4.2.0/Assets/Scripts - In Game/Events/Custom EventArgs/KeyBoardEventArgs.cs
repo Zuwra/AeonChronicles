@@ -22,8 +22,8 @@ public abstract class KeyBoardEventArgs : EventArgs {
 		Key = key;
 		KeyDown = keyDown;
 		KeyUp = keyUp;
-		uiManager =uiManager = GameObject.FindObjectOfType<UIManager> ();// ManagerResolver.Resolve<IUIManager>();
-		selectedManager =selectedManager = GameObject.FindObjectOfType<SelectedManager> ();// ManagerResolver.Resolve<ISelectedManager>();
+		uiManager = GameObject.FindObjectOfType<UIManager> ();// ManagerResolver.Resolve<IUIManager>();
+		selectedManager = GameObject.FindObjectOfType<SelectedManager> ();// ManagerResolver.Resolve<ISelectedManager>();
 	}
 	
 	public abstract void Command();

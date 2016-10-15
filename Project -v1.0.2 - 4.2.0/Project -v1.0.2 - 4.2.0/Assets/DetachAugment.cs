@@ -4,13 +4,13 @@ using System.Collections;
 public class DetachAugment : Ability {
 
 	Augmentor myAugmentor;
-	UnitManager manager;
+//	UnitManager manager;
 
 	// Use this for initialization
 	void Start () {
 		myType = type.activated;
 		myAugmentor = GetComponent<Augmentor> ();
-		manager = GetComponent<UnitManager> ();
+		//manager = GetComponent<UnitManager> ();
 	}
 	
 	// Update is called once per frame

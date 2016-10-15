@@ -415,7 +415,8 @@ public class UnitManager : Unit,IOrderable{
 	public void changeState(UnitState nextState, bool Queuefront, bool QueueBack)
 	{//Debug.Log ("Next state is " + nextState);
 		
-		
+
+		//Debug.Log ("# of states  " +QueueBack + "    " + queuedStates.Count + "    " + nextState + "    " + myState);
 		if (Queuefront && (!(nextState is DefaultState) && (queuedStates.Count > 0 || !(myState is DefaultState)))) {
 
 			//Debug.Log ("Queing + " +nextState);
@@ -430,7 +431,7 @@ public class UnitManager : Unit,IOrderable{
 		else if (QueueBack && (!(nextState is DefaultState) && (queuedStates.Count > 0 || !(myState is DefaultState)))){
 
 			queuedStates.AddLast (nextState);
-			//Debug.Log ("# of states  " + queuedStates.Count);
+
 			return;
 
 		}
@@ -440,7 +441,7 @@ public class UnitManager : Unit,IOrderable{
 				if (myState != null) {
 					myState.endState ();
 				}
-				//Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
+			//	Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
 				myState = interactor.computeState(popFirstState());
 				//Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
 				if (myState == null) {
@@ -456,12 +457,6 @@ public class UnitManager : Unit,IOrderable{
 		} else if (myState is PlaceBuildingState) {
 			((PlaceBuildingState)myState).cancel ();
 		}
-
-		//else if (myState is ChannelState) {
-			
-			//queuedStates.AddLast(nextState);
-			//return;
-			//}
 
 	
 		else if (nextState is AttackMoveState ) {
@@ -492,7 +487,8 @@ public class UnitManager : Unit,IOrderable{
 
 
 		myState =interactor.computeState (nextState);
-			myState.initialize ();
+		Debug.Log ("Setting state to " + myState);
+		myState.initialize ();
 	
 		checkIdleWorker ();
 

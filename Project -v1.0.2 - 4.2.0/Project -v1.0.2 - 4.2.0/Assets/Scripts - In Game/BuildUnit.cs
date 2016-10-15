@@ -89,7 +89,7 @@ public class BuildUnit : UnitProduction {
 		//myCost.refundCost ();deq
 
 		if (!buildMan.waitingOnSupply) {
-			Debug.Log("Canceling the build");
+	
 			racer.UnitDied (unitToBuild.GetComponent<UnitStats> ().supply, null);
 		}
 		racer.stopBuildingUnit (this);
@@ -100,6 +100,7 @@ public class BuildUnit : UnitProduction {
 	override
 	public continueOrder canActivate (bool showError)
 	{
+		Debug.Log ("SHow it " + showError);
 		continueOrder order = new continueOrder();
 
 

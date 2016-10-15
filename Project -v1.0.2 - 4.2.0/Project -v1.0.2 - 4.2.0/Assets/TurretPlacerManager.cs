@@ -6,7 +6,7 @@ public class TurretPlacerManager : MonoBehaviour {
 
 
 	public List<TurretMount> mounts = new List<TurretMount>();
-	public TurretMountTwo two;
+	public bool centerOn;
 
 	// Use this for initialization
 	void Start () {
@@ -22,16 +22,14 @@ public class TurretPlacerManager : MonoBehaviour {
 
 
 	public void deactivate(bool offOn)
-	{
+	{centerOn = offOn;
+		
 		foreach (TurretMount x in mounts) {
 			if (x.hasDisplayer != null) {
-				x.hasDisplayer.ToggleOn (offOn);
+				x.hasDisplayer.ToggleOn (offOn);//Debug.Log ("Flipping switches");
 			}
 		}
-
-		if (two && two.hasDisplayer != null) {
-			two.hasDisplayer.ToggleOn ();
-		}
+			
 	}
 
 

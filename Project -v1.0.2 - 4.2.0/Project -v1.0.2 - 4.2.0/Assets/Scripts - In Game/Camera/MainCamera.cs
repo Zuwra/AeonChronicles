@@ -30,7 +30,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	private float cutsceneTime;
 
 	Vector2 middleStartPos;
-	Vector3 camStartPos;
+	//Vector3 camStartPos;
 	bool middleMouseDown;
 
 	void Awake()
@@ -72,7 +72,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 		} else if (Input.GetMouseButtonDown (2)) {
 			CursorManager.main.MouseDragMode ();
 			middleStartPos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
-			camStartPos = this.transform.position;
+			//camStartPos = this.transform.position;
 			middleMouseDown = true;
 		} else if (Input.GetMouseButtonUp (2)) {
 			if (CursorManager.main.getMode () == 6) {

@@ -7,7 +7,7 @@ public class ThrasherBlade : Projectile {
 	public float rollTime = 5;
 	float trueROlltime;
 	bool goingOut = true;
-	void Start()
+	new void Start()
 	{
 		base.Start ();
 		lastLocation = target.transform.position -this.gameObject.transform.position ;

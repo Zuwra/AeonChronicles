@@ -13,7 +13,7 @@ public class PulseCannon : IWeapon {
 
 	
 	// Update is called once per frame
-	void Update () {
+	new void Update () {
 
 		base.Update ();
 		if (Time.time > nextTime) {
@@ -45,7 +45,7 @@ public class PulseCannon : IWeapon {
 
 
 
-			UnitStats targetStats = target.GetComponent<UnitStats> ();
+			//UnitStats targetStats = target.GetComponent<UnitStats> ();
 
 
 		

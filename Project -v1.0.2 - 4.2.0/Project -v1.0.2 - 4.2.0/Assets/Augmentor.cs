@@ -211,6 +211,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 			down =objecthit.point;
 			manager.changeState (new MoveState (down, manager,true));
+		
 		}
 
 
@@ -355,8 +356,10 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			Unattach ();
 		}
 
-		if (s is DefaultState) {
-			return new HoldState(manager);
+		if (attached) {
+			if (s is DefaultState) {
+				return new HoldState (manager);
+			}
 		}
 		return s;
 	}
@@ -365,7 +368,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	public void  AttackMove(Order order)
 	{
 		if (attached) {
-			manager.changeState (new MoveState (order.OrderLocation, manager,true));
+			manager.changeState (new MoveState (order.OrderLocation, manager,true),false,order.queued);
 
 		}
 	}
@@ -381,8 +384,6 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			}
 		}
 
-
-
 		UnitManager manage = order.Target.GetComponent<UnitManager> ();
 		if (!manage) {
 			manage = order.Target.GetComponentInParent<UnitManager> ();
@@ -392,14 +393,14 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 			if (!attached && manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {
 
-				manager.changeState (new FollowState (order.Target.gameObject, manager));
+				manager.changeState (new FollowState (order.Target.gameObject, manager),false,order.queued);
 			} else if(!attached && isValidTarget(order.Target, Vector3.zero)){
 				manager.UseTargetAbility (order.Target, Vector3.zero, 0, false);
 					
 				}
 			} else {
 			
-				manager.changeState (new FollowState (order.Target.gameObject,  manager));
+			manager.changeState (new FollowState (order.Target.gameObject,  manager),false,order.queued);
 			}
 
 	}
@@ -408,7 +409,8 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	{
 		if (!attached) {
 			//Debug.Log ("Im moving");
-			manager.changeState (new MoveState (order.OrderLocation, manager,false));
+			manager.changeState (new MoveState (order.OrderLocation, manager),false,order.queued);
+
 		}
 
 		if (target) {
@@ -427,7 +429,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	{if (target) {
 			target = null;}
 		if(!attached)
-		manager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, manager, manager.gameObject.transform.position));
+			manager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, manager, manager.gameObject.transform.position),false,order.queued);
 	}
 
 	//Shift-Caps
@@ -446,11 +448,11 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 		if (!attached) {
 			if (!attached && isValidTarget (order.Target, Vector3.zero)) {
-				manager.UseTargetAbility (order.Target, Vector3.zero, 0, false);
+				manager.UseTargetAbility (order.Target, Vector3.zero, 0, order.queued);
 				//Debug.Log ("Ordered to follow");
 			}
 			else{
-				manager.changeState (new MoveState (order.OrderLocation,manager,true));
+				manager.changeState (new MoveState (order.OrderLocation,manager,true),false,order.queued);
 				if (target) {
 					target = null;}
 			}

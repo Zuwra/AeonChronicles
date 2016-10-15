@@ -35,8 +35,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
  
     private int textureHeight = 200, textureWidth = 200;
 
-    private bool floatAfterInt = false;
-
+ 
 	public int scalingfactor =1;
 
 	public float heightOffset;

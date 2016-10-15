@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class JumpScene : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class JumpScene : MonoBehaviour {
 	
 	public void ChangeScene(){
 		print("SceneChange:"+scene_index);
-		Application.LoadLevel(scene_index);
+		SceneManager.LoadScene (scene_index);
+		//Application.LoadLevel(scene_index);
 	}
 }

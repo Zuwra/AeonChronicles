@@ -1,24 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\repairReturn.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FogOfWar\FogOfWarUnit.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\BuildingInteractor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\ArmoryInteractor.cs" Line="61" Column="33" />
-      <File FileName="Assets\TurretMount.cs" Line="152" Column="38" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="679" Column="36" />
-      <File FileName="Assets\TurretDeathTrigger.cs" Line="16" Column="18" />
-      <File FileName="Assets\inflectionBarrier.cs" Line="16" Column="2" />
-      <File FileName="Assets\Teleport.cs" Line="51" Column="3" />
-      <File FileName="Assets\SpaceDrop.cs" Line="65" Column="3" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="75" Column="3" />
-      <File FileName="Assets\Scripts - In Game\InteractState.cs" Line="26" Column="20" />
-      <File FileName="Assets\repairReturn.cs" Line="94" Column="6" />
-      <File FileName="Assets\ActivateObjAbil.cs" Line="85" Column="3" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="321" Column="2" />
-      <File FileName="Assets\CampaignUpgrade.cs" Line="151" Column="3" />
-      <File FileName="Assets\MiniMapUIController.cs" Line="213" Column="8" />
+      <File FileName="Assets\TurretPlacer.cs" Line="1" Column="1" />
+      <File FileName="Assets\TurretPlacerManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\buildTurret.cs" Line="211" Column="40" />
+      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="69" Column="16" />
+      <File FileName="Assets\Augmentor.cs" Line="382" Column="12" />
+      <File FileName="Assets\StandardInteract.cs" Line="110" Column="13" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="441" Column="27" />
+      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="8" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

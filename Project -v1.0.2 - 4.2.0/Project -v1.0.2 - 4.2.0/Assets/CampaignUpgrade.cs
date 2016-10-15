@@ -25,7 +25,7 @@ public class CampaignUpgrade : MonoBehaviour {
 	public List<GameObject> unitsToUpgrade = new List<GameObject>();
 
 	private bool justSetIndex;
-	private int myIndex = 0;
+	//private int myIndex = 0;
 
 	[System.Serializable]
 	public struct UpgradesPiece{
@@ -49,7 +49,7 @@ public class CampaignUpgrade : MonoBehaviour {
 	}
 
 
-	private CampUpgradeManager myManager;
+	//private CampUpgradeManager myManager;
 
 	public void setUpgrade()
 	{
@@ -91,7 +91,7 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		myManager = GameObject.FindObjectOfType<LevelManager> ().levelPresets[LevelData.currentLevel];
+		//myManager = GameObject.FindObjectOfType<LevelManager> ().levelPresets[LevelData.currentLevel];
 		List<string> options = new List<string> ();
 		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
 			if (up.isUnlocked() && myTypes.Contains (up.myType)) {

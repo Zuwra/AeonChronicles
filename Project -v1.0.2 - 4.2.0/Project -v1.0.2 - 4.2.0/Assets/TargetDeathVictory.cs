@@ -8,7 +8,7 @@ public class TargetDeathVictory : Objective {
 
 
 	// Use this for initialization
-	void Start () {
+	new void Start () {
 		base.Start ();
 		foreach (GameObject obj in targets) {
 			obj.AddComponent<DeathWinTrigger> ();

@@ -16,6 +16,8 @@ public class Selected : MonoBehaviour {
 	public TurretHealthDisplay turretDisplay;
 
 	private GameObject unitIcon;
+	private UnitIconInfo IconInfo;
+
 	private Slider IconSlider;
 
 	public Slider healthslider;
@@ -136,32 +138,36 @@ public class Selected : MonoBehaviour {
 		}
 	}
 
+	public void updateIconNum()
+	{
+		IconInfo.updateNum ();
+	}
+
 	public void setIcon(GameObject obj)
 	{//buffDisplay.isOn = true;
 		if (!obj) {
 			return;}
-		//Debug.Log ("Searching " + obj);
+		
+
 		unitIcon = obj.transform.FindChild("UnitIconTemplate").gameObject;
+
+		IconInfo = unitIcon.GetComponent<UnitIconInfo> ();
 		IconSlider = obj.transform.FindChild ("Slider").gameObject.GetComponent<Slider>();
 		if (!turretDisplay) {
 			if (healthslider.value > .6) {
 
-	
-				unitIcon.GetComponent<Image> ().color = Color.green;
+				IconInfo.changeColor (Color.green);
 
 			} else if (healthslider.value > .35) {
 			
+				IconInfo.changeColor (Color.yellow);
 
-				unitIcon.GetComponent<Image> ().color = Color.yellow;
 
 			} else if (healthslider.value > .15) {
-
-
-				unitIcon.GetComponent<Image> ().color = new Color (1, .4f, 0);
+				IconInfo.changeColor (new Color (1, .4f, 0));
 
 			}else {
-			
-				unitIcon.GetComponent<Image> ().color = Color.red;
+				IconInfo.changeColor (Color.red);
 
 			}
 			if (IconSlider) {
@@ -290,24 +296,28 @@ public class Selected : MonoBehaviour {
 			if (ratio > .6) {
 				healthFill.color = Color.green;
 				if (unitIcon) {
-					unitIcon.GetComponent<Image> ().color = Color.green;
+						IconInfo.changeColor(Color.green);	
+				
 				}
 			} else if (ratio > .35) {
 				healthFill.color = Color.yellow;
 				if (unitIcon) {
-					unitIcon.GetComponent<Image> ().color = Color.yellow;
+						IconInfo.changeColor(Color.yellow);
+					
 				}
 			} 
 			else if (healthslider.value > .15) {
 				healthFill.color =new Color (1, .4f, 0);
 				if (unitIcon) {
-					unitIcon.GetComponent<Image> ().color = new Color (1, .4f, 0);
+						IconInfo.changeColor(new Color (1, .4f, 0));
+					
 				}
 			}
 			else {
 				healthFill.color = Color.red;
 				if (unitIcon) {
-					unitIcon.GetComponent<Image> ().color = Color.red;
+						IconInfo.changeColor(Color.red);
+					
 				}
 			}
 		} else {

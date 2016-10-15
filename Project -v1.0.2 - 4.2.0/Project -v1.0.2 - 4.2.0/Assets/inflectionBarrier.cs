@@ -41,7 +41,7 @@ public class inflectionBarrier : MonoBehaviour {
 			Projectile proj = other.GetComponent<Projectile> ();
 			if (proj.Source.GetComponent<UnitManager> ().PlayerOwner != 1) {
 
-				float dist = Vector3.Distance (this.gameObject.transform.position, other.transform.position);
+				//float dist = Vector3.Distance (this.gameObject.transform.position, other.transform.position);
 
 					Health -= proj.damage;
 					Instantiate (Effect, other.gameObject.transform.position, Quaternion.identity);

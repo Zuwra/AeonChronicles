@@ -70,6 +70,7 @@ public class AbstractCost : MonoBehaviour {
 		}
 		if (myGame.ResourceOne < this.ResourceOne || myGame.ResourceTwo < this.ResourceTwo) {
 
+			Debug.Log ("error " + showError);
 			if (showError) {
 				ErrorPrompt.instance.notEnoughResource ();
 

@@ -12,12 +12,48 @@ public class UnitIconInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	public Text textBox;
 	public Text energyText;
 	private UnitStats myStats;
+	public Image myImage;
 
 	private float nextActionTime;
-	// Use this for initialization
-	void Start () {
-	
+
+	BuildManager buildMan;
+	public Text BuildNum;
+
+
+
+
+	public void updateNum()
+	{if (!buildMan) {
+			return;
+	} else if (buildMan.buildOrder.Count > 0) {
+		BuildNum.text = "" + buildMan.buildOrder.Count;
+	} else {
+		BuildNum.text = "";
 	}
+
+
+	}
+
+	public void changeColor(Color c)
+	{
+		myImage.color = c;
+
+	}
+
+	public void setInfo(GameObject obj)
+	{
+	
+		GetComponent<Image> ().sprite =obj.GetComponent<UnitStats> ().Icon;
+		buildMan = obj.GetComponent<BuildManager> ();
+		myUnit = obj;
+		myStats = myUnit.GetComponent<UnitManager> ().myStats;
+		if (buildMan) {
+			updateNum ();
+		}
+
+	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -39,17 +75,19 @@ public class UnitIconInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	public void OnPointerEnter(PointerEventData eventd)
 	{//pointerIn = true;
 		//this.enabled = true;
-		nextActionTime = Time.time;
-		pointerIn = true;
-		toolbox.enabled = true;
-		myStats = myUnit.GetComponent<UnitManager> ().myStats;
-		//toolbox.gameObject.GetComponentInChildren<Text> ().text = helpText;
+		if (toolbox) {
+			nextActionTime = Time.time;
+			pointerIn = true;
+			toolbox.enabled = true;
+			myStats = myUnit.GetComponent<UnitManager> ().myStats;
+		}
+	
 	}
 
 	public void OnPointerExit(PointerEventData eventd)
-	{pointerIn = false;
-		//this.enabled= false;
-		toolbox.enabled = false;
+	{if (toolbox) {pointerIn = false;
+		
+			toolbox.enabled = false;}
 	}
 
 

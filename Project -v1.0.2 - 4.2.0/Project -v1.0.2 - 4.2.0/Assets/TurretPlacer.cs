@@ -56,7 +56,7 @@ public class TurretPlacer : MonoBehaviour {
 		if (myFactories.Count > 0) {
 			return true;
 		} else {
-			//center.interactable = false;
+
 			gatling.gameObject.SetActive (false);
 			railgun.gameObject.SetActive (false);
 			if (mortar) {
@@ -92,12 +92,16 @@ public class TurretPlacer : MonoBehaviour {
 		}
 
 		if (unitSelect.IsSelected != isON) {
-			
+
+			//Debug.Log (unitSelect.IsSelected + "  Turning on center  " + isON);
 			isON = unitSelect.IsSelected;
 
-			center.gameObject.SetActive(true);
-			if (!isON) {
 
+
+				//center.gameObject.SetActive (true);
+		
+			if (!isON) {
+				center.gameObject.SetActive (true);
 				gatling.gameObject.SetActive (false);
 				railgun.gameObject.SetActive (false);
 				if (mortar) {
@@ -178,15 +182,22 @@ public class TurretPlacer : MonoBehaviour {
 
 	public void showButtons(){
 		buttonsOn = !buttonsOn;
+
+
+		if (!Input.GetKey (KeyCode.LeftShift)) {
+			SelectedManager.main.DeselectAll ();
+		}
+
+		if (!unitSelect.IsSelected) {
+			SelectedManager.main.AddObject (GetComponentInParent<UnitManager> ());
+			SelectedManager.main.CreateUIPages (0);
+		}
+		//Debug.Log ("I am selected " + unitSelect.IsSelected);
 		if (turretManager != null) {
 			turretManager.deactivate (!buttonsOn);
 			center.gameObject.SetActive (true);
 		} 
-		if (!Input.GetKey (KeyCode.LeftShift)) {
-			SelectedManager.main.DeselectAll ();
-		}
-		SelectedManager.main.AddObject (GetComponentInParent<UnitManager> ());
-		SelectedManager.main.CreateUIPages (0);
+
 		if (myFactories.Count > 0) {
 			gatling.gameObject.SetActive (buttonsOn);
 			railgun.gameObject.SetActive (buttonsOn);
@@ -212,7 +223,7 @@ public class TurretPlacer : MonoBehaviour {
 				break;
 			}
 		}
-	
+		turretManager.deactivate (true);
 	}
 
 	public void buildRailGun()
@@ -227,6 +238,8 @@ public class TurretPlacer : MonoBehaviour {
 				break;
 			}
 		}
+
+		turretManager.deactivate (true);
 	}
 
 	public void buildMortar()
@@ -241,6 +254,7 @@ public class TurretPlacer : MonoBehaviour {
 				break;
 			}
 		}
+		turretManager.deactivate (true);
 	}
 
 	public void buildRepair()
@@ -255,6 +269,7 @@ public class TurretPlacer : MonoBehaviour {
 				break;
 			}
 		}
+		turretManager.deactivate (true);
 	}
 
 

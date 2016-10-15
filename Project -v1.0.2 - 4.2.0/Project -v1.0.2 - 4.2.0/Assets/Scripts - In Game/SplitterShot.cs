@@ -16,11 +16,6 @@ public class SplitterShot : Projectile {
 	public SplitterHitList hitlist;
 
 
-	void Start () {
-		//hitTargets.Add (target);
-
-	//	Debug.Log ("Addign original to hitlist " + target.name);
-	}
 
 
 	public new void setSource(GameObject so)

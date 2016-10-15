@@ -11,7 +11,7 @@ public class PlasmaDischarge : Ability {
 
 
 	private float timer;
-	private Selected select;
+	//private Selected select;
 	public MultiShotParticle BoostEffect;
 	UnitManager myManager;
 
@@ -25,7 +25,7 @@ public class PlasmaDischarge : Ability {
 	}
 
 	void Start () {
-		select = GetComponent<Selected> ();
+		//select = GetComponent<Selected> ();
 		myManager = GetComponent<UnitManager> ();
 	}
 

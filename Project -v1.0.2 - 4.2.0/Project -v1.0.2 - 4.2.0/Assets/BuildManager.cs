@@ -65,6 +65,8 @@ public class BuildManager : MonoBehaviour {
 				}
 
 		}
+
+		mySelect.updateIconNum ();
 	}
 
 
@@ -123,6 +125,7 @@ public class BuildManager : MonoBehaviour {
 
 
 		}
+		mySelect.updateIconNum ();
 	}
 
 	public bool buildUnit(UnitProduction prod)
@@ -141,6 +144,7 @@ public class BuildManager : MonoBehaviour {
 			checkForSupply ();
 
 		}
+		mySelect.updateIconNum ();
 		return true;
 
 	}
@@ -158,7 +162,7 @@ public class BuildManager : MonoBehaviour {
 		if (mySelect.IsSelected) {
 			build.bUpdate (this.gameObject);
 		}
-
+		mySelect.updateIconNum ();
 		return true;
 	}
 

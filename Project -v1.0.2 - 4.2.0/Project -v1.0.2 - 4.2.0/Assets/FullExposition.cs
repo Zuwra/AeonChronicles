@@ -17,7 +17,7 @@ public class FullExposition : SceneEventTrigger {
 	public Image backTwo;
 	public Image portraitTwo;
 
-	private float turnOffTime;
+	//private float turnOffTime;
 	private AudioSource myAudio;
 
 
@@ -192,7 +192,7 @@ public class FullExposition : SceneEventTrigger {
 		currentDialogue = StartCoroutine (scrollingText (input));
 		//myText.text = input;
 		myCanvas.enabled = true;
-		turnOffTime = Time.time + duration;
+		//turnOffTime = Time.time + duration;
 		if (MissionLogger.instance) {
 			MissionLogger.instance.AddLog (input);
 		}

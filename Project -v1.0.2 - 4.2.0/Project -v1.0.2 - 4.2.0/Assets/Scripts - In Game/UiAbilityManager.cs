@@ -432,7 +432,8 @@ public class UiAbilityManager : MonoBehaviour {
 						pos.x += currentX *this.transform.localScale.x ;
 
 						GameObject unit = (GameObject)Instantiate (buttonTemplate);
-						unit.transform.FindChild("UnitIconTemplate").GetComponent<UnitIconInfo> ().myUnit = uiPage.rows [j] [k].gameObject;
+
+						unit.transform.FindChild ("UnitIconTemplate").GetComponent<UnitIconInfo> ().setInfo (uiPage.rows [j] [k].gameObject); //.myUnit = uiPage.rows [j] [k].gameObject;
 						unit.transform.localScale = this.transform.localScale;
 					
 						unit.transform.rotation = this.transform.rotation;
@@ -440,7 +441,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 						unit.transform.position = pos;
 
-						unit.transform.FindChild("UnitIconTemplate").GetComponent<Image> ().sprite = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
+						//unit.transform.FindChild("UnitIconTemplate").GetComponent<Image> ().sprite = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
 					
 						currentX += separation;
 						unit.transform.FindChild("UnitIconTemplate").GetComponent<Button> ().onClick.AddListener(delegate() {IconClick(unit);});

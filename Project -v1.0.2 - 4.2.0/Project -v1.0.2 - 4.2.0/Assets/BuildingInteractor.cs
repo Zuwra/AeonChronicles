@@ -16,7 +16,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	private GameObject sourceObj;
 	public Animator myAnim;
 
-	private float buildTime;
+	//private float buildTime;
 	// Last time someone did a construction action, for animation tracking
 	private float lastBuildInput;
 
@@ -56,7 +56,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	public void startConstruction(GameObject obj, float buildtime)
 	{sourceObj = obj;
 		doneConstruction = false;
-		buildTime = buildtime;
+		//buildTime = buildtime;
 
 		foreach (Ability ab in  GetComponent<UnitManager>().abilityList) {
 			ab.active = false;
