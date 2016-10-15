@@ -14,11 +14,12 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 	public bool FireAll;
 
 	private float nextActionTime;
-
+	Selected HealthD;
 
 	// Use this for initialization
 	void Start () {
 
+		HealthD = GetComponentInChildren<Selected> ();
 
 		shotCount = totalShots;
 		weapon = this.gameObject.GetComponent<IWeapon> ();
@@ -42,6 +43,8 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 			if(shotCount < totalShots)
 			{
 				shotCount++;
+
+				HealthD.updateCoolDown (shotCount / totalShots);
 			}
 		
 		}
@@ -57,6 +60,8 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 	}
 
 
+
+
 	public bool validate(GameObject source, GameObject target)
 		{if (shotCount > 0) {
 			return true;
@@ -68,8 +73,9 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 	public void trigger(GameObject source, GameObject proj, GameObject target, float damage)
 		{
 		shotCount --;
+		HealthD.updateCoolDown (shotCount / totalShots);
 		if (FireAll) {
-			weapon.attackPeriod = .01f;
+			weapon.attackPeriod = .1f;
 		}
 
 

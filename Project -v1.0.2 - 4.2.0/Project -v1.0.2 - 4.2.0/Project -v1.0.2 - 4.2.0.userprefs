@@ -1,15 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FogOfWar\FogOfWarUnit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\AbstractCost.cs">
     <Files>
-      <File FileName="Assets\TurretPlacer.cs" Line="1" Column="1" />
-      <File FileName="Assets\TurretPlacerManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\buildTurret.cs" Line="211" Column="40" />
-      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="69" Column="16" />
-      <File FileName="Assets\Augmentor.cs" Line="382" Column="12" />
-      <File FileName="Assets\StandardInteract.cs" Line="110" Column="13" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="441" Column="27" />
-      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="8" Column="1" />
+      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="1" Column="1" />
+      <File FileName="Assets\RepairTurret.cs" Line="221" Column="7" />
+      <File FileName="Assets\TurretMount.cs" Line="15" Column="43" />
+      <File FileName="Assets\buildTurret.cs" Line="101" Column="26" />
+      <File FileName="Assets\TurretDeathTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\AbstractCost.cs" Line="78" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

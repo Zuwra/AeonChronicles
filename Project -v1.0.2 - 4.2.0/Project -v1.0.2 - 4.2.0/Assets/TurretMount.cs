@@ -8,6 +8,7 @@ public class TurretMount : MonoBehaviour {
 	public TurretPlacer hasDisplayer;
 
 	public bool rapidArms;
+	public float lastUnPlaceTime = 0;
 	// Use this for initialization
 	void Start () {
 	
@@ -98,14 +99,7 @@ public class TurretMount : MonoBehaviour {
 			manager.setWeapon (obj.GetComponent<IWeapon> ());
 		} 
 
-		if (obj.GetComponent<RepairTurret> () && GetComponentInParent<repairReturn> ()) {
-			GetComponentInParent<repairReturn> ().active = true;
-			GetComponentInParent<repairReturn> ().placeTurret ();
-		} else if (GetComponentInParent<repairReturn> ()) {
-			GetComponentInParent<repairReturn> ().active = false;
-			GetComponentInParent<repairReturn> ().removeTurret();
-		
-		}
+	
 		manager.PlayerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
 		FButtonManager.main.updateTankNumber ();
 
@@ -117,7 +111,7 @@ public class TurretMount : MonoBehaviour {
 			return null;
 		}
 
-
+		lastUnPlaceTime = Time.time;
 		hasDisplayer.gameObject.SetActive (true);
 		GameObject toReturn = turret;
 	//	Debug.Log ("Returning " + toReturn);
@@ -126,27 +120,6 @@ public class TurretMount : MonoBehaviour {
 
 		manager.removeWeapon(toReturn.GetComponent<IWeapon>());
 
-		if (GetComponentInParent<repairReturn> ()) {
-			GetComponentInParent<repairReturn> ().active = false;
-			GetComponentInParent<repairReturn> ().removeTurret();
-		}
-	
-
-
-
-			foreach (TurretMount turr in transform.parent.GetComponentsInChildren<TurretMount> ()) {
-			if (turr.turret != null && turr.turret.GetComponent<RepairTurret> () == null) {
-				//manager.setWeapon (turr.turret.GetComponent<IWeapon> ());
-				//turret = turr.gameObject;
-				//GetComponentInParent<repairReturn> ().removeTurret();
-
-				//return turr.turret;
-			} else if (turr.turret != null && turr.turret.GetComponent<RepairTurret> () != null) {
-				//GetComponentInParent<repairReturn> ().active = true;
-				//GetComponentInParent<repairReturn> ().placeTurret ();
-				//turret = turr.gameObject;
-			}
-			}
 
 		FButtonManager.main.updateTankNumber ();
 		//Debug.Log ("Deatched " + turret);

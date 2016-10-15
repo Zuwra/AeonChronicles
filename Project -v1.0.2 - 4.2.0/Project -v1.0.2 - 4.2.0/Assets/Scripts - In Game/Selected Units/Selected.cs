@@ -355,8 +355,8 @@ public class Selected : MonoBehaviour {
 	public void updateCoolDown(float ratio)
 	{
 		coolDownSlider.value = ratio;
-		if (ratio <= 0) {
-			//buffDisplay.isOn = false;
+		if (ratio <= 0 || ratio >=.999f) {
+
 
 			coolDownSlider.gameObject.SetActive (false);
 		} else {

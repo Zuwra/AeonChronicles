@@ -78,6 +78,8 @@ public class buildTurret :UnitProduction{
 
 					turretMounts.RemoveAll (item => item == null);
 					foreach (TurretMount obj in turretMounts) {
+
+					//You may place a turret and run out halfway through this loop
 						if (chargeCount == 0) {
 							return;
 						}
@@ -85,17 +87,17 @@ public class buildTurret :UnitProduction{
 					
 						if (obj.enabled == false) {
 							return;}
+					//Uncomment this if There is ever a unit that can carry turrets but not fire them
+						//if (obj.gameObject.GetComponentInParent<TurretPickUp> ()) {
 
-						if (obj.gameObject.GetComponentInParent<TurretPickUp> ()) {
-
-							if (!obj.gameObject.GetComponentInParent<TurretPickUp> ().autocast) {
+							//if (!obj.gameObject.GetComponentInParent<TurretPickUp> ().autocast) {
 								
-								return;
-							}
-						}
+								//return;
+							//}
+						//}
 
 
-						if (obj.turret == null ) {
+					if (obj.turret == null && obj.lastUnPlaceTime < Time.time -2) {
 							if (soundEffect) {
 								audioSrc.PlayOneShot (soundEffect);
 							}

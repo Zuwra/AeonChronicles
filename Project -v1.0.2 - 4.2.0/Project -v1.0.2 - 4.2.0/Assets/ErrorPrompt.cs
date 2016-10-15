@@ -9,15 +9,23 @@ public class ErrorPrompt : MonoBehaviour {
 	public AudioClip errorSound;
 	public static ErrorPrompt instance;
 
+
+	float lastErrorTime;
 	public void showError(string err)
 	{
 
+		if (lastErrorTime < Time.time - 3) {
+		
+		
 
-		this.gameObject.GetComponent<Text> ().text = err;
-		this.gameObject.GetComponent<Text> ().enabled = true;
-		myAudio.PlayOneShot (errorSound);
-		StopCoroutine (MyCoroutine ());
-		StartCoroutine(MyCoroutine());
+			this.gameObject.GetComponent<Text> ().text = err;
+			this.gameObject.GetComponent<Text> ().enabled = true;
+			myAudio.PlayOneShot (errorSound);
+			StopCoroutine (MyCoroutine ());
+			StartCoroutine (MyCoroutine ());
+
+			lastErrorTime = Time.time;
+		}
 	}
 	
 	

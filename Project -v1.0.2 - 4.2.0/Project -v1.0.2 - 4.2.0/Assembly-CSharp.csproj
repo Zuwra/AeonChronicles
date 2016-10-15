@@ -217,7 +217,6 @@
      <Compile Include="Assets\BasicBeamShot\Script\ShotParticle_Scale.cs" />
      <Compile Include="Assets\BeamCannon.cs" />
      <Compile Include="Assets\Behavior.cs" />
-     <Compile Include="Assets\BigTurretScreenDisplayer.cs" />
      <Compile Include="Assets\BloodFury.cs" />
      <Compile Include="Assets\BloodMist.cs" />
      <Compile Include="Assets\BloodMistAura.cs" />
@@ -499,14 +498,12 @@
      <Compile Include="Assets\TurretDeathTrigger.cs" />
      <Compile Include="Assets\TurretHealthDisplay.cs" />
      <Compile Include="Assets\TurretMount.cs" />
-     <Compile Include="Assets\TurretMountTwo.cs" />
      <Compile Include="Assets\TurretPickUp.cs" />
      <Compile Include="Assets\TurretPlacer.cs" />
      <Compile Include="Assets\TurretPlacerManager.cs" />
      <Compile Include="Assets\TurretScreenDisplayer.cs" />
      <Compile Include="Assets\TurretTipDisplayer.cs" />
      <Compile Include="Assets\TurretUIPanel.cs" />
-     <Compile Include="Assets\TurretplacerTwo.cs" />
      <Compile Include="Assets\TutorialManager.cs" />
      <Compile Include="Assets\TutorialPage.cs" />
      <Compile Include="Assets\UIHighLight.cs" />

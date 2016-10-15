@@ -223,7 +223,9 @@ public class TurretPlacer : MonoBehaviour {
 				break;
 			}
 		}
-		turretManager.deactivate (true);
+		if (turretManager) {
+			turretManager.deactivate (true);
+		}
 	}
 
 	public void buildRailGun()
@@ -239,7 +241,9 @@ public class TurretPlacer : MonoBehaviour {
 			}
 		}
 
-		turretManager.deactivate (true);
+		if (turretManager) {
+			turretManager.deactivate (true);
+		}
 	}
 
 	public void buildMortar()
@@ -254,7 +258,9 @@ public class TurretPlacer : MonoBehaviour {
 				break;
 			}
 		}
-		turretManager.deactivate (true);
+		if (turretManager) {
+			turretManager.deactivate (true);
+		}
 	}
 
 	public void buildRepair()
@@ -269,7 +275,9 @@ public class TurretPlacer : MonoBehaviour {
 				break;
 			}
 		}
-		turretManager.deactivate (true);
+		if (turretManager) {
+			turretManager.deactivate (true);
+		}
 	}
 
 

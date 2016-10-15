@@ -211,16 +211,16 @@ public class RepairTurret : Ability, Modifier{
 	{ 
 
 		Destroy (drone);
-		foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {
+		//foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {
 
-			if (turr.turret != null) {
+			//if (turr.turret != null) {
 
 				// What does this do again?
 				//mymanager.myWeapon= (turr.turret.GetComponent<IWeapon> ());
-				return 0 ;
-			}
+				//return 0 ;
+			//}
 
-		}
+		//}
 		return 0 ;
 
 	}
