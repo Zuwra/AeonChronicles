@@ -45,9 +45,11 @@ public class AetherRelay : Ability{
 					manager.myStats.changeEnergy (-19.9f);
 
 
+
 					foreach (UnitStats us in enemyStats) {
 						if (us) {
-							us.TakeDamage (damageRate, this.gameObject, DamageTypes.DamageType.Regular);
+							float actual = us.TakeDamage (damageRate, this.gameObject, DamageTypes.DamageType.Regular);
+							manager.myStats.veternStat.UpdamageDone (actual);
 						}
 					}
 				}
@@ -57,8 +59,9 @@ public class AetherRelay : Ability{
 				foreach (DayexaShield ds in shieldList) {
 
 					if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
-						ds.myStats.changeEnergy (energyChargeRate);
+						float actual = ds.myStats.changeEnergy (energyChargeRate);
 						Instantiate (chargeEffect, ds.transform.position, Quaternion.identity);
+						manager.myStats.veternStat.energyGained += actual;
 					}
 
 				}

@@ -29,6 +29,10 @@ public class RepairTurret : Ability, Modifier{
 		droneScript.repairRate = repairRate;
 	
 	}
+	public UnitManager getManager()
+	{
+		return mymanager;
+	}
 
 	public override void setAutoCast(bool offOn){
 	}

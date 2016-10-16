@@ -43,7 +43,8 @@ public class RepairDrone : MonoBehaviour {
 						}
 					
 					} else {
-						targetMan.myStats.heal (amount);
+						float actual = targetMan.myStats.heal (amount);
+						myHome.getManager ().myStats.veternStat.healingDone += actual;
 						if (amount > 0) {
 							PopUpMaker.CreateGlobalPopUp ("+" + amount, Color.green, target.transform.position);
 						}

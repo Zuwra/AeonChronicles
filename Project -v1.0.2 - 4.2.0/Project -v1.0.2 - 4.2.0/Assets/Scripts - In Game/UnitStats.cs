@@ -125,16 +125,16 @@ public class UnitStats : MonoBehaviour {
 
 			//Regenerate Health
 			if (health < Maxhealth && HealthRegenPerSec > 0) {
-				veternStat.healingDone += heal (HealthRegenPerSec / 2);
-
+				float actual = veternStat.healingDone += heal (HealthRegenPerSec / 2);
+				veternStat.UpHealing (actual);
 			}
 
 
 			//Regenerate Energy
 			if (currentEnergy < MaxEnergy && EnergyRegenPerSec >0) {
 
-				changeEnergy (EnergyRegenPerSec / 2);
-
+				float actual = changeEnergy (EnergyRegenPerSec / 2);
+				veternStat.UpEnergy (actual);
 			}
 		}
 
@@ -167,8 +167,8 @@ public class UnitStats : MonoBehaviour {
 					Instantiate (takeDamageEffect, this.gameObject.transform.position, new Quaternion ());
 				}
 				if (veternStat != null) {
-					veternStat.mitigatedDamage += armor;
-					veternStat.damageTaken += amount;
+					veternStat.UpMitigated(armor);
+					veternStat.UpdamTaken (amount);
 				}
 				health -= amount;
 
@@ -339,17 +339,16 @@ public class UnitStats : MonoBehaviour {
 		}
 	}
 
-	public void changeEnergy(float n)
+	public float changeEnergy(float n)
 	{
 		if (MaxEnergy == 0) {
 		
-			return;}
-		float amount;
+			return 0;}
+		float amount = 0;
 
 		if (n > 0 ) {
 			amount = Math.Min (n, MaxEnergy - currentEnergy);
 			currentEnergy += amount;
-			veternStat.energyGained += amount;
 		} else {
 			currentEnergy += n;
 			if (currentEnergy < 0) {
@@ -358,6 +357,7 @@ public class UnitStats : MonoBehaviour {
 		}
 
 		updateEnergyBar ();
+		return amount;
 	}
 
 	public float heal(float n)

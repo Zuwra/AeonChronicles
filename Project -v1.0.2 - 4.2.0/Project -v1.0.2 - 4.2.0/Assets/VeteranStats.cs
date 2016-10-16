@@ -58,5 +58,18 @@ public class VeteranStats : IComparable<VeteranStats>{
 		
 	
 	}
+	public void UpdamTaken(float amount)
+	{damageTaken += amount;}
 
+	public void UpdamageDone(float amount)
+	{damageDone += amount;}
+
+	public void UpHealing(float amount)
+	{healingDone += amount;}
+
+	public void UpEnergy(float amount)
+	{energyGained += amount;}
+
+	public void UpMitigated(float amount)
+	{mitigatedDamage += amount;}
 }
