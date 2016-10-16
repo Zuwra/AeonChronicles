@@ -10,6 +10,8 @@ using UnityEngine.EventSystems;
 
 		private Canvas toolbox;
 	public Ability myAbility;
+	CostBox daCostBox;
+
 
 		public void OnPointerEnter(PointerEventData eventd)
 		{
@@ -29,14 +31,14 @@ using UnityEngine.EventSystems;
 		// Use this for initialization
 		void Start () {
 			toolbox = GameObject.Find ("AbilityBox").GetComponent<Canvas>();
-
+		daCostBox = toolbox.GetComponent<CostBox> ();
 		}
 
 		// Update is called once per frame
 		void Update () {
 			if (pointerInside) {
 
-			toolbox.GetComponent<CostBox> ().setText(myAbility);
+			daCostBox.setText(myAbility);
 				//toolbox.transform.position = new Vector3 (Input.mousePosition.x + 105, Input.mousePosition.y + 70, 0);
 
 			}

@@ -278,8 +278,8 @@ public class IWeapon : MonoBehaviour {
 				myManager.cleanEnemy ();
 			}
 			if (attackSoundEffect) {
-
-				audioSrc.PlayOneShot (attackSoundEffect);
+				audioSrc.pitch = ((float)Random.Range (6, 14) / 10);
+				audioSrc.PlayOneShot (attackSoundEffect, ((float)Random.Range(4,10)/10));
 			}
 			if (fireEffect) {
 				fireEffect.playEffect ();

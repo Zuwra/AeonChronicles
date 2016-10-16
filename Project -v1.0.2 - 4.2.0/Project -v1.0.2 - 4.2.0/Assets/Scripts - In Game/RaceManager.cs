@@ -494,6 +494,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		foreach (ManagerWatcher watch in myWatchers) {
 			if(watch != null){
+				Debug.Log ("Checking " + watch);
 				watch.updateResources(ResourceOne, ResourceTwo, income);}
 			else{hasNull = true;}
 

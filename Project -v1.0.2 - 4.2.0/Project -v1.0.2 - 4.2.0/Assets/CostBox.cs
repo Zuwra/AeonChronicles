@@ -19,7 +19,7 @@ public class CostBox : MonoBehaviour {
 	public Text Population;
 	public Image EnergyPic;
 	public Text EnergyText;
-
+	public Image OreIcon;
 
 	Color teal = new Color(.698f, .949f, 255);
 	// Use this for initialization
@@ -68,11 +68,9 @@ public class CostBox : MonoBehaviour {
 
 				float sup =	mwertqert.supply;
 				if (sup > 0) {
-					if (input.myCost.health > 0) {
-						Population.text = "\nPop: " + sup;
-					} else {
+					
 						Population.text = "Pop: " + sup;
-					}
+
 				} else {
 					Population.text = "";
 				}
@@ -82,8 +80,8 @@ public class CostBox : MonoBehaviour {
 
 
 			if (input.myCost.ResourceOne > 0) {
-				resOne.text = "Ore: " + input.myCost.ResourceOne;
-
+				resOne.text = "" + input.myCost.ResourceOne;
+				OreIcon.enabled =true;
 				if (order.reasonList.Contains (continueOrder.reason.resourceOne)) {
 					resOne.color = Color.red;
 				} else {
@@ -92,6 +90,8 @@ public class CostBox : MonoBehaviour {
 
 
 			} else {
+				Debug.Log ("Disabling");
+				OreIcon.enabled = false;
 				resOne.text = "";
 			}
 
@@ -165,6 +165,7 @@ public class CostBox : MonoBehaviour {
 			requirements.text = "";
 			clocker.enabled = false;
 			BloodDrop.enabled = false;
+			OreIcon.enabled = false;
 		}
 		description.text = input.Descripton;
 

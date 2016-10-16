@@ -508,6 +508,7 @@
      <Compile Include="Assets\TutorialPage.cs" />
      <Compile Include="Assets\UIHighLight.cs" />
      <Compile Include="Assets\UltCooldown.cs" />
+     <Compile Include="Assets\UltTip.cs" />
      <Compile Include="Assets\UltimateApplier.cs" />
      <Compile Include="Assets\UndyingArmor.cs" />
      <Compile Include="Assets\UnitCardCreater.cs" />

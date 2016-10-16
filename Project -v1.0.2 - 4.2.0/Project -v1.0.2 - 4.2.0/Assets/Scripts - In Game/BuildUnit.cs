@@ -100,7 +100,7 @@ public class BuildUnit : UnitProduction {
 	override
 	public continueOrder canActivate (bool showError)
 	{
-		Debug.Log ("SHow it " + showError);
+		
 		continueOrder order = new continueOrder();
 
 

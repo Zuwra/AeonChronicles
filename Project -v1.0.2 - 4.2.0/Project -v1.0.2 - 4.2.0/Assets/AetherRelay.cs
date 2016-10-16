@@ -157,8 +157,10 @@ public class AetherRelay : Ability{
 			manager.getUnitStats ().TakeDamage (.1f, this.gameObject, DamageTypes.DamageType.Regular);
 			manager.getUnitStats ().changeEnergy (.1f);
 			myEffect.continueEffect ();
+			myCost.payCost ();
 			nextActionTime = Time.time + .02f;
 		} else {
+			
 			myEffect.stopEffect ();
 		
 		}

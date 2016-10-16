@@ -27,10 +27,10 @@ public class EconomyManager : MonoBehaviour {
 
 		if (racer.OneName.Length > 0) {
 			
-			ResourceOne.text = racer.OneName + ": ";
+			ResourceOne.text = " ";
 		}
 		if (racer.TwoName.Length > 0) {
-			ResourceTwo.text = racer.TwoName + ": ";
+			ResourceTwo.text =  " ";
 		}
 	}
 	

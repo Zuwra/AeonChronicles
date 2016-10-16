@@ -46,13 +46,13 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			supply = this.gameObject.transform.FindChild ("Resources").FindChild ("Supply").GetComponent<Text> ();
 
 			if (OneName != "") {
-				resourceOne.text = OneName + "  " + raceManager.ResourceOne;
+				resourceOne.text = "" + raceManager.ResourceOne;
 			} else {
 				resourceOne.text = "";
 			}
 
 			if (TwoName != "") {
-				resourceTwo.text = TwoName + "  " + raceManager.ResourceTwo;
+				resourceTwo.text = "" + raceManager.ResourceTwo;
 			} else {
 				resourceTwo.text = "";
 			}
@@ -178,11 +178,11 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	public void updateResources(float resOne, float resTwo, bool income){
 
 		if (OneName != "") {
-			resourceOne.text = OneName + "  " + resOne;
+			resourceOne.text = "" + resOne;
 		}
 		if (TwoName != "") {
 			
-			resourceTwo.text = TwoName + "  " + resTwo;
+			resourceTwo.text = "" + resTwo;
 		}
 	}
 	
