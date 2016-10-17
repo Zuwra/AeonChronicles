@@ -196,6 +196,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		statSelect.reImageUI ();
 	}
 
+	public static void upDateSingleCard()
+	{findSelectMan();
+		statSelect.RedoSingle();
+	}
+
+
 	public static void upDateAutocast()
 	{findSelectMan();
 		statSelect.AutoCastUI();

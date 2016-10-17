@@ -788,8 +788,6 @@ public class UiAbilityManager : MonoBehaviour {
 	{
 		int n = 0;
 
-
-
 		for(int j = 0; j < 3; j ++){
 			if (uiPage.rows [j] == null) {
 				continue;
@@ -893,6 +891,29 @@ public class UiAbilityManager : MonoBehaviour {
 	}
 		
 
+
+
+	public void updateSingleCard()
+	{int n = 0;
+		int totalUnit = 0;
+		//Set divider bars for how many abilities the units have.
+
+
+		for(int j = 0; j < 3; j ++){
+
+			if (currentPage.rows [j] == null) {
+
+				continue;
+			}
+
+			if (currentPage.rows [j] != null) {
+
+				cardCreator.CreateCard (currentPage.rows [j][0]);
+				break;
+				}
+			}
+
+	}
 
 
 	public void upDateActive(Page uiPage)

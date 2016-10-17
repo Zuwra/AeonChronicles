@@ -41,6 +41,8 @@ public class UnitCardCreater : MonoBehaviour {
 	public Canvas ORECANVAS;
 	public Text OreText;
 
+	public GameObject BuffList;
+
 	// Use this for initialization
 	void Start () {
 		builder = GetComponent<BuilderUI> ();
@@ -165,6 +167,30 @@ public class UnitCardCreater : MonoBehaviour {
 				weaponIcons [i].transform.FindChild("DamageIcon").GetComponent<Image> ().sprite = manager.myWeapon [i].myIcon;
 			}
 
+		}
+
+		foreach (Transform child in BuffList.transform) {
+			Destroy (child.gameObject);
+		}
+
+		foreach (Buff dabuff in manager.myStats.goodBuffs) {
+			if (dabuff != null) {
+			
+			
+				GameObject ic = (GameObject)Instantiate (Resources.Load ("BuffIcon"));
+				ic.transform.SetParent (BuffList.transform);
+				ic.transform.FindChild ("BuffHelp").GetComponentInChildren<Text> ().text = dabuff.toolDescription;
+				ic.GetComponent<Image> ().sprite = dabuff.HelpIcon;
+			}
+		}
+
+		foreach (Buff dabuff in manager.myStats.badBuffs) {
+			if (dabuff != null) {
+				GameObject ic = (GameObject)Instantiate (Resources.Load ("BuffIcon"));
+				ic.transform.SetParent (BuffList.transform);
+				ic.transform.FindChild ("BuffHelp").GetComponentInChildren<Text> ().text = dabuff.toolDescription;
+				ic.GetComponent<Image> ().sprite = dabuff.HelpIcon;
+			}
 		}
 
 		builder.loadUnit (obj);

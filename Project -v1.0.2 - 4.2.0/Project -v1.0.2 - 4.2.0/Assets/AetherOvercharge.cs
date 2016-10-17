@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AetherOvercharge : MonoBehaviour, Notify{
+public class AetherOvercharge : Buff, Notify{
 
 	[Tooltip("Perecent - between 0 and 1")]
 	public float rechargeAmount;
@@ -45,8 +45,12 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 		}
 	}
 
-	public void initialize(UnitManager unitman,float chargeAmount, float dur, float AS, float dam, GameObject effect)
+	public void initialize(UnitManager unitman,float chargeAmount, float dur, float AS, float dam, GameObject effect, string descrip, Sprite toolIcon)
 	{nextActionTime = Time.time + 1;
+
+		toolDescription = descrip;
+		HelpIcon = toolIcon;
+
 		attackSpeed = AS;
 		attackDamage = dam;
 		onTarget = true;
@@ -55,7 +59,7 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 		startTime = Time.time;
 		duration = dur;
 		unitman.myStats.changeEnergy (unitman.myStats.MaxEnergy * rechargeAmount);
-
+		applyBuff ();
 		PopUpMaker.CreateGlobalPopUp ("+" + (int)(unitman.myStats.MaxEnergy * rechargeAmount), Color.blue, unitman.gameObject.transform.position);
 
 		AetherEffect = (GameObject)Instantiate (effect, this.gameObject.transform.position, this.gameObject.transform.rotation);
@@ -101,7 +105,7 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 	{
 		//Debug.Log ("Ending spell");
 		GetComponent<DayexaShield> ().startRecharge ();
-
+		removeBuff();
 		Destroy (AetherEffect);
 		foreach (IWeapon weap in myman.myWeapon) {
 			if (weap) {
@@ -133,7 +137,7 @@ public class AetherOvercharge : MonoBehaviour, Notify{
 
 				if (man.gameObject.GetComponent<DayexaShield> ()) {
 					AetherOvercharge charge = man.gameObject.AddComponent<AetherOvercharge> ();
-					charge.initialize (man, rechargeAmount, duration, attackSpeed, attackDamage,AetherEffect);
+					charge.initialize (man, rechargeAmount, duration, attackSpeed, attackDamage,AetherEffect, toolDescription, HelpIcon);
 				}
 			}
 		}

@@ -58,6 +58,13 @@ public class UnitStats : MonoBehaviour {
 
 	bool tagSet = false;
 
+	public List<Buff> goodBuffs = new List<Buff>();
+	public 	List<Buff> badBuffs = new List<Buff>();
+
+
+
+
+
 	void Awake()
 	{
 
@@ -114,6 +121,49 @@ public class UnitStats : MonoBehaviour {
 	public bool isUnitType(UnitTypes.UnitTypeTag type){
 		return TotalTags.Contains (type);
 	}
+
+	public void addBuff(Buff input, bool stack)
+	{
+		if (stack || !goodBuffs.Contains (input)) {
+			goodBuffs.Add (input);
+		}
+		if (mySelection.IsSelected) {
+			RaceManager.upDateSingleCard();
+		}
+	}
+
+	public void addDebuff(Buff input, bool stack)
+	{
+		if (stack || !badBuffs.Contains (input)) {
+			badBuffs.Add (input);
+		}
+		if (mySelection.IsSelected) {
+			RaceManager.upDateSingleCard();
+		}
+	}
+
+	public void removeBuff(Buff input)
+	{
+		if (goodBuffs.Contains (input)) {
+			goodBuffs.Remove(input);
+		}
+		if (mySelection.IsSelected) {
+			
+			RaceManager.upDateSingleCard();
+		}
+
+	}
+
+	public void removeDebuff(Buff input, bool stack)
+	{
+		if (badBuffs.Contains (input)) {
+			badBuffs.Remove(input);
+		}
+		if (mySelection.IsSelected) {
+			RaceManager.upDateSingleCard();
+		}
+	}
+
 
 
 

@@ -224,6 +224,7 @@
      <Compile Include="Assets\Bombardment.cs" />
      <Compile Include="Assets\BonusObjectiverTimer.cs" />
      <Compile Include="Assets\BountyHunter.cs" />
+     <Compile Include="Assets\Buff.cs" />
      <Compile Include="Assets\BuildManager.cs" />
      <Compile Include="Assets\BuildStructure.cs" />
      <Compile Include="Assets\BuildUnitObjective.cs" />

@@ -32,7 +32,7 @@ public class UltTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 	IEnumerator updateCooldown()
 	{
 		while (true) {
-			yield return null;
+			yield return new WaitForSeconds(.5f);
 			if (myUltCost.cooldownProgress () == 1) {
 				cooldown.text = "Cooldown: " +Clock.convertToString(myUltCost.cooldown );}
 			else{
@@ -56,10 +56,6 @@ public class UltTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 
 

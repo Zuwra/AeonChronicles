@@ -469,6 +469,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		
 	}
 
+	public void RedoSingle()
+	{ if (UIPages.Count > 0) {
+			abilityManager.updateSingleCard ();
+		}
+
+	}
+
 	public void AutoCastUI()
 		{  abilityManager.upDateAutoCast(UIPages[currentPage]);
 
