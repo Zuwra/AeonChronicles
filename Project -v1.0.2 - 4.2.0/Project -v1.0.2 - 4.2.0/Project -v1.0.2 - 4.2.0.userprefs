@@ -1,14 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UnitCardCreater.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ResearchUpgrade.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="145" Column="36" />
-      <File FileName="Assets\UnitCardCreater.cs" Line="178" Column="4" />
-      <File FileName="Assets\AetherOvercharge.cs" Line="109" Column="9" />
-      <File FileName="Assets\Buff.cs" Line="25" Column="3" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="191" Column="4" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="477" Column="3" />
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="901" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="262" Column="3" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\ResearchUpgrade.cs" Line="73" Column="2" />
+      <File FileName="Assets\Scripts - In Game\AbstractCost.cs" Line="74" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

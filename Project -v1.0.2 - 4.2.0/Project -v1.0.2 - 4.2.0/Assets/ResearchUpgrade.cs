@@ -63,7 +63,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	public continueOrder canActivate (bool showError)
 		{continueOrder order = new continueOrder();
 
-		if (researching || !myCost.canActivate (this)) {
+		if (researching || !myCost.canActivate (this, order, showError)) {
 			order.canCast = false;
 			order.nextUnitCast = false;
 				return order;}
@@ -82,7 +82,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	
 			if (buildMan.buildUnit (this)) {
 				timer = buildTime;
-				Debug.Log ("Name " + Name + "   is false" );
+				//Debug.Log ("Name " + Name + "   is false" );
 				active = false;
 				if (mySelect.IsSelected) {
 					RaceManager.updateActivity ();

@@ -23,13 +23,15 @@ public class UnitIconInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
 
 	public void updateNum()
-	{if (!buildMan) {
+	{try{if (!buildMan) {
 			return;
 	} else if (buildMan.buildOrder.Count > 0) {
 		BuildNum.text = "" + buildMan.buildOrder.Count;
 	} else {
 		BuildNum.text = "";
-	}
+	}}
+		catch(MissingReferenceException) {
+		}
 
 
 	}
