@@ -48,7 +48,7 @@ public class TargetCircle : MonoBehaviour {
 	void Update () {
 		if (unit) {
 			Vector3 location = unit.transform.position;
-			location.y += 20;
+			location.y += 15;
 			this.gameObject.transform.position = location;
 		}
 	}

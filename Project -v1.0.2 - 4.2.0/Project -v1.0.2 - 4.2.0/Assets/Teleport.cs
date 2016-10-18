@@ -4,7 +4,7 @@ using System.Collections;
 public class Teleport :  TargetAbility {
 
 	//private UnitManager manage;
-
+	public GameObject effect;
 	// Use this for initialization
 	void Start () {
 		//manage = this.gameObject.GetComponent<UnitManager> ();
@@ -50,7 +50,10 @@ public class Teleport :  TargetAbility {
 	{
 
 		myCost.payCost ();
-
+		if (effect) {
+			Instantiate (effect, this.transform.position, Quaternion.identity);
+		
+		}
 		//GameObject proj = null;
 		if (GetComponent<airmover> ()) {
 			this.gameObject.transform.position = location + Vector3.up * GetComponent<airmover> ().flyerHeight;
@@ -66,14 +69,28 @@ public class Teleport :  TargetAbility {
 	public void Cast(){
 
 
+		if (effect) {
+			Instantiate (effect, this.transform.position, Quaternion.identity);
+			Instantiate (effect, this.transform.position, Quaternion.identity);
 
+		}
 		myCost.payCost ();
 
 		//GameObject proj = null;
 		if (GetComponent<airmover> ()) {
 			this.gameObject.transform.position = location + Vector3.up * GetComponent<airmover> ().flyerHeight;
+			if (effect) {
+
+				Instantiate (effect, this.transform.position, Quaternion.identity);
+
+			}
 		} else {
 			this.gameObject.transform.position = location+ Vector3.up *3;
+			if (effect) {
+				
+				Instantiate (effect, this.transform.position, Quaternion.identity);
+
+			}
 		}
 
 		GetComponent<FogOfWarUnit> ().move ();

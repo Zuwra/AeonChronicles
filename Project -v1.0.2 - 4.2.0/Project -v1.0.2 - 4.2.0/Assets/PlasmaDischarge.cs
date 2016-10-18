@@ -8,13 +8,14 @@ public class PlasmaDischarge : Ability {
 	private bool on;
 	public float duration;
 	public float damagePerSecond;
-
-
+	 GameObject mychargeUP;
+	public GameObject chargeUpEffect;
 	private float timer;
 	//private Selected select;
 	public MultiShotParticle BoostEffect;
 	UnitManager myManager;
 
+	public GameObject explodeEffect;
 	private GameObject popUp;
 
 	// Use this for initialization
@@ -72,6 +73,8 @@ public class PlasmaDischarge : Ability {
 					timer = Time.time + duration;
 				popUp = PopUpMaker.CreateGlobalPopUp ("0", Color.red, this.gameObject.transform.position,duration);
 				popUp.transform.SetParent (this.gameObject.transform);
+				mychargeUP = (GameObject)Instantiate (chargeUpEffect, transform.position, Quaternion.identity);
+				mychargeUP.transform.SetParent (this.gameObject.transform);
 
 				}
 			} else {
@@ -91,11 +94,19 @@ public class PlasmaDischarge : Ability {
 		if (BoostEffect) {
 			BoostEffect.stopEffect ();
 		}
+		Destroy (mychargeUP);
+		if (explodeEffect) {
+			Instantiate (explodeEffect, this.transform.position, Quaternion.identity);
+		}
 		foreach(GameObject obj in myManager.enemies)
 		{
 			UnitStats stat = obj.GetComponent<UnitStats> ();
 			stat.TakeDamage ((duration -  (timer -Time.time )) * damagePerSecond, this.gameObject, DamageTypes.DamageType.Regular);
 			PopUpMaker.CreateGlobalPopUp ("-" + (int)((duration - (timer - Time.time)) * damagePerSecond), Color.red, obj.transform.position);
+			if (explodeEffect) {
+				Instantiate (explodeEffect, obj.transform.position, Quaternion.identity);
+			}
+		
 		}
 		Destroy (popUp);
 
