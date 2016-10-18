@@ -25,12 +25,9 @@ public class FButtonManager : MonoBehaviour {
 		//selectManager = GameObject.Find ("Manager").GetComponent<SelectedManager>();
 		//setButtons ();
 		main = this;
-	}
-	
-	// Update is called once per frame
-	void Update () {
 	
 	}
+	
 
 
 	public void updateNumbers(List<GameObject> myUnits)

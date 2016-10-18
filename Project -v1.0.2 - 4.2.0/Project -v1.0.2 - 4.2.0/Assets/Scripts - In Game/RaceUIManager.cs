@@ -219,30 +219,34 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	{SelectedManager.main.globalSelect(3);}
 	
 	public void fFive()
-	{SelectedManager.main.selectAllArmy ();}
+	{raceManager.useAbilityOne ();
+
+		SelectedManager.main.selectAllArmy ();}
 	
 	public void fSix()
-	{SelectedManager.main.selectIdleWorker ();}
+	{raceManager.useAbilityTwo ();
+		}
 	
 	public void fSeven()
-	{SelectedManager.main.selectAllBuildings ();}
+	{raceManager.useAbilityThree ();
+	}
 	
 	public void fEight()
-	{
+	{raceManager.useAbilityFour ();
 		SelectedManager.main.selectAllUnArmedTanks ();
 	}
 	
 	public void fNine()
-	{raceManager.useAbilityOne ();}
+	{SelectedManager.main.selectAllArmy ();}
 	
 	public void fTen()
-	{raceManager.useAbilityTwo ();}
+	{SelectedManager.main.selectIdleWorker ();}
 	
 	public void fEleven()
-	{raceManager.useAbilityThree ();}
+	{	SelectedManager.main.selectAllBuildings ();}
 	
 	public void fTwelve()
-	{raceManager.useAbilityFour ();}
+	{SelectedManager.main.selectAllUnArmedTanks ();}
 
 
 

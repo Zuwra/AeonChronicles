@@ -726,7 +726,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 	public void useAbilityThree()
-	{
+	{Debug.Log ("ulting three");
 		if (UltThree != null) {
 			if(UltThree.active &&UltThree.canActivate(true).canCast)
 			uiManage.SwitchMode (Mode.globalAbility);

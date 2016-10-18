@@ -106,7 +106,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 	void Update () 
 	{
 		if (Input.GetMouseButtonDown (1)) {
-			if (!EventSystem.current.IsPointerOverGameObject ()) {
+			
+			if (!EventSystem.current.IsPointerOverGameObject ()) 
+			{
 				rightClickOrigin = Input.mousePosition;
 				//lineRender.enabled = true;
 
