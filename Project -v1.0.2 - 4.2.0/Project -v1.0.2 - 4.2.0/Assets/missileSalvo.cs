@@ -65,6 +65,9 @@ public class missileSalvo : Ability, Validator, Notify{
 		if (chargeCount > 0) {
 			return true;
 		}
+		if (autocast && chargeCount <= 0) {
+			Activate ();
+		}
 		return false;
 	}
 
@@ -76,7 +79,7 @@ public class missileSalvo : Ability, Validator, Notify{
 		chargeCount--;
 		mySelect.updateCoolDown ((float)chargeCount /(float) maxRockets);
 		RaceManager.upDateUI ();
-		if (autocast && chargeCount == 0) {
+		if (autocast && chargeCount <= 0) {
 			Activate ();
 		}
 		if(MissileModels.Count > chargeCount && chargeCount >= 0){

@@ -12,12 +12,12 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	private Vector3 hookPos;
 	private bool retractHook;
 	private OreDispenser myOre;
-
+	private GameObject oreBlock;
 	// Use this for initialization
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
-
+		oreBlock = Hook.transform.FindChild ("Cube").gameObject;
 
 		StartCoroutine (delayer());
 		if (Hook) {
@@ -138,6 +138,16 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 			if (Hook.transform.position.y > this.gameObject.transform.position.y -hookPos.y ) {
 				Hook.transform.position = this.gameObject.transform.position - hookPos;
+
+				if (oreBlock.activeSelf) {
+					oreBlock.SetActive (false);
+
+					GetComponent<ResourceDropOff> ().dropOff (resourceOne, resourceTwo);
+
+					PopUpMaker.CreateGlobalPopUp ("+" + +resourceOne, Color.white, myManager.gameObject.transform.position);
+
+				}
+
 				retractHook = false;
 
 			}
@@ -265,7 +275,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	public void checkHook()
 	{
 		if (Hook.transform.position.y <this.gameObject.transform.position.y - hookPos.y ) {
-
+			//oreBlock.SetActive (false);
 			retractHook = true;
 
 		}

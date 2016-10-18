@@ -8,6 +8,9 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	GameObject attached;
 	DetachAugment detacher;
 	IMover myMover;
+	public rotater myRotate;
+	public float SpeedPlus = 1.35f;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -52,6 +55,8 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 	//	Debug.Log ("Attaching");
 
+		myRotate.speed *= 3;
+
 		manager.myStats.myHeight = UnitTypes.HeightType.Ground;
 		detacher.allowDetach (true);
 		attached = target;
@@ -85,7 +90,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			foreach (UnitProduction bu in target.GetComponents<UnitProduction>()) {
 				//bu.buildTime *= .65f;
 				bu.myCost.cooldown = bu.buildTime;
-				bu.setBuildRate (1.35f);
+				bu.setBuildRate (SpeedPlus);
 			}
 
 		} else if (unitMan.UnitName == "Armory") {
@@ -95,7 +100,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 				} else if (bt.Name.Contains ("Pod")) {
 					bt.active = true;
 				}
-				bt.setBuildRate (1.35f);
+				bt.setBuildRate (SpeedPlus);
 			}
 
 		} else if (unitMan.UnitName.Contains("Lab") || unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")   ) {
@@ -139,6 +144,8 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	public void Unattach()
 	{if (!attached) {
 			return;}
+
+		myRotate.speed /= 3;
 		manager.myStats.myHeight = UnitTypes.HeightType.Air;
 		attached.GetComponent<UnitManager> ().myStats.removeDeathTrigger (this);
 		MissileArmer armer = attached.GetComponent<MissileArmer> ();

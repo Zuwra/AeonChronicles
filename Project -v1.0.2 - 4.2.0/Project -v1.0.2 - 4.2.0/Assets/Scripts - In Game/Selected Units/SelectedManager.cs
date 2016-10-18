@@ -17,6 +17,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     private List<List<RTSObject>> Group = new List<List<RTSObject>>();
 
     private int currentPage = 0;
+	private int currentCenterOn = 0;
+
 
     public static SelectedManager main;
 	public UIManager uiManage;
@@ -189,9 +191,20 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		else if (Input.GetKeyUp (KeyCode.Space)) {
 			if (SelectedObjects.Count > 0) {
-				if (SelectedObjects [0]) {
-					Vector3 location = SelectedObjects [0].gameObject.transform.position;
-					location.z -= 90;
+				int startingPoint = currentCenterOn;
+				do {
+					currentCenterOn++;
+					if (currentCenterOn >= SelectedObjects.Count) {
+						currentCenterOn = 0;
+					}
+					if(startingPoint == currentCenterOn)
+						{return;}
+				} while(SelectedObjects [currentCenterOn] == null);
+				
+
+				if (SelectedObjects [currentCenterOn]) {
+					Vector3 location = SelectedObjects [currentCenterOn].gameObject.transform.position;
+					location.z -= 70;
 
 					MainCamera.main.Move (location);
 				}

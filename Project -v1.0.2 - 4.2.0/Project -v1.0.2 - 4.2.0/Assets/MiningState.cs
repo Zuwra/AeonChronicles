@@ -9,6 +9,7 @@ public class MiningState : UnitState {
 	private GameObject dropoff;
 	private GameObject hook;
 	private Vector3 startPos;
+	private GameObject oreBlock;
 	private enum miningState
 
 	{
@@ -19,7 +20,7 @@ public class MiningState : UnitState {
 	private float miningTime;
 
 	private miningState state;
-
+	bool hookOn;
 	private float resourceOneAmount;
 	private float resourceTwoAmount;
 
@@ -34,6 +35,7 @@ public class MiningState : UnitState {
 		resourceOneAmount = resourceOne;
 		resourceTwoAmount= resourceTwo;
 		hook = hooky;
+		oreBlock = hook.transform.FindChild ("Cube").gameObject;
 		startPos = hookStart;
 		target = unit;
 		//myMover.resetMoveLocation (target.transform.position);
@@ -52,6 +54,8 @@ public class MiningState : UnitState {
 		
 		//Debug.Log ("Setting to stop");
 		hook.transform.position = myManager.gameObject.transform.position - startPos;
+		oreBlock.SetActive (false);
+		hookOn = false;
 	//	Debug.Log ("Calling");
 		//if (target.GetComponent<OreDispenser> ().requestWork (myManager.gameObject)) {
 			currentlyMining = target.GetComponent<OreDispenser> ();
@@ -125,9 +129,12 @@ public class MiningState : UnitState {
 				}
 			}
 			} else if (timer / miningTime > .75) {
-				
+				if(hookOn)
+				{oreBlock.SetActive (false);
+					hookOn = false;}
 
 				hook.transform.Translate (Vector3.down * Time.deltaTime*20, Space.Self);
+				
 				//Vector3 pos = hook.transform.position ;
 			//	pos.y -= 25f * Time.deltaTime;
 				//hook.transform.position = pos;
@@ -135,6 +142,10 @@ public class MiningState : UnitState {
 				//Vector3 pos = hook.transform.position;
 				if (hook.transform.position.y < (myManager.gameObject.transform.position - startPos).y) {
 					hook.transform.Translate (Vector3.up * Time.deltaTime * 20, Space.Self);
+
+					if(!hookOn)
+						{oreBlock.SetActive (true);
+						hookOn = true;}
 				}
 				//if()
 				//pos.y += 25f * Time.deltaTime;
@@ -147,7 +158,7 @@ public class MiningState : UnitState {
 		case miningState.returning:
 			if (myManager.cMover.move ()) {
 				if (dropoff == null) {
-					dropoff = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer.getNearestDropOff (target);
+					dropoff = GameObject.FindObjectOfType<GameManager>().activePlayer.getNearestDropOff (target);
 
 					if (dropoff == null) {
 						myManager.changeState (new DefaultState ());
@@ -158,8 +169,11 @@ public class MiningState : UnitState {
 
 
 				} else {
+					
+					oreBlock.SetActive (false);
+					hookOn = false;
 					dropoff.GetComponent<ResourceDropOff> ().dropOff (resourceOneAmount, resourceTwoAmount);
-					Debug.Log ("Spawning here");
+				
 					PopUpMaker.CreateGlobalPopUp ("+" + +resourceOneAmount, Color.white,myManager.gameObject.transform.position);
 				
 					myManager.cMover.resetMoveLocation (target.transform.position);

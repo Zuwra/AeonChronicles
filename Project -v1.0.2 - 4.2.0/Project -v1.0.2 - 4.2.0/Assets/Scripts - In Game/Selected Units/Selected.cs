@@ -330,7 +330,7 @@ public class Selected : MonoBehaviour {
 	}
 
 	public void updateEnergyBar(float ratio)
-	{Debug.Log (this.gameObject + "   " + energySlider);
+	{//Debug.Log (this.gameObject + "   " + energySlider);
 		energySlider.value = ratio;
 		if (ratio > .99 || ratio < .01) {
 

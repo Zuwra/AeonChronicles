@@ -41,7 +41,6 @@ public class BuildStructure:  UnitProduction {
 	void Update () {
 		if (Morphing) {
 
-			Debug.Log ("morphing is " + Morphing + "   " + this.gameObject) ;
 
 			float percent = builder.construct (Time.deltaTime / buildTime);
 			if (percent >= 1) {
@@ -49,11 +48,19 @@ public class BuildStructure:  UnitProduction {
 				HD.stopBuilding ();
 				Morphing = false;
 				createUnit ();
+
+
+				RaycastHit hit;		
+
+				if (Physics.Raycast ((this.gameObject.transform.position + Vector3.right * 14 ), Vector3.down,  out hit, Mathf.Infinity, ~(1 << 16))) {
+					
+						Vector3 attackMovePoint = hit.point;
+						myManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));
+					}
 			} else {
 				mySelect.updateCoolDown (percent);
 
 			}
-			//inConstruction.myStats.heal (inConstruction.myStats.Maxhealth * Time.deltaTime/ buildTime);
 
 			
 		}

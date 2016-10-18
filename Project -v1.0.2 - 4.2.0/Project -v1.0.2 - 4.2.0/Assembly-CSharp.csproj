@@ -184,6 +184,7 @@
      <Compile Include="Assets\AttachGrinder.cs" />
      <Compile Include="Assets\AugmentAetherVictory.cs" />
      <Compile Include="Assets\AugmentAttachPoint.cs" />
+     <Compile Include="Assets\AugmentUpgrade.cs" />
      <Compile Include="Assets\Augmentor.cs" />
      <Compile Include="Assets\BackLashAura.cs" />
      <Compile Include="Assets\BackLashZone.cs" />
