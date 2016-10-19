@@ -425,8 +425,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 					}
 
 				if (currentObject.GetComponent<UnitManager> ()) {
+					
 					foreach (GameObject obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
-						//Debug.Log ("Adding " + obj.name);
+
+			
 						m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
 					}
 				}
@@ -437,16 +439,16 @@ public class UIManager : MonoBehaviour, IUIManager {
 		}
 
 	}
-	
+	//Double click
 	public void LeftButton_SingleClickUp(MouseEventArgs e)
 	{
-		if (Time.time < lastClickDouble+ .08f) {
+		if (Time.time < lastClickDouble+ .1f) {
 			return;
 		
 		}
 
 		if (clickOverUI) {
-			//Debug.Log ("Over UI");
+			
 			clickOverUI = false;
 			return;
 		}
@@ -461,7 +463,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		case Mode.Normal:
 			//If we've just switched from another mode, don't execute
-			//Debug.Log ("No current object " + myName +"  " +  e.GetHashCode());
+
 			if (m_Placed) {
 				//Debug.Log ("Was being placed");
 				m_Placed = false;
@@ -505,10 +507,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 					}
                 //if only shift is down, add the unit to selection
                 else if (!IsControlDown && IsShiftDown) {
-
+						Debug.Log ("Add remove " + currentObject);
 						m_SelectedManager.AddRemoveObject (getUnitManagerFromObject (currentObject));
 					} 
 				else {
+						Debug.Log ("Else " + currentObject);
 						m_SelectedManager.AddObject (getUnitManagerFromObject (currentObject));
 					}
 				m_SelectedManager.CreateUIPages (0);

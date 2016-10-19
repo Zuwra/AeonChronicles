@@ -1,14 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\HotkeyMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UI\UIManager.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Teleport.cs" Line="1" Column="1" />
-      <File FileName="Assets\PlasmaDischarge.cs" Line="1" Column="1" />
-      <File FileName="Assets\FButtonManager.cs" Line="36" Column="25" />
-      <File FileName="Assets\HotkeyMenu.cs" Line="54" Column="40" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="468" Column="38" />
+      <File FileName="Assets\Scripts - In Game\Events\EventsManager.Mouse.cs" Line="74" Column="119" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

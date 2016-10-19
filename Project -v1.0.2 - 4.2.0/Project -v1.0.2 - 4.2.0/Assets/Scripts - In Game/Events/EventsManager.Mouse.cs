@@ -51,15 +51,7 @@ public partial class EventsManager {
 				}
 			}
 		}
-		/*
-		if (Input.GetMouseButtonDown (2))
-		{
-			if (MouseClick != null)
-			{
-				MouseClick(this, new MiddleButton_Handler((int)Input.mousePosition.x, (int)Input.mousePosition.y, 2));
-			}
-		}
-		*/
+	
 		if (Input.GetAxis ("Mouse ScrollWheel") != 0)
 		{
 			if (MouseScrollWheel != null) 
@@ -79,7 +71,7 @@ public partial class EventsManager {
 	
 	private void DoubleClickCheck(object sender, MouseEventArgs e)
 	{
-		if (e.doubleClick || e.buttonUp) return;
+		if (e.doubleClick ) return;//|| e.buttonUp moved this out because of weird double click select all, then deselct bug
 		
 		if (checkForDoubleClick)
 		{
