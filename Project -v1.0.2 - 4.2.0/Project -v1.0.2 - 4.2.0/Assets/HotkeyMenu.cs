@@ -11,10 +11,15 @@ public class HotkeyMenu : MonoBehaviour {
 	public GameObject grid;
 
 	public Text GroupOne;
+
 	public Text GroupTwo;
+
 	public Text GroupThree;
+
 	public Text GroupFour;
 
+
+	public List<Image> myPics;
 
 
 
@@ -51,6 +56,7 @@ public class HotkeyMenu : MonoBehaviour {
 			if (obj.GetComponent<Toggle>().isOn) {
 
 				selected [n % 4].Add (objectList[(int) n /4].GetComponent<UnitManager> ().UnitName);
+				myPics [n % 4].sprite = objectList [(int)n / 4].GetComponent<UnitStats> ().Icon;
 			
 			}
 			n++;
