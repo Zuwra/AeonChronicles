@@ -75,6 +75,7 @@ public class BuildStructure:  UnitProduction {
 		myManager.setStun (false, this);
 
 		myManager.changeState(new DefaultState());
+
 		//builder.cancelBuilding ();
 		if (mySelect.IsSelected) {
 			SelectedManager.main.updateUI ();
@@ -97,7 +98,7 @@ public class BuildStructure:  UnitProduction {
 
 	public override void cancelBuilding ()
 	{	
-		
+		racer.stopBuildingUnit (this);
 		HD.stopBuilding ();
 		mySelect.updateCoolDown (0);
 

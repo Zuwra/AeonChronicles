@@ -507,11 +507,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 					}
                 //if only shift is down, add the unit to selection
                 else if (!IsControlDown && IsShiftDown) {
-						Debug.Log ("Add remove " + currentObject);
+
 						m_SelectedManager.AddRemoveObject (getUnitManagerFromObject (currentObject));
 					} 
 				else {
-						Debug.Log ("Else " + currentObject);
+
 						m_SelectedManager.AddObject (getUnitManagerFromObject (currentObject));
 					}
 				m_SelectedManager.CreateUIPages (0);

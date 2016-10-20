@@ -35,7 +35,7 @@ public class ArmyUIManager : MonoBehaviour {
 			
 			unitList [manage.UnitName].Add (unit);
 			if (this.gameObject.activeSelf) {
-				StartCoroutine (addNUmber (manage));
+				StartCoroutine (addNUmber (manage,true));
 			}
 		} 
 		else {
@@ -53,12 +53,16 @@ public class ArmyUIManager : MonoBehaviour {
 
 	}
 
-	IEnumerator addNUmber(UnitManager manage)
+	IEnumerator addNUmber(UnitManager manage, bool addIt)
 	{
 		yield return new WaitForSeconds(0);
 		try{
 		iconList [manage.UnitName].transform.FindChild("Text").GetComponent<Text> ().text
 		= ""+unitList [manage.UnitName].Count;
+
+			if (addIt) {
+				iconList [manage.UnitName].GetComponent<DropDownDudeFinder> ().myProducer.Add (manage.gameObject);
+			} 
 
 		}catch(KeyNotFoundException){
 		
@@ -87,7 +91,7 @@ public class ArmyUIManager : MonoBehaviour {
 
 			} else {
 				if (this.gameObject.activeSelf) {
-					StartCoroutine (addNUmber (manage));
+					StartCoroutine (addNUmber (manage, false));
 				}
 			}
 		}
@@ -101,7 +105,7 @@ public class ArmyUIManager : MonoBehaviour {
 
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
 		icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text = manage.UnitName;
-
+		icon.GetComponent<DropDownDudeFinder> ().myProducer.Add (unit);
 		icon.transform.rotation = unitPanel.transform.rotation;
 
 		icon.transform.SetParent (unitPanel.transform);

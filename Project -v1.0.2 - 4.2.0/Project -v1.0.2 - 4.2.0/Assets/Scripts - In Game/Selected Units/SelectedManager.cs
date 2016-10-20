@@ -190,7 +190,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		}
 
 		else if (Input.GetKeyUp (KeyCode.Space)) {
-			if (SelectedObjects.Count > 0) {
+			if (SelectedObjects.Count == 1) {
+				Vector3 location = SelectedObjects [0].gameObject.transform.position;
+				location.z -= 70;
+
+				MainCamera.main.Move (location);
+			}
+			else if (SelectedObjects.Count > 1) {
 				int startingPoint = currentCenterOn;
 				do {
 					currentCenterOn++;
@@ -987,30 +993,40 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
     public void selectIdleWorker()
-    {
-        {
-            foreach (GameObject obj in raceMan.getUnitList())
-            {
+	{List<UnitManager> idleWorkers = new List<UnitManager> ();
+        
 
-                if (!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Worker))
-                {
-                    continue;
-                }
-                UnitManager manager = obj.GetComponent<UnitManager>();
-                if (!manager.isIdle())
-                {
-                    continue;
-                }
+			foreach (GameObject obj in raceMan.getUnitList()) {
 
-                if (!SelectedObjects.Contains(manager))
-                {
-                    DeselectAll();
-                    AddObject(manager);
-                    break;
-                }
-            }
+				if (!obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+					continue;
+				}
+				UnitManager manager = obj.GetComponent<UnitManager> ();
+				if (!manager.isIdle ()) {
+					continue;
+				} else {
+					idleWorkers.Add (manager);
+				}
+			}
+		if (idleWorkers.Count == 0) {
+			return;}
 
-        }
+		//iterate through each idle worker
+			currentCenterOn++;
+			if (currentCenterOn >= idleWorkers.Count) {
+				currentCenterOn = 0;
+			}
+
+
+			Vector3 location = idleWorkers [currentCenterOn].gameObject.transform.position;
+			location.z -= 70;
+
+			MainCamera.main.Move (location);
+			DeselectAll();
+			AddObject(idleWorkers [currentCenterOn]);
+
+
+
 		CreateUIPages(0);
     }
 

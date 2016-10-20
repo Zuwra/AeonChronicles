@@ -262,6 +262,7 @@
      <Compile Include="Assets\DeathWinTrigger.cs" />
      <Compile Include="Assets\DetachAugment.cs" />
      <Compile Include="Assets\DifficultyManager.cs" />
+     <Compile Include="Assets\DropDownDudeFinder.cs" />
      <Compile Include="Assets\DuplexPlating.cs" />
      <Compile Include="Assets\EMPblast.cs" />
      <Compile Include="Assets\EconomyManager.cs" />

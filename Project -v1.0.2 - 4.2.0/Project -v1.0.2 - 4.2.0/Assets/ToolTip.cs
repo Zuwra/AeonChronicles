@@ -34,11 +34,6 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 			toolbox = GameObject.Find ("ToolTipBox").GetComponent<Canvas> ();
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 
 

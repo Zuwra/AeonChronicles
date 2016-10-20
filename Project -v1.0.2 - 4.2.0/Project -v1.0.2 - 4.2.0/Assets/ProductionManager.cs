@@ -55,66 +55,86 @@ public class ProductionManager : MonoBehaviour {
 	{
 		UnitManager manage = producer.GetComponent<UnitManager> ();
 
-		if (abilityList.ContainsKey (manage.UnitName)) {
+		if (abilityList.ContainsKey (producer.Name)) {
 
 		
-			abilityList [manage.UnitName].Add (producer);
-			StartCoroutine (addNUmber (manage));
+			abilityList [producer.Name].Add (producer);
+
+			StartCoroutine (addNUmber (producer, true));
+
 
 		} 
 		else {
 
 			List<UnitProduction> list = new List<UnitProduction> ();
 			list.Add (producer);
-			abilityList.Add (manage.UnitName, list);
+			//abilityList.Add (producer.Name manage.UnitName, list);
+			abilityList.Add (producer.Name, list);
 			unitCount++;
 
 
 			StartCoroutine (createIcon (producer));
 
+
 		}
 
 	}
 
-	IEnumerator addNUmber(UnitManager manage)
+	IEnumerator addNUmber(UnitProduction produce, bool addIt)
 	{
 		yield return new WaitForSeconds(0);
+	
+		iconList [produce.Name].transform.FindChild("Text").GetComponent<Text> ().text
+		= ""+abilityList [produce.Name].Count;
 
-		iconList [manage.UnitName].transform.FindChild("Text").GetComponent<Text> ().text
-		= ""+abilityList [manage.UnitName].Count;
+		if (addIt) {
+			iconList [produce.Name].GetComponent<DropDownDudeFinder> ().myProducer.Add (produce.gameObject);
+		} else {
+			iconList [produce.Name].GetComponent<DropDownDudeFinder> ().myProducer.Remove (produce.gameObject);
+		}
 	}
 
 
 
 
 	public void unitLost(UnitProduction produce)
-	{UnitManager manage = produce.GetComponent<UnitManager> ();
-		if (abilityList.ContainsKey (manage.UnitName)) {
-			abilityList [manage.UnitName].Remove (produce);
+	{
+
+		UnitManager manage = produce.GetComponent<UnitManager> ();
+
+		if (abilityList.ContainsKey (produce.Name)) {
+			abilityList [produce.Name].Remove (produce);
+
 		
-			if (abilityList [manage.UnitName].Count == 0) {
-				if (iconList.ContainsKey (manage.UnitName)) {
-					GameObject obj = iconList [manage.UnitName];
-					iconList.Remove (manage.UnitName);
+			if (abilityList [produce.Name].Count == 0) {
+				if (iconList.ContainsKey (produce.Name)) {
+					GameObject obj = iconList [produce.Name];
+					iconList.Remove (produce.Name);
 					Destroy (obj);
-					abilityList.Remove (manage.UnitName);
+					abilityList.Remove (produce.Name);
+
 				}
 			} else {
-				addNUmber (manage);
+
+
+				StartCoroutine( addNUmber (produce, false));
 			}
 		}
 	}
 
 
 	IEnumerator createIcon(UnitProduction produce)
-	{		yield return new WaitForSeconds(0);
+	{		
+		yield return new WaitForSeconds(0);
 
+	
 		UnitManager manage = produce.GetComponent<UnitManager> ();
+	
 		UnitStats theStats = manage.gameObject.GetComponent<UnitStats> ();
 
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
 		icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text =produce.unitToBuild.GetComponent<UnitManager>().UnitName;
-
+		icon.GetComponent<DropDownDudeFinder> ().myProducer.Add (produce.gameObject);
 		icon.transform.rotation = unitPanel.transform.rotation;
 	
 		icon.transform.SetParent (unitPanel.transform);
@@ -140,7 +160,7 @@ public class ProductionManager : MonoBehaviour {
 
 		}
 		icon.transform.localScale = unitPanel.transform.localScale;
-		iconList.Add (manage.UnitName, icon);
+		iconList.Add (produce.Name, icon);
 
 	}
 
