@@ -710,36 +710,40 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void useAbilityOne()
 	{if (UltOne != null) {
-			if(UltOne.active &&UltOne.canActivate(true).canCast)
-			uiManage.SwitchMode (Mode.globalAbility);
-			uiManage.setAbility (	UltOne, 1);
+			if (UltOne.active && UltOne.canActivate (true).canCast) {
+				uiManage.SwitchMode (Mode.globalAbility);
+				uiManage.setAbility (UltOne, 1);
+			}
 		}
 	}
 
 	public void useAbilityTwo()
 	{
 		if (UltTwo != null) {
-			if(UltTwo.active &&UltTwo.canActivate(true).canCast)
-			uiManage.SwitchMode (Mode.globalAbility);
-			uiManage.setAbility (	UltTwo, 1);
+			if (UltTwo.active && UltTwo.canActivate (true).canCast) {
+				uiManage.SwitchMode (Mode.globalAbility);
+				uiManage.setAbility (UltTwo, 1);
+			}
 		}
 	}
 
 	public void useAbilityThree()
-	{Debug.Log ("ulting three");
+	{
 		if (UltThree != null) {
-			if(UltThree.active &&UltThree.canActivate(true).canCast)
-			uiManage.SwitchMode (Mode.globalAbility);
-			uiManage.setAbility (	UltThree, 1);
+			if (UltThree.active && UltThree.canActivate (true).canCast) {
+				uiManage.SwitchMode (Mode.globalAbility);
+				uiManage.setAbility (UltThree, 1);
+			}
 		}
 	}
 
 	public void useAbilityFour()
 	{
 		if (UltFour != null) {
-			if(UltFour.active && UltFour.canActivate(true).canCast)
-			uiManage.SwitchMode (Mode.globalAbility);
-			uiManage.setAbility (	UltFour, 1);
+			if (UltFour.active && UltFour.canActivate (true).canCast) {
+				uiManage.SwitchMode (Mode.globalAbility);
+				uiManage.setAbility (UltFour, 1);
+			}
 		}
 	}
 

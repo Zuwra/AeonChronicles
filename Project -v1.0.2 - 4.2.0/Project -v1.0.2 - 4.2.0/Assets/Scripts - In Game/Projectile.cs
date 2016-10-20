@@ -74,6 +74,13 @@ public  class Projectile : MonoBehaviour {
 			myIndiactor.GetComponentInChildren<Light>().cookie = indicatorPic;
 			myIndiactor.GetComponentInChildren<Light> ().spotAngle = indicatorSize;
 		}
+
+		AudioSource aud = GetComponent<AudioSource> ();
+		if (aud) {
+			aud.priority += Random.Range (-30, 30);
+			aud.volume = ((float)Random.Range (1, 5)) / 10;
+			aud.pitch +=((float)Random.Range (-10, 10)) / 10;
+		}
 	
 	}
 

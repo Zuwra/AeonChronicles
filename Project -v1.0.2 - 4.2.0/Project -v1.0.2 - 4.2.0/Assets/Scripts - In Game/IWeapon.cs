@@ -88,6 +88,7 @@ public class IWeapon : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		audioSrc = GetComponent<AudioSource> ();
+		audioSrc.priority += Random.Range (-30, 30);
 		myManager = this.gameObject.GetComponent<UnitManager> ();
 
 		myRadius = GetComponent<CharacterController> ().radius;

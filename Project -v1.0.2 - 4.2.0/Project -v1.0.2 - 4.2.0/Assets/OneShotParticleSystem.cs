@@ -10,6 +10,14 @@ public class OneShotParticleSystem : MonoBehaviour {
 		public void Start() 
 		{
 			ps = GetComponent<ParticleSystem>();
+		AudioSource aud = GetComponent<AudioSource> ();
+		if (aud) {
+			aud.priority += Random.Range (0, 100);
+			aud.volume = ((float)Random.Range (2, 8)) / 10;
+			aud.pitch +=((float)Random.Range (-10, 10)) / 10;
+		}
+
+
 		}
 
 		public void Update() 

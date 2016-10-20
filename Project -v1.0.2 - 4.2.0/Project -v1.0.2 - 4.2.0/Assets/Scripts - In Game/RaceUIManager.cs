@@ -219,9 +219,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	{SelectedManager.main.globalSelect(3);}
 	
 	public void fFive()
-	{raceManager.useAbilityOne ();
-
-		SelectedManager.main.selectAllArmy ();}
+	{raceManager.useAbilityOne ();}
 	
 	public void fSix()
 	{raceManager.useAbilityTwo ();
@@ -233,7 +231,6 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 	
 	public void fEight()
 	{raceManager.useAbilityFour ();
-		SelectedManager.main.selectAllUnArmedTanks ();
 	}
 	
 	public void fNine()
