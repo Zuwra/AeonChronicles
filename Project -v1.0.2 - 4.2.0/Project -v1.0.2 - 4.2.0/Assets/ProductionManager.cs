@@ -53,8 +53,7 @@ public class ProductionManager : MonoBehaviour {
 
 	public void updateUnits( UnitProduction producer)
 	{
-		UnitManager manage = producer.GetComponent<UnitManager> ();
-
+		
 		if (abilityList.ContainsKey (producer.Name)) {
 
 		
@@ -68,7 +67,7 @@ public class ProductionManager : MonoBehaviour {
 
 			List<UnitProduction> list = new List<UnitProduction> ();
 			list.Add (producer);
-			//abilityList.Add (producer.Name manage.UnitName, list);
+
 			abilityList.Add (producer.Name, list);
 			unitCount++;
 
@@ -99,8 +98,6 @@ public class ProductionManager : MonoBehaviour {
 
 	public void unitLost(UnitProduction produce)
 	{
-
-		UnitManager manage = produce.GetComponent<UnitManager> ();
 
 		if (abilityList.ContainsKey (produce.Name)) {
 			abilityList [produce.Name].Remove (produce);

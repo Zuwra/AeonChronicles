@@ -157,7 +157,7 @@ public class BuildStructure:  UnitProduction {
 			buildMan.buildUnit (this);
 			myManager.cMover.stop ();
 
-			Debug.Log ("Turnign on");
+		//	Debug.Log ("Turnign on");
 			Morphing = true;
 			racer.buildingUnit (this);
 

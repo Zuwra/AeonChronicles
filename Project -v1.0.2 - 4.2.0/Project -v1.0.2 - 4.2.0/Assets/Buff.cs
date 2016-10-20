@@ -28,7 +28,6 @@ public abstract class Buff : MonoBehaviour {
 	public void removeBuff()
 	{
 		myManager.myStats.removeBuff(this);
-		Debug.Log ("Removing");
 
 	}
 }

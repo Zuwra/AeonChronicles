@@ -77,7 +77,7 @@ public  class Projectile : MonoBehaviour {
 
 		AudioSource aud = GetComponent<AudioSource> ();
 		if (aud) {
-			aud.priority += Random.Range (-30, 30);
+			aud.priority += Random.Range (-60, 0);
 			aud.volume = ((float)Random.Range (1, 5)) / 10;
 			aud.pitch +=((float)Random.Range (-10, 10)) / 10;
 		}

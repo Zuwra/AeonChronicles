@@ -22,6 +22,8 @@ public class BuildUnit : UnitProduction {
 
 
 	private int QueueNum;
+	[Tooltip("objec that shows up while the unit is building, can be null")]
+	public GameObject constObject;
 	// Use this for initialization
 
 	void Awake()
@@ -93,6 +95,9 @@ public class BuildUnit : UnitProduction {
 			racer.UnitDied (unitToBuild.GetComponent<UnitStats> ().supply, null);
 		}
 		racer.stopBuildingUnit (this);
+		if (constObject) {
+			constObject.SetActive (false);
+		}
 	}
 
 
@@ -145,6 +150,9 @@ public class BuildUnit : UnitProduction {
 
 			obj.SendMessage ("ActivateAnimation", SendMessageOptions.DontRequireReceiver);
 		}
+		if (constObject) {
+			constObject.SetActive (true);
+		}
 
 		HD.loadIMage(unitToBuild.GetComponent<UnitStats> ().Icon);
 		timer = buildTime;
@@ -161,6 +169,11 @@ public class BuildUnit : UnitProduction {
 
 	public void createUnit()
 	{
+
+
+		if (constObject) {
+			constObject.SetActive (false);
+		}
 		HD.stopBuilding ();
 		Vector3 location = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z -20);
 

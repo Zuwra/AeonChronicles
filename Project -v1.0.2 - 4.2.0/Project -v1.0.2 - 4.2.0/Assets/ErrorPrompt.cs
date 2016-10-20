@@ -14,7 +14,7 @@ public class ErrorPrompt : MonoBehaviour {
 	public void showError(string err)
 	{
 
-		if (lastErrorTime < Time.time - 3) {
+		if (lastErrorTime < Time.time - 2.5f) {
 		
 		
 
@@ -27,7 +27,20 @@ public class ErrorPrompt : MonoBehaviour {
 			lastErrorTime = Time.time;
 		}
 	}
-	
+
+
+	//Reserved for thing like building construction completion
+	public void showMessage(string err, AudioClip clip)
+	{
+		this.gameObject.GetComponent<Text> ().text = err;
+		this.gameObject.GetComponent<Text> ().enabled = true;
+		myAudio.PlayOneShot (clip);
+		StopCoroutine (MyCoroutine ());
+		StartCoroutine (MyCoroutine ());
+
+		lastErrorTime = Time.time;
+
+	}
 	
 	IEnumerator MyCoroutine ()
 	{

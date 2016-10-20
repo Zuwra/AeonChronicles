@@ -10,19 +10,20 @@ public class ShieldUpgrade  : Upgrade {
 		DayexaShield manager = obj.GetComponent<DayexaShield>();
 		//Debug.Log ("Checking " + obj);
 		if (manager) {
-		
-			manager.Absorbtion += 2;
+			manager.changeAbsorption (2);
+
 			manager.rechargeRate += 1;
 		}
 	}
 
 	public override void unApplyUpgrade (GameObject obj){
 		DayexaShield manager = obj.GetComponent<DayexaShield>();
-		//Debug.Log ("Checking " + obj);
-		if (manager) {
 
-			manager.Absorbtion -= 2;
+		if (manager) {
+			manager.changeAbsorption (-2);
+	
 			manager.rechargeRate -= 1;
+		
 		}
 	}
 

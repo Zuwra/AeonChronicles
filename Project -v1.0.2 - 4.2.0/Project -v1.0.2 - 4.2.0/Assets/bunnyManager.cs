@@ -20,7 +20,7 @@ public class bunnyManager : MonoBehaviour {
 	public void changeInBunnyCount(int change)
 	{
 		currAmount += change;
-		bunnyCount.text = "Vicious and cute bunny count \n" + currAmount + " / " + maxAmount;
+		bunnyCount.text = "Vicious Bunny Count \n" + currAmount + " / " + maxAmount;
 
 		if (currAmount >= maxAmount) {
 			VictoryTrigger.instance.Lose();

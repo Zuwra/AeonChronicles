@@ -31,11 +31,13 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 			if (researching) {
 			
-
+				
 				timer -= Time.deltaTime * buildRate;
 				mySelect.updateCoolDown (1 - timer/buildTime);
 				if(timer <=0)
 				{mySelect.updateCoolDown (0);
+				ErrorPrompt.instance.showError (upgrades [currentUpgrade].Name + " Complete ");
+
 				HD.stopBuilding ();
 				buildMan.unitFinished (this);
 				researching = false;
@@ -102,7 +104,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	public void commence(object[] incoming)
 	{	//Debug.Log (Name + " is commencing");
 		if (myManager.UnitName == (string)incoming[2]) {
-			Debug.Log ("Name " + upgrades [currentUpgrade].Name + "   is  " + ((Upgrade)incoming[1]).Name);
+			//Debug.Log ("Name " + upgrades [currentUpgrade].Name + "   is  " + ((Upgrade)incoming[1]).Name);
 			if (Name == ((Upgrade)incoming[1]).Name) {
 				
 				active = (bool)incoming[0];
@@ -115,10 +117,10 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	public void researched (Upgrade otherUpgrade)
 	{
 
-		if (upgrades [currentUpgrade].GetType () == otherUpgrade.GetType ()) {
+		if (Name == otherUpgrade.Name) {
 			if (upgrades.Count > currentUpgrade + 1) {
 				currentUpgrade++;
-
+				//Debug.Log ("Replacing " + Name + "   " + otherUpgrade.Name);
 				//this is all here for replaceable or scaling upgrades
 				iconPic = upgrades [currentUpgrade].iconPic;
                 buildTime = upgrades[currentUpgrade].buildTime;

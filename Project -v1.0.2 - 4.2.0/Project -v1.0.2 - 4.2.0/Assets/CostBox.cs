@@ -90,7 +90,7 @@ public class CostBox : MonoBehaviour {
 
 
 			} else {
-				Debug.Log ("Disabling");
+			//	Debug.Log ("Disabling");
 				OreIcon.enabled = false;
 				resOne.text = "";
 			}

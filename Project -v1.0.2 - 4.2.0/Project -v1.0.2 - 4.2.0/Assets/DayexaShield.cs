@@ -98,6 +98,8 @@ public class DayexaShield : Ability,Modifier , Notify{
 
 		}
 
+
+
 		myStats.changeEnergy (-energyLost);
 
 
@@ -112,7 +114,11 @@ public class DayexaShield : Ability,Modifier , Notify{
 		return (amount - damageReduction);
 	}
 
-
+	public void changeAbsorption(float amount)
+	{
+		Absorbtion += amount;
+		Descripton = "[Passive]\nIncominng damage is reduced by " + Absorbtion + " as long as there is energy available.";
+	}
 
 	public override void setAutoCast(bool offOn){
 	}
