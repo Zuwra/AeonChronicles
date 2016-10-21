@@ -117,6 +117,7 @@ public class buildTurret :UnitProduction{
 	public override void DeQueueUnit()
 	{
 		myCost.refundCost ();
+		PopUpMaker.CreateGlobalPopUp ("+" + myCost.ResourceOne, Color.white, this.transform.localPosition + Vector3.up * 8);
 
 	}
 
@@ -254,6 +255,7 @@ public class buildTurret :UnitProduction{
 			if (buildMan.buildUnit (this)) {
 				myCost.payCost ();
 				myCost.resetCoolDown ();
+				PopUpMaker.CreateGlobalPopUp ("-" + myCost.ResourceOne, Color.white, this.transform.localPosition + Vector3.up * 8);
 
 			}
 		}

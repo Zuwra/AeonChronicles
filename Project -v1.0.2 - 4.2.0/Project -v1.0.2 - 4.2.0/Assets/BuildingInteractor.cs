@@ -102,6 +102,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 			GameManager man = GameObject.FindObjectOfType<GameManager>();
 			man.playerList [myManager.PlayerOwner - 1].addUnit (this.gameObject);
 
+			ErrorPrompt.instance.showError(myManager.UnitName + " Construction Complete");
 
 			UnitManager template = sourceObj.GetComponent<UnitManager> ();
 			for (int i = 0; i < myManager.abilityList.Count; i++) {

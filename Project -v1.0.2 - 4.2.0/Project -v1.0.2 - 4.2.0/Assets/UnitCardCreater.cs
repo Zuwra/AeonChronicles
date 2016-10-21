@@ -26,6 +26,8 @@ public class UnitCardCreater : MonoBehaviour {
 	public Image rangeIcon;
 	public Image attackSpeedIcon;
 
+	public Image speedIcon;
+
 	public Text UnitDescription;
 	public UnitManager currentUnit;
 
@@ -126,17 +128,25 @@ public class UnitCardCreater : MonoBehaviour {
 		}
 	
 		if (manager.cMover != null) {
-			speed.text = " " + manager.cMover.getMaxSpeed();
-		} else {speed.text = "";
+			if (manager.cMover.getMaxSpeed () > 0) {
+				speedIcon.enabled = true;
+				speed.text = " " + manager.cMover.getMaxSpeed ();
+			} else {
+				speed.text = "";
+				speedIcon.enabled = false;
+			}
+		} else {
+			speedIcon.enabled = false;
+			speed.text = "";
 		}
 
-		ArmorTypes.text = "A: " + manager.myStats.armorType;
-		SizeTypes.text = "S: " + manager.myStats.sizeType;
-		string s = "";
+		ArmorTypes.text = "" + manager.myStats.armorType;
+		SizeTypes.text = "" + manager.myStats.sizeType;
+		string s = "  ";
 
 		if(manager.myStats.otherTags.Count > 0){
 
-		s = "Types - ";
+		s = " - ";
 			foreach(UnitTypes.UnitTypeTag ut in manager.myStats.otherTags){
 			s += ut + " - ";
 			}

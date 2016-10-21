@@ -38,8 +38,7 @@ public class BuildUnit : UnitProduction {
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer;
 		myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
-	//	myCost.cooldown = buildTime;
-		//manage = GetComponent<UnitManager> ();
+
 		HD = GetComponentInChildren<HealthDisplay>();
 	}
 	
@@ -69,6 +68,7 @@ public class BuildUnit : UnitProduction {
 
 	public override void DeQueueUnit()
 	{myCost.refundCost ();
+		PopUpMaker.CreateGlobalPopUp ("+" + myCost.ResourceOne, Color.white, this.transform.localPosition + Vector3.up * 8);
 		//racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply, null);
 	
 	}
@@ -94,6 +94,7 @@ public class BuildUnit : UnitProduction {
 	
 			racer.UnitDied (unitToBuild.GetComponent<UnitStats> ().supply, null);
 		}
+
 		racer.stopBuildingUnit (this);
 		if (constObject) {
 			constObject.SetActive (false);
@@ -134,6 +135,8 @@ public class BuildUnit : UnitProduction {
 			if (buildMan.buildUnit (this)) {
 				myCost.payCost();
 				myCost.resetCoolDown ();
+
+				PopUpMaker.CreateGlobalPopUp ("-" + myCost.ResourceOne, Color.white, this.transform.localPosition + Vector3.up * 8);
 
 			
 			}

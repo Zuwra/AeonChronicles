@@ -30,9 +30,9 @@ public class BuildStructure:  UnitProduction {
 	void Start () {
 		buildMan = GetComponent<BuildManager> ();
 		myManager = this.gameObject.GetComponent<UnitManager> ();
-		//myInteractor = GetComponent <BuildingInteractor> ();
+
 		mySelect = GetComponent<Selected> ();
-	//	myCost.cooldown = buildTime;
+	
 		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ();
 		HD = GetComponentInChildren<HealthDisplay>();
 	}
@@ -92,6 +92,7 @@ public class BuildStructure:  UnitProduction {
 	public override void DeQueueUnit()
 	{Debug.Log ("Dequeing");
 		myCost.refundCost ();
+		PopUpMaker.CreateGlobalPopUp ("+" + myCost.ResourceOne, Color.white, this.transform.localPosition + Vector3.up * 8);
 
 	}
 
@@ -175,11 +176,7 @@ public class BuildStructure:  UnitProduction {
 			} 
 				builder.startConstruction (unitToBuild, buildTime);
 
-			/*
-			foreach (Ability ab in inConstruction.abilityList) {
-				ab.active = false;
-				//ab.enabled = false;
-			}*/
+		
 			inConstruction.setInteractor();
 			inConstruction.interactor.initialize ();
 			inConstruction.GetComponent<Selected> ().Initialize ();
