@@ -25,14 +25,13 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 		}
 
-	
-
 	}
 
 
 
 	public UnitState computeState(UnitState s)
 	{
+
 
 		return s;
 	}
@@ -178,7 +177,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 			//Move Order ---------------------------------------------
 		case Const.ORDER_MOVE_TO:
 			
-			myManager.changeState (new MoveState (order.OrderLocation, myManager));
+			myManager.changeState (new MoveState (order.OrderLocation, myManager),false,order.queued);
 			if (myOre) {
 				myOre.currentMinor = null;
 				myOre = null;
@@ -196,7 +195,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 						myOre = null;
 					}
 					myOre = order.Target.gameObject.GetComponent<OreDispenser> ();
-					myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
+					myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos),false,order.queued);
 					order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor = this.gameObject;
 				} else if (order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor == this.gameObject) {
 				}
@@ -214,7 +213,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 			}
 
 
-				myManager.changeState (new FollowState (order.Target.gameObject, myManager));
+			myManager.changeState (new FollowState (order.Target.gameObject, myManager),false,order.queued);
 
 
 			break;
@@ -227,9 +226,9 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 				myOre = null;
 			}
 			if (myManager.myWeapon.Count >0)
-				myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager,  myManager.gameObject.transform.position));
+				myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager,  myManager.gameObject.transform.position),false,order.queued);
 			else {
-				myManager.changeState (new MoveState (order.OrderLocation, myManager));
+				myManager.changeState (new MoveState (order.OrderLocation, myManager),false,order.queued);
 			}
 			checkHook ();
 			break;
@@ -238,7 +237,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 		case Const.ORDER_Follow:
 			
 			if (order.Target.gameObject.GetComponent<OreDispenser> () != null) {
-				myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
+				myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos),false,order.queued);
 				break;
 			}
 
@@ -251,12 +250,12 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 			}
 			if (order.Target.GetComponent<BuildingInteractor> ()){
 			if (!order.Target.GetComponent<BuildingInteractor> ().ConstructDone()) {
-				myManager.changeState (new buildResumeState (order.Target.gameObject));
+					myManager.changeState (new buildResumeState (order.Target.gameObject),false,order.queued);
 				}
 			} 
 			else {
 
-				myManager.changeState (new FollowState (order.Target.gameObject, myManager));
+				myManager.changeState (new FollowState (order.Target.gameObject, myManager),false,order.queued);
 			}
 
 			break;

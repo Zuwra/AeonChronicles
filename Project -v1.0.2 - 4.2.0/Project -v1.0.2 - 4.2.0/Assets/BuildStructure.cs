@@ -50,13 +50,14 @@ public class BuildStructure:  UnitProduction {
 				createUnit ();
 
 
-				RaycastHit hit;		
-
-				if (Physics.Raycast ((this.gameObject.transform.position + Vector3.right * 14 ), Vector3.down,  out hit, Mathf.Infinity, ~(1 << 16))) {
+				if (myManager.getStateCount () == 0 && myManager.getState() is DefaultState) {
+					RaycastHit hit;		
+					if (Physics.Raycast ((this.gameObject.transform.position + Vector3.right * 14), Vector3.down, out hit, Mathf.Infinity, ~(1 << 16))) {
 					
 						Vector3 attackMovePoint = hit.point;
 						myManager.GiveOrder (Orders.CreateMoveOrder (attackMovePoint));
 					}
+				}
 			} else {
 				mySelect.updateCoolDown (percent);
 
@@ -90,7 +91,7 @@ public class BuildStructure:  UnitProduction {
 
 
 	public override void DeQueueUnit()
-	{Debug.Log ("Dequeing");
+	{
 		myCost.refundCost ();
 		PopUpMaker.CreateGlobalPopUp ("+" + myCost.ResourceOne, Color.white, this.transform.localPosition + Vector3.up * 8);
 
@@ -104,9 +105,7 @@ public class BuildStructure:  UnitProduction {
 		mySelect.updateCoolDown (0);
 
 		Morphing = false;
-		Debug.Log ("morphing is " + Morphing + "   " + this.gameObject) ;
-		//myCost.refundCost ();
-		//racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply, null);
+
 		racer.stopBuildingUnit (this);
 		myManager.setStun (false, this);
 		myManager.changeState(new DefaultState());
@@ -127,7 +126,7 @@ public class BuildStructure:  UnitProduction {
 
 		continueOrder order = new continueOrder();
 		if (Morphing) {
-			Debug.Log (" I am morphing");
+
 
 			order.nextUnitCast = true;
 			order.canCast = false;
@@ -135,7 +134,7 @@ public class BuildStructure:  UnitProduction {
 		}
 
 		if (!myCost.canActivate (this, order,showError)) {
-			Debug.Log ("My cost is srong");
+
 			order.canCast = false;
 		}
 		if (!active) {
@@ -153,12 +152,12 @@ public class BuildStructure:  UnitProduction {
 			HD.loadIMage (iconPic);
 
 	
-			//Debug.Log ("Activating");
+			Debug.Log ("Activating");
 			//myCost.payCost ();
 			buildMan.buildUnit (this);
 			myManager.cMover.stop ();
 
-		//	Debug.Log ("Turnign on");
+
 			Morphing = true;
 			racer.buildingUnit (this);
 
@@ -174,9 +173,7 @@ public class BuildStructure:  UnitProduction {
 				builder = (BuildingInteractor)inConstruction.GetComponent<ArmoryInteractor> ();
 
 			} 
-				builder.startConstruction (unitToBuild, buildTime);
-
-		
+			builder.startConstruction (unitToBuild, buildTime);
 			inConstruction.setInteractor();
 			inConstruction.interactor.initialize ();
 			inConstruction.GetComponent<Selected> ().Initialize ();
@@ -185,7 +182,6 @@ public class BuildStructure:  UnitProduction {
 
 		} 
 
-		//return true;//next unit should also do this.
 	}
 
 
@@ -197,29 +193,12 @@ public class BuildStructure:  UnitProduction {
 
 	
 		mySelect.updateCoolDown (0);
-		//GameObject unit = (GameObject)Instantiate(unitToBuild, targetLocation, Quaternion.identity);
 
-		//UnitManager tempManage = unit.GetComponent<UnitManager> ();
-		//tempManage.setInteractor();
-		//tempManage.interactor.initialize ();
 		GameManager.main.playerList[myManager.PlayerOwner-1].UnitCreated(unitToBuild.GetComponent<UnitStats> ().supply);
 		myManager.setStun (false, this);
 		myManager.changeState(new DefaultState());
 		racer.stopBuildingUnit (this);
-		/*
-		UnitManager template = unitToBuild.GetComponent<UnitManager> ();
-		for (int i = 0; i < inConstruction.abilityList.Count; i++) {
 	
-			if (template.abilityList [i].active) {
-				inConstruction.abilityList [i].active = true;
-			}
-			if (template.abilityList [i].enabled) {
-
-			inConstruction.abilityList [i].enabled = true;
-		}
-		}*/
-		//unit.GetComponent<Selected> ().Initialize ();
-
 
 		buildMan.unitFinished (this);
 		Morphing = false;
@@ -241,7 +220,7 @@ public class BuildStructure:  UnitProduction {
 		buildMan.buildUnit (this);
 		myManager.cMover.stop ();
 
-		Debug.Log ("Turning on 2");
+	
 		Morphing = true;
 
 		myManager.changeState (new ChannelState (), false, false);

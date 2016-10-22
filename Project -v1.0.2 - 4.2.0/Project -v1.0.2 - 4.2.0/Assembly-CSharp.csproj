@@ -258,6 +258,7 @@
      <Compile Include="Assets\DaexaSupplyDrop.cs" />
      <Compile Include="Assets\DaexaWorkerInteract.cs" />
      <Compile Include="Assets\DamageUpgrade.cs" />
+     <Compile Include="Assets\DayFFUpgrade.cs" />
      <Compile Include="Assets\DayexaShield.cs" />
      <Compile Include="Assets\DeathWinTrigger.cs" />
      <Compile Include="Assets\DetachAugment.cs" />

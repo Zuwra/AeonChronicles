@@ -239,8 +239,10 @@ public class UnitManager : Unit,IOrderable{
 					((PlaceBuildingState)s).cancel ();
 				}
 			}
-			queuedStates.Clear ();
-			return;
+			if (!order.queued) {
+				queuedStates.Clear ();
+			}
+			//return;
 		}
 
 
@@ -413,8 +415,12 @@ public class UnitManager : Unit,IOrderable{
 
 	// make sure that Queue front and queueback are never both true
 	public void changeState(UnitState nextState, bool Queuefront, bool QueueBack)
-	{//Debug.Log ("Next state is " + nextState);
-		
+	{Debug.Log ("Next state is " + nextState + "    " + queuedStates.Count);
+		if (myState is  ChannelState && !(nextState is DefaultState)) {
+			queuedStates.AddLast (nextState);
+			Debug.Log ("Queuing " + nextState + "   " + queuedStates.Count);
+			return;
+			}
 
 		//Debug.Log ("# of states  " +QueueBack + "    " + queuedStates.Count + "    " + nextState + "    " + myState);
 		if (Queuefront && (!(nextState is DefaultState) && (queuedStates.Count > 0 || !(myState is DefaultState)))) {
@@ -441,9 +447,9 @@ public class UnitManager : Unit,IOrderable{
 				if (myState != null) {
 					myState.endState ();
 				}
-			//	Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
+				Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
 				myState = interactor.computeState(popFirstState());
-				//Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
+				Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
 				if (myState == null) {
 					return;
 				}
@@ -487,7 +493,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 		myState =interactor.computeState (nextState);
-	//	Debug.Log ("Setting state to " + myState);
+		Debug.Log ("Setting state to " + myState);
 		myState.initialize ();
 	
 		checkIdleWorker ();

@@ -117,7 +117,9 @@ public class DayexaShield : Ability,Modifier , Notify{
 	public void changeAbsorption(float amount)
 	{
 		Absorbtion += amount;
-		Descripton = "[Passive]\nIncominng damage is reduced by " + Absorbtion + " as long as there is energy available.";
+		Descripton = "[Passive]\nIncominng damage is reduced by " + Absorbtion + " as long as there is energy available. Regenerates " + rechargeRate + " energy per second out of combat.";
+
+		
 	}
 
 	public override void setAutoCast(bool offOn){

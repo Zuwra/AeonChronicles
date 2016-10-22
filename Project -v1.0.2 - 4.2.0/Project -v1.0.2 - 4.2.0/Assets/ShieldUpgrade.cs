@@ -10,9 +10,9 @@ public class ShieldUpgrade  : Upgrade {
 		DayexaShield manager = obj.GetComponent<DayexaShield>();
 		//Debug.Log ("Checking " + obj);
 		if (manager) {
+			manager.rechargeRate += 2;
 			manager.changeAbsorption (2);
 
-			manager.rechargeRate += 1;
 		}
 	}
 
@@ -20,9 +20,8 @@ public class ShieldUpgrade  : Upgrade {
 		DayexaShield manager = obj.GetComponent<DayexaShield>();
 
 		if (manager) {
-			manager.changeAbsorption (-2);
-	
-			manager.rechargeRate -= 1;
+			manager.rechargeRate -= 2;
+
 		
 		}
 	}

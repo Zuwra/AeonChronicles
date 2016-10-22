@@ -59,6 +59,10 @@ public class explosion : MonoBehaviour {
 
 			if (manager) {
 
+				if (!friendlyFire && source.GetComponent<GameManager> ()) {
+					return;
+				}
+
 				if (friendlyFire || source.GetComponent<UnitManager> ().PlayerOwner != manager.PlayerOwner) {
 
 					float amount = damageAmount	;
