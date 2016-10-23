@@ -57,7 +57,11 @@ public class FButtonManager : MonoBehaviour {
 				workerCount++;
 			}
 		}
-
+		if (workerCount == 0) {
+			idleWorkers.color = Color.white;
+		} else {
+			idleWorkers.color = Color.red;
+		}
 		idleWorkers.text = "" + workerCount;
 	}
 

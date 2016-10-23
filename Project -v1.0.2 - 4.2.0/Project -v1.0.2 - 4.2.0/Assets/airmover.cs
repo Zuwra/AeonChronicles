@@ -97,10 +97,22 @@ public class airmover : IMover {
 	override
 	public void resetMoveLocation(Vector3 location)
 	{//	location.y += 2;
+		RaycastHit objecthit;
+	
+		if (Physics.Raycast (location, Vector3.down, out objecthit, 1000, 1 << 8)) {
+			//if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
+		
+			targetPosition = objecthit.point + Vector3.up * flyerHeight;
+
+		} else {
+			targetPosition = location + Vector3.up * flyerHeight;
+		}
+
+
 		if (speed == 0) {
 			speed = .1f;
 		}
-		targetPosition = location + Vector3.up * flyerHeight;
+		//targetPosition = location + Vector3.up * flyerHeight;
 	//Debug.Log ("Target is " + location);
 		GetComponent<UnitManager> ().animMove ();
 		//this.gameObject.transform.LookAt(destination);

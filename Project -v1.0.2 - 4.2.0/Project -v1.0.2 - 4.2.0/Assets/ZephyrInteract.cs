@@ -14,7 +14,7 @@ public class ZephyrInteract : StandardInteract{
 		if (manage != null) {
 
 			if (manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {
-				if (this.gameObject.GetComponent<UnitManager> ().myWeapon == null) {
+				if (this.gameObject.GetComponent<UnitManager> ().myWeapon.Count  == 0) {
 					myManager.changeState (new FollowState (order.Target.gameObject, myManager));
 				} else {
 					//Debug.Log ("Ordering to interact " + manage.gameObject);
@@ -40,18 +40,12 @@ public class ZephyrInteract : StandardInteract{
 			RT.setTarget (order.Target);
 
 		
-		}
-
-		else if (order.Target == this.gameObject) {
+		} else if (order.Target == this.gameObject) {
 			return;
+		} else  {
+			myManager.changeState (new FollowState (order.Target.gameObject, myManager), false, order.queued);
 		}
-
-		else if (myManager.myWeapon.Count > 0) {
-
-			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position));
-		}else {
-			myManager.changeState (new MoveState (order.OrderLocation, myManager));
-		}
+			
 	}
 
 }

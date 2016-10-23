@@ -415,10 +415,10 @@ public class UnitManager : Unit,IOrderable{
 
 	// make sure that Queue front and queueback are never both true
 	public void changeState(UnitState nextState, bool Queuefront, bool QueueBack)
-	{Debug.Log ("Next state is " + nextState + "    " + queuedStates.Count);
+	{//Debug.Log ("Next state is " + nextState + "    " + queuedStates.Count);
 		if (myState is  ChannelState && !(nextState is DefaultState)) {
 			queuedStates.AddLast (nextState);
-			Debug.Log ("Queuing " + nextState + "   " + queuedStates.Count);
+			//Debug.Log ("Queuing " + nextState + "   " + queuedStates.Count);
 			return;
 			}
 
