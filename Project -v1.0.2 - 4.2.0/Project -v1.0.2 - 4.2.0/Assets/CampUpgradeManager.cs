@@ -68,7 +68,7 @@ public class CampUpgradeManager : MonoBehaviour {
 			t.text = ""+LevelData.totalXP ;
 		}
 
-		Debug.Log ("money " + LevelData.totalXP);
+		//Debug.Log ("money " + LevelData.totalXP);
 	}
 
 

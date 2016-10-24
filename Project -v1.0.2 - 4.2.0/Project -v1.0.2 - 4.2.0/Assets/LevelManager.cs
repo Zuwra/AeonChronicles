@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour {
 		levelPresets [LevelData.currentLevel].enabled = true;
 
 
-		levelIntros [LevelData.currentLevel].SetActive (true);
+		//levelIntros [LevelData.currentLevel].SetActive (true);
 		currentIntro = levelIntros [LevelData.currentLevel];
 		currentTech = Vehicles;
 		if (LevelData.currentLevel == 0) {
@@ -80,6 +80,18 @@ public class LevelManager : MonoBehaviour {
 
 	}
 
+	public void closeLevelIntro()
+	{
+		currentIntro.SetActive (false);
+	}
+
+	public void openLevelIntro(int n)
+	{
+		levelIntros [n].SetActive (true);
+		currentIntro = levelIntros [n];
+		//currentIntro.SetActive (!currentIntro.activeSelf );
+	}
+
 	public void ToggleVehicle()
 	{currentTech.enabled = false;
 		currentTech = Vehicles;
@@ -108,8 +120,8 @@ public class LevelManager : MonoBehaviour {
 
 	public void ToggleTech()
 	{
-		Technology.enabled = !Technology.enabled;
-		currentIntro.SetActive (!currentIntro.activeSelf );
+		Technology.gameObject.SetActive (!Technology.gameObject.activeSelf);//.enabled = !Technology.enabled;
+		//currentIntro.SetActive (!currentIntro.activeSelf );
 	}
 
 	public void toggleTechTree()
