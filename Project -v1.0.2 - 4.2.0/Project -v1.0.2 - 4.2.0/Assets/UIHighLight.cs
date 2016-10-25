@@ -46,6 +46,8 @@ public class UIHighLight : MonoBehaviour {
 		if (thingy) {
 			thingy.SetActive (true);
 			yield return new WaitForSeconds (8);
+		}
+		if(thingy){
 			thingy.SetActive (false);
 
 		}

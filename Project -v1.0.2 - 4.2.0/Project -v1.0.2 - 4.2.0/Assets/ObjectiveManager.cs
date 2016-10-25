@@ -78,6 +78,7 @@ public class ObjectiveManager : MonoBehaviour {
 		if (!mainObjectives.ContainsKey (input)) {
 			mainObjectives.Add (input, obj);
 			obj.transform.SetSiblingIndex (mainObjectives.Count);
+			obj.transform.localScale = new Vector3 (1, 1, 1);
 			blink (false);
 
 			UIHighLight.main.highLight (obj, 2);
