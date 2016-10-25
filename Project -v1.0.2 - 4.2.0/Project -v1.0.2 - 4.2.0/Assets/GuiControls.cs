@@ -23,10 +23,14 @@ public class GuiControls : MonoBehaviour {
 	public void minimize()
 	{if (commandPanel != null) {
 			commandPanel.enabled = !commandPanel.enabled;
-			if (commandPanel.enabled) {
-				minimizeB.text = "-";
-			} else {
-				minimizeB.text = "+";
+
+			if (minimizeB) {
+				if (commandPanel.enabled) {
+
+					minimizeB.text = "-";
+				} else {
+					minimizeB.text = "+";
+				}
 			}
 		}
 	}

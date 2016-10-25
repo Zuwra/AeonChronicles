@@ -1,14 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UIHighLight.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ObjectiveManager.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\DefaultState.cs" Line="1" Column="1" />
-      <File FileName="Assets\NewUnitTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\ObjectiveManager.cs" Line="72" Column="60" />
-      <File FileName="Assets\UIHighLight.cs" Line="53" Column="4" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="692" Column="16" />
+      <File FileName="Assets\GuiControls.cs" Line="24" Column="2" />
+      <File FileName="Assets\ObjectiveManager.cs" Line="67" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -62,6 +62,7 @@ public class ObjectiveManager : MonoBehaviour {
 		bonusTitle.transform.SetSiblingIndex (mainObjectives.Count + bonusObjectives.Count+1);
 		obj.transform.SetSiblingIndex (mainObjectives.Count + bonusObjectives.Count+1);
 		blink (true);
+		obj.transform.localScale = new Vector3 (1, 1, 1);
 		UIHighLight.main.highLight (bonusTitle.gameObject, 2);
 
 	}
