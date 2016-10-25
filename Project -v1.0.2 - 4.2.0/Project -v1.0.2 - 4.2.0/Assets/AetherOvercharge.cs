@@ -81,7 +81,7 @@ public class AetherOvercharge : Buff, Notify{
 
 	}
 
-	public void trigger(GameObject src, GameObject proj, GameObject target, float damage)
+	public void trigger(GameObject src, GameObject proj, UnitManager target, float damage)
 	{
 		if (!spellHasBegun) {
 			nextActionTime = Time.time + 1;

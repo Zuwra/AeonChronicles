@@ -27,7 +27,7 @@ public class AttckWhileMoveState : UnitState{
 	public void Update () {
 
 		if(myManager.enemies.Count > 0){
-			GameObject closestEnemy = myManager.findClosestEnemy();
+			UnitManager closestEnemy = myManager.findClosestEnemy();
 			foreach(IWeapon weap in myManager.myWeapon)
 				if (weap.canAttack(closestEnemy))
 		    		{
@@ -42,7 +42,7 @@ public class AttckWhileMoveState : UnitState{
 
 
 	override
-	public void attackResponse(GameObject src, float amount)
+	public void attackResponse(UnitManager src, float amount)
 	{
 	}
 }

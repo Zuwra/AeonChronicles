@@ -67,7 +67,7 @@ public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
 		return a;
 	}
 
-	public void trigger(GameObject source, GameObject proj, GameObject target,float damage)
+	public void trigger(GameObject source, GameObject proj, UnitManager target,float damage)
 	{
 
 		myLightning.Trigger ();

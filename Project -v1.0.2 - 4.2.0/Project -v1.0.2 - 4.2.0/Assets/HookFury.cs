@@ -24,7 +24,7 @@ public class HookFury : MonoBehaviour, Modifier, Notify {
 
 
 
-	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)
+	public void trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
 	{
 		myWeapon.removeAttackSpeedBuff (this);
 		myWeapon.changeAttackSpeed (-(.5f - (myStats.health / myStats.Maxhealth) / 2), 0, false, this);

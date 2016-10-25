@@ -28,13 +28,13 @@ public class LandMineActivate : MonoBehaviour {
 			bool activate = false;
 			//if we should target them 
 			if (activateOnAll || !otherManager.PlayerOwner.Equals (this.GetComponent<UnitManager> ().PlayerOwner)) {
-				if (explosion.canAttack (otherObj)) {
+				if (explosion.canAttack (otherManager)) {
 					activate = true;
 				}
 			}
 
 			if (activate) {
-				explosion.attack (otherObj, null);
+				explosion.attack (otherManager, null);
 				Destroy (this.gameObject);
 			}
 		}

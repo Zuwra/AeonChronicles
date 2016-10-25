@@ -64,7 +64,7 @@ public class SlowDebuff : Behavior, Notify {
 		}
 	}
 
-	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
+	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 	{SlowDebuff deb = target.GetComponent<SlowDebuff> ();
 		if (deb) {
 			if (stackable) {
@@ -75,7 +75,7 @@ public class SlowDebuff : Behavior, Notify {
 			}
 		} else {
 			if(target.GetComponent<customMover>() != null){
-			target.AddComponent<SlowDebuff> ();
+				target.gameObject.AddComponent<SlowDebuff> ();
 			deb = target.GetComponent<SlowDebuff> ();
 			deb.initialize (duration, speedDecrease,percent);}
 		}

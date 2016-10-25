@@ -50,8 +50,10 @@ public class VictoryScreen : MonoBehaviour {
 
 	public void SetResults(LevelData.levelInfo info)
 	{
-		MissionManager.main.toggleVictory ();
-		//myCanvas.enabled = true;
+		if (MissionManager.main) {
+			MissionManager.main.toggleVictory ();
+		}
+		myCanvas.enabled = true;
 		timeDisplay.text = ""+info.time;
 		enemyDisplay.text =""+ (int)info.EnemiesDest;
 		allyDisplay.text = ""+(int)info.unitsLost;
@@ -104,6 +106,9 @@ public class VictoryScreen : MonoBehaviour {
 
 	}
 		
+
+
+
 
 
 }

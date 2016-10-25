@@ -29,7 +29,7 @@ public class BloodFury : MonoBehaviour, Modifier, Notify {
 
 
 
-	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)
+	public void trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
 	{
 		myMover.removeSpeedBuff (this);
 		myMover.changeSpeed ((1 - (myStats.health / myStats.Maxhealth)), 0, false, this );  

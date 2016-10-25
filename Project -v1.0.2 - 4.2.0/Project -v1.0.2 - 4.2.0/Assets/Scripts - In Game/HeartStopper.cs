@@ -24,7 +24,7 @@ public class HeartStopper : MonoBehaviour, Notify {
 
 
 
-	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
+	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 		{
 		Poison targetPois = target.GetComponent<Poison> ();
 		if (targetPois) {
@@ -36,7 +36,7 @@ public class HeartStopper : MonoBehaviour, Notify {
 			Destroy (targetPois);
 		
 		} else {
-			target.AddComponent<Poison>();
+			target.gameObject.AddComponent<Poison>();
 			target.GetComponent<Poison>().remainingPoison = 12;
 		}
 

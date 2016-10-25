@@ -4,7 +4,7 @@ using System.Collections;
 public class turretState : UnitState {
 
 
-	private GameObject enemy;
+	private UnitManager enemy;
 
 	public turretState(UnitManager man)
 	{
@@ -57,14 +57,14 @@ public class turretState : UnitState {
 
 
 	override
-	public void attackResponse(GameObject src, float amount)
+	public void attackResponse(UnitManager src, float amount)
 	{}
 
 
 
-	public GameObject findBestEnemy()
+	public UnitManager findBestEnemy()
 	{myManager.enemies.RemoveAll(item => item == null);
-		GameObject best = null;
+		UnitManager best = null;
 
 
 		float bestPriority = -1;
@@ -83,14 +83,14 @@ public class turretState : UnitState {
 
 					continue;}
 
-				if (myManager.enemies[i].GetComponent<UnitStats> ().attackPriority < bestPriority) {
+				if (myManager.enemies[i].myStats.attackPriority < bestPriority) {
 					
 					continue;
 				}
 				else 
 				{best = myManager.enemies[i];
 					
-					bestPriority = myManager.enemies[i].GetComponent<UnitStats> ().attackPriority;
+					bestPriority = myManager.enemies[i].myStats.attackPriority;
 				}
 
 

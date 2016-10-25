@@ -112,7 +112,7 @@ public class SingleTarget:  TargetAbility {
 				proj.SendMessage ("setSource", this.gameObject);
 				proj.SendMessage ("setTarget", tar);
 				if (script) {
-					script.target = target;
+					script.target = target.GetComponent<UnitManager>();
 					script.Source = this.gameObject;
 				}
 
@@ -147,7 +147,7 @@ public class SingleTarget:  TargetAbility {
 				proj.SendMessage ("setSource", this.gameObject);
 				proj.SendMessage ("setTarget", target);
 				if (script) {
-					script.target = target;
+					script.target = target.GetComponent<UnitManager>();
 					script.Source = this.gameObject;
 				}
 

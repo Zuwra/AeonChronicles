@@ -111,9 +111,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		if (Time.time > nextActionTimec) {
 			nextActionTimec += minimapUpdateRate;
 
-
 			updateScreenRect ();
-
 
 		} 
 

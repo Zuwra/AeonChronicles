@@ -33,7 +33,7 @@ public class BuildStructure:  UnitProduction {
 
 		mySelect = GetComponent<Selected> ();
 	
-		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ();
+		racer = GameObject.FindObjectOfType<GameManager>().activePlayer;
 		HD = GetComponentInChildren<HealthDisplay>();
 	}
 
@@ -69,7 +69,7 @@ public class BuildStructure:  UnitProduction {
 	} 
 	// this only halts construction
 	public void cancel()
-	{Debug.Log ("Canceling the build");
+	{//Debug.Log ("Canceling the build");
 		mySelect.updateCoolDown (0);
 		HD.stopBuilding ();
 		Morphing = false;

@@ -8,11 +8,12 @@ public class LevelManager : MonoBehaviour {
 	public List<GameObject> levelIntros = new List<GameObject> ();
 	public List<GameObject> Expositions = new List<GameObject> ();
 	public List<CampUpgradeManager> levelPresets = new List<CampUpgradeManager> ();
-
+	public List<Button> levelButtons = new List<Button> ();
 	public GameObject currentIntro;
 	public Canvas Technology;
 	public Canvas TechTree;
 	public Canvas UltTree;
+ 
 
 	public Button techButton;
 	public Button UltButton;
@@ -33,9 +34,14 @@ public class LevelManager : MonoBehaviour {
 		foreach (GameObject ob in Expositions) {
 			ob.SetActive (false);
 		}
-
-
-		levelPresets [LevelData.currentLevel].enabled = true;
+		Debug.Log (LevelData.currentLevel);
+		for (int i = 0; i < levelButtons.Count; i++) {
+			levelButtons [i].interactable = (i <= LevelData.currentLevel);
+		}
+	
+		if (levelPresets.Count > LevelData.currentLevel) {
+			levelPresets [LevelData.currentLevel].enabled = true;
+		}
 
 
 		//levelIntros [LevelData.currentLevel].SetActive (true);
@@ -58,7 +64,7 @@ public class LevelManager : MonoBehaviour {
 
 
 		if (!LevelData.ComingFromLevel) {
-			nextLevel ();
+			//nextLevel ();
 			//Debug.Log ("calling this");
 		}
 

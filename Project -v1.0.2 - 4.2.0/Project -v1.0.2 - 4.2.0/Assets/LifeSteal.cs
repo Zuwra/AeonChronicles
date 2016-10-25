@@ -22,7 +22,7 @@ public class LifeSteal : MonoBehaviour, Notify {
 
 
 
-	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)
+	public void trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
 	{
 		myStats.heal (damage * percentage);
 		popper.CreatePopUp ("+" + (int)(damage * percentage), Color.green);

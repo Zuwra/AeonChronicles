@@ -51,7 +51,10 @@ public class LevelData  {
 		}
 		myLevels.Add (myL);
 		totalXP += Tech;
-		currentLevel = levelN +1;
+		if (currentLevel < levelN + 1) {
+			currentLevel = levelN +1; 
+		}
+	
 		lastInfo = myL;
 	//	Debug.Log ("Cureent Level " + currentLevel);
 	}

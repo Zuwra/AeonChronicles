@@ -43,11 +43,12 @@ public class UIHighLight : MonoBehaviour {
 
 	IEnumerator tempSHowObjective(GameObject thingy)
 	{
-		thingy.SetActive (true);
-		yield return new WaitForSeconds (8);
-		thingy.SetActive (false);
+		if (thingy) {
+			thingy.SetActive (true);
+			yield return new WaitForSeconds (8);
+			thingy.SetActive (false);
 
-
+		}
 	}
 
 

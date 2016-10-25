@@ -37,7 +37,7 @@ public class OathFury : Ability, Modifier, Notify {
 
 
 
-	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)
+	public void trigger(GameObject source, GameObject projectile, UnitManager target, float damage)
 	{
 		myStealer.percentage = initialLifeSteal + (1 - (myStats.health / myStats.Maxhealth));
 

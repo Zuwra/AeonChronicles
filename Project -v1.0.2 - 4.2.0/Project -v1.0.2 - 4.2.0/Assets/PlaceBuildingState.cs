@@ -103,7 +103,7 @@ public class PlaceBuildingState :UnitState {
 	}
 
 	override
-	public void attackResponse(GameObject src, float amount)
+	public void attackResponse(UnitManager src, float amount)
 	{
 	}
 

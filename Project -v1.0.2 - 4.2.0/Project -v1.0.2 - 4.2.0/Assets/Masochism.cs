@@ -70,7 +70,7 @@ public class Masochism : Ability {
 
 				myCost.payCost ();
 
-				myWeap.fireTriggers (this.gameObject, null, this.gameObject, 0);
+				myWeap.fireTriggers (this.gameObject, null, GetComponent<UnitManager>(), 0);
 			}
 
 		}

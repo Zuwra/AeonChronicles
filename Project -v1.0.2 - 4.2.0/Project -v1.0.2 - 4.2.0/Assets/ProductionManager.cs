@@ -53,7 +53,7 @@ public class ProductionManager : MonoBehaviour {
 
 	public void updateUnits( UnitProduction producer)
 	{
-		
+		Debug.Log ("Here");
 		if (abilityList.ContainsKey (producer.Name)) {
 
 		
@@ -130,7 +130,12 @@ public class ProductionManager : MonoBehaviour {
 		UnitStats theStats = manage.gameObject.GetComponent<UnitStats> ();
 
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
-		icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text =produce.unitToBuild.GetComponent<UnitManager>().UnitName;
+		if (produce.unitToBuild) {
+
+			icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text = produce.unitToBuild.GetComponent<UnitManager> ().UnitName;
+		} else {
+			icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text = produce.Name;
+		}
 		icon.GetComponent<DropDownDudeFinder> ().myProducer.Add (produce.gameObject);
 		icon.transform.rotation = unitPanel.transform.rotation;
 	

@@ -6,7 +6,7 @@ public  class Projectile : MonoBehaviour {
 
 
 
-	public GameObject target;
+	public UnitManager target;
 	public float damage;
 	public float speed;
 	public float arcAngle;
@@ -155,7 +155,7 @@ public  class Projectile : MonoBehaviour {
 			return;}
 		if (other.gameObject == target || other.gameObject.transform.IsChildOf(target.transform)) {
 			
-			Terminate (other.gameObject);
+			Terminate (other.gameObject.GetComponent<UnitManager>());
 		}
 
 		if (currentDistance / distance < .5) {
@@ -179,7 +179,7 @@ public  class Projectile : MonoBehaviour {
 
 		if (other.gameObject == target || other.gameObject.transform.IsChildOf(target.transform)) {
 				
-				Terminate (other.gameObject);
+			Terminate (other.gameObject.GetComponent<UnitManager> ());
 			return;
 			}
 
@@ -196,7 +196,7 @@ public  class Projectile : MonoBehaviour {
 
 
 
-	public virtual void Terminate(GameObject target)
+	public virtual void Terminate(UnitManager target)
 	{
 		if (explosionO) {
 			GameObject explode = (GameObject)Instantiate (explosionO, this.gameObject.transform.position, Quaternion.identity);
@@ -214,9 +214,9 @@ public  class Projectile : MonoBehaviour {
 			foreach (Notify not in triggers) {
 				not.trigger (this.gameObject, this.gameObject, target, damage);
 			}
-			if (target != null && target.GetComponent<UnitStats> () != null) {
+			if (target != null && target.myStats != null) {
 
-				float total =  target.GetComponent<UnitStats> ().TakeDamage (damage, Source, DamageTypes.DamageType.Regular);
+				float total =  target.myStats.TakeDamage (damage, Source, DamageTypes.DamageType.Regular);
 				if (Source) {
 					UnitManager man = Source.GetComponent<UnitManager> ();
 					if (man) {
@@ -258,7 +258,7 @@ public  class Projectile : MonoBehaviour {
 	}
 	
 	
-	public void setTarget(GameObject so)
+	public void setTarget(UnitManager so)
 	{
 
 		target = so;

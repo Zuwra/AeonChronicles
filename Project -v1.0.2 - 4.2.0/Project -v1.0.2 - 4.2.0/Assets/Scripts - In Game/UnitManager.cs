@@ -24,8 +24,8 @@ public class UnitManager : Unit,IOrderable{
 	public float visionRange;
 	SphereCollider visionSphere; // Trigger Collider that respresents vision radius. Size is set in the start function based on visionRange
 	// When Enemies enter the visionsphere, it puts them into one of these categories. They are removed when they move away or die.
-	public List<GameObject> enemies = new List<GameObject>();
-	public List<GameObject> allies = new List<GameObject>();
+	public List<UnitManager> enemies = new List<UnitManager>();
+	public List<UnitManager> allies = new List<UnitManager>();
 	public List<GameObject> neutrals = new List<GameObject> ();
 
 
@@ -86,7 +86,7 @@ public class UnitManager : Unit,IOrderable{
 		}
 
 	
-			GameManager man = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ();
+		GameManager man = GameObject.FindObjectOfType<GameManager> ();
 			if (PlayerOwner == man.playerNumber) {
 				this.gameObject.tag = "Player";
 			} 
@@ -95,6 +95,7 @@ public class UnitManager : Unit,IOrderable{
 			myStats.Initialize();
 
 		if (!Clock.main || Clock.main.getTotalSecond () < 1 || !myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+		//	Debug.Log (" manager " + man.playerList.Length + "   " + (PlayerOwner - 1) +"  " + this.gameObject);
 			man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
 		}
 
@@ -281,10 +282,10 @@ public class UnitManager : Unit,IOrderable{
 
 			if(manage.PlayerOwner != PlayerOwner)
 				{if(!other.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Invisible))
-					{enemies.Add (other.gameObject);}}
+					{enemies.Add (manage);}}
 
 			else{
-				allies.Add(other.gameObject);
+					allies.Add(manage);
 					//Debug.Log ( this.gameObject +"  Adding " + other.gameObject);
 				}}
 
@@ -297,26 +298,31 @@ public class UnitManager : Unit,IOrderable{
 		if (other.isTrigger) {
 			return;
 		}
-		if (enemies.Contains (other.gameObject)) {
-			enemies.Remove (other.gameObject);
-		} 
-		else if (allies.Contains (other.gameObject)) {
-			allies.Remove (other.gameObject);
-			//Debug.Log ( this.gameObject + "  Removing " + other.gameObject);
-		} 
-		else if (neutrals.Contains (other.gameObject)) {
+
+		if (neutrals.Contains (other.gameObject)) {
 			neutrals.Remove (other.gameObject);
+		}
+
+		UnitManager manage = other.gameObject.GetComponent<UnitManager>();
+
+		if (manage) {
+			if (enemies.Contains (manage)) {
+				enemies.Remove (manage);
+			} else if (allies.Contains (manage)) {
+				allies.Remove (manage);
+				//Debug.Log ( this.gameObject + "  Removing " + other.gameObject);
+			} 
 		}
 	
 	}
 
 
 	// Called from some of the states (ie, DefaultState, AttackMoveState)
-	public GameObject findClosestEnemy()
+	public UnitManager findClosestEnemy()
 	{
 
 		enemies.RemoveAll(item => item == null);
-		GameObject best = null;
+		UnitManager best = null;
 
 		float distance = float.MaxValue;
 	
@@ -337,9 +343,9 @@ public class UnitManager : Unit,IOrderable{
 
 	}
 	
-	public GameObject findBestEnemy() // Similar to above method but takes into account attack priority (enemy soldiers should be attacked before buildings)
+	public UnitManager findBestEnemy() // Similar to above method but takes into account attack priority (enemy soldiers should be attacked before buildings)
 	{enemies.RemoveAll(item => item == null);
-		GameObject best = null;
+		UnitManager best = null;
 
 
 		float distance = float.MaxValue;
@@ -350,13 +356,13 @@ public class UnitManager : Unit,IOrderable{
 				if (!isValidTarget (enemies [i])) {
 					continue;
 				}
-				if (enemies[i].GetComponent<UnitStats> ().attackPriority < bestPriority) {
+				if (enemies[i].myStats.attackPriority < bestPriority) {
 						
 					continue;
 					}
-				else if (enemies[i].GetComponent<UnitStats> ().attackPriority > bestPriority)
+				else if (enemies[i].myStats.attackPriority > bestPriority)
 					{best = enemies[i];
-					bestPriority = enemies[i].GetComponent<UnitStats> ().attackPriority;
+					bestPriority = enemies[i].myStats.attackPriority;
 					}
 			
 				
@@ -493,7 +499,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 		myState =interactor.computeState (nextState);
-		Debug.Log ("Setting state to " + myState);
+		//Debug.Log ("Setting state to " + myState);
 		myState.initialize ();
 	
 		checkIdleWorker ();
@@ -549,7 +555,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 	// return -1 if it is not in range, else pass back the index of the weapon that is in range
-	public IWeapon inRange(GameObject obj)
+	public IWeapon inRange(UnitManager obj)
 	{
 		float min= 100000000;
 		IWeapon best = null;
@@ -567,7 +573,7 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
-	public IWeapon isValidTarget(GameObject obj)
+	public IWeapon isValidTarget(UnitManager obj)
 	{IWeapon best = null;
 		float min= 100000000;
 		foreach (IWeapon weap in myWeapon) {
@@ -582,7 +588,7 @@ public class UnitManager : Unit,IOrderable{
 		return best;
 	}
 
-	public IWeapon canAttack(GameObject obj)
+	public IWeapon canAttack(UnitManager obj)
 	{IWeapon best = null;
 		float min= 100000000;
 		foreach (IWeapon weap in myWeapon) {
@@ -715,7 +721,7 @@ public class UnitManager : Unit,IOrderable{
 		return false;
 	}
 
-	public void Attacked(GameObject src) //I have been attacked, what do i do?
+	public void Attacked(UnitManager src) //I have been attacked, what do i do?
 	{
 		
 		if (myState != null) {

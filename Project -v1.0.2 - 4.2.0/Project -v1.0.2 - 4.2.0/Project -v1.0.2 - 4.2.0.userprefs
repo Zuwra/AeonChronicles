@@ -1,11 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CampUpgradeManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ObjectiveTrigger.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\airmover.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelManager.cs" Line="83" Column="31" />
-      <File FileName="Assets\CampUpgradeManager.cs" Line="70" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="724" Column="22" />
+      <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\DefaultState.cs" Line="55" Column="20" />
+      <File FileName="Assets\NewUnitTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\UIHighLight.cs" Line="45" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="224" Column="5" />
+      <File FileName="Assets\GroundSetter.cs" Line="9" Column="78" />
+      <File FileName="Assets\airmover.cs" Line="102" Column="75" />
+      <File FileName="Assets\ObjectiveTrigger.cs" Line="36" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

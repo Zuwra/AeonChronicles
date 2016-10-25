@@ -154,6 +154,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	public override void startBuilding(){ 
 		timer = buildTime;
 		HD.loadIMage(iconPic);
+		raceMan.buildingUnit (this);
 		myCost.resetCoolDown ();
 		raceMan.commenceUpgrade (false, upgrades [currentUpgrade], myManager.UnitName);
 
@@ -168,6 +169,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 		//Debug.Log (Name + " is canceling");
 		HD.stopBuilding ();
 		mySelect.updateCoolDown (0);
+		raceMan.stopBuildingUnit (this);
 		timer = 0;
 		researching = false;
 		//myCost.refundCost ();

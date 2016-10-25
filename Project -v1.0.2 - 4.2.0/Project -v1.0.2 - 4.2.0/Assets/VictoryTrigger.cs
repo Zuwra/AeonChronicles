@@ -109,6 +109,7 @@ public class VictoryTrigger : MonoBehaviour {
 	{
 		VictoryScreen.enabled = true;
 		GameObject.FindObjectOfType<MainCamera> ().DisableScrolling ();
+
 		StartCoroutine(WinLevel ());
 	}
 
@@ -122,16 +123,19 @@ public class VictoryTrigger : MonoBehaviour {
 
 	IEnumerator WinLevel ()
 	{LevelData.ComingFromLevel = true;
-		yield return new WaitForSeconds (4);
+		yield return new WaitForSeconds (2.5f);
+		//Set my victory screen
+		LevelData.loadVetStats (GameManager.main.playerList [0].getUnitStats());
+		LevelData.levelInfo Ldata = createLevelInfo(levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
+			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
+		GameObject.FindObjectOfType<VictoryScreen> ().SetResults (Ldata);
+	
 
 		LevelData.addLevelInfo (levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
 			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
-		LevelData.loadVetStats (GameManager.main.playerList [0].getUnitStats());
-	
-		VictoryScreen.enabled = false;
-		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
-		DefeatScreen.enabled = false;
-		SceneManager.LoadScene (3);
+		
+
+
 	}
 
 	IEnumerator LoseLevel ()
@@ -141,6 +145,34 @@ public class VictoryTrigger : MonoBehaviour {
 		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
 		DefeatScreen.enabled = false;
 		SceneManager.LoadScene (1);
+	}
+
+
+
+	public LevelData.levelInfo createLevelInfo(int levelN, int EnemiesD, int UnitsL, int Res, string timer,
+		int Tech, string bonus)
+	{
+		LevelData.levelInfo myL = new LevelData.levelInfo ();
+		myL.levelNumber = levelN;
+		myL.EnemiesDest = EnemiesD;
+		myL.unitsLost = UnitsL;
+		myL.Resources = Res;
+		myL.time = timer;
+		myL.TechCredits = Tech;
+		myL.bonusObj = bonus;
+		return myL;
+		//	Debug.Log ("Cureent Level " + currentLevel);
+	}
+
+
+
+	public void endLevel ()
+	{
+		VictoryScreen.enabled = false;
+		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
+		DefeatScreen.enabled = false;
+		SceneManager.LoadScene (3);
+
 	}
 
 

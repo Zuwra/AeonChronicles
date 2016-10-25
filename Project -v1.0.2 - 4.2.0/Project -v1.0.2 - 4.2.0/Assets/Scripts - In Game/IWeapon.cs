@@ -34,7 +34,7 @@ public class IWeapon : MonoBehaviour {
 	public Vector3 originPoint;
 	private float nextActionTime;
 	public float attackArc;
-	private GameObject enemy;
+	private UnitManager enemy;
 	public float damagePoint;
 
 	public float AttackDelay;
@@ -115,7 +115,7 @@ public class IWeapon : MonoBehaviour {
 		if(inRange(enemy))
 			{
 				if (turret != null) {
-					turret.GetComponent<turret> ().Target (enemy);
+					turret.GetComponent<turret> ().Target (enemy.gameObject);
 				}
 				else
 					{
@@ -138,7 +138,7 @@ public class IWeapon : MonoBehaviour {
 	
 
 
-	public bool canAttack(GameObject target)
+	public bool canAttack(UnitManager target)
 	{
 		if (!offCooldown) {
 	
@@ -149,7 +149,7 @@ public class IWeapon : MonoBehaviour {
 
 
 		foreach (Validator val in validators) {
-		if(val.validate(this.gameObject,target) == false)
+			if(val.validate(this.gameObject,target.gameObject) == false)
 			{
 				//Debug.Log ("Not valid");
 				return false;}
@@ -176,14 +176,13 @@ public class IWeapon : MonoBehaviour {
 
 	}
 
-	public bool inRange(GameObject target)
+	public bool inRange(UnitManager target)
 	{
 
 		if (this && target) {
 
-			UnitStats targetStats= target.GetComponent<UnitStats>();
 			foreach (UnitTypes.UnitTypeTag tag in cantAttackTypes) {
-				if (targetStats.isUnitType (tag))
+				if (target.myStats.isUnitType (tag))
 				{	
 					return false;	}
 			}
@@ -207,7 +206,7 @@ public class IWeapon : MonoBehaviour {
 	}
 
 
-	public void attack(GameObject target, UnitManager toStun)
+	public void attack(UnitManager target, UnitManager toStun)
 	{nextActionTime = Time.time + attackPeriod;
 		if (toStun && damagePoint > 0) {
 			toStun.cMover.changeSpeed (-1, 0, false, this);
@@ -224,7 +223,7 @@ public class IWeapon : MonoBehaviour {
 	}
 
 
-	IEnumerator Fire (float time, GameObject target)
+	IEnumerator Fire (float time, UnitManager target)
 	{if (myAnimator) {
 			//Debug.Log ("Settign state to one");
 			myAnimator.SetInteger ("State", 1);
@@ -244,11 +243,10 @@ public class IWeapon : MonoBehaviour {
 			this.gameObject.transform.LookAt(spotter);
 
 			float damage = baseDamage;
-			UnitStats targetStats = target.GetComponent<UnitStats> ();
 
 
 			foreach (bonusDamage tag in extraDamage) {
-				if (targetStats.isUnitType (tag.type)) {
+				if (target.myStats.isUnitType (tag.type)) {
 					damage += tag.bonus;
 				}
 			}
@@ -271,7 +269,7 @@ public class IWeapon : MonoBehaviour {
 			} else {
 
 				//OnAttacking();
-				damage = target.GetComponent<UnitStats> ().TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
+				damage =target.myStats.TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
 				myManager.myStats.veteranDamage (damage);
 
 			}
@@ -301,7 +299,7 @@ public class IWeapon : MonoBehaviour {
 		triggers.Add (not);
 	}
 
-	public void fireTriggers(GameObject source, GameObject proj, GameObject target, float damage)
+	public void fireTriggers(GameObject source, GameObject proj, UnitManager target, float damage)
 	{	triggers.RemoveAll (item => item == null);
 		foreach (Notify obj in triggers) {
 		//	Debug.Log (obj);
@@ -311,7 +309,7 @@ public class IWeapon : MonoBehaviour {
 
 
 
-	public bool isValidTarget(GameObject target)
+	public bool isValidTarget(UnitManager target)
 	{
 		if (range < 4) {
 			if (target.GetComponent<airmover> ()) {
@@ -321,9 +319,8 @@ public class IWeapon : MonoBehaviour {
 		
 		}
 
-		UnitStats stats = target.GetComponent<UnitStats> ();
 		foreach (UnitTypes.UnitTypeTag ty in cantAttackTypes) {
-			if (stats.isUnitType (ty))
+			if (target.myStats.isUnitType (ty))
 				return false;
 		}
 		return true;

@@ -98,7 +98,7 @@ public class PlasmaDischarge : Ability {
 		if (explodeEffect) {
 			Instantiate (explodeEffect, this.transform.position, Quaternion.identity);
 		}
-		foreach(GameObject obj in myManager.enemies)
+		foreach(UnitManager obj in myManager.enemies)
 		{
 			UnitStats stat = obj.GetComponent<UnitStats> ();
 			stat.TakeDamage ((duration -  (timer -Time.time )) * damagePerSecond, this.gameObject, DamageTypes.DamageType.Regular);

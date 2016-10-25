@@ -22,8 +22,8 @@ public class PulseCannon : IWeapon {
 
 			myManager.enemies.RemoveAll (item => item == null);
 			int i = 0;
-			foreach (GameObject obj in myManager.enemies) {
-				StartCoroutine( AttackWave ((i * .08f ),obj));
+			foreach (UnitManager obj in myManager.enemies) {
+				StartCoroutine( AttackWave ((i * .08f ),obj.gameObject));
 				i++;
 				if(i >= maxPulses)
 				{break;}
@@ -63,7 +63,7 @@ public class PulseCannon : IWeapon {
 				proj.SendMessage ("setDamage", baseDamage);
 				script.damage = baseDamage;
 
-				script.target = target;
+				script.target = target.GetComponent<UnitManager>();
 				script.Source = this.gameObject;
 
 			} else {

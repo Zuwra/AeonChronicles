@@ -21,12 +21,12 @@ public class PoisonStarter : MonoBehaviour, Notify{
 	}
 
 
-	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
+	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 	{
 		Poison enemyPois = target.GetComponent<Poison> ();
 	if (enemyPois == null) {
 
-			enemyPois = target.AddComponent<Poison> ();
+			enemyPois = target.gameObject.AddComponent<Poison> ();
 
 			enemyPois.startPoison(poisonEffect);
 

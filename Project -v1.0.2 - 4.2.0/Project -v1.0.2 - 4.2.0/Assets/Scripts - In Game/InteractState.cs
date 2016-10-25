@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InteractState : UnitState {
 
-	private GameObject target;
+	private UnitManager target;
 
 
 
@@ -17,7 +17,7 @@ public class InteractState : UnitState {
 		myManager = man;
 
 
-		target = unit;
+		target = unit.GetComponent<UnitManager>();
 	//myMover.resetMoveLocation (target.transform.position);
 		nextActionTime = Time.time + .5f;
 		bestWeap = myManager.canAttack (target);	
@@ -87,7 +87,7 @@ public class InteractState : UnitState {
 
 
 	override
-	public void attackResponse(GameObject src, float amount)
+	public void attackResponse(UnitManager src, float amount)
 	{
 	}
 

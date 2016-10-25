@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public class SplitterShot : Projectile {
 
 
-	public List<GameObject> hitTargets = new List<GameObject>();
+	public List<UnitManager> hitTargets = new List<UnitManager>();
 	public float chargesRemaning; // each target hit will decrease by 1. at zero stop bouncing.
 
 
-	public List<GameObject> nearbyTargets= new List<GameObject>();
+	public List<UnitManager> nearbyTargets= new List<UnitManager>();
 
 	public GameObject ShotINstance;
 
@@ -26,7 +26,7 @@ public class SplitterShot : Projectile {
 	}
 
 
-	public new void setTarget(GameObject so)
+	public new void setTarget(UnitManager so)
 	{
 
 	
@@ -43,7 +43,7 @@ public class SplitterShot : Projectile {
 
 
 	override
-	public void Terminate(GameObject target)
+	public void Terminate(UnitManager target)
 	{
 		if (target != null) {
 		//	Debug.Log("TAKE DAMAGE!");
@@ -84,7 +84,7 @@ public class SplitterShot : Projectile {
 					hitlist.hitTargets.Add (findBestEnemy());
 				
 
-					foreach(GameObject obj in clone.GetComponent<SplitterShot> ().nearbyTargets)
+					foreach(UnitManager obj in clone.GetComponent<SplitterShot> ().nearbyTargets)
 					{this.nearbyTargets.Add (obj);}
 				}
 			
@@ -120,9 +120,9 @@ public class SplitterShot : Projectile {
 				}
 			
 				if (manage != null) {
-					if (other.GetComponent<UnitManager> ().PlayerOwner != Source.GetComponent<UnitManager> ().PlayerOwner) {
+					if (manage.PlayerOwner != Source.GetComponent<UnitManager> ().PlayerOwner) {
 					
-						nearbyTargets.Add (other.gameObject);
+						nearbyTargets.Add (manage);
 					
 					
 					}
@@ -133,14 +133,18 @@ public class SplitterShot : Projectile {
 
 
 	void OnTriggerExit(Collider other)
-	{nearbyTargets.Remove (other.gameObject);
+	{
+		UnitManager manage = other.GetComponent<UnitManager> ();
+		if (manage) {
+			nearbyTargets.Remove (manage);
+		}
 
 		
 	}
 
-	public GameObject findBestEnemy()
+	public UnitManager findBestEnemy()
 	{
-		GameObject best = null;
+		UnitManager best = null;
 		float priority = 1000;
 
 		nearbyTargets.RemoveAll(item => item == null);

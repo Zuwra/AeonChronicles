@@ -19,18 +19,16 @@ public class DefaultState : UnitState{
 	public void Update () {// change this later so t will only check for attackable enemies.
 
 
-
-		
-	
 		if (myManager.enemies.Count > 0) {
 			if (myManager.myWeapon.Count >0) {
-				GameObject target = myManager.findBestEnemy ();
+				UnitManager target = myManager.findBestEnemy ();
 				//Debug.Log ("I am " + myManager.gameObject + "  target " + target);
 				if (target == null) {
 					return;}
+				
 				if (Vector3.Distance (myManager.gameObject.transform.position, target.transform.position) <= myManager.getChaseRange ()) {
-					//Debug.Log ("Chasing attacker " + target);
-					myManager.changeState (new AttackMoveState (target,
+				//	Debug.Log ("Chasing attacker " + target);
+					myManager.changeState (new AttackMoveState (target.gameObject,
 						new Vector3 (), AttackMoveState.MoveType.passive, myManager, myManager.gameObject.transform.position));
 				}
 			}
@@ -54,12 +52,12 @@ public class DefaultState : UnitState{
 	}
 
 	override
-	public void attackResponse(GameObject src, float amount)
+	public void attackResponse(UnitManager src, float amount)
 	{	
 		if(src){
-		UnitManager manage = src.GetComponent<UnitManager> ();
-			if (manage) {
-				if (manage.PlayerOwner != myManager.PlayerOwner) {
+		//UnitManager manage = src.GetComponent<UnitManager> ();
+
+			if (src.PlayerOwner != myManager.PlayerOwner) {
 
 
 					if (myManager.myWeapon.Count > 0) {
@@ -83,10 +81,10 @@ public class DefaultState : UnitState{
 					}
 					// Inform other alleis to also attack
 					if(amount > 0){
-					foreach (GameObject ally in myManager.allies) {
+						foreach (UnitManager ally in myManager.allies) {
 							if (ally) {
 								if (myManager.gameObject != ally) {
-									UnitState hisState = ally.GetComponent<UnitManager> ().getState ();
+									UnitState hisState = ally.getState ();
 									if (hisState is DefaultState) {
 										hisState.attackResponse (src,0);
 									}
@@ -95,7 +93,7 @@ public class DefaultState : UnitState{
 						}
 					}
 
-				}
+
 			}
 		}
 

@@ -16,7 +16,7 @@ public class HoldState : UnitState {
 	override
 	public void Update () {
 		if (myManager) {
-			GameObject enemy = myManager.findBestEnemy ();
+			UnitManager enemy = myManager.findBestEnemy ();
 
 			if (enemy) {
 				IWeapon myWeap = myManager.canAttack (enemy);
@@ -37,7 +37,7 @@ public class HoldState : UnitState {
 	}
 
 	override
-	public void attackResponse(GameObject src, float amount)
+	public void attackResponse(UnitManager src, float amount)
 	{}
 
 }

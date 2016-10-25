@@ -6,13 +6,13 @@ public class SplitterHitList : MonoBehaviour,Notify{
 
 
 	public float chargeCount;
-	public List<GameObject> hitTargets = new List<GameObject>();
+	public List<UnitManager> hitTargets = new List<UnitManager>();
 
 
 
 	void Start()
 	{this.gameObject.GetComponent<IWeapon> ().triggers.Add (this);
-		hitTargets = new List<GameObject> ();
+		hitTargets = new List<UnitManager> ();
 
 		this.gameObject.GetComponent<IWeapon> ().attackPeriod = chargeCount * 2;
 	}
@@ -22,14 +22,14 @@ public class SplitterHitList : MonoBehaviour,Notify{
 
 
 
-	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
+	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 		{
 		proj.GetComponent<SplitterShot> ().chargesRemaning = chargeCount;
 		hitTargets.Clear ();
 		hitTargets.Add (target);
 	}
 
-	public bool isValidEnemy(GameObject obj)
+	public bool isValidEnemy(UnitManager obj)
 	{
 		//Debug.Log ("Does orignal contain it?" +hitTargets.Contains (obj));
 		return !hitTargets.Contains (obj);

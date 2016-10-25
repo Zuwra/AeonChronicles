@@ -68,7 +68,7 @@ public class BallisticMissile:  TargetAbility {
 		proj.SendMessage ("setDamage", 10);
 
 
-		script.target = target;
+		script.target = target.GetComponent<UnitManager>();
 		script.Source = this.gameObject;
 
 
@@ -99,7 +99,7 @@ public class BallisticMissile:  TargetAbility {
 		proj.SendMessage ("setDamage", 10);
 
 
-		script.target = target;
+		script.target = target.GetComponent<UnitManager> ();
 		script.Source = this.gameObject;
 
 

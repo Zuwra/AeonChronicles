@@ -44,7 +44,7 @@ public class sawDefense : MonoBehaviour {
 		if (!inAttack) {
 			if (myManager.enemies.Count > 0) {
 		
-				GameObject enem = myManager.findClosestEnemy ();
+				UnitManager enem = myManager.findClosestEnemy ();
 				if (!enem) {
 				
 					return;}

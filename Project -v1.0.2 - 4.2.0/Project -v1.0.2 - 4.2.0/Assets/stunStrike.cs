@@ -33,18 +33,18 @@ public class stunStrike : MonoBehaviour, Notify {
 
 	}
 
-	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
+	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 	{Debug.Log ("Getting triggered");
 
-		UnitManager manage = target.GetComponent<UnitManager> ();
-		if (manage && source != target) {
+
+		if (target && source != target) {
 			Debug.Log ("In here");
 			if (mustTarget != UnitTypes.UnitTypeTag.Dead) {
-				if (!manage.myStats.isUnitType (mustTarget)) {
+				if (target.myStats.isUnitType (mustTarget)) {
 					return;}
 			}
 
-			manage.StunForTime (this, stunTime);
+			target.StunForTime (this, stunTime);
 
 		}
 

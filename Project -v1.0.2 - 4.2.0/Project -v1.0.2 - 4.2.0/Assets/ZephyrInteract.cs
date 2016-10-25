@@ -37,7 +37,9 @@ public class ZephyrInteract : StandardInteract{
 		RepairTurret RT = myManager.GetComponentInChildren<RepairTurret> ();
 
 		if (RT) {
-			RT.setTarget (order.Target);
+			if (!RT.setTarget (order.Target)) {
+				myManager.changeState (new FollowState (order.Target.gameObject, myManager), false, order.queued);
+			}
 
 		
 		} else if (order.Target == this.gameObject) {

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class RepairTurret : Ability, Modifier{
 
 
@@ -117,8 +118,17 @@ public class RepairTurret : Ability, Modifier{
 	}
 
 
-	public void setTarget(GameObject obj)
-	{commandRepair = true;
+	public bool setTarget(GameObject obj)
+	{
+		if (obj.GetComponent<UnitStats> ().atFullHealth ()) {
+			return false;}
+		
+			try{
+				if (!obj.GetComponent<BuildingInteractor> ().ConstructDone()) {
+					return false;
+				}}catch{
+			};
+		commandRepair = true;
 
 		target = obj;
 		DroneAway = false;
@@ -132,7 +142,7 @@ public class RepairTurret : Ability, Modifier{
 		} else {
 			mymanager.changeState (new FollowState (target, null));
 		}
-
+		return true;
 	
 	}
 
@@ -157,11 +167,18 @@ public class RepairTurret : Ability, Modifier{
 		for (int i = 0; i <mymanager.allies.Count; i ++) {
 			if (mymanager.allies[i] != null) {
 
-				if(!mymanager.allies[i].GetComponent<UnitStats>().atFullHealth()){
+				if(!mymanager.allies[i].myStats.atFullHealth()){
+					try{
+						if (!mymanager.allies [i].GetComponent<BuildingInteractor> ().ConstructDone()) {
+						continue;
+						}}catch{
+					};
+					
+					
 
 					float currDistance = Vector3.Distance(mymanager.allies[i].transform.position, this.gameObject.transform.position);
 					if(currDistance < distance)
-						{best = mymanager.allies[i];
+					{best = mymanager.allies[i].gameObject;
 
 						distance = currDistance;
 						}
@@ -215,16 +232,7 @@ public class RepairTurret : Ability, Modifier{
 	{ 
 
 		Destroy (drone);
-		//foreach (TurretMount turr in transform.parent.GetComponentsInParent<TurretMount> ()) {
 
-			//if (turr.turret != null) {
-
-				// What does this do again?
-				//mymanager.myWeapon= (turr.turret.GetComponent<IWeapon> ());
-				//return 0 ;
-			//}
-
-		//}
 		return 0 ;
 
 	}

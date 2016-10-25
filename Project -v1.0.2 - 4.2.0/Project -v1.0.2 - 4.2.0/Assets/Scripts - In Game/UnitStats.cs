@@ -228,10 +228,10 @@ public class UnitStats : MonoBehaviour {
 					updateHealthBar ();
 
 			
-					//Debug.Log ("Taking Damage");
 
-					//if(type != DamageTypes.DamageType.True)
-					myManager.Attacked (source);
+					if (source) {
+						myManager.Attacked (source.GetComponent<UnitManager> ());
+					} 
 				}
 			}
 			return amount;

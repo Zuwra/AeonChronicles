@@ -46,7 +46,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{
 		GameMenu.main.addDisableScript (this);
 		uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
-        abilityManager = GameObject.Find("GameHud").GetComponent<UiAbilityManager>();
+		abilityManager = GameObject.FindObjectOfType<UiAbilityManager>();
         raceMan = GameObject.Find("GameRaceManager").GetComponent<GameManager>().activePlayer;
 		main = this;
 		controlUI = GameObject.FindObjectOfType<ControlGroupUI> ();

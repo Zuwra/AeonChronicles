@@ -20,7 +20,7 @@ public class energyDrain : MonoBehaviour, Notify{
 	}
 
 
-	public void trigger(GameObject source,GameObject proj, GameObject target, float damage)
+	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 	{
 		UnitStats stats = target.GetComponent<UnitStats> ();
 		if (stats != null) {

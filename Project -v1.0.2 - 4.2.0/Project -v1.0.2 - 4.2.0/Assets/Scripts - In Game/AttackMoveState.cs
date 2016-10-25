@@ -8,7 +8,7 @@ public class AttackMoveState : UnitState {
 
 	private Vector3 home;// to be used if its a passive attack move and patrol;
 	private Vector3 endLocation; // end location of an attack move
-	private GameObject enemy;
+	private UnitManager enemy;
 	private Vector3 target; // currently moving towards
 
 	private bool enemyDead = false;
@@ -21,7 +21,9 @@ public class AttackMoveState : UnitState {
 		myManager = man;
 
 		home = myhome;
-		enemy = obj;
+		if (obj) {
+			enemy = obj.GetComponent<UnitManager> ();
+		}
 		endLocation = location;
 		commandType = type;
 		if (enemy != null) {
@@ -55,32 +57,29 @@ public class AttackMoveState : UnitState {
 	// Update is called once per frame
 	override
 	public void Update () {
-		//Debug.Log ("I am " + myManager.gameObject + "   in attackMove");
+	//	Debug.Log ("I am " + myManager.gameObject + "   in attackMove");
 
 		currentFrame++;
 
 
 		if (currentFrame > refreshTime) {
 			currentFrame = 0;
-			GameObject temp =  myManager.findBestEnemy ();
+			UnitManager temp =  myManager.findBestEnemy ();
 
 			if (temp) {
 			
 				enemy = temp;
-			
-				//myManager.gameObject.transform.LookAt (enemy.transform.position);
 				if (myManager.cMover) {
 		
 					myManager.cMover.resetMoveLocation (enemy.transform.position);
 				}
-				//Debug.Log("Just called th reset2" + enemy.transform.position);
 
-			} else if(enemy && Vector3.Distance(myManager.gameObject.transform.position,enemy.transform.position) > 90){
+			} else if(enemy && Vector3.Distance(myManager.gameObject.transform.position,enemy.transform.position) > 100){
 				myManager.cMover.resetMoveLocation (home);
 			}
 		}
 		//still need to figure out calcualte ion for if enemy goes out of range or if a better one comes into range
-
+		//Debug.Log("Checking");
 			
 	
 
@@ -97,12 +96,12 @@ public class AttackMoveState : UnitState {
 					}
 					attacked = true;
 					if (weap.canAttack (enemy)) {
-	
+						//Debug.Log ("Attacking " + enemy.gameObject + "   " + Time.time);
 						weap.attack (enemy, myManager);
 					} 
 				} 
 			}
-
+			//Debug.Log ("After attack "+ "   " + Time.time);
 			if (!attacked) {
 				if (myManager.cMover.speed == 0) {
 					myManager.cMover.resetMoveLocation (enemy.transform.position);
@@ -160,17 +159,16 @@ public class AttackMoveState : UnitState {
 	}
 
 	override
-	public void attackResponse(GameObject src, float amount)
+	public void attackResponse(UnitManager src, float amount)
 	{
 		if(src){
-			UnitManager manage = src.GetComponent<UnitManager> ();
-			if (manage) {
-				if (manage.PlayerOwner != myManager.PlayerOwner) {
+
+			if (src.PlayerOwner != myManager.PlayerOwner) {
 
 					if(amount > 0){
-						foreach (GameObject ally in myManager.allies) {
+						foreach (UnitManager ally in myManager.allies) {
 							if (ally) {
-								UnitState hisState = ally.GetComponent<UnitManager> ().getState ();
+								UnitState hisState = ally.getState ();
 								if (hisState is DefaultState) {
 									hisState.attackResponse (src, 0);
 								}
@@ -178,7 +176,7 @@ public class AttackMoveState : UnitState {
 							}
 						}
 					}
-				}
+
 			}
 		}
 

@@ -51,7 +51,7 @@ public class BackLashAura : MonoBehaviour, Notify {
 	}
 
 
-	public void trigger(GameObject sou, GameObject proj, GameObject target, float damage)
+	public void trigger(GameObject sou, GameObject proj,UnitManager target, float damage)
 	{if (source) {
 			source.heal (damage / 4);
 		}

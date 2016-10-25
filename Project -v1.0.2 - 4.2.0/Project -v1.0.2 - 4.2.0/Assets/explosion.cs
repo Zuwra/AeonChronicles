@@ -81,7 +81,7 @@ public class explosion : MonoBehaviour {
 
 					foreach (Notify not in triggers) {
 					
-						not.trigger(source,  null, other.gameObject, amount);
+						not.trigger(source,  null, manager, amount);
 					}
 				}
 

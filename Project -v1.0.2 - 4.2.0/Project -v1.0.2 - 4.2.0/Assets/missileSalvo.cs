@@ -74,7 +74,7 @@ public class missileSalvo : Ability, Validator, Notify{
 
 
 
-	public void trigger(GameObject source, GameObject projectile,GameObject target, float damage)	{
+	public void trigger(GameObject source, GameObject projectile,UnitManager target, float damage)	{
 		
 		chargeCount--;
 		mySelect.updateCoolDown ((float)chargeCount /(float) maxRockets);
