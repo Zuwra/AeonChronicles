@@ -10,6 +10,7 @@ public class TargetDeathVictory : Objective {
 	// Use this for initialization
 	new void Start () {
 		base.Start ();
+		//Debug.Log ("Death" + this.gameObject);
 		foreach (GameObject obj in targets) {
 			obj.AddComponent<DeathWinTrigger> ();
 		}
@@ -34,7 +35,7 @@ public class TargetDeathVictory : Objective {
 
 
 	public void IDied(GameObject obj)
-	{Debug.Log ("I died " + obj.name);
+	{//Debug.Log ("I died " + obj.name);
 		
 		targets.RemoveAll(item => item == null);
 		if (targets.Contains (obj)) {
