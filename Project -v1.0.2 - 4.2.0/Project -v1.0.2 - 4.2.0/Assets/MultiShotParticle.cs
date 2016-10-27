@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MultiShotParticle : MonoBehaviour {
 
 	private ParticleSystem ps;
+	private List<ParticleSystem> otherP;
 	private int emmitNUm;
 
 	public void Start() 
-	{
+		{otherP = new List<ParticleSystem> ();
 		ps = GetComponent<ParticleSystem>();
 		emmitNUm = ps.maxParticles;
 
+		foreach (ParticleSystem pps in GetComponentsInChildren<ParticleSystem>()) {
+			otherP.Add (pps);
+		}
 		this.gameObject.SetActive (false);
 	}
 
@@ -40,6 +45,11 @@ public class MultiShotParticle : MonoBehaviour {
 		//ps.Clear ();
 		ps.Emit(emmitNUm);
 		ps.startLifetime = ps.startLifetime;
+
+		foreach (ParticleSystem pps in otherP) {
+			pps.Emit(emmitNUm);
+			pps.startLifetime = ps.startLifetime;
+		}
 
 	}
 }

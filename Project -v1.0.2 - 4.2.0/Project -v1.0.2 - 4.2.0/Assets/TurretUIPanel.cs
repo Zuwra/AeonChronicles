@@ -38,7 +38,7 @@ public class TurretUIPanel : MonoBehaviour {
 		myCanvas.enabled = true;
 
 	
-
+		Debug.Log ("This is " + this.gameObject);
 		if (pic) {
 			personPic.sprite = pic;
 		} else {
