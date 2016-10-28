@@ -127,13 +127,16 @@ public class WaveSpawner : MonoBehaviour {
 	{
 		
 		float delay = .1f;
-		foreach (GameObject obj in nextWave.waveType) {
-			Debug.Log ("making unit");
-			StartCoroutine (MyCoroutine (delay, obj));
-			delay += .2f;
+
+	
+	
+			foreach (GameObject obj in nextWave.waveType) {
+				
+				StartCoroutine (MyCoroutine (delay, obj));
+				delay += .2f;
+			}
 
 
-		}
 	}
 
 	public void OnDrawGizmos()

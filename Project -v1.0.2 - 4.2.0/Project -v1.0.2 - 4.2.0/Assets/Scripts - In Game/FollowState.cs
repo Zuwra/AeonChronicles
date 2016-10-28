@@ -8,7 +8,7 @@ public class FollowState : UnitState {
 
 	private float refreshTime = 5;
 
-	private float followRadius = 0;
+	private float followRadius = 4;
 	bool isStopped =false;
 
 	public FollowState(GameObject unit, UnitManager man)
@@ -17,10 +17,19 @@ public class FollowState : UnitState {
 
 		refreshTime = Time.time + .5f;
 		Debug.Log ("New Follow state" );
+		if(unit){
 		target = unit;
-		followRadius = man.GetComponent<CharacterController> ().radius + target.GetComponent<CharacterController>().radius + 4;
-		//myMover.resetMoveLocation (target.transform.position);
+			if (man) {
+				followRadius += man.GetComponent<CharacterController> ().radius;
+			}
+				if (target.GetComponent<CharacterController> ()) {
+					followRadius +=target.GetComponent<CharacterController> ().radius;
 
+			} else {
+				followRadius +=5 ;
+			}
+		//myMover.resetMoveLocation (target.transform.position);
+		}
 	}
 
 	public override void initialize()
