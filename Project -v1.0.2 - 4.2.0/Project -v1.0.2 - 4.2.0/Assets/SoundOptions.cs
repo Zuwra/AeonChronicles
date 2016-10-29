@@ -49,6 +49,17 @@ public class SoundOptions : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKeyDown (KeyCode.KeypadPlus)) {
+			GameSettings.masterVolume += .15f;
+			masterSLider.value = GameSettings.masterVolume;
+			AudioListener.volume = masterSLider.value;
+
+		} else if (Input.GetKeyDown (KeyCode.KeypadMinus)) {
+			GameSettings.masterVolume -= .15f;
+			masterSLider.value = GameSettings.masterVolume;
+			AudioListener.volume = masterSLider.value;
+		}
 	
 	}
 

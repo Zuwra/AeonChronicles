@@ -48,8 +48,9 @@ public class MissileArmer :Ability{
 					if (salv.chargeCount < salv.maxRockets) {
 						salv.upRockets ();
 				
+						break;
 					}
-					break;
+
 				}
 			} 
 	

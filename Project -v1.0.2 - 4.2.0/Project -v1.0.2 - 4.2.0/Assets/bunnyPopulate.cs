@@ -42,12 +42,18 @@ public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
 			hitzone.z += Mathf.Cos (Mathf.Deg2Rad * angle) * radius;
 
 
-			Instantiate (this.gameObject, hitzone, Quaternion.identity);//do the thing
-			nextRepopulate = Time.time + repopulateTime + Random.Range(0,randomSpawnRange);
-			repopulateTime += 3;
+			GameObject ob = (GameObject)Instantiate (this.gameObject, hitzone, Quaternion.identity);//do the thing
+			UnitStats theirstat = ob.GetComponent<UnitStats>();
+			theirstat.Maxhealth = 100;
+			theirstat.heal (100);
+			theirstat.HealthRegenPerSec = 1;
 
-			myStats.Maxhealth += 10;
-			myStats.heal (10);
+			nextRepopulate = Time.time + repopulateTime + Random.Range(0,randomSpawnRange);
+			repopulateTime += 5;
+
+			myStats.HealthRegenPerSec += 1;
+			myStats.Maxhealth += 25;
+			myStats.heal (50);
 			myStats.armor += .5f;
 
 			foreach(IWeapon weap in mymanager.myWeapon)

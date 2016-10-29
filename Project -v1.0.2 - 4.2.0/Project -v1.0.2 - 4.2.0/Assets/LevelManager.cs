@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour {
 		foreach (GameObject ob in Expositions) {
 			ob.SetActive (false);
 		}
-		Debug.Log (LevelData.currentLevel);
+		Debug.Log (" current level" + LevelData.currentLevel);
 		for (int i = 0; i < levelButtons.Count; i++) {
 			levelButtons [i].interactable = (i <= LevelData.currentLevel);
 		}

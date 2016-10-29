@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class LevelData  {
 
-	public static int currentLevel =0;
+	public static int currentLevel =3;
 	public static int totalXP = 0;
 
 	public static List<levelInfo> myLevels;
@@ -74,7 +74,7 @@ public class LevelData  {
 	//Used for keeping track of which guys have upgrades applied to them
 	public static void applyUpgrade(string s, int u )
 	{
-		Debug.Log ("Adding upgrade " + s + "  " + u);
+	//	Debug.Log ("Adding upgrade " + s + "  " + u);
 		if(appliedUpgrades == null) {
 			appliedUpgrades = new Dictionary<string, int> ();
 		
@@ -91,7 +91,7 @@ public class LevelData  {
 
 	public static void reset()
 	{
-		Debug.Log ("Resetting");
+
 	currentLevel =0;
 		totalXP = 0;
 		if (myLevels != null) {
