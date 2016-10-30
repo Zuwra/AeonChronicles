@@ -37,7 +37,7 @@ public  class Projectile : MonoBehaviour {
 	public float indicatorSize;
 	private GameObject myIndiactor;
 
-	private Vector3 randomOffset;
+	protected Vector3 randomOffset;
 
 	// Use this for initialization
 	public void Start () {	

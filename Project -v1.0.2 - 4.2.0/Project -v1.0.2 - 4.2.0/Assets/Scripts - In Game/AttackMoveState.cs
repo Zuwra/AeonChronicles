@@ -161,7 +161,7 @@ public class AttackMoveState : UnitState {
 	override
 	public void attackResponse(UnitManager src, float amount)
 	{
-		if(src){
+		if(src && !enemy){
 
 			if (src.PlayerOwner != myManager.PlayerOwner) {
 

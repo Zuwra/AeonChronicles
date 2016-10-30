@@ -23,6 +23,10 @@ public class RepairDrone : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!myHome) {
+			Destroy (this.gameObject);
+		}
+
 		if (target) {
 			if (Vector3.Distance (myHome.transform.position, this.gameObject.transform.position) > 50) {
 				returnHome ();

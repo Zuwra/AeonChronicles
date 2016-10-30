@@ -73,11 +73,16 @@ public class EmpMissile :  TargetAbility {
 
 			Projectile script = proj.GetComponent<Projectile> ();
 			proj.SendMessage ("setSource", this.gameObject);
+		if (target) {
+			
 			proj.SendMessage ("setTarget", target);
+			script.target = target.GetComponent<UnitManager>();
+		
+		}
 			proj.SendMessage ("setDamage", 10);
 			
 
-		script.target = target.GetComponent<UnitManager>();
+	
 			script.Source = this.gameObject;
 
 	
@@ -103,12 +108,13 @@ public class EmpMissile :  TargetAbility {
 		proj.SendMessage ("setSource", this.gameObject);
 		proj.SendMessage ("setLocation", location);
 		if (target) {
-			proj.SendMessage ("setTarget", target);
+			proj.SendMessage ("setTarget", target.GetComponent<UnitManager>());
 		}
 		proj.SendMessage ("setDamage", 10);
 
-
-		script.target = target.GetComponent<UnitManager>();
+		if (target) {
+			script.target = target.GetComponent<UnitManager> ();
+		}
 		script.Source = this.gameObject;
 
 

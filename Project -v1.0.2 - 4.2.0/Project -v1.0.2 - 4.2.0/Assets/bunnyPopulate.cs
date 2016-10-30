@@ -43,10 +43,7 @@ public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
 
 
 			GameObject ob = (GameObject)Instantiate (this.gameObject, hitzone, Quaternion.identity);//do the thing
-			UnitStats theirstat = ob.GetComponent<UnitStats>();
-			theirstat.Maxhealth = 100;
-			theirstat.heal (100);
-			theirstat.HealthRegenPerSec = 1;
+	
 
 			nextRepopulate = Time.time + repopulateTime + Random.Range(0,randomSpawnRange);
 			repopulateTime += 5;
@@ -65,6 +62,22 @@ public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
 			GetComponent<RVOController> ().radius += .15f;
 		}
 	
+	}
+
+	IEnumerator delayedStatChange(GameObject ob)
+	{
+		yield return new WaitForSeconds(.1f);
+
+		UnitStats theirstat = ob.GetComponent<UnitStats>();
+		theirstat.Maxhealth = 100;
+		theirstat.heal (100);
+		theirstat.HealthRegenPerSec = 1;
+
+		foreach(IWeapon weap in  ob.GetComponent<UnitManager>().myWeapon)
+		{
+			weap.range +=10;
+			weap.baseDamage = 1;
+		}
 	}
 
 

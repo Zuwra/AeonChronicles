@@ -176,7 +176,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 			if (obj.GetComponent<UnitManager> ().UnitName == unitname) {
 				
-				obj.SendMessage ("researched", upgrade);
+			obj.SendMessage ("researched", upgrade);
 			
 			}
 		}
@@ -232,6 +232,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void applyUpgrade(GameObject obj )
 	{	foreach (Upgrade up in myUpgrades) {
 			up.applyUpgrade (obj);
+			obj.SendMessage ("researched", up,SendMessageOptions.DontRequireReceiver);
 		}
 	}
 
@@ -483,8 +484,8 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			}
 		}
 
-
-
+		applyUpgrade (obj);
+	
 
 		//uiManager.changeUnits ();
 	}

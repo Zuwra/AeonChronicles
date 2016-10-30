@@ -118,15 +118,21 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	{
 
 		if (Name == otherUpgrade.Name) {
+
 			if (upgrades.Count > currentUpgrade + 1) {
 				currentUpgrade++;
-				//Debug.Log ("Replacing " + Name + "   " + otherUpgrade.Name);
+
 				//this is all here for replaceable or scaling upgrades
 				iconPic = upgrades [currentUpgrade].iconPic;
                 buildTime = upgrades[currentUpgrade].buildTime;
 				Name = upgrades [currentUpgrade].Name;
 				myCost = upgrades [currentUpgrade].myCost;
 				Descripton = upgrades [currentUpgrade].Descripton;
+				this.active = true;
+				if (mySelect.IsSelected) {
+					RaceManager.updateActivity();
+				}
+
 			} else {
 				this.gameObject.GetComponent<UnitManager> ().abilityList[GetComponent<UnitManager> ().abilityList.IndexOf(this)] = null;
 			//	this.gameObject.GetComponent<UnitManager> ().removeAbility (this);

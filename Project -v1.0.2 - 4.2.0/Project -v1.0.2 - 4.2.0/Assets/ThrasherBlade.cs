@@ -43,7 +43,7 @@ public class ThrasherBlade : Projectile {
 		dir.Normalize ();
 		dir *= speed * Time.deltaTime ;
 
-		dir = Quaternion.AngleAxis (-90, Vector3.up) * dir;
+		dir = Quaternion.AngleAxis (-75, Vector3.up) * dir;
 		this.gameObject.transform.Translate (dir);
 
 
