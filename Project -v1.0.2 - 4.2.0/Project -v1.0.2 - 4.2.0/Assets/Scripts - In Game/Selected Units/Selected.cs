@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 
 public class Selected : MonoBehaviour {
@@ -58,9 +59,13 @@ public class Selected : MonoBehaviour {
 	{myLine = GetComponent<LineRenderer> ();
 		IsSelected = false;
 
+		myStats = this.gameObject.GetComponent<UnitStats> ();
+		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
+
 
 		buffDisplay = GetComponentInChildren<HealthDisplay> ();
-
+	
+		try{
 		turretDisplay = transform.FindChild("HealthDisplay").GetComponent<TurretHealthDisplay> ();
 		if (!turretDisplay) {
 			healthslider = transform.FindChild ("HealthDisplay").FindChild ("HealthBar").GetComponent<Slider> ();
@@ -73,8 +78,7 @@ public class Selected : MonoBehaviour {
 			//coolFill= transform.FindChild("HealthDisplay").FindChild("Cooldown").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 	
 
-		myStats = this.gameObject.GetComponent<UnitStats> ();
-		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
+
 
 
 		//If this unit is land based subscribe to the path changed event
@@ -88,7 +92,10 @@ public class Selected : MonoBehaviour {
 
 		}
 		updateHealthBar (myStats.health / myStats.Maxhealth);
-		coolDownSlider.gameObject.SetActive (false);
+			coolDownSlider.gameObject.SetActive (false);}
+		catch(Exception) {
+			
+		}
 	}
 
 

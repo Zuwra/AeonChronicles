@@ -110,23 +110,7 @@ public class IWeapon : MonoBehaviour {
 			PointSource.cMover.removeSpeedBuff (this);
 
 		}
-
-		if (enemy) {
-		if(inRange(enemy))
-			{
-				if (turret != null) {
-					turret.GetComponent<turret> ().Target (enemy.gameObject);
-				}
-				else
-					{
-				
-					//Vector3 spotter = enemy.transform.position;
-					//spotter.y = this.transform.position.y;
-					//this.gameObject.transform.LookAt(spotter);
-
-				}
-			}
-		}
+			
 
 	}
 

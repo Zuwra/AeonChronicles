@@ -33,7 +33,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	private float WorldHeight;
 	private float WorldWidth;
  
-    private int textureHeight = 200, textureWidth = 200;
+    private int textureHeight = 190, textureWidth = 190;
 
  
 	public int scalingfactor =1;
@@ -57,8 +57,31 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	Texture2D _texture;
 	GUIStyle _panelStyle;
 
+
+	Ray ray1 ;
+
+	//Top left
+	Ray ray2 ;
+
+	//Top right
+	Ray ray3 ;
+
+	//Bottom right
+	Ray ray4 ;
+
+	Texture2D panelTex ;
+
+
     // Use this for initialization
     void Start () {
+
+		// Use for Fog of War
+		Texture2D panelTex = new Texture2D (1, 1);
+		panelTex.SetPixels32 (new Color32[] { new Color32 (255, 255, 255, 64) });
+		panelTex.Apply ();
+		_panelStyle = new GUIStyle ();
+		_panelStyle.normal.background = panelTex;
+
 
 		myRect = GetComponent<RectTransform> ();
 		minimapWidth = myRect.rect.width ;
@@ -93,7 +116,12 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		GameMenu.main.addDisableScript (this);
 		ScreenTrapz.sprite = Sprite.Create (screenTrapzoidTex as Texture2D, new Rect (0f, 0f, textureWidth, textureHeight), Vector2.zero);
 
-    }
+   
+	
+	
+	
+	
+	}
 
     // Update is called once per frame
     void Update()
@@ -187,11 +215,10 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 				
 				if (unit == null) {
 					continue;}
-				float unitWorldX = unit.transform.position.x;
-				float unitWorldZ = unit.transform.position.z;
+			
                
-				int iCoord = (int)(((unitWorldX - Left) / (WorldWidth)) * textureWidth);
-				int jCoord = (int)(((unitWorldZ - bottom) / (WorldHeight)) * textureHeight);
+				int iCoord = (int)(((unit.transform.position.x - Left) / (WorldWidth)) * textureWidth);
+				int jCoord = (int)(((unit.transform.position.z - bottom) / (WorldHeight)) * textureHeight);
 				int chitSize = unitPixelSize;
 				if (unit.layer == 10) {
 					chitSize *= 2;
@@ -228,51 +255,61 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 
 
-		//Need to find co-ordinates for the viewing area within the camera viewport
-		//Bottom left
-		Ray ray1 = Camera.main.ScreenPointToRay (new Vector3(0,180,0));
+		ray1 = Camera.main.ScreenPointToRay (new Vector3(0,180,0));
 
 		//Top left
-		Ray ray2 = Camera.main.ScreenPointToRay (new Vector3(0, Screen.height-1, 0));
+		ray2 = Camera.main.ScreenPointToRay (new Vector3(0, Screen.height-1, 0));
 
 		//Top right
-		Ray ray3 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, Screen.height-1, 0));
+		ray3 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, Screen.height-1, 0));
 
 		//Bottom right
-		Ray ray4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, 180, 0));
+		ray4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, 180, 0));
 
+
+
+
+
+
+		// LOTS OF COMMENTED OUT STUFF FOR OPTIMIZATIONS!
+	
 		//Find world co-ordinates
 		RaycastHit hit;
 		Physics.Raycast (ray1, out hit, Mathf.Infinity, 1 << 16);
 		Vector3 v1 = hit.point;
-		int iC = (int)(((v1.x - Left) / (WorldWidth)) * textureWidth);
-		int jC = (int)(((v1.z - bottom) / (WorldHeight)) * textureHeight);
+
 	
-		botLeftP = new Vector2 (iC, jC);
+		//int iC = (int)(((v1.x - Left) / (WorldWidth)) * textureWidth);
+		//int jC = (int)(((v1.z - bottom) / (WorldHeight)) * textureHeight);
+	
+		botLeftP = new Vector2 ((int)(((v1.x - Left) / (WorldWidth)) * textureWidth)    ,  (int)(((v1.z - bottom) / (WorldHeight)) * textureHeight));
 
 
 		Physics.Raycast (ray2, out hit, Mathf.Infinity, 1 << 16);
-		Vector3 v2 = hit.point;
-		iC = (int)(((v2.x - Left) / (WorldWidth)) * textureWidth);
-		jC = (int)(((v2.z - bottom) / (WorldHeight)) * textureHeight);
+		//Vector3 
+		v1 = hit.point;
+		//iC = (int)(((v2.x - Left) / (WorldWidth)) * textureWidth);
+		//jC = (int)(((v2.z - bottom) / (WorldHeight)) * textureHeight);
 	
-		topLeftP = new Vector2 (iC, jC);
+		topLeftP = new Vector2 ((int)(((v1.x - Left) / (WorldWidth)) * textureWidth), (int)(((v1.z - bottom) / (WorldHeight)) * textureHeight));
 
 		Physics.Raycast (ray3, out hit, Mathf.Infinity, 1 << 16);
-		Vector3 v3 = hit.point;
-		iC = (int)(((v3.x - Left) / (WorldWidth)) * textureWidth);
-		jC = (int)(((v3.z - bottom) / (WorldHeight)) * textureHeight);
+		//Vector3
+		v1 = hit.point;
+		//iC = (int)(((v3.x - Left) / (WorldWidth)) * textureWidth);
+		//jC = (int)(((v3.z - bottom) / (WorldHeight)) * textureHeight);
 	
-		topRightP = new Vector2 (iC, jC);
+		topRightP = new Vector2 ((int)(((v1.x - Left) / (WorldWidth)) * textureWidth),(int)(((v1.z - bottom) / (WorldHeight)) * textureHeight));
 
 
 		Physics.Raycast (ray4, out hit, Mathf.Infinity, 1 << 16);
-		Vector3 v4 = hit.point;
+		//Vector3
+		v1 = hit.point;
 		//Debug.Log ("Hit " + hit.collider.gameObject);
-		iC = (int)(((v4.x - Left) / (WorldWidth)) * textureWidth);
-		jC = (int)(((v4.z - bottom) / (WorldHeight)) * textureHeight);
+		//iC = (int)(((v4.x - Left) / (WorldWidth)) * textureWidth);
+		//jC = (int)(((v4.z - bottom) / (WorldHeight)) * textureHeight);
 
-		botRightP = new Vector2 (iC, jC);
+		botRightP = new Vector2 ((int)(((v1.x - Left) / (WorldWidth)) * textureWidth), (int)(((v1.z - bottom) / (WorldHeight)) * textureHeight));
 
 	//	Debug.Log (topRightP + "   " + botRightP + "  " +hit.collider.gameObject);
 		drawLine(screenTrapzoidTex,virtTrapezoid, topLeftP,topRightP);
@@ -338,14 +375,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 			_texture = new Texture2D (fog.texture.width, fog.texture.height);
 			_texture.wrapMode = TextureWrapMode.Clamp;
 		}
-
-		if (_panelStyle == null) {
-			Texture2D panelTex = new Texture2D (1, 1);
-			panelTex.SetPixels32 (new Color32[] { new Color32 (255, 255, 255, 64) });
-			panelTex.Apply ();
-			_panelStyle = new GUIStyle ();
-			_panelStyle.normal.background = panelTex;
-		}
+	
 
 		byte[] original = fog.texture.GetRawTextureData ();
 		Color32[] pixels = new Color32[original.Length];
@@ -353,6 +383,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 			pixels [i] = original [i] < 255 ? new Color32 (0, 0, 0, 0) : new Color32 (0, 0, 0, 255);
 		_texture.SetPixels32 (pixels);
 		_texture.Apply ();
+	
 
 	}
 

@@ -5,6 +5,7 @@ using Pathfinding;
 using System;
 
 
+
 public class UnitStats : MonoBehaviour {
 
 	[TextArea(2,10)]
@@ -100,7 +101,7 @@ public class UnitStats : MonoBehaviour {
 		myManager.myStats = this;
 	
 
-		nextActionTime = Time.time;
+		nextActionTime = Time.time + .5f;
 		if (isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 	
 		}
