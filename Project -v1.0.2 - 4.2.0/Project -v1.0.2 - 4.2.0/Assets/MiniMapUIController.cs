@@ -377,10 +377,13 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		}
 	
 
+		//Debug.Log ("Size is " + fog.texture.width);
 		byte[] original = fog.texture.GetRawTextureData ();
 		Color32[] pixels = new Color32[original.Length];
-		for (int i = 0; i < pixels.Length; ++i)
+		for (int i = 0; i < pixels.Length; i++) {
 			pixels [i] = original [i] < 255 ? new Color32 (0, 0, 0, 0) : new Color32 (0, 0, 0, 255);
+		
+		}
 		_texture.SetPixels32 (pixels);
 		_texture.Apply ();
 	

@@ -43,7 +43,7 @@ public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
 
 
 			GameObject ob = (GameObject)Instantiate (this.gameObject, hitzone, Quaternion.identity);//do the thing
-	
+			StartCoroutine(delayedStatChange(ob));
 
 			nextRepopulate = Time.time + repopulateTime + Random.Range(0,randomSpawnRange);
 			repopulateTime += 5;

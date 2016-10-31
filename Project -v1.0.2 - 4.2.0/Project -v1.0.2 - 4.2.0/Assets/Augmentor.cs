@@ -107,7 +107,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			int i = 0;
 			foreach (ResearchUpgrade bu in target.GetComponents<ResearchUpgrade>()) {
 				//bu.buildTime *= .65f;
-				if (i > 0) {
+				if (i > 1 && !bu.researchingElsewhere) {
 					bu.active = true;
 				}
 
@@ -186,7 +186,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			int i = 0;
 			foreach (ResearchUpgrade bu in target.GetComponents<ResearchUpgrade>()) {
 				//bu.buildTime *= .65f;
-				if (i > 0) {
+				if (i > 1 && !bu.researchingElsewhere) {
 					bu.active = false;
 				}
 

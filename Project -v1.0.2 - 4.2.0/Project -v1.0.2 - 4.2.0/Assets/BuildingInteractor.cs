@@ -99,8 +99,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 			if (myAnim) {
 				myAnim.speed = 1;
 			}
-			GameManager man = GameObject.FindObjectOfType<GameManager>();
-			man.playerList [myManager.PlayerOwner - 1].addUnit (this.gameObject);
+		
 
 			ErrorPrompt.instance.showError(myManager.UnitName + " Construction Complete");
 
@@ -111,9 +110,16 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 					myManager.abilityList [i].active = true;
 				}
 				if (template.abilityList [i].enabled) {
-
+					
 					myManager.abilityList [i].enabled = true;
 				}
+			}
+
+			GameManager man = GameObject.FindObjectOfType<GameManager>();
+			man.playerList [myManager.PlayerOwner - 1].addUnit (this.gameObject);
+
+			foreach (ResearchUpgrade ru in GetComponents<ResearchUpgrade>()) {
+				ru.UpdateAvailable ();
 			}
 
 			return 1;

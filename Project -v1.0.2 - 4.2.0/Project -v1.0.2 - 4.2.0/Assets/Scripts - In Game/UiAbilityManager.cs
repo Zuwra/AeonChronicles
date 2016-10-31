@@ -1092,7 +1092,7 @@ public class UiAbilityManager : MonoBehaviour {
 			selectMan.setAutoCast (n);
 			selectMan.AutoCastUI ();
 
-		}else if (quickButtons [n].IsInteractable() && quickAbility[n].myAbility){// && quickAbility[n].myAbility.active) {
+		}else if (quickButtons [n].IsInteractable() && quickAbility[n].myAbility && quickButtons[n].IsActive()){// && quickAbility[n].myAbility.active) {
 		
 				selectMan.callAbility (n);
 			

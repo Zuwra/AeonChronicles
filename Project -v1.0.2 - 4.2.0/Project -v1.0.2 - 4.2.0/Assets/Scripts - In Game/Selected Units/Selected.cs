@@ -161,6 +161,7 @@ public class Selected : MonoBehaviour {
 		IconInfo = unitIcon.GetComponent<UnitIconInfo> ();
 		IconSlider = obj.transform.FindChild ("Slider").gameObject.GetComponent<Slider>();
 		if (!turretDisplay) {
+			Debug.Log (this.gameObject);
 			if (healthslider.value > .6) {
 
 				IconInfo.changeColor (Color.green);

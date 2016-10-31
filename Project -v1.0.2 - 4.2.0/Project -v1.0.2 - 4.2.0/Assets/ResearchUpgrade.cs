@@ -13,6 +13,8 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	private BuildManager buildMan;
 		public List<Upgrade> upgrades;
 	private UnitManager myManager;
+
+	public bool researchingElsewhere;
 	RaceManager raceMan;
 
 		//public float buildTime;
@@ -55,10 +57,25 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 		//Debug.Log (Name + " is Dqueuing");
 		myCost.refundCost ();
 		active = true;
+
+		researchingElsewhere = false;
+		object[] temp = new object[2];
+		temp [0] = true;
+		temp [1] = upgrades[currentUpgrade];
+
+
+		foreach (ResearchUpgrade ru in GameObject.FindObjectsOfType<ResearchUpgrade>()) {
+			if (ru == this) {
+				continue;}
+			ru.commence (temp);
+		}
+
+
 		if (mySelect.IsSelected) {
 			RaceManager.updateActivity ();
 		}
 	}
+
 
 
 		override
@@ -79,12 +96,29 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 		override
 		public void Activate()
 		{
+
 			if (myCost.canActivate (this)) {
 
+
+
+			researchingElsewhere = true;
+			object[] temp = new object[2];
+			temp [0] = false;
+			temp [1] = upgrades[currentUpgrade];
 	
+			foreach (ResearchUpgrade ru in GameObject.FindObjectsOfType<ResearchUpgrade>()) {
+				if (ru == this) {
+					continue;}
+				ru.commence (temp);
+			}
+
+
 			if (buildMan.buildUnit (this)) {
+
 				timer = buildTime;
 				//Debug.Log ("Name " + Name + "   is false" );
+			
+
 				active = false;
 				if (mySelect.IsSelected) {
 					RaceManager.updateActivity ();
@@ -102,16 +136,17 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 
 	public void commence(object[] incoming)
-	{	//Debug.Log (Name + " is commencing");
-		if (myManager.UnitName == (string)incoming[2]) {
-			//Debug.Log ("Name " + upgrades [currentUpgrade].Name + "   is  " + ((Upgrade)incoming[1]).Name);
+	{
+
 			if (Name == ((Upgrade)incoming[1]).Name) {
-				
+
+				researchingElsewhere = !(bool)incoming[0];
 				active = (bool)incoming[0];
 		
 			}
-		}
 	}
+
+
 
 
 	public void researched (Upgrade otherUpgrade)
@@ -150,6 +185,36 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 				Destroy (this);
 			}
 		}
+	}
+
+	public void UpdateAvailable()
+	{
+		foreach (ResearchUpgrade ru in GameObject.FindObjectsOfType<ResearchUpgrade>()) {
+			if (ru == this) {
+			
+				continue;}
+
+			if (ru.researchingElsewhere) {
+				Debug.Log ( Name +"  Researching " + ru.Name);
+
+		
+					//Debug.Log ("Name " + upgrades [currentUpgrade].Name + "   is  " + ((Upgrade)incoming[1]).Name);
+				if (Name ==ru.upgrades[ru.currentUpgrade].Name) {
+
+
+						researchingElsewhere = true;
+					active = ru.active;
+
+					}
+
+		
+			}
+		
+		
+		}
+
+
+	
 	}
 
 

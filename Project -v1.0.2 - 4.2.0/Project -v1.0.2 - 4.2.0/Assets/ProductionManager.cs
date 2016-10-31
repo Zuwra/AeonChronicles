@@ -53,7 +53,7 @@ public class ProductionManager : MonoBehaviour {
 
 	public void updateUnits( UnitProduction producer)
 	{
-		Debug.Log ("Here");
+		
 		if (abilityList.ContainsKey (producer.Name)) {
 
 		
