@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour {
 		foreach (GameObject ob in Expositions) {
 			ob.SetActive (false);
 		}
-		Debug.Log (" current level" + LevelData.currentLevel);
+		//Debug.Log (" current level" + LevelData.currentLevel);
 		for (int i = 0; i < levelButtons.Count; i++) {
 			levelButtons [i].interactable = (i <= LevelData.currentLevel);
 		}
@@ -143,11 +143,13 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void setDifficulty(Dropdown i)
-	{if(i.value == 0)
-		{LevelData.easyMode = true;}
-		else
-	{LevelData.easyMode = false;}
-
+	{if (i.value == 0) {
+			LevelData.easyMode = 1;
+		} else if (i.value == 1) {
+			LevelData.easyMode = 2;
+		} else {
+			LevelData.easyMode = 3;
+	}
 	}
 
 }

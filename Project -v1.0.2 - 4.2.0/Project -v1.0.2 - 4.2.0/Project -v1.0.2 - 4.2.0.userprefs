@@ -1,14 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Selected Units\Selected.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelManager.cs">
     <Files>
-      <File FileName="Assets\BuildingInteractor.cs" Line="116" Column="5" />
-      <File FileName="Assets\BuildStructure.cs" Line="197" Column="64" />
-      <File FileName="Assets\Augmentor.cs" Line="113" Column="5" />
-      <File FileName="Assets\ResearchUpgrade.cs" Line="108" Column="2" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="145" Column="33" />
-      <File FileName="Assets\ProductionManager.cs" Line="50" Column="3" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="166" Column="5" />
+      <File FileName="Assets\BuildingInteractor.cs" Line="1" Column="1" />
+      <File FileName="Assets\ProductionManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelData.cs" Line="95" Column="18" />
+      <File FileName="Assets\DifficultyManager.cs" Line="70" Column="4" />
+      <File FileName="Assets\LevelManager.cs" Line="40" Column="4" />
+      <File FileName="Assets\WaveSpawner.cs" Line="55" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

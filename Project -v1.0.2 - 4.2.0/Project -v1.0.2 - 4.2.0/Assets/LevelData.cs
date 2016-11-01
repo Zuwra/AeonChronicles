@@ -8,7 +8,7 @@ public class LevelData  {
 	public static int totalXP = 0;
 
 	public static List<levelInfo> myLevels;
-	public static bool easyMode = true;
+	public static int easyMode = 1;
 	public static bool ComingFromLevel;
 	public static levelInfo lastInfo;
 	public static List<Upgrade> purchasedUpgrades;
@@ -97,7 +97,7 @@ public class LevelData  {
 		if (myLevels != null) {
 			myLevels.Clear ();
 		}
-		easyMode = true;
+		easyMode =1;
 		ComingFromLevel = false;
 	}
 

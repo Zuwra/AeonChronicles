@@ -12,12 +12,14 @@ public class WaveSpawner : MonoBehaviour {
 	public Vector3 rallyPoint;
 	public bool showPoint;
 
-
+	DifficultyManager difficultyM;
 	public List<attackWave> myWaves;
 
 	[System.Serializable]
 	public struct attackWave
 	{public List<GameObject> waveType;
+		public List<GameObject> mediumExtra;
+		public List<GameObject> HardExtra;
 		public float releaseTime;
 		public int repeat;
 		public float repeatAddOn;
@@ -32,6 +34,8 @@ public class WaveSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		difficultyM = GameObject.FindObjectOfType<DifficultyManager> ();
 		findNextWave ();
 
 
@@ -53,6 +57,21 @@ public class WaveSpawner : MonoBehaviour {
 			}
 
 			foreach (GameObject obj in nextWave.waveType) {
+
+
+				StartCoroutine(MyCoroutine(delay, obj));
+				delay += .2f;
+
+			}
+
+			foreach (GameObject obj in nextWave.mediumExtra) {
+
+
+				StartCoroutine(MyCoroutine(delay, obj));
+				delay += .2f;
+
+			}
+			foreach (GameObject obj in nextWave.HardExtra) {
 
 
 				StartCoroutine(MyCoroutine(delay, obj));
@@ -95,9 +114,11 @@ public class WaveSpawner : MonoBehaviour {
 		attackzone.z +=  Mathf.Cos(Mathf.Deg2Rad * angleA)* radiusA;
 
 
+		difficultyM.SetUnitStats (unit);
 		unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateAttackMove (attackzone));
 
 	}
+
 
 
 	public void findNextWave()
