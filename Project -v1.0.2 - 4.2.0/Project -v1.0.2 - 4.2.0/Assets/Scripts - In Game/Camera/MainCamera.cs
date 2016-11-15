@@ -32,7 +32,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	Vector2 middleStartPos;
 	//Vector3 camStartPos;
 	bool middleMouseDown;
-
+    //test
 	void Awake()
 	{
 		main = this;
