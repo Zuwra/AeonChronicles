@@ -170,18 +170,21 @@ public class AbstractCost : MonoBehaviour {
 	}
 
 
-	public void payCost()
+	public void payCost ()
 	{
-			myGame.updateResources (-ResourceOne, -ResourceTwo, false);
-				
+		myGame.updateResources (-ResourceOne, -ResourceTwo, false);
 		if (stats) {
-			stats.TakeDamage (health, this.gameObject, DamageTypes.DamageType.True);
-		
-				
-			stats.currentEnergy -= energy;
-		}
+
+			if (health > 0) {
+
+				stats.TakeDamage (health, this.gameObject, DamageTypes.DamageType.True);
+			}
+			if (energy > 0) {
+				stats.currentEnergy -= energy;
+			}
 			cooldownTimer = cooldown;
 
-	}
+		}
 		
 	}
+}

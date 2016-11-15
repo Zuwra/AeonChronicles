@@ -28,7 +28,7 @@ public class TextTrigger : SceneEventTrigger {
 			if (!dialogue) {
 				
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
-				UIHighLight.main.highLight (null, 0);
+				//UIHighLight.main.highLight (null, 0);
 			} else {
 				ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic);
 				if (stealCamera > 0) {

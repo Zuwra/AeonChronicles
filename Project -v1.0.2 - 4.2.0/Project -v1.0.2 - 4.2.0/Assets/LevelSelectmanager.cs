@@ -9,11 +9,9 @@ public class LevelSelectmanager : MonoBehaviour {
 	public List<Button> levelButtons;
 	// Use this for initialization
 	void Start () {
-		LevelData.currentLevel = PlayerPrefs.GetInt("LastLevel");
 
-		Debug.Log ("CurrentLevel Lodaing " + LevelData.currentLevel);
 		for (int i = 0; i < levelButtons.Count; i++) {
-			if (i <= LevelData.currentLevel) {
+			if (i <= LevelData.getHighestLevel()) {
 				levelButtons [i].interactable = true;
 			} else {
 				levelButtons [i].interactable = false;
@@ -28,7 +26,7 @@ public class LevelSelectmanager : MonoBehaviour {
 
 		LevelData.reset ();
 		for (int i = 0; i < levelButtons.Count; i++) {
-			if (i <= LevelData.currentLevel) {
+			if (i <= LevelData.getHighestLevel()) {
 				levelButtons [i].interactable = true;
 			} else {
 				levelButtons [i].interactable = false;

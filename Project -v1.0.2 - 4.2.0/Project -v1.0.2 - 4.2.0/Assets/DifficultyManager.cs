@@ -12,7 +12,7 @@ public class DifficultyManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		if (LevelData.easyMode == 1) {
+		if (LevelData.getDifficulty() == 1) {
 			foreach (UnitManager man in GameObject.FindObjectsOfType<UnitManager>()) {
 				if (man.PlayerOwner == 2) {
 					if (man.myStats) {
@@ -27,7 +27,7 @@ public class DifficultyManager : MonoBehaviour {
 			foreach (MiningSawDamager saw in GameObject.FindObjectsOfType<MiningSawDamager>()) {
 				saw.damage *= (EasyDamage * 1.5f);
 			}
-		} else if (LevelData.easyMode == 2) {
+		} else if (LevelData.getDifficulty() == 2) {
 			foreach (WaveSpawner ws in  GameObject.FindObjectsOfType<WaveSpawner>()) {
 				for (int i = 0; i < ws.myWaves.Count; i++) {
 					float releaseT = ws.myWaves [i].releaseTime;
@@ -37,7 +37,7 @@ public class DifficultyManager : MonoBehaviour {
 			
 			}
 		
-		} else if (LevelData.easyMode == 3) {
+		} else if (LevelData.getDifficulty() == 3) {
 		
 			foreach (WaveSpawner ws in  GameObject.FindObjectsOfType<WaveSpawner>()) {
 				for (int i = 0; i < ws.myWaves.Count; i++) {
@@ -58,7 +58,7 @@ public class DifficultyManager : MonoBehaviour {
 
 		UnitManager man = obj.GetComponent<UnitManager> ();
 
-		if (LevelData.easyMode == 1) {
+		if (LevelData.getDifficulty() == 1) {
 
 
 					if (man.myStats) {
@@ -68,12 +68,12 @@ public class DifficultyManager : MonoBehaviour {
 
 				
 
-		} else if (LevelData.easyMode == 2) {
+		} else if (LevelData.getDifficulty() == 2) {
 			
 
 
 
-		} else if (LevelData.easyMode == 3) {
+		} else if (LevelData.getDifficulty() == 3) {
 
 
 			if (man.myStats) {

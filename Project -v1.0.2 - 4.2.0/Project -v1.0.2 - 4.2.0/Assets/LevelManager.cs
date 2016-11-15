@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour {
 	public List<GameObject> levelIntros = new List<GameObject> ();
 	public List<GameObject> Expositions = new List<GameObject> ();
 	public List<CampUpgradeManager> levelPresets = new List<CampUpgradeManager> ();
+
+	public List<Dropdown> difficultyBars = new List<Dropdown> ();
 	public List<Button> levelButtons = new List<Button> ();
 	public GameObject currentIntro;
 	public Canvas Technology;
@@ -34,47 +36,49 @@ public class LevelManager : MonoBehaviour {
 		foreach (GameObject ob in Expositions) {
 			ob.SetActive (false);
 		}
-		//Debug.Log (" current level" + LevelData.currentLevel);
+		Debug.Log (" current level" + LevelData.getHighestLevel());
 		for (int i = 0; i < levelButtons.Count; i++) {
-			levelButtons [i].interactable = (i <= LevelData.currentLevel);
+			levelButtons [i].interactable = (i <= LevelData.getHighestLevel());
 		}
 	
-		if (levelPresets.Count > LevelData.currentLevel) {
-			levelPresets [LevelData.currentLevel].enabled = true;
+		if (levelPresets.Count > LevelData.getHighestLevel()) {
+			levelPresets [LevelData.getHighestLevel()].enabled = true;
 		}
 
 
 		//levelIntros [LevelData.currentLevel].SetActive (true);
-		currentIntro = levelIntros [LevelData.currentLevel];
+		if (levelIntros.Count > 0) {
+			currentIntro = levelIntros [LevelData.getHighestLevel()];
+		
 		currentTech = Vehicles;
-		if (LevelData.currentLevel == 0) {
+			if (LevelData.getHighestLevel() == 0) {
 			techButton.interactable = false;
 			UltButton.interactable = false;
-		} else if (LevelData.currentLevel == 1) {
+			} else if (LevelData.getHighestLevel() == 1) {
 			techButton.interactable = true;
 			UltButton.interactable = false;
 		} else {
 			techButton.interactable = true;
 			UltButton.interactable = true;
 		}
-		if (!LevelData.ComingFromLevel) {
-			LevelData.totalXP = PlayerPrefs.GetInt ("TechAmount");
+		
+
 		}
 
-
-
-		if (!LevelData.ComingFromLevel) {
-			//nextLevel ();
-			//Debug.Log ("calling this");
-		}
+		setDifficultyDropDowns ();
 
 
 	}
+
+
+
+
+
 	public void nextLevel()
 	{
 		
 		//Debug.Log ("Being called");
-		Expositions [LevelData.currentLevel].SetActive (true);
+		Expositions [LevelData.getHighestLevel()].SetActive (true);
 
 	}
 
@@ -143,13 +147,19 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void setDifficulty(Dropdown i)
-	{if (i.value == 0) {
-			LevelData.easyMode = 1;
-		} else if (i.value == 1) {
-			LevelData.easyMode = 2;
-		} else {
-			LevelData.easyMode = 3;
+	{
+		LevelData.setDifficulty (i.value + 1);
+		setDifficultyDropDowns ();
+	
 	}
+
+	public void setDifficultyDropDowns()
+	{
+		foreach (Dropdown dd in difficultyBars) {
+			if (dd.value!= LevelData.getDifficulty ()-1) {
+				dd.value = LevelData.getDifficulty () - 1;
+			}
+		}
 	}
 
 }

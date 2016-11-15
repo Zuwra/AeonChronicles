@@ -213,6 +213,11 @@ public class UnitStats : MonoBehaviour {
 					amount = Mathf.Max (amount - armor, 1);
 						
 				}
+				if (myManager.PlayerOwner == 1 && source != this.gameObject) {
+					ErrorPrompt.instance.underAttack (this.transform.position);
+
+				}
+
 				if (takeDamageEffect) {
 					//Debug.Log ("Taking damage " + this.gameObject);
 					Instantiate (takeDamageEffect, this.gameObject.transform.position, new Quaternion ());
@@ -319,8 +324,8 @@ public class UnitStats : MonoBehaviour {
 				//}
 
 				SelectedManager.main.updateControlGroups (myManager);
-
-					Destroy (this.gameObject);
+				this.gameObject.SendMessage ("Dying",SendMessageOptions.DontRequireReceiver);
+				Destroy (this.gameObject);
 				
 			}
 		}

@@ -10,10 +10,22 @@ public class GamePlayMenu : MonoBehaviour {
 	private MainCamera cam;
 	public Slider scrollSpeed;
 	public Text speedPercent;
+	public Toggle showToolTip;
+	public Toggle showAbility;
+
 	// Use this for initialization
 	void Start () {
 
 		cam = GameObject.Find ("Main Camera").GetComponent<MainCamera> ();
+
+		if (!GameSettings.getToolTips()) {
+
+			toggleTools ();
+		}
+
+		if (!GameSettings.getAbility()) {
+			toggleAbilities ();
+		}
 	
 	}
 	
@@ -26,6 +38,10 @@ public class GamePlayMenu : MonoBehaviour {
 	public void toggleTools()
 	{
 		toggled = !toggled;
+		GameSettings.setToolTips (toggled);
+		if (showToolTip.isOn != toggled) {
+			showToolTip.isOn = toggled;
+		}
 		foreach (ToolTip tool in Object.FindObjectsOfType<ToolTip> ()) {
 			if (!tool.Ability) {
 				tool.enabled = toggled;
@@ -36,6 +52,10 @@ public class GamePlayMenu : MonoBehaviour {
 	public void toggleAbilities()
 	{
 		toggled = !toggled;
+		GameSettings.setAbility (toggled);
+		if (showAbility.isOn != toggled) {
+			showAbility.isOn = toggled;
+		}
 		foreach (ToolTip tool in Object.FindObjectsOfType<ToolTip> ()) {
 			if (tool.Ability) {
 				tool.enabled = toggled;

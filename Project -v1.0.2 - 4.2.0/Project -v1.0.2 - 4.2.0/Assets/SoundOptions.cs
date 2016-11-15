@@ -30,34 +30,37 @@ public class SoundOptions : MonoBehaviour {
 		}
 
 
-		if (GameSettings.masterVolume > -1) {
-			masterSLider.value = GameSettings.masterVolume;
-		}
-		else{
-			masterSLider.value = AudioListener.volume;
-			GameSettings.masterVolume = masterSLider.value;
-		}
+		//if (GameSettings.getMasterVolume()> -1) {
+			masterSLider.value = GameSettings.getMasterVolume();
+			AudioListener.volume = masterSLider.value;
+		//}
+		//else{
+		//	masterSLider.value = AudioListener.volume;
+		//	GameSettings.setMusicVolume (masterSLider.value);
+		//}
 
 
-		if (GameSettings.musicVolume > -1) {
-			musicSlider.value = GameSettings.musicVolume;
-		} else {
-			musicSlider.value = music.volume;
-			GameSettings.musicVolume = music.volume;
-		}
+		//if (GameSettings.getMusicVolume()> -1) {
+			musicSlider.value = GameSettings.getMusicVolume ();
+		music.volume = musicSlider.value;
+		//} else {
+		//	musicSlider.value = music.volume;
+		//	GameSettings.setMusicVolume (music.volume);
+		//}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		if (Input.GetKeyDown (KeyCode.KeypadPlus)) {
-			GameSettings.masterVolume += .15f;
-			masterSLider.value = GameSettings.masterVolume;
+			GameSettings.setMasterVolume (GameSettings.getMasterVolume () + .15f);
+			masterSLider.value = GameSettings.getMasterVolume();
 			AudioListener.volume = masterSLider.value;
+			Debug.Log ("Volume is " + AudioListener.volume);
 
 		} else if (Input.GetKeyDown (KeyCode.KeypadMinus)) {
-			GameSettings.masterVolume -= .15f;
-			masterSLider.value = GameSettings.masterVolume;
+			GameSettings.setMasterVolume (GameSettings.getMasterVolume () - .15f);
+			masterSLider.value = GameSettings.getMasterVolume();
 			AudioListener.volume = masterSLider.value;
 		}
 	
@@ -67,14 +70,14 @@ public class SoundOptions : MonoBehaviour {
 	public void MusicVolumeChange()
 	{
 		music.volume = musicSlider.value;
-		GameSettings.musicVolume = music.volume;
+		GameSettings.setMusicVolume (music.volume);
 	}
 
 
 	public void masterVolumeChange()
 	{
 		AudioListener.volume = masterSLider.value;
-		GameSettings.masterVolume = masterSLider.value;
+		GameSettings.setMasterVolume (masterSLider.value);
 	}
 
 

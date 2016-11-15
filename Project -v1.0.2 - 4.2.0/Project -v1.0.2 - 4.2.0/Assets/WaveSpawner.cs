@@ -148,14 +148,31 @@ public class WaveSpawner : MonoBehaviour {
 	{
 		
 		float delay = .1f;
+	
+
 
 	
-	
+		Debug.Log ("This spawner " + this.gameObject);
 			foreach (GameObject obj in nextWave.waveType) {
 				
 				StartCoroutine (MyCoroutine (delay, obj));
 				delay += .2f;
 			}
+
+
+	}
+
+	public void spawnWave(int n )
+	{
+
+		float delay = .1f;
+
+		Debug.Log ("This spawner " + this.gameObject);
+		foreach (GameObject obj in myWaves[n].waveType) {
+
+			StartCoroutine (MyCoroutine (delay, obj));
+			delay += .2f;
+		}
 
 
 	}

@@ -125,7 +125,7 @@ public class VictoryTrigger : MonoBehaviour {
 	{LevelData.ComingFromLevel = true;
 		yield return new WaitForSeconds (2.5f);
 		//Set my victory screen
-		LevelData.loadVetStats (GameManager.main.playerList [0].getUnitStats());
+		//LevelData.loadVetStats (GameManager.main.playerList [0].getUnitStats());
 		LevelData.levelInfo Ldata = createLevelInfo(levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
 			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
 		GameObject.FindObjectOfType<VictoryScreen> ().SetResults (Ldata);

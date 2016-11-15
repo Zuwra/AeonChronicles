@@ -533,6 +533,7 @@
      <Compile Include="Assets\animate.cs" />
      <Compile Include="Assets\attackSpeedUpgrade.cs" />
      <Compile Include="Assets\barrierShield.cs" />
+     <Compile Include="Assets\blowUp.cs" />
      <Compile Include="Assets\buildResumeState.cs" />
      <Compile Include="Assets\buildTurret.cs" />
      <Compile Include="Assets\bunnyManager.cs" />
@@ -546,6 +547,7 @@
      <Compile Include="Assets\incendiaryUpgrade.cs" />
      <Compile Include="Assets\inflectionBarrier.cs" />
      <Compile Include="Assets\inflectionStarter.cs" />
+     <Compile Include="Assets\laserGun.cs" />
      <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\mortarUpgrade.cs" />
      <Compile Include="Assets\mousetracker.cs" />

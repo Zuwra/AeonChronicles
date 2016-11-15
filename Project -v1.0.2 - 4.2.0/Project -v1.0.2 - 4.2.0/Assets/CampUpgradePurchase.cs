@@ -36,13 +36,13 @@ public class CampUpgradePurchase : MonoBehaviour {
 	public void Initialize()
 	{
 		
-		GetComponent<Button> ().interactable = (myCost <= LevelData.totalXP);
+		GetComponent<Button> ().interactable = (myCost <= LevelData.getMoney());
 
 	}
 
 	public void purchase()
 	{
-		if (myCost <= LevelData.totalXP) {
+		if (myCost <= LevelData.getMoney()) {
 			manager.changeMoney (-myCost);
 			GetComponent<Image> ().color = Color.green;
 			GetComponent<Button> ().interactable = false;

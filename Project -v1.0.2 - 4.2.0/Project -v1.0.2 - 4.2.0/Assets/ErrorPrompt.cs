@@ -9,6 +9,8 @@ public class ErrorPrompt : MonoBehaviour {
 	public AudioClip errorSound;
 	public static ErrorPrompt instance;
 
+	float lastAttackAlert = -1000;
+	Vector3 attackLocation;
 
 	float lastErrorTime;
 	public void showError(string err)
@@ -83,7 +85,17 @@ public class ErrorPrompt : MonoBehaviour {
 	{showError( "Ability on Cooldown");
 	}
 	
-	
+	public void underAttack(Vector3 location)
+	{
+		
+		if (Time.time > lastAttackAlert + 10) {
+			showError ("Under Attack!");
+			attackLocation = location;
+		
+			lastAttackAlert = Time.time;
+		}
+
+	}
 	
 
 
@@ -91,11 +103,21 @@ public class ErrorPrompt : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		instance = this;
+		GameMenu.main.addDisableScript (this);
 		myAudio = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKeyDown(KeyCode.BackQuote)) {
+			if (Time.time < lastAttackAlert + 10 ) {
+				MainCamera.main.generalMove(attackLocation);			
+			
+			}
+		}
+
+
 	
 	}
 

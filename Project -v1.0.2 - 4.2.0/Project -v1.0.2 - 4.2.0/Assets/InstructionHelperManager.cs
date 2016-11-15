@@ -26,6 +26,7 @@ public class InstructionHelperManager : MonoBehaviour {
 
 		obj.GetComponent<InstructionHelper> ().myPic = pic;
 
+
 	}
 
 

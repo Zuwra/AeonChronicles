@@ -2,26 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using System;
 public class LevelData  {
 
-	public static int currentLevel =3;
-	public static int totalXP = 0;
 
 	public static List<levelInfo> myLevels;
-	public static int easyMode = 1;
 	public static bool ComingFromLevel;
-	public static levelInfo lastInfo;
+
 	public static List<Upgrade> purchasedUpgrades;
 	public static Dictionary<string,int> appliedUpgrades;
 
 	public static List<VeteranStats> myVets;
 
-	public static int UltOneLevel = 0;
-	public static int UltTwoLevel = 0;
-	public static int UltThreeLevel = 0;
-	public static int UltFourLevel = 0;
 
 
+	[Serializable]
 	public struct levelInfo{
 		public int levelNumber;
 		public int unitsLost;
@@ -50,12 +45,12 @@ public class LevelData  {
 			myLevels = new List<levelInfo> ();
 		}
 		myLevels.Add (myL);
-		totalXP += Tech;
-		if (currentLevel < levelN + 1) {
-			currentLevel = levelN +1; 
-		}
+		addMoney (Tech);
+
+		setHighestLevel (levelN + 1);
+
 	
-		lastInfo = myL;
+
 	//	Debug.Log ("Cureent Level " + currentLevel);
 	}
 
@@ -92,15 +87,67 @@ public class LevelData  {
 	public static void reset()
 	{
 
-	currentLevel =0;
-		totalXP = 0;
+		PlayerPrefs.SetInt ("HighestLevel", 0);
+		setMoney (0);
 		if (myLevels != null) {
 			myLevels.Clear ();
 		}
-		easyMode =1;
+
 		ComingFromLevel = false;
 	}
 
 
+	public static void setHighestLevel(int levelNum)
+	{
+		if(levelNum > PlayerPrefs.GetInt("HighestLevel", 0)){
+			PlayerPrefs.SetInt ("HighestLevel", levelNum);
+		}
+
+	}
+
+	public static int getHighestLevel()
+	{
+		return PlayerPrefs.GetInt ("HighestLevel", 0);
+	}
+
+
+
+	public static void setMoney(int amount)
+	{
+		PlayerPrefs.SetInt ("Money", amount);
+	}
+
+	public static int getMoney()
+	{
+		return PlayerPrefs.GetInt ("Money");
+	}
+
+
+	public static void addMoney(int amount)
+	{
+		PlayerPrefs.SetInt ("Money", PlayerPrefs.GetInt ("Money") + amount);
+	}
+
+	public static int getDifficulty()
+	{
+
+		return PlayerPrefs.GetInt ("Dificulty", 1);
+		
+	}
+
+	public static void setDifficulty(int n)
+	{
+		PlayerPrefs.SetInt ("Difficulty", n);
+	}
+
+	public static void setUltLevel(int ultNum, int rank)
+	{
+		PlayerPrefs.SetInt ("Ult" + ultNum, rank);
+	}
+
+	public static int getUltLevel(int ultNum)
+	{
+		return PlayerPrefs.GetInt("Ult" + ultNum);
+	}
 
 }

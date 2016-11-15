@@ -63,9 +63,9 @@ public class CampUpgradeManager : MonoBehaviour {
 	public void changeMoney(int input)
 	{
 		
-		LevelData.totalXP += input;
+		LevelData.addMoney (input);
 		foreach (Text t in creditDisplayers) {
-			t.text = ""+LevelData.totalXP ;
+			t.text = "" + LevelData.getMoney ();
 		}
 
 		//Debug.Log ("money " + LevelData.totalXP);

@@ -46,6 +46,7 @@ public class UnitManager : Unit,IOrderable{
 	{
 		public List<AudioClip> moving;
 		public List<AudioClip> attacking;
+
 	}
 
 	private bool isStunned;

@@ -49,12 +49,17 @@ public class MainMenuManager : MonoBehaviour {
 	public void startMatch()
 	{
 
-		LevelData.currentLevel = 0;
+		resetProgress ();
 		SceneManager.LoadScene (1);
 	}
 
+	public void toCampaignLevelSelect()
+	{
+		SceneManager.LoadScene (3);
+	}
+
 	public void toCampaign()
-	{loadScreen (campaign);}
+		{loadScreen (campaign);}
 
 	public void Exit()
 	{
@@ -73,7 +78,7 @@ public class MainMenuManager : MonoBehaviour {
 	}
 
 	public void LoadLevel(int n)
-	{LevelData.currentLevel = n;
+	{//LevelData.currentLevel = n;
 		LevelData.ComingFromLevel = false;
 		SceneManager.LoadScene (3);
 	}
@@ -83,4 +88,15 @@ public class MainMenuManager : MonoBehaviour {
 
 	public void toMain()
 	{loadScreen (MainMenu);}
+
+
+	public void resetProgress()
+	{PlayerPrefs.DeleteAll ();
+
+		LevelData.reset ();
+
+
+	}
+
+
 }

@@ -18,18 +18,9 @@ public class CampaignUltUpgrade : Upgrade {
 
 
 	public void buyUlt()
-	{if(ultNumber ==1){
-			LevelData.UltOneLevel = level;
-			}
-		else if(ultNumber ==2){
-			LevelData.UltTwoLevel = level;
-		}
-		else if(ultNumber ==3){
-			LevelData.UltThreeLevel = level;
-		}
-		else if(ultNumber ==4){
-			LevelData.UltFourLevel = level;
-		}
+	{
+			LevelData.setUltLevel (ultNumber, level);
+	
 
 	}
 

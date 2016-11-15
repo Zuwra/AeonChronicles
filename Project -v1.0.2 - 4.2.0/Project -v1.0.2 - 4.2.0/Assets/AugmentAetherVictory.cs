@@ -11,6 +11,8 @@ public class AugmentAetherVictory  : Objective {
 	public float delayVic;
 	public WaveSpawner counterAttack;
 
+	public int waveNumber = 0;
+
 	bool finishedOnce;
 	public SceneEventTrigger attackTrig;
 	// Update is called once per frame
@@ -25,7 +27,7 @@ public class AugmentAetherVictory  : Objective {
 	{
 		UnitManager m = other.GetComponent<UnitManager> ();
 		if (m && m.UnitName =="Aether Core") {
-			Debug.Log ("Adding one");
+			Debug.Log ("Adding one ather core");
 			myGuys.Add (other.GetComponent<AugmentAttachPoint> ());
 			if (!routineStarted) {
 				routineStarted = true;
@@ -56,8 +58,11 @@ public class AugmentAetherVictory  : Objective {
 				int n = 0;
 				myGuys.RemoveAll (item => item == null);
 				foreach (AugmentAttachPoint agp in myGuys) {
+
+
 					if (agp.myAugment) {
 
+							Debug.Log ("Found one " + agp.myAugment);
 						n++;}
 				}
 				if (n >= numOfAugments && !completed) {
@@ -82,9 +87,9 @@ public class AugmentAetherVictory  : Objective {
 	}
 
 	IEnumerator actuallyComplete()
-	{Debug.Log (" delaying");
+	{
 		if (counterAttack) {
-			counterAttack.spawnWave ();
+			counterAttack.spawnWave (0);
 			if (attackTrig) {
 				attackTrig.trigger (0, 0, Vector3.zero, null, false);}
 

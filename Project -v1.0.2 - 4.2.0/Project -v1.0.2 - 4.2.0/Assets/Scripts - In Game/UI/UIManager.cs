@@ -106,7 +106,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	void Update () 
 	{
 		if (Input.GetMouseButtonDown (1)) {
-			
+
 			if (!EventSystem.current.IsPointerOverGameObject ()) 
 			{
 				rightClickOrigin = Input.mousePosition;
@@ -122,7 +122,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 				rightClickDrag = true;
 			}
+		
 		} 
+
+
 		if (rightClickDrag) {
 			if (Vector2.Distance (Input.mousePosition, rightClickOrigin) > 45) {
 				lineRender.enabled = true;

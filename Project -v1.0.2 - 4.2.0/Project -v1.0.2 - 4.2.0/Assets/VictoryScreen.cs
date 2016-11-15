@@ -24,19 +24,11 @@ public class VictoryScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (LevelData.myLevels == null) {
-			Debug.Log ("No levels");
+		//	Debug.Log ("No levels");
 			return;
 		}
 
-		if (LevelData.myLevels.Count > 0 && LevelData.ComingFromLevel) {
-
-			SetResults (LevelData.lastInfo);
-			PlayerPrefs.SetInt ("TechAmount", LevelData.lastInfo.TechCredits);
-			if (LevelData.currentLevel > PlayerPrefs.GetInt ("LastLevel")) {
-				PlayerPrefs.SetInt ("LastLevel", LevelData.currentLevel);
-			}
-
-		}
+	
 
 
 	}
