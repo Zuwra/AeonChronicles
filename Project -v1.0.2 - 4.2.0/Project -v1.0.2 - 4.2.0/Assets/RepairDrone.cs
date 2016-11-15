@@ -37,7 +37,7 @@ public class RepairDrone : MonoBehaviour {
 			} else {
 				if (Time.time > nextActionTime) {
 					nextActionTime = Time.time + 1;
-					int amount = (int)Mathf.Min (repairRate, targetMan.myStats.Maxhealth - targetMan.myStats.health);
+					int amount = (int)Mathf.Min (repairRate, (int)targetMan.myStats.Maxhealth - (int)targetMan.myStats.health);
 					particleEff.playEffect ();
 					myHome.possibleStop ();
 					if (buildInter && !buildInter.ConstructDone ()) {

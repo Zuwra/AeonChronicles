@@ -146,6 +146,11 @@ public class MainCamera : MonoBehaviour, ICamera {
 		transform.position = new Vector3(worldPos.x, transform.position.y, worldPos.z);
 		//CheckEdgeMovement ();
 	}
+
+	public void generalMove(Vector3 input){
+		transform.position = new Vector3 (input.x, this.gameObject.transform.position.y, input.z - AngleOffset/45 * HeightAboveGround);
+		CheckEdgeMovement ();
+	}
 	
 	private void CheckEdgeMovement()
 	{

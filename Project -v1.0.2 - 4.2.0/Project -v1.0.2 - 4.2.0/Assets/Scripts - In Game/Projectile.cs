@@ -17,6 +17,7 @@ public  class Projectile : MonoBehaviour {
 
 	//public ProjectileMover mover;
 	public GameObject Source;
+	public int sourceInt;
 
 	public float inaccuracy;
 	//private bool selfDest = false;
@@ -204,8 +205,10 @@ public  class Projectile : MonoBehaviour {
 
 			explosion Escript = explode.GetComponent<explosion> ();
 			if (Escript) {
-				explode.GetComponent<explosion> ().source = Source;
-				explode.GetComponent<explosion> ().damageAmount = this.damage;
+				Escript.source = Source;
+				Escript.sourceInt = sourceInt;
+
+				Escript.damageAmount = this.damage;
 			}
 		}
 
@@ -252,6 +255,7 @@ public  class Projectile : MonoBehaviour {
 	{
 		
 		Source = so;
+		sourceInt = so.GetComponent<UnitManager> ().PlayerOwner;
 		if (TargetIndicator != null && Source.GetComponent<UnitManager> ().PlayerOwner != 1 ) {
 			TargetIndicator.GetComponentInChildren<Light> ().color = Color.red;
 		}

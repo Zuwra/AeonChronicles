@@ -147,10 +147,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		temp [1] = upgrade;
 		//temp [2] = unitname;
 		foreach (GameObject obj in unitList) {
-			if (obj.GetComponent<UnitManager> ().UnitName == unitname) {
+			if (obj != null) {
+				if (obj.GetComponent<UnitManager> ().UnitName == unitname) {
 
-				obj.SendMessage ("commence", temp);
+					obj.SendMessage ("commence", temp);
 
+				}
 			}
 		}
 	}

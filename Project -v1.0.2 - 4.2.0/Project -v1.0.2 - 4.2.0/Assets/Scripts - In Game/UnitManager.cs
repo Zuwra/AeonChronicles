@@ -454,9 +454,9 @@ public class UnitManager : Unit,IOrderable{
 				if (myState != null) {
 					myState.endState ();
 				}
-				Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
+			
 				myState = interactor.computeState(popFirstState());
-				Debug.Log ("SHould be in here " + myState + "  #" + queuedStates.Count);
+			
 				if (myState == null) {
 					return;
 				}

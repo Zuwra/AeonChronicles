@@ -182,9 +182,10 @@ public class AbstractCost : MonoBehaviour {
 			if (energy > 0) {
 				stats.currentEnergy -= energy;
 			}
-			cooldownTimer = cooldown;
+
 
 		}
+		cooldownTimer = cooldown;
 		
 	}
 }

@@ -35,7 +35,7 @@ public class barrierShield : MonoBehaviour {
 
 		
 			Projectile proj = other.GetComponent<Projectile> ();
-			if (proj.Source.GetComponent<UnitManager> ().PlayerOwner != 1) {
+			if (proj.sourceInt != 1) {
 				
 				float dist = Vector3.Distance (this.gameObject.transform.position, other.transform.position);
 
@@ -66,7 +66,7 @@ public class barrierShield : MonoBehaviour {
 
 			Projectile proj = other.GetComponent<Projectile> ();
 
-			if (proj.Source.GetComponent<UnitManager> ().PlayerOwner != 1) {
+			if (proj.sourceInt != 1) {
 				
 				float dist = Vector3.Distance (this.gameObject.transform.position, other.transform.position);
 

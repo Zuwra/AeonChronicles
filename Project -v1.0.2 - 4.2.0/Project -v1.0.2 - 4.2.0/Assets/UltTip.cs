@@ -32,12 +32,13 @@ public class UltTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 	IEnumerator updateCooldown()
 	{
 		while (true) {
-			yield return new WaitForSeconds(.5f);
+			
 			if (myUltCost.cooldownProgress () == 1) {
 				cooldown.text = "Cooldown: " +Clock.convertToString(myUltCost.cooldown );}
 			else{
 			cooldown.text = "Cooldown: " +Clock.convertToString((myUltCost.cooldown *  (1 - myUltCost.cooldownProgress ())));
 			}
+			yield return new WaitForSeconds(1);
 		}
 
 	}

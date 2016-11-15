@@ -6,6 +6,7 @@ public class explosion : MonoBehaviour {
 
 
 	public GameObject source;
+	public int sourceInt;
 	public GameObject particleEff;
 	public bool friendlyFire;
 	public float damageAmount;
@@ -29,6 +30,7 @@ public class explosion : MonoBehaviour {
 		}
 		if (source) {
 			mySrcMan = source.GetComponent<UnitManager> ();
+			sourceInt = mySrcMan.PlayerOwner;
 		}
 	}
 
@@ -63,7 +65,7 @@ public class explosion : MonoBehaviour {
 					return;
 				}
 
-				if (friendlyFire || source.GetComponent<UnitManager> ().PlayerOwner != manager.PlayerOwner) {
+				if (friendlyFire || sourceInt != manager.PlayerOwner) {
 
 					float amount = damageAmount	;
 					UnitStats stats = other.gameObject.GetComponent<UnitStats> ();
@@ -72,6 +74,7 @@ public class explosion : MonoBehaviour {
 							amount += tag.bonus;
 						}
 					}
+					Debug.Log ("Dealing damage " + this.gameObject);
 					float total = stats.TakeDamage (amount, source, type);
 				
 

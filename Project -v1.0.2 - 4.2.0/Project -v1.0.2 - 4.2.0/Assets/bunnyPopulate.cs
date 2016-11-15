@@ -4,7 +4,7 @@ using Pathfinding.RVO;
 using DigitalRuby.LightningBolt;
 
 
-public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
+public class bunnyPopulate : MonoBehaviour, Notify {
 
 	public float repopulateTime;
 	public float randomSpawnRange;
@@ -20,7 +20,6 @@ public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
 		mymanager = GetComponent<UnitManager> ();
 		GameObject.FindObjectOfType<bunnyManager> ().changeInBunnyCount (1);
 		nextRepopulate = Time.time + repopulateTime + Random.Range(0,randomSpawnRange);
-		GetComponent<UnitStats> ().addDeathTrigger (this);
 		myStats = GetComponent<UnitStats> ();
 
 		foreach(IWeapon weap in mymanager.myWeapon)
@@ -81,9 +80,8 @@ public class bunnyPopulate : MonoBehaviour, Modifier, Notify {
 	}
 
 
-	public float modify (float a,GameObject deathSource){
+	public void Dying (){
 		GameObject.FindObjectOfType<bunnyManager> ().changeInBunnyCount (-1);
-		return a;
 	}
 
 	public void trigger(GameObject source, GameObject proj, UnitManager target,float damage)
