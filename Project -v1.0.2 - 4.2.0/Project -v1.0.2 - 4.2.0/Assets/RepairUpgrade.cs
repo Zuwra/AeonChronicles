@@ -16,6 +16,7 @@ public class RepairUpgrade : Upgrade {
 			if (manager.UnitName .Contains("Repair"))
             {
                 obj.GetComponent<RepairTurret>().repairRate = repairAmount;
+				obj.GetComponent<RepairTurret> ().drone.GetComponent<RepairDrone> ().repairRate = repairAmount;
             }
         }
     }

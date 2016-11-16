@@ -34,7 +34,7 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 		if (Time.time > nextRepopulate) {
 
 			Vector3 hitzone = this.transform.position;
-			float radius = Random.Range (4, 15);
+			float radius = Random.Range (6, 20);
 			float angle = Random.Range (0, 360);
 
 			hitzone.x += Mathf.Sin (Mathf.Deg2Rad * angle) * radius;

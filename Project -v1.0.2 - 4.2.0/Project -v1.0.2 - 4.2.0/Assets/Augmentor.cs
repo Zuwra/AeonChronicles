@@ -141,6 +141,49 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	}
 
 
+
+	public void changeSpeed(float n)
+	{
+		SpeedPlus += n;
+		if (!target) {
+			return;}
+		UnitManager unitMan = attached.GetComponent<UnitManager> ();
+
+		OreDispenser OD = attached.GetComponent<OreDispenser> ();
+		if (OD) {
+			OD.returnRate = 1.3f;
+		} 
+		else if (unitMan.UnitName.Contains("Yard")) {
+			foreach (UnitProduction bu in attached.GetComponents<UnitProduction>()) {
+				bu.myCost.cooldown = bu.buildTime;
+				bu.setBuildRate (SpeedPlus);
+			}
+
+		} else if (unitMan.UnitName == "Armory") {
+			foreach (buildTurret bt in attached.GetComponents<buildTurret>()) {
+				if (bt.Name.Contains ("Repair")) {
+					bt.active = true;
+				} else if (bt.Name.Contains ("Pod")) {
+					bt.active = true;
+				}
+				bt.setBuildRate (SpeedPlus);
+			}
+
+		} else if (unitMan.UnitName.Contains("Lab") || unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")   ) {
+			int i = 0;
+			foreach (ResearchUpgrade bu in attached.GetComponents<ResearchUpgrade>()) {
+	
+				if (i > 1 && !bu.researchingElsewhere) {
+					bu.active = true;
+				}
+
+				bu.myCost.cooldown = bu.buildTime;
+				bu.setBuildRate (SpeedPlus);
+				i++;
+			}
+		}
+	}
+
 	public void Unattach()
 	{if (!attached) {
 			return;}

@@ -232,41 +232,48 @@ public class MainCamera : MonoBehaviour, ICamera {
 	}
 
 	public void Zoom(object sender, ScrollWheelEventArgs e)
-	{float x = 0;
-		float z = 0;
-		//Debug.Log ("Zooming");
-		if (HeightAboveGround > m_MaxFieldOfView || HeightAboveGround < m_MinFieldOfView) {
+	{
+
+		if ((transform.position.y > m_MaxFieldOfView && e.ScrollValue < 0) ||( transform.position.y < m_MinFieldOfView &&e.ScrollValue > 0)) {
 			return;}
 
-		HeightAboveGround -= e.ScrollValue * ZoomRate * avgDeltaTime * 10;
 
+		Ray rayb = Camera.main.ScreenPointToRay (new Vector2(.5f*Screen.width, .5f*Screen.height));
+		RaycastHit hitb;
+		Physics.Raycast (rayb, out hitb, Mathf.Infinity, 1 << 16);
 
-		if (HeightAboveGround < m_MinFieldOfView) {
-			HeightAboveGround = m_MinFieldOfView;
-		} else if (HeightAboveGround > m_MaxFieldOfView) {
-			HeightAboveGround = m_MaxFieldOfView;
-		} else {
-			if (e.ScrollValue > 0 && Input.GetKey (KeyCode.LeftShift)) {//if shift do this
-				Debug.Log ("LEFT SHIFT DOWN");
-				x = (Screen.width / 2 - Input.mousePosition.x) * .03f;
-				z = -(Screen.height / 2 - Input.mousePosition.y) * .001f * AngleOffset;
-
-			} else if (e.ScrollValue > 0) {
-				x = (Screen.width / 2) * .03f;
-				z = -(Screen.height / 2) * .001f * AngleOffset;
-			}
+		Ray rayc;
+		RaycastHit hitc = new RaycastHit();
+		if (Input.GetKey (KeyCode.LeftShift) && e.ScrollValue > 0) {
+	
+			rayc = Camera.main.ScreenPointToRay (Input.mousePosition);
+			Physics.Raycast (rayc, out hitc, Mathf.Infinity, 1 << 16);
 
 		}
 
 
-		transform.position = new Vector3 (this.gameObject.transform.position.x - x, HeightAboveGround, this.gameObject.transform.position.z + z);
+		transform.Translate (Vector3.down * e.ScrollValue * 28, Space.World);
+		transform.LookAt (hitb.point);
+
+		if (Input.GetKey (KeyCode.LeftShift) && e.ScrollValue > 0) {
+			transform.Translate ((hitc.point - transform.position).normalized * 35f * e.ScrollValue, Space.World);
+		}
+		else{
+			transform.Translate ((hitb.point - transform.position).normalized * 35f * e.ScrollValue, Space.World);
+		}
+
+		if (transform.position.y < m_MaxFieldOfView) {
+			CheckEdgeMovement ();
+		}
+
+	}
 
 
-		AngleOffset = 45 -((HeightAboveGround - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
 
+	/*
 
-
-		//AngleOffset += e.ScrollValue * Time.deltaTime * 700;
+		AngleOffset = 45 -((transform.transform.position.y - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
+		
 
 		if (AngleOffset > 90) {
 			AngleOffset = 90;
@@ -275,11 +282,24 @@ public class MainCamera : MonoBehaviour, ICamera {
 		}
 		transform.rotation = Quaternion.Euler (90 - AngleOffset, 0, 0);
 
-		if (HeightAboveGround < m_MaxFieldOfView) {
-			CheckEdgeMovement ();
+		float angle = Mathf.Abs(Vector3.Angle (transform.forward, Vector3.down));
+		float opp = Mathf.Abs(Mathf.Abs(hitb.point.z) - Mathf.Abs(this.transform.position.z));
+
+		float adj = Mathf.Abs(opp / Mathf.Tan(Mathf.Deg2Rad * angle));
+
+		Debug.Log("point " + hitb.point + "  adj " + adj + " oppo  "+ opp + "   " + this.transform.position.y);
+
+		if (adj + transform.position.y > m_MaxFieldOfView) {
+			adj = m_MaxFieldOfView - transform.position.y;
 		}
 
-	}
+
+		transform.Translate (Vector3.down * (transform.position.y - adj) * e.ScrollValue * 10, Space.World);
+
+		*/
+
+
+
 
 	public void minimapMove(Vector2 input)
 	{
