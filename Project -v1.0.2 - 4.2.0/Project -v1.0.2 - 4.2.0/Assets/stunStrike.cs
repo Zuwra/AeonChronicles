@@ -34,11 +34,11 @@ public class stunStrike : MonoBehaviour, Notify {
 	}
 
 	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
-	{Debug.Log ("Getting triggered");
+	{//Debug.Log ("Getting triggered");
 
 
 		if (target && source != target) {
-			Debug.Log ("In here");
+			//Debug.Log ("In here");
 			if (mustTarget != UnitTypes.UnitTypeTag.Dead) {
 				if (target.myStats.isUnitType (mustTarget)) {
 					return;}

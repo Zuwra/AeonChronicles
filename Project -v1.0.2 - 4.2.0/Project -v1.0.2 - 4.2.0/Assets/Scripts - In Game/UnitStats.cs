@@ -325,6 +325,7 @@ public class UnitStats : MonoBehaviour {
 
 				SelectedManager.main.updateControlGroups (myManager);
 				this.gameObject.SendMessage ("Dying",SendMessageOptions.DontRequireReceiver);
+			
 				Destroy (this.gameObject);
 				
 			}

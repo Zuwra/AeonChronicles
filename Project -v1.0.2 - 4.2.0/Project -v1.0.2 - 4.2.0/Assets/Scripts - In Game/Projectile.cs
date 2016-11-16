@@ -205,9 +205,7 @@ public  class Projectile : MonoBehaviour {
 
 			explosion Escript = explode.GetComponent<explosion> ();
 			if (Escript) {
-				Escript.source = Source;
-				Escript.sourceInt = sourceInt;
-
+				Escript.setSource (Source, sourceInt);
 				Escript.damageAmount = this.damage;
 			}
 		}
@@ -255,7 +253,11 @@ public  class Projectile : MonoBehaviour {
 	{
 		
 		Source = so;
-		sourceInt = so.GetComponent<UnitManager> ().PlayerOwner;
+		if (so.GetComponent<UnitManager> ()) {
+			sourceInt = so.GetComponent<UnitManager> ().PlayerOwner;
+		} else {
+			sourceInt = 1;
+		}
 		if (TargetIndicator != null && Source.GetComponent<UnitManager> ().PlayerOwner != 1 ) {
 			TargetIndicator.GetComponentInChildren<Light> ().color = Color.red;
 		}

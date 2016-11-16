@@ -234,14 +234,14 @@ public class MainCamera : MonoBehaviour, ICamera {
 	public void Zoom(object sender, ScrollWheelEventArgs e)
 	{
 
-		if ((transform.position.y > m_MaxFieldOfView && e.ScrollValue < 0) ||( transform.position.y < m_MinFieldOfView &&e.ScrollValue > 0)) {
+		if ((transform.position.y >= m_MaxFieldOfView && e.ScrollValue < 0) ||( transform.position.y <= m_MinFieldOfView &&e.ScrollValue > 0)) {
 			return;}
 
 
 		Ray rayb = Camera.main.ScreenPointToRay (new Vector2(.5f*Screen.width, .5f*Screen.height));
 		RaycastHit hitb;
 		Physics.Raycast (rayb, out hitb, Mathf.Infinity, 1 << 16);
-
+		Debug.Log ("hit " +hitb.collider.gameObject);
 		Ray rayc;
 		RaycastHit hitc = new RaycastHit();
 		if (Input.GetKey (KeyCode.LeftShift) && e.ScrollValue > 0) {
@@ -256,10 +256,25 @@ public class MainCamera : MonoBehaviour, ICamera {
 		transform.LookAt (hitb.point);
 
 		if (Input.GetKey (KeyCode.LeftShift) && e.ScrollValue > 0) {
-			transform.Translate ((hitc.point - transform.position).normalized * 35f * e.ScrollValue, Space.World);
+			transform.Translate ((hitc.point - transform.position).normalized * 40f * e.ScrollValue, Space.World);
+			Vector3 moveOver = (hitc.point - transform.position).normalized;
+			moveOver.y = 0;
+			transform.Translate (moveOver * 20f * e.ScrollValue, Space.World);
 		}
 		else{
-			transform.Translate ((hitb.point - transform.position).normalized * 35f * e.ScrollValue, Space.World);
+			transform.Translate ((hitb.point - transform.position).normalized * 40f * e.ScrollValue, Space.World);
+	
+
+		}
+
+		if (transform.position.y < m_MinFieldOfView) {
+			transform.position = new Vector3 (transform.position.x, m_MinFieldOfView, transform.position.z);
+			transform.rotation = Quaternion.Euler (45, 0, 0);
+		}
+
+		if (transform.position.y > m_MaxFieldOfView) {
+			transform.position = new Vector3 (transform.position.x, m_MaxFieldOfView, transform.position.z);
+
 		}
 
 		if (transform.position.y < m_MaxFieldOfView) {

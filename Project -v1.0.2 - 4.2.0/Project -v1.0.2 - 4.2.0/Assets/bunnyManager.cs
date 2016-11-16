@@ -19,7 +19,9 @@ public class bunnyManager : MonoBehaviour {
 
 	public void changeInBunnyCount(int change)
 	{
-		currAmount += change;
+		currAmount =GameObject.FindObjectsOfType<bunnyPopulate>().Length;
+
+
 		bunnyCount.text = "Vicious Bunny Count \n" + currAmount + " / " + maxAmount;
 
 		if (currAmount >= maxAmount) {

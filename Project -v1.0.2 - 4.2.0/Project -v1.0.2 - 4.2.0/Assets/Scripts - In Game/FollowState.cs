@@ -16,7 +16,7 @@ public class FollowState : UnitState {
 		myManager = man;
 
 		refreshTime = Time.time + .5f;
-		Debug.Log ("New Follow state" );
+		//Debug.Log ("New Follow state" );
 		if(unit){
 		target = unit;
 			if (man) {

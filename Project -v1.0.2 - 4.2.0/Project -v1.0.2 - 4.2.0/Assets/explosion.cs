@@ -34,7 +34,16 @@ public class explosion : MonoBehaviour {
 		}
 	}
 
+	public void setSource(GameObject sr, int srcNum)
+	{
+		source = sr;
+		if (source) {
+			mySrcMan = source.GetComponent<UnitManager> ();
+		}
 
+		sourceInt = srcNum;
+	
+	}
 
 
 	// Update is called once per frame

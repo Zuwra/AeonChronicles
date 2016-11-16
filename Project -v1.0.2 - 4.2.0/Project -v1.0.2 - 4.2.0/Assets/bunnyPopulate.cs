@@ -54,8 +54,11 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 
 			foreach(IWeapon weap in mymanager.myWeapon)
 			{
-				weap.range +=1;
+				weap.range +=.5f;
 				weap.baseDamage += 1;
+				if (weap.range > 15) {
+					weap.range = 15;
+				}
 			}
 			this.gameObject.transform.localScale = this.gameObject.transform.localScale + Vector3.one *.15f;
 			GetComponent<RVOController> ().radius += .15f;

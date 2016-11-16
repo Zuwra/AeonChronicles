@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TurretMount : MonoBehaviour {
+public class TurretMount : MonoBehaviour, Modifier {
 
 	public GameObject turret;
 
@@ -12,6 +12,8 @@ public class TurretMount : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+		GetComponentInParent<UnitStats> ().addDeathTrigger (this);
+
 		FButtonManager.main.updateTankNumber ();
 		if (rapidArms) {
 		
@@ -32,6 +34,15 @@ public class TurretMount : MonoBehaviour {
 		}
 
 
+	}
+
+
+	public float modify(float damage, GameObject source)
+	{ 
+		if (turret) {
+			turret.SendMessage ("Dying", SendMessageOptions.DontRequireReceiver);
+		}
+		return damage;
 	}
 	
 	// Update is called once per frame

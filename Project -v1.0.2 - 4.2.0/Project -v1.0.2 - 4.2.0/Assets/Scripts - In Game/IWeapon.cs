@@ -387,7 +387,7 @@ public class IWeapon : MonoBehaviour {
 		if (perm) {
 			InitialBaseDamage += flat;
 			if (perc > 0) {
-				InitialBaseDamage *= perc;
+				InitialBaseDamage *= 1 + perc;
 			}
 	} else {
 		attackSpeedMod temp = new attackSpeedMod ();
