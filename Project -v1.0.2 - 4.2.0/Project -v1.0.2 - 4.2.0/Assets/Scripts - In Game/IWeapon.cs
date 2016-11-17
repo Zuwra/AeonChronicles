@@ -22,6 +22,8 @@ public class IWeapon : MonoBehaviour {
 
 	public float baseDamage;
 	private float InitialBaseDamage;
+	bool initialSpeedSet;
+	bool initalDamageSet;
 	//[Tooltip("this is multiplied by the enemy mass and added or subtracted from the damage")]
 	//public float massBonus;
 
@@ -84,6 +86,8 @@ public class IWeapon : MonoBehaviour {
 	{
 		baseAttackPeriod = attackPeriod;
 		InitialBaseDamage = baseDamage;
+		initalDamageSet = true;
+		initialSpeedSet = true;
 	}
 	// Use this for initialization
 	void Start () {
@@ -328,7 +332,13 @@ public class IWeapon : MonoBehaviour {
 
 
 	public void changeAttackSpeed(float perc, float flat, bool perm, Object obj )
-	{if (perm) {
+	{
+		if (!initialSpeedSet) {
+			baseAttackPeriod =attackPeriod;
+			initialSpeedSet = true;
+		}
+
+		if (perm) {
 			baseAttackPeriod += flat;
 			if (perc > 0) {
 				baseAttackPeriod *= perc;
@@ -347,6 +357,8 @@ public class IWeapon : MonoBehaviour {
 
 	private void adjustAttackSpeed()
 	{//Debug.Log ("Adjusting");
+
+
 		float speed = baseAttackPeriod;
 		foreach (attackSpeedMod a in ASMod) {
 			speed += a.flat;
@@ -384,6 +396,11 @@ public class IWeapon : MonoBehaviour {
 
 	public void changeAttack(float perc, float flat, bool perm, Object obj )
 	{//Debug.Log ("initials is " + InitialBaseDamage);
+		if (!initalDamageSet) {
+			InitialBaseDamage = baseDamage;
+			initalDamageSet = true;
+		}
+
 		if (perm) {
 			InitialBaseDamage += flat;
 			if (perc > 0) {

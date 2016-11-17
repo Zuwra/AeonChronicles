@@ -88,36 +88,25 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (OD) {
 			OD.returnRate = 1.3f;
 		} 
-		else if (unitMan.UnitName.Contains("Yard")) {
-			foreach (UnitProduction bu in target.GetComponents<UnitProduction>()) {
-				//bu.buildTime *= .65f;
-				bu.myCost.cooldown = bu.buildTime;
-				bu.setBuildRate (SpeedPlus);
-			}
+		else if (unitMan.UnitName.Contains("Yard") ||unitMan.UnitName == "Armory" ||unitMan.UnitName.Contains("Lab") || unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")  ) {
 
-		} else if (unitMan.UnitName == "Armory") {
-			foreach (buildTurret bt in target.GetComponents<buildTurret>()) {
-				if (bt.Name.Contains ("Repair")) {
-					bt.active = true;
-				} else if (bt.Name.Contains ("Pod")) {
-					bt.active = true;
+			int xxx = 0;
+			foreach (MonoBehaviour bu in unitMan.abilityList){
+				if (bu) {
+					if (bu is UnitProduction) {
+						((UnitProduction)bu).setBuildRate (SpeedPlus);
+						if(xxx>1 && !unitMan.UnitName.Contains("Yard"))
+						{
+							((UnitProduction)bu).active = true;
+						}
+
+					}
 				}
-				bt.setBuildRate (SpeedPlus);
+				xxx++;
 			}
 
-		} else if (unitMan.UnitName.Contains("Lab") || unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")   ) {
-			int i = 0;
-			foreach (ResearchUpgrade bu in target.GetComponents<ResearchUpgrade>()) {
-				//bu.buildTime *= .65f;
-				if (i > 1 && !bu.researchingElsewhere) {
-					bu.active = true;
-				}
-
-				bu.myCost.cooldown = bu.buildTime;
-				bu.setBuildRate (1.35f);
-				i++;
-			}
 		}
+
 
 
 		if (GetComponent<Selected> ().IsSelected) {
@@ -155,34 +144,23 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (OD) {
 			OD.returnRate = 1.3f;
 		} 
-		else if (unitMan.UnitName.Contains("Yard")) {
-			foreach (UnitProduction bu in attached.GetComponents<UnitProduction>()) {
-				bu.myCost.cooldown = bu.buildTime;
-				bu.setBuildRate (SpeedPlus);
-			}
+		else if (unitMan.UnitName.Contains("Yard") ||unitMan.UnitName == "Armory" ||unitMan.UnitName.Contains("Lab") ||unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")  ) {
 
-		} else if (unitMan.UnitName == "Armory") {
-			foreach (buildTurret bt in attached.GetComponents<buildTurret>()) {
-				if (bt.Name.Contains ("Repair")) {
-					bt.active = true;
-				} else if (bt.Name.Contains ("Pod")) {
-					bt.active = true;
+			int xxx = 0;
+			foreach (MonoBehaviour bu in unitMan.abilityList){
+				if (bu) {
+					if (bu is UnitProduction) {
+						((UnitProduction)bu).setBuildRate (1);
+						if(xxx>1 && !unitMan.UnitName.Contains("Yard"))
+						{
+							((UnitProduction)bu).active = false;
+						}
+
+					}
 				}
-				bt.setBuildRate (SpeedPlus);
+				xxx++;
 			}
 
-		} else if (unitMan.UnitName.Contains("Lab") || unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")   ) {
-			int i = 0;
-			foreach (ResearchUpgrade bu in attached.GetComponents<ResearchUpgrade>()) {
-	
-				if (i > 1 && !bu.researchingElsewhere) {
-					bu.active = true;
-				}
-
-				bu.myCost.cooldown = bu.buildTime;
-				bu.setBuildRate (SpeedPlus);
-				i++;
-			}
 		}
 	}
 
@@ -203,46 +181,29 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			manager.myWeapon.Clear ();
 		}
 
-		else if (man.UnitName == "Construction Yard") {
-			foreach (BuildUnit bu in attached.GetComponents<BuildUnit>()) {
-				//bu.buildTime /= .65f;
-
-				bu.myCost.cooldown = bu.buildTime;
-				bu.setBuildRate (1);
-			}
-
-		}
-
 		OreDispenser OD = attached.GetComponent<OreDispenser> ();
 		if (OD) {
 			OD.returnRate = 1;
 		}
 
-		else if (man.UnitName == "Armory") {
-			foreach (buildTurret bt in attached.GetComponents<buildTurret>()) {
-				if (bt.Name.Contains ("Repair")) {
-					bt.active =false;
+		else if (man.UnitName.Contains("Yard") ||man.UnitName == "Armory" ||man.UnitName.Contains("Lab") ||man.UnitName.Contains("Bay") || man.UnitName.Contains("Academy")  ) {
+
+			int xxx = 0;
+			foreach (MonoBehaviour bu in man.abilityList)
+				if (bu) {
+					if (bu is UnitProduction) {
+						((UnitProduction)bu).setBuildRate (1);
+						if(xxx>1 && !man.UnitName.Contains("Yard"))
+						{
+							((UnitProduction)bu).active = false;
+						}
+
+					}
 				}
-				else if (bt.Name.Contains ("Pod")) {
-					bt.active = false;
-				}
-				bt.setBuildRate (1);
+				xxx++;
 			}
 
-		}
-		else if (man.UnitName.Contains("Lab") || man.UnitName.Contains("Bay") || man.UnitName.Contains("Academy")   ) {
-			int i = 0;
-			foreach (ResearchUpgrade bu in target.GetComponents<ResearchUpgrade>()) {
-				//bu.buildTime *= .65f;
-				if (i > 1 && !bu.researchingElsewhere) {
-					bu.active = false;
-				}
 
-				bu.myCost.cooldown = bu.buildTime;
-				bu.setBuildRate (1);
-				i++;
-			}
-		}
 
 
 

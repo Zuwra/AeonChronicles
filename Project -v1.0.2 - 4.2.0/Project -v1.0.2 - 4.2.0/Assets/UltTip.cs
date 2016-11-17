@@ -33,7 +33,8 @@ public class UltTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 	{
 		while (true) {
 			
-			if (myUltCost.cooldownProgress () == 1) {
+			if (myUltCost.cooldownProgress () >= 1) {
+				
 				cooldown.text = "Cooldown: " +Clock.convertToString(myUltCost.cooldown );}
 			else{
 			cooldown.text = "Cooldown: " +Clock.convertToString((myUltCost.cooldown *  (1 - myUltCost.cooldownProgress ())));

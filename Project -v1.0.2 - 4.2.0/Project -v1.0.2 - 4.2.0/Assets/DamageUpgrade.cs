@@ -27,13 +27,18 @@ public class DamageUpgrade : Upgrade {
 	public void applyUpgrade (GameObject obj){
 
         UnitManager manager = obj.GetComponent<UnitManager>();
+		//if (obj.GetComponentInChildren<TurretMount> ()) {
+			//return;}
 		foreach (unitAmount ua in unitsToUpgrade) {
 			if (manager.UnitName.Contains(ua.UnitName)) {
 				for (int i = 0; i < manager.myWeapon.Count; i++)
 					if (manager.myWeapon [i]) {
-						
+
+						Debug.Log ("Applying damage to " + obj);
 						manager.myWeapon [i].changeAttack(0, ua.amount[i],true,null);
 						if (ua.mySpecial.Count > 0) {
+
+					
 							IWeapon.bonusDamage bonus = new IWeapon.bonusDamage ();
 							bonus.bonus =  ua.mySpecial [i].amount;
 							bonus.type = ua.mySpecial [i].myType;

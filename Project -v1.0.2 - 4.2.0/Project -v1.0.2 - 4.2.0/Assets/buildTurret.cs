@@ -51,7 +51,7 @@ public class buildTurret :UnitProduction{
 	void Update () {
 		if (buildingUnit) {
 
-			timer -= Time.deltaTime;
+			timer -= Time.deltaTime * buildRate;
 			mySelect.updateCoolDown (1 - timer/buildTime);
 			if (timer <= 0) {
 				HD.stopBuilding ();
@@ -297,7 +297,7 @@ public class buildTurret :UnitProduction{
 		}
 		GameObject tur = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
 
-		racer.applyUpgrade (tur);
+		//racer.applyUpgrade (tur);
 		//buildingUnit = false;
 
 	

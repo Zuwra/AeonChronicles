@@ -6,7 +6,7 @@ public class explosion : MonoBehaviour {
 
 
 	public GameObject source;
-	public int sourceInt;
+	public int sourceInt = 1;
 	public GameObject particleEff;
 	public bool friendlyFire;
 	public float damageAmount;
@@ -28,10 +28,7 @@ public class explosion : MonoBehaviour {
 		
 			Instantiate (particleEff, this.gameObject.transform.position, Quaternion.identity);
 		}
-		if (source) {
-			mySrcMan = source.GetComponent<UnitManager> ();
-			sourceInt = mySrcMan.PlayerOwner;
-		}
+	
 	}
 
 	public void setSource(GameObject sr, int srcNum)
