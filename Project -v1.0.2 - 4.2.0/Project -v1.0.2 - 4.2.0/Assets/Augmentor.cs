@@ -82,6 +82,8 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		}
 		UnitManager unitMan = target.GetComponent<UnitManager> ();
 
+		unitMan.GetComponent<Selected> ().setCooldownColor (Color.yellow);
+
 		OreDispenser OD = target.GetComponent<OreDispenser> ();
 		if (OD) {
 			OD.returnRate = 1.3f;
@@ -193,6 +195,9 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		attached.GetComponent<UnitManager> ().myStats.removeDeathTrigger (this);
 		MissileArmer armer = attached.GetComponent<MissileArmer> ();
 		UnitManager man = attached.GetComponent<UnitManager> ();
+
+		man.GetComponent<Selected> ().setCooldownColor (Color.white);
+
 		if (armer) {
 			armer.shields = true;
 			manager.myWeapon.Clear ();
@@ -265,6 +270,13 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		}
 
 
+	}
+
+	public void Dying()
+	{
+		if (attached) {
+			attached.GetComponent<Selected> ().setCooldownColor (Color.white);
+		}
 	}
 
 	override public void setAutoCast(bool offOn)

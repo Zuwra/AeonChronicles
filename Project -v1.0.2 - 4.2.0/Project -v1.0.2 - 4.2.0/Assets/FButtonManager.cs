@@ -39,7 +39,7 @@ public class FButtonManager : MonoBehaviour {
 			UnitManager manage = obj.GetComponent<UnitManager> ();
 			if (manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 				totalBuilding++;
-			} else if (!manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+			} else if (!manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)&& !obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Turret) ) {
 				tArmy++;
 			}
 		}

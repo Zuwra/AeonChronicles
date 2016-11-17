@@ -29,7 +29,7 @@ public class Selected : MonoBehaviour {
 	//private Image energyFill;
 
 	private Slider coolDownSlider;
-	//private Image coolFill;
+	private Image coolFill;
 
 	private float tempSelectTime;
 	private bool tempSelectOn;
@@ -75,7 +75,7 @@ public class Selected : MonoBehaviour {
 			//energyFill= transform.FindChild("HealthDisplay").FindChild("EnergyBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 
 			coolDownSlider = transform.FindChild ("HealthDisplay").FindChild ("Cooldown").GetComponent<Slider> ();
-			//coolFill= transform.FindChild("HealthDisplay").FindChild("Cooldown").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
+			coolFill=        coolDownSlider.transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 	
 
 
@@ -387,6 +387,11 @@ public class Selected : MonoBehaviour {
 		}
 		checkOn ();
 
+	}
+
+	public void setCooldownColor(Color c)
+	{
+		coolFill.color = c;
 	}
 
 

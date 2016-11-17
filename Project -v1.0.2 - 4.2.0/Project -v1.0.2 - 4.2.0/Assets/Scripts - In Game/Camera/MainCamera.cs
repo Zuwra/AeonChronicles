@@ -241,7 +241,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 		Ray rayb = Camera.main.ScreenPointToRay (new Vector2(.5f*Screen.width, .5f*Screen.height));
 		RaycastHit hitb;
 		Physics.Raycast (rayb, out hitb, Mathf.Infinity, 1 << 16);
-		Debug.Log ("hit " +hitb.collider.gameObject);
+
 		Ray rayc;
 		RaycastHit hitc = new RaycastHit();
 		if (Input.GetKey (KeyCode.LeftShift) && e.ScrollValue > 0) {

@@ -20,15 +20,7 @@ public class TurretUIPanel : MonoBehaviour {
 
 	}
 
-	// Update is called once per frame
-	void Update () {
 
-		//if (Time.time > turnOffTime) {
-
-			//this.enabled = false;
-			//myCanvas.enabled = false;
-		//}
-	}
 
 	public void displayText(string input,  Sprite pic)
 	{	
@@ -38,7 +30,7 @@ public class TurretUIPanel : MonoBehaviour {
 		myCanvas.enabled = true;
 
 	
-		Debug.Log ("This is " + this.gameObject);
+		//Debug.Log ("This is " + this.gameObject);
 		if (pic) {
 			personPic.sprite = pic;
 		} else {

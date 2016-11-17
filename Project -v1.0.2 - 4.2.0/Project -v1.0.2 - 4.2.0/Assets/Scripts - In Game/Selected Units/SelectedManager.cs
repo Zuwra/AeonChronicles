@@ -931,7 +931,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         {
 
             if (!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure)
-                && !obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Worker))
+                && !obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Worker)
+				&& !obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Turret))
             {
                 AddObject(obj.GetComponent<UnitManager>());
             }
