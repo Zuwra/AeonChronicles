@@ -44,10 +44,6 @@ public class BuildingPlacer : MonoBehaviour {
 	{  
 
 		if (objects.Count != 0) {
-			
-			foreach (GameObject obj in objects) {
-				Debug.Log ("Has objects " + obj);
-			}
 			return false;
 		}
 			Tile t = Grid.main.GetClosestRedTile (this.gameObject.transform.position);

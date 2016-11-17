@@ -165,7 +165,7 @@ public class AbstractCost : MonoBehaviour {
 	public void refundCost()
 	{
 		myGame.updateResources(ResourceOne, ResourceTwo, false);
-		//Debug.Log ("Refunding " + this.gameObject);
+		Debug.Log ("Refunding " + this.gameObject);
 		cooldownTimer = 0;
 	}
 

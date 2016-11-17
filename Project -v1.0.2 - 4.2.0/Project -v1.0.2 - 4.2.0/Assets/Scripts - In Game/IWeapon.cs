@@ -18,10 +18,12 @@ public class IWeapon : MonoBehaviour {
 	private float baseAttackPeriod;
 	public int numOfAttacks = 1;
 
+
+
 	private float myRadius;
 
 	public float baseDamage;
-	private float InitialBaseDamage;
+	private float InitialBaseDamage ;
 	bool initialSpeedSet;
 	bool initalDamageSet;
 	//[Tooltip("this is multiplied by the enemy mass and added or subtracted from the damage")]

@@ -105,7 +105,7 @@ public class Selected : MonoBehaviour {
 		if (!turretDisplay) {
 			switch (t) {
 			case displayType.always: 
-				buffDisplay.isOn = true;
+				buffDisplay.enabled = true;
 				healthslider.enabled = true;
 				if (myStats.MaxEnergy > 0) {
 					energySlider.gameObject.SetActive (true);
@@ -114,21 +114,21 @@ public class Selected : MonoBehaviour {
 
 			case displayType.damaged:
 				if (!myStats.atFullHealth ()) {
-					buffDisplay.isOn = true;
+					buffDisplay.enabled = true;
 					healthslider.gameObject.SetActive (false);
 				} else {
-					buffDisplay.isOn = false;
+					buffDisplay.enabled = false;
 				}
 
 				if (myStats.MaxEnergy > 0) {
 					energySlider.gameObject.SetActive (true);
-					buffDisplay.isOn = true;
+					buffDisplay.enabled = true;
 				}
 				break;
 
 			case  displayType.selected:
 				if (IsSelected) {
-					buffDisplay.isOn = true;
+					buffDisplay.enabled = true;
 					healthslider.gameObject.SetActive (true);
 					if (myStats.MaxEnergy > 0) {
 						energySlider.gameObject.SetActive (true);
@@ -137,7 +137,7 @@ public class Selected : MonoBehaviour {
 				break;
 
 			case displayType.never:
-				buffDisplay.isOn = false;
+				buffDisplay.enabled = false;
 				healthslider.gameObject.SetActive (false);
 				energySlider.gameObject.SetActive (false);
 				break;
@@ -353,9 +353,9 @@ public class Selected : MonoBehaviour {
 	public void checkOn()
 	{
 		if (coolDownSlider.value > 0 || energySlider.value < .99 || (healthslider.value < .99)) {
-			buffDisplay.isOn = true;
+			buffDisplay.enabled = true;
 		} else {
-			buffDisplay.isOn = false;
+			buffDisplay.enabled = false;
 		}
 
 	}
@@ -407,7 +407,7 @@ public class Selected : MonoBehaviour {
 		}
 
 		if (displayType.selected == mydisplayType) {
-			buffDisplay.isOn = true;
+			buffDisplay.enabled = true;
 			healthslider.gameObject.SetActive (true);
 			if (myStats.MaxEnergy > 0) {
 				energySlider.gameObject.SetActive (true);
@@ -434,7 +434,7 @@ public class Selected : MonoBehaviour {
 		}
 
 		if (displayType.selected == mydisplayType) {
-			buffDisplay.isOn = false;
+			buffDisplay.enabled = false;
 			healthslider.gameObject.SetActive (false);
 			if (myStats.MaxEnergy > 0) {
 				energySlider.gameObject.SetActive (false);

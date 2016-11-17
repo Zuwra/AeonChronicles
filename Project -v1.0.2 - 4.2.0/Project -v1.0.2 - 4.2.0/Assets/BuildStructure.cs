@@ -146,6 +146,16 @@ public class BuildStructure:  UnitProduction {
 		return order;
 	}
 
+	public void Dying()
+	{
+
+		if (myManager.getState () is PlaceBuildingState) {
+			((PlaceBuildingState)myManager.getState ()).cancel ();
+			myManager.GiveOrder (Orders.CreateStopOrder ());
+		}
+	
+	}
+
 	override
 	public void Activate()
 	{if (!Morphing) {

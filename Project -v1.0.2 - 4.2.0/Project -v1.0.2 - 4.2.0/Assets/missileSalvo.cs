@@ -36,7 +36,7 @@ public class missileSalvo : Ability, Validator, Notify{
 	{if(chargeCount < maxRockets){
 		chargeCount++;
 			mySelect.updateCoolDown ((float)chargeCount /(float) maxRockets);
-			Debug.Log ("Setting to " + (chargeCount / maxRockets));
+		
 		if (mySelect.IsSelected) {
 			
 			RaceManager.upDateUI ();

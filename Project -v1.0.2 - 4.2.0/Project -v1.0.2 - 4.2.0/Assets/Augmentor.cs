@@ -91,7 +91,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		else if (unitMan.UnitName.Contains("Yard") ||unitMan.UnitName == "Armory" ||unitMan.UnitName.Contains("Lab") || unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")  ) {
 
 			int xxx = 0;
-			foreach (MonoBehaviour bu in unitMan.abilityList){
+			foreach (Ability bu in unitMan.abilityList){
 				if (bu) {
 					if (bu is UnitProduction) {
 						((UnitProduction)bu).setBuildRate (SpeedPlus);
@@ -147,7 +147,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		else if (unitMan.UnitName.Contains("Yard") ||unitMan.UnitName == "Armory" ||unitMan.UnitName.Contains("Lab") ||unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")  ) {
 
 			int xxx = 0;
-			foreach (MonoBehaviour bu in unitMan.abilityList){
+			foreach (Ability bu in unitMan.abilityList){
 				if (bu) {
 					if (bu is UnitProduction) {
 						((UnitProduction)bu).setBuildRate (1);
@@ -184,17 +184,17 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		OreDispenser OD = attached.GetComponent<OreDispenser> ();
 		if (OD) {
 			OD.returnRate = 1;
-		}
-
-		else if (man.UnitName.Contains("Yard") ||man.UnitName == "Armory" ||man.UnitName.Contains("Lab") ||man.UnitName.Contains("Bay") || man.UnitName.Contains("Academy")  ) {
+		} else if (man.UnitName.Contains ("Yard") || man.UnitName == "Armory" || man.UnitName.Contains ("Lab") || man.UnitName.Contains ("Bay") || man.UnitName.Contains ("Academy")) {
 
 			int xxx = 0;
-			foreach (MonoBehaviour bu in man.abilityList)
+		
+			foreach (Ability bu in man.abilityList) {
 				if (bu) {
 					if (bu is UnitProduction) {
+
 						((UnitProduction)bu).setBuildRate (1);
-						if(xxx>1 && !man.UnitName.Contains("Yard"))
-						{
+						if (xxx > 1 && !man.UnitName.Contains ("Yard")) {
+							
 							((UnitProduction)bu).active = false;
 						}
 
@@ -203,7 +203,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 				xxx++;
 			}
 
-
+		}
 
 
 

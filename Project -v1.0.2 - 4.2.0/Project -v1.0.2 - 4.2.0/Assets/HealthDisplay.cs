@@ -9,7 +9,7 @@ public class HealthDisplay : MonoBehaviour {
 	//public List<Image> buffList = new List<Image>();
 
 
-	public bool isOn;
+
 	public Image BuildingUnit;
 	public Image background;
 	Vector3 LookLocation;
@@ -22,11 +22,11 @@ public class HealthDisplay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isOn) {
+
 			LookLocation = cam.transform.position;
 			LookLocation.x = this.gameObject.transform.position.x;
 			gameObject.transform.LookAt (LookLocation);
-		}
+
 	}
 
 	public void  loadIMage(Sprite m)
