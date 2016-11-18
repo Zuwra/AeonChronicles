@@ -82,14 +82,14 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		}
 		UnitManager unitMan = target.GetComponent<UnitManager> ();
 
-		unitMan.GetComponent<Selected> ().setCooldownColor (Color.yellow);
+
 
 		OreDispenser OD = target.GetComponent<OreDispenser> ();
 		if (OD) {
 			OD.returnRate = 1.3f;
 		} 
 		else if (unitMan.UnitName.Contains("Yard") ||unitMan.UnitName == "Armory" ||unitMan.UnitName.Contains("Lab") || unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")  ) {
-
+			unitMan.GetComponent<Selected> ().setCooldownColor (Color.yellow);
 			int xxx = 0;
 			foreach (Ability bu in unitMan.abilityList){
 				if (bu) {
@@ -174,7 +174,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		MissileArmer armer = attached.GetComponent<MissileArmer> ();
 		UnitManager man = attached.GetComponent<UnitManager> ();
 
-		man.GetComponent<Selected> ().setCooldownColor (Color.white);
+
 
 		if (armer) {
 			armer.shields = true;
@@ -185,7 +185,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (OD) {
 			OD.returnRate = 1;
 		} else if (man.UnitName.Contains ("Yard") || man.UnitName == "Armory" || man.UnitName.Contains ("Lab") || man.UnitName.Contains ("Bay") || man.UnitName.Contains ("Academy")) {
-
+			man.GetComponent<Selected> ().setCooldownColor (Color.white);
 			int xxx = 0;
 		
 			foreach (Ability bu in man.abilityList) {
@@ -236,7 +236,11 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	public void Dying()
 	{
 		if (attached) {
-			attached.GetComponent<Selected> ().setCooldownColor (Color.white);
+			UnitManager man = attached.GetComponent<UnitManager> ();
+			if (man && (man.UnitName.Contains ("Yard") || man.UnitName == "Armory" || man.UnitName.Contains ("Lab") || man.UnitName.Contains ("Bay") || man.UnitName.Contains ("Academy"))) {
+				
+				attached.GetComponent<Selected> ().setCooldownColor (Color.white);
+			}
 		}
 	}
 

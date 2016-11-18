@@ -87,7 +87,7 @@ public class DifficultyManager : MonoBehaviour {
 		if (LevelData.getDifficulty() == 1) {
 
 
-					if (man.myStats) {
+					if (man && man.myStats) {
 						man.myStats.Maxhealth *= EasyHealth;
 						man.myStats.health *= EasyHealth;
 					}

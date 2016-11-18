@@ -56,7 +56,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 		//Set up camera position
 		if (StartPoint != null)
 		{goToStart ();
-			transform.position = new Vector3(StartPoint.transform.position.x, transform.position.y, StartPoint.transform.position.z-AngleOffset);
+			transform.position = new Vector3(StartPoint.transform.position.x, m_MinFieldOfView + 70, StartPoint.transform.position.z-AngleOffset);
 		}
 		AngleOffset = 45 -((transform.position.y - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
 		//Set up camera rotation
@@ -142,12 +142,12 @@ public class MainCamera : MonoBehaviour, ICamera {
         while (true)
         {
             yield return 0;
-            //Debug.Log("IN COROUTINE");
+
             transform.Translate ((currentIncrement.x) * avgDeltaTime * transform.position.y / 15, 0, (currentIncrement.y) * Time.deltaTime* transform.position.y /14, Space.World);
             //maybe subtract min height
-            currentIncrement.x -=currentIncrement.x*avgDeltaTime;
-            currentIncrement.y -= currentIncrement.y * avgDeltaTime;
-            Debug.Log(currentIncrement.x + currentIncrement.y);
+            currentIncrement -= currentIncrement*avgDeltaTime;
+
+			CheckEdgeMovement ();
             if (Mathf.Abs(currentIncrement.x) + Mathf.Abs(currentIncrement.y) < 5.0f)
             {
                 
@@ -185,6 +185,13 @@ public class MainCamera : MonoBehaviour, ICamera {
 	{
 		if (canWeScroll)
 		{
+			if (currentFlick != null)
+			{
+				StopCoroutine(currentFlick);
+				currentFlick = null;
+			}
+
+
 			float totalSpeed = e.duration*ScrollAcceleration;
 			float targetSpeed = totalSpeed < ScrollSpeed ? totalSpeed : ScrollSpeed;
 
@@ -312,36 +319,6 @@ public class MainCamera : MonoBehaviour, ICamera {
 		}
 
 	}
-
-
-
-	/*
-
-		AngleOffset = 45 -((transform.transform.position.y - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
-		
-
-		if (AngleOffset > 90) {
-			AngleOffset = 90;
-		} else if (AngleOffset < 0) {
-			AngleOffset = 0;
-		}
-		transform.rotation = Quaternion.Euler (90 - AngleOffset, 0, 0);
-
-		float angle = Mathf.Abs(Vector3.Angle (transform.forward, Vector3.down));
-		float opp = Mathf.Abs(Mathf.Abs(hitb.point.z) - Mathf.Abs(this.transform.position.z));
-
-		float adj = Mathf.Abs(opp / Mathf.Tan(Mathf.Deg2Rad * angle));
-
-		Debug.Log("point " + hitb.point + "  adj " + adj + " oppo  "+ opp + "   " + this.transform.position.y);
-
-		if (adj + transform.position.y > m_MaxFieldOfView) {
-			adj = m_MaxFieldOfView - transform.position.y;
-		}
-
-
-		transform.Translate (Vector3.down * (transform.position.y - adj) * e.ScrollValue * 10, Space.World);
-
-		*/
 
 
 

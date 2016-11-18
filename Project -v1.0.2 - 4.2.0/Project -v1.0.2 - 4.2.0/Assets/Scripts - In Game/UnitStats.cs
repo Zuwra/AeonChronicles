@@ -288,9 +288,10 @@ public class UnitStats : MonoBehaviour {
 
 			if (FinishDeath) {
 				deathTriggers.RemoveAll (item => item == null);
-				foreach (Modifier effect in deathTriggers) {
-					if (effect != null) {
-						effect.modify (0, deathSource);
+				for(int i = deathTriggers.Count -1; i > -1; i --)
+				{
+					if (deathTriggers[i]!= null) {
+							deathTriggers[i].modify (0, deathSource);
 					}
 				}
 

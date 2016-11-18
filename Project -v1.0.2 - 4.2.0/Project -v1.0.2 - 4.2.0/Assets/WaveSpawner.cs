@@ -16,7 +16,7 @@ public class WaveSpawner : MonoBehaviour {
 	public List<attackWave> myWaves;
 
 	[System.Serializable]
-	public struct attackWave
+	public class attackWave
 	{public List<GameObject> waveType;
 		public List<GameObject> mediumExtra;
 		public List<GameObject> HardExtra;
@@ -27,6 +27,7 @@ public class WaveSpawner : MonoBehaviour {
 		public void setRelease (float n)
 		{
 			releaseTime = n;
+			Debug.Log ("My relase is now " + releaseTime);
 		}
 
 		public List<SceneEventTrigger> myTriggers;
@@ -64,21 +65,22 @@ public class WaveSpawner : MonoBehaviour {
 
 			}
 
-			foreach (GameObject obj in nextWave.mediumExtra) {
+			if (LevelData.getDifficulty () >= 2) {
+				foreach (GameObject obj in nextWave.mediumExtra) {
+					StartCoroutine (MyCoroutine (delay, obj));
+					delay += .2f;
 
-
-				StartCoroutine(MyCoroutine(delay, obj));
-				delay += .2f;
-
+				}
 			}
-			foreach (GameObject obj in nextWave.HardExtra) {
+			if (LevelData.getDifficulty () >= 3) {
+				foreach (GameObject obj in nextWave.HardExtra) {
 
 
-				StartCoroutine(MyCoroutine(delay, obj));
-				delay += .2f;
+					StartCoroutine (MyCoroutine (delay, obj));
+					delay += .2f;
 
+				}
 			}
-
 
 			nextActionTime = 10000;
 		
@@ -104,6 +106,7 @@ public class WaveSpawner : MonoBehaviour {
 		}
 
 		GameObject unit = (GameObject)Instantiate (obj, hitzone, Quaternion.identity);
+		Debug.Log ("Making new guys! " + nextActionTime);
 		yield return new WaitForSeconds(.1f);
 
 		Vector3 attackzone = rallyPoint;
@@ -115,6 +118,7 @@ public class WaveSpawner : MonoBehaviour {
 
 
 		difficultyM.SetUnitStats (unit);
+		Debug.Log ("just made " + unit);
 		unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateAttackMove (attackzone));
 
 	}
@@ -123,21 +127,26 @@ public class WaveSpawner : MonoBehaviour {
 
 	public void findNextWave()
 		{
+		nextActionTime = 10000000;
+	
+	
 
 		foreach (attackWave aw in myWaves) {
 			if (aw.releaseTime < nextActionTime) {
 				nextActionTime = aw.releaseTime;
 				nextWave = aw;
+			
 			}
 		
 		}
 
 		if (nextWave.repeat == 1) {
 			myWaves.Remove (nextWave);
-		
+
 		} else {
 			nextWave.repeat--;
-			nextWave.releaseTime += nextWave.repeatAddOn;
+			nextWave.setRelease (nextWave.releaseTime + nextWave.repeatAddOn);// .releaseTime += nextWave.repeatAddOn;
+		
 		}
 
 
@@ -148,11 +157,7 @@ public class WaveSpawner : MonoBehaviour {
 	{
 		
 		float delay = .1f;
-	
 
-
-	
-		Debug.Log ("This spawner " + this.gameObject);
 			foreach (GameObject obj in nextWave.waveType) {
 				
 				StartCoroutine (MyCoroutine (delay, obj));
