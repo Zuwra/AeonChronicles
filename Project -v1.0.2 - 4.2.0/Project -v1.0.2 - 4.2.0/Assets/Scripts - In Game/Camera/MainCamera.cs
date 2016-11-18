@@ -10,6 +10,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	public static MainCamera main;
 
 	//Camera Variables
+    Coroutine currentFlick;
 	public float HeightAboveGround = 30.0f;
 	public float AngleOffset = 20.0f;
 	public float m_MaxFieldOfView = 150.0f;
@@ -55,9 +56,9 @@ public class MainCamera : MonoBehaviour, ICamera {
 		//Set up camera position
 		if (StartPoint != null)
 		{goToStart ();
-			transform.position = new Vector3(StartPoint.transform.position.x, HeightAboveGround, StartPoint.transform.position.z-AngleOffset);
+			transform.position = new Vector3(StartPoint.transform.position.x, transform.position.y, StartPoint.transform.position.z-AngleOffset);
 		}
-		AngleOffset = 45 -((HeightAboveGround - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
+		AngleOffset = 45 -((transform.position.y - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
 		//Set up camera rotation
 		transform.rotation = Quaternion.Euler (90-AngleOffset, 0, 0);
 	}
@@ -111,32 +112,61 @@ public class MainCamera : MonoBehaviour, ICamera {
 			middleStartPos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 			//camStartPos = this.transform.position;
 			middleMouseDown = true;
+            if (currentFlick != null)
+            {
+                StopCoroutine(currentFlick);
+            }
 		} else if (Input.GetMouseButtonUp (2)) {
 			if (CursorManager.main.getMode () == 6) {
 				CursorManager.main.normalMode ();
 			}
+            Vector2 toCoroutine = new Vector2((middleStartPos.x - Input.mousePosition.x),(middleStartPos.y - Input.mousePosition.y));
+            currentFlick = StartCoroutine(flickScroll(toCoroutine));
 			middleMouseDown = false;
 		} else if (middleMouseDown) {
 			CursorManager.main.MouseDragMode ();
 			if (Input.mousePosition.x > 0 && Input.mousePosition.x < Screen.width - 2 && Input.mousePosition.y > 0 && Input.mousePosition.y < Screen.height - 2) {
 
 
-				transform.Translate ((middleStartPos.x - Input.mousePosition.x) * avgDeltaTime * HeightAboveGround / 15, 0, (middleStartPos.y - Input.mousePosition.y) * Time.deltaTime* HeightAboveGround /14, Space.World);
+				transform.Translate ((middleStartPos.x - Input.mousePosition.x) * avgDeltaTime * transform.position.y / 15, 0, (middleStartPos.y - Input.mousePosition.y) * Time.deltaTime* transform.position.y /14, Space.World);
 				middleStartPos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+
 				CheckEdgeMovement ();
 			}
 		}
 
 	}
+    IEnumerator flickScroll(Vector2 movementIncrement)
+    {
+        Vector2 currentIncrement = movementIncrement;
+        while (true)
+        {
+            yield return 0;
+            //Debug.Log("IN COROUTINE");
+            transform.Translate ((currentIncrement.x) * avgDeltaTime * transform.position.y / 15, 0, (currentIncrement.y) * Time.deltaTime* transform.position.y /14, Space.World);
+            //maybe subtract min height
+            currentIncrement.x -=currentIncrement.x*avgDeltaTime;
+            currentIncrement.y -= currentIncrement.y * avgDeltaTime;
+            Debug.Log(currentIncrement.x + currentIncrement.y);
+            if (Mathf.Abs(currentIncrement.x) + Mathf.Abs(currentIncrement.y) < 5.0f)
+            {
+                
+                break;
+            }
+
+        }
+        Debug.Log("END WHILE");
+
+    }
 
 	public void goToStart()
 	{
 		if (StartPoint != null) {
-			transform.position = new Vector3 (StartPoint.transform.position.x, HeightAboveGround, StartPoint.transform.position.z - AngleOffset);
+			transform.position = new Vector3 (StartPoint.transform.position.x, transform.position.y, StartPoint.transform.position.z - AngleOffset);
 		}
 	}
 	public void generalMove(Vector3 input){
-		transform.position = new Vector3 (input.x, this.gameObject.transform.position.y, input.z - AngleOffset/45 * HeightAboveGround);
+		transform.position = new Vector3 (input.x, this.gameObject.transform.position.y, input.z - AngleOffset/45 * transform.position.y);
 		CheckEdgeMovement ();
 	}
 
@@ -350,6 +380,8 @@ public class MainCamera : MonoBehaviour, ICamera {
 	{
 		return m_Boundries;
 	}
+
+
 
 
 }
