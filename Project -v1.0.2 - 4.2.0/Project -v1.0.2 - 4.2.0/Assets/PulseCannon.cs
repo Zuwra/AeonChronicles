@@ -13,9 +13,8 @@ public class PulseCannon : IWeapon {
 
 	
 	// Update is called once per frame
-	new void Update () {
+	void Update () {
 
-		base.Update ();
 		if (Time.time > nextTime) {
 			
 

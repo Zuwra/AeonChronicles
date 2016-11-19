@@ -36,7 +36,7 @@ public class IWeapon : MonoBehaviour {
 
 	public GameObject turret;
 	public Vector3 originPoint;
-	private float nextActionTime;
+	//private float nextActionTime;
 	public float attackArc;
 	private UnitManager enemy;
 	public float damagePoint;
@@ -44,7 +44,7 @@ public class IWeapon : MonoBehaviour {
 	public float AttackDelay;
 
 	private bool onDamagePoint;
-	private float PointEnd;
+	//private float PointEnd;
 	private UnitManager PointSource;
 
 
@@ -102,12 +102,12 @@ public class IWeapon : MonoBehaviour {
 
 
 
-	
+	/*
 	// Update is called once per frame
 	protected void Update () {
 
 
-		if (Time.time > nextActionTime) {
+		/*if (Time.time > nextActionTime) {
 			offCooldown = true;
 	
 		}
@@ -116,7 +116,24 @@ public class IWeapon : MonoBehaviour {
 			PointSource.cMover.removeSpeedBuff (this);
 
 		}
-			
+
+
+	}*/
+
+	IEnumerator ComeOffCooldown( float length)
+	{
+		yield return new WaitForSeconds (length);
+		offCooldown = true;
+
+	}
+
+	IEnumerator ComeOffDamagePoint(float length)
+	{
+		yield return new WaitForSeconds (length);
+	
+			onDamagePoint = false;
+			PointSource.cMover.removeSpeedBuff (this);
+	
 
 	}
 
@@ -197,10 +214,15 @@ public class IWeapon : MonoBehaviour {
 
 
 	public void attack(UnitManager target, UnitManager toStun)
-	{nextActionTime = Time.time + attackPeriod;
+	{//nextActionTime = Time.time + attackPeriod;
+
+		StartCoroutine (ComeOffCooldown (attackPeriod));
+
 		if (toStun && damagePoint > 0) {
 			toStun.cMover.changeSpeed (-1, 0, false, this);
-			PointEnd = Time.time + damagePoint;
+
+				StartCoroutine (ComeOffDamagePoint (damagePoint));
+			//PointEnd = Time.time + damagePoint;
 			onDamagePoint = true;
 			PointSource = toStun;
 		}

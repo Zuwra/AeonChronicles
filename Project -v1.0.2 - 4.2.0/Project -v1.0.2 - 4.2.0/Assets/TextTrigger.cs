@@ -12,15 +12,8 @@ public class TextTrigger : SceneEventTrigger {
 	[Tooltip("Length of Cutsccene, Set this to 0 so it wont steal the camera, cutscene length not implemented yet")]
 
 	public float stealCamera;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 		if (!hasTriggered) {
 			hasTriggered = true;

@@ -8,16 +8,6 @@ public class AugmentAttachPoint : MonoBehaviour {
 	public bool showPoint;
 
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 	public void OnDrawGizmos()
 	{if (showPoint) {

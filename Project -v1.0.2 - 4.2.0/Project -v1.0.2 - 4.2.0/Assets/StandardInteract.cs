@@ -16,11 +16,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 		myManager.setInteractor (this);
 	
 	}
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
+		
 
 	public void initialize(){
 		Awake ();

@@ -12,21 +12,11 @@ public class CapturableUnit : MonoBehaviour {
 	// Set the Vision Range in the Unitmanger 5 more than what it should be,
 
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-
 	public void capture()
 	{
 		foreach(UnitManager manage in myManagers){
-
+			if (!manage) {
+				continue;}
 		
 		manage.PlayerOwner = 1;
 		manage.visionRange -= 5;

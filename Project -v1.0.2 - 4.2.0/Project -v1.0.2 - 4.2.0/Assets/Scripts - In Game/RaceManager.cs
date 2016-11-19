@@ -76,19 +76,13 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		selectedManager = GameObject.FindObjectOfType<SelectedManager> ();
 		uiManager = FindObjectOfType <RaceUIManager>();
 		uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
+
+		InvokeRepeating ("UltUpdate", .2f, .2f);
 	
 	}
 
-	// This is for optimization
-	private int frameUpdate = 0;
-	// Update is called once per frame
-	void Update () {
-
-		if (frameUpdate < 5) {
-			frameUpdate++;
-			return;
-		}
-
+	public void UltUpdate()
+	{
 		if (slideOne && UltOne.active) {
 			slideOne.value = UltOne.myCost.cooldownProgress ();
 			slideOne.gameObject.SetActive (slideOne.value < .99 && slideOne.value > .02f);
@@ -108,8 +102,8 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				ultBTwo.interactable = false;
 			}
 			else{
-					ultBTwo.interactable = true;
-				}
+				ultBTwo.interactable = true;
+			}
 
 		}
 		if (slideThree && UltThree.active) {
@@ -132,10 +126,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				ultBFour.interactable = true;
 			}
 		}
-
-
-		frameUpdate = 0;
-
+	
 	}
 
 

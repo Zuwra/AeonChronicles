@@ -49,7 +49,7 @@ public class UnitStats : MonoBehaviour {
 	public SphereCollider visionRange;
 
 
-	private float nextActionTime;
+	//private float nextActionTime;
 	public VeteranStats veternStat;
 
 
@@ -101,7 +101,7 @@ public class UnitStats : MonoBehaviour {
 		myManager.myStats = this;
 	
 
-		nextActionTime = Time.time + .5f;
+		//nextActionTime = Time.time + .5f;
 		if (isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 	
 		}
@@ -115,6 +115,8 @@ public class UnitStats : MonoBehaviour {
 		if (isHero) {
 			veternStat.UnitName = myManager.UnitName;
 		}
+
+		InvokeRepeating ("HealthEnergy", 1, .5f);
 	
 	}
 
@@ -167,7 +169,7 @@ public class UnitStats : MonoBehaviour {
 
 
 
-
+	/*
 	// Update is called once per frame
 	void Update () {
 
@@ -190,7 +192,26 @@ public class UnitStats : MonoBehaviour {
 		}
 
 	}
+	*/
+	IEnumerator HealthEnergy()
+	{
+		while(true){
+			yield return new WaitForSeconds (.5f);
+		//Regenerate Health
+		if (health < Maxhealth && HealthRegenPerSec > 0) {
+			float actual = veternStat.healingDone += heal (HealthRegenPerSec / 2);
+			veternStat.UpHealing (actual);
+		}
 
+
+		//Regenerate Energy
+		if (currentEnergy < MaxEnergy && EnergyRegenPerSec >0) {
+
+			float actual = changeEnergy (EnergyRegenPerSec / 2);
+			veternStat.UpEnergy (actual);
+		}
+	}
+	}
 
 	public float TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
 	{

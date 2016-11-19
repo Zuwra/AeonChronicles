@@ -33,10 +33,6 @@ public class FrontalShield : Ability,Modifier {
 
 	}
 
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 
 	public float modify(float amount, GameObject src)

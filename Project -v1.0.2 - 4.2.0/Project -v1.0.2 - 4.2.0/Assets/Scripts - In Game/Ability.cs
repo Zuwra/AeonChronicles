@@ -65,22 +65,10 @@ public abstract class Ability : MonoBehaviour {
 
 	}
 
-	// Use this for initialization
-	void Start () {
-
-
-		
-	
-	}
 
 	public type getMyType()
 	{return myType;
 	}
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 
 	public void newUnitCreated(string newUnit)

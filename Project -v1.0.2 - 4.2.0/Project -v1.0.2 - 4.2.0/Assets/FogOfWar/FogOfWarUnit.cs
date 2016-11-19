@@ -14,32 +14,26 @@ public class FogOfWarUnit : MonoBehaviour
 	private bool hasMoved = true;
     Transform _transform;
 
-	private float nextActionTime;
-
     void Start()
     {
 		Initialize ();
+
+		InvokeRepeating ("UpdateFog", Random.Range(0, updateFrequency), updateFrequency);
     }
 
 	public void Initialize()
 	{  _transform = transform;
-		nextActionTime = Random.Range(0, updateFrequency);
-		//_nextUpdate = Random.Range(0, updateFrequency);
+
 		
 	}
 
-    void Update()
+    void UpdateFog()
     {
-		
-		if (Time.time > nextActionTime) {
-			nextActionTime += updateFrequency;
 			if (hasMoved) {
 		
 				clearFog();			
 			}
-		
-		
-		}
+
     }
 
 

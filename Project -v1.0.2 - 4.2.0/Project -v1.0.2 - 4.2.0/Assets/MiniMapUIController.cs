@@ -268,9 +268,6 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 
 
-
-
-
 		// LOTS OF COMMENTED OUT STUFF FOR OPTIMIZATIONS!
 	
 		//Find world co-ordinates
@@ -282,7 +279,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		//int iC = (int)(((v1.x - Left) / (WorldWidth)) * textureWidth);
 		//int jC = (int)(((v1.z - bottom) / (WorldHeight)) * textureHeight);
 	
-		botLeftP = new Vector2 ((int)(((v1.x - Left) / (WorldWidth)) * textureWidth)    ,  (int)(((v1.z - bottom) / (WorldHeight)) * textureHeight));
+		botLeftP = new Vector2 ((int)(((v1.x - Left) / (WorldWidth)) * textureWidth),  (int)(((v1.z - bottom) / (WorldHeight)) * textureHeight));
 
 
 		Physics.Raycast (ray2, out hit, Mathf.Infinity, 1 << 16);
@@ -368,9 +365,11 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	}
 
 
+	Color32[] pixelsArray;
+	Color32 transParent = new Color32 (0, 0, 0, 0);
+	Color32 blackColor = new Color32 (0, 0, 0, 255);
 	public void setFog()
 	{
-
 		if (_texture == null) {
 			_texture = new Texture2D (fog.texture.width, fog.texture.height);
 			_texture.wrapMode = TextureWrapMode.Clamp;
@@ -379,12 +378,16 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 		//Debug.Log ("Size is " + fog.texture.width);
 		byte[] original = fog.texture.GetRawTextureData ();
-		Color32[] pixels = new Color32[original.Length];
-		for (int i = 0; i < pixels.Length; i++) {
-			pixels [i] = original [i] < 255 ? new Color32 (0, 0, 0, 0) : new Color32 (0, 0, 0, 255);
+		if (pixelsArray == null) {
+			pixelsArray  = new Color32[original.Length];
+		}
+			
+		for (int i = 0; i < pixelsArray.Length; i++) {
+			
+			pixelsArray[i] = original [i] < 255 ? transParent : blackColor;
 		
 		}
-		_texture.SetPixels32 (pixels);
+		_texture.SetPixels32  (pixelsArray);
 		_texture.Apply ();
 	
 
