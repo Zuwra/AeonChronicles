@@ -366,6 +366,7 @@
      <Compile Include="Assets\Sanguinate.cs" />
      <Compile Include="Assets\SateliteScan.cs" />
      <Compile Include="Assets\SceneEventTrigger.cs" />
+     <Compile Include="Assets\Scripts - In Game\$leftrighttest_276.cs" />
      <Compile Include="Assets\Scripts - In Game\Ability.cs" />
      <Compile Include="Assets\Scripts - In Game\AbstractCost.cs" />
      <Compile Include="Assets\Scripts - In Game\AttackMoveState.cs" />

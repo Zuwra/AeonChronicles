@@ -27,7 +27,7 @@ public class WaveSpawner : MonoBehaviour {
 		public void setRelease (float n)
 		{
 			releaseTime = n;
-			Debug.Log ("My relase is now " + releaseTime);
+
 		}
 
 		public List<SceneEventTrigger> myTriggers;

@@ -30,9 +30,11 @@ public class airmover : IMover {
 	}
 
 
+	void OnCollisionEnter(Collision coll)
+	{
+		Debug.Log ("Collided with " + coll.gameObject);
 
-	public void Update () {
-
+	
 	}
 
 
@@ -75,8 +77,20 @@ public class airmover : IMover {
 
 			dir.y -= Time.deltaTime *  (this.gameObject.transform.position.y -(objecthit.point.y + flyerHeight) ) *(speed/8) * Mathf.Min(3, tempDist);
 
+		
+
 		}
 
+		RaycastHit lookAhead = new RaycastHit();
+		Vector3 vec = this.gameObject.transform.forward;
+
+		if (Physics.Raycast (this.gameObject.transform.position, vec, out lookAhead, 7, 1 << 9)) {
+
+			Vector3 heading = lookAhead.collider.gameObject.transform.position- transform.position;
+			float dirNum = AngleDir (transform.forward, heading, transform.up);
+			dir -= this.gameObject.transform.TransformDirection (Vector3.right) * dirNum;
+		
+		}
 		dir *= speed * Time.deltaTime;
 
 		controller.Move (dir);
@@ -91,6 +105,22 @@ public class airmover : IMover {
 	//	Debug.Log ("Returnin 3 ");
 		return false;
 	}
+
+
+	float AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up) {
+		Vector3 perp = Vector3.Cross(fwd, targetDir);
+		float dir = Vector3.Dot(perp, up);
+
+		if (dir > 0f) {
+			return 1f;
+		} else if (dir < 0f) {
+			Debug.Log ("Left");
+			return -1f;
+		} else {
+			return 0f;
+		}
+	}
+
 
 
 	override
