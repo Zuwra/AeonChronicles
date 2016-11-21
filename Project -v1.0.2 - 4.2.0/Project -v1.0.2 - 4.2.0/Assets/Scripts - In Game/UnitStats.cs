@@ -96,7 +96,6 @@ public class UnitStats : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-
 		myManager = this.gameObject.GetComponent<UnitManager> ();
 		myManager.myStats = this;
 	
@@ -116,7 +115,8 @@ public class UnitStats : MonoBehaviour {
 			veternStat.UnitName = myManager.UnitName;
 		}
 
-		InvokeRepeating ("HealthEnergy", 1, .5f);
+
+		InvokeRepeating ("HealthEnergy",UnityEngine.Random.Range(0,1), .5f);
 	
 	}
 

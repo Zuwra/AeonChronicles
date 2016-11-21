@@ -37,6 +37,7 @@ public class Selected : MonoBehaviour {
 	public List<SelectionNotifier> selectionNotifiers = new List<SelectionNotifier>();
 	private LineRenderer myLine;
 
+
 	public enum displayType
 	{
 		always,damaged,selected,never
@@ -193,44 +194,6 @@ public class Selected : MonoBehaviour {
 
 
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	
-		if (tempSelectOn) {
-			if (tempSelectTime < Time.time) {
-				tempSelectOn = false;
-				if (!IsSelected) {
-					
-					if (!interactSelect) {
-						decalCircle.GetComponent<MeshRenderer> ().enabled = false;
-					}
-					if (RallyPoint) {
-						
-						RallyPoint.SetActive (false);
-					}
-				}
-					foreach (Transform obj in this.transform) {
-
-						obj.SendMessage ("setDeSelect", SendMessageOptions.DontRequireReceiver);
-					}
-						
-
-			}
-		}
-		if (IsSelected || tempSelectOn) {
-			if (RallyUnit && myLine) {
-				myLine.SetPositions (new Vector3[]{ this.gameObject.transform.position, RallyUnit.transform.position });
-				RallyPoint.transform.position = RallyUnit.transform.position;
-			}
-		}
-	}
-
-	void LateUpdate()
-	{
-		
-	}
 
 	public void interact()
 	{
@@ -264,11 +227,19 @@ public class Selected : MonoBehaviour {
 
 	public void tempSelect()
 	{
+
+		tempSelectTime = Time.time + .08f;
 		if (!tempSelectOn) {
+
+			StartCoroutine (CurrentlyTempSelect ());
 			tempSelectOn = true;
+
 			decalCircle.GetComponent<MeshRenderer> ().enabled = true;
 			if (RallyPoint) {
 				RallyPoint.SetActive (true);
+			}
+			if (myLine) {
+				myLine.enabled = true;
 			}
 
 			foreach (Transform obj in this.transform) {
@@ -277,9 +248,50 @@ public class Selected : MonoBehaviour {
 			}
 		}
 
-		tempSelectTime = Time.time + .08f;
+	
 
 	}
+
+
+
+
+	IEnumerator CurrentlyTempSelect()
+	{
+
+
+		while (tempSelectTime > Time.time) {
+
+			if (RallyUnit) {
+				myLine.SetPositions (new Vector3[]{ this.gameObject.transform.position, RallyUnit.transform.position });
+				RallyPoint.transform.position = RallyUnit.transform.position;
+			}
+			yield return 0;
+		}
+
+		if (!IsSelected) {
+	
+			if (!interactSelect) {
+
+				decalCircle.GetComponent<MeshRenderer> ().enabled = false;
+			}
+			if (RallyPoint) {
+				myLine.enabled = false;
+				RallyPoint.SetActive (false);
+			}
+
+			foreach (Transform obj in this.transform) {
+
+				obj.SendMessage ("setDeSelect", SendMessageOptions.DontRequireReceiver);
+			}
+
+
+		}
+
+			
+		tempSelectOn = false;
+
+		}
+
 
 
 	public void updateHealthBar(float ratio)
@@ -398,7 +410,10 @@ public class Selected : MonoBehaviour {
 	public void SetSelected()
 	{
 		IsSelected = true;
+
+		StartCoroutine (currentlySelected());
 		decalCircle.GetComponent<MeshRenderer> ().enabled = true;
+
 		if (RallyPoint) {
 			RallyPoint.SetActive (true);
 			if (myLine) {
@@ -418,6 +433,19 @@ public class Selected : MonoBehaviour {
 
 			//obj.SendMessage ("setSelect", SendMessageOptions.DontRequireReceiver);
 		//}
+	}
+
+	IEnumerator currentlySelected()
+	{
+		while (IsSelected) {
+
+			if (RallyUnit) {
+				myLine.SetPositions (new Vector3[]{ this.gameObject.transform.position, RallyUnit.transform.position });
+				RallyPoint.transform.position = RallyUnit.transform.position;
+			}
+			yield return 0;
+		}
+	
 	}
 	
 	public void SetDeselected()

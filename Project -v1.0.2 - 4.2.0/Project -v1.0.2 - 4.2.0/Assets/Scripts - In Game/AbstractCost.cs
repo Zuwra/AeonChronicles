@@ -40,6 +40,7 @@ public class AbstractCost : MonoBehaviour {
 			
 			if (!StartsRefreshed) {
 				cooldownTimer = cooldown;
+			StartCoroutine (onCooldown());
 			}
 			
 			stats = this.gameObject.GetComponent<UnitStats> ();

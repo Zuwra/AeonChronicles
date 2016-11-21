@@ -36,6 +36,7 @@ public class UnitCardCreater : MonoBehaviour {
 	private BuilderUI builder;
 
 	public Text VetStats;
+	public Text VetBackStory;
 	public GameObject VetCanvas;
 
 	public OreDispenser myDispense;
@@ -91,7 +92,11 @@ public class UnitCardCreater : MonoBehaviour {
 			"\nHealing Done: " + currentUnit.myStats.veternStat.healingDone +
 
 			"\nEnergy Charged: " + currentUnit.myStats.veternStat.energyGained+
-			"\nArmor Mitigated Damage: " + currentUnit.myStats.veternStat.mitigatedDamage ;
+			"\nArmor Mitigated\nDamage: " + currentUnit.myStats.veternStat.mitigatedDamage ;
+
+			if (currentUnit.PlayerOwner == 1) {
+				VetBackStory.text = currentUnit.myStats.veternStat.backstory;
+			}
 		}
 	}
 
@@ -175,6 +180,11 @@ public class UnitCardCreater : MonoBehaviour {
 				weaponIcons [i].SetActive (manager.myWeapon.Count > i);
 			if (manager.myWeapon.Count > i) {
 				weaponIcons [i].transform.FindChild("DamageIcon").GetComponent<Image> ().sprite = manager.myWeapon [i].myIcon;
+				if (manager.myWeapon [i].getUpgradeLevel () > 0) {
+					weaponIcons [i].transform.GetComponentInChildren<Text> ().text = "" + manager.myWeapon [i].getUpgradeLevel ();
+				} else {
+					weaponIcons [i].transform.GetComponentInChildren<Text> ().text = "";
+				}
 			}
 
 		}

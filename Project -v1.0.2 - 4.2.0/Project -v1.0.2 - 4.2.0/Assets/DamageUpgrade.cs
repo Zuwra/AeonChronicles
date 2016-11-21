@@ -34,8 +34,9 @@ public class DamageUpgrade : Upgrade {
 				for (int i = 0; i < manager.myWeapon.Count; i++)
 					if (manager.myWeapon [i]) {
 
-						Debug.Log ("Applying damage to " + obj);
+						//Debug.Log ("Applying damage to " + obj);
 						manager.myWeapon [i].changeAttack(0, ua.amount[i],true,null);
+						manager.myWeapon [i].incrementUpgrade ();
 						if (ua.mySpecial.Count > 0) {
 
 					
@@ -45,6 +46,10 @@ public class DamageUpgrade : Upgrade {
 							manager.myWeapon [i].extraDamage.Add (bonus);
 						}
 					}
+
+				if (manager.GetComponent<Selected> ().IsSelected) {
+					RaceManager.upDateUI ();
+				}
 			
 			}
 		}

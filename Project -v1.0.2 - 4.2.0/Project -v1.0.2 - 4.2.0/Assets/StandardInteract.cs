@@ -100,7 +100,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 				return;
 			}
 			if (manage.PlayerOwner != myManager.PlayerOwner  ) {
-				if (this.gameObject.GetComponent<UnitManager> ().myWeapon == null) {
+				if (this.gameObject.GetComponent<UnitManager> ().myWeapon.Count == 0) {
 					myManager.changeState (new FollowState (order.Target.gameObject, myManager),false,order.queued);
 				} else {
 					//Debug.Log ("Ordering to interact " + manage.gameObject);

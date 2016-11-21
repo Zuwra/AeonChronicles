@@ -593,8 +593,11 @@ public class UnitManager : Unit,IOrderable{
 	{IWeapon best = null;
 		float min= 100000000;
 		foreach (IWeapon weap in myWeapon) {
+		//	Debug.Log ("Checking " + weap.Title);
 			if(weap.canAttack(obj)){
+				//Debug.Log (weap.Title + " can attack");
 				if (weap.range < min) {
+				//	Debug.Log (weap.Title + " best range");
 					best = weap;
 					min = weap.range;
 				}

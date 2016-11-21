@@ -86,45 +86,29 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		if (slideOne && UltOne.active) {
 			slideOne.value = UltOne.myCost.cooldownProgress ();
 			slideOne.gameObject.SetActive (slideOne.value < .99 && slideOne.value > .02f);
-			if (slideOne.value < .99) {
-				ultBOne.interactable = false;
-			}
-			else{
-				ultBOne.interactable = true;
-			}
+			ultBOne.interactable = (slideOne.value  > .99);
+		
 
 		}
 
 		if (slideTwo && UltTwo.active) {
 			slideTwo.value = UltTwo.myCost.cooldownProgress ();
 			slideTwo.gameObject.SetActive (slideTwo.value < .99 && slideTwo.value > .01f);
-			if (slideTwo.value < .99) {
-				ultBTwo.interactable = false;
-			}
-			else{
-				ultBTwo.interactable = true;
-			}
+			ultBTwo.interactable = (slideTwo.value > .99);
 
+		
 		}
 		if (slideThree && UltThree.active) {
 			slideThree.value = UltThree.myCost.cooldownProgress ();
 			slideThree.gameObject.SetActive (slideThree.value < .99 && slideThree.value > .01f);
-			if (slideThree.value < .99) {
-				ultBThree.interactable = false;
-			}
-			else{
-				ultBThree.interactable = true;
-			}
+			ultBThree.interactable = (slideThree.value > .99);
+		
 		}
 		if (slideFour && UltFour.active) {
 			slideFour.value = UltFour.myCost.cooldownProgress ();
 			slideFour.gameObject.SetActive (slideFour.value < .99 && slideFour.value > .01f);
-			if (slideFour.value < .99) {
-				ultBFour.interactable = false;
-			}
-			else{
-				ultBFour.interactable = true;
-			}
+			ultBFour.interactable = (slideFour.value > .99);
+
 		}
 	
 	}

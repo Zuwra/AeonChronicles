@@ -18,7 +18,7 @@ public class IWeapon : MonoBehaviour {
 	private float baseAttackPeriod;
 	public int numOfAttacks = 1;
 
-
+	int upgradeLevel = 0;
 
 	private float myRadius;
 
@@ -43,7 +43,7 @@ public class IWeapon : MonoBehaviour {
 
 	public float AttackDelay;
 
-	private bool onDamagePoint;
+	//private bool onDamagePoint;
 	//private float PointEnd;
 	private UnitManager PointSource;
 
@@ -102,23 +102,6 @@ public class IWeapon : MonoBehaviour {
 
 
 
-	/*
-	// Update is called once per frame
-	protected void Update () {
-
-
-		/*if (Time.time > nextActionTime) {
-			offCooldown = true;
-	
-		}
-		if (onDamagePoint && PointEnd < Time.time) {
-			onDamagePoint = false;
-			PointSource.cMover.removeSpeedBuff (this);
-
-		}
-
-
-	}*/
 
 	IEnumerator ComeOffCooldown( float length)
 	{
@@ -131,7 +114,7 @@ public class IWeapon : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (length);
 	
-			onDamagePoint = false;
+			//onDamagePoint = false;
 			PointSource.cMover.removeSpeedBuff (this);
 	
 
@@ -144,13 +127,42 @@ public class IWeapon : MonoBehaviour {
 		}
 	
 
+	// Does not check for range
+	public bool simpleCanAttack(UnitManager target)
+	{
+		if (!offCooldown) {
+			//Debug.Log (Title + " On cooldown");
+			return false;}
+		if (!target) {
+			//	Debug.Log (Title + " No title");
+			return false;}
+
+
+
+		foreach (Validator val in validators) {
+			if(val.validate(this.gameObject,target.gameObject) == false)
+			{
+				//Debug.Log ("Not valid");
+				return false;}
+		}
+
+		UnitStats targetStats= target.GetComponent<UnitStats>();
+		foreach (UnitTypes.UnitTypeTag tag in cantAttackTypes) {
+			if (targetStats.isUnitType (tag))
+			{	//	Debug.Log (Title + "cant attack");
+				return false;	}
+		}
+
+		return true;
+	}
 
 	public bool canAttack(UnitManager target)
 	{
 		if (!offCooldown) {
-	
+			//Debug.Log (Title + " On cooldown");
 			return false;}
 		if (!target) {
+			//	Debug.Log (Title + " No title");
 			return false;}
 	
 
@@ -162,22 +174,21 @@ public class IWeapon : MonoBehaviour {
 				return false;}
 		}
 
-
+			// Account for height advantage
 		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position) - target.GetComponent<CharacterController>().radius -myRadius;
 		float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
 		if (distance > (range + (verticalDistance)) || distance < minimumRange) {
-			//Debug.Log ("Not in range");
-
+		//	Debug.Log ("Not in range");
 			return false;}
 
 		UnitStats targetStats= target.GetComponent<UnitStats>();
 		foreach (UnitTypes.UnitTypeTag tag in cantAttackTypes) {
 			if (targetStats.isUnitType (tag))
-			{		//Debug.Log ("cant attack");
+			{	//	Debug.Log (Title + "cant attack");
 				return false;	}
 		}
 
-		offCooldown = false;
+		//offCooldown = false;
 		return true;
 	
 
@@ -214,16 +225,15 @@ public class IWeapon : MonoBehaviour {
 
 
 	public void attack(UnitManager target, UnitManager toStun)
-	{//nextActionTime = Time.time + attackPeriod;
-
+	{
+		offCooldown = false;
 		StartCoroutine (ComeOffCooldown (attackPeriod));
 
 		if (toStun && damagePoint > 0) {
 			toStun.cMover.changeSpeed (-1, 0, false, this);
 
 				StartCoroutine (ComeOffDamagePoint (damagePoint));
-			//PointEnd = Time.time + damagePoint;
-			onDamagePoint = true;
+
 			PointSource = toStun;
 		}
 		for (int i = 0; i < numOfAttacks; i++) {
@@ -319,7 +329,15 @@ public class IWeapon : MonoBehaviour {
 		}
 	}
 
+	public int getUpgradeLevel ()
+	{
+		return  upgradeLevel;
+	}
 
+	public void incrementUpgrade()
+	{
+		upgradeLevel++;
+	}
 
 	public bool isValidTarget(UnitManager target)
 	{

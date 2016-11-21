@@ -106,7 +106,7 @@ public class WaveSpawner : MonoBehaviour {
 		}
 
 		GameObject unit = (GameObject)Instantiate (obj, hitzone, Quaternion.identity);
-		Debug.Log ("Making new guys! " + nextActionTime);
+		//Debug.Log ("Making new guys! " + nextActionTime);
 		yield return new WaitForSeconds(.1f);
 
 		Vector3 attackzone = rallyPoint;
@@ -118,7 +118,7 @@ public class WaveSpawner : MonoBehaviour {
 
 
 		difficultyM.SetUnitStats (unit);
-		Debug.Log ("just made " + unit);
+		//Debug.Log ("just made " + unit);
 		unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateAttackMove (attackzone));
 
 	}

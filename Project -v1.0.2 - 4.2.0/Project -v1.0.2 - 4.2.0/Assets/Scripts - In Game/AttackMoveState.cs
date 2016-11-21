@@ -12,8 +12,8 @@ public class AttackMoveState : UnitState {
 	private Vector3 target; // currently moving towards
 
 	private bool enemyDead = false;
-	private int refreshTime = 10;
-	private int currentFrame = 0;
+
+	private float nextActionTime = 0;
 
 
 		public AttackMoveState(GameObject obj, Vector3 location, MoveType type,UnitManager man, Vector3 myhome )
@@ -33,6 +33,7 @@ public class AttackMoveState : UnitState {
 		}
 
 
+		nextActionTime = Time.time + 1;
 		//Debug.Log("Just called th reset1" + target + "   "+ enemy);
 		if (type == MoveType.passive) {
 			// This is breaking stuff so I commented it out
@@ -59,11 +60,9 @@ public class AttackMoveState : UnitState {
 	public void Update () {
 	//	Debug.Log ("I am " + myManager.gameObject + "   in attackMove");
 
-		currentFrame++;
-
-
-		if (currentFrame > refreshTime) {
-			currentFrame = 0;
+	
+		if (Time.time > nextActionTime) {
+			nextActionTime += 1;
 			UnitManager temp =  myManager.findBestEnemy ();
 
 			if (temp) {
@@ -74,14 +73,12 @@ public class AttackMoveState : UnitState {
 					myManager.cMover.resetMoveLocation (enemy.transform.position);
 				}
 
-			} else if(enemy && Vector3.Distance(myManager.gameObject.transform.position,enemy.transform.position) > 100){
+			} else if(enemy && Vector3.Distance(myManager.gameObject.transform.position,enemy.transform.position) > 85){
 				myManager.cMover.resetMoveLocation (home);
 			}
 		}
 		//still need to figure out calcualte ion for if enemy goes out of range or if a better one comes into range
-		//Debug.Log("Checking");
-			
-	
+
 
 		if (enemy != null && myManager.myWeapon.Count > 0) {
 			enemyDead = false;
@@ -92,11 +89,10 @@ public class AttackMoveState : UnitState {
 					if (myManager.cMover) {
 						
 						myManager.cMover.stop ();
-
 					}
 					attacked = true;
-					if (weap.canAttack (enemy)) {
-						//Debug.Log ("Attacking " + enemy.gameObject + "   " + Time.time);
+					if (weap.simpleCanAttack (enemy)) {
+						
 						weap.attack (enemy, myManager);
 					} 
 				} 

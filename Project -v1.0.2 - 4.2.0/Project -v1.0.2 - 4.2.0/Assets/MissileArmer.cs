@@ -20,7 +20,7 @@ public class MissileArmer :Ability{
 	public List<DayexaShield> shieldList = new List<DayexaShield> ();
 
 
-	private float nextActionTime;
+	//private float nextActionTime;
 
 
 
@@ -28,18 +28,16 @@ public class MissileArmer :Ability{
 	void Start () {
 
 		manager = GetComponent<UnitManager> ();
-		nextActionTime = Time.time + 1.7f;
+		InvokeRepeating ("UpdateCharges", 1, 1.8f);
 	}
 
 
 	// Update is called once per frame
-	void Update () {
+	void UpdateCharges () {
 
 		if (!active) {
 			return;}
 		
-		if (nextActionTime < Time.time) {
-			nextActionTime = Time.time + 1.7f;
 
 			if (missiles ) {
 
@@ -53,7 +51,7 @@ public class MissileArmer :Ability{
 
 				}
 			} 
-	
+	/*
 			if (nitro) {
 				stimList.RemoveAll (item => item == null);
 				foreach (StimPack stim in stimList) {
@@ -68,7 +66,7 @@ public class MissileArmer :Ability{
 					}
 				}
 			}
-
+*/
 			if (shields) {
 				if (shieldglobe) {
 					shieldList.RemoveAll (item => item == null);
@@ -83,16 +81,12 @@ public class MissileArmer :Ability{
 							
 							}
 							break;
-							//ds.myStats.changeEnergy (shieldRate);
+							
 						}
 			
 					}
 				}
 			}
-
-		
-		}
-
 
 	}
 

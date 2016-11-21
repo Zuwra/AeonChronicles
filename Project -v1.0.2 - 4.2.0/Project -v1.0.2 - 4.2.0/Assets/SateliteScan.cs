@@ -9,6 +9,7 @@ public class SateliteScan : TargetAbility{
 	// Use this for initialization
 	void Start () {
 		myApplier = GetComponent<UltimateApplier> ();
+		myType = type.target;
 	}
 
 	// Update is called once per frame

@@ -19,8 +19,10 @@ public class InteractState : UnitState {
 
 		target = unit.GetComponent<UnitManager>();
 	//myMover.resetMoveLocation (target.transform.position);
-		nextActionTime = Time.time + .5f;
+		nextActionTime = Time.time + .7f;
 		bestWeap = myManager.canAttack (target);	
+
+	
 		refreshTime = 30 - (int)myManager.cMover.getMaxSpeed();
 		if (refreshTime < 5) {
 			refreshTime = 8;
@@ -47,6 +49,7 @@ public class InteractState : UnitState {
 
 
 		if (!myManager.inRange(target)  ) {
+			//Debug.Log ("I am not in range");
 
 			if (!bestWeap) {
 				bestWeap = myManager.canAttack (target);
@@ -58,12 +61,12 @@ public class InteractState : UnitState {
 				return;}
 
 		} else {
-
+			//Debug.Log ("Totally in range");
 			myManager.cMover.stop ();
 			IWeapon myWeap = myManager.canAttack (target);	
 
 			if (myWeap) {
-
+				//Debug.Log ("Attacking");
 				myWeap.attack (target,myManager);
 			
 			}
@@ -72,7 +75,7 @@ public class InteractState : UnitState {
 
 	
 		if ( Time.time > nextActionTime) {
-			nextActionTime = Time.time + .5f;
+			nextActionTime = Time.time + .7f;
 
 			myManager.cMover.resetMoveLocation(target.transform.position);
 		}

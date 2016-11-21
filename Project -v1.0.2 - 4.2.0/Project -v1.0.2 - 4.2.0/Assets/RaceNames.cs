@@ -14,8 +14,11 @@ public class RaceNames  {
 		
 	}
 
-	string[] ranks = new string[4]{"Initiate" , "Adjutant", "Mentor", "Executor"};
-	 string[] names = new string[21]{"Aelia","Tamra", "Aetius", "Carya", "Emano","Taciton","Cato","Varus", "Domitio", "Bentin", "Silvanus", "Valerian", "Porso", "Agricola", "Metallan", "Timon", "Eton", "Adamus", "Soren", "Mathou", "Jordana" };
+	string[] ranks = new string[5]{"Initiate" , "Adjutant", "Mentor","Preator" ,"Executor"};
+	 string[] names = new string[35]{"Aelia","Caryn","Jace", "Chauren","Optimus","Tamra", "Aetius", "Carya", "Emano","Taciton",
+		"Cato","Varus", "Domitio", "Bentin", "Silvanus", "Valerian", "Porso", "Agricola", "Metallan", "Timon", 
+		"Eton", "Adamus", "Soren", "Mathou", "Jordana", "Colton", "Rheinhardt", "Zostro", "Akimus","Comodus",
+		"Gisborne","Porsche", "Hanzo", "Torbous", "Talion"};
 
 
 
@@ -33,18 +36,14 @@ public class RaceNames  {
 	{
 		if (n < 2) {
 			return ranks [0];
-		}
-		else if (n < 5) 
-		{
+		} else if (n < 4) {
 			return ranks [1];
-		}
-		else if (n < 8) 
-		{
+		} else if (n < 7) {
 			return ranks [2];
-		}
-		else 
-		{
+		} else if (n < 11) {
 			return ranks [3];
+		} else {
+			return ranks [4];
 		}
 	}
 }

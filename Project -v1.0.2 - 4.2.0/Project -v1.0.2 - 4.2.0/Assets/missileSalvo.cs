@@ -51,13 +51,7 @@ public class missileSalvo : Ability, Validator, Notify{
 
 	}
 
-	
-	// Update is called once per frame
-	void Update () {
-		
 
-
-	}
 		
 
 	public bool validate(GameObject source, GameObject target)

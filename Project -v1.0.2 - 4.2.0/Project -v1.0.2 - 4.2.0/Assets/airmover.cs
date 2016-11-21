@@ -114,7 +114,6 @@ public class airmover : IMover {
 		if (dir > 0f) {
 			return 1f;
 		} else if (dir < 0f) {
-			Debug.Log ("Left");
 			return -1f;
 		} else {
 			return 0f;
@@ -126,6 +125,8 @@ public class airmover : IMover {
 	override
 	public void resetMoveLocation(Vector3 location)
 	{//	location.y += 2;
+
+
 		RaycastHit objecthit;
 	
 		if (Physics.Raycast (location + Vector3.up *30, Vector3.down, out objecthit, 1000, 1 << 8)) {
@@ -137,6 +138,8 @@ public class airmover : IMover {
 			targetPosition = location + Vector3.up * flyerHeight;
 		}
 			
+
+		//Debug.Log ("Moving to " + location + "   but acvtually " + targetPosition);
 		if (speed == 0) {
 			speed = .1f;
 		}
