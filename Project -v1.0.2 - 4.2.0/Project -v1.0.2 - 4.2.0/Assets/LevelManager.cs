@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour {
 	public Canvas Structures;
 
 	private Canvas currentTech;
+	public GameObject LevelSelector;
 
 	public static LevelManager main;
 	// Use this for initialization
@@ -36,7 +37,7 @@ public class LevelManager : MonoBehaviour {
 		foreach (GameObject ob in Expositions) {
 			ob.SetActive (false);
 		}
-		Debug.Log (" current level" + LevelData.getHighestLevel());
+		Debug.Log (" current level " + LevelData.getHighestLevel());
 		for (int i = 0; i < levelButtons.Count; i++) {
 			levelButtons [i].interactable = (i <= LevelData.getHighestLevel());
 		}
@@ -83,12 +84,6 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
-	// Update is called once per frame
-	void Update () {
-	
-
-
-	}
 
 	public void closeLevelIntro()
 	{
@@ -131,6 +126,10 @@ public class LevelManager : MonoBehaviour {
 	public void ToggleTech()
 	{
 		Technology.gameObject.SetActive (!Technology.gameObject.activeSelf);//.enabled = !Technology.enabled;
+		LevelSelector.SetActive(!LevelSelector.activeSelf);
+		if (LevelSelector.activeSelf) {
+			GameObject.FindObjectOfType<CampTechCamManager> ().returnToStart ();
+		}
 		//currentIntro.SetActive (!currentIntro.activeSelf );
 	}
 

@@ -9,7 +9,7 @@ using System;
 public class UnitStats : MonoBehaviour {
 
 	[TextArea(2,10)]
-	public string UnitDescription;
+	public string UnitDescription = "dude";
 	public bool isHero;
 	public float Maxhealth;
 	public float health;
@@ -115,7 +115,7 @@ public class UnitStats : MonoBehaviour {
 			veternStat.UnitName = myManager.UnitName;
 		}
 
-
+		// FIX THIS REPEATING INEUMERNATER
 		InvokeRepeating ("HealthEnergy",UnityEngine.Random.Range(0,1), .5f);
 	
 	}
@@ -198,8 +198,12 @@ public class UnitStats : MonoBehaviour {
 		while(true){
 			yield return new WaitForSeconds (.5f);
 		//Regenerate Health
+		
+
+
 		if (health < Maxhealth && HealthRegenPerSec > 0) {
 			float actual = veternStat.healingDone += heal (HealthRegenPerSec / 2);
+
 			veternStat.UpHealing (actual);
 		}
 

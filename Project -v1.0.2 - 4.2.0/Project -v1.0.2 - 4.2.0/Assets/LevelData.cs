@@ -88,6 +88,7 @@ public class LevelData  {
 	{
 
 		PlayerPrefs.SetInt ("HighestLevel", 0);
+		Debug.Log ("Hieghest level is 0");
 		setMoney (0);
 		if (myLevels != null) {
 			myLevels.Clear ();
@@ -107,7 +108,11 @@ public class LevelData  {
 
 	public static int getHighestLevel()
 	{
-		return PlayerPrefs.GetInt ("HighestLevel", 0);
+		if (PlayerPrefs.GetInt ("HighestLevel", -1) == -1) {
+			Debug.Log ("its zero");
+			return 0;
+		}
+		return PlayerPrefs.GetInt ("HighestLevel", -1);
 	}
 
 

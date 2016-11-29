@@ -24,7 +24,7 @@ public class CampShieldUpgrade :Upgrade{
 
 	public override void applyUpgrade (GameObject obj){
 
-
+		Debug.Log ("Checking " + obj);
 			UnitStats us = obj.GetComponent<UnitStats>();
 			us.MaxEnergy *=1.5f;
 			us.currentEnergy *=1.5f;

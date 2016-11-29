@@ -12,7 +12,7 @@ public class CampaignUpgrade : MonoBehaviour {
 	public Dropdown myDropDown;
 	public List<UpgradesPiece> myUpgrades = new List<UpgradesPiece>();
 
-	public Image myPic;
+	public List<Image> myPic;
 
 	public enum upgradeType{general, vehicle, tank, structure, turret, munition, coyote, tortoise, OreProcessor, Hornet, 
 	gatling, rail, repair, mortar, construction, bunker, factory, Ult}
@@ -60,7 +60,9 @@ public class CampaignUpgrade : MonoBehaviour {
 		theDescription.text = myUpgrades [myDropDown.value].description;
 	
 
-		myPic.sprite = myUpgrades [myDropDown.value].pic;
+		foreach (Image i in myPic) {
+			i.sprite = myUpgrades [myDropDown.value].pic;
+		}
 
 			if (currentUpgrade) {
 				foreach(GameObject o in unitsToUpgrade)
@@ -119,8 +121,9 @@ public class CampaignUpgrade : MonoBehaviour {
 
 		theDescription.text = myUpgrades [myDropDown.value].description;
 
-		myPic.sprite = myUpgrades [myDropDown.value].pic;
-
+		foreach (Image i in myPic) {
+			i.sprite = myUpgrades [myDropDown.value].pic;
+		}
 		currentUpgrade = myUpgrades [myDropDown.value].pointer;
 
 
