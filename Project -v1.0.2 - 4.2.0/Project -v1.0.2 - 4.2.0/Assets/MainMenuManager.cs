@@ -79,7 +79,7 @@ public class MainMenuManager : MonoBehaviour {
 
 	public void LoadLevel(int n)
 	{//LevelData.currentLevel = n;
-		LevelData.ComingFromLevel = false;
+		LevelData.getsaveInfo().ComingFromLevel = false;
 		SceneManager.LoadScene (3);
 	}
 

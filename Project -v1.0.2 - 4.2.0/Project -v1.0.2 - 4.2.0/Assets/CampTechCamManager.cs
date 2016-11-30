@@ -68,18 +68,13 @@ public class CampTechCamManager : MonoBehaviour {
 
 	}
 
-	IEnumerator FocusOnObject(TechOption OldOb, TechOption newOb)
+	IEnumerator FocusOnObject(TechOption newOb)
 	{
 
 		Vector3 offset = new Vector3 (-6,0,0);
 		Vector3 BeginCam = MainCam.transform.position;
-		Vector3 BeginLookAt;
-		if (OldOb != null) {
-			BeginLookAt = OldOb.CamFocus.transform.position+offset;
-		} else {
-			BeginLookAt = MainCam.transform.position + MainCam.transform.forward* 5;
-		}
-
+		Vector3 BeginLookAt= MainCam.transform.position + MainCam.transform.forward* 5;
+	
 		float currentTime = 0;
 		while (currentTime <= 1) {
 		
@@ -96,6 +91,7 @@ public class CampTechCamManager : MonoBehaviour {
 	{
 		Vector3 BeginCam = MainCam.transform.position;
 		Vector3 BeginLookAt;
+
 		if (OldOb != null) {
 			BeginLookAt = OldOb.CamFocus.transform.position;
 		} else {
@@ -139,7 +135,7 @@ public class CampTechCamManager : MonoBehaviour {
 		if (CameraFlight != null) {
 			StopCoroutine (CameraFlight);
 		}
-		CameraFlight = StartCoroutine (FocusOnObject(oldTech ,currentTech));
+		CameraFlight = StartCoroutine (FocusOnObject(currentTech));
 
 
 		if (currentHud) {

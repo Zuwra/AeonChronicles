@@ -23,7 +23,7 @@ public class VictoryScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (LevelData.myLevels == null) {
+		if (LevelData.getsaveInfo().myLevels == null) {
 		//	Debug.Log ("No levels");
 			return;
 		}

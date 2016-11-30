@@ -14,12 +14,14 @@ public class CampUpgradePurchase : MonoBehaviour {
 	public CampaignUpgrade.upgradeType myType;
 	public List<CampUpgradePurchase> enables = new List<CampUpgradePurchase>();
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		manager = GameObject.FindObjectOfType<CampUpgradeManager> ();
 
-		if(LevelData.purchasedUpgrades != null && myUpgrade != null){
-			foreach (Upgrade up in LevelData.purchasedUpgrades) {
-				if (up.GetType () == myUpgrade.GetType ()) {
+		if( myUpgrade != null){
+			
+			foreach (string up in LevelData.getsaveInfo().purchasedUpgrades) {
+				//Debug.Log ("Checking " + up + "   " + myUpgrade.GetType());
+				if (up == myUpgrade.Name) {
 					psuedoPurchase ();
 			
 				}
@@ -62,9 +64,7 @@ public class CampUpgradePurchase : MonoBehaviour {
 
 	private void psuedoPurchase()
 	{
-		GetComponent<Image> ().color = Color.green;
-		GetComponent<Button> ().interactable = false;
-		Costobject.SetActive (false);
+		purchased = true;
 		foreach (CampUpgradePurchase up in enables) {
 			up.activate ();
 		}
@@ -72,6 +72,10 @@ public class CampUpgradePurchase : MonoBehaviour {
 		if (myUpgrade) {
 			GameObject.FindObjectOfType<TrueUpgradeManager> ().upgradeBought (myUpgrade, myType);
 		}
+
+		GetComponent<Image> ().color = Color.green;
+		GetComponent<Button> ().interactable = false;
+		Costobject.SetActive (false);
 
 	}
 

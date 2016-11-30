@@ -93,9 +93,12 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		Debug.Log ("HEre");
 		//myManager = GameObject.FindObjectOfType<LevelManager> ().levelPresets[LevelData.currentLevel];
 		List<string> options = new List<string> ();
 		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
+
 			if (up.isUnlocked() && myTypes.Contains (up.myType)) {
 				
 				myUpgrades.Add (up);
@@ -126,31 +129,25 @@ public class CampaignUpgrade : MonoBehaviour {
 		}
 		currentUpgrade = myUpgrades [myDropDown.value].pointer;
 
-
 	
-		if (LevelData.appliedUpgrades != null) {
 
-			List<string > keyList = new List<string > (LevelData.appliedUpgrades.Keys);
-			foreach (string kv in keyList) {
-
-
-				if (kv == this.gameObject.ToString ()) {
-					//Debug.Log ("Setting the thing " + LevelData.appliedUpgrades[kv] + "   real size " + myUpgrades.Count);
-					//i = LevelData.appliedUpgrades [kv];
-					//myIndex = LevelData.appliedUpgrades [kv];
-					myDropDown.value = LevelData.appliedUpgrades[kv];
+		foreach (LevelData.keyValue kv in LevelData.getsaveInfo().appliedUpgrades) {
+	
+			if (kv.theName == this.gameObject.ToString ()) {
+					myDropDown.value = kv.index;
 					foreach(GameObject o in unitsToUpgrade)
-					{
-						currentUpgrade.unApplyUpgrade (o);
+					{if (currentUpgrade) {
+							currentUpgrade.unApplyUpgrade (o);
+					}
 					}
 
 
 				}
-			}
+
 			//setUpgrade (i);
 		}
 	
-		
+		this.gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame

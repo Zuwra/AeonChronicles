@@ -39,7 +39,7 @@ public class CampUpgradeManager : MonoBehaviour {
 		TurretMenu.enabled = false;
 		StructureMenu.enabled = false;
 		vehicleMenu.enabled = false;
-		changeMoney (10);
+		changeMoney (0);
 	
 
 	}

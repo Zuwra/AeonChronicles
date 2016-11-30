@@ -26,6 +26,11 @@ public class LevelManager : MonoBehaviour {
 	private Canvas currentTech;
 	public GameObject LevelSelector;
 
+	public GameObject defaultStructure;
+	public GameObject defaultVehicle;
+	public GameObject defaultTurret;
+
+
 	public static LevelManager main;
 	// Use this for initialization
 	void Awake () {
@@ -101,18 +106,21 @@ public class LevelManager : MonoBehaviour {
 	{currentTech.enabled = false;
 		currentTech = Vehicles;
 		Vehicles.enabled = true;
+		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultVehicle);
 	}
 
 	public void ToggleStruct()
 	{currentTech.enabled = false;
 		currentTech = Structures;
 		Structures.enabled = true;
+		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultStructure);
 	}
 
 	public void ToggleTurret()
 	{currentTech.enabled = false;
 		currentTech = Turrets;
 		Turrets.enabled = true;
+		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultTurret);
 	}
 
 

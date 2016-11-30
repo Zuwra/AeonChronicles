@@ -122,7 +122,7 @@ public class VictoryTrigger : MonoBehaviour {
 	}
 
 	IEnumerator WinLevel ()
-	{LevelData.ComingFromLevel = true;
+	{LevelData.getsaveInfo().ComingFromLevel = true;
 		yield return new WaitForSeconds (2.5f);
 		//Set my victory screen
 		//LevelData.loadVetStats (GameManager.main.playerList [0].getUnitStats());

@@ -1,13 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CampTechCamManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelData.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="488" Column="50" />
-      <File FileName="Assets\LevelManager.cs" Line="38" Column="25" />
-      <File FileName="Assets\CampTechCamManager.cs" Line="135" Column="11" />
-      <File FileName="Assets\CampShieldUpgrade.cs" Line="31" Column="3" />
-      <File FileName="Assets\CampaignUpgrade.cs" Line="124" Column="31" />
-      <File FileName="Assets\ConcussiveUpgrade.cs" Line="31" Column="3" />
+      <File FileName="Assets\LevelManager.cs" Line="115" Column="29" />
+      <File FileName="Assets\CampaignUpgrade.cs" Line="148" Column="4" />
+      <File FileName="Assets\CampUpgradeManager.cs" Line="42" Column="19" />
+      <File FileName="Assets\CampUpgradePurchase.cs" Line="34" Column="2" />
+      <File FileName="Assets\LevelData.cs" Line="23" Column="21" />
+      <File FileName="Assets\TrueUpgradeManager.cs" Line="10" Column="2" />
+      <File FileName="Assets\CampTechCamManager.cs" Line="124" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

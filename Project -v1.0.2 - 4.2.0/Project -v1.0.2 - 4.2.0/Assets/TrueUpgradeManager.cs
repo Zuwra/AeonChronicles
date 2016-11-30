@@ -5,14 +5,8 @@ using System.Collections.Generic;
 public class TrueUpgradeManager : MonoBehaviour {
 	public List<CampaignUpgrade.UpgradesPiece> myUpgrades= new List<CampaignUpgrade.UpgradesPiece>();
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+
 
 
 	public void upgradeBought(Upgrade upg, CampaignUpgrade.upgradeType t)

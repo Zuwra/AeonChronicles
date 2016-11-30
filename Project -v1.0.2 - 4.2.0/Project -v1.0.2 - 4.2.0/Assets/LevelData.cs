@@ -1,19 +1,35 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
-
 using System;
+
+using System.IO;
 public class LevelData  {
 
 
-	public static List<levelInfo> myLevels;
-	public static bool ComingFromLevel;
+	public static saveInfo currentInfo;
 
-	public static List<Upgrade> purchasedUpgrades;
-	public static Dictionary<string,int> appliedUpgrades;
+	[Serializable]
+	public class saveInfo
+	{
+		public  List<levelInfo> myLevels = new List<levelInfo>();
+		public  bool ComingFromLevel;
 
-	public static List<VeteranStats> myVets;
+		public  List<string> purchasedUpgrades = new List<string>();
+	
+		public  List<keyValue> appliedUpgrades  = new List<keyValue>();
 
+		public List<VeteranStats> myVets;
+
+	}
+
+	[Serializable]
+	public class keyValue
+	{
+		public string theName;
+		public int index;
+	}
 
 
 	[Serializable]
@@ -28,9 +44,18 @@ public class LevelData  {
 
 	}
 
+	public static saveInfo getsaveInfo()
+	{
+		loadGame ();
+
+		return currentInfo;
+	}
+
 	public static void addLevelInfo(int levelN, int EnemiesD, int UnitsL, int Res, string timer,
 		int Tech, string bonus)
 	{
+		loadGame ();
+
 		levelInfo myL = new levelInfo ();
 		myL.levelNumber = levelN;
 		myL.EnemiesDest = EnemiesD;
@@ -41,60 +66,68 @@ public class LevelData  {
 		myL.bonusObj = bonus;
 
 		//TO DO ADD IN STUFF TO REPLACE PAST LEVEL's INFO
-		if (myLevels == null) {
-			myLevels = new List<levelInfo> ();
+		if (currentInfo.myLevels == null) {
+			currentInfo.myLevels = new List<levelInfo> ();
 		}
-		myLevels.Add (myL);
+		currentInfo.myLevels.Add (myL);
 		addMoney (Tech);
 
 		setHighestLevel (levelN + 1);
 
-	
+		saveGame ();
 
 	//	Debug.Log ("Cureent Level " + currentLevel);
 	}
 
 	public static void loadVetStats(List<VeteranStats> theStats)
-	{
-		myVets = theStats;
+	{loadGame ();
+		currentInfo.myVets = theStats;
+		saveGame ();
 	}
 
 	public static void addUpgrade(Upgrade up)
-	{if (purchasedUpgrades == null) {
-			purchasedUpgrades = new List<Upgrade> ();
-		}
-		purchasedUpgrades.Add (up);
+	{loadGame ();
+
+
+		currentInfo.purchasedUpgrades.Add (up.Name);
+		saveGame ();
 	}
 
 	//Used for keeping track of which guys have upgrades applied to them
 	public static void applyUpgrade(string s, int u )
 	{
-	//	Debug.Log ("Adding upgrade " + s + "  " + u);
-		if(appliedUpgrades == null) {
-			appliedUpgrades = new Dictionary<string, int> ();
-		
-		}
+		loadGame ();
+		Debug.Log ("Adding upgrade " + s + "  " + u);
 
-		if (appliedUpgrades.ContainsKey (s)) {
-			appliedUpgrades.Remove (s);
+		bool hitSomething = false;
+		foreach (keyValue kv in currentInfo.appliedUpgrades) {
+			if (kv.theName == s) {
+				kv.index = u;
+				hitSomething = true;
+			}
 		}
-
-		appliedUpgrades.Add (s, u);
+		if (!hitSomething) {
+			keyValue newKV = new keyValue ();
+			newKV.theName = s;
+			newKV.index = u;
+			currentInfo.appliedUpgrades.Add (newKV);
+		}
+			
+		saveGame ();
 	}
 
 
 
 	public static void reset()
 	{
+		loadGame ();
 
 		PlayerPrefs.SetInt ("HighestLevel", 0);
 		Debug.Log ("Hieghest level is 0");
 		setMoney (0);
-		if (myLevels != null) {
-			myLevels.Clear ();
-		}
-
-		ComingFromLevel = false;
+		currentInfo = new saveInfo ();
+		saveGame ();
+	
 	}
 
 
@@ -116,6 +149,34 @@ public class LevelData  {
 	}
 
 
+	public static void loadGame()
+	{
+		if (currentInfo == null) {
+			try{
+			string inputJson = System.IO.File.ReadAllText("AeonSaveFile");
+			currentInfo = JsonUtility.FromJson<saveInfo> (inputJson);
+			//	Debug.Log ("Loading info " + inputJson);
+			}
+			catch(Exception) {
+				
+			}
+		}
+		if (currentInfo == null) {
+			currentInfo = new saveInfo ();
+		}
+	}
+
+
+	public static void saveGame()
+	{
+		
+		string jsonString = JsonUtility.ToJson(currentInfo);
+		//Debug.Log ("Saving game " + jsonString);
+		System.IO.File.WriteAllText ("AeonSaveFile", jsonString);
+
+	}
+
+
 
 	public static void setMoney(int amount)
 	{
@@ -130,6 +191,7 @@ public class LevelData  {
 
 	public static void addMoney(int amount)
 	{
+		Debug.Log ("Adding money");
 		PlayerPrefs.SetInt ("Money", PlayerPrefs.GetInt ("Money") + amount);
 	}
 
