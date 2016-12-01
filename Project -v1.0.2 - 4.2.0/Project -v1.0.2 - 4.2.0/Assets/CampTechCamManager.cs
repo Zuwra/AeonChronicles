@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class CampTechCamManager : MonoBehaviour {
 
-
-
+	AudioSource mySource;
+	public AudioClip buttonPress;
 
 	GameObject currentHud;
 	TechOption currentTech;
@@ -50,6 +50,7 @@ public class CampTechCamManager : MonoBehaviour {
 
 	void Start()
 	{
+		mySource = GetComponent<AudioSource> ();
 		Time.timeScale = 1;
 		
 		CameraStart = MainCam.transform.position;
@@ -70,7 +71,7 @@ public class CampTechCamManager : MonoBehaviour {
 
 	IEnumerator FocusOnObject(TechOption newOb)
 	{
-
+		mySource.PlayOneShot (buttonPress);
 		Vector3 offset = new Vector3 (-6,0,0);
 		Vector3 BeginCam = MainCam.transform.position;
 		Vector3 BeginLookAt= MainCam.transform.position + MainCam.transform.forward* 5;
@@ -88,7 +89,7 @@ public class CampTechCamManager : MonoBehaviour {
 	}
 
 	IEnumerator returnToOrigin(TechOption OldOb)
-	{
+	{mySource.PlayOneShot (buttonPress);
 		Vector3 BeginCam = MainCam.transform.position;
 		Vector3 BeginLookAt;
 

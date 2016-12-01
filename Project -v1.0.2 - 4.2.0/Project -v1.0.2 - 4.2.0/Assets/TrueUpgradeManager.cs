@@ -3,14 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class TrueUpgradeManager : MonoBehaviour {
+	public List<AudioClip> buttonPress;
+	public AudioSource mySource;
+
 	public List<CampaignUpgrade.UpgradesPiece> myUpgrades= new List<CampaignUpgrade.UpgradesPiece>();
 	// Use this for initialization
 
 
+	void Start()
+	{
+		mySource = GetComponent<AudioSource> ();
+	}
 
+	public void playSound ()
+	{
+		mySource.PlayOneShot (buttonPress[Random.Range(0, buttonPress.Count -1)]);
+
+	}
 
 	public void upgradeBought(Upgrade upg, CampaignUpgrade.upgradeType t)
 	{
+		
 		CampaignUpgrade.UpgradesPiece cpu = new CampaignUpgrade.UpgradesPiece ();
 		cpu.pointer = upg;
 		cpu.name = upg.Name;
@@ -18,6 +31,8 @@ public class TrueUpgradeManager : MonoBehaviour {
 		cpu.unlocked = true;
 		cpu.pic = upg.iconPic;
 		cpu.myType = t;
+
+
 
 
 		myUpgrades.Add (cpu);

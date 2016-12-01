@@ -55,7 +55,7 @@ public class CampaignUpgrade : MonoBehaviour {
 	{
 			LevelData.applyUpgrade (this.gameObject.ToString (), myDropDown.value);
 			
-
+		GameObject.FindObjectOfType<TrueUpgradeManager> ().playSound ();
 		//Debug.Log ("Getting set " + this.gameObject.ToString() + "  "+ myDropDown.value +"  size  " + myUpgrades.Count);
 		theDescription.text = myUpgrades [myDropDown.value].description;
 	

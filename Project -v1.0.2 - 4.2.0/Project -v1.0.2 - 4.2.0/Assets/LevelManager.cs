@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
+	AudioSource mySource;
+	public AudioClip buttonPress;
+
 	public List<GameObject> levelIntros = new List<GameObject> ();
 	public List<GameObject> Expositions = new List<GameObject> ();
 	public List<CampUpgradeManager> levelPresets = new List<CampUpgradeManager> ();
@@ -34,6 +37,7 @@ public class LevelManager : MonoBehaviour {
 	public static LevelManager main;
 	// Use this for initialization
 	void Awake () {
+		mySource = GetComponent<AudioSource> ();
 		main = this;
 		foreach (GameObject obj in levelIntros) {
 			obj.SetActive (false);
@@ -73,7 +77,7 @@ public class LevelManager : MonoBehaviour {
 
 		setDifficultyDropDowns ();
 
-
+	
 	}
 
 
@@ -132,7 +136,7 @@ public class LevelManager : MonoBehaviour {
 
 
 	public void ToggleTech()
-	{
+	{	mySource.PlayOneShot (buttonPress);
 		Technology.gameObject.SetActive (!Technology.gameObject.activeSelf);//.enabled = !Technology.enabled;
 		LevelSelector.SetActive(!LevelSelector.activeSelf);
 		if (LevelSelector.activeSelf) {
@@ -142,19 +146,19 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void toggleTechTree()
-	{
-		Technology.enabled = !Technology.enabled;
+	{mySource.PlayOneShot (buttonPress);
+		//Technology.enabled = !Technology.enabled;
 		TechTree.enabled = !TechTree.enabled;
 	}
 
 	public void toggleUltTree()
-	{
-		Technology.enabled = !Technology.enabled;
+	{mySource.PlayOneShot (buttonPress);
+		//Technology.enabled = !Technology.enabled;
 		UltTree.enabled = !UltTree.enabled;
 	}
 
 	public void setDifficulty(Dropdown i)
-	{
+	{mySource.PlayOneShot (buttonPress);
 		LevelData.setDifficulty (i.value + 1);
 		setDifficultyDropDowns ();
 	
