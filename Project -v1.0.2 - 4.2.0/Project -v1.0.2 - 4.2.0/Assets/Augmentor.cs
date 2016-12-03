@@ -108,10 +108,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		}
 
 
-
-		if (GetComponent<Selected> ().IsSelected) {
-			RaceManager.updateActivity ();
-		} else if (target.GetComponent<Selected> ().IsSelected) {
+		if (target.GetComponent<Selected> ().IsSelected) {
 			RaceManager.updateActivity ();
 		}
 
@@ -207,11 +204,8 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 
 
-		if (GetComponent<Selected> ().IsSelected) {
-			
-			RaceManager.updateActivity ();
-		}
-		else if (target && target.GetComponent<Selected> ().IsSelected) {
+	
+		if (target && target.GetComponent<Selected> ().IsSelected) {
 			RaceManager.updateActivity ();
 		}
 

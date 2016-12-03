@@ -11,7 +11,7 @@ public class UiAbilityManager : MonoBehaviour {
 	private bool shiftDown;
 	private bool ctrlDown;
 	//public List<GameObject> UIButtons = new List<GameObject>();
-
+	Color disabledColor = new Color(.5f,0,0,1);
 	public List<Button> quickButtons = new List<Button>();
 	public List<AbilityBox> quickAbility = new List<AbilityBox>();
 
@@ -492,7 +492,7 @@ public class UiAbilityManager : MonoBehaviour {
 							if(trans && trans.GetComponent<Button> ())
 								trans.GetComponent<Button> ().interactable = true;
 							} else {
-								cb.disabledColor =new Color(.5f,0,0,1);
+							cb.disabledColor =disabledColor;
 								trans.GetComponent<Button> ().interactable = false;
 
 							}
@@ -554,7 +554,7 @@ public class UiAbilityManager : MonoBehaviour {
 								cb.disabledColor = Color.white;
 								trans.GetComponent<Button> ().interactable = true;
 							} else {
-								cb.disabledColor =new Color(.5f,0,0,1);
+							cb.disabledColor = disabledColor;
 								trans.GetComponent<Button> ().interactable = false;
 
 							}
@@ -619,7 +619,7 @@ public class UiAbilityManager : MonoBehaviour {
 								cb.disabledColor = Color.white;
 								trans.GetComponent<Button> ().interactable = true;
 							} else {
-								cb.disabledColor =new Color(.5f,0,0,1);
+							cb.disabledColor =disabledColor;
 								trans.GetComponent<Button> ().interactable = false;
 
 							}
@@ -680,7 +680,7 @@ public class UiAbilityManager : MonoBehaviour {
 								cb.disabledColor = Color.white;
 								trans.GetComponent<Button> ().interactable = true;
 							} else {
-								cb.disabledColor =new Color(.5f,0,0,1);
+							cb.disabledColor = disabledColor;
 								trans.GetComponent<Button> ().interactable = false;
 
 							}
@@ -914,8 +914,6 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public void upDateActive(Page uiPage)
 	{
-
-
 		int n = 0;
 
 		for (int j = 0; j < 3; j++) {
@@ -958,7 +956,7 @@ public class UiAbilityManager : MonoBehaviour {
 							if (trans && trans.GetComponent<Button> ())
 								trans.GetComponent<Button> ().interactable = true;
 						} else {
-							cb.disabledColor = new Color (.5f, 0, 0, 1);
+							cb.disabledColor = disabledColor;
 							trans.GetComponent<Button> ().interactable = false;
 
 						}
@@ -994,7 +992,7 @@ public class UiAbilityManager : MonoBehaviour {
 						cb.disabledColor = Color.white;
 						trans.GetComponent<Button> ().interactable = true;
 					} else {
-						cb.disabledColor =new Color(.5f,0,0,1);
+							cb.disabledColor =disabledColor;
 						trans.GetComponent<Button> ().interactable = false;
 
 					}
@@ -1030,7 +1028,7 @@ public class UiAbilityManager : MonoBehaviour {
 						cb.disabledColor = Color.white;
 						trans.GetComponent<Button> ().interactable = true;
 					} else {
-						cb.disabledColor =new Color(.5f,0,0,1);
+							cb.disabledColor =disabledColor;
 						trans.GetComponent<Button> ().interactable = false;
 
 					}
@@ -1065,7 +1063,7 @@ public class UiAbilityManager : MonoBehaviour {
 						cb.disabledColor = Color.white;
 						trans.GetComponent<Button> ().interactable = true;
 					} else {
-						cb.disabledColor =new Color(.5f,0,0,1);
+							cb.disabledColor =disabledColor;
 						trans.GetComponent<Button> ().interactable = false;
 
 					}
@@ -1079,7 +1077,6 @@ public class UiAbilityManager : MonoBehaviour {
 			n++;
 		}
 	}
-
 
 
 	}
@@ -1099,6 +1096,132 @@ public class UiAbilityManager : MonoBehaviour {
 		}
 		
 	}
+
+
+
+
+
+
+
+	public void UpdateSingleButton(int buttonNumber, int abilityNum, string UnitName)
+	{
+
+		int j = buttonNumber / 4;
+		UnitManager man = currentPage.rows [j] [0].gameObject.GetComponent<UnitManager> ();
+		if (man.UnitName != UnitName) {
+			return;
+		}
+	
+		if(man.abilityList.Count >abilityNum){
+			if (man.abilityList [abilityNum] != null) {
+
+				Transform trans;
+				Text charger;
+
+				if (buttonNumber % 4 == 0) {
+					trans = certainButtons [j].QButton.transform.FindChild("QButton");
+					charger = trans.FindChild ("Charge1").GetComponent<Text> ();
+					certainButtons [j].QAuto.enabled = man.abilityList [abilityNum].autocast;
+					}
+				else if (buttonNumber % 4 == 1) {
+					trans = certainButtons [j].WButton.transform.FindChild("WButton");
+					charger = trans.FindChild ("Charge2").GetComponent<Text> ();
+					certainButtons [j].WAuto.enabled = man.abilityList [abilityNum].autocast;
+				}
+				else if (buttonNumber % 4 == 2) {
+					trans = certainButtons [j].EButton.transform.FindChild("EButton");
+					charger = trans.FindChild ("Charge3").GetComponent<Text> ();
+					certainButtons [j].EAuto.enabled = man.abilityList [abilityNum].autocast;
+				}
+				else {
+					trans = certainButtons [j].RButton.transform.FindChild("RButton");
+					charger = trans.FindChild ("Charge4").GetComponent<Text> ();
+					certainButtons [j].RAuto.enabled = man.abilityList [abilityNum].autocast;
+				}
+
+				ColorBlock cb= trans.GetComponent<Button> ().colors;
+
+
+				bool active = false;
+				foreach (RTSObject obj in currentPage.rows [j]) {
+					UnitManager Uman = obj.gameObject.GetComponent<UnitManager> ();
+
+					if (!Uman.Silenced() && !Uman.Stunned()) {
+						active = (Uman.abilityList [abilityNum].active);
+					}
+					if (active) {
+						break;}
+				}
+
+
+				if (active) {
+
+					cb.disabledColor = Color.white;
+					trans.GetComponent<Button> ().interactable = true;
+				} else {
+					cb.disabledColor =disabledColor;
+					trans.GetComponent<Button> ().interactable = false;
+
+				}
+
+
+				if (buttonNumber % 4 == 0) {
+					if (man.abilityList [abilityNum].getMyType() == Ability.type.passive) {
+						certainButtons [j].Qtext.enabled = false;
+						cb.disabledColor = Color.white;
+						trans.GetComponent<Button> ().interactable = false;
+					} else {
+						certainButtons [j].Qtext.enabled = true;
+					}
+				}
+				else if (buttonNumber % 4 == 1) {
+					if (man.abilityList [abilityNum].getMyType() == Ability.type.passive) {
+						certainButtons [j].Wtext.enabled = false;
+						cb.disabledColor = Color.white;
+						trans.GetComponent<Button> ().interactable = false;
+					} else {
+						certainButtons [j].Wtext.enabled = true;
+					}
+				}
+				else if (buttonNumber % 4 == 2) {
+					if (man.abilityList [abilityNum].getMyType() == Ability.type.passive) {
+						certainButtons [j].Etext.enabled = false;
+						cb.disabledColor = Color.white;
+						trans.GetComponent<Button> ().interactable = false;
+					} else {
+						certainButtons [j].Etext.enabled = true;
+					}
+				}
+				else {
+					if (man.abilityList [abilityNum].getMyType() == Ability.type.passive) {
+						certainButtons [j].Rtext.enabled = false;
+						cb.disabledColor = Color.white;
+						trans.GetComponent<Button> ().interactable = false;
+					} else {
+						certainButtons [j].Rtext.enabled = true;
+					}
+				}
+
+				trans.GetComponent<Button> ().colors = cb;
+
+				trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [abilityNum].canAutoCast;
+
+
+				if (man.abilityList [abilityNum].chargeCount > -1) {
+					charger.text = "" + man.abilityList [abilityNum].chargeCount;
+				} else {
+					charger.text = "";
+				}
+			}
+		}
+
+	
+	}
+
+
+
+
+
 
 
 

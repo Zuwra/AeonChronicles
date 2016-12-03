@@ -131,38 +131,68 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				}
 			}
 
-		} else if (Input.GetKey(KeyCode.LeftControl)) {
+		} else if (Input.GetKey (KeyCode.LeftControl)) {
 
-			if (Input.GetKeyDown(KeyCode.Alpha1))
-			{
-				
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
 				AddUnitsToGroup (0, true);
-			
+			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+				AddUnitsToGroup (1, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+				AddUnitsToGroup (2, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+				AddUnitsToGroup (3, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
+				AddUnitsToGroup (4, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
+				AddUnitsToGroup (5, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
+				AddUnitsToGroup (6, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha8)) {
+				AddUnitsToGroup (7, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha9)) {
+				AddUnitsToGroup (8, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha0)) {
+				AddUnitsToGroup (9, true);
 			}
-			else if (Input.GetKeyDown(KeyCode.Alpha2))
-			{AddUnitsToGroup (1, true); }
-			else if (Input.GetKeyDown(KeyCode.Alpha3))
-			{ AddUnitsToGroup (2, true); }
-			else if (Input.GetKeyDown(KeyCode.Alpha4))
-			{AddUnitsToGroup (3, true);}
-			else if (Input.GetKeyDown(KeyCode.Alpha5))
-			{AddUnitsToGroup (4, true); }
-			else if (Input.GetKeyDown(KeyCode.Alpha6))
-			{AddUnitsToGroup (5, true);}
-			else if (Input.GetKeyDown(KeyCode.Alpha7))
-			{ AddUnitsToGroup (6, true);}
-			else if (Input.GetKeyDown(KeyCode.Alpha8))
-			{AddUnitsToGroup (7, true); }
-			else if (Input.GetKeyDown(KeyCode.Alpha9))
-			{AddUnitsToGroup (8, true); }
-			else if (Input.GetKeyDown(KeyCode.Alpha0))
-			{AddUnitsToGroup (9, true);}
+		} else if (Input.GetKey (KeyCode.LeftAlt)) {
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+				removeFromControlGroups ();
+				AddUnitsToGroup (0, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+				removeFromControlGroups ();
+				AddUnitsToGroup (1, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+				removeFromControlGroups ();
+				AddUnitsToGroup (2, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+				removeFromControlGroups ();
+				AddUnitsToGroup (3, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
+				removeFromControlGroups ();
+				AddUnitsToGroup (4, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
+				removeFromControlGroups ();
+				AddUnitsToGroup (5, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
+				removeFromControlGroups ();
+				AddUnitsToGroup (6, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha8)) {
+				removeFromControlGroups ();
+				AddUnitsToGroup (7, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha9)) {
+				removeFromControlGroups ();
+				AddUnitsToGroup (8, true);
+			} else if (Input.GetKeyDown (KeyCode.Alpha0)) {
+				removeFromControlGroups ();
+				AddUnitsToGroup (9, true);
+			}
+		
+		
 		}
         else {
             // Select a control group
             if (Input.GetKeyDown(KeyCode.Alpha1))
             { 
-
 				SelectGroup(0); }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             { SelectGroup(1); }
@@ -939,6 +969,24 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         }
 		CreateUIPages(0);
     }
+
+	public void removeFromControlGroups()
+	{
+		for (int i = 0; i < 10; i++) {
+			Group [i].RemoveAll (item => item == null);
+			foreach (RTSObject o in SelectedObjects) {
+				if (Group [i].Contains (o)) {
+					Group [i].Remove (o);
+				}
+			}
+			if (Group [i].Count > 0) {
+					controlUI.activateTab (i, Group [i].Count, Group [i] [0].GetComponent<UnitStats> ().Icon);
+				} else {
+					controlUI.deactivate (i);
+				}
+
+		}
+	}
 
     public void selectAllUnbound()
     {

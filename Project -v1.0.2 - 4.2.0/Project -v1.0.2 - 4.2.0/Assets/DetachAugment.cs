@@ -22,7 +22,8 @@ public class DetachAugment : Ability {
 	{
 		active = canDoit;
 		if (GetComponent<Selected> ().IsSelected) {
-			RaceManager.updateActivity ();
+			SelectedManager.main.abilityManager.UpdateSingleButton (9,1,"Augmentor");
+			//RaceManager.updateActivity ();
 		}
 
 	}
@@ -45,7 +46,7 @@ public class DetachAugment : Ability {
 		active = false;
 		if (GetComponent<Selected> ().IsSelected) {
 
-			RaceManager.updateActivity ();
+			//RaceManager.updateActivity ();
 		}
 		
 	}  // returns whether or not the next unit in the same group should also cast it
