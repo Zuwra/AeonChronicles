@@ -16,6 +16,14 @@ public class WaveSpawner : MonoBehaviour {
 	public List<attackWave> myWaves;
 
 	[System.Serializable]
+	public class attackWarning
+	{
+		[TextArea(2,10)]
+		public string textWarning;
+		public AudioClip audioWarning;
+
+	}
+	[System.Serializable]
 	public class attackWave
 	{public List<GameObject> waveType;
 		public List<GameObject> mediumExtra;
@@ -29,7 +37,7 @@ public class WaveSpawner : MonoBehaviour {
 			releaseTime = n;
 
 		}
-
+		public List<attackWarning> warnings;
 		public List<SceneEventTrigger> myTriggers;
 	}
 
@@ -163,7 +171,11 @@ public class WaveSpawner : MonoBehaviour {
 				StartCoroutine (MyCoroutine (delay, obj));
 				delay += .2f;
 			}
+		if (nextWave.warnings.Count > 0) {
+			int n = UnityEngine.Random.Range (0, nextWave.warnings.Count - 1);
 
+			ErrorPrompt.instance.showMessage (nextWave.warnings [n].textWarning, nextWave.warnings [n].audioWarning);
+		}
 
 	}
 

@@ -1,22 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VictoryTrigger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\WaveSpawner.cs">
     <Files>
-      <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampaignUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampUpgradeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Augmentor.cs" Line="1" Column="1" />
-      <File FileName="Assets\DetachAugment.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\Selected.cs" Line="1" Column="1" />
-      <File FileName="Assets\VoicePack.cs" Line="25" Column="34" />
       <File FileName="Assets\ErrorPrompt.cs" Line="42" Column="40" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="198" Column="15" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="620" Column="83" />
-      <File FileName="Assets\FullExposition.cs" Line="155" Column="4" />
-      <File FileName="Assets\CinematicCamera.cs" Line="71" Column="2" />
-      <File FileName="Assets\BuildUnitObjective.cs" Line="15" Column="3" />
-      <File FileName="Assets\DayexaShield.cs" Line="52" Column="22" />
-      <File FileName="Assets\VictoryTrigger.cs" Line="142" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\FullExposition.cs" Line="1" Column="1" />
+      <File FileName="Assets\CinematicCamera.cs" Line="1" Column="1" />
+      <File FileName="Assets\BuildUnitObjective.cs" Line="1" Column="1" />
+      <File FileName="Assets\DayexaShield.cs" Line="1" Column="1" />
+      <File FileName="Assets\VictoryTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\TimeDelayTrigger.cs" Line="36" Column="3" />
+      <File FileName="Assets\WaveSpawner.cs" Line="21" Column="19" />
+      <File FileName="Assets\VeteranStats.cs" Line="142" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
