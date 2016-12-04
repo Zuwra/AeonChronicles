@@ -21,6 +21,8 @@ public class VictoryTrigger : MonoBehaviour {
 	public string time;
 	public int TechCredits;
 
+	public AudioClip victoryLine;
+	public AudioClip DefeatLine;
 
 	public static VictoryTrigger instance;
 	// Use this for initialization
@@ -123,6 +125,7 @@ public class VictoryTrigger : MonoBehaviour {
 
 	IEnumerator WinLevel ()
 	{LevelData.getsaveInfo().ComingFromLevel = true;
+		GetComponent<AudioSource> ().PlayOneShot (victoryLine, 1);
 		yield return new WaitForSeconds (2.5f);
 		//Set my victory screen
 		//LevelData.loadVetStats (GameManager.main.playerList [0].getUnitStats());
@@ -139,7 +142,7 @@ public class VictoryTrigger : MonoBehaviour {
 	}
 
 	IEnumerator LoseLevel ()
-	{
+	{GetComponent<AudioSource> ().PlayOneShot (DefeatLine, 1);
 		yield return new WaitForSeconds (4);
 		DefeatScreen.enabled = false;
 		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();

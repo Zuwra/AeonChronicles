@@ -1,0 +1,25 @@
+Meta File Version   : 1.0.1
+File Name           : 20160815-174043.m4a
+Title               : August 15, 2016 5:40:43 PM
+Creation Date       : Monday, August 15, 2016 at 5:40:44 PM Mountain Daylight Time
+Last Modified Date  : Monday, August 15, 2016 at 5:40:57 PM Mountain Daylight Time
+File Size           : 137026 bytes
+Duration            : 00:00:13
+Sample Rate         : 22050
+Bit Rate            : 62000
+Channels            : 1
+Bits per Channel    : 16
+VRP Version         : 3.1.4
+Has photo           : NO
+
+
+------VOICE-RECORD-PRO-META-START------
+YnBsaXN0MDDUAQIDBAUGJidYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKsH
+CBcYGRobHB0eH1UkbnVsbNMJCgsMERZXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6QNDg8QgAKA
+A4AEgAWkEhMUFYAGgAeACIAJgApZZmlsZW10aW1lVXRpdGxlWWZpbGVjdGltZVt2cnAtdmVyc2lv
+biNB1eyUwkAAAF8QGkF1Z3VzdCAxNSwgMjAxNiA1OjQwOjQzIFBNI0HV7JS/AAAAVTMuMS400iAh
+IiNaJGNsYXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmjIiQlXE5TRGljdGlv
+bmFyeVhOU09iamVjdF8QD05TS2V5ZWRBcmNoaXZlctEoKVRyb290gAEACAARABoAIwAtADIANwBD
+AEkAUABYAGMAagBvAHEAcwB1AHcAfAB+AIAAggCEAIYAkACWAKAArAC1ANIA2wDhAOYA8QD6ARAB
+FAEhASoBPAE/AUQAAAAAAAACAQAAAAAAAAAqAAAAAAAAAAAAAAAAAAABRg==
+------VOICE-RECORD-PRO-META-END------

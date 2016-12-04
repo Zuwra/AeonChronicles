@@ -47,6 +47,7 @@ public class DayexaShield : Ability,Modifier , Notify{
 	
 
 		if (inCombat) {
+			Debug.Log (Time.time + "  " + rechargeTime);
 			if (Time.time > rechargeTime) {
 				inCombat = false;
 				myStats.EnergyRegenPerSec = rechargeRate;

@@ -53,8 +53,9 @@ public class CinematicCamera : SceneEventTrigger {
 					,myScenes [currentScene].myShots [currentShot].dialogueAudio, .8f,myScenes [currentScene].myShots [currentShot].dialogueImage);
 			
 			}
-
-			float perc = myScenes [currentScene].myShots [currentShot].myCurve.Evaluate( (shotChangeTime - Time.time) / myScenes [currentScene].myShots [currentShot].duration);
+			float timeThroughShot = (shotChangeTime - Time.time) / myScenes [currentScene].myShots [currentShot].duration;
+		//	Debug.Log ("Shot time is " + timeThroughShot);
+			float perc = timeThroughShot;// myScenes [currentScene].myShots [currentShot].myCurve.Evaluate( timeThroughShot);
 			this.transform.position = Vector3.Lerp
 				(myScenes [currentScene].myShots [currentShot].startLocation, myScenes [currentScene].myShots [currentShot].endLocation,1 -perc );
 

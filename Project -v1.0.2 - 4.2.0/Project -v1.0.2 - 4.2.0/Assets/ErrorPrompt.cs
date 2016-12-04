@@ -9,10 +9,16 @@ public class ErrorPrompt : MonoBehaviour {
 	public AudioClip errorSound;
 	public static ErrorPrompt instance;
 
+	public VoicePack myVoicePack;
+
 	float lastAttackAlert = -1000;
 	Vector3 attackLocation;
 
 	float lastErrorTime;
+
+
+
+
 	public void showError(string err)
 	{
 
@@ -23,6 +29,21 @@ public class ErrorPrompt : MonoBehaviour {
 			this.gameObject.GetComponent<Text> ().text = err;
 			this.gameObject.GetComponent<Text> ().enabled = true;
 			myAudio.PlayOneShot (errorSound);
+			StopCoroutine (MyCoroutine ());
+			StartCoroutine (MyCoroutine ());
+
+			lastErrorTime = Time.time;
+		}
+	}
+
+	public void showError(string err, AudioClip aud)
+	{
+
+		if (lastErrorTime < Time.time - 5f) {
+
+			this.gameObject.GetComponent<Text> ().text = err;
+			this.gameObject.GetComponent<Text> ().enabled = true;
+			myAudio.PlayOneShot (aud,1);
 			StopCoroutine (MyCoroutine ());
 			StartCoroutine (MyCoroutine ());
 
@@ -54,11 +75,11 @@ public class ErrorPrompt : MonoBehaviour {
 	
 
 	public void notEnoughResource()
-	{showError( "Not Enough Ore");
+	{showError( "Not Enough Ore",myVoicePack.getOreLine());
 	}
 
 	public void notEnoughSupply()
-	{showError( "Not enough Supply, Build more Aether Cores");
+	{showError( "Not enough Supply, Build more Aether Cores", myVoicePack.getSupplyLine());
 		}
 
 	public void notEnoughEnergy()
@@ -67,13 +88,13 @@ public class ErrorPrompt : MonoBehaviour {
 
 	public void populationcapHit()
 	{
-		showError( "Population Limited Reached");
+		showError( "Population Limited Reached", myVoicePack.getMaxSupplyLine());
 
 	}
 
 	public void invalidGroundLocation()
 	{
-		showError( "Invalid Location");
+		showError( "Invalid Location", myVoicePack.getBadBuildingLine());
 
 	}
 
@@ -82,14 +103,13 @@ public class ErrorPrompt : MonoBehaviour {
 		}
 
 	public void onCooldown()
-	{showError( "Ability on Cooldown");
+	{showError( "Ability on Cooldown", myVoicePack.getCooldownLine());
 	}
 	
 	public void underAttack(Vector3 location)
 	{
-		
-		if (Time.time > lastAttackAlert + 10) {
-			showError ("Under Attack!");
+		if (Time.time > lastAttackAlert + 10 &&!checkIfOnScreen(location)) {
+			showError ("Under Attack!", myVoicePack.getTroopAttackLine());
 			attackLocation = location;
 		
 			lastAttackAlert = Time.time;
@@ -97,7 +117,34 @@ public class ErrorPrompt : MonoBehaviour {
 
 	}
 	
+	public void underBaseAttack(Vector3 location)
+	{
 
+		if (Time.time > lastAttackAlert + 10 && !checkIfOnScreen(location)) {
+			showError ("Base Under Attack!", myVoicePack.getbaseAttackedLine());
+			attackLocation = location;
+
+			lastAttackAlert = Time.time;
+		}
+
+	}
+
+	public bool checkIfOnScreen(Vector3 spot)
+	{Vector3 tempLocation = Camera.main.WorldToScreenPoint (spot);
+		if (tempLocation.x < 0) {
+			return false;
+		}
+		if (tempLocation.x > Screen.width) {
+			return false;
+		}
+		if (tempLocation.y > Screen.height) {
+			return false;
+		}
+		if (tempLocation.y  < 0) {
+			return false;
+		}
+		return true;
+	}
 
 
 	// Use this for initialization

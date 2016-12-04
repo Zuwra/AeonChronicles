@@ -155,10 +155,12 @@ public class FullExposition : SceneEventTrigger {
 		}
 	
 		currentScene = index;
-		shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration* GameSettings.gameSpeed;
+		shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration* Mathf.Abs (GameSettings.gameSpeed);
+		Debug.Log ("Scene change time is " +Time.time + "    " +myScenes [currentScene].myShots [currentShot].duration + "   " + GameSettings.gameSpeed + "   " +  shotChangeTime);
 		if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
 			hasNextDialogue = true;
-			nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay* GameSettings.gameSpeed;
+			nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay * Mathf.Abs (GameSettings.gameSpeed);
+			Debug.Log ("Next dialogue is " + nextDialogue);
 		}
 	}
 

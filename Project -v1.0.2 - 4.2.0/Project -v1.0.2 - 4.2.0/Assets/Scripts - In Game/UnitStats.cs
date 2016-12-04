@@ -116,7 +116,7 @@ public class UnitStats : MonoBehaviour {
 		}
 
 		// FIX THIS REPEATING INEUMERNATER
-		InvokeRepeating ("HealthEnergy",UnityEngine.Random.Range(0,1), .5f);
+		StartCoroutine ("HealthEnergy");
 	
 	}
 
@@ -239,8 +239,10 @@ public class UnitStats : MonoBehaviour {
 						
 				}
 				if (myManager.PlayerOwner == 1 && source != this.gameObject) {
-					ErrorPrompt.instance.underAttack (this.transform.position);
-
+					if (isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+					} else {
+						ErrorPrompt.instance.underAttack (this.transform.position);
+					}
 				}
 
 				if (takeDamageEffect) {

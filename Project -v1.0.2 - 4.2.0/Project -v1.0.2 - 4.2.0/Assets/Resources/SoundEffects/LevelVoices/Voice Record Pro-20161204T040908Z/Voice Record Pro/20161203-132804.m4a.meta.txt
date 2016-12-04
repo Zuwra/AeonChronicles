@@ -1,0 +1,25 @@
+Meta File Version   : 1.0.1
+File Name           : 20161203-132804.m4a
+Title               : December 3, 2016 1:28:04 PM
+Creation Date       : Saturday, December 3, 2016 at 1:28:04 PM Mountain Standard Time
+Last Modified Date  : Saturday, December 3, 2016 at 1:29:41 PM Mountain Standard Time
+File Size           : 383680 bytes
+Duration            : 00:00:43
+Sample Rate         : 22050
+Bit Rate            : 65000
+Channels            : 1
+Bits per Channel    : 16
+VRP Version         : 3.1.4
+Has photo           : NO
+
+
+------VOICE-RECORD-PRO-META-START------
+YnBsaXN0MDDUAQIDBAUGJidYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKsH
+CBcYGRobHB0eH1UkbnVsbNMJCgsMERZXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6QNDg8QgAKA
+A4AEgAWkEhMUFYAGgAeACIAJgApZZmlsZW10aW1lVXRpdGxlWWZpbGVjdGltZVt2cnAtdmVyc2lv
+biNB1hDKzUAAAF8QG0RlY2VtYmVyIDMsIDIwMTYgMToyODowNCBQTSNB1hDKtQAAAFUzLjEuNNIg
+ISIjWiRjbGFzc25hbWVYJGNsYXNzZXNfEBNOU011dGFibGVEaWN0aW9uYXJ5oyIkJVxOU0RpY3Rp
+b25hcnlYTlNPYmplY3RfEA9OU0tleWVkQXJjaGl2ZXLRKClUcm9vdIABAAgAEQAaACMALQAyADcA
+QwBJAFAAWABjAGoAbwBxAHMAdQB3AHwAfgCAAIIAhACGAJAAlgCgAKwAtQDTANwA4gDnAPIA+wER
+ARUBIgErAT0BQAFFAAAAAAAAAgEAAAAAAAAAKgAAAAAAAAAAAAAAAAAAAUc=
+------VOICE-RECORD-PRO-META-END------

@@ -10,7 +10,10 @@ public class BuildUnitObjective : Objective  {
 	private int total = -3;
 
 	
-
+	void Start()
+	{Debug.Log("I am on " + this.gameObject);
+		
+	}
 
 
 	public void buildUnit(GameObject obj)
