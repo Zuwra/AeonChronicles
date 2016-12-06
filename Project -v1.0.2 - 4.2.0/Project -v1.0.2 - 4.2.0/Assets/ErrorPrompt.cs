@@ -28,7 +28,7 @@ public class ErrorPrompt : MonoBehaviour {
 
 			this.gameObject.GetComponent<Text> ().text = err;
 			this.gameObject.GetComponent<Text> ().enabled = true;
-			myAudio.PlayOneShot (errorSound);
+			myAudio.PlayOneShot (errorSound, .4f);
 			StopCoroutine (MyCoroutine ());
 			StartCoroutine (MyCoroutine ());
 
@@ -151,7 +151,7 @@ public class ErrorPrompt : MonoBehaviour {
 	void Start () {
 		instance = this;
 		GameMenu.main.addDisableScript (this);
-		myAudio = GetComponent<AudioSource> ();
+		myAudio =GameObject.FindObjectOfType<ExpositionDisplayer>().GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame

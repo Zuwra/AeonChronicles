@@ -19,7 +19,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     private int currentPage = 0;
 	private int currentCenterOn = 0;
 
-
+	int lsatVoiceIndex;
+	float lastVoiceTime;
     public static SelectedManager main;
 	public UIManager uiManage;
     public UiAbilityManager abilityManager;
@@ -52,7 +53,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		controlUI = GameObject.FindObjectOfType<ControlGroupUI> ();
 		pageUI = GameObject.FindObjectOfType<PageUIManager> ();
 		targetManager = GameObject.FindObjectOfType<TargetCircleManager> ();
-		AudioSrc = GetComponent<AudioSource> ();
+		AudioSrc =GameObject.FindObjectOfType<ExpositionDisplayer>().GetComponent<AudioSource> ();
 
     }
 
@@ -666,26 +667,42 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     }
 
 	public void voiceResponse (bool attacker)
-	{soundIndex++;
-		if (soundIndex > 10) {
+	{
+	if (Time.time > lastVoiceTime + 5) {
+			
+		soundIndex++;
+		if (soundIndex > 12) {
 			soundIndex = 0;
 		}
 		if(soundIndex != 1)
-		{if (!attacker) {
-				AudioSrc.PlayOneShot (moveSound,.2f);
+			{if (!attacker) {
+				AudioSrc.PlayOneShot (moveSound,.1f);
 			} else {
-			AudioSrc.PlayOneShot (attackSound,.2f);
-		}
+			AudioSrc.PlayOneShot (attackSound,.1f);
+			}
 
 			return;}
 
 		UnitManager listTop = SelectedObjects [0].gameObject.GetComponent<UnitManager> ();
-		if (attacker) {
-			if(listTop.myVoices.attacking.Count > 0)
-				AudioSrc.PlayOneShot (listTop.myVoices.attacking [Random.Range (0, listTop.myVoices.attacking.Count)],1);
-		} else {
-			if(listTop.myVoices.moving.Count > 0)
-				AudioSrc.PlayOneShot (listTop.myVoices.moving [Random.Range (0, listTop.myVoices.moving.Count)],1);
+			lastVoiceTime = Time.time;
+	
+			int n;
+			do {
+				n = Random.Range (0, listTop.myVoices.attacking.Count);
+			} while(n == lsatVoiceIndex);
+			lsatVoiceIndex = n;
+
+			if (attacker) {
+				if (listTop.myVoices.attacking.Count > 0) {
+					AudioSrc.PlayOneShot (listTop.myVoices.attacking [lsatVoiceIndex], .5f);
+
+				}
+			} else {
+				if (listTop.myVoices.moving.Count > 0) {
+
+					AudioSrc.PlayOneShot (listTop.myVoices.moving [lsatVoiceIndex], .5f);
+				}
+			}
 		}
 	}
 
@@ -731,7 +748,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
 			if ((order.Target.GetComponent<UnitManager> () && order.Target.GetComponent<UnitManager> ().PlayerOwner != 1)
 			    || (order.Target.GetComponentInParent<UnitManager> () && order.Target.GetComponentInParent<UnitManager> ().PlayerOwner != 1)) {
-				AudioSrc.PlayOneShot (attackSound);
+				AudioSrc.PlayOneShot (attackSound, .1f);
 
 				if (FogOfWar.current.IsInCompleteFog (location)) {
 					Instantiate (fogAttacker);
