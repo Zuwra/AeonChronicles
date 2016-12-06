@@ -481,6 +481,7 @@
      <Compile Include="Assets\Scripts - In Game\turret.cs" />
      <Compile Include="Assets\SelectionNotifier.cs" />
      <Compile Include="Assets\ShieldGlobe.cs" />
+     <Compile Include="Assets\ShieldSpeedBoost.cs" />
      <Compile Include="Assets\ShieldUpgrade.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />

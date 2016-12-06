@@ -34,6 +34,9 @@ public class UnitStats : MonoBehaviour {
 	private UnitManager myManager;
 
 	private List<Modifier> damageModifiers = new List<Modifier>();
+
+	//BE Careful this can pass in both negative and positive numbers!
+	private List<Modifier> EnergyModifiers = new List<Modifier>();
 	public List<UnitTypes.UnitTypeTag> otherTags = new  List<UnitTypes.UnitTypeTag> ();
 	private List<UnitTypes.UnitTypeTag> TotalTags = new  List<UnitTypes.UnitTypeTag> ();
 
@@ -169,30 +172,6 @@ public class UnitStats : MonoBehaviour {
 
 
 
-	/*
-	// Update is called once per frame
-	void Update () {
-
-		if (Time.time > nextActionTime ) {
-			nextActionTime = Time.time + .5f;
-
-			//Regenerate Health
-			if (health < Maxhealth && HealthRegenPerSec > 0) {
-				float actual = veternStat.healingDone += heal (HealthRegenPerSec / 2);
-				veternStat.UpHealing (actual);
-			}
-
-
-			//Regenerate Energy
-			if (currentEnergy < MaxEnergy && EnergyRegenPerSec >0) {
-
-				float actual = changeEnergy (EnergyRegenPerSec / 2);
-				veternStat.UpEnergy (actual);
-			}
-		}
-
-	}
-	*/
 	IEnumerator HealthEnergy()
 	{
 		while(true){
@@ -414,6 +393,19 @@ public class UnitStats : MonoBehaviour {
 	}
 
 
+	public void addEnergyModifier(Modifier mod)
+	{
+		if (!EnergyModifiers.Contains (mod)) {
+			EnergyModifiers.Add (mod);
+		}
+	}
+
+	public void removeEnergyModifier(Modifier mod)
+	{if (EnergyModifiers.Contains (mod)) {
+			EnergyModifiers.Remove (mod);
+		}
+	}
+
 
 	public bool atFullHealth()
 	{
@@ -431,7 +423,13 @@ public class UnitStats : MonoBehaviour {
 			return 0;}
 		float amount = 0;
 
+	
+		foreach (Modifier mod in EnergyModifiers) {
+			n = mod.modify (n, this.gameObject);
+		}
+
 		if (n > 0 ) {
+
 			amount = Math.Min (n, MaxEnergy - currentEnergy);
 			currentEnergy += amount;
 		} else {
