@@ -264,6 +264,8 @@
      <Compile Include="Assets\DeathWinTrigger.cs" />
      <Compile Include="Assets\DetachAugment.cs" />
      <Compile Include="Assets\DifficultyManager.cs" />
+     <Compile Include="Assets\DoubleUpgrade.cs" />
+     <Compile Include="Assets\DoubleUpgradeApp.cs" />
      <Compile Include="Assets\DropDownDudeFinder.cs" />
      <Compile Include="Assets\DuplexPlating.cs" />
      <Compile Include="Assets\EMPblast.cs" />
@@ -482,6 +484,7 @@
      <Compile Include="Assets\SelectionNotifier.cs" />
      <Compile Include="Assets\ShieldGlobe.cs" />
      <Compile Include="Assets\ShieldSpeedBoost.cs" />
+     <Compile Include="Assets\ShieldSpeedUpgrade.cs" />
      <Compile Include="Assets\ShieldUpgrade.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />

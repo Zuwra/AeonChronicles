@@ -15,7 +15,7 @@ public class CampaignUpgrade : MonoBehaviour {
 	public List<Image> myPic;
 
 	public enum upgradeType{general, vehicle, tank, structure, turret, munition, coyote, tortoise, OreProcessor, Hornet, 
-	gatling, rail, repair, mortar, construction, bunker, factory, Ult}
+	gatling, rail, repair, mortar, construction, bunker, factory, Ult, DoubleUpgrade}
 
 
 	Upgrade currentUpgrade;

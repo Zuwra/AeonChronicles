@@ -1,14 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ShieldSpeedBoost.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DoubleUpgrade.cs">
     <Files>
-      <File FileName="Assets\ErrorPrompt.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="425" Column="3" />
-      <File FileName="Assets\ShieldSpeedBoost.cs" Line="81" Column="3" />
-      <File FileName="Assets\DayexaShield.cs" Line="48" Column="3" />
-      <File FileName="Assets\Scripts - In Game\StimPack.cs" Line="25" Column="38" />
-      <File FileName="Assets\ShieldGlobe.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="907" Column="13" />
+      <File FileName="Assets\ShieldSpeedBoost.cs" Line="1" Column="1" />
+      <File FileName="Assets\RecoilUpgrade.cs" Line="19" Column="1" />
+      <File FileName="Assets\Scripts - In Game\SlowDebuff.cs" Line="1" Column="1" />
+      <File FileName="Assets\DoubleUpgrade.cs" Line="18" Column="5" />
+      <File FileName="Assets\DoubleUpgradeApp.cs" Line="5" Column="9" />
+      <File FileName="Assets\LevelManager.cs" Line="140" Column="10" />
+      <File FileName="Assets\Upgrade.cs" Line="1" Column="1" />
+      <File FileName="Assets\CampUpgradePurchase.cs" Line="1" Column="1" />
+      <File FileName="Assets\CampaignUpgrade.cs" Line="24" Column="2" />
+      <File FileName="Assets\LevelData.cs" Line="106" Column="5" />
+      <File FileName="Assets\ConcussiveUpgrade.cs" Line="33" Column="2" />
+      <File FileName="Assets\DamageUpgrade.cs" Line="39" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

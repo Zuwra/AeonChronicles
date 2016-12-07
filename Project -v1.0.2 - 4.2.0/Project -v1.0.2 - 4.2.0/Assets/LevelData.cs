@@ -97,8 +97,7 @@ public class LevelData  {
 	public static void applyUpgrade(string s, int u )
 	{
 		loadGame ();
-		Debug.Log ("Adding upgrade " + s + "  " + u);
-
+	
 		bool hitSomething = false;
 		foreach (keyValue kv in currentInfo.appliedUpgrades) {
 			if (kv.theName == s) {
