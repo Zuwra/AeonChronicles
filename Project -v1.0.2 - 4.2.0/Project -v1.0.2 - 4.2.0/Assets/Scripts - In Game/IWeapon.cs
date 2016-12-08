@@ -436,6 +436,21 @@ public class IWeapon : MonoBehaviour {
 	}
 
 
+	public void AdjustAttack(float perc, float flat, bool perm, Object obj )
+	{//Debug.Log ("initials is " + InitialBaseDamage);
+
+		for (int i = 0; i < DamageMod.Count; i++) {
+			if (DamageMod [i].source ==obj) {
+				DamageMod.RemoveAt (i);
+				break;
+
+			}
+		}
+
+		changeAttack (perc, flat, perm, obj);
+	}
+
+
 	public void changeAttack(float perc, float flat, bool perm, Object obj )
 	{//Debug.Log ("initials is " + InitialBaseDamage);
 		if (!initalDamageSet) {
