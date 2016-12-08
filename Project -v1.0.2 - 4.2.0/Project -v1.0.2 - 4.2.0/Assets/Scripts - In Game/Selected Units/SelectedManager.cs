@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class SelectedManager : MonoBehaviour, ISelectedManager
 {
@@ -686,23 +687,28 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		UnitManager listTop = SelectedObjects [0].gameObject.GetComponent<UnitManager> ();
 			lastVoiceTime = Time.time;
 	
-			int n;
-			do {
-				n = Random.Range (0, listTop.myVoices.attacking.Count);
-			} while(n == lsatVoiceIndex);
-			lsatVoiceIndex = n;
+			int n =-1;
+
 
 			if (attacker) {
 				if (listTop.myVoices.attacking.Count > 0) {
+					do {
+						n = Random.Range (0, listTop.myVoices.attacking.Count);
+					} while(n == lsatVoiceIndex);
+
 					AudioSrc.PlayOneShot (listTop.myVoices.attacking [lsatVoiceIndex], .5f);
 
 				}
 			} else {
 				if (listTop.myVoices.moving.Count > 0) {
+					do {
+						n = Random.Range (0, listTop.myVoices.moving.Count);
+					} while(n == lsatVoiceIndex);
 
 					AudioSrc.PlayOneShot (listTop.myVoices.moving [lsatVoiceIndex], .5f);
 				}
 			}
+			lsatVoiceIndex = n;
 		}
 	}
 
@@ -820,48 +826,96 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{
 
 
-		List<RTSObject> realMovers = new List<RTSObject> ();
+		//List<RTSObject> realMovers = new List<RTSObject> ();
+		Dictionary<int, List<RTSObject>> trueMovers = new Dictionary<int,List< RTSObject>> ();
 		List<RTSObject> others = new List<RTSObject> ();
 
+		int MoverCount = 0;
 		Vector3 middlePoint = Vector3.zero;
 		foreach (RTSObject obj in SelectedObjects) {
-			if (obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Turret) || obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+			if (!obj.getUnitManager ()) {//.cMover.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Turret) || obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 				others.Add (obj);
 			} else {
-				realMovers.Add (obj);
+				MoverCount++;
+			//	realMovers.Add (obj);
+				if (trueMovers.ContainsKey (obj.getUnitManager ().formationOrder)) {
+					trueMovers [obj.getUnitManager ().formationOrder].Add (obj);
+				} else {
+					trueMovers.Add (obj.getUnitManager ().formationOrder, new List<RTSObject> (){ obj });
+				}
 				middlePoint += obj.transform.position;
 			}
 		}
+			
 
-		// TO DO FIGURE OUT HOW TO HAVE AN ORDERED FORMATION BASES ON THE UNIT PRIORITIES, SHould be in sorted order at this point.
-		//realMovers.Sort ();
+		//give move command to all nonmovers, setting rally points and such
+		StartCoroutine (staticMove (others, targetPoint));
 
-
-		//give move command to all nonmovers
-		StartCoroutine(staticMove(others,targetPoint));
-
-		middlePoint /= realMovers.Count;
+		middlePoint /= MoverCount;
 
 		float angle;
 		if (sepDistance == 1) {
 			angle = Vector2.Angle (Vector2.up, new Vector2 (middlePoint.x - targetPoint.x, middlePoint.z - targetPoint.z));
 		} else {
 			//Used when there is a right click drag spread formation
-			angle = Vector2.Angle (Vector2.up, new Vector2 (secondPoint.x - targetPoint.x,secondPoint.z - targetPoint.z) )+ 90;
+			angle = Vector2.Angle (Vector2.up, new Vector2 (secondPoint.x - targetPoint.x, secondPoint.z - targetPoint.z)) + 90;
 			targetPoint = Vector3.Lerp (targetPoint, secondPoint, .5f);
 		}
 		if (middlePoint.x < targetPoint.x) {
 			angle *= -1;
 		} 
 
-		List<Vector3> points = Formations.getFormation (realMovers.Count, Mathf.Min(2, sepDistance));
-		for (int t = 0; t < points.Count; t ++) {
-			Vector3 newPoint = Quaternion.Euler(0,angle,0) * points [t];
-			points [t] = newPoint + targetPoint;
-
-		
+		List<Vector3> points = Formations.getFormation (MoverCount, Mathf.Min (2, sepDistance));
+		for (int t = 0; t < points.Count; t++) {
+			points [t] = Quaternion.Euler (0, angle, 0) * points [t] + targetPoint;
 		}
 
+
+		int minPointIndex = 0;
+		int maxPointIndex = 0;
+		foreach (KeyValuePair<int, List<RTSObject>> kvp in trueMovers.OrderBy(i => i.Key)) {
+
+			maxPointIndex = minPointIndex + kvp.Value.Count;
+			List<IOrderable> usedGuys = new List<IOrderable> ();
+			while (usedGuys.Count < kvp.Value.Count) {
+				float maxDistance = 0;
+				IOrderable closestUnit = null;
+				foreach (IOrderable obj in kvp.Value) {
+					float tempDist = Vector3.Distance (obj.getObject ().transform.position, targetPoint);
+					if (!usedGuys.Contains (obj) && tempDist > maxDistance) {
+						maxDistance = tempDist;
+						closestUnit = obj;
+					}
+				}
+				usedGuys.Add (closestUnit);
+
+				float runDistance = 1000000;
+				Vector3 closestSpot = points [0];
+
+				for (int i = minPointIndex; i < maxPointIndex; i++) {
+					
+					float tempDist = Vector3.Distance (closestUnit.getObject ().transform.position, points [i]);
+					if (tempDist < runDistance) {
+						closestSpot = points [i];
+						runDistance = tempDist;
+
+
+					}
+				}
+
+				StartCoroutine (giveCommand (attack, closestSpot, closestUnit));
+				maxPointIndex--;
+				points.Remove (closestSpot);
+
+
+			}
+				
+			minPointIndex = maxPointIndex;
+
+		}
+	}
+		// Old formation code based off of who is closest to what
+		/*
 		List<IOrderable> usedGuys = new List<IOrderable> ();
 		while (usedGuys.Count < realMovers.Count) {
 			float maxDistance = 0;
@@ -893,8 +947,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	
 
 		}
-			
-	}
+		*/	
+
 	IEnumerator giveCommand(bool attack, Vector3 closestSpot, IOrderable unittoMove)
 	{yield return new WaitForSeconds (0.001f);
 		if (attack) {

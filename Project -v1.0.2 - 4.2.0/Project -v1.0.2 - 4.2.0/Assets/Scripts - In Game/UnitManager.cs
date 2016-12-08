@@ -10,7 +10,7 @@ public class UnitManager : Unit,IOrderable{
 	public string UnitName;
 
 	public int PlayerOwner; // 1 = active player, 2 = enemies, 3 = nuetral
-
+	public int formationOrder;
 	public Animator myAnim;
 
 	private float chaseRange;  // how far an enemy can come into vision before I chase after him.
@@ -545,6 +545,10 @@ public class UnitManager : Unit,IOrderable{
 		return myStats;
 	}
 
+	public override UnitManager getUnitManager ()
+	{
+		return this;
+	}
 
 
 	public void checkIdleWorker()

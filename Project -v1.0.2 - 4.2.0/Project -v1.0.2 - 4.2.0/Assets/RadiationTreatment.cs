@@ -30,7 +30,7 @@ public class RadiationTreatment :  Ability, Notify {
 		if (lastTarget == target && myStats.veternStat.damageDone > lastDamageAmount) {
 			runningTotal += damageIncreaseAmount;
 			proj.GetComponent<Projectile> ().damage += runningTotal;
-			proj.GetComponent<PopUpOnHIt>().toShow = "-" + runningTotal;
+			proj.GetComponent<PopUpOnHIt>().toShow = "-" +(proj.GetComponent<Projectile> ().damage+ runningTotal);
 
 		} else {
 			

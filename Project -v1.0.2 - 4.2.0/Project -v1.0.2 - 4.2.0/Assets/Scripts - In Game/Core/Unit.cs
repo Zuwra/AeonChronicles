@@ -42,6 +42,11 @@ public class Unit : RTSObject, IOrderable {
 		return null;
 	}
 
+	public override UnitManager getUnitManager ()
+	{
+		return null;
+	}
+
 	public GameObject getObject(){return this.gameObject;}
 
 	protected void Start()

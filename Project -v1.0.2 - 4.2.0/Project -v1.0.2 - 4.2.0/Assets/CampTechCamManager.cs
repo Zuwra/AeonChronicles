@@ -125,7 +125,7 @@ public class CampTechCamManager : MonoBehaviour {
 	public void loadTech(GameObject obj)
 	{
 
-		TechOption oldTech = currentTech;
+	
 		foreach (TechOption to in TechChoices) {
 			if (obj == to.HUD) {
 				currentTech = to;
