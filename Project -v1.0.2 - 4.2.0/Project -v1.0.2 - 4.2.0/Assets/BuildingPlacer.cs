@@ -49,14 +49,14 @@ public class BuildingPlacer : MonoBehaviour {
 			Tile t = Grid.main.GetClosestRedTile (this.gameObject.transform.position);
 			if (FogOfWar.current.IsInCompleteFog (this.gameObject.transform.position)) {
 				setRenderers (bad);
-			Debug.Log ("In fogg" );
+			//Debug.Log ("In fogg" );
 			return false;
 			} else {
 				if (!t.Buildable) {
 					float dist = Mathf.Pow (t.Center.x - transform.position.x, 2) + Mathf.Pow (t.Center.z - transform.position.z, 2);
 					if (Mathf.Sqrt (dist) < coll.radius) {
 						setRenderers (bad);
-					Debug.Log ("not buildable" );
+					//Debug.Log ("not buildable" );
 					return false;
 					} else {
 						setRenderers (good);
