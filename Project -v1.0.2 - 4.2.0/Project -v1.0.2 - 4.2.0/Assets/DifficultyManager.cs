@@ -10,6 +10,12 @@ public class DifficultyManager : MonoBehaviour {
 	public float EasyDamage;
 	public float HardWaveReduct = .7f;
 
+	[Tooltip("time is in minutes")]
+	public float LevelOneUpgradeTime;
+	public float LevelTwoUpgradeTime;
+	public float LevelThreeUpgradeTime;
+
+	int upgradeCount;
 
 	[Tooltip("This will also delete everything in medium list")]
 	public List<GameObject> deleteOnEasy;
@@ -18,6 +24,22 @@ public class DifficultyManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		if (LevelData.getDifficulty () == 1) {
+			LevelOneUpgradeTime *= 1.5f; 
+			LevelTwoUpgradeTime *= 1.5f;
+			LevelThreeUpgradeTime *= 1.5f;
+		} else if (LevelData.getDifficulty () == 2) {
+			
+		} else if (LevelData.getDifficulty () == 3) {
+			LevelOneUpgradeTime *= .7f;
+			LevelTwoUpgradeTime *= .7f;
+			LevelThreeUpgradeTime *= .7f;
+		}
+
+		StartCoroutine (UpgradeTimer (LevelOneUpgradeTime));
+		StartCoroutine (UpgradeTimer (LevelTwoUpgradeTime));
+		StartCoroutine (UpgradeTimer (LevelThreeUpgradeTime));
 
 		if (LevelData.getDifficulty() == 1) {
 			foreach (UnitManager man in GameObject.FindObjectsOfType<UnitManager>()) {
@@ -77,6 +99,27 @@ public class DifficultyManager : MonoBehaviour {
 		}
 	}
 
+	IEnumerator UpgradeTimer(float time)
+	{
+		yield return new WaitForSeconds (time * 60);
+		upgradeCount++;
+		foreach (UnitManager man in GameObject.FindObjectsOfType<UnitManager>()) {
+			if (man.PlayerOwner == 2) {
+				if (man.myStats) {
+					man.myStats.armor += 1;
+					foreach (IWeapon weap in man.myWeapon) {
+						if (weap) {
+							weap.changeAttack (0, 1 * (int)(weap.baseDamage / 10), true, null);
+						}
+					}
+				}
+
+			}
+
+		}
+
+	}
+
 
 
 	public void SetUnitStats(GameObject obj)
@@ -110,6 +153,20 @@ public class DifficultyManager : MonoBehaviour {
 
 
 		}
+
+
+		if (man.myStats) {
+
+				man.myStats.armor += upgradeCount;
+				foreach (IWeapon weap in man.myWeapon) {
+					if (weap) {
+					weap.changeAttack (0, upgradeCount * Mathf.Max(1,(int)(weap.baseDamage / 10)), true, null);
+					}
+				}
+		}
+
+
+
 	}
 
 	//TO DO : APPLY Debuffs to units created throughout the level.

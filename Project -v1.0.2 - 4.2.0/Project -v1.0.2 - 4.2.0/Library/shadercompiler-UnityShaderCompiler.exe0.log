@@ -1,2 +1,18 @@
 Base path: C:/Program Files/Editor/Data
 Cmd: getPlatforms
+Cmd: preprocess
+  insize=3023 outsize=799 ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2525 outsize=856 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2525 outsize=1072 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: preprocess
+  insize=4157 outsize=1088 ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=3370 outsize=1220 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=3370 outsize=1796 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: preprocess
+  insize=3023 outsize=799 ok=1
+Cmd: preprocess
+  insize=4157 outsize=1088 ok=1

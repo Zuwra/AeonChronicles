@@ -321,6 +321,7 @@
      <Compile Include="Assets\MainMenuManager.cs" />
      <Compile Include="Assets\Masochism.cs" />
      <Compile Include="Assets\MassCapture.cs" />
+     <Compile Include="Assets\MenuAnimationPlayer.cs" />
      <Compile Include="Assets\MiniMapUIController.cs" />
      <Compile Include="Assets\MiningSawDamager.cs" />
      <Compile Include="Assets\MiningState.cs" />
@@ -602,6 +603,7 @@
      <None Include="Assets\Resources\SoundEffects\LevelVoices\Voice Record Pro-20161204T040908Z\Voice Record Pro\20160811-181508.m4a.meta.txt" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_St_Nt.shader" />
      <None Include="Assets\Resources\SoundEffects\LevelVoices\Voice Record Pro\20161203-140005.m4a.meta.txt" />
+     <None Include="Assets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetNoiseGenerator.compute" />
      <None Include="Assets\Bit2Good\SFS\Shaders\Terrain\SFS_TeA_St.shader" />
      <None Include="Assets\Resources\SoundEffects\LevelVoices\Voice Record Pro\20161203-133422.m4a.meta.txt" />
      <None Include="Assets\Resources\Fonts\pieces_of_eight\Alt Map.txt" />
@@ -632,6 +634,7 @@
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_St_N.shader" />
      <None Include="Assets\Resources\SoundEffects\LevelVoices\Voice Record Pro-20161204T040908Z\Voice Record Pro\20161203-133632.m4a.meta.txt" />
      <None Include="Assets\FogOfWar\Resources\FogOfWarShader.shader" />
+     <None Include="Assets\HeyBlairGames\PlanetTextureGenerator\Runtime\PlanetSpecular.shader" />
      <None Include="Assets\Resources\SoundEffects\LevelVoices\Voice Record Pro-20161204T040908Z\Voice Record Pro\20161203-132804.m4a.meta.txt" />
      <None Include="Assets\Resources\SoundEffects\LevelVoices\Voice Record Pro\20160815-174043.m4a.meta.txt" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_Pr_N_T.shader" />
@@ -704,6 +707,7 @@
      <None Include="Assets\Resources\SoundEffects\LevelVoices\Voice Record Pro\20160909-234709.m4a.meta.txt" />
      <None Include="Assets\Resources\SoundEffects\LevelVoices\Voice Record Pro\20161203-124115.m4a.meta.txt" />
      <None Include="Assets\Bit2Good\SFS\Shaders\Terrain\SFS_TeA_Dt.shader" />
+     <None Include="Assets\HeyBlairGames\PlanetTextureGenerator\Runtime\PlanetParallaxSpecular.shader" />
      <None Include="Assets\Resources\SoundEffects\LevelVoices\Voice Record Pro\20161203-132952.m4a.meta.txt" />
      <None Include="Assets\Bit2Good\SFS\Shaders\Terrain\SFS_TeA_N.shader" />
      <None Include="Assets\Resources\SoundEffects\LevelVoices\Voice Record Pro\20161203-132804.m4a.meta.txt" />

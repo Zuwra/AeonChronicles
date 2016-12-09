@@ -34,6 +34,11 @@ public class laserGun : MonoBehaviour {
 						hitb.collider.gameObject.GetComponent<blowUp> ().blowUpTrigger ();
 					}
 
+					if (hitb.collider.gameObject.GetComponent<MenuAnimationPlayer>()) {
+		
+						hitb.collider.gameObject.GetComponent<MenuAnimationPlayer> ().ClickOn ();
+					}
+
 				}
 
 

@@ -1,13 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\Selected Units\SelectedManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DifficultyManager.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="692" Column="4" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Core\RTSObject.cs" Line="1" Column="1" />
       <File FileName="Assets\Prefabs\Level2\Formations.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Core\Unit.cs" Line="1" Column="1" />
       <File FileName="Assets\CampTechCamManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\MenuAnimationPlayer.cs" Line="28" Column="45" />
+      <File FileName="Assets\laserGun.cs" Line="35" Column="7" />
+      <File FileName="Assets\DifficultyManager.cs" Line="30" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
