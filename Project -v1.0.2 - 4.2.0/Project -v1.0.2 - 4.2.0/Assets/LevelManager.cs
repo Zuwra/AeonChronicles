@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour {
 	AudioSource mySource;
 	public AudioClip buttonPress;
 
+	public GameObject MainScreen;
+
 	public List<GameObject> levelIntros = new List<GameObject> ();
 	public List<GameObject> Expositions = new List<GameObject> ();
 	public List<CampUpgradeManager> levelPresets = new List<CampUpgradeManager> ();
@@ -75,7 +77,7 @@ public class LevelManager : MonoBehaviour {
 
 		}
 
-		setDifficultyDropDowns ();
+		setDifficultyDropDowns (LevelData.getDifficulty());
 
 	
 	}
@@ -97,12 +99,18 @@ public class LevelManager : MonoBehaviour {
 	public void closeLevelIntro()
 	{
 		currentIntro.SetActive (false);
+		MainScreen.SetActive (true);
+
+		foreach (ToolTip tt in GameObject.FindObjectsOfType<ToolTip>()) {
+			tt.toolbox.enabled = false;
+		}
 	}
 
 	public void openLevelIntro(int n)
 	{
 		levelIntros [n].SetActive (true);
 		currentIntro = levelIntros [n];
+		MainScreen.SetActive (false);
 		//currentIntro.SetActive (!currentIntro.activeSelf );
 	}
 
@@ -158,17 +166,20 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void setDifficulty(Dropdown i)
-	{mySource.PlayOneShot (buttonPress);
+	{
+		if (Time.timeSinceLevelLoad > 1) {
+			mySource.PlayOneShot (buttonPress);
+		}
 		LevelData.setDifficulty (i.value + 1);
-		setDifficultyDropDowns ();
+		setDifficultyDropDowns (i.value);
 	
 	}
 
-	public void setDifficultyDropDowns()
+	public void setDifficultyDropDowns(int i )
 	{
 		foreach (Dropdown dd in difficultyBars) {
-			if (dd.value!= LevelData.getDifficulty ()-1) {
-				dd.value = LevelData.getDifficulty () - 1;
+			if (dd.value!= i) {
+				dd.value = i;
 			}
 		}
 	}
