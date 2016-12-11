@@ -84,8 +84,6 @@ public class CampaignUpgrade : MonoBehaviour {
 	{
 		LevelData.applyUpgrade (this.gameObject.ToString (),n);
 
-
-
 	}
 
 
@@ -94,7 +92,7 @@ public class CampaignUpgrade : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Debug.Log ("HEre");
+	
 		//myManager = GameObject.FindObjectOfType<LevelManager> ().levelPresets[LevelData.currentLevel];
 		List<string> options = new List<string> ();
 		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
@@ -134,6 +132,7 @@ public class CampaignUpgrade : MonoBehaviour {
 		foreach (LevelData.keyValue kv in LevelData.getsaveInfo().appliedUpgrades) {
 	
 			if (kv.theName == this.gameObject.ToString ()) {
+				Debug.Log (kv.index);
 					myDropDown.value = kv.index;
 					foreach(GameObject o in unitsToUpgrade)
 					{if (currentUpgrade) {
@@ -159,8 +158,8 @@ public class CampaignUpgrade : MonoBehaviour {
 	{
 		List<string> options = new List<string> ();
 		foreach (UpgradesPiece up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
-			//Debug.Log ("Checking " + up.name);
-			if (up.isUnlocked() && myTypes.Contains (up.myType) && !myUpgrades.Contains(up) && !options.Contains(up.name)) {//up.unlocked &&
+		//	Debug.Log ("Checking " + up.name);
+			if (myTypes.Contains (up.myType) && !myUpgrades.Contains(up) && !options.Contains(up.name)) {//up.unlocked &&
 				myUpgrades.Add (up);
 				options.Add (up.name);
 

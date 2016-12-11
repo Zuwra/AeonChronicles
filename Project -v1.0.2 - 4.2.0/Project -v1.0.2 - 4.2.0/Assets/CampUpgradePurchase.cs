@@ -20,7 +20,7 @@ public class CampUpgradePurchase : MonoBehaviour {
 		if( myUpgrade != null){
 			
 			foreach (string up in LevelData.getsaveInfo().purchasedUpgrades) {
-				//Debug.Log ("Checking " + up + "   " + myUpgrade.GetType());
+				Debug.Log ("Checking " + up + "   " + myUpgrade.GetType());
 				if (up == myUpgrade.Name) {
 					psuedoPurchase ();
 			

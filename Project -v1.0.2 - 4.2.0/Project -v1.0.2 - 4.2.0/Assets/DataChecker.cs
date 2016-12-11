@@ -8,7 +8,6 @@ public class DataChecker : MonoBehaviour {
 
 	void Start () {
 
-		Debug.Log (LevelData.getHighestLevel() + "   " + LevelCountDisable);
 		if (LevelData.getHighestLevel () > LevelCountDisable) {
 			this.gameObject.SetActive (enable);
 		} else {

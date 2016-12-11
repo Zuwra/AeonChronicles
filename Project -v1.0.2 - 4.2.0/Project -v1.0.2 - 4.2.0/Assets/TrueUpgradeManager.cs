@@ -6,6 +6,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 	public List<AudioClip> buttonPress;
 	public AudioSource mySource;
 
+	public List<CampaignUpgrade> CampUpRef;
 	public List<CampaignUpgrade.UpgradesPiece> myUpgrades= new List<CampaignUpgrade.UpgradesPiece>();
 	// Use this for initialization
 
@@ -23,7 +24,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 
 	public void upgradeBought(Upgrade upg, CampaignUpgrade.upgradeType t)
 	{
-		
+		//Debug.Log ("Upgrade was bought" +upg.name);
 		CampaignUpgrade.UpgradesPiece cpu = new CampaignUpgrade.UpgradesPiece ();
 		cpu.pointer = upg;
 		cpu.name = upg.Name;
@@ -45,8 +46,9 @@ public class TrueUpgradeManager : MonoBehaviour {
 			//Debug.Log ("It is now " + myUpgrades[i].unlocked);
 		}
 */
-		foreach (CampaignUpgrade cu in GameObject.FindObjectsOfType<CampaignUpgrade>()) {
+		foreach (CampaignUpgrade cu in CampUpRef) {
 			cu.reInitialize ();
+			//Debug.Log ("Reinitializing " + cu.gameObject);
 		}
 		
 

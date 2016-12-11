@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEditor;
+
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -190,7 +190,6 @@ public class LevelData  {
 
 	public static void addMoney(int amount)
 	{
-		Debug.Log ("Adding money");
 		PlayerPrefs.SetInt ("Money", PlayerPrefs.GetInt ("Money") + amount);
 	}
 

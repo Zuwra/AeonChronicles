@@ -833,7 +833,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		int MoverCount = 0;
 		Vector3 middlePoint = Vector3.zero;
 		foreach (RTSObject obj in SelectedObjects) {
-			if (!obj.getUnitManager ()) {//.cMover.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Turret) || obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+			if (!obj.getUnitManager ().cMover) {//.cMover.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Turret) || obj.getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 				others.Add (obj);
 			} else {
 				MoverCount++;
