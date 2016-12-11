@@ -15,7 +15,10 @@ public class VoicePack : MonoBehaviour {
 	public List<AudioClip> baseAttacked;
 	public List<AudioClip> cooldown;
 	public List<AudioClip> buildingPlacement;
-
+	public List<AudioClip> EnemyWave;
+	public List<AudioClip> EnemyDreadNaughts;
+	public List<AudioClip> ResearchFinished;
+	public List<AudioClip> OreDepleted;
 
 	public AudioClip getOreLine()
 	{
@@ -50,6 +53,26 @@ public class VoicePack : MonoBehaviour {
 	public AudioClip getBadBuildingLine()
 	{
 		return buildingPlacement [Random.Range (0,buildingPlacement.Count - 1)];
+	}
+
+	public AudioClip getResearchLine()
+	{
+		return ResearchFinished[Random.Range (0,ResearchFinished.Count - 1)];
+	}
+
+	public AudioClip getEnemyWaveLine()
+	{
+		return EnemyWave [Random.Range (0,EnemyWave.Count - 1)];
+	}
+
+	public AudioClip geOreDepletedLine()
+	{
+		return OreDepleted[Random.Range (0,OreDepleted.Count - 1)];
+	}
+
+	public AudioClip getDreadnaughtsLine()
+	{
+		return EnemyDreadNaughts[Random.Range (0,EnemyDreadNaughts.Count - 1)];
 	}
 
 

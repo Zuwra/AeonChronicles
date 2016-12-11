@@ -80,7 +80,7 @@ public class explosion : MonoBehaviour {
 							amount += tag.bonus;
 						}
 					}
-					Debug.Log ("Dealing damage " + this.gameObject);
+				
 					float total = stats.TakeDamage (amount, source, type);
 				
 

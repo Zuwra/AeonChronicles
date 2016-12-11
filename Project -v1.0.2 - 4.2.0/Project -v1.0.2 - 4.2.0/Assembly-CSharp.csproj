@@ -323,6 +323,7 @@
      <Compile Include="Assets\Masochism.cs" />
      <Compile Include="Assets\MassCapture.cs" />
      <Compile Include="Assets\MenuAnimationPlayer.cs" />
+     <Compile Include="Assets\MenuverUpgrade.cs" />
      <Compile Include="Assets\MiniMapUIController.cs" />
      <Compile Include="Assets\MiningSawDamager.cs" />
      <Compile Include="Assets\MiningState.cs" />
@@ -555,6 +556,7 @@
      <Compile Include="Assets\deathTrigger.cs" />
      <Compile Include="Assets\deexaArmor.cs" />
      <Compile Include="Assets\energyDrain.cs" />
+     <Compile Include="Assets\evasiveMenuvers.cs" />
      <Compile Include="Assets\explosion.cs" />
      <Compile Include="Assets\fogUI.cs" />
      <Compile Include="Assets\incendiaryUpgrade.cs" />

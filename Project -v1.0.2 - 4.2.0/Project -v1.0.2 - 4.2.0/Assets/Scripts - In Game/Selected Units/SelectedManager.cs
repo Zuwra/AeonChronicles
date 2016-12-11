@@ -693,19 +693,19 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			if (attacker) {
 				if (listTop.myVoices.attacking.Count > 0) {
 					do {
-						n = Random.Range (0, listTop.myVoices.attacking.Count);
+						n = Random.Range (0, listTop.myVoices.attacking.Count -1);
 					} while(n == lsatVoiceIndex);
 
-					AudioSrc.PlayOneShot (listTop.myVoices.attacking [lsatVoiceIndex], .5f);
+					AudioSrc.PlayOneShot (listTop.myVoices.attacking [n], .5f);
 
 				}
 			} else {
 				if (listTop.myVoices.moving.Count > 0) {
 					do {
-						n = Random.Range (0, listTop.myVoices.moving.Count);
+						n = Random.Range (0, listTop.myVoices.moving.Count -1 );
 					} while(n == lsatVoiceIndex);
 
-					AudioSrc.PlayOneShot (listTop.myVoices.moving [lsatVoiceIndex], .5f);
+					AudioSrc.PlayOneShot (listTop.myVoices.moving [n], .5f);
 				}
 			}
 			lsatVoiceIndex = n;

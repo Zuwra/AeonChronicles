@@ -38,7 +38,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 				mySelect.updateCoolDown (1 - timer/buildTime);
 				if(timer <=0)
 				{mySelect.updateCoolDown (0);
-				ErrorPrompt.instance.showError (upgrades [currentUpgrade].Name + " Complete ");
+				ErrorPrompt.instance.ResearchComplete(upgrades [currentUpgrade].Name + " Complete ");
 
 				HD.stopBuilding ();
 				buildMan.unitFinished (this);

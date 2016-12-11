@@ -76,6 +76,11 @@ public class ErrorPrompt : MonoBehaviour {
 
 	public void notEnoughResource()
 	{showError( "Not Enough Ore",myVoicePack.getOreLine());
+	} 
+
+
+	public void ResearchComplete(string s)
+	{showError( s, myVoicePack.getResearchLine());
 	}
 
 	public void notEnoughSupply()
