@@ -11,7 +11,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	public Vector3 rallyPoint;
 	public bool showPoint;
-
+	public bool triggerOnly = false;
 	DifficultyManager difficultyM;
 	public List<attackWave> myWaves;
 
@@ -45,8 +45,9 @@ public class WaveSpawner : MonoBehaviour {
 	void Start () {
 
 		difficultyM = GameObject.FindObjectOfType<DifficultyManager> ();
-		findNextWave ();
-
+		if (!triggerOnly) {
+			findNextWave ();
+		}
 
 	
 	}

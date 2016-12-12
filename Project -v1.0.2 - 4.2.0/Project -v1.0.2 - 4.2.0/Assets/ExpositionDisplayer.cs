@@ -41,7 +41,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 			myText.text = dialog.Substring(0,i);
 
-			yield return new WaitForSeconds (.025f);
+			yield return new WaitForSeconds (.027f);
 		}
 
 
@@ -50,6 +50,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	public void displayText(string input, float duration, AudioClip sound, float volume, Sprite pic)
 	{	
+
 		this.enabled = true;
 		StartCoroutine (scrollingText (input));
 		//myText.text = input;
@@ -66,6 +67,19 @@ public class ExpositionDisplayer : MonoBehaviour {
 		if (pic) {
 			personPic.sprite = pic;}
 		
+		if (sound != null) {
+			myAudio.volume = volume;
+			myAudio.PlayOneShot (sound,1);
+		}
+	}
+
+	public void displayText( float duration, AudioClip sound, float volume)
+	{	
+		
+		this.enabled = true;
+
+		turnOffTime = Time.time + duration;
+
 		if (sound != null) {
 			myAudio.volume = volume;
 			myAudio.PlayOneShot (sound,1);

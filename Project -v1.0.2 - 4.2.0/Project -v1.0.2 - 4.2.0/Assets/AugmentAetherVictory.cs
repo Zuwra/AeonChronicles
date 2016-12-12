@@ -27,7 +27,7 @@ public class AugmentAetherVictory  : Objective {
 	{
 		UnitManager m = other.GetComponent<UnitManager> ();
 		if (m && m.UnitName =="Aether Core") {
-			Debug.Log ("Adding one ather core");
+			//Debug.Log ("Adding one ather core");
 			myGuys.Add (other.GetComponent<AugmentAttachPoint> ());
 			if (!routineStarted) {
 				routineStarted = true;
@@ -44,7 +44,7 @@ public class AugmentAetherVictory  : Objective {
 		while (true) {
 			
 			yield return new WaitForSeconds (3);
-		
+
 			if (myGuys.Count < numOfAugments) {
 				if (completed) {
 					//completed = false;
@@ -56,16 +56,18 @@ public class AugmentAetherVictory  : Objective {
 			else{
 				if(!completed){
 				int n = 0;
-				myGuys.RemoveAll (item => item == null);
 				foreach (AugmentAttachPoint agp in myGuys) {
-
+						if (agp == null) {
+							continue;}
 
 					if (agp.myAugment) {
 
-							Debug.Log ("Found one " + agp.myAugment);
+							//Debug.Log ("Found one " + agp.myAugment);
 						n++;}
 				}
 				if (n >= numOfAugments && !completed) {
+
+					//	Debug.Log ("I should be finishing");
 					completed = true;
 					
 						if (finishedOnce) {

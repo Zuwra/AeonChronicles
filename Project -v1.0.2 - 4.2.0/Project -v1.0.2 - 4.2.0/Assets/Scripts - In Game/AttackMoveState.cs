@@ -62,7 +62,7 @@ public class AttackMoveState : UnitState {
 
 	
 		if (Time.time > nextActionTime) {
-			nextActionTime += 1;
+			nextActionTime += .2f;
 			UnitManager temp =  myManager.findBestEnemy ();
 
 			if (temp) {
