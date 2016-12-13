@@ -5,12 +5,7 @@ using UnityEngine.UI;
 
 public class CampUpgradeManager : MonoBehaviour {
 
-	public Canvas TurretMenu;
-	public Canvas vehicleMenu;
-	public Canvas StructureMenu;
 
-
-	public List<Text> creditDisplayers = new List<Text> ();
 
 	private GameObject currentMenu;
 
@@ -23,7 +18,6 @@ public class CampUpgradeManager : MonoBehaviour {
 
 	}
 
-	public List<CampaignUpgrade.UpgradesPiece> myUpgrades= new List<CampaignUpgrade.UpgradesPiece>();
 
 	public List<UnitsUnlocked> myUnits= new List<UnitsUnlocked>();
 
@@ -36,18 +30,11 @@ public class CampUpgradeManager : MonoBehaviour {
 		
 		}
 
-		TurretMenu.enabled = false;
-		StructureMenu.enabled = false;
-		vehicleMenu.enabled = false;
-		changeMoney (0);
-	
+
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
 	public void SetMenu(GameObject obj)
 	{
@@ -59,18 +46,6 @@ public class CampUpgradeManager : MonoBehaviour {
 
 
 	}
-
-	public void changeMoney(int input)
-	{
-		
-		LevelData.addMoney (input);
-		foreach (Text t in creditDisplayers) {
-			t.text = "" + LevelData.getMoney ();
-		}
-
-		//Debug.Log ("money " + LevelData.totalXP);
-	}
-
 
 
 }

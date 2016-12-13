@@ -14,6 +14,7 @@ public class EnableAbility : Upgrade {
 		if (man) {
 			if (man.UnitName == unitName) {
 				foreach (Ability ab in man.abilityList) {
+
 					if (ab.Name == AbilityName) {
 						ab.active = true;
 					}

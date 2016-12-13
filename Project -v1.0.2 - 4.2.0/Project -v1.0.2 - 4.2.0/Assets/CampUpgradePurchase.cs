@@ -10,12 +10,12 @@ public class CampUpgradePurchase : MonoBehaviour {
 	public int myCost;
 	public bool purchased;
 
-	private CampUpgradeManager manager;
+	private LevelManager manager;
 	public CampaignUpgrade.upgradeType myType;
 	public List<CampUpgradePurchase> enables = new List<CampUpgradePurchase>();
 	// Use this for initialization
 	void Awake () {
-		manager = GameObject.FindObjectOfType<CampUpgradeManager> ();
+		manager = GameObject.FindObjectOfType<LevelManager> ();
 
 		if( myUpgrade != null){
 			

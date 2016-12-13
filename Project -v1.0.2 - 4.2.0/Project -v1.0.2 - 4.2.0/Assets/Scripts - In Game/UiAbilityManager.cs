@@ -7,7 +7,8 @@ using System;
 using UnityEngine.UI;
 public class UiAbilityManager : MonoBehaviour {
 
-
+	public AudioClip ButtonPress;
+	AudioSource audSrc;
 	private bool shiftDown;
 	private bool ctrlDown;
 	//public List<GameObject> UIButtons = new List<GameObject>();
@@ -62,6 +63,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		audSrc = GameObject.FindObjectOfType<ExpositionDisplayer> ().GetComponent<AudioSource> ();
 		GameMenu.main.addDisableScript (this);
 		nextActionTime = Time.time;
 		selectMan = GameObject.FindObjectOfType<SelectedManager> ();
@@ -1088,10 +1090,12 @@ public class UiAbilityManager : MonoBehaviour {
 		if (Input.GetKey (KeyCode.LeftAlt)) {
 			selectMan.setAutoCast (n);
 			selectMan.AutoCastUI ();
+			audSrc.PlayOneShot (ButtonPress, .1f);
 
 		}else if (quickButtons [n].IsInteractable() && quickAbility[n].myAbility && quickButtons[n].IsActive()){// && quickAbility[n].myAbility.active) {
 		
 				selectMan.callAbility (n);
+			audSrc.PlayOneShot (ButtonPress, .1f);
 			
 		}
 		

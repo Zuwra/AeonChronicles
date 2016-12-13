@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour {
 	public Canvas TechTree;
 	public Canvas UltTree;
  
+	public List<Text> creditDisplayers = new List<Text> ();
 
 	public Button techButton;
 	public Button UltButton;
@@ -77,9 +78,13 @@ public class LevelManager : MonoBehaviour {
 
 		}
 
+		Turrets.enabled = false;
+		Structures.enabled = false;
+		Vehicles.enabled = false;
+
 		setDifficultyDropDowns (LevelData.getDifficulty());
 
-	
+		changeMoney (0);
 	}
 
 
@@ -182,6 +187,18 @@ public class LevelManager : MonoBehaviour {
 				dd.value = i;
 			}
 		}
+	}
+
+
+	public void changeMoney(int input)
+	{
+
+		LevelData.addMoney (input);
+		foreach (Text t in creditDisplayers) {
+			t.text = "" + LevelData.getMoney ();
+		}
+
+		//Debug.Log ("money " + LevelData.totalXP);
 	}
 
 }

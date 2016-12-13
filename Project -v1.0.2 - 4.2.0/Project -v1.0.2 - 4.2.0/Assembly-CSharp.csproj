@@ -494,6 +494,8 @@
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />
      <Compile Include="Assets\SoundOptions.cs" />
+     <Compile Include="Assets\SoundTrackPlayList.cs" />
+     <Compile Include="Assets\SoundTrackPlayer.cs" />
      <Compile Include="Assets\SpaceDrop.cs" />
      <Compile Include="Assets\SpeedUpgrade.cs" />
      <Compile Include="Assets\StandardInteract.cs" />
