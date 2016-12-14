@@ -33,7 +33,7 @@ public class AttackMoveState : UnitState {
 		}
 
 
-		nextActionTime = Time.time + 1;
+		nextActionTime = Time.time + .1f;
 		//Debug.Log("Just called th reset1" + target + "   "+ enemy);
 		if (type == MoveType.passive) {
 			// This is breaking stuff so I commented it out
@@ -66,7 +66,7 @@ public class AttackMoveState : UnitState {
 			UnitManager temp =  myManager.findBestEnemy ();
 
 			if (temp) {
-			
+		
 				enemy = temp;
 				if (myManager.cMover) {
 		
@@ -85,6 +85,7 @@ public class AttackMoveState : UnitState {
 			bool attacked = false;
 			foreach (IWeapon weap in myManager.myWeapon) {
 				if (weap.inRange (enemy)) {
+			
 
 					if (myManager.cMover) {
 						
@@ -92,7 +93,6 @@ public class AttackMoveState : UnitState {
 					}
 					attacked = true;
 					if (weap.simpleCanAttack (enemy)) {
-						
 						weap.attack (enemy, myManager);
 					} 
 				} 
@@ -102,7 +102,7 @@ public class AttackMoveState : UnitState {
 				if (myManager.cMover.speed == 0) {
 					myManager.cMover.resetMoveLocation (enemy.transform.position);
 				}
-
+			
 				myManager.cMover.move ();
 			}
 		} else {

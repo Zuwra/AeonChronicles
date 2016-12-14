@@ -52,9 +52,8 @@ public class PulseCannon : IWeapon {
 
 			GameObject proj = null;
 			if (projectile != null) {
-				Vector3 pos = this.gameObject.transform.position;
-				pos.y += this.gameObject.GetComponent<CharacterController> ().radius;
-				proj = (GameObject)Instantiate (projectile, pos, Quaternion.identity);
+	
+				proj = (GameObject)Instantiate (projectile,this.transform.position +  originPoint, Quaternion.identity);
 
 				Projectile script = proj.GetComponent<Projectile> ();
 				proj.SendMessage ("setSource", this.gameObject);
