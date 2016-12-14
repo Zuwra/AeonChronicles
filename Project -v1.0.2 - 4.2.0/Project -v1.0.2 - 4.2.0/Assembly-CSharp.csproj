@@ -369,6 +369,7 @@
      <Compile Include="Assets\ResearchUpgrade.cs" />
      <Compile Include="Assets\ResourceGenerator.cs" />
      <Compile Include="Assets\Resources\mortarPod.cs" />
+     <Compile Include="Assets\RoamAI.cs" />
      <Compile Include="Assets\RocketBooster.cs" />
      <Compile Include="Assets\SanguinAura.cs" />
      <Compile Include="Assets\Sanguinate.cs" />

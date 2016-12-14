@@ -152,6 +152,9 @@ public class TurretScreenDisplayer : MonoBehaviour {
 		if (A.chargeCount > 0) {
 
 			p.myMount.placeTurret (A.createUnit ());
+			if (A.PlaceEffect) {
+				Instantiate (A.PlaceEffect,p.myMount.transform.position, Quaternion.identity,p.myMount.transform);
+			}
 			return true;
 		}
 		return false;
@@ -160,6 +163,9 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	public bool buildRailGun(TurretPlacer p )
 	{if (B.chargeCount > 0) {
 			p.myMount.placeTurret (B.createUnit ());
+			if (B.PlaceEffect) {
+				Instantiate (B.PlaceEffect, p.myMount.transform.position, Quaternion.identity, p.myMount.transform);
+			}
 			return true;
 		}
 		return false;
@@ -170,6 +176,9 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	public bool buildRepair(TurretPlacer p )
 			{if (C.chargeCount > 0) {
 				p.myMount.placeTurret (C.createUnit ());
+			if (C.PlaceEffect) {
+				Instantiate (C.PlaceEffect, p.myMount.transform.position, Quaternion.identity, p.myMount.transform);
+			}
 			return true;
 		}
 		return false;
@@ -178,6 +187,9 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	public bool buildMortar(TurretPlacer p )
 	{if (D.chargeCount > 0) {
 			p.myMount.placeTurret (D.createUnit ());
+			if (D.PlaceEffect) {
+				Instantiate (D.PlaceEffect, p.myMount.transform.position, Quaternion.identity, p.myMount.transform);
+			}
 			return true;
 		}
 		return false;

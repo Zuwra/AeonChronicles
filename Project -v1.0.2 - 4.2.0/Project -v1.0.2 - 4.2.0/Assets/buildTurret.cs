@@ -19,7 +19,7 @@ public class buildTurret :UnitProduction{
 	protected List<TurretMount> turretMounts = new List<TurretMount>();
 
 	protected BuildManager buildMan;
-
+	public GameObject PlaceEffect;
 	public bool rapidArms;
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
@@ -102,7 +102,9 @@ public class buildTurret :UnitProduction{
 								audioSrc.PlayOneShot (soundEffect);
 							}
 							obj.placeTurret (createUnit ());
-
+						if (PlaceEffect) {
+							Instantiate (PlaceEffect, obj.transform.position, Quaternion.identity, obj.transform);
+						}
 				
 						}
 					}
@@ -296,6 +298,7 @@ public class buildTurret :UnitProduction{
 			RaceManager.upDateUI ();
 		}
 		GameObject tur = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
+	
 
 		//racer.applyUpgrade (tur);
 		//buildingUnit = false;
