@@ -1,22 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\airmover.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\IWeapon.cs">
     <Files>
-      <File FileName="Assets\CampaignUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampUpgradePurchase.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampUpgradeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\SoundTrackPlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\SoundTrackPlayList.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\bobble.cs" Line="1" Column="1" />
       <File FileName="Assets\PulseCannon.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\AttackMoveState.cs" Line="1" Column="1" />
       <File FileName="Assets\buildTurret.cs" Line="1" Column="1" />
       <File FileName="Assets\TurretScreenDisplayer.cs" Line="1" Column="1" />
       <File FileName="Assets\RoamAI.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="1" Column="1" />
-      <File FileName="Assets\airmover.cs" Line="105" Column="1" />
+      <File FileName="Assets\airmover.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="298" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 public class BuildUnit : UnitProduction {
 
-
-
-
 	private RaceManager racer;
 
 
@@ -22,7 +19,8 @@ public class BuildUnit : UnitProduction {
 
 
 	private int QueueNum;
-	[Tooltip("objec that shows up while the unit is building, can be null")]
+
+	[Tooltip("object that shows up while the unit is building, can be null")]
 	public GameObject constObject;
 	// Use this for initialization
 
@@ -173,25 +171,29 @@ public class BuildUnit : UnitProduction {
 	public void createUnit()
 	{
 
-
 		if (constObject) {
 			constObject.SetActive (false);
 		}
 		HD.stopBuilding ();
-		Vector3 location = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z -20);
+		Vector3 location = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z);
 
 		GameObject unit = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
 
-	
-		unit.GetComponent<UnitManager>().setInteractor();
-		unit.GetComponent<UnitManager> ().interactor.initialize ();
+		UnitManager unitMan = unit.GetComponent<UnitManager> ();
+		unitMan.setInteractor();
+		unitMan.interactor.initialize ();
 		if (myInteractor != null) {
-			if (myInteractor.rallyUnit != null) {
 
-				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateFollowCommand(myInteractor.rallyUnit));
+			//Sends units outside of the Construction yard, so it looks like they were built inside.
+			unitMan.GiveOrder (Orders.CreateMoveOrder(new Vector3(this.gameObject.transform.position.x +10,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z -16)));
+
+			//Queue a command if they have a rally point or unit
+			if (myInteractor.rallyUnit != null) {
+				
+				unitMan.GiveOrder (Orders.CreateFollowCommand(myInteractor.rallyUnit,true));
 			} 
 			else if (myInteractor.rallyPoint != Vector3.zero) {
-				unit.GetComponent<UnitManager> ().GiveOrder (Orders.CreateMoveOrder (myInteractor.rallyPoint));
+				unitMan.GiveOrder (Orders.CreateMoveOrder (myInteractor.rallyPoint,true));
 
 			//	Debug.Log ("Giving Rally Command");
 			}

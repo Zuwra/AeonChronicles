@@ -38,7 +38,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 	IEnumerator delayer()
 	{
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (1.5f);
 		//Debug.Log ("Finding Ore");
 		findNearestOre ();
 	}

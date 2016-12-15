@@ -232,6 +232,7 @@ public class UnitManager : Unit,IOrderable{
 
 	public new void GiveOrder (Order order)
 	{
+		
 		if (myState is  ChannelState) {
 			//order.queued = true;
 			foreach (UnitState s in queuedStates) {

@@ -300,7 +300,7 @@ public class IWeapon : MonoBehaviour {
 			}
 			if (attackSoundEffect) {
 				audioSrc.pitch = ((float)Random.Range (6, 14) / 10);
-				audioSrc.PlayOneShot (attackSoundEffect, ((float)Random.Range(4,10)/10));
+				audioSrc.PlayOneShot (attackSoundEffect, Random.value/3 + .15f);
 			}
 			if (fireEffect) {
 				fireEffect.playEffect ();
