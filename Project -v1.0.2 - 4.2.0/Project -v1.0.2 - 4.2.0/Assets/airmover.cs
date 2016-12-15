@@ -101,7 +101,11 @@ public class airmover : IMover {
 		Vector3 turnAmount = targetPosition - transform.position;
 		turnAmount.y = 0;
 	
-		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(turnAmount), Time.deltaTime * turnSpeed *  0.2f);
+		Quaternion toTurn = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(turnAmount), Time.deltaTime * turnSpeed *  0.2f);
+
+		if (!float.IsNaN(toTurn.x) &&   !float.IsNaN(toTurn.y) &&!float.IsNaN(toTurn.z) && !float.IsNaN(toTurn.w) ) {
+			transform.rotation = toTurn;
+		}
 	//	Debug.Log ("Returnin 3 ");
 		return false;
 	}
