@@ -20,6 +20,7 @@ public class buildTurret :UnitProduction{
 
 	protected BuildManager buildMan;
 	public GameObject PlaceEffect;
+
 	public bool rapidArms;
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();

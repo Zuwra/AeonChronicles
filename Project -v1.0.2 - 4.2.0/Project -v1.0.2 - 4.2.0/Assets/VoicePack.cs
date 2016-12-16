@@ -19,6 +19,7 @@ public class VoicePack : MonoBehaviour {
 	public List<AudioClip> EnemyDreadNaughts;
 	public List<AudioClip> ResearchFinished;
 	public List<AudioClip> OreDepleted;
+	public List<AudioClip> BuildingComplete;
 
 	public AudioClip getOreLine()
 	{
@@ -76,4 +77,8 @@ public class VoicePack : MonoBehaviour {
 	}
 
 
+	public AudioClip getBuildingCompleteLine()
+	{
+		return BuildingComplete[Random.Range (0,BuildingComplete.Count - 1)];
+	}
 }

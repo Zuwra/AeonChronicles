@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ArmoryInteractor: BuildingInteractor {
 
+	public GameObject RemoveEffect;
 
 	public override void computeInteractions (Order order)
 	{
@@ -58,13 +59,15 @@ public class ArmoryInteractor: BuildingInteractor {
 			{
 				foreach (TurretMount tm in order.Target.GetComponentsInChildren<TurretMount>()) {
 					if (tm.turret) {
+						Instantiate( RemoveEffect, tm.transform.position + Vector3.up, tm.transform.rotation, tm.transform);
 						GameObject turret = tm.unPlaceTurret ();
+
 						if (turret) {
 							UnitManager um = turret.GetComponent<UnitManager> ();
-							Debug.Log (turret + " :   " + um);
+
 
 							foreach (buildTurret bt in GetComponents<buildTurret>()) {
-								Debug.Log ("Chcking for " + bt.Name);
+								
 								if (bt.Name.Contains (um.UnitName)) {
 									bt.changeCharge (1);
 									um.myStats.kill (null);

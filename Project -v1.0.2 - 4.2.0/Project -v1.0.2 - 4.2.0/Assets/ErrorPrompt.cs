@@ -96,6 +96,11 @@ public class ErrorPrompt : MonoBehaviour {
 		showError( "Population Limited Reached", myVoicePack.getMaxSupplyLine());
 
 	}
+	public void BuildingDone(string n)
+	{
+		showError( n, myVoicePack.getBuildingCompleteLine());
+
+	}
 
 	public void invalidGroundLocation()
 	{
