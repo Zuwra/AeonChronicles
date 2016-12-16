@@ -15,13 +15,13 @@ public class turret : MonoBehaviour {
 
 	public void Target(GameObject target)
 	{
-
+		
 		myTarget = target;
 		lastTargetTime = Time.time;
 
 
-		if (frontFace == null) {
-			frontFace = StartCoroutine (turnFront ());
+		if (frontFace != null) {
+			StopCoroutine (frontFace);// = StartCoroutine (turnFront ());
 		}
 
 
@@ -51,6 +51,8 @@ public class turret : MonoBehaviour {
 			yield return null;
 		}
 
+		frontFace = StartCoroutine (turnFront());
+
 	}
 
 
@@ -59,13 +61,10 @@ public class turret : MonoBehaviour {
 	IEnumerator turnFront()
 	{
 		
-		while (Time.time < lastTargetTime + 3.2) {
-			yield return new WaitForSeconds (1);
 
-		}
-		for (float i = 0; i < 3f; i += Time.deltaTime) {
-
-			transform.rotation = Quaternion.Slerp(transform.rotation,transform.parent.rotation, Time.deltaTime * 30 *  0.2f);
+		for (float i = 0; i < 2f; i += Time.deltaTime) {
+			Debug.Log ("Turning!");
+			transform.rotation = Quaternion.Slerp(transform.rotation,transform.parent.rotation, i/2);
 
 			yield return null;
 		}

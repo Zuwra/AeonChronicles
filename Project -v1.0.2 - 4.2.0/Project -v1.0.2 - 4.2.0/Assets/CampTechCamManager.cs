@@ -16,7 +16,7 @@ public class CampTechCamManager : MonoBehaviour {
 	Vector3 CameraStart;
 	Vector3 CamStartLookAt;
 
-
+	public GameObject OverAllPArticle;
 	[Tooltip("This is a list of all buttons to be turned on throughout levels, and the obejct the camera will go to")]
 	public List<TechOption> TechChoices = new List<TechOption>();
 
@@ -32,6 +32,7 @@ public class CampTechCamManager : MonoBehaviour {
 		public GameObject CamFocus;
 		public GameObject HUD;
 		public int levelAcquired;
+		public MultiShotParticle effect;
 	}
 		
 	//THis gets rid of all dropdown menus when clicking outside of them.
@@ -46,6 +47,12 @@ public class CampTechCamManager : MonoBehaviour {
 		
 
 
+	}
+
+	public void AssignTechEffect()
+	{
+		if (currentTech != null) {
+			Instantiate (OverAllPArticle, currentTech.effect.transform.position, currentTech.effect.transform.rotation);}
 	}
 
 	void Start()

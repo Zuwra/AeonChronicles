@@ -18,12 +18,7 @@ public class MultiShotParticle : MonoBehaviour {
 		}
 		this.gameObject.SetActive (false);
 	}
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+		
 
 	public void stopEffect()
 	{

@@ -35,6 +35,7 @@ public class IWeapon : MonoBehaviour {
 
 
 	public GameObject turret;
+	turret turretClass;
 	public Vector3 originPoint;
 	//private float nextActionTime;
 	public float attackArc;
@@ -98,6 +99,9 @@ public class IWeapon : MonoBehaviour {
 		myManager = this.gameObject.GetComponent<UnitManager> ();
 
 		myRadius = GetComponent<CharacterController> ().radius;
+		if (turret) {
+			turretClass = turret.GetComponent<turret> ();
+		}
 	}
 
 
@@ -260,10 +264,14 @@ public class IWeapon : MonoBehaviour {
 
 		enemy = target;
 		if (target) {
+			if (turretClass) {
+				turretClass.Target (enemy.gameObject);
+			}
+			else{
 			Vector3 spotter = enemy.transform.position;
 			spotter.y = this.transform.position.y;
 			this.gameObject.transform.LookAt(spotter);
-
+			}
 			float damage = baseDamage;
 
 

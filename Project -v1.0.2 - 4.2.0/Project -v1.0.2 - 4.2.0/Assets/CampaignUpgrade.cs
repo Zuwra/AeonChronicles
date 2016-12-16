@@ -53,31 +53,33 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	public void setUpgrade()
 	{
-			LevelData.applyUpgrade (this.gameObject.ToString (), myDropDown.value);
+		
+		LevelData.applyUpgrade (this.gameObject.ToString (), myDropDown.value);
 			
 		GameObject.FindObjectOfType<TrueUpgradeManager> ().playSound ();
+		GameObject.FindObjectOfType<CampTechCamManager> ().AssignTechEffect ();
 		//Debug.Log ("Getting set " + this.gameObject.ToString() + "  "+ myDropDown.value +"  size  " + myUpgrades.Count);
-		theDescription.text = myUpgrades [myDropDown.value].description;
+
+		if (myUpgrades.Count > myDropDown.value) {
+			theDescription.text = myUpgrades [myDropDown.value].description;
 	
 
-		foreach (Image i in myPic) {
-			i.sprite = myUpgrades [myDropDown.value].pic;
-		}
+			foreach (Image i in myPic) {
+				i.sprite = myUpgrades [myDropDown.value].pic;
+			}
 
 			if (currentUpgrade) {
-				foreach(GameObject o in unitsToUpgrade)
-				{
+				foreach (GameObject o in unitsToUpgrade) {
 					currentUpgrade.unApplyUpgrade (o);
 				}
 			}
-		currentUpgrade = myUpgrades [myDropDown.value].pointer;
+			currentUpgrade = myUpgrades [myDropDown.value].pointer;
 			if (currentUpgrade) {
-				foreach(GameObject o in unitsToUpgrade)
-				{
+				foreach (GameObject o in unitsToUpgrade) {
 					currentUpgrade.applyUpgrade (o);
 				}
+			}
 		}
-
 	}
 
 	public void setUpgrade(int n)
@@ -93,15 +95,14 @@ public class CampaignUpgrade : MonoBehaviour {
 	void Start () {
 
 	
-		//myManager = GameObject.FindObjectOfType<LevelManager> ().levelPresets[LevelData.currentLevel];
 		List<string> options = new List<string> ();
 		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
 
-			if (up.isUnlocked() && myTypes.Contains (up.myType)) {
-				
-				myUpgrades.Add (up);
-				options.Add (up.name);
-			
+			if (up.isUnlocked() && myTypes.Contains (up.myType) && !myUpgrades.Contains(up)) {
+		
+					myUpgrades.Add (up);
+					options.Add (up.name);
+
 			}
 
 		}
@@ -132,7 +133,7 @@ public class CampaignUpgrade : MonoBehaviour {
 		foreach (LevelData.keyValue kv in LevelData.getsaveInfo().appliedUpgrades) {
 	
 			if (kv.theName == this.gameObject.ToString ()) {
-				Debug.Log (kv.index);
+		
 					myDropDown.value = kv.index;
 					foreach(GameObject o in unitsToUpgrade)
 					{if (currentUpgrade) {
