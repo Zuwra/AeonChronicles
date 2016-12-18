@@ -66,7 +66,7 @@ public class VoicePack : MonoBehaviour {
 		return EnemyWave [Random.Range (0,EnemyWave.Count - 1)];
 	}
 
-	public AudioClip geOreDepletedLine()
+	public AudioClip getOreDepletedLine()
 	{
 		return OreDepleted[Random.Range (0,OreDepleted.Count - 1)];
 	}

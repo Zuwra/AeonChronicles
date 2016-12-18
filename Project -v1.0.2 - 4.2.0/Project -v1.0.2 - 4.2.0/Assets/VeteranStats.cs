@@ -17,12 +17,17 @@ public class VeteranStats : IComparable<VeteranStats>{
 	public bool isWarrior;
 	public string backstory;
 
-	public VeteranStats(bool hasName, string myType, bool isW)
+	public VeteranStats(bool hasName, string myType, bool isW, string myName)
 	{
 		unitType = myType;
 		isWarrior = isW;
 
+		if (myName != "") {
+			UnitName = myName;
+		}
+
 		if (hasName) {
+
 			UnitName = RaceNames.getInstance ().getName ();
 			backstory = getBackstory ();
 		} else {

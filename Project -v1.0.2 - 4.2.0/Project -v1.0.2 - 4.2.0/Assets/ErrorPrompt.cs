@@ -115,6 +115,10 @@ public class ErrorPrompt : MonoBehaviour {
 	public void onCooldown()
 	{showError( "Ability on Cooldown", myVoicePack.getCooldownLine());
 	}
+
+	public void OreDepleted()
+	{showError( "Ore Deposit Depleted", myVoicePack.getOreDepletedLine());
+	}
 	
 	public void underAttack(Vector3 location)
 	{
