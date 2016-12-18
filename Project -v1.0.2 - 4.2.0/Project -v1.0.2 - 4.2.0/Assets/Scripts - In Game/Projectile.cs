@@ -116,7 +116,7 @@ public  class Projectile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+	
 		if (target != null) {
 			lastLocation = target.transform.position + randomOffset;
 			//Debug.Log("attacking on " +Vector3.Distance(lastLocation,this.gameObject.transform.position));

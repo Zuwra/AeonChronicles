@@ -80,7 +80,7 @@ public class Bombardment : TargetAbility{
 		proj = (GameObject)Instantiate (Explosion, spawnLoc, Quaternion.identity);
 
 		Projectile script = proj.GetComponent<Projectile> ();
-		proj.SendMessage ("setSource", this.gameObject);
+		proj.SendMessage ("setSource", this.gameObject, SendMessageOptions.DontRequireReceiver);
 
 
 		script.damage = myDamage;

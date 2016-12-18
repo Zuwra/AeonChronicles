@@ -21,6 +21,7 @@ public class WaveSpawner : MonoBehaviour {
 		[TextArea(2,10)]
 		public string textWarning;
 		public AudioClip audioWarning;
+		public Sprite myPic;
 
 	}
 	[System.Serializable]
@@ -61,13 +62,23 @@ public class WaveSpawner : MonoBehaviour {
 		if (Clock.main.getTotalSecond()> nextActionTime) {
 
 			float delay = .1f;
+
+			if (nextWave.warnings.Count > 0) {
+				int n = UnityEngine.Random.Range (0, nextWave.warnings.Count - 1);
+
+				ExpositionDisplayer.instance.displayText (nextWave.warnings [n].textWarning, 7, nextWave.warnings [n].audioWarning, .93f, nextWave.warnings[n].myPic);
+
+			}
+
+
 			foreach (SceneEventTrigger trig in nextWave.myTriggers) {
-				trig.hasTriggered = false;
-				trig.trigger (0, 0, Vector3.zero, null, false);
+				if (trig) {
+					trig.hasTriggered = false;
+					trig.trigger (0, 0, Vector3.zero, null, false);
+				}
 			}
 
 			foreach (GameObject obj in nextWave.waveType) {
-
 
 				StartCoroutine(MyCoroutine(delay, obj));
 				delay += .2f;

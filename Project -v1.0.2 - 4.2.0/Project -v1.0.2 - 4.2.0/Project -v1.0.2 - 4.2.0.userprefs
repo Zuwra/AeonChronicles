@@ -1,17 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\BuildingInteractor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelManager.cs">
     <Files>
       <File FileName="Assets\PulseCannon.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\AttackMoveState.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\turret.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampTechCamManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampaignUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\BuildingInteractor.cs" Line="101" Column="5" />
-      <File FileName="Assets\Scripts - In Game\OreDispenser.cs" Line="43" Column="56" />
-      <File FileName="Assets\ErrorPrompt.cs" Line="120" Column="72" />
-      <File FileName="Assets\VoicePack.cs" Line="68" Column="2" />
+      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="288" Column="32" />
+      <File FileName="Assets\ThrasherBlade.cs" Line="27" Column="22" />
+      <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="111" Column="3" />
+      <File FileName="Assets\ShieldGlobe.cs" Line="52" Column="44" />
+      <File FileName="Assets\MiningSawDamager.cs" Line="1" Column="1" />
+      <File FileName="Assets\WaveSpawner.cs" Line="63" Column="4" />
+      <File FileName="Assets\TextTrigger.cs" Line="26" Column="83" />
+      <File FileName="Assets\Scripts - In Game\bobble.cs" Line="20" Column="3" />
+      <File FileName="Assets\Bombardment.cs" Line="80" Column="52" />
+      <File FileName="Assets\LevelManager.cs" Line="20" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

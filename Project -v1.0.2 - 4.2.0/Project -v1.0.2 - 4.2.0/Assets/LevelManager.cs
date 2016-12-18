@@ -12,7 +12,6 @@ public class LevelManager : MonoBehaviour {
 
 	public List<GameObject> levelIntros = new List<GameObject> ();
 	public List<GameObject> Expositions = new List<GameObject> ();
-	public List<CampUpgradeManager> levelPresets = new List<CampUpgradeManager> ();
 
 	public List<Dropdown> difficultyBars = new List<Dropdown> ();
 	public List<Button> levelButtons = new List<Button> ();
@@ -52,10 +51,6 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log (" current level " + LevelData.getHighestLevel());
 		for (int i = 0; i < levelButtons.Count; i++) {
 			levelButtons [i].interactable = (i <= LevelData.getHighestLevel());
-		}
-	
-		if (levelPresets.Count > LevelData.getHighestLevel()) {
-			levelPresets [LevelData.getHighestLevel()].enabled = true;
 		}
 
 

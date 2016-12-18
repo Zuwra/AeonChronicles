@@ -7,50 +7,50 @@ public class ThrasherBlade : Projectile {
 	public float rollTime = 5;
 	float trueROlltime;
 	bool goingOut = true;
-	new void Start()
-	{
-		base.Start ();
-		lastLocation = target.transform.position -this.gameObject.transform.position ;
+	Vector3 Origin;
+	Vector3 EndTarget;
+	RaycastHit objecthit;
 
+	Vector3 dir;
+	new void Start()
+	{base.Start ();
+		Origin = this.transform.position;
+		EndTarget = target.transform.position;
+		dir = (EndTarget - transform.position);
+		dir.y = 0;
+
+		lastLocation = target.transform.position -this.gameObject.transform.position ;
 
 		trueROlltime = rollTime;
 	}
 
-	void Update () {
-		
+	new void Update () {
 
-
-		Vector3 dir;
-		if (!goingOut) {
-			dir = (transform.position-lastLocation);
-		} else {
-			dir = (transform.position- lastLocation )*-1;
-		}
-
+		Vector3 tempDir = dir;
 		//Make sure your the right height above the terrain
-		RaycastHit objecthit;
-		Vector3 down = this.gameObject.transform.TransformDirection (Vector3.down);
 
-		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, (~8))) {
+		if (Physics.Raycast (this.gameObject.transform.position + Vector3.up * 4, Vector3.down, out objecthit, 100, (~8))) {
 			float h = Vector3.Distance (this.gameObject.transform.position, objecthit.point);
 			if (h < 2f || h > 4) {
 
-				dir.y -=   (this.gameObject.transform.position.y -(objecthit.point.y + 3f) ) *speed *8;
+				tempDir.y -=   (this.gameObject.transform.position.y -(objecthit.point.y + 3f) ) *speed *8;
 			}
-
-
 		}
-		dir.Normalize ();
-		dir *= speed * Time.deltaTime ;
 
-		dir = Quaternion.AngleAxis (-75, Vector3.up) * dir;
-		this.gameObject.transform.Translate (dir);
+
+		tempDir.Normalize ();
+		tempDir *= speed * Time.deltaTime;
+
+		this.gameObject.transform.Translate (tempDir,Space.World);
+
 
 
 		rollTime -= Time.deltaTime;
 		if (rollTime <0) {
 			
 			if (goingOut) {
+				dir = (Origin - this.transform.position);
+				dir.y = 0;
 				foreach (rotater rot in GetComponentsInChildren<rotater>()) {
 					rot.speed *=-1; 
 				}
@@ -64,12 +64,6 @@ public class ThrasherBlade : Projectile {
 			}
 
 		}
-
-	void OnControllerColliderHit(ControllerColliderHit other)
-	{
-	}
-	void OnTriggerEnter(Collider other)
-	{
-	}
+		
 
 }
