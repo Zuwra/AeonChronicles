@@ -50,13 +50,13 @@ public class LevelManager : MonoBehaviour {
 		}
 		Debug.Log (" current level " + LevelData.getHighestLevel());
 		for (int i = 0; i < levelButtons.Count; i++) {
-			levelButtons [i].interactable = (i <= LevelData.getHighestLevel());
+			levelButtons [i].interactable = (i <= Mathf.Min(3, LevelData.getHighestLevel()));
 		}
 
 
 		//levelIntros [LevelData.currentLevel].SetActive (true);
 		if (levelIntros.Count > 0) {
-			currentIntro = levelIntros [LevelData.getHighestLevel()];
+			currentIntro = levelIntros [ Mathf.Min(3, LevelData.getHighestLevel())];
 		
 		currentTech = Vehicles;
 			if (LevelData.getHighestLevel() == 0) {

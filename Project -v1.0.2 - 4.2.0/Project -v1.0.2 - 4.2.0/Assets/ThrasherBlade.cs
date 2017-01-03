@@ -66,4 +66,13 @@ public class ThrasherBlade : Projectile {
 		}
 		
 
+	new void OnTriggerEnter(Collider other)
+	{}
+
+	void OnControllerColliderHit(ControllerColliderHit other)
+	{
+	}
+
+	new void OnTriggerExit(Collider other)
+	{}
 }

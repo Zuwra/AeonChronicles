@@ -7,13 +7,11 @@ public class BloodMist : TargetAbility {
 	public GameObject BloodMistObj;
 	// Use this for initialization
 	void Start () {
+		myType = type.target;
 
 	}
 
-	// Update is called once per frame
-	void Update () {
 
-	}
 
 	override
 	public continueOrder canActivate(bool showError){
@@ -80,7 +78,7 @@ public class BloodMist : TargetAbility {
 		proj = (GameObject)Instantiate (BloodMistObj, pos, Quaternion.identity);
 
 
-		proj.SendMessage ("setSource", this.gameObject);
+		proj.SendMessage ("setSource", this.gameObject,SendMessageOptions.DontRequireReceiver);
 
 
 

@@ -4,39 +4,51 @@ using System.Collections;
 public class LandMineActivate : MonoBehaviour {
 
 	public IWeapon explosion;
-	
-	public bool activateOnAll;//as opposed to activateOnEnemyOnly - will it blow up if ANYBODY 'steps' on it
+
 	public int activationsRemaining = 5;// implement this later for multi-use mines
 
+	public float baseDamage;
+	public float chargeUpTime;
+	public float damagePerSec;
 
+
+	public float currentDamage;
+
+	public GameObject ChargeEffect;
+	public GameObject FullChargeEffect;
+
+	public GameObject explosionEffect;
 	// Use this for initialization
 	void Start () {
-		
+		currentDamage = baseDamage;
+		StartCoroutine (chargeUp ());
 	}
 
-	// Update is called once per frame
-	void Update () {
-	
+	IEnumerator chargeUp()
+	{
+		float elapsedTime = .5f;
+		yield return new WaitForSeconds (.5f);
+		while (elapsedTime < chargeUpTime) {
+
+			currentDamage += damagePerSec / 2;
+
+			yield return new WaitForSeconds (.5f);
+			elapsedTime += .5f;
+		}
+
+		FullChargeEffect.SetActive (true);
+		Destroy (ChargeEffect);
 	}
 
 	void OnTriggerEnter(Collider other) {
-		GameObject otherObj = other.gameObject;
 
-		UnitManager otherManager = otherObj.GetComponent<UnitManager> ();
-		if (otherManager) {
+		UnitManager otherManager = other.gameObject.GetComponent<UnitManager> ();
+		if (otherManager && !otherManager.PlayerOwner.Equals (1)) {
 
-			bool activate = false;
-			//if we should target them 
-			if (activateOnAll || !otherManager.PlayerOwner.Equals (this.GetComponent<UnitManager> ().PlayerOwner)) {
-				if (explosion.canAttack (otherManager)) {
-					activate = true;
-				}
-			}
+			otherManager.getUnitStats ().TakeDamage (currentDamage,this.gameObject,DamageTypes.DamageType.True);
+			Instantiate (explosionEffect, this.gameObject.transform.position, Quaternion.identity);
+			Destroy (this.gameObject);
 
-			if (activate) {
-				explosion.attack (otherManager, null);
-				Destroy (this.gameObject);
-			}
 		}
 
 	}

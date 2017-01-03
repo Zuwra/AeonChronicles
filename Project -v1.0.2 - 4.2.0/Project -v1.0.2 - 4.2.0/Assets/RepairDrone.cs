@@ -30,10 +30,8 @@ public class RepairDrone : MonoBehaviour {
 		if (target) {
 			if (Vector3.Distance (myHome.transform.position, this.gameObject.transform.position) > 50) {
 				returnHome ();
-			}
-
-			else if (Vector3.Distance (target.transform.position, this.gameObject.transform.position) > 5) {
-				transform.Translate (((target.transform.position + (Vector3.up*4)) - this.gameObject.transform.position).normalized * Time.deltaTime * 30f);
+			} else if (Vector3.Distance (target.transform.position, this.gameObject.transform.position) > 5) {
+				transform.Translate (((target.transform.position + (Vector3.up * 4)) - this.gameObject.transform.position).normalized * Time.deltaTime * 30f);
 			} else {
 				if (Time.time > nextActionTime) {
 					nextActionTime = Time.time + 1;
@@ -43,7 +41,7 @@ public class RepairDrone : MonoBehaviour {
 					if (buildInter && !buildInter.ConstructDone ()) {
 						if (AidConstruction) {
 							buildInter.construct (.012f);
-							PopUpMaker.CreateGlobalPopUp ("+" , Color.green, target.transform.position);
+							PopUpMaker.CreateGlobalPopUp ("+", Color.green, target.transform.position);
 						}
 					
 					} else {
@@ -65,7 +63,7 @@ public class RepairDrone : MonoBehaviour {
 			}
 		} else if (goingHome) {
 			if (Vector3.Distance (myHome.transform.position, this.gameObject.transform.position) > 3) {
-				transform.Translate (((myHome.transform.position + (Vector3.up*2)) - this.gameObject.transform.position).normalized * Time.deltaTime * 30f);
+				transform.Translate (((myHome.transform.position + (Vector3.up * 2)) - this.gameObject.transform.position).normalized * Time.deltaTime * 30f);
 			} else {
 				
 				transform.position = hometurret.transform.position;
@@ -75,6 +73,8 @@ public class RepairDrone : MonoBehaviour {
 				goingHome = false;
 				myHome.doneRepairing (target);
 			}
+		} else {
+			returnHome ();
 		}
 
 	

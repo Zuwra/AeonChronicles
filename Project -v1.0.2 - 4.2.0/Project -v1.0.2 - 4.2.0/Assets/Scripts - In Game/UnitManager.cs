@@ -95,7 +95,7 @@ public class UnitManager : Unit,IOrderable{
 			man.initialize (); // Initializes data, if this is the first unit to wake up.
 			myStats.Initialize();
 
-		if (!Clock.main || Clock.main.getTotalSecond () < 1 || !myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+		if (!Clock.main || Clock.main.getTotalSecond () < 1 || !myStats.isUnitType (UnitTypes.UnitTypeTag.Structure) || UnitName== "Augmentor") {
 		//	Debug.Log (" manager " + man.playerList.Length + "   " + (PlayerOwner - 1) +"  " + this.gameObject);
 			man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
 		}

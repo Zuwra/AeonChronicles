@@ -14,16 +14,17 @@ public class barrierShield : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		radius = GetComponent<SphereCollider> ().radius;
+		StartCoroutine (RunTime (duration));
 
 	}
+		
 
-	// Update is called once per frame
-	void Update () {
-
-		duration -= Time.deltaTime;
-		if (duration <= 0) {
-			Destroy (this.gameObject);
-		}
+	IEnumerator RunTime(float dur)
+	{
+		yield return new WaitForSeconds (dur -2);
+		GetComponent<Animator> ().SetInteger ("State", 1);
+		yield return new WaitForSeconds (3);
+		Destroy (this.gameObject);
 	
 	}
 
@@ -46,7 +47,7 @@ public class barrierShield : MonoBehaviour {
 
 
 					if (Health <= 0) {
-						Destroy (this.gameObject);
+						StartCoroutine (RunTime (0));
 					}
 				
 				}
@@ -76,7 +77,7 @@ public class barrierShield : MonoBehaviour {
 					Destroy (other.gameObject);
 
 					if (Health <= 0) {
-						Destroy (this.gameObject);
+						StartCoroutine (RunTime (0));
 					}
 
 				}

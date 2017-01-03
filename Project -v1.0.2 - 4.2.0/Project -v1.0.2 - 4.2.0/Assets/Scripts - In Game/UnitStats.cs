@@ -95,6 +95,7 @@ public class UnitStats : MonoBehaviour {
 		else{
 		veternStat= new VeteranStats(!isUnitType(UnitTypes.UnitTypeTag.Turret)&& !isUnitType(UnitTypes.UnitTypeTag.Structure), GetComponent<UnitManager>().UnitName,
 				!(isUnitType(UnitTypes.UnitTypeTag.Turret))&&!(isUnitType(UnitTypes.UnitTypeTag.Worker)) && !(isUnitType(UnitTypes.UnitTypeTag.Structure)), "");}
+
 		if (!mySelection) {
 			mySelection = this.gameObject.GetComponent<Selected>();
 		}
