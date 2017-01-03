@@ -88,13 +88,19 @@ public class UnitStats : MonoBehaviour {
 			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,myHeight.ToString()));
 			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
 		}
+		if (!myManager) {
+			myManager = this.gameObject.GetComponent<UnitManager> ();
+			myManager.myStats = this;
+		}
+
 		if (isHero) {
 			veternStat= new VeteranStats(!isUnitType(UnitTypes.UnitTypeTag.Turret)&& !isUnitType(UnitTypes.UnitTypeTag.Structure), GetComponent<UnitManager>().UnitName,
-				!(isUnitType(UnitTypes.UnitTypeTag.Turret))&&!(isUnitType(UnitTypes.UnitTypeTag.Worker)) && !(isUnitType(UnitTypes.UnitTypeTag.Structure)),GetComponent<UnitManager>().UnitName );
+				!(isUnitType(UnitTypes.UnitTypeTag.Turret))&&!(isUnitType(UnitTypes.UnitTypeTag.Worker)) && !(isUnitType(UnitTypes.UnitTypeTag.Structure)),GetComponent<UnitManager>().UnitName 
+				, myManager.PlayerOwner);
 		}
 		else{
 		veternStat= new VeteranStats(!isUnitType(UnitTypes.UnitTypeTag.Turret)&& !isUnitType(UnitTypes.UnitTypeTag.Structure), GetComponent<UnitManager>().UnitName,
-				!(isUnitType(UnitTypes.UnitTypeTag.Turret))&&!(isUnitType(UnitTypes.UnitTypeTag.Worker)) && !(isUnitType(UnitTypes.UnitTypeTag.Structure)), "");}
+				!(isUnitType(UnitTypes.UnitTypeTag.Turret))&&!(isUnitType(UnitTypes.UnitTypeTag.Worker)) && !(isUnitType(UnitTypes.UnitTypeTag.Structure)), "", myManager.PlayerOwner);}
 
 		if (!mySelection) {
 			mySelection = this.gameObject.GetComponent<Selected>();
@@ -103,10 +109,10 @@ public class UnitStats : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-		myManager = this.gameObject.GetComponent<UnitManager> ();
-		myManager.myStats = this;
-	
+		if (!myManager) {
+			myManager = this.gameObject.GetComponent<UnitManager> ();
+			myManager.myStats = this;
+		}
 
 		//nextActionTime = Time.time + .5f;
 		if (isUnitType (UnitTypes.UnitTypeTag.Structure)) {

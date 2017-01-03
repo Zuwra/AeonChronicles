@@ -28,6 +28,9 @@ public  class Projectile : MonoBehaviour {
 	public bool SepDamWithExplos;
 	public GameObject SpecialEffect;
 
+	[Tooltip("Put any objects in here if you want the nose of the projectile to track up and down with the arc")]
+	public GameObject myModel;
+
 
 	public List<Notify> triggers = new List<Notify> ();
 
@@ -143,6 +146,10 @@ public  class Projectile : MonoBehaviour {
 
 			yAmount = (( (distance/2) - currentDistance )/distance) * arcAngle *3* Time.deltaTime;
 			control.Move (Vector3.up * yAmount);
+
+			if (myModel) {
+				myModel.transform.LookAt (this.transform.position + transform.forward* -1 + Vector3.up * -yAmount);
+			}
 			//gameObject.transform.Translate (Vector3.up * yAmount );
 	
 		}
@@ -300,9 +307,13 @@ public  class Projectile : MonoBehaviour {
 
 	public void selfDestruct()
 	{target = null;
-		GameObject.Destroy (this);
 		//selfDest = true;
+		if (explosionO) {
+			Instantiate (explosionO, this.gameObject.transform.position, Quaternion.identity);
+		}
 
+		Destroy (myIndiactor);
+		GameObject.Destroy (this.gameObject);
 	}
 	
 	public void setDamage(float so)

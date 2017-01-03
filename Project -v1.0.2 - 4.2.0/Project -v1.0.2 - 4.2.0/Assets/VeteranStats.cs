@@ -17,7 +17,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 	public bool isWarrior;
 	public string backstory;
 
-	public VeteranStats(bool hasName, string myType, bool isW, string myName)
+	public VeteranStats(bool hasName, string myType, bool isW, string myName, int playerNumber)
 	{
 		unitType = myType;
 		isWarrior = isW;
@@ -28,8 +28,11 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 		if (hasName) {
 
-			UnitName = RaceNames.getInstance ().getName ();
-			backstory = getBackstory ();
+			UnitName = RaceNames.getInstance ().getName (myType);
+			if (playerNumber == 1) {
+				backstory = getBackstory ();
+			} else {
+				backstory = "";}
 		} else {
 			UnitName = "";}
 
@@ -98,20 +101,20 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private List<string> jobAdj = new List<string> (new string[] {"well known", "famous", "average", "infamous", "secret", "", "", "popular", "failing", "long time", "", "unpopular"});
 	private List<string> pastEmotions = new List<string> (new string[] {"proud", "angry", "afraid", "dissapointed", "excited"});
-	private List<string> villians = new List<string> (new string[] {"mutant rabbits", "hoodlums", "newsies", "internet pirates", "garden gnomes", "thugs", "Assasins", "Rebels", "Terrorist"});
+	private List<string> villians = new List<string> (new string[] {"mutant rabbits", "hoodlums", "newsies", "internet pirates", "thugs","coalition agents", "Assassins", "Rebels", "Terrorist"});
 
-	private List<string> negativeVerbs = new List<string> (new string[] {"cannibilized", "kidnapped","killed", "confounded", "tickled", "robbed", "scammed", "murdered", "assasinated"});
+	private List<string> negativeVerbs = new List<string> (new string[] {"cannibilized","Blackmailed","abducted", "hospitalized","kidnapped","killed", "confounded", "tickled", "robbed", "scammed", "murdered", "assassinated"});
 
 	private List<string> office = new List<string> (new string[] {"assistant to the assistant manager", "folding landry", "potato scrubber", "washing dishes", "inspecting machinery", "Quartermaster"
 		,"carrying heavy things", "cleaning the commons", "debugging the internet", "creating the best video game there ever was", "loading Ammunition"});
 
 	private List<string> nicknames = new List<string> (new string[] {"the Slayer","the Rock", "the Hulk", "the Florest", "Heisenberg", "Ace, for how often he won in poker", "Hot Shot",
-	"The Tenderizer", "Dead Meat" , "Meatloaf", "Momma's Boy", "the Legman", "Hawk Eye"});
+	"The Tenderizer", "Dead Meat" , "Meatloaf", "Momma's Boy", "the Legman", "Hawk Eye", "Rip Jaw", "Buba"});
 
 
 
 	private List<string> thingsToDo = new List<string> (new string[] {"play baseball", "climb trees", "take long romantic walks", "hide in the grass", "watch clouds turn into rain",
-		"recite the perodic table","compose Renga", "practice the violin", "play catch with eggs", "steal whatever isn't nailed down", "follow rainbows"});
+		"recite the perodic table","compose Renga", "practice the violin", "play catch with eggs", "steal whatever isn't nailed down", "follow rainbows", "read horoscopes"});
 	
 	private List<string> factions = new List<string> (new string[] {"the Bunny Conversation Society", "the Coalition", "Alfredo Sauce United", "the Infinite Consortium", "the Cypher Police", 
 		"the Dark Brotherhood", "the Brotherhood of Nod", "the Brony Brotherhood", "the Gadgezhan Bruisers", "the Robot Mafia", "the Jintori", "the A'tane"});
@@ -121,7 +124,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 		"He has plans to soon become a triple or maybe even a quadruple agent." });
 
 	private List<string>  bets = new List<string> (new string[] {"Poker", "Competitive Dice Rolling", "Horse Race", "Chess Tournament" });
-	private List<string>  bodyParts = new List<string> (new string[] {"Arm","Ear", "Leg", "Pancreas", "Lung", "Finger", "Hand", "Hand", "brain lobe", "rib", });
+	private List<string>  bodyParts = new List<string> (new string[] {"arm","ear", "leg", "pancreas", "lung", "finger", "hand", "hand", "brain lobe", "rib", });
 
 
 

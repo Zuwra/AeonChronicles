@@ -34,16 +34,18 @@ public class barrierShield : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Projectile") {
 
-		
+			Debug.Log ("Entering " + other.gameObject);
 			Projectile proj = other.GetComponent<Projectile> ();
 			if (proj.sourceInt != 1) {
-				
+				Debug.Log ("other player " + other.gameObject);
 				float dist = Vector3.Distance (this.gameObject.transform.position, other.transform.position);
 
 				if (dist > radius - 5 && dist < radius + 5) {
+					Debug.Log ("In range");
 					Health -= proj.damage;
 					Instantiate (Effect, other.gameObject.transform.position, Quaternion.identity);
-					Destroy (other.gameObject);
+					proj.selfDestruct ();
+
 
 
 					if (Health <= 0) {
@@ -74,7 +76,7 @@ public class barrierShield : MonoBehaviour {
 				if (dist > radius - 5 && dist < radius + 5) {
 					Health -= proj.damage;
 					Instantiate (Effect, other.gameObject.transform.position, Quaternion.identity);
-					Destroy (other.gameObject);
+					proj.selfDestruct ();
 
 					if (Health <= 0) {
 						StartCoroutine (RunTime (0));

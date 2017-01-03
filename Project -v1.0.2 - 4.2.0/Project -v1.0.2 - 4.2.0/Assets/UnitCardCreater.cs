@@ -46,6 +46,8 @@ public class UnitCardCreater : MonoBehaviour {
 
 	public GameObject BuffList;
 
+	string blankText = "";
+
 	// Use this for initialization
 	void Start () {
 		builder = GetComponent<BuilderUI> ();
@@ -76,15 +78,15 @@ public class UnitCardCreater : MonoBehaviour {
 	}
 
 	public void toggleStats ()
-	{VetStats.text = "";
+	{VetStats.text = blankText;
 		if (currentUnit) {
 			VetCanvas.SetActive (!VetCanvas.activeSelf);
 			if (!currentUnit.myStats.isHero) {
-				if (currentUnit.myStats.veternStat.UnitName != "") {
+				if (currentUnit.myStats.veternStat.UnitName != "" && currentUnit.PlayerOwner ==1) {
 					VetStats.text = RaceNames.getInstance ().getRank (currentUnit.myStats.veternStat.kills) + " ";
 				}
 			} else {
-				VetStats.text = "";
+				VetStats.text = blankText;
 			}
 			VetStats.text +=  currentUnit.myStats.veternStat.UnitName + 
 			"\nKills: " + currentUnit.myStats.veternStat.kills +
@@ -96,6 +98,8 @@ public class UnitCardCreater : MonoBehaviour {
 
 			if (currentUnit.PlayerOwner == 1) {
 				VetBackStory.text = currentUnit.myStats.veternStat.backstory;
+			} else {
+				VetBackStory.text = blankText;
 			}
 		}
 	}
@@ -137,16 +141,16 @@ public class UnitCardCreater : MonoBehaviour {
 				speedIcon.enabled = true;
 				speed.text = " " + manager.cMover.getMaxSpeed ();
 			} else {
-				speed.text = "";
+				speed.text = blankText;
 				speedIcon.enabled = false;
 			}
 		} else {
 			speedIcon.enabled = false;
-			speed.text = "";
+			speed.text = blankText;
 		}
 
-		ArmorTypes.text = "" + manager.myStats.armorType;
-		SizeTypes.text = "" + manager.myStats.sizeType;
+		ArmorTypes.text = blankText + manager.myStats.armorType;
+		SizeTypes.text = blankText + manager.myStats.sizeType;
 		string s = "  ";
 
 		if(manager.myStats.otherTags.Count > 0){
