@@ -13,6 +13,8 @@ public class missileSalvo : Ability, Validator, Notify{
 	public List<GameObject> MissileModels = new List<GameObject> ();
 
 	private float nextCheckTime;
+
+	float fillHerUp = 1;
 	// Use this for initialization
 	void Start () {
 		mymanager = GetComponent<UnitManager> ();
@@ -29,13 +31,15 @@ public class missileSalvo : Ability, Validator, Notify{
 	{
 		yield return new WaitForSeconds (.1f);
 		mySelect.updateCoolDown (chargeCount / maxRockets);
+		fillHerUp = 1;
 	}
 
 
 	public void upRockets ()
 	{if(chargeCount < maxRockets){
 		chargeCount++;
-			mySelect.updateCoolDown ((float)chargeCount /(float) maxRockets);
+		StartCoroutine (fillUpBar(.5f));
+		
 		
 		if (mySelect.IsSelected) {
 			
@@ -51,6 +55,17 @@ public class missileSalvo : Ability, Validator, Notify{
 
 	}
 
+
+	IEnumerator fillUpBar(float amount)
+	{
+		for (int i = 0; i < 10; i++) {
+			yield return new WaitForSeconds (.08f);
+			fillHerUp += amount/10;
+			mySelect.updateCoolDown (fillHerUp + .05f);
+		
+		}
+
+	}
 
 		
 
@@ -71,7 +86,9 @@ public class missileSalvo : Ability, Validator, Notify{
 	public void trigger(GameObject source, GameObject projectile,UnitManager target, float damage)	{
 		
 		chargeCount--;
-		mySelect.updateCoolDown ((float)chargeCount /(float) maxRockets);
+
+		StartCoroutine (fillUpBar(-.5f));
+	
 		RaceManager.upDateUI ();
 		if (autocast && chargeCount <= 0) {
 			Activate ();

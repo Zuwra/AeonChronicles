@@ -74,11 +74,11 @@ public class sawDefense : MonoBehaviour {
 	}
 
 	IEnumerator showInd()
-	{	yield return new WaitForSeconds (1f);
+	{	yield return new WaitForSeconds (.5f);
 		if (attackType == 2) {
 			targetSlice.gameObject.SetActive (true);
 			if (sliceSound) {
-				Debug.Log ("Playing slice sound");
+				//Debug.Log ("Playing slice sound");
 				myAudio.PlayOneShot (sliceSound);
 			}
 
@@ -92,7 +92,7 @@ public class sawDefense : MonoBehaviour {
 
 
 		}
-		yield return new WaitForSeconds (3.2f);
+		yield return new WaitForSeconds (3.5f);
 		targetCircle.gameObject.SetActive (false);
 
 		targetSlice.gameObject.SetActive (false);

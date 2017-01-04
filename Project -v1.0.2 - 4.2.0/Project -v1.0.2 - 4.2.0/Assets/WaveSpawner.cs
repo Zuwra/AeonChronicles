@@ -15,6 +15,8 @@ public class WaveSpawner : MonoBehaviour {
 	DifficultyManager difficultyM;
 	public List<attackWave> myWaves;
 
+	RaceManager raceMan;
+
 	[System.Serializable]
 	public class attackWarning
 	{
@@ -44,7 +46,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		raceMan = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 		difficultyM = GameObject.FindObjectOfType<DifficultyManager> ();
 		if (!triggerOnly) {
 			findNextWave ();
@@ -86,6 +88,7 @@ public class WaveSpawner : MonoBehaviour {
 			}
 
 			if (LevelData.getDifficulty () >= 2) {
+				SpawnExtra (nextWave);
 				foreach (GameObject obj in nextWave.mediumExtra) {
 					StartCoroutine (MyCoroutine (delay, obj));
 					delay += .2f;
@@ -93,6 +96,7 @@ public class WaveSpawner : MonoBehaviour {
 				}
 			}
 			if (LevelData.getDifficulty () >= 3) {
+		
 				foreach (GameObject obj in nextWave.HardExtra) {
 
 
@@ -108,6 +112,29 @@ public class WaveSpawner : MonoBehaviour {
 		}
 	
 	}
+
+	//autobalancing based on how many units the player has
+	void SpawnExtra(attackWave myWave)
+	{float delay = .1f;
+		if (raceMan.getArmyCount () * .75 > myWave.waveType.Count + myWave.HardExtra.Count + myWave.mediumExtra.Count) {
+			foreach (GameObject obj in nextWave.waveType) {
+
+				StartCoroutine(MyCoroutine(delay, obj));
+				delay += .2f;
+
+			}
+		}
+
+		if (raceMan.getArmyCount () * .50 > myWave.waveType.Count + myWave.HardExtra.Count + myWave.mediumExtra.Count) {
+			foreach (GameObject obj in nextWave.HardExtra) {
+
+				StartCoroutine(MyCoroutine(delay, obj));
+				delay += .2f;
+
+			}
+		}
+	}
+
 
 	IEnumerator MyCoroutine (float amount, GameObject obj)
 	{

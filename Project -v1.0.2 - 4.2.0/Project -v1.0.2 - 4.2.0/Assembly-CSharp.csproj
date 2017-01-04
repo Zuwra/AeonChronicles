@@ -543,6 +543,7 @@
      <Compile Include="Assets\VictoryScreen.cs" />
      <Compile Include="Assets\VictoryTrigger.cs" />
      <Compile Include="Assets\VoicePack.cs" />
+     <Compile Include="Assets\WaveContainer.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />
      <Compile Include="Assets\ZephyrInteract.cs" />
      <Compile Include="Assets\airmover.cs" />

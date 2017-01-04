@@ -36,7 +36,8 @@ public class IWeapon : MonoBehaviour {
 
 	public GameObject turret;
 	turret turretClass;
-	public Vector3 originPoint;
+	public List<Vector3> originPoint;
+	protected int originIndex = 0;
 	//private float nextActionTime;
 	public float attackArc;
 	private UnitManager enemy;
@@ -91,6 +92,9 @@ public class IWeapon : MonoBehaviour {
 		InitialBaseDamage = baseDamage;
 		initalDamageSet = true;
 		initialSpeedSet = true;
+		if (originPoint.Count == 0) {
+			originPoint.Add (Vector3.zero);
+		}
 	}
 	// Use this for initialization
 	void Start () {
@@ -287,8 +291,11 @@ public class IWeapon : MonoBehaviour {
 			GameObject proj = null;
 			if (projectile != null) {
 				
-				proj = (GameObject)Instantiate (projectile,transform.rotation *  originPoint + this.gameObject.transform.position, Quaternion.identity);
+				proj = (GameObject)Instantiate (projectile,transform.rotation *  originPoint[originIndex] + this.gameObject.transform.position, Quaternion.identity);
 			
+				originIndex++;
+				if (originIndex == originPoint.Count) {
+					originIndex = 0;}
 				Projectile script = proj.GetComponent<Projectile> ();
 				proj.SendMessage ("setSource", this.gameObject);
 				proj.SendMessage ("setTarget", target);
@@ -509,9 +516,9 @@ public class IWeapon : MonoBehaviour {
 
 	public void OnDrawGizmos()
 	{
-
-		Gizmos.DrawSphere ((transform.rotation)*originPoint +this.gameObject.transform.position, .5f);
-
+		foreach (Vector3 vec in originPoint) {
+			Gizmos.DrawSphere ((transform.rotation) * vec + this.gameObject.transform.position, .5f);
+		}
 	}
 
 

@@ -642,6 +642,41 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
+	public List<GameObject> getAllUnitsOnScreen()
+	{
+		unitList.RemoveAll(item => item == null);
+
+		List<GameObject> foundUnits = new List<GameObject> ();
+
+		foreach (GameObject obj in unitList) {
+			UnitManager tempMan = obj.GetComponent<UnitManager> ();
+			if (tempMan.myStats.isUnitType(UnitTypes.UnitTypeTag.Structure) || tempMan.myStats.isUnitType(UnitTypes.UnitTypeTag.Worker)) {
+				continue;
+			}
+
+			Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
+			//Debug.Log ("Checking " + tempLocation + "   within  "+ upperLeft + " bot " + bottRight);
+			if (tempLocation.x + obj.GetComponent<CharacterController> ().radius * 5 < 0) {
+				continue;
+			}
+			if (tempLocation.x - obj.GetComponent<CharacterController> ().radius * 5 > Screen.width) {
+				continue;
+			}
+			if (tempLocation.y - obj.GetComponent<CharacterController> ().radius * 5 > Screen.height) {
+				continue;
+			}
+			if (tempLocation.y + obj.GetComponent<CharacterController> ().radius * 5 < 0) {
+				continue;
+			}
+
+			foundUnits.Add (obj);
+
+		}
+
+		return foundUnits; 
+	}
+
+
 	public void addVeteranStat(VeteranStats input)
 	{if (MVP == null) {
 			MVP = new MVPCalculator ();}
@@ -732,6 +767,18 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public int totalResT()
 	{return (int)totalResTwo;
+	}
+
+	public int getArmyCount()
+	{int total = 0;
+		foreach (GameObject obj in unitList) {
+			UnitManager tempMan = obj.GetComponent<UnitManager> ();
+			if (tempMan.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure) || tempMan.myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+				continue;
+			}
+			total++;
+		}
+		return total;
 	}
 
 }

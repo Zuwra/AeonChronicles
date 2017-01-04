@@ -8,6 +8,9 @@ public class evasiveMenuvers : Ability,Modifier{
 		public float chanceMultiplier = 1;
 		IMover mover;
 
+	public Animator MyAnim;
+	float lastDodgeTime;
+
 
 		void Awake()
 		{audioSrc = GetComponent<AudioSource> ();
@@ -32,6 +35,10 @@ public class evasiveMenuvers : Ability,Modifier{
 			
 			amount = 0;
 			PopUpMaker.CreateGlobalPopUp ("Dodged", Color.yellow, this.transform.position);
+			if (MyAnim && Time.time > lastDodgeTime) {
+				MyAnim.Play ("HarpySpin");
+			}
+			lastDodgeTime = Time.time;
 		}
 
 			return amount;

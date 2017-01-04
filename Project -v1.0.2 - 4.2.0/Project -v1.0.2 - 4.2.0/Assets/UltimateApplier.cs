@@ -13,7 +13,7 @@ public class UltimateApplier : MonoBehaviour {
 
 		Bombardment bm = (Bombardment)myRace.UltFour;
 		bm.shotCount += LevelData.getUltLevel(4) * 15;
-		bm.myDamage += LevelData.getUltLevel(4) * 15;
+		bm.myDamage += LevelData.getUltLevel(4) * 10;
 
 
 	
@@ -32,6 +32,9 @@ public class UltimateApplier : MonoBehaviour {
 			thingy.GetComponent<AetherOvercharge> ().rechargeAmount = LevelData.getUltLevel(1) * .33f;}
 
 		else if (myRace.UltTwo == ab) {
+			if (LevelData.getUltLevel (2) > 3) {
+			
+			}
 			thingy.GetComponent<UnitStats> ().health *= 1 + LevelData.getUltLevel(2) * .1f;
 			thingy.GetComponent<UnitStats> ().Maxhealth *= 1 + LevelData.getUltLevel(2) * .1f;
 			thingy.GetComponent<selfDestructTimer> ().timer *= 1 + LevelData.getUltLevel(2) * .1f;
@@ -47,8 +50,8 @@ public class UltimateApplier : MonoBehaviour {
 		else if (myRace.UltThree == ab) {
 			
 			barrierShield bs= thingy.GetComponent<barrierShield> ();
-			bs.duration *= 1 + LevelData.getUltLevel(3) * .15f;
-			bs.Health *= 1 + LevelData.getUltLevel(3) * .15f;
+			bs.duration *= 1 + LevelData.getUltLevel(3) * .25f;
+			bs.Health *= 1 + LevelData.getUltLevel(3) * .50f;
 
 		}
 		else if (myRace.UltFour == ab) {

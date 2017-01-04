@@ -86,6 +86,16 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		if (Input.GetKey (KeyCode.LeftShift)) {
 			// set a control group
+
+			if (Input.GetKeyDown (KeyCode.BackQuote)) {
+				DeselectAll();
+				foreach (GameObject obj in raceMan.getAllUnitsOnScreen())
+				{
+					AddObject(obj.GetComponent<UnitManager>());
+				}
+				CreateUIPages (0);
+			}
+
 			if (Input.GetKeyDown (KeyCode.Alpha1)) {
 				if (SelectedObjects.Count > 0) {
 					AddUnitsToGroup (0, false); 
@@ -266,6 +276,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             }
 
         }
+			
     }
 
 
@@ -1030,10 +1041,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		raceMan.getUnitList().RemoveAll (item => item == null);
         foreach (GameObject obj in raceMan.getUnitList())
         {
-
-            if (!obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure)
-                && !obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Worker)
-				&& !obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Turret))
+			UnitStats hisStats = obj.GetComponent<UnitStats> ();
+			if (!hisStats.isUnitType(UnitTypes.UnitTypeTag.Structure)
+				&& !hisStats.isUnitType(UnitTypes.UnitTypeTag.Worker)
+				&& !hisStats.isUnitType(UnitTypes.UnitTypeTag.Turret))
             {
                 AddObject(obj.GetComponent<UnitManager>());
             }
