@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class newWorkerInteract : MonoBehaviour , Iinteract {
+public class newWorkerInteract :  Ability, Iinteract {
 
 	private UnitManager myManager;
 	public float miningTime;
@@ -13,6 +13,8 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 	private bool retractHook;
 	private OreDispenser myOre;
 	private GameObject oreBlock;
+	private OreDispenser lastOreDeposit;
+
 	// Use this for initialization
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
@@ -25,15 +27,29 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 		}
 
+		myType = type.activated;
+
 	}
 
 
 
 	public UnitState computeState(UnitState s)
 	{
-
+		
+		if (autocast && myManager) {
+			Debug.Log (myManager.getState() + "   " + s);
+			if ((myManager.getState () is ChannelState  && s is MoveState) || ( myManager.getState() is PlaceBuildingState&& s is DefaultState)) {
+				StartCoroutine (autocastReturn());
+			}
+		}
 
 		return s;
+	}
+
+	IEnumerator autocastReturn()
+	{
+		yield return new WaitForSeconds (.3f);
+		Activate ();
 	}
 
 	IEnumerator delayer()
@@ -167,8 +183,10 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 		//Stop Order----------------------------------------
 		case Const.ORDER_STOP:
 			if (myOre) {
+				lastOreDeposit = myOre;
 				myOre.currentMinor = null;
 				myOre = null;
+
 			}
 			myManager.changeState (new DefaultState ());
 			checkHook ();
@@ -179,6 +197,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 			
 			myManager.changeState (new MoveState (order.OrderLocation, myManager),false,order.queued);
 			if (myOre) {
+				lastOreDeposit = myOre;
 				myOre.currentMinor = null;
 				myOre = null;
 			}
@@ -191,6 +210,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 			{
 				if (!order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor) {
 					if (myOre) {
+						lastOreDeposit = myOre;
 						myOre.currentMinor = null;
 						myOre = null;
 					}
@@ -222,6 +242,7 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 		case Const.ORDER_AttackMove:
 			
 			if (myOre) {
+				lastOreDeposit = myOre;
 				myOre.currentMinor = null;
 				myOre = null;
 			}
@@ -279,4 +300,43 @@ public class newWorkerInteract : MonoBehaviour , Iinteract {
 
 		}
 	}
+
+
+	public override void setAutoCast(bool offOn){
+	}
+
+
+	override
+	public continueOrder canActivate (bool showError)
+	{
+
+		continueOrder order = new continueOrder ();
+		order.nextUnitCast = true;
+			order.canCast = true;
+	
+		return order;
+	}
+
+	override
+	public void Activate()
+	{
+		if (lastOreDeposit) {
+
+			if (lastOreDeposit!= null) {
+				if (lastOreDeposit.currentMinor == null) {
+					myOre = lastOreDeposit;
+					myOre.currentMinor = this.gameObject;
+					myManager.changeState (new MiningState (lastOreDeposit.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
+				} else {
+					Redistribute (lastOreDeposit.gameObject);
+				}
+			}
+
+		} 
+		checkHook ();
+	}
+
+
+
+
 }

@@ -18,6 +18,9 @@ public class LandMineActivate : MonoBehaviour {
 	public GameObject FullChargeEffect;
 
 	public GameObject explosionEffect;
+
+	UnitStats myVet;
+
 	// Use this for initialization
 	void Start () {
 		currentDamage = baseDamage;
@@ -45,11 +48,21 @@ public class LandMineActivate : MonoBehaviour {
 		UnitManager otherManager = other.gameObject.GetComponent<UnitManager> ();
 		if (otherManager && !otherManager.PlayerOwner.Equals (1)) {
 
-			otherManager.getUnitStats ().TakeDamage (currentDamage,this.gameObject,DamageTypes.DamageType.True);
+			float amount = otherManager.getUnitStats ().TakeDamage (currentDamage,myVet.gameObject,DamageTypes.DamageType.True);
+			if (myVet) {
+				myVet.veteranDamage (amount);
+			}
+
 			Instantiate (explosionEffect, this.gameObject.transform.position, Quaternion.identity);
 			Destroy (this.gameObject);
 
 		}
+
+	}
+
+	public void setSource(GameObject obj)
+	{
+		myVet = obj.GetComponent<UnitStats> ();
 
 	}
 

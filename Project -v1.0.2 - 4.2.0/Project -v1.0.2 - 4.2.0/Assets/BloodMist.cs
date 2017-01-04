@@ -51,11 +51,9 @@ public class BloodMist : TargetAbility {
 
 		myCost.payCost ();
 
-		GameObject proj = null;
-
 		Vector3 pos = location;
 		pos.y += 5;
-		proj = (GameObject)Instantiate (BloodMistObj, pos, Quaternion.identity);
+		GameObject proj = (GameObject)Instantiate (BloodMistObj, pos, Quaternion.identity);
 
 
 		proj.SendMessage ("setSource", this.gameObject);
