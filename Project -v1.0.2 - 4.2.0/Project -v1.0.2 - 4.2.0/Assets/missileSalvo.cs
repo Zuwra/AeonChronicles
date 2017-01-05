@@ -11,12 +11,15 @@ public class missileSalvo : Ability, Validator, Notify{
 	private Selected mySelect;
 
 	public List<GameObject> MissileModels = new List<GameObject> ();
-
+	Vector3 padSpot;
 	private float nextCheckTime;
 
 	float fillHerUp = 1;
+	float flierheight;
+	public HarpyLandingPad home;
 	// Use this for initialization
 	void Start () {
+		flierheight = GetComponent<airmover> ().flyerHeight;
 		mymanager = GetComponent<UnitManager> ();
 		myweapon = GetComponent<IWeapon> ();
 		myweapon.triggers.Add (this);
@@ -89,8 +92,11 @@ public class missileSalvo : Ability, Validator, Notify{
 
 		StartCoroutine (fillUpBar(-.5f));
 	
-		RaceManager.upDateUI ();
+		if (mySelect.IsSelected ) {
+			RaceManager.upDateUI ();
+		}
 		if (autocast && chargeCount <= 0) {
+			StartCoroutine (checkForLandingPad ());
 			Activate ();
 		}
 		if(MissileModels.Count > chargeCount && chargeCount >= 0){
@@ -111,25 +117,145 @@ public class missileSalvo : Ability, Validator, Notify{
 	public void Activate()
 	{
 
-		GameObject home = null;
+		Debug.Log ("Activating " + home);
+		if (home != null) {
+			//home.finished (this.gameObject);
+		}
+		home = null;
+		padSpot = Vector3.zero;
 		float distance = 100000;
 
-		foreach (MissileArmer arm in Object.FindObjectsOfType<MissileArmer>()) {
-			if(arm.missiles){
-			float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
+		foreach (HarpyLandingPad arm in Object.FindObjectsOfType<HarpyLandingPad>()) {
+
+			if (arm.hasAvailable ()) {
+				float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
 				if (temp < distance) {
 					distance = temp;
-					home = arm.gameObject;
+					home = arm;
 				}
 			}
 		
 		}
 
-		if (home != null) {
-			mymanager.GiveOrder (Orders.CreateMoveOrder (home.transform.position));
+
+			if (home != null) {
+				Vector3 temp = home.requestLanding (this.gameObject);
+				if (temp != Vector3.zero) {
+					padSpot = temp;
+					mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot));
+				}
+
+	
+			mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot));
 		}
 		//return true;
+	}
+
+
+	public void Dying()
+	{
+		if (home != null) {
+			home.finished (this.gameObject);
+		}
 
 	}
+
+	IEnumerator loadingMissile()
+	{
+		home.startLanding (this.gameObject);
+		yield return new WaitForSeconds (1);
+		mymanager.StunForTime (this, 4);
+		yield return new WaitForSeconds (1);
+		upRockets ();
+		yield return new WaitForSeconds (2);
+		upRockets ();
+		yield return new WaitForSeconds (1);
+		mymanager.setStun (false, this);
+		GetComponent<airmover> ().flyerHeight = flierheight;
+		mymanager.GiveOrder (Orders.CreateMoveOrder (this.transform.position+ transform.forward * 3) );
+		if (home) {
+			home.finished (this.gameObject);
+		}
+		home = null;
+
+	}
+
+	IEnumerator checkForLandingPad()
+	{
+		
+		yield return new WaitForSeconds (.3f);
+
+
+		float distance;
+
+		while (chargeCount < maxRockets) {
+		
+
+			if (home == null) {
+				distance = 100000;
+				foreach (HarpyLandingPad arm in nearbyPads) {
+						if (arm.hasAvailable ()) {
+							float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
+							if (temp < distance) {
+								distance = temp;
+								home = arm;
+							}
+						}
+				}
+			
+					if (home != null) {
+					Vector3 temp = home.requestLanding (this.gameObject);
+						if (temp != Vector3.zero) {
+							padSpot = temp;
+							mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot));
+						}
+					}
+
+				}
+			if (home != null) {
+
+				if (padSpot != Vector3.zero) {
+						
+					if (mymanager.getState () is DefaultState && Vector3.Distance (transform.position, padSpot) < 20) {
+						GetComponent<airmover> ().flyerHeight = 4;
+						mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot+ transform.forward * .3f) );
+						StartCoroutine (loadingMissile ());
+
+
+					}
+
+				}
+			}
+
+
+			yield return new WaitForSeconds (1f);
+		}
+		GetComponent<airmover> ().flyerHeight = flierheight;
+
+	}
+
+
+		List<HarpyLandingPad> nearbyPads = new List<HarpyLandingPad> ();
+
+		void OnTriggerEnter(Collider other)
+		{
+		//Fix this if the enemy ever has harpies
+		HarpyLandingPad pad = other.GetComponent<HarpyLandingPad>();
+		if (pad) {
+			nearbyPads.Add (pad);
+		
+		}
+		}
+
+	void OnTriggerExit(Collider other)
+	{
+		//Fix this if the enemy ever has harpies
+		HarpyLandingPad pad = other.GetComponent<HarpyLandingPad>();
+		if (pad) {
+			nearbyPads.Remove(pad);
+
+		}
+	}
+
 
 }

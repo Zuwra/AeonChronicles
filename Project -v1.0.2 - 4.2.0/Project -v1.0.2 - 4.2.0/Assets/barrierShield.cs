@@ -27,6 +27,9 @@ public class barrierShield : MonoBehaviour {
 
 	IEnumerator RunTime(float dur)
 	{
+		GetComponent<Collider> ().enabled = false;
+		yield return new WaitForSeconds (1);
+		GetComponent<Collider> ().enabled = true;
 
 		while (Health > 0) {
 			yield return new WaitForSeconds (.1f);
@@ -36,7 +39,9 @@ public class barrierShield : MonoBehaviour {
 		}
 		cooldownSlider.gameObject.SetActive (false);
 		GetComponent<Animator> ().SetInteger ("State", 1);
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (1.1f);
+		GetComponent<Collider> ().enabled = false;
+		yield return new WaitForSeconds (1.9f);
 		Destroy (this.gameObject);
 	}
 

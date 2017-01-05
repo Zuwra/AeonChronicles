@@ -37,7 +37,7 @@ public class newWorkerInteract :  Ability, Iinteract {
 	{
 		
 		if (autocast && myManager) {
-			Debug.Log (myManager.getState() + "   " + s);
+	
 			if ((myManager.getState () is ChannelState  && s is MoveState) || ( myManager.getState() is PlaceBuildingState&& s is DefaultState)) {
 				StartCoroutine (autocastReturn());
 			}

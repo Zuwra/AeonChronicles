@@ -12,6 +12,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	private Texture2D screenTrapzoidTex;
 
 
+	public GameObject warningSymbol;
+
 	private bool[,] virtUnitTexture;
 	private Texture2D UnitTexture;
 
@@ -122,6 +124,28 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	
 	
 	}
+
+
+	public void showWarning(Vector3 location)
+	{
+		StartCoroutine (displayWarning (location));
+	}
+
+	IEnumerator displayWarning( Vector3 location)
+	{
+		RectTransform newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
+		int iCoord = (int)(((location.x - Left) / (WorldWidth)) * newParent.rect.width);
+		int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * newParent.rect.height);
+
+		Debug.Log ("Creating warning");
+
+
+		GameObject obj = (GameObject)Instantiate (warningSymbol, new Vector2(iCoord, jCoord), Quaternion.identity, newParent);
+		obj.transform.localPosition = new Vector2 (iCoord - newParent.rect.width/2 , jCoord - newParent.rect.height/2);
+		yield return new WaitForSeconds (10);
+		Destroy (obj);
+	}
+
 
     // Update is called once per frame
     void Update()

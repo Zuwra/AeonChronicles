@@ -48,8 +48,10 @@ public class AetherRelay : Ability{
 
 					foreach (UnitStats us in enemyStats) {
 						if (us) {
-							float actual = us.TakeDamage (damageRate, this.gameObject, DamageTypes.DamageType.Regular);
-							manager.myStats.veternStat.UpdamageDone (actual);
+							if (Vector3.Distance (us.transform.position, this.transform.position) < 40) {
+								float actual = us.TakeDamage (damageRate, this.gameObject, DamageTypes.DamageType.Regular);
+								manager.myStats.veternStat.UpdamageDone (actual);
+							}
 						}
 					}
 				}

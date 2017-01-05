@@ -408,6 +408,13 @@ public class UiAbilityManager : MonoBehaviour {
 				continue;
 			}
 
+
+			if (j >0 && uiPage.rows [j] == uiPage.rows[j-1]) {
+
+				continue;
+			}
+
+
 			n = uiPage.rows[j][0].AbilityStartingRow;
 
 
@@ -511,7 +518,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
 
-						certainButtons [j].QAuto.enabled = man.abilityList [0 + AbilityX * 4].autocast;
+						certainButtons [j+ AbilityX].QAuto.enabled = man.abilityList [0 + AbilityX * 4].autocast;
 
 						Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
 						if (man.abilityList [AbilityX * 4].chargeCount > -1) {
@@ -573,8 +580,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 							trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [1 + AbilityX * 4].canAutoCast;
-							certainButtons [j].WAuto.enabled = man.abilityList [1 + AbilityX * 4].autocast;
-
+						certainButtons [j + AbilityX].WAuto.enabled = man.abilityList [1 + AbilityX * 4].autocast;
 
 							Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
 							if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
@@ -636,7 +642,7 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.GetComponent<Button> ().colors = cb;
 
 						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [2 + AbilityX * 4].canAutoCast;
-						certainButtons [j].EAuto.enabled = man.abilityList [2+ AbilityX * 4].autocast;
+						certainButtons [j+ AbilityX].EAuto.enabled = man.abilityList [2+ AbilityX * 4].autocast;
 
 
 							Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
@@ -697,7 +703,7 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.GetComponent<Button> ().colors = cb;
 
 						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [3 + AbilityX * 4].canAutoCast;
-						certainButtons [j].RAuto.enabled = man.abilityList [3 + AbilityX * 4].autocast;
+						certainButtons [j+ AbilityX].RAuto.enabled = man.abilityList [3 + AbilityX * 4].autocast;
 
 
 

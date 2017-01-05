@@ -73,6 +73,10 @@ public class WaveSpawner : MonoBehaviour {
 			}
 
 
+			foreach (MiniMapUIController mini in GameObject.FindObjectsOfType<MiniMapUIController>()) {
+				mini.showWarning (this.transform.position);
+			}
+
 			foreach (SceneEventTrigger trig in nextWave.myTriggers) {
 				if (trig) {
 					trig.hasTriggered = false;

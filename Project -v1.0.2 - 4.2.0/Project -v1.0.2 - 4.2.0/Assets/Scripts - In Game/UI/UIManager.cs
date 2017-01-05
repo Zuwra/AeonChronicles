@@ -365,7 +365,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 	//----------------------Mouse Button Handler------------------------------------
 	private void ButtonClickedHandler(object sender, MouseEventArgs e)
-	{//Debug.Log ("Here "  + myName);
+	{//Debug.Log ("Here "  + this.gameObject);
 			e.Command ();
 	}
 

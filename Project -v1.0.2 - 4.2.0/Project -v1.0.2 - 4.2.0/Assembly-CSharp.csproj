@@ -296,6 +296,7 @@
      <Compile Include="Assets\GuiControls.cs" />
      <Compile Include="Assets\HalfLife.cs" />
      <Compile Include="Assets\HalfLifeStarter.cs" />
+     <Compile Include="Assets\HarpyLandingPad.cs" />
      <Compile Include="Assets\HealthDisplay.cs" />
      <Compile Include="Assets\HealthUpgrade.cs" />
      <Compile Include="Assets\HookFury.cs" />

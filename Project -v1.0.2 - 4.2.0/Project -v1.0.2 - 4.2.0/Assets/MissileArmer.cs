@@ -6,7 +6,6 @@ public class MissileArmer :Ability{
 
 	public UnitManager manager;
 
-	public bool missiles;
 	public bool nitro;
 
 	public bool shields;
@@ -14,7 +13,6 @@ public class MissileArmer :Ability{
 	public GameObject shieldglobe;
 	public GameObject OverchargeBoost;
 
-	public List<missileSalvo> missileList = new List<missileSalvo> ();
 
 	public List<StimPack> stimList = new List<StimPack>();
 	public List<DayexaShield> shieldList = new List<DayexaShield> ();
@@ -39,18 +37,6 @@ public class MissileArmer :Ability{
 			return;}
 		
 
-			if (missiles ) {
-
-				missileList.RemoveAll (item => item == null);
-				foreach (missileSalvo salv in missileList) {
-					if (salv.chargeCount < salv.maxRockets) {
-						salv.upRockets ();
-				
-						break;
-					}
-
-				}
-			} 
 	/*
 			if (nitro) {
 				stimList.RemoveAll (item => item == null);
@@ -114,14 +100,7 @@ public class MissileArmer :Ability{
 
 		if (manage.PlayerOwner == manager.PlayerOwner) {
 
-			if (missiles) {
-				
-				missileSalvo salvo = other.gameObject.GetComponent<missileSalvo> ();
-				if (salvo) {
-					missileList.Remove (salvo);
-				}
-			
-			}	
+		
 
 
 			if (nitro) {
@@ -163,14 +142,6 @@ public class MissileArmer :Ability{
 
 		if (manage.PlayerOwner == manager.PlayerOwner) {
 
-			if (missiles) {
-
-				//Debug.Log ("Adding missile " + other.gameObject);
-				missileSalvo salvo = other.gameObject.GetComponent<missileSalvo> ();
-				if (salvo) {
-					missileList.Add (salvo);
-				}
-			}	
 
 
 			if (nitro) {
