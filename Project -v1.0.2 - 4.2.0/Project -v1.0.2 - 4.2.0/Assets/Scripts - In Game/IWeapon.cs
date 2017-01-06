@@ -250,8 +250,6 @@ public class IWeapon : MonoBehaviour {
 			StartCoroutine( Fire ((i * .05f + AttackDelay), target));
 		
 		}
-
-
 	}
 
 

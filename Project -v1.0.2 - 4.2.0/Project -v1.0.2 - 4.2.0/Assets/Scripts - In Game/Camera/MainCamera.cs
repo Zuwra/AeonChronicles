@@ -318,6 +318,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 			CheckEdgeMovement ();
 		}
 
+		AngleOffset = 45 -((transform.position.y - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
 	}
 
 

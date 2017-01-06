@@ -15,6 +15,8 @@ public class WaveSpawner : MonoBehaviour {
 	DifficultyManager difficultyM;
 	public List<attackWave> myWaves;
 
+	public List<WaveContainer.EnemyWave> ReplayWaves;
+
 	RaceManager raceMan;
 
 	[System.Serializable]
@@ -28,9 +30,9 @@ public class WaveSpawner : MonoBehaviour {
 	}
 	[System.Serializable]
 	public class attackWave
-	{public List<GameObject> waveType;
-		public List<GameObject> mediumExtra;
-		public List<GameObject> HardExtra;
+	{public List<GameObject> waveType = new List<GameObject>();
+		public List<GameObject> mediumExtra= new List<GameObject>();
+		public List<GameObject> HardExtra= new List<GameObject>();
 		public float releaseTime;
 		public int repeat;
 		public float repeatAddOn;
@@ -40,12 +42,51 @@ public class WaveSpawner : MonoBehaviour {
 			releaseTime = n;
 
 		}
-		public List<attackWarning> warnings;
-		public List<SceneEventTrigger> myTriggers;
+		public List<attackWarning> warnings = new List< attackWarning>();
+		public List<SceneEventTrigger> myTriggers = new List<SceneEventTrigger> ();
 	}
 
 	// Use this for initialization
 	void Start () {
+
+
+		if (LevelData.getHighestLevel () > 3) {
+
+			if (ReplayWaves.Count > 0) {
+				float firstRelease = myWaves[0].releaseTime;
+				float addon = myWaves [0].repeatAddOn;
+
+				myWaves = new List<attackWave> ();
+
+				List<attackWave> tempWaves = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ()
+					.getWave (ReplayWaves [UnityEngine.Random.Range (0, ReplayWaves.Count - 1)]).waveRampUp;
+
+				for (int i = 0; i < tempWaves.Count; i++) {
+					myWaves.Add (new attackWave ());
+					Debug.Log (i + "  " + firstRelease + "   " + addon);
+					myWaves[i].releaseTime = firstRelease + i * addon;
+					myWaves[i].repeatAddOn = addon;
+					myWaves [i].repeat = 1;
+					foreach (GameObject ob in tempWaves[i].waveType) {
+						myWaves [i].waveType.Add (ob);
+					}
+
+					foreach (GameObject ob in tempWaves[i].mediumExtra) {
+						myWaves [i].mediumExtra.Add (ob);
+					}
+
+					foreach (GameObject ob in tempWaves[i].HardExtra) {
+						myWaves [i].HardExtra.Add (ob);
+					}
+
+				// Still need to add in code for attack warnings and triggers
+				}
+			
+			}
+
+		}
+
+
 		raceMan = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 		difficultyM = GameObject.FindObjectOfType<DifficultyManager> ();
 		if (!triggerOnly) {

@@ -420,10 +420,11 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	public void mapMover()
 	{Vector3 clickPos = transform.InverseTransformPoint (Input.mousePosition);
 
-		float x = (clickPos.x) / this.GetComponent<RectTransform> ().rect.width;// minimapWidth;
-		float y = (clickPos.y) /this.GetComponent<RectTransform> ().rect.height;
+		float x = ((clickPos.x) / myRect.rect.width )+ .5f;// minimapWidth;
+		float y = ((clickPos.y) /myRect.rect.height) + .5f;
 
-		Vector2 toMove = new Vector2 ((x + .5f) * WorldWidth + Left, (y + .5f) *MainCamera.main.getBoundries().height -50+ bottom-Mathf.Tan(Mathf.Deg2Rad *MainCamera.main.AngleOffset ) * MainCamera.main.HeightAboveGround);
+		Vector2 toMove = new Vector2 ((x ) * WorldWidth + Left, 
+			y  *WorldHeight - 65+ bottom-  Mathf.Tan(Mathf.Deg2Rad *MainCamera.main.AngleOffset ) * (MainCamera.main.transform.position.y - MainCamera.main.m_MinFieldOfView));
 
 		MainCamera.main.minimapMove (toMove);
 	}
@@ -474,8 +475,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		if (!this.enabled) {
 			return;}
 		Vector3 clickPos =  Input.mousePosition;
-		clickPos.x -= this.GetComponent<RectTransform> ().position.x;
-		clickPos.y -=this.GetComponent<RectTransform> ().position.y;
+		clickPos.x -= myRect.position.x;
+		clickPos.y -=myRect.position.y;
 		float x = .5f +(clickPos.x) / minimapWidth;
 		float y = .5f + (clickPos.y) /minimapHeight;
 		Vector3 RayPoint = new Vector3 ((x * WorldWidth) +Left, 100, (y * WorldHeight) + bottom);
