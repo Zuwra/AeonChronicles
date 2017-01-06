@@ -63,7 +63,7 @@ public class WaveSpawner : MonoBehaviour {
 
 				for (int i = 0; i < tempWaves.Count; i++) {
 					myWaves.Add (new attackWave ());
-					Debug.Log (i + "  " + firstRelease + "   " + addon);
+				//	Debug.Log (i + "  " + firstRelease + "   " + addon);
 					myWaves[i].releaseTime = firstRelease + i * addon;
 					myWaves[i].repeatAddOn = addon;
 					myWaves [i].repeat = 1;

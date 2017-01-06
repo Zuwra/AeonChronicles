@@ -61,9 +61,9 @@ public class missileSalvo : Ability, Validator, Notify{
 
 	IEnumerator fillUpBar(float amount)
 	{
-		for (int i = 0; i < 10; i++) {
-			yield return new WaitForSeconds (.08f);
-			fillHerUp += amount/10;
+		for (int i = 0; i < 12; i++) {
+			yield return new WaitForSeconds (.07f);
+			fillHerUp += amount/12;
 			mySelect.updateCoolDown (fillHerUp + .05f);
 		
 		}
@@ -137,17 +137,20 @@ public class missileSalvo : Ability, Validator, Notify{
 		
 		}
 
-
+		/*
 			if (home != null) {
+			
 				Vector3 temp = home.requestLanding (this.gameObject);
 				if (temp != Vector3.zero) {
 					padSpot = temp;
 					mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot));
 				}
-
-	
-			mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot));
+*/
+		if (home) {
+			mymanager.GiveOrder (Orders.CreateMoveOrder (home.transform.position));
 		}
+		home = null;
+
 		//return true;
 	}
 
@@ -165,14 +168,14 @@ public class missileSalvo : Ability, Validator, Notify{
 		home.startLanding (this.gameObject);
 		yield return new WaitForSeconds (1);
 		mymanager.StunForTime (this, 4);
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (1.5);
 		upRockets ();
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (2.5);
 		upRockets ();
 		yield return new WaitForSeconds (1);
 		mymanager.setStun (false, this);
 		GetComponent<airmover> ().flyerHeight = flierheight;
-		mymanager.GiveOrder (Orders.CreateMoveOrder (this.transform.position+ transform.forward * 3) );
+		mymanager.GiveOrder (Orders.CreateMoveOrder (this.transform.position+ transform.forward *10) );
 		if (home) {
 			home.finished (this.gameObject);
 		}
@@ -215,7 +218,8 @@ public class missileSalvo : Ability, Validator, Notify{
 			if (home != null) {
 
 				if (padSpot != Vector3.zero) {
-						
+				
+
 					if (mymanager.getState () is DefaultState && Vector3.Distance (transform.position, padSpot) < 20) {
 						GetComponent<airmover> ().flyerHeight = 4;
 						mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot+ transform.forward * .3f) );

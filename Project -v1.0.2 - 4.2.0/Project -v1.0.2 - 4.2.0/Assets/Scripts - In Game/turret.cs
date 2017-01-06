@@ -63,7 +63,7 @@ public class turret : MonoBehaviour {
 		
 
 		for (float i = 0; i < 2f; i += Time.deltaTime) {
-			Debug.Log ("Turning!");
+			//Debug.Log ("Turning!");
 			transform.rotation = Quaternion.Slerp(transform.rotation,transform.parent.rotation, i/2);
 
 			yield return null;

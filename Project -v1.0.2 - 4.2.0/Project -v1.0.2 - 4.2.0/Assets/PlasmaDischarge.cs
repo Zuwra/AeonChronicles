@@ -90,7 +90,7 @@ public class PlasmaDischarge : Ability {
 
 	public void Deactivate()
 	{on = false;
-		Debug.Log ("Deactivating");
+	//	Debug.Log ("Deactivating");
 		if (BoostEffect) {
 			BoostEffect.stopEffect ();
 		}
