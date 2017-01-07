@@ -96,6 +96,7 @@
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_St_D_S_DS.shader" />
      <None Include="Assets\Bit2Good\SFS\Shaders\Terrain\SFS_Te_Dt.shader" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_Pr_N_S_S.shader" />
+     <None Include="Assets\SoundManager\Readme.txt" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_Pr_D_S_DS.shader" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_St_Nt.shader" />
      <None Include="Assets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetNoiseGenerator.compute" />

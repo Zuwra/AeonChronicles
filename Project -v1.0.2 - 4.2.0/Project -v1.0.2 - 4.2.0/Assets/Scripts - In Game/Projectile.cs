@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using DigitalRuby.SoundManagerNamespace;
 public  class Projectile : MonoBehaviour {
 
 
@@ -19,6 +19,9 @@ public  class Projectile : MonoBehaviour {
 	public GameObject Source;
 	public int sourceInt;
 
+
+	public AudioClip mySound;
+	AudioSource AudSrc;
 	public float inaccuracy;
 	//private bool selfDest = false;
 	private CharacterController control;
@@ -46,6 +49,10 @@ public  class Projectile : MonoBehaviour {
 	// Use this for initialization
 	public void Start () {	
 
+		AudSrc = GetComponent<AudioSource> ();
+			if (AudSrc && mySound) {
+				SoundManager.PlayOneShotSound (AudSrc, mySound);
+		}
 
 		if (target) {
 			if (inaccuracy > 0) {
@@ -321,6 +328,7 @@ public  class Projectile : MonoBehaviour {
 		
 		damage = so;
 	}
+
 
 
 }

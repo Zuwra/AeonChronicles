@@ -7,6 +7,7 @@ public class TextTrigger : SceneEventTrigger {
 	public string text;
 	public float duration;
 	public bool dialogue;
+	public int Priority =4;
 	public AudioClip sound;
 	public Sprite myPic;
 	[Tooltip("Length of Cutsccene, Set this to 0 so it wont steal the camera, cutscene length not implemented yet")]
@@ -23,7 +24,7 @@ public class TextTrigger : SceneEventTrigger {
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
 				//UIHighLight.main.highLight (null, 0);
 			} else {
-				ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic);
+				ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic,Priority);
 				if (stealCamera > 0) {
 					GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);
 				}

@@ -137,7 +137,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		int iCoord = (int)(((location.x - Left) / (WorldWidth)) * newParent.rect.width);
 		int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * newParent.rect.height);
 
-		Debug.Log ("Creating warning");
+		//Debug.Log ("Creating warning");
 
 
 		GameObject obj = (GameObject)Instantiate (warningSymbol, new Vector2(iCoord, jCoord), Quaternion.identity, newParent);

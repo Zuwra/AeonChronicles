@@ -17,6 +17,9 @@ public class missileSalvo : Ability, Validator, Notify{
 	float fillHerUp = 1;
 	float flierheight;
 	public HarpyLandingPad home;
+
+	float lastDistance;
+
 	// Use this for initialization
 	void Start () {
 		flierheight = GetComponent<airmover> ().flyerHeight;
@@ -27,9 +30,25 @@ public class missileSalvo : Ability, Validator, Notify{
 		myType = type.activated;
 		mySelect = GetComponent<Selected> ();
 		StartCoroutine (delayedUpdate());
-	
+		InvokeRepeating ("CheckForReservation", 1, .4f);
 
 	}
+
+	void CheckForReservation()
+	{if(home)
+		{
+		
+			float temp = Vector3.Distance (transform.position, home.transform.position);
+			if (temp > lastDistance) {
+				home.finished (this.gameObject);
+				home = null;
+
+			}
+			lastDistance = temp;
+		}
+	}
+
+
 	IEnumerator delayedUpdate()
 	{
 		yield return new WaitForSeconds (.1f);
@@ -115,43 +134,31 @@ public class missileSalvo : Ability, Validator, Notify{
 
 	override
 	public void Activate()
-	{
+	{Debug.Log ("activating " + chargeCount);
+		if (chargeCount < maxRockets) {
+			if (home) {
+				home.finished (this.gameObject);}
+			home = null;
+			padSpot = Vector3.zero;
+			float distance = 100000;
 
-		Debug.Log ("Activating " + home);
-		if (home != null) {
-			//home.finished (this.gameObject);
-		}
-		home = null;
-		padSpot = Vector3.zero;
-		float distance = 100000;
+			foreach (HarpyLandingPad arm in Object.FindObjectsOfType<HarpyLandingPad>()) {
 
-		foreach (HarpyLandingPad arm in Object.FindObjectsOfType<HarpyLandingPad>()) {
-
-			if (arm.hasAvailable ()) {
-				float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
-				if (temp < distance) {
-					distance = temp;
-					home = arm;
+				if (arm.hasAvailable ()) {
+					float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
+					if (temp < distance) {
+						distance = temp;
+						home = arm;
+					}
 				}
-			}
 		
-		}
+			}
 
-		/*
-			if (home != null) {
-			
-				Vector3 temp = home.requestLanding (this.gameObject);
-				if (temp != Vector3.zero) {
-					padSpot = temp;
-					mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot));
-				}
-*/
-		if (home) {
-			mymanager.GiveOrder (Orders.CreateMoveOrder (home.transform.position));
+			if (home) {
+				mymanager.GiveOrder (Orders.CreateMoveOrder (home.transform.position));
+			}
+			home = null;
 		}
-		home = null;
-
-		//return true;
 	}
 
 
@@ -168,11 +175,11 @@ public class missileSalvo : Ability, Validator, Notify{
 		home.startLanding (this.gameObject);
 		yield return new WaitForSeconds (1);
 		mymanager.StunForTime (this, 4);
-		yield return new WaitForSeconds (1.5);
+		yield return new WaitForSeconds (1.5f);
 		upRockets ();
-		yield return new WaitForSeconds (2.5);
+		yield return new WaitForSeconds (2f);
 		upRockets ();
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (1.5f);
 		mymanager.setStun (false, this);
 		GetComponent<airmover> ().flyerHeight = flierheight;
 		mymanager.GiveOrder (Orders.CreateMoveOrder (this.transform.position+ transform.forward *10) );
@@ -191,12 +198,13 @@ public class missileSalvo : Ability, Validator, Notify{
 
 		float distance;
 
-		while (chargeCount < maxRockets) {
+		while (chargeCount < maxRockets ) {
 		
+			if (!(mymanager.getState () is AttackMoveState)) {
 
-			if (home == null) {
-				distance = 100000;
-				foreach (HarpyLandingPad arm in nearbyPads) {
+				if (home == null) {
+					distance = 100000;
+					foreach (HarpyLandingPad arm in nearbyPads) {
 						if (arm.hasAvailable ()) {
 							float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
 							if (temp < distance) {
@@ -204,10 +212,10 @@ public class missileSalvo : Ability, Validator, Notify{
 								home = arm;
 							}
 						}
-				}
+					}
 			
 					if (home != null) {
-					Vector3 temp = home.requestLanding (this.gameObject);
+						Vector3 temp = home.requestLanding (this.gameObject);
 						if (temp != Vector3.zero) {
 							padSpot = temp;
 							mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot));
@@ -215,22 +223,22 @@ public class missileSalvo : Ability, Validator, Notify{
 					}
 
 				}
-			if (home != null) {
+				if (home != null) {
 
-				if (padSpot != Vector3.zero) {
+					if (padSpot != Vector3.zero) {
 				
 
-					if (mymanager.getState () is DefaultState && Vector3.Distance (transform.position, padSpot) < 20) {
-						GetComponent<airmover> ().flyerHeight = 4;
-						mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot+ transform.forward * .3f) );
-						StartCoroutine (loadingMissile ());
+						if (mymanager.getState () is DefaultState && Vector3.Distance (transform.position, padSpot) < 20) {
+							GetComponent<airmover> ().flyerHeight = 4;
+							mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot + transform.forward * .3f));
+							StartCoroutine (loadingMissile ());
 
+
+						}
 
 					}
-
 				}
 			}
-
 
 			yield return new WaitForSeconds (1f);
 		}

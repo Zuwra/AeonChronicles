@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-
+using DigitalRuby.SoundManagerNamespace;
 public class IWeapon : MonoBehaviour {
 
 	public string Title;
@@ -315,7 +315,8 @@ public class IWeapon : MonoBehaviour {
 			}
 			if (attackSoundEffect) {
 				audioSrc.pitch = ((float)Random.Range (6, 14) / 10);
-				audioSrc.PlayOneShot (attackSoundEffect, Random.value/3 + .15f);
+					SoundManager.PlayOneShotSound(audioSrc, attackSoundEffect);
+				//audioSrc.PlayOneShot (attackSoundEffect, Random.value/3 + .15f);
 			}
 			if (fireEffect) {
 				fireEffect.playEffect ();

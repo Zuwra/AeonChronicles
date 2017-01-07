@@ -50,7 +50,7 @@ public class CinematicCamera : SceneEventTrigger {
 			if (hasNextDialogue && Time.time > nextDialogue) {
 				hasNextDialogue = false;
 				ExpositionDisplayer.instance.displayText (myScenes [currentScene].myShots [currentShot].DialogueText,myScenes [currentScene].myShots [currentShot].duration
-					,myScenes [currentScene].myShots [currentShot].dialogueAudio, .8f,myScenes [currentScene].myShots [currentShot].dialogueImage);
+					,myScenes [currentScene].myShots [currentShot].dialogueAudio, .8f,myScenes [currentScene].myShots [currentShot].dialogueImage,5);
 			
 			}
 			float timeThroughShot = (shotChangeTime - Time.time) / myScenes [currentScene].myShots [currentShot].duration;

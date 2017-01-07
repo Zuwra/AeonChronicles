@@ -109,7 +109,7 @@ public class WaveSpawner : MonoBehaviour {
 			if (nextWave.warnings.Count > 0) {
 				int n = UnityEngine.Random.Range (0, nextWave.warnings.Count - 1);
 
-				ExpositionDisplayer.instance.displayText (nextWave.warnings [n].textWarning, 7, nextWave.warnings [n].audioWarning, .93f, nextWave.warnings[n].myPic);
+				ExpositionDisplayer.instance.displayText (nextWave.warnings [n].textWarning, 7, nextWave.warnings [n].audioWarning, .93f, nextWave.warnings[n].myPic,4);
 
 			}
 

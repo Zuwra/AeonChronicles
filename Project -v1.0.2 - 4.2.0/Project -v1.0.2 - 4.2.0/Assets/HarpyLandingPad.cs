@@ -16,7 +16,7 @@ public class HarpyLandingPad : MonoBehaviour {
 	public Vector3 requestLanding( GameObject incoming)
 	{
 		if (!rightPadInUse || rightPadInUse == incoming) {
-			Debug.Log ("Assigning " + incoming + "  to right");
+			//Debug.Log ("Assigning " + incoming + "  to right");
 			rightPadInUse = incoming;
 	
 		
@@ -28,7 +28,7 @@ public class HarpyLandingPad : MonoBehaviour {
 
 		if (!leftPadInUse || leftPadInUse == incoming) {
 
-			Debug.Log ("Assigning " + incoming + "  to left");
+			//Debug.Log ("Assigning " + incoming + "  to left");
 			//myAnim.Play ("BallisticLeftOut");
 
 			leftPadInUse = incoming;

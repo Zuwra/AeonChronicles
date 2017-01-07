@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ErrorPrompt : MonoBehaviour {
 
-	private AudioSource myAudio;
 	public AudioClip errorSound;
 	public static ErrorPrompt instance;
 
@@ -28,7 +27,8 @@ public class ErrorPrompt : MonoBehaviour {
 
 			this.gameObject.GetComponent<Text> ().text = err;
 			this.gameObject.GetComponent<Text> ().enabled = true;
-			myAudio.PlayOneShot (errorSound, .4f);
+			ExpositionDisplayer.instance.displayText ("", 2, errorSound, .4f, null, 3);
+			//myAudio.PlayOneShot (errorSound, .4f);
 			StopCoroutine (MyCoroutine ());
 			StartCoroutine (MyCoroutine ());
 
@@ -43,7 +43,8 @@ public class ErrorPrompt : MonoBehaviour {
 
 			this.gameObject.GetComponent<Text> ().text = err;
 			this.gameObject.GetComponent<Text> ().enabled = true;
-			myAudio.PlayOneShot (aud,1);
+			ExpositionDisplayer.instance.displayText ("", aud.length + .5f, aud, 1, null, 3);
+			//myAudio.PlayOneShot (aud,1);
 			StopCoroutine (MyCoroutine ());
 			StartCoroutine (MyCoroutine ());
 
@@ -57,7 +58,8 @@ public class ErrorPrompt : MonoBehaviour {
 	{
 		this.gameObject.GetComponent<Text> ().text = err;
 		this.gameObject.GetComponent<Text> ().enabled = true;
-		myAudio.PlayOneShot (clip);
+		ExpositionDisplayer.instance.displayText ("", clip.length + .5f, clip, 1, null, 3);
+		//myAudio.PlayOneShot (clip);
 		StopCoroutine (MyCoroutine ());
 		StartCoroutine (MyCoroutine ());
 
@@ -165,7 +167,7 @@ public class ErrorPrompt : MonoBehaviour {
 	void Start () {
 		instance = this;
 		GameMenu.main.addDisableScript (this);
-		myAudio =GameObject.FindObjectOfType<ExpositionDisplayer>().GetComponent<AudioSource> ();
+
 	}
 	
 	// Update is called once per frame

@@ -19,6 +19,7 @@ public class explosion : MonoBehaviour {
 
 	private List<GameObject> hitStuff= new List<GameObject>();
 
+
 	public IWeapon.bonusDamage[] extraDamage;
 
 	UnitManager mySrcMan;
@@ -97,4 +98,5 @@ public class explosion : MonoBehaviour {
 			}
 		}
 	}
+
 }

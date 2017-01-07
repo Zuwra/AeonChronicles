@@ -680,6 +680,13 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	public void voiceResponse (bool attacker)
 	{
+
+		if (!attacker) {
+			AudioSrc.PlayOneShot (moveSound,.1f);
+		} else {
+			AudioSrc.PlayOneShot (attackSound,.1f);
+		}
+
 	if (Time.time > lastVoiceTime + 5) {
 			
 		soundIndex++;
@@ -687,13 +694,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			soundIndex = 0;
 		}
 		if(soundIndex != 1)
-			{if (!attacker) {
-				AudioSrc.PlayOneShot (moveSound,.1f);
-			} else {
-			AudioSrc.PlayOneShot (attackSound,.1f);
-			}
-
-			return;}
+			{return;}
 
 		UnitManager listTop = SelectedObjects [0].gameObject.GetComponent<UnitManager> ();
 			lastVoiceTime = Time.time;
@@ -707,7 +708,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 						n = Random.Range (0, listTop.myVoices.attacking.Count -1);
 					} while(n == lsatVoiceIndex);
 
-					AudioSrc.PlayOneShot (listTop.myVoices.attacking [n], .5f);
+					ExpositionDisplayer.instance.displayText ("", 2, listTop.myVoices.attacking [n], .5f, null, 0);
+				
 
 				}
 			} else {
@@ -716,7 +718,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 						n = Random.Range (0, listTop.myVoices.moving.Count -1 );
 					} while(n == lsatVoiceIndex);
 
-					AudioSrc.PlayOneShot (listTop.myVoices.moving [n], .5f);
+					ExpositionDisplayer.instance.displayText ("", 2, listTop.myVoices.moving [n], .5f, null, 0);
+				
 				}
 			}
 			lsatVoiceIndex = n;

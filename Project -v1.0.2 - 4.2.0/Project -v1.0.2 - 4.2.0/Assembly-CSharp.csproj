@@ -182,6 +182,7 @@
      <Compile Include="Assets\AstarPathfindingProject\Utilities\UnityReferenceHelper.cs" />
      <Compile Include="Assets\AstarPathfindingProject\changelog.cs" />
      <Compile Include="Assets\AttachGrinder.cs" />
+     <Compile Include="Assets\AudioPlayer.cs" />
      <Compile Include="Assets\AugmentAetherVictory.cs" />
      <Compile Include="Assets\AugmentAttachPoint.cs" />
      <Compile Include="Assets\AugmentUpgrade.cs" />
@@ -494,6 +495,8 @@
      <Compile Include="Assets\ShieldUpgrade.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />
+     <Compile Include="Assets\SoundManager\Demo\SoundManagerDemo.cs" />
+     <Compile Include="Assets\SoundManager\SoundManager.cs" />
      <Compile Include="Assets\SoundOptions.cs" />
      <Compile Include="Assets\SoundTrackPlayList.cs" />
      <Compile Include="Assets\SoundTrackPlayer.cs" />
@@ -598,6 +601,7 @@
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_St_D_S_DS.shader" />
      <None Include="Assets\Bit2Good\SFS\Shaders\Terrain\SFS_Te_Dt.shader" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_Pr_N_S_S.shader" />
+     <None Include="Assets\SoundManager\Readme.txt" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_Pr_D_S_DS.shader" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_St_Nt.shader" />
      <None Include="Assets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetNoiseGenerator.compute" />
