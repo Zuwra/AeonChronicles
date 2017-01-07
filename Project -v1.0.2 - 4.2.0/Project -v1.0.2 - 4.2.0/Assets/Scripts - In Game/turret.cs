@@ -9,7 +9,7 @@ public class turret : MonoBehaviour {
 	Coroutine frontFace;
 	Coroutine trackingTarget;
 	
-	float lastTargetTime;
+	//float lastTargetTime;
 
 	GameObject myTarget; 
 
@@ -17,7 +17,7 @@ public class turret : MonoBehaviour {
 	{
 		
 		myTarget = target;
-		lastTargetTime = Time.time;
+		//lastTargetTime = Time.time;
 
 
 		if (frontFace != null) {

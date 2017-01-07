@@ -134,7 +134,7 @@ public class missileSalvo : Ability, Validator, Notify{
 
 	override
 	public void Activate()
-	{Debug.Log ("activating " + chargeCount);
+	{//Debug.Log ("activating " + chargeCount);
 		if (chargeCount < maxRockets) {
 			if (home) {
 				home.finished (this.gameObject);}
@@ -179,7 +179,7 @@ public class missileSalvo : Ability, Validator, Notify{
 		upRockets ();
 		yield return new WaitForSeconds (2f);
 		upRockets ();
-		yield return new WaitForSeconds (1.5f);
+		yield return new WaitForSeconds (1.2f);
 		mymanager.setStun (false, this);
 		GetComponent<airmover> ().flyerHeight = flierheight;
 		mymanager.GiveOrder (Orders.CreateMoveOrder (this.transform.position+ transform.forward *10) );

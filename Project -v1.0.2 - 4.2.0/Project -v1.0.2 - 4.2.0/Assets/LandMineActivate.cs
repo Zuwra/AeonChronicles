@@ -46,7 +46,7 @@ public class LandMineActivate : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 
 		UnitManager otherManager = other.gameObject.GetComponent<UnitManager> ();
-		if (otherManager && !otherManager.PlayerOwner.Equals (1)) {
+		if (otherManager && !otherManager.PlayerOwner.Equals (1) && otherManager.getUnitStats()) {
 
 			float amount = otherManager.getUnitStats ().TakeDamage (currentDamage,myVet.gameObject,DamageTypes.DamageType.True);
 			if (myVet) {

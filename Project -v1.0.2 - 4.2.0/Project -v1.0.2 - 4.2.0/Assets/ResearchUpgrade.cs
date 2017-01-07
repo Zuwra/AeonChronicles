@@ -195,7 +195,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 				continue;}
 
 			if (ru.researchingElsewhere) {
-				Debug.Log ( Name +"  Researching " + ru.Name);
+				//Debug.Log ( Name +"  Researching " + ru.Name);
 
 		
 					//Debug.Log ("Name " + upgrades [currentUpgrade].Name + "   is  " + ((Upgrade)incoming[1]).Name);

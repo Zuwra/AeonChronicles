@@ -101,7 +101,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	public void displayText(string input, float duration, AudioClip sound, float volume, Sprite pic, int Priority)
 	{	
-		//Debug.Log ("Starting  " + currentMessage);
+
 		SoundMessage newMessage = new SoundMessage (sound, duration,pic,input, Priority, volume);
 		if (inMessage) {
 			if (newMessage.priority > currentMessage.priority + 2) {
@@ -151,6 +151,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 			myAudio.Stop ();
 		}
 		currentMessage = null;
+		inMessage = false;
 
 	}
 
