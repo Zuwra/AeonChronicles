@@ -219,7 +219,7 @@ public  class Projectile : MonoBehaviour {
 
 			explosion Escript = explode.GetComponent<explosion> ();
 			if (Escript) {
-				Escript.setSource (Source, sourceInt);
+				Escript.setSource (Source);
 				Escript.damageAmount = this.damage;
 			}
 		}

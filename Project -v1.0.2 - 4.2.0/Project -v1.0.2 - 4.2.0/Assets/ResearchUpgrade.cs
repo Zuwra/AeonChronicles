@@ -15,6 +15,9 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	private UnitManager myManager;
 
 	public bool researchingElsewhere;
+
+	public bool requiresAddon;
+	bool hasAddon;
 	RaceManager raceMan;
 
 		//public float buildTime;
@@ -44,7 +47,9 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 				buildMan.unitFinished (this);
 				researching = false;
 				raceMan.addUpgrade (upgrades[currentUpgrade], myManager.UnitName);
-				active = true;
+				if (requiresAddon && hasAddon || !requiresAddon) {
+					active = true;
+				}
 				RaceManager.upDateUI ();
 					//createUnit();
 				}
@@ -55,15 +60,19 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 	public override void DeQueueUnit()
 	{
 		//Debug.Log (Name + " is Dqueuing");
-		myCost.refundCost ();
-		active = true;
 
 		researchingElsewhere = false;
 		object[] temp = new object[2];
-		temp [0] = true;
+		temp [0] = false;
+		myCost.refundCost ();
+		if (requiresAddon && hasAddon || !requiresAddon) {
+			active = true;
+			temp [0] = true;
+		}
+			
 		temp [1] = upgrades[currentUpgrade];
 
-
+		//Debug.Log ("Passing out " + temp [0]);
 		foreach (ResearchUpgrade ru in GameObject.FindObjectsOfType<ResearchUpgrade>()) {
 			if (ru == this) {
 				continue;}
@@ -73,6 +82,29 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 
 		if (mySelect.IsSelected) {
 			RaceManager.updateActivity ();
+		}
+	}
+
+	public void attachAddon()
+	{
+		//Debug.Log ("Has addon");
+		hasAddon = true;
+		if (requiresAddon) {
+			active = true;
+			if (mySelect.IsSelected) {
+				RaceManager.updateActivity ();
+			}
+		}
+	}
+
+	public void removeAddon()
+	{//Debug.Log ("No addon");
+		hasAddon = false;
+		if (requiresAddon) {
+			active = false;
+			if (mySelect.IsSelected) {
+				RaceManager.updateActivity ();
+			}
 		}
 	}
 
@@ -163,7 +195,9 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 				Name = upgrades [currentUpgrade].Name;
 				myCost = upgrades [currentUpgrade].myCost;
 				Descripton = upgrades [currentUpgrade].Descripton;
-				this.active = true;
+				if (requiresAddon && hasAddon || !requiresAddon) {
+					this.active = true;
+				}
 				if (mySelect.IsSelected) {
 					RaceManager.updateActivity();
 				}
@@ -195,10 +229,6 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 				continue;}
 
 			if (ru.researchingElsewhere) {
-				//Debug.Log ( Name +"  Researching " + ru.Name);
-
-		
-					//Debug.Log ("Name " + upgrades [currentUpgrade].Name + "   is  " + ((Upgrade)incoming[1]).Name);
 				if (Name ==ru.upgrades[ru.currentUpgrade].Name) {
 
 
@@ -206,15 +236,10 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 					active = ru.active;
 
 					}
-
-		
 			}
-		
 		
 		}
 
-
-	
 	}
 
 
@@ -244,8 +269,11 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 		timer = 0;
 		researching = false;
 		//myCost.refundCost ();
-		active = true;
-		raceMan.commenceUpgrade (true, upgrades [currentUpgrade], myManager.UnitName);
+		if (requiresAddon && hasAddon || !requiresAddon) {
+			active = true;
+		}
+
+		raceMan.commenceUpgrade ((requiresAddon && hasAddon || !requiresAddon), upgrades [currentUpgrade], myManager.UnitName);
 		if (mySelect.IsSelected) {
 			RaceManager.updateActivity ();
 		}

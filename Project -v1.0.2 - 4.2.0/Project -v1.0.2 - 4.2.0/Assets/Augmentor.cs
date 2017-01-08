@@ -98,6 +98,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 						if(xxx>1 && !unitMan.UnitName.Contains("Yard"))
 						{
 							((UnitProduction)bu).active = true;
+							bu.SendMessage ("attachAddon", SendMessageOptions.DontRequireReceiver);
 						}
 
 					}
@@ -151,6 +152,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 						if(xxx>1 && !unitMan.UnitName.Contains("Yard"))
 						{
 							((UnitProduction)bu).active = false;
+						
 						}
 
 					}
@@ -191,7 +193,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 						((UnitProduction)bu).setBuildRate (1);
 						if (xxx > 1 && !man.UnitName.Contains ("Yard")) {
-							
+							bu.SendMessage ("removeAddon", SendMessageOptions.DontRequireReceiver);
 							((UnitProduction)bu).active = false;
 						}
 

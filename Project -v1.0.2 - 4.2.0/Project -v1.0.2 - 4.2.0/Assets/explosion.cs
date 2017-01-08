@@ -32,17 +32,17 @@ public class explosion : MonoBehaviour {
 	
 	}
 
-	public void setSource(GameObject sr, int srcNum)
+
+	public void setSource(GameObject sr)
 	{
 		source = sr;
 		if (source) {
 			mySrcMan = source.GetComponent<UnitManager> ();
 		}
 
-		sourceInt = srcNum;
-	
-	}
+		sourceInt = mySrcMan.PlayerOwner;
 
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -68,7 +68,7 @@ public class explosion : MonoBehaviour {
 
 			if (manager) {
 
-				if (!friendlyFire && source.GetComponent<GameManager> ()) {
+				if (!friendlyFire && source &&source.GetComponent<GameManager> ()) {
 					return;
 				}
 

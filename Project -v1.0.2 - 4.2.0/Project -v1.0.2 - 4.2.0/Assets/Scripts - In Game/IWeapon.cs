@@ -26,8 +26,6 @@ public class IWeapon : MonoBehaviour {
 	private float InitialBaseDamage ;
 	bool initialSpeedSet;
 	bool initalDamageSet;
-	//[Tooltip("this is multiplied by the enemy mass and added or subtracted from the damage")]
-	//public float massBonus;
 
 	[Tooltip("Having arange that is longer than the vision range is not supported yet")]
 	public float range =5;
@@ -295,13 +293,16 @@ public class IWeapon : MonoBehaviour {
 				if (originIndex == originPoint.Count) {
 					originIndex = 0;}
 				Projectile script = proj.GetComponent<Projectile> ();
-				proj.SendMessage ("setSource", this.gameObject);
-				proj.SendMessage ("setTarget", target);
-				proj.SendMessage ("setDamage", damage);
-				script.damage = damage;
+				proj.SendMessage ("setSource", this.gameObject, SendMessageOptions.DontRequireReceiver);
+				proj.SendMessage ("setTarget", target,SendMessageOptions.DontRequireReceiver);
+				proj.SendMessage ("setDamage", damage,SendMessageOptions.DontRequireReceiver);
 
-				script.target = target;
-				script.Source = this.gameObject;
+				if (script) {
+					script.damage = damage;
+
+					script.target = target;
+					script.Source = this.gameObject;
+				}
 
 			} else {
 
