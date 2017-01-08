@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 
@@ -11,7 +12,8 @@ public class ErrorPrompt : MonoBehaviour {
 	public VoicePack myVoicePack;
 
 	float lastAttackAlert = -1000;
-	Vector3 attackLocation;
+	List<Vector3> attackLocations = new List<Vector3>();
+	int currentAlertIndex;
 
 	float lastErrorTime;
 
@@ -81,8 +83,9 @@ public class ErrorPrompt : MonoBehaviour {
 	} 
 
 
-	public void ResearchComplete(string s)
+	public void ResearchComplete(string s , Vector3 location)
 	{showError( s, myVoicePack.getResearchLine());
+		addAlertLocation( location);
 	}
 
 	public void notEnoughSupply()
@@ -98,16 +101,16 @@ public class ErrorPrompt : MonoBehaviour {
 		showError( "Population Limited Reached", myVoicePack.getMaxSupplyLine());
 
 	}
-	public void BuildingDone(string n)
+	public void BuildingDone(string n, Vector3 location)
 	{
 		showError( n, myVoicePack.getBuildingCompleteLine());
+		addAlertLocation( location);
 
 	}
 
 	public void invalidGroundLocation()
 	{
 		showError( "Invalid Location", myVoicePack.getBadBuildingLine());
-
 	}
 
 	public void invalidTarget()
@@ -118,19 +121,30 @@ public class ErrorPrompt : MonoBehaviour {
 	{showError( "Ability on Cooldown", myVoicePack.getCooldownLine());
 	}
 
-	public void OreDepleted()
+	public void OreDepleted(Vector3 location)
 	{showError( "Ore Deposit Depleted", myVoicePack.getOreDepletedLine());
+		addAlertLocation( location);
 	}
 	
 	public void underAttack(Vector3 location)
 	{
 		if (Time.time > lastAttackAlert + 10 &&!checkIfOnScreen(location)) {
 			showError ("Under Attack!", myVoicePack.getTroopAttackLine());
-			attackLocation = location;
+			addAlertLocation( location);
 		
 			lastAttackAlert = Time.time;
 		}
 
+	}
+
+
+	void addAlertLocation(Vector3 spot)
+	{
+		attackLocations.Insert (0, spot);
+		currentAlertIndex = 0;
+		if (attackLocations.Count > 4) {
+			attackLocations.RemoveAt (2);
+		}
 	}
 	
 	public void underBaseAttack(Vector3 location)
@@ -138,7 +152,7 @@ public class ErrorPrompt : MonoBehaviour {
 
 		if (Time.time > lastAttackAlert + 10 && !checkIfOnScreen(location)) {
 			showError ("Base Under Attack!", myVoicePack.getbaseAttackedLine());
-			attackLocation = location;
+			addAlertLocation( location);
 
 			lastAttackAlert = Time.time;
 		}
@@ -174,14 +188,15 @@ public class ErrorPrompt : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKeyDown(KeyCode.BackQuote)) {
-			if (Time.time < lastAttackAlert + 10 ) {
-				MainCamera.main.generalMove(attackLocation);			
+
+				MainCamera.main.generalMove(attackLocations[currentAlertIndex]);			
+				currentAlertIndex++;
+				if (currentAlertIndex == attackLocations.Count) {
+					currentAlertIndex = 0;
+				}
 			
-			}
 		}
 
-
-	
 	}
 
 

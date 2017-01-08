@@ -132,8 +132,9 @@ public class VictoryTrigger : MonoBehaviour {
 		//LevelData.loadVetStats (GameManager.main.playerList [0].getUnitStats());
 		LevelData.levelInfo Ldata = createLevelInfo(levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
 			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
-		GameObject.FindObjectOfType<VictoryScreen> ().SetResults (Ldata);
-	
+		foreach (VictoryScreen vs in GameObject.FindObjectsOfType<VictoryScreen> ()) {
+			vs.SetResults (Ldata, true);
+		}
 
 		LevelData.addLevelInfo (levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
 			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
@@ -144,12 +145,20 @@ public class VictoryTrigger : MonoBehaviour {
 
 	IEnumerator LoseLevel ()
 	{
+		yield return new WaitForSeconds (1);
 		ExpositionDisplayer.instance.displayText (6, DefeatLine, 1);
-		yield return new WaitForSeconds (4);
-		DefeatScreen.enabled = false;
-		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
-		DefeatScreen.enabled = false;
-		SceneManager.LoadScene (3);
+		yield return new WaitForSeconds (2.5f);
+
+		LevelData.levelInfo Ldata = createLevelInfo(levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
+			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
+		foreach (VictoryScreen vs in GameObject.FindObjectsOfType<VictoryScreen> ()) {
+			vs.SetResults (Ldata, false);
+		}
+
+	//	DefeatScreen.enabled = false;
+	//	GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
+	//	DefeatScreen.enabled = false;
+		//SceneManager.LoadScene (3);
 	}
 
 
@@ -169,7 +178,14 @@ public class VictoryTrigger : MonoBehaviour {
 		//	Debug.Log ("Cureent Level " + currentLevel);
 	}
 
+	public void replay()
+	{
+		VictoryScreen.enabled = false;
+		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
+		DefeatScreen.enabled = false;
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 
+	}
 
 	public void endLevel ()
 	{

@@ -36,7 +36,7 @@ public class OreDispenser : MonoBehaviour {
 		OreRemaining -= giveBack;
 		if (OreRemaining <= .5) {
 
-			ErrorPrompt.instance.OreDepleted();
+			ErrorPrompt.instance.OreDepleted(transform.position);
 			SelectedManager.main.DeselectObject (GetComponent<UnitManager> ());
 			AugmentAttachPoint AAP = GetComponent<AugmentAttachPoint> ();
 			if (AAP && AAP.myAugment) {
