@@ -39,9 +39,9 @@ public class explosion : MonoBehaviour {
 		if (source) {
 			mySrcMan = source.GetComponent<UnitManager> ();
 		}
-
-		sourceInt = mySrcMan.PlayerOwner;
-
+		if (mySrcMan) {
+			sourceInt = mySrcMan.PlayerOwner;
+		}
 	}
 
 	// Update is called once per frame

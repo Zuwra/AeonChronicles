@@ -13,19 +13,13 @@ public class ArmyUIManager : MonoBehaviour {
 	private Dictionary<string, GameObject> iconList = new Dictionary<string,GameObject>();
 	private int unitCount = 0;
 
-
-	// Use this for initialization
-	void Start () {
-		
-
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
+	float startingY;
+	RectTransform trans;
+	void Start()
+	{trans = unitPanel.GetComponent<RectTransform> ();
+		startingY = trans.anchoredPosition.y;
 	
 	}
-
 
 	public void updateUnits(GameObject unit)
 		{
@@ -86,8 +80,12 @@ public class ArmyUIManager : MonoBehaviour {
 					GameObject obj = iconList [manage.UnitName];
 					iconList.Remove (manage.UnitName);
 					Destroy (obj);
-				
+
+
+
 					unitList.Remove (manage.UnitName);
+
+				resetSize ();
 
 			} else {
 				if (this.gameObject.activeSelf) {
@@ -95,6 +93,13 @@ public class ArmyUIManager : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void resetSize()
+	{
+		int rowCount = (iconList.Count) / 3;
+		trans.sizeDelta = new Vector2(trans.rect.width, 45 + (46 * rowCount));
+		trans.anchoredPosition = new Vector2( trans.anchoredPosition.x, startingY - 23 * rowCount);
 	}
 
 
@@ -116,25 +121,8 @@ public class ArmyUIManager : MonoBehaviour {
 		if (!manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			icon.transform.SetAsFirstSibling ();
 		}
-		/*
-		RectTransform trans = unitPanel.GetComponent<RectTransform> ();
+		resetSize ();
 
-		if (iconList.Count > 8) {
-			trans.sizeDelta = new Vector2(trans.rect.width, 135);
-			//unitPanel.transform.Translate (0, -20, 0);
-			//unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, (yPosition -20) * unitPanel.transform.localScale.x, unitPanel.transform.position.z);
-			//trans.localPosition = new Vector3 (trans.position.x, trans.position.y, trans.position.z);
-		} else if (iconList.Count > 12) {
-			trans.sizeDelta = new Vector2(trans.rect.width, 180);
-			//unitPanel.transform.Translate (0, -40, 0);
-			//unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, (yPosition - 40) * unitPanel.transform.localScale.x, unitPanel.transform.position.z);
-			//trans.localPosition = new Vector3 (trans.position.x, trans.position.y, trans.position.z);
-		} else {
-			trans.sizeDelta = new Vector2(trans.rect.width, 95);
-			//unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, unitPanel.transform.position.y, unitPanel.transform.position.z);
-			//trans.localPosition = new Vector3 (trans.position.x, trans.position.y, trans.position.z);
-		}
-*/
 		icon.transform.localScale = unitPanel.transform.localScale;
 		//Debug.Log ("Adding icon " + manage.UnitName + "  " + icon);
 		iconList.Add (manage.UnitName, icon);

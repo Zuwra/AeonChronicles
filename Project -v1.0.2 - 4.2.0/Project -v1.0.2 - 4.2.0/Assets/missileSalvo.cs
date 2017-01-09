@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class missileSalvo : Ability, Validator, Notify{
+public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 
 
 	private IWeapon myweapon;
@@ -19,7 +19,10 @@ public class missileSalvo : Ability, Validator, Notify{
 	public HarpyLandingPad home;
 
 	float lastDistance;
+	bool inLanding;
+	Vector3 homeLocation;
 
+	Coroutine ReFill;
 	// Use this for initialization
 	void Start () {
 		flierheight = GetComponent<airmover> ().flyerHeight;
@@ -30,23 +33,9 @@ public class missileSalvo : Ability, Validator, Notify{
 		myType = type.activated;
 		mySelect = GetComponent<Selected> ();
 		StartCoroutine (delayedUpdate());
-		InvokeRepeating ("CheckForReservation", 1, .4f);
 
 	}
 
-	void CheckForReservation()
-	{if(home)
-		{
-		
-			float temp = Vector3.Distance (transform.position, home.transform.position);
-			if (temp > lastDistance) {
-				home.finished (this.gameObject);
-				home = null;
-
-			}
-			lastDistance = temp;
-		}
-	}
 
 
 	IEnumerator delayedUpdate()
@@ -115,7 +104,10 @@ public class missileSalvo : Ability, Validator, Notify{
 			RaceManager.upDateUI ();
 		}
 		if (autocast && chargeCount <= 0) {
-			StartCoroutine (checkForLandingPad ());
+			if (ReFill == null) {
+				
+				ReFill =	StartCoroutine (checkForLandingPad ());
+			}
 			Activate ();
 		}
 		if(MissileModels.Count > chargeCount && chargeCount >= 0){
@@ -138,26 +130,38 @@ public class missileSalvo : Ability, Validator, Notify{
 		if (chargeCount < maxRockets) {
 			if (home) {
 				home.finished (this.gameObject);}
+
+			if (ReFill == null) {
+				ReFill =	StartCoroutine (checkForLandingPad ());
+			}
+
 			home = null;
 			padSpot = Vector3.zero;
 			float distance = 100000;
 
 			foreach (HarpyLandingPad arm in Object.FindObjectsOfType<HarpyLandingPad>()) {
 
-				if (arm.hasAvailable ()) {
+
 					float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
 					if (temp < distance) {
 						distance = temp;
 						home = arm;
 					}
-				}
-		
+
 			}
 
 			if (home) {
-				mymanager.GiveOrder (Orders.CreateMoveOrder (home.transform.position));
+
+				if (home.hasAvailable ()) {
+
+					homeLocation = home.transform.position;
+					mymanager.GiveOrder (Orders.CreateMoveOrder (home.transform.position));
+				} else {
+					mymanager.GiveOrder (Orders.CreateMoveOrder 
+						(new Vector3(home.transform.position.x + Random.Range(0,5),home.transform.position.y + Random.Range(0,5),
+							home.transform.position.z)));
+				}
 			}
-			home = null;
 		}
 	}
 
@@ -172,78 +176,95 @@ public class missileSalvo : Ability, Validator, Notify{
 
 	IEnumerator loadingMissile()
 	{
+
 		home.startLanding (this.gameObject);
-		yield return new WaitForSeconds (1);
-		mymanager.StunForTime (this, 4);
+		yield return new WaitForSeconds (.01f);
+		padSpot = Vector3.zero;
+		mymanager.StunForTime (this, 4.5f);
+		StopCoroutine (ReFill);
+	
 		yield return new WaitForSeconds (1.5f);
 		upRockets ();
 		yield return new WaitForSeconds (2f);
 		upRockets ();
 		yield return new WaitForSeconds (1.2f);
+
+		ReFill = null;
 		mymanager.setStun (false, this);
-		GetComponent<airmover> ().flyerHeight = flierheight;
-		mymanager.GiveOrder (Orders.CreateMoveOrder (this.transform.position+ transform.forward *10) );
+		;
+		inLanding = false;
 		if (home) {
 			home.finished (this.gameObject);
 		}
+
+
 		home = null;
+
+		GetComponent<airmover> ().flyerHeight = flierheight;
+		mymanager.GiveOrder (Orders.CreateMoveOrder (this.transform.position+ transform.forward * 12) );
+	
 
 	}
 
 	IEnumerator checkForLandingPad()
 	{
 		
-		yield return new WaitForSeconds (.3f);
+		yield return new WaitForSeconds (.1f);
 
+		while (true) {
 
-		float distance;
+			if (home && homeLocation != Vector3.zero && Vector3.Distance(transform.position,homeLocation) < 20  && !inLanding) {
 
-		while (chargeCount < maxRockets ) {
-		
-			if (!(mymanager.getState () is AttackMoveState)) {
-
-				if (home == null) {
-					distance = 100000;
-					foreach (HarpyLandingPad arm in nearbyPads) {
-						if (arm.hasAvailable ()) {
-							float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
-							if (temp < distance) {
-								distance = temp;
-								home = arm;
-							}
-						}
-					}
 			
-					if (home != null) {
-						Vector3 temp = home.requestLanding (this.gameObject);
-						if (temp != Vector3.zero) {
-							padSpot = temp;
-							mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot));
-						}
-					}
-
-				}
-				if (home != null) {
-
-					if (padSpot != Vector3.zero) {
+				Vector3 temp = home.requestLanding (this.gameObject);
+				if (temp != Vector3.zero) {
+					padSpot = temp;
+					mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot));
 				
-
-						if (mymanager.getState () is DefaultState && Vector3.Distance (transform.position, padSpot) < 20) {
-							GetComponent<airmover> ().flyerHeight = 4;
-							mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot + transform.forward * .3f));
-							StartCoroutine (loadingMissile ());
-
-
-						}
-
-					}
 				}
 			}
-
+		
 			yield return new WaitForSeconds (1f);
 		}
-		GetComponent<airmover> ().flyerHeight = flierheight;
+	}
 
+
+	IEnumerator decsendLanding()
+	{
+		
+		while (Vector3.Distance(padSpot, transform.position) > 2f ) {
+		
+			yield return new WaitForSeconds (.1f);
+		}
+
+		StartCoroutine (loadingMissile ());
+	}
+
+	public virtual UnitState computeState(UnitState s)
+	{
+
+		if (padSpot != Vector3.zero && s is DefaultState && Vector3.Distance (transform.position, padSpot) < 20) {
+
+			if (GetComponent<airmover> ().flyerHeight == 4) {
+				StartCoroutine ( decsendLanding());
+				return s;
+
+
+			} else {
+
+				GetComponent<airmover> ().flyerHeight = 4;
+				inLanding = true;
+
+				return new MoveState (padSpot + transform.forward * .25f, mymanager);
+			}
+		} 
+
+		if (GetComponent<airmover> ().flyerHeight == 4 && inLanding) {
+			return new MoveState (padSpot + transform.forward * .25f, mymanager);
+		}
+	
+
+		return s;
 	}
 
 
@@ -269,5 +290,154 @@ public class missileSalvo : Ability, Validator, Notify{
 		}
 	}
 
+
+
+	protected UnitManager myManager;
+	public bool attackWhileMoving;
+
+	// Use this for initialization
+	void Awake () {
+
+		myManager = GetComponent<UnitManager> ();
+		myManager.setInteractor (this);
+
+	}
+
+
+	public void initialize(){
+		Awake ();
+	}
+
+
+	// When creating other interactor classes, make sure to pass all relevant information into whatever new state is being created (IMover, IWeapon, UnitManager)
+	public virtual void computeInteractions (Order order)
+	{
+		//Debug.Log ("Queued " + order.queued);
+		switch (order.OrderType) {
+		case Const.Order_HoldGround:
+
+			HoldGround (order);
+			break;
+
+
+		case Const.Order_Patrol:
+			Patrol (order);
+			break;
+
+
+		case Const.ORDER_STOP:
+			Stop (order);
+			break;
+
+		case Const.ORDER_MOVE_TO:
+			Move (order);
+			break;
+
+		case Const.ORDER_Interact:
+			Interact (order);
+			break;
+
+			// ATTACK MOVE - Move towards a location and attack enemies on the way.
+		case Const.ORDER_AttackMove:
+			//	Debug.Log ("Setting to attack move");
+			AttackMove (order);
+
+			break;
+
+
+			// Right click on a allied unit
+		case Const.ORDER_Follow:
+			Follow (order);
+			break;
+
+
+
+		}
+
+
+	}
+
+	// Attack move towards a ground location (Tab - ground)
+	public virtual void  AttackMove(Order order)
+	{
+		if (myManager.myWeapon.Count > 0) {
+
+			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position),false,order.queued);
+		}else {
+			myManager.changeState (new MoveState (order.OrderLocation, myManager, true),false,order.queued);
+		}
+	}
+
+	// Right click on a obj/unit
+	public virtual void Interact(Order order)
+	{//Debug.Log ("First Intereact");
+		UnitManager manage = order.Target.GetComponent<UnitManager> ();
+		if (!manage) {
+			manage = order.Target.GetComponentInParent<UnitManager> ();
+		}
+
+		if (manage != null) {
+
+			if (manage ==myManager) {
+				return;
+			}
+			if (manage.PlayerOwner != myManager.PlayerOwner) {
+				if (this.gameObject.GetComponent<UnitManager> ().myWeapon.Count == 0) {
+					myManager.changeState (new FollowState (order.Target.gameObject, myManager), false, order.queued);
+				} else {
+					//Debug.Log ("Ordering to interact " + manage.gameObject);
+					myManager.changeState (new InteractState (manage.gameObject, myManager), false, order.queued);
+				}
+			} else if (manage.UnitName == "Ballistics Lab") {
+				Activate ();
+			}
+			else{
+				myManager.changeState (new FollowState (order.Target.gameObject,  myManager),false,order.queued);
+			}
+		}
+	}
+	//Right click on the ground
+	public void Move(Order order)
+	{
+		if (attackWhileMoving &&  myManager.myWeapon.Count >0) {
+
+			myManager.changeState (new AttckWhileMoveState (order.OrderLocation, myManager),false,order.queued);
+		} else {
+			myManager.changeState (new MoveState (order.OrderLocation, myManager),false,order.queued);
+		}
+	}
+
+	//Stop, caps lock
+	public void Stop(Order order)
+	{myManager.changeState (new DefaultState ());
+
+	}
+
+	//Shift-Tab 
+	public void Patrol(Order order)
+	{
+		myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.patrol, myManager, myManager.gameObject.transform.position),false,order.queued);
+	}
+
+	//Shift-Caps
+	public void HoldGround(Order order)
+	{
+		myManager.changeState (new HoldState(myManager));
+	}
+
+	//Right click on a unit/object. how is this different than interact? is it only on allied units?
+	public virtual void Follow(Order order){
+
+		if (order.Target == this.gameObject) {
+			return;
+		}
+		//	Debug.Log ("First ORder");
+		if (myManager.myWeapon.Count > 0) {
+
+			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position),false,order.queued);
+		}else {
+			myManager.changeState (new MoveState (order.OrderLocation, myManager),false,order.queued);
+		}
+	}
 
 }

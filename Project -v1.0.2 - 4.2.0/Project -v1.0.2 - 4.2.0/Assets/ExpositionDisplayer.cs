@@ -136,7 +136,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	public void InteruptMessage()
 	{
-		Debug.Log ("Interupting message");
+		//Debug.Log ("Interupting message");
 		if (currentScrolling != null) {
 			StopCoroutine (currentScrolling);
 		}

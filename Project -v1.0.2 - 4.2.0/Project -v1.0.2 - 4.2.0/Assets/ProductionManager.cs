@@ -18,12 +18,17 @@ public class ProductionManager : MonoBehaviour {
 
 	private float nextActionTime;
 	// Use this for initialization
-	void Start () {
-		nextActionTime = Time.time + .5f;
-		yPosition = unitPanel.transform.position.y;
 
+	float startingY;
+	RectTransform trans;
+	void Start()
+	{
+		nextActionTime = Time.time + .5f;
+		trans = unitPanel.GetComponent<RectTransform> ();
+		startingY = trans.anchoredPosition.y;
 
 	}
+		
 
 	// Update is called once per frame
 	void Update () {
@@ -109,6 +114,7 @@ public class ProductionManager : MonoBehaviour {
 					iconList.Remove (produce.Name);
 					Destroy (obj);
 					abilityList.Remove (produce.Name);
+					resetSize ();
 
 				}
 			} else {
@@ -146,24 +152,16 @@ public class ProductionManager : MonoBehaviour {
 		if (!theStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			icon.transform.SetAsFirstSibling ();
 		}
-		RectTransform trans = unitPanel.GetComponent<RectTransform> ();
-
-		if (iconList.Count > 8) {
-			trans.sizeDelta = new Vector2(trans.rect.width, 135);
-			unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, yPosition -20, unitPanel.transform.position.z);
-
-		} else if (iconList.Count > 12) {
-			trans.sizeDelta = new Vector2(trans.rect.width, 180);
-			unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, yPosition - 40, unitPanel.transform.position.z);
-		
-		} else {
-			trans.sizeDelta = new Vector2(trans.rect.width, 95);
-			unitPanel.transform.position = new Vector3 (unitPanel.transform.position.x, unitPanel.transform.position.y, unitPanel.transform.position.z);
-
-		}
+		resetSize ();
 		icon.transform.localScale = unitPanel.transform.localScale;
 		iconList.Add (produce.Name, icon);
 
+	}
+	public void resetSize()
+	{
+		int rowCount = (iconList.Count) / 3;
+		trans.sizeDelta = new Vector2(trans.rect.width, 45 + (46 * rowCount));
+		trans.anchoredPosition = new Vector2( trans.anchoredPosition.x, startingY - 23 * rowCount);
 	}
 
 
