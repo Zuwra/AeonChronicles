@@ -80,6 +80,7 @@ public class LevelManager : MonoBehaviour {
 		setDifficultyDropDowns (LevelData.getDifficulty());
 
 		changeMoney (0);
+
 	}
 
 

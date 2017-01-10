@@ -205,7 +205,7 @@ public class BuildUnit : UnitProduction {
 			obj.SendMessage ("DeactivateAnimation",SendMessageOptions.DontRequireReceiver);
 		}
 		racer.stopBuildingUnit (this);
-		racer.applyUpgrade (unit);
+		//racer.applyUpgrade (unit);
 		buildingUnit = false;
 		buildMan.unitFinished (this);
 	

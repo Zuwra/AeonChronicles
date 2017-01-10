@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class CampUpgradePurchase : MonoBehaviour {
 
 
-	public Upgrade myUpgrade;
+	public SpecificUpgrade myUpgrade;
 	public GameObject Costobject;
 	public int myCost;
 	public bool purchased;
@@ -29,10 +29,6 @@ public class CampUpgradePurchase : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 
 	public void Initialize()

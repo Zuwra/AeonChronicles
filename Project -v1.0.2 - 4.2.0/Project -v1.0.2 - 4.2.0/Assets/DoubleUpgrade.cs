@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoubleUpgrade:Upgrade{
+public class DoubleUpgrade:SpecificUpgrade{
 
 
 
@@ -10,24 +10,25 @@ public class DoubleUpgrade:Upgrade{
 	//public GameObject UIButton;
 
 	public override void applyUpgrade (GameObject obj){
-
-		if (obj.GetComponent<IWeapon> ()) {
-			DoubleUpgradeApp dua= obj.GetComponent<DoubleUpgradeApp> ();
-			if (!dua) {
-				dua = obj.AddComponent<DoubleUpgradeApp> ();
+		if (confirmUnit (obj)) {
+			if (obj.GetComponent<IWeapon> ()) {
+				DoubleUpgradeApp dua = obj.GetComponent<DoubleUpgradeApp> ();
+				if (!dua) {
+					dua = obj.AddComponent<DoubleUpgradeApp> ();
+				}
+				dua.doubleIt = true;
 			}
-			dua.doubleIt = true;
 		}
 	}
 
 
 	public override void unApplyUpgrade (GameObject obj){
-
-		if (obj.GetComponent<DoubleUpgradeApp> ()) {
+		if (confirmUnit (obj)) {
+			if (obj.GetComponent<DoubleUpgradeApp> ()) {
 			
-			obj.GetComponent<DoubleUpgradeApp> ().doubleIt =false;
+				obj.GetComponent<DoubleUpgradeApp> ().doubleIt = false;
+			}
 		}
-
 
 		//obj.GetComponent<SlowDebuff> ().enabled = false;
 

@@ -18,7 +18,7 @@ public class CampaignUpgrade : MonoBehaviour {
 	gatling, rail, repair, mortar, construction, bunker, factory, Ult, DoubleUpgrade}
 
 
-	Upgrade currentUpgrade;
+	SpecificUpgrade currentUpgrade;
 
 	public List<upgradeType> myTypes = new List<upgradeType> ();
 
@@ -28,14 +28,14 @@ public class CampaignUpgrade : MonoBehaviour {
 	//private int myIndex = 0;
 
 	[System.Serializable]
-	public struct UpgradesPiece{
+	public class UpgradesPiece{
 
 		public string name;
 		[TextArea(2,10)]
 		public string description;
 		public upgradeType myType;
 		public bool unlocked;
-		public Upgrade pointer;
+		public SpecificUpgrade pointer;
 		public Sprite pic;
 
 		public void unlock()
@@ -62,7 +62,7 @@ public class CampaignUpgrade : MonoBehaviour {
 
 		if (myUpgrades.Count > myDropDown.value) {
 			theDescription.text = myUpgrades [myDropDown.value].description;
-	
+
 
 			foreach (Image i in myPic) {
 				i.sprite = myUpgrades [myDropDown.value].pic;
@@ -70,13 +70,19 @@ public class CampaignUpgrade : MonoBehaviour {
 
 			if (currentUpgrade) {
 				foreach (GameObject o in unitsToUpgrade) {
-					currentUpgrade.unApplyUpgrade (o);
+					Debug.Log ("Removing +" + o);
+					currentUpgrade.unitsToApply.Remove(o.GetComponent<UnitManager>().UnitName);
+					//currentUpgrade.unApplyUpgrade (o);
 				}
 			}
 			currentUpgrade = myUpgrades [myDropDown.value].pointer;
+
+			Debug.Log ("Setting description to " + theDescription.text + "   " + currentUpgrade + "   "  + unitsToUpgrade.Count);
 			if (currentUpgrade) {
 				foreach (GameObject o in unitsToUpgrade) {
-					currentUpgrade.applyUpgrade (o);
+					Debug.Log ("Adding " + o + " to " + currentUpgrade);
+					//currentUpgrade.applyUpgrade (o);
+					currentUpgrade.unitsToApply.Add(o.GetComponent<UnitManager>().UnitName);
 				}
 			}
 		}
@@ -135,11 +141,13 @@ public class CampaignUpgrade : MonoBehaviour {
 			if (kv.theName == this.gameObject.ToString ()) {
 		
 					myDropDown.value = kv.index;
-					foreach(GameObject o in unitsToUpgrade)
-					{if (currentUpgrade) {
-							currentUpgrade.unApplyUpgrade (o);
-					}
-					}
+					/*foreach(GameObject o in unitsToUpgrade)
+						{if (currentUpgrade) {
+						Debug.Log ("removing " + o + "   from " + currentUpgrade);
+						//currentUpgrade.unitsToApply.Remove (o.GetComponent<UnitManager>().UnitName);
+							//currentUpgrade.unApplyUpgrade (o);
+						}
+					}*/
 
 
 				}
@@ -171,6 +179,59 @@ public class CampaignUpgrade : MonoBehaviour {
 		myDropDown.AddOptions (options);
 
 		//setUpgrade ();
+
+	}
+
+
+	public void setInitialStuff()
+	{
+		List<string> options = new List<string> ();
+		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
+
+			if (up.isUnlocked() && myTypes.Contains (up.myType) && !myUpgrades.Contains(up)) {
+
+				myUpgrades.Add (up);
+				options.Add (up.name);
+
+			}
+
+		}
+
+		myDropDown.AddOptions (options);
+
+
+		myDropDown.RefreshShownValue ();
+
+
+		theDescription.text = myUpgrades [myDropDown.value].description;
+
+		foreach (Image i in myPic) {
+			i.sprite = myUpgrades [myDropDown.value].pic;
+		}
+		currentUpgrade = myUpgrades [myDropDown.value].pointer;
+
+
+
+		foreach (LevelData.keyValue kv in LevelData.getsaveInfo().appliedUpgrades) {
+
+			if (kv.theName == this.gameObject.ToString ()) {
+
+				myDropDown.value = kv.index;
+				/*foreach(GameObject o in unitsToUpgrade)
+						{if (currentUpgrade) {
+						Debug.Log ("removing " + o + "   from " + currentUpgrade);
+						//currentUpgrade.unitsToApply.Remove (o.GetComponent<UnitManager>().UnitName);
+							//currentUpgrade.unApplyUpgrade (o);
+						}
+					}*/
+
+
+			}
+
+			//setUpgrade (i);
+		}
+
+		this.gameObject.SetActive (false);
 
 	}
 }

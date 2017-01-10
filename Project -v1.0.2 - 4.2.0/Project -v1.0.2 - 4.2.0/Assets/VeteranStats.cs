@@ -114,7 +114,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 
 	private List<string> thingsToDo = new List<string> (new string[] {"play baseball", "climb trees", "take long romantic walks", "hide in the grass", "watch clouds turn into rain",
-		"recite the perodic table","compose Renga", "practice the violin", "play catch with eggs", "steal whatever isn't nailed down", "follow rainbows", "read horoscopes"});
+		"recite the perodic table","compose Renga", "practice the violin", "play catch with eggs", "steal whatever isn't nailed down", "follow rainbows", "read horoscopes", "Read Books"});
 	
 
 
@@ -140,7 +140,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 		"Since he was a child ", "Even though he would never admit it ", "Years before he joined the Corp " });
 
 	private List<string>  storyChange = new List<string> (new string[] {"only one step behind." , "only he never had the privilidge of being an all powerful eye in the sky." ,
-		"except for the part where he joined the army instead of playing video games all the time.", " except for the part where he was fated to die in and upcomng battle."
+		"except for the part where he joined the army instead of playing video games all the time.", " except for the part where he was fated to die in an upcomng battle."
 	,"and he means to take your place.", "only with less cake and more portals."});
 
 
@@ -150,8 +150,14 @@ public class VeteranStats : IComparable<VeteranStats>{
 		" He has done terrible things which he can't write home about. He can't even talk to dog about them. Most people just think he's mute because of how little he talks. Maybe he is. ", 
 		" He wonders when the war will end, when his commanders will stop sending him into battle after battle for reasons he doesn't understand. "});
 
-	private List<string> childhood = new List<string> (new string[] { "nor does he care to.", "on account of a serious case of amenesia.", 
+	private List<string> childhood = new List<string> (new string[] { "nor does he care to.", "on account of a serious case of amenesia.","but sometimes he has visions of the future.", 
 		"due to a serious alien probing.", "or the orphanage where he grew up." , "due to him having that benjamin button disease.", "or even what he had for breakfast." });
+
+	private List<string> escaped= new List<string> (new string[] { "by faking his own death", "","somehow", "through an air duct", "after being turned into a newt (he got better)", 
+		"by tunneling his way out", "by following the East Sea current", "with the help of his future self", "by murdering everyone" });
+
+	private List<string> additions=  new List<string> (new string[] { ", In addition to manning a deadly war machine. ", ". ", ". ", ", as well as managing the arsenal lockers." 
+		," due to military incompetance. ", " in addition to manning heavy machinery. " + " because he didn't know how to do much else. ", " but he hijacked this vehicle for the day. " });
 
 	public string getIntro()
 	{int rand = UnityEngine.Random.Range (0, 7);
@@ -164,21 +170,11 @@ public class VeteranStats : IComparable<VeteranStats>{
 		if(rand == 3)
 			return getSentanceD();
 		if (rand == 4) {
-			int randA = UnityEngine.Random.Range (0, 1);
-			if (randA == 0) {
-				return getSentanceE ();
-			} else {
-				return getIntro ();
-			}
+			return getSentanceE ();
 		}
 		if (rand == 5) {
-			int randA = UnityEngine.Random.Range (0, 1);
-			if (randA == 0) {
-				return getSentanceZ ();
-			} else {
-				return getIntro ();
-			}
-		}
+			return getSentanceZ ();
+				}
 		if (rand == 6) {
 			return getSentanceY ();
 		}
@@ -190,7 +186,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 
 	public string getReason()
-	{int rand = UnityEngine.Random.Range (0, 5);
+	{int rand = UnityEngine.Random.Range (0, 9);
 		if(rand == 0)
 			return getSentanceF();
 		if(rand == 1)
@@ -200,14 +196,19 @@ public class VeteranStats : IComparable<VeteranStats>{
 		if(rand == 3)
 			return getSentanceI();
 		if(rand == 4)
+			return getSentanceI();
+		if(rand == 5)
 			return getSentanceJ();
-		if (rand == 5)
+		if(rand == 6)
+			return getSentanceJJ();
+		if (rand == 7)
 			return getThird();
+		
 		return getThird();
 	}
 
 	public string getThird()
-	{int rand = UnityEngine.Random.Range (0, 6);
+	{int rand = UnityEngine.Random.Range (0, 7);
 		if(rand == 0)
 			return getSentanceM();
 		if(rand == 1)
@@ -311,6 +312,14 @@ public class VeteranStats : IComparable<VeteranStats>{
 		return s;
 	}
 
+	private string getSentanceII()
+	{
+		string s ="When things didn't work out back home, he got mixed up with the " + factions [UnityEngine.Random.Range (0, factions.Count - 1)] +
+			". He escaped " + escaped [UnityEngine.Random.Range (0, escaped.Count - 1)]  +" then joined the corp. ";
+		s += getThird ();
+		return s;
+	}
+
 	private string getSentanceJ()
 	{
 		string s = spyJob[UnityEngine.Random.Range (0, spyJob.Count - 1)]  
@@ -319,10 +328,18 @@ public class VeteranStats : IComparable<VeteranStats>{
 		return s;
 	}
 
+	private string getSentanceJJ()
+	{
+		string s =  "He had been on the run for years from " + factions [UnityEngine.Random.Range (0, factions.Count - 1)] + " before he escaped by joining the military. ";
+		s += getThird ();
+		return s;
+	}
+
 	//============================================================ Third ===========================================================
 	private string getSentanceM()
 	{
-		string s = "After joining the corp he was quikly given the duty of " + office [UnityEngine.Random.Range (0, office.Count - 1)]+ ", In addition to manning a deadly war machine. ";
+		string s = "After joining the corp he was quickly given the duty of " + office [UnityEngine.Random.Range (0, office.Count - 1)]+ 
+			additions[UnityEngine.Random.Range (0, additions.Count - 1)];
 		return s;
 	}
 

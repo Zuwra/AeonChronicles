@@ -599,9 +599,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             UIPages[n].addUnit(bestPick);
 
         }
-
-        abilityManager.loadUI(UIPages[currentPage]);
-		pageUI.setPageCount (UIPages.Count);
+		if (abilityManager) {
+			abilityManager.loadUI (UIPages [currentPage]);
+			pageUI.setPageCount (UIPages.Count);
+		}
     }
 
 	public void applyGlobalSelection(List<List<string>> input)

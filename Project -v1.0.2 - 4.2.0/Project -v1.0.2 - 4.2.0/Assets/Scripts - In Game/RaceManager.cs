@@ -137,8 +137,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		
 		Component temp = upgradeBall.AddComponent (upgrade.GetType ());
 
-
-
 		foreach(FieldInfo f in temp.GetType().GetFields())
 		{
 			f.SetValue (temp, f.GetValue (upgrade));
@@ -148,6 +146,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 		foreach (GameObject obj in unitList) {
+
 			upgrade.applyUpgrade (obj);
 
 			if (obj.GetComponent<UnitManager> ().UnitName == unitname) {

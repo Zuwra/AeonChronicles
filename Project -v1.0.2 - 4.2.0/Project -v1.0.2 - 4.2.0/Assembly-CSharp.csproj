@@ -501,6 +501,7 @@
      <Compile Include="Assets\SoundTrackPlayList.cs" />
      <Compile Include="Assets\SoundTrackPlayer.cs" />
      <Compile Include="Assets\SpaceDrop.cs" />
+     <Compile Include="Assets\SpecificUpgrade.cs" />
      <Compile Include="Assets\SpeedUpgrade.cs" />
      <Compile Include="Assets\StandardInteract.cs" />
      <Compile Include="Assets\SuicideAttack.cs" />

@@ -1,18 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ExtendedBarrels :Upgrade{
+public class ExtendedBarrels :SpecificUpgrade{
 
-
-	// Use this for initialization
-	void Start () {
-
-	}
-
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 
 
@@ -21,22 +11,22 @@ public class ExtendedBarrels :Upgrade{
 	//public GameObject UIButton;
 
 	public override void applyUpgrade (GameObject obj){
-
-		foreach (IWeapon weap in obj.GetComponents<IWeapon>()) {
-			weap.range *= 1.15f;
+		if (confirmUnit (obj)) {
+			foreach (IWeapon weap in obj.GetComponents<IWeapon>()) {
+				weap.range *= 1.15f;
+			}
 		}
-
 
 	}
 
 
 	public override void unApplyUpgrade (GameObject obj)
 	{
-
-		foreach (IWeapon weap in obj.GetComponents<IWeapon>()) {
-			weap.range /= 1.15f;
+		if (confirmUnit (obj)) {
+			foreach (IWeapon weap in obj.GetComponents<IWeapon>()) {
+				weap.range /= 1.15f;
+			}
 		}
-
 
 	}
 }

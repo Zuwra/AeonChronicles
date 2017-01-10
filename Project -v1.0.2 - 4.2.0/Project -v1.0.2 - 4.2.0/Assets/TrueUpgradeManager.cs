@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class TrueUpgradeManager : MonoBehaviour {
 	public List<AudioClip> buttonPress;
@@ -13,7 +14,35 @@ public class TrueUpgradeManager : MonoBehaviour {
 
 	void Start()
 	{
+
+		if (SceneManager.GetActiveScene ().buildIndex == 3) {
+			DontDestroyOnLoad (this.gameObject);
+		
+		} 
+
+
 		mySource = GetComponent<AudioSource> ();
+
+
+		foreach (CampaignUpgrade cu in CampUpRef) {
+			cu.setInitialStuff ();
+		}
+
+	}
+
+	void OnLevelWasLoaded()
+	{
+
+		if (SceneManager.GetActiveScene ().buildIndex != 3) {
+			RaceManager racer = GameObject.FindObjectOfType<GameManager> ().activePlayer;
+
+			foreach (CampaignUpgrade.UpgradesPiece cu in myUpgrades) {
+				if (cu.pointer) {
+					racer.addUpgrade (cu.pointer, "");
+				}
+			}
+		}
+
 	}
 
 	public void playSound ()
@@ -22,7 +51,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 
 	}
 
-	public void upgradeBought(Upgrade upg, CampaignUpgrade.upgradeType t)
+	public void upgradeBought(SpecificUpgrade upg, CampaignUpgrade.upgradeType t)
 	{
 		//Debug.Log ("Upgrade was bought" +upg.name);
 		CampaignUpgrade.UpgradesPiece cpu = new CampaignUpgrade.UpgradesPiece ();
