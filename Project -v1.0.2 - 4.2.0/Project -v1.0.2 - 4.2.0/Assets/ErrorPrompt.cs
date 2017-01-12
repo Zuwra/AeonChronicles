@@ -9,14 +9,14 @@ public class ErrorPrompt : MonoBehaviour {
 	public AudioClip errorSound;
 	public static ErrorPrompt instance;
 
-	public VoicePack myVoicePack;
+	public VoiceContainer voiceContainer;
+	VoicePack myVoicePack;
 
 	float lastAttackAlert = -1000;
 	List<Vector3> attackLocations = new List<Vector3>();
 	int currentAlertIndex;
 
 	float lastErrorTime;
-
 
 
 
@@ -181,6 +181,8 @@ public class ErrorPrompt : MonoBehaviour {
 	void Start () {
 		instance = this;
 		GameMenu.main.addDisableScript (this);
+
+		myVoicePack = voiceContainer.myVoicePacks[PlayerPrefs.GetInt("VoicePack",0)];
 
 	}
 	

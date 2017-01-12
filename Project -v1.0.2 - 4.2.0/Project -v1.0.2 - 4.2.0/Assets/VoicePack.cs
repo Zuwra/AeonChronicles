@@ -7,6 +7,7 @@ public class VoicePack : MonoBehaviour {
 
 	public string voicePackName;
 
+	public List<AudioClip> packSelected;
 
 	public List<AudioClip> Ore;
 	public List<AudioClip> supply;
@@ -20,6 +21,11 @@ public class VoicePack : MonoBehaviour {
 	public List<AudioClip> ResearchFinished;
 	public List<AudioClip> OreDepleted;
 	public List<AudioClip> BuildingComplete;
+
+	public AudioClip getVoicePackLine()
+	{
+		return packSelected [Random.Range (0, packSelected.Count - 1)];
+	}
 
 	public AudioClip getOreLine()
 	{

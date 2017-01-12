@@ -322,15 +322,14 @@ public class newWorkerInteract :  Ability, Iinteract {
 	{
 		if (lastOreDeposit) {
 
-			if (lastOreDeposit!= null) {
 				if (lastOreDeposit.currentMinor == null) {
-					myOre = lastOreDeposit;
-					myOre.currentMinor = this.gameObject;
+				//	myOre = lastOreDeposit;
+				//	myOre.currentMinor = this.gameObject;
 					myManager.changeState (new MiningState (lastOreDeposit.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
 				} else {
 					Redistribute (lastOreDeposit.gameObject);
 				}
-			}
+
 
 		} 
 		checkHook ();

@@ -47,7 +47,7 @@ public class WaveSpawner : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
 
 		if (LevelData.getHighestLevel () > 3) {

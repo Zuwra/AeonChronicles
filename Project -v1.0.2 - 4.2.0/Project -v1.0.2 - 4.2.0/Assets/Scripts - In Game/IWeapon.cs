@@ -254,7 +254,9 @@ public class IWeapon : MonoBehaviour {
 	IEnumerator Fire (float time, UnitManager target)
 	{if (myAnimator) {
 			//Debug.Log ("Settign state to one");
+			myAnimator.Play ("Attack");
 			myAnimator.SetInteger ("State", 1);
+
 	
 		}
 
@@ -286,9 +288,12 @@ public class IWeapon : MonoBehaviour {
 
 			GameObject proj = null;
 			if (projectile != null) {
-				
-				proj = (GameObject)Instantiate (projectile,transform.rotation *  originPoint[originIndex] + this.gameObject.transform.position, Quaternion.identity);
-			
+
+				if (turret) {
+					proj = (GameObject)Instantiate (projectile, turret.transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
+				} else {
+					proj = (GameObject)Instantiate (projectile, transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
+				}
 				originIndex++;
 				if (originIndex == originPoint.Count) {
 					originIndex = 0;}
@@ -517,7 +522,11 @@ public class IWeapon : MonoBehaviour {
 	public void OnDrawGizmos()
 	{
 		foreach (Vector3 vec in originPoint) {
-			Gizmos.DrawSphere ((transform.rotation) * vec + this.gameObject.transform.position, .5f);
+			if (turret) {
+				Gizmos.DrawSphere ((turret.transform.rotation) * vec + this.gameObject.transform.position, .5f);
+			} else {
+				Gizmos.DrawSphere ((transform.rotation) * vec + this.gameObject.transform.position, .5f);
+			}
 		}
 	}
 

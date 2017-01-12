@@ -35,6 +35,8 @@ public class LevelManager : MonoBehaviour {
 	public GameObject defaultVehicle;
 	public GameObject defaultTurret;
 
+	public List<GameObject> VoicePacks;
+
 
 	public static LevelManager main;
 	// Use this for initialization
@@ -195,6 +197,13 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		//Debug.Log ("money " + LevelData.totalXP);
+	}
+
+	public void setAnnouncer(Dropdown i)
+	{
+		PlayerPrefs.SetInt ("VoicePack", i.value);
+		mySource.PlayOneShot (VoicePacks [i.value].GetComponent<VoicePack> ().getVoicePackLine ());
+
 	}
 
 }

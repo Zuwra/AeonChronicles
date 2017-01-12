@@ -27,10 +27,10 @@ public class RaceNames  {
 		"Eton", "Adamus", "Soren", "Mathou", "Jordana", "Colton", "Rheinhardt", "Zostro", "Akimus","Comodus",
 		"Gisborne","Porsche", "Hanzo", "Torbous", "Talion"};
 
-	string[] bunnyNames = new string[34]{ "bunnykins", "cotton candy", "fluffy", "buffalo", "scamper", "thumper", "Oliver", "lingo", "Easter"
+	string[] bunnyNames = new string[36]{ "bunnykins", "cotton candy", "fluffy", "buffalo", "scamper", "thumper", "Oliver", "lingo", "Easter"
 		, "Themistocles-consumer of clovers", "hopper", "nibbler", "Lola", "Harvey", "Roger", "bugs","muncher",  "Judie Hopps", "zappy", "fluffer", 
 		"fluffluff", "fuzzy eyes", "Long Ears", "short ears", "mushu", "chomper", "Trixy", "carrot face", "fluff butt", "fuzzy bunny", 
-		"cottontail" , "dumb bunny", "clever bunny", "Sniffles"};
+		"cottontail" , "dumb bunny", "clever bunny", "sniffles", "radar", "yoshi"};
 
 
 

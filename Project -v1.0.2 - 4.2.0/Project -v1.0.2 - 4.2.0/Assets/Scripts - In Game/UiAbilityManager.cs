@@ -514,7 +514,7 @@ public class UiAbilityManager : MonoBehaviour {
 							certainButtons [j].Qtext.enabled = true;
 						}
 
-							trans.GetComponent<Button> ().colors = cb;
+						trans.GetComponent<Button> ().colors = cb;
 
 						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
 

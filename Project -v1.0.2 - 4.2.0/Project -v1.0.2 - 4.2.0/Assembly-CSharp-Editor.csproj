@@ -120,6 +120,7 @@
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_St_N.shader" />
      <None Include="Assets\FogOfWar\Resources\FogOfWarShader.shader" />
      <None Include="Assets\HeyBlairGames\PlanetTextureGenerator\Runtime\PlanetSpecular.shader" />
+     <None Include="Assets\FREE LowPoly Island\Info.txt" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_Pr_N_T.shader" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_St_N_S.shader" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_Pr_N_S_DS.shader" />

@@ -46,6 +46,12 @@ public class turret : MonoBehaviour {
 				break;
 			}
 
+
+			spotter = myTarget.transform.position;
+			if (!rotateY) {
+				spotter.y = this.transform.position.y;
+			}
+
 			this.gameObject.transform.LookAt(spotter);
 
 			yield return null;
