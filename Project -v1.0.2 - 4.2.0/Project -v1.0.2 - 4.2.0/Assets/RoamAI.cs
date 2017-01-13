@@ -4,6 +4,7 @@ using System.Collections;
 public class RoamAI : MonoBehaviour {
 
 	Vector3 origin;
+	public float roamRange = 22;
 
 	UnitManager myman;
 
@@ -19,7 +20,7 @@ public class RoamAI : MonoBehaviour {
 	void setnewLocation()
 	{
 		Vector3 hitzone = origin;
-		float radius = Random.Range (0, 22);
+		float radius = Random.Range (0, roamRange);
 		float angle = Random.Range (0, 360);
 
 		hitzone.x += Mathf.Sin (Mathf.Deg2Rad * angle) * radius;
