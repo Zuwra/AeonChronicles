@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour {
 	public GameObject defaultVehicle;
 	public GameObject defaultTurret;
 
-	public List<GameObject> VoicePacks;
+	public VoiceContainer voicePacks;
 
 
 	public static LevelManager main;
@@ -201,8 +201,10 @@ public class LevelManager : MonoBehaviour {
 
 	public void setAnnouncer(Dropdown i)
 	{
+		Debug.Log ("Value is " + i.value + "  " + voicePacks.myVoicePacks[i.value].voicePackName);
 		PlayerPrefs.SetInt ("VoicePack", i.value);
-		mySource.PlayOneShot (VoicePacks [i.value].GetComponent<VoicePack> ().getVoicePackLine ());
+
+		mySource.PlayOneShot (voicePacks.myVoicePacks[i.value].getVoicePackLine ());
 
 	}
 
