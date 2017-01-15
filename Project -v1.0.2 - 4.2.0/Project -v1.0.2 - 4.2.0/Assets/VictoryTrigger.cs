@@ -111,6 +111,7 @@ public class VictoryTrigger : MonoBehaviour {
 	{
 		VictoryScreen.enabled = true;
 		GameObject.FindObjectOfType<MainCamera> ().DisableScrolling ();
+		GetComponent<AchievementChecker> ().EndLevel ();
 
 		StartCoroutine(WinLevel ());
 	}

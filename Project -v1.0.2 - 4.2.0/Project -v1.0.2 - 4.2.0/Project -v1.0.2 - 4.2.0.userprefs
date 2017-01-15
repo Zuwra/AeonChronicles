@@ -1,21 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelStartPlacer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VictoryTrigger.cs">
     <Files>
-      <File FileName="Assets\CampUpgradePurchase.cs" Line="1" Column="1" />
-      <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampaignUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\VoicePack.cs" Line="1" Column="1" />
-      <File FileName="Assets\ErrorPrompt.cs" Line="1" Column="1" />
-      <File FileName="Assets\VoiceContainer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\newWorkerInteract.cs" Line="1" Column="1" />
-      <File FileName="Assets\WaveSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\DifficultyManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\PulseCannon.cs" Line="18" Column="30" />
-      <File FileName="Assets\RoamAI.cs" Line="10" Column="2" />
-      <File FileName="Assets\LevelStartPlacer.cs" Line="23" Column="4" />
+      <File FileName="Assets\AchievementManager.cs" Line="27" Column="51" />
+      <File FileName="Assets\Achievement.cs" Line="9" Column="2" />
+      <File FileName="Assets\APMAchieve.cs" Line="7" Column="2" />
+      <File FileName="Assets\LevelData.cs" Line="117" Column="2" />
+      <File FileName="Assets\AchievementChecker.cs" Line="16" Column="24" />
+      <File FileName="Assets\VictoryTrigger.cs" Line="108" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

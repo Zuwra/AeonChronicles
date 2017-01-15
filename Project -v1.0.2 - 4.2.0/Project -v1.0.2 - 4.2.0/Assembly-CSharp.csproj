@@ -46,9 +46,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AIMover.cs" />
+     <Compile Include="Assets\APMAchieve.cs" />
      <Compile Include="Assets\APMCounter.cs" />
      <Compile Include="Assets\AbilityBox.cs" />
      <Compile Include="Assets\AbilityFollowState.cs" />
+     <Compile Include="Assets\Achievement.cs" />
+     <Compile Include="Assets\AchievementChecker.cs" />
+     <Compile Include="Assets\AchievementManager.cs" />
      <Compile Include="Assets\ActivateObjAbil.cs" />
      <Compile Include="Assets\ActivateObject.cs" />
      <Compile Include="Assets\AetherOvercharge.cs" />
@@ -644,6 +648,7 @@
      <None Include="Assets\BasicBeamShot\HowToUse_JP.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\dependencies.txt" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
+     <None Include="Assets\Resources\GrayScale.shader" />
      <None Include="Assets\Bit2Good\SFS\Shaders\SFS_Pr_N_DS.shader" />
      <None Include="Assets\Bit2Good\SFS\Shaders\Mobile\SFS_M_N.shader" />
      <None Include="Assets\BasicBeamShot\sh\Sprite_Add_sh.shader" />

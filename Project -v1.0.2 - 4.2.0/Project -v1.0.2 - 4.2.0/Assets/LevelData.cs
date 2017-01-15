@@ -126,7 +126,10 @@ public class LevelData  {
 		setMoney (0);
 		currentInfo = new saveInfo ();
 		saveGame ();
-	
+
+		foreach (Achievement Ach in ((GameObject)Resources.Load("Achievements")).GetComponents<Achievement>()) {
+			Ach.Reset ();
+		}
 	}
 
 
