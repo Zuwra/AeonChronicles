@@ -70,17 +70,17 @@ public class CampaignUpgrade : MonoBehaviour {
 
 			if (currentUpgrade) {
 				foreach (GameObject o in unitsToUpgrade) {
-					Debug.Log ("Removing +" + o);
+					//Debug.Log ("Removing +" + o);
 					currentUpgrade.unitsToApply.Remove(o.GetComponent<UnitManager>().UnitName);
 					//currentUpgrade.unApplyUpgrade (o);
 				}
 			}
 			currentUpgrade = myUpgrades [myDropDown.value].pointer;
 
-			Debug.Log ("Setting description to " + theDescription.text + "   " + currentUpgrade + "   "  + unitsToUpgrade.Count);
+			//Debug.Log ("Setting description to " + theDescription.text + "   " + currentUpgrade + "   "  + unitsToUpgrade.Count);
 			if (currentUpgrade) {
 				foreach (GameObject o in unitsToUpgrade) {
-					Debug.Log ("Adding " + o + " to " + currentUpgrade);
+					//Debug.Log ("Adding " + o + " to " + currentUpgrade);
 					//currentUpgrade.applyUpgrade (o);
 					currentUpgrade.unitsToApply.Add(o.GetComponent<UnitManager>().UnitName);
 				}

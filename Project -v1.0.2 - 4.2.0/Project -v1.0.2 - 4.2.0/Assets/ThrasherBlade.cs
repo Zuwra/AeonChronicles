@@ -24,7 +24,7 @@ public class ThrasherBlade : Projectile {
 		trueROlltime = rollTime;
 	}
 
-	new void Update () {
+	void Update () {
 
 		Vector3 tempDir = dir;
 		//Make sure your the right height above the terrain

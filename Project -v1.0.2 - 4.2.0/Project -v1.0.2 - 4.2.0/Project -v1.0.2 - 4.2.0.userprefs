@@ -1,13 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VictoryTrigger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NoDreadAch.cs">
     <Files>
-      <File FileName="Assets\AchievementManager.cs" Line="27" Column="51" />
-      <File FileName="Assets\Achievement.cs" Line="9" Column="2" />
-      <File FileName="Assets\APMAchieve.cs" Line="7" Column="2" />
-      <File FileName="Assets\LevelData.cs" Line="117" Column="2" />
+      <File FileName="Assets\APMAchieve.cs" Line="24" Column="1" />
       <File FileName="Assets\AchievementChecker.cs" Line="16" Column="24" />
-      <File FileName="Assets\VictoryTrigger.cs" Line="108" Column="2" />
+      <File FileName="Assets\VictoryTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\FullMetalAchieve.cs" Line="12" Column="25" />
+      <File FileName="Assets\AllDestroyed.cs" Line="24" Column="2" />
+      <File FileName="Assets\EnergyAchievement.cs" Line="26" Column="2" />
+      <File FileName="Assets\NoDreadAch.cs" Line="18" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

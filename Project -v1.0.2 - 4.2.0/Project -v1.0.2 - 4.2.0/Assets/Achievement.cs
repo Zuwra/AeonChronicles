@@ -13,7 +13,8 @@ public abstract class Achievement : MonoBehaviour {
 
 	public bool IsAccomplished()
 	{
-		if (PlayerPrefs.GetInt ("Title", 0) == 0) {
+		
+		if (PlayerPrefs.GetInt (Title, 0) == 0) {
 			return false;
 		}
 		return true;
@@ -21,11 +22,11 @@ public abstract class Achievement : MonoBehaviour {
 
 	protected void Accomplished()
 	{
-		PlayerPrefs.SetInt ("Title", 1);
+		PlayerPrefs.SetInt (Title, 1);
 	}
 
 	public void Reset()
 	{
-		PlayerPrefs.SetInt ("Title", 0);
+		PlayerPrefs.SetInt (Title, 0);
 	}
 }

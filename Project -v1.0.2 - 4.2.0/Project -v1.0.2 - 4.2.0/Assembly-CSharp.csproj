@@ -53,11 +53,15 @@
      <Compile Include="Assets\Achievement.cs" />
      <Compile Include="Assets\AchievementChecker.cs" />
      <Compile Include="Assets\AchievementManager.cs" />
+     <Compile Include="Assets\AchievementUI.cs" />
      <Compile Include="Assets\ActivateObjAbil.cs" />
      <Compile Include="Assets\ActivateObject.cs" />
      <Compile Include="Assets\AetherOvercharge.cs" />
      <Compile Include="Assets\AetherRelay.cs" />
+     <Compile Include="Assets\AllDestroyed.cs" />
+     <Compile Include="Assets\AllLevelAch.cs" />
      <Compile Include="Assets\ArmoryInteractor.cs" />
+     <Compile Include="Assets\ArmyOfOneAch.cs" />
      <Compile Include="Assets\ArmyUIManager.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\AILerp.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Core\AI\AIPath.cs" />
@@ -277,6 +281,7 @@
      <Compile Include="Assets\EconomyManager.cs" />
      <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\EnableAbility.cs" />
+     <Compile Include="Assets\EnergyAchievement.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\ExpositionDisplayer.cs" />
      <Compile Include="Assets\ExpositionTexts.cs" />
@@ -290,6 +295,7 @@
      <Compile Include="Assets\FogOfWar\Vector2i.cs" />
      <Compile Include="Assets\FrontalShield.cs" />
      <Compile Include="Assets\FullExposition.cs" />
+     <Compile Include="Assets\FullMetalAchieve.cs" />
      <Compile Include="Assets\FusionWeld.cs" />
      <Compile Include="Assets\GameMenu.cs" />
      <Compile Include="Assets\GamePlayMenu.cs" />
@@ -341,6 +347,8 @@
      <Compile Include="Assets\MultiShotParticle.cs" />
      <Compile Include="Assets\NewUnitPanel.cs" />
      <Compile Include="Assets\NewUnitTrigger.cs" />
+     <Compile Include="Assets\NimbusAch.cs" />
+     <Compile Include="Assets\NoDreadAch.cs" />
      <Compile Include="Assets\OathFury.cs" />
      <Compile Include="Assets\Objective.cs" />
      <Compile Include="Assets\ObjectiveManager.cs" />
@@ -507,6 +515,7 @@
      <Compile Include="Assets\SoundTrackPlayer.cs" />
      <Compile Include="Assets\SpaceDrop.cs" />
      <Compile Include="Assets\SpecificUpgrade.cs" />
+     <Compile Include="Assets\SpeedAch.cs" />
      <Compile Include="Assets\SpeedUpgrade.cs" />
      <Compile Include="Assets\StandardInteract.cs" />
      <Compile Include="Assets\SuicideAttack.cs" />
