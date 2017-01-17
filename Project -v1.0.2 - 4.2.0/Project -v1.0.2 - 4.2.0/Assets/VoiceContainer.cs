@@ -7,4 +7,8 @@ public class VoiceContainer : MonoBehaviour {
 	// Use this for initialization
 
 	public List<VoicePack> myVoicePacks;
+
+	public List<VoicePack> LockedVoicePacks;
+
+
 }

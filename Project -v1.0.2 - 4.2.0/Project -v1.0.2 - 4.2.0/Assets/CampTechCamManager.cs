@@ -64,7 +64,7 @@ public class CampTechCamManager : MonoBehaviour {
 		CamStartLookAt = MainCam.transform.position+ MainCam.transform.forward * 10;
 
 		int n = LevelData.getHighestLevel ();
-		Debug.Log ("N is " + n);
+
 		foreach (TechOption to in TechChoices) {
 			if (to.levelAcquired > n) {
 				to.HUD.SetActive (false);
@@ -146,16 +146,17 @@ public class CampTechCamManager : MonoBehaviour {
 		CameraFlight = StartCoroutine (FocusOnObject(currentTech));
 
 
-		if (currentHud) {
+		if (currentHud && currentHud != obj) {
+
 			currentHud.SetActive (false);
 
 		}
 
 		currentHud = obj;
 		currentHud.SetActive (true);
-
-
 	}
+
+
 
 
 	void OnDrawGizmos()

@@ -345,6 +345,7 @@
      <Compile Include="Assets\MoneyPickUp.cs" />
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\MultiShotParticle.cs" />
+     <Compile Include="Assets\NewAchievmentUI.cs" />
      <Compile Include="Assets\NewUnitPanel.cs" />
      <Compile Include="Assets\NewUnitTrigger.cs" />
      <Compile Include="Assets\NimbusAch.cs" />
@@ -564,6 +565,7 @@
      <Compile Include="Assets\VictoryTrigger.cs" />
      <Compile Include="Assets\VoiceContainer.cs" />
      <Compile Include="Assets\VoicePack.cs" />
+     <Compile Include="Assets\VoicePackUI.cs" />
      <Compile Include="Assets\WaveContainer.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />
      <Compile Include="Assets\ZephyrInteract.cs" />

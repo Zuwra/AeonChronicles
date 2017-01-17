@@ -132,7 +132,8 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void ToggleTurret()
-	{currentTech.enabled = false;
+	{Debug.Log ("Toggling Turet");
+		currentTech.enabled = false;
 		currentTech = Turrets;
 		Turrets.enabled = true;
 		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultTurret);
@@ -201,11 +202,16 @@ public class LevelManager : MonoBehaviour {
 
 	public void setAnnouncer(Dropdown i)
 	{
-		Debug.Log ("Value is " + i.value + "  " + voicePacks.myVoicePacks[i.value].voicePackName);
-		PlayerPrefs.SetInt ("VoicePack", i.value);
+		for (int j = 0; j < voicePacks.LockedVoicePacks.Count; j++) {
+			if(i.options[i.value].text == voicePacks.LockedVoicePacks[j].voicePackName ){
+					
+				PlayerPrefs.SetInt ("VoicePack", j);
 
-		mySource.PlayOneShot (voicePacks.myVoicePacks[i.value].getVoicePackLine ());
-
+				if (Time.timeSinceLevelLoad > 2) {
+					mySource.PlayOneShot (voicePacks.LockedVoicePacks [j].getVoicePackLine ());
+				}
+			}
+		}
 	}
 
 }

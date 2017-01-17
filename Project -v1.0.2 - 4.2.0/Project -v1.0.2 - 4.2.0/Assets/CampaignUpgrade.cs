@@ -155,7 +155,7 @@ public class CampaignUpgrade : MonoBehaviour {
 			//setUpgrade (i);
 		}
 	
-		this.gameObject.SetActive (false);
+		//this.gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame

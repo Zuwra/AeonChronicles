@@ -126,7 +126,7 @@ public class LevelData  {
 		setMoney (0);
 		currentInfo = new saveInfo ();
 		saveGame ();
-
+		PlayerPrefs.SetInt ("VoicePack", 0);
 		foreach (Achievement Ach in ((GameObject)Resources.Load("Achievements")).GetComponents<Achievement>()) {
 			Ach.Reset ();
 		}

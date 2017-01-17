@@ -11,35 +11,40 @@ public class TrueUpgradeManager : MonoBehaviour {
 	public List<CampaignUpgrade.UpgradesPiece> myUpgrades= new List<CampaignUpgrade.UpgradesPiece>();
 	// Use this for initialization
 
-
+	bool hasBeenToLevel;
 	void Start()
 	{
-
-		if (SceneManager.GetActiveScene ().buildIndex == 3) {
-			DontDestroyOnLoad (this.gameObject);
+		//Debug.Log ("Calling from " + this.gameObject);
+		if (this && !hasBeenToLevel) {
+			if (SceneManager.GetActiveScene ().buildIndex == 3) {
+				DontDestroyOnLoad (this.gameObject);
 		
-		} 
+			} 
 
 
-		mySource = GetComponent<AudioSource> ();
+			mySource = GetComponent<AudioSource> ();
 
 
-		foreach (CampaignUpgrade cu in CampUpRef) {
-			cu.setInitialStuff ();
+			foreach (CampaignUpgrade cu in CampUpRef) {
+				cu.setInitialStuff ();
+			}
 		}
-
 	}
 
 	void OnLevelWasLoaded()
 	{
-
-		if (SceneManager.GetActiveScene ().buildIndex != 3) {
+		if (SceneManager.GetActiveScene ().buildIndex != 3 && SceneManager.GetActiveScene ().buildIndex != 0) {
 			RaceManager racer = GameObject.FindObjectOfType<GameManager> ().activePlayer;
+			hasBeenToLevel = true;
 
 			foreach (CampaignUpgrade.UpgradesPiece cu in myUpgrades) {
 				if (cu.pointer) {
 					racer.addUpgrade (cu.pointer, "");
 				}
+			}
+		} else {
+			if (hasBeenToLevel) {
+				Destroy (this.gameObject);
 			}
 		}
 
@@ -66,18 +71,10 @@ public class TrueUpgradeManager : MonoBehaviour {
 
 
 		myUpgrades.Add (cpu);
-	/*	for (int i = 0; i < myUpgrades.Count; i++) {
-			Debug.Log ("checking " + myUpgrades [i].pointer + "   " + upg);
-			if (myUpgrades[i].pointer &&  myUpgrades [i].pointer.Equals(upg)) {
-				myUpgrades [i].unlock ();
 
-			}
-			//Debug.Log ("It is now " + myUpgrades[i].unlocked);
-		}
-*/
 		foreach (CampaignUpgrade cu in CampUpRef) {
 			cu.reInitialize ();
-			//Debug.Log ("Reinitializing " + cu.gameObject);
+		
 		}
 		
 

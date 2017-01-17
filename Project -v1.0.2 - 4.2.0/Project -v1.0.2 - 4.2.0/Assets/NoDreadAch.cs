@@ -9,15 +9,16 @@ public class NoDreadAch: Achievement{
 
 	public override void CheckEnd (){
 		if (!IsAccomplished ()) {
+			if (GameObject.FindObjectOfType<VictoryTrigger> ().levelNumber == 2) {
+				foreach (VeteranStats vets in  GameObject.FindObjectOfType<GameManager> ().activePlayer.getUnitStats()) {
+					if (vets.unitType == "DreadNaught") {
+						return;
+					}
 
-			foreach (VeteranStats vets in  GameObject.FindObjectOfType<GameManager> ().activePlayer.getUnitStats()) {
-				if (vets.unitType == "DreadNaught") {
-					return;
+
 				}
-
-
+				Accomplished ();
 			}
-			Accomplished ();
 		}
 	}
 

@@ -6,7 +6,7 @@ public class VoicePack : MonoBehaviour {
 
 
 	public string voicePackName;
-
+	public int UnlockNumber;
 	public List<AudioClip> packSelected;
 
 	public List<AudioClip> Ore;

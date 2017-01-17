@@ -14,21 +14,27 @@ public class CampUpgradePurchase : MonoBehaviour {
 	public CampaignUpgrade.upgradeType myType;
 	public List<CampUpgradePurchase> enables = new List<CampUpgradePurchase>();
 	// Use this for initialization
-	void Awake () {
+	void Start () {
+		StartCoroutine (DelayedStarted ());
+	}
+
+	IEnumerator DelayedStarted()
+	{
+
+		yield return null;
 		manager = GameObject.FindObjectOfType<LevelManager> ();
 
 		if( myUpgrade != null){
-			
+
 			foreach (string up in LevelData.getsaveInfo().purchasedUpgrades) {
 				//Debug.Log ("Checking " + up + "   " + myUpgrade.GetType());
 				if (up == myUpgrade.Name) {
 					psuedoPurchase ();
-			
+
 				}
 			}
 		}
 	}
-	
 
 
 	public void Initialize()
