@@ -3,7 +3,9 @@ using System.Collections;
 
 public class NimbusAch  : Achievement{
 
-
+	public override string GetDecription()
+	{return Description;
+	}
 
 	public override void CheckBeginning (){
 	}

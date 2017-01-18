@@ -5,6 +5,10 @@ public class EnergyAchievement : Achievement{
 
 	public float minEnergy;
 
+	public override string GetDecription()
+	{return Description;
+	}
+
 	public override void CheckBeginning (){
 	}
 

@@ -5,6 +5,10 @@ public class AllLevelAch: Achievement{
 
 	public int LevelNum;
 
+	public override string GetDecription()
+	{return Description;
+	}
+
 	public override void CheckBeginning (){
 	}
 

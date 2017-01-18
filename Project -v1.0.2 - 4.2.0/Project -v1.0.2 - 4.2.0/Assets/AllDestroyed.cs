@@ -5,8 +5,13 @@ public class AllDestroyed : Achievement{
 
 	public int LevelNum;
 
+	public override string GetDecription()
+	{return Description;
+	}
+
 	public override void CheckBeginning (){
 	}
+
 
 	public override void CheckEnd (){
 		if (!IsAccomplished ()) {

@@ -8,6 +8,10 @@ public class SpeedAch : Achievement{
 	public override void CheckBeginning (){
 	}
 
+	public override string GetDecription()
+	{return Description;
+	}
+
 	public override void CheckEnd (){
 		if (!IsAccomplished ()) {
 			if (GameObject.FindObjectOfType<VictoryTrigger> ().levelNumber == LevelNum) {

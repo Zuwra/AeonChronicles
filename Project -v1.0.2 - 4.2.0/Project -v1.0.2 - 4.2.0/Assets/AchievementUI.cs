@@ -145,7 +145,7 @@ public class AchievementUI : MonoBehaviour {
 		for (int i =num*7; i < num*7+Mathf.Min (currentAchievments.Count - num*7, 7); i++) {
 			GameObject obj = (GameObject)Instantiate (Panel, this.transform);
 			obj.transform.FindChild ("Title").GetComponent<Text> ().text = currentAchievments [i].Title;
-			obj.transform.FindChild ("Description").GetComponent<Text> ().text = currentAchievments [i].Description;
+			obj.transform.FindChild ("Description").GetComponent<Text> ().text = currentAchievments [i].GetDecription();
 			obj.transform.FindChild ("Icon").GetComponent<Image> ().sprite = currentAchievments [i].myIcon;
 
 

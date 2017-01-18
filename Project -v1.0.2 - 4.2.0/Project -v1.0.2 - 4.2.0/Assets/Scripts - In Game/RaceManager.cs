@@ -688,6 +688,11 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		Debug.Log (MVP.getMVP());
 	}
 
+	public List<VeteranStats> getVeteranStats()
+	{
+		return MVP.UnitStats ();
+	}
+
 	public List<VeteranStats> getUnitStats()
 	{
 		List<VeteranStats> toReturn = new List<VeteranStats> ();

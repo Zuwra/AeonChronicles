@@ -21,7 +21,7 @@ public class NewAchievmentUI : MonoBehaviour {
 
 				GameObject obj = (GameObject)Instantiate (AchievePanel, this.transform);
 				obj.transform.FindChild ("Title").GetComponent<Text> ().text = ach.Title;
-				obj.transform.FindChild ("Description").GetComponent<Text> ().text = ach.Description;
+				obj.transform.FindChild ("Description").GetComponent<Text> ().text = ach.GetDecription();
 				obj.transform.FindChild ("Icon").GetComponent<Image> ().sprite = ach.myIcon;
 				obj.transform.localScale = new Vector3 (1, 1, 1);
 

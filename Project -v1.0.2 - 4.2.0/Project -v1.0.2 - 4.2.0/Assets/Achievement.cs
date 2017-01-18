@@ -11,7 +11,7 @@ public abstract class Achievement : MonoBehaviour {
 	public enum Earnings{all, unearned, earned}
 	public enum Level{all, campaign, one, two,three, four, anyLevel}
 	public abstract void CheckBeginning ();
-
+	public abstract string GetDecription ();
 	public Level myLevel;
 	public int TechReward = 2;
 

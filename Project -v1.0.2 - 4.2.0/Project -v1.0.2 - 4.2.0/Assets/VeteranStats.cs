@@ -17,7 +17,10 @@ public class VeteranStats : IComparable<VeteranStats>{
 	public bool isWarrior;
 	public string backstory;
 
-	public VeteranStats(bool hasName, string myType, bool isW, string myName, int playerNumber)
+	public bool Died = false;
+	public UnitManager myUnit;
+
+	public VeteranStats(bool hasName, string myType, bool isW, string myName, int playerNumber, UnitManager theUnit)
 	{
 		unitType = myType;
 		isWarrior = isW;

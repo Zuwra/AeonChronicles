@@ -96,11 +96,11 @@ public class UnitStats : MonoBehaviour {
 		if (isHero) {
 			veternStat= new VeteranStats(!isUnitType(UnitTypes.UnitTypeTag.Turret)&& !isUnitType(UnitTypes.UnitTypeTag.Structure), GetComponent<UnitManager>().UnitName,
 				!(isUnitType(UnitTypes.UnitTypeTag.Turret))&&!(isUnitType(UnitTypes.UnitTypeTag.Worker)) && !(isUnitType(UnitTypes.UnitTypeTag.Structure)),GetComponent<UnitManager>().UnitName 
-				, myManager.PlayerOwner);
+				, myManager.PlayerOwner, myManager);
 		}
 		else{
 		veternStat= new VeteranStats(!isUnitType(UnitTypes.UnitTypeTag.Turret)&& !isUnitType(UnitTypes.UnitTypeTag.Structure), GetComponent<UnitManager>().UnitName,
-				!(isUnitType(UnitTypes.UnitTypeTag.Turret))&&!(isUnitType(UnitTypes.UnitTypeTag.Worker)) && !(isUnitType(UnitTypes.UnitTypeTag.Structure)), "", myManager.PlayerOwner);}
+				!(isUnitType(UnitTypes.UnitTypeTag.Turret))&&!(isUnitType(UnitTypes.UnitTypeTag.Worker)) && !(isUnitType(UnitTypes.UnitTypeTag.Structure)), "", myManager.PlayerOwner,myManager);}
 
 		if (!mySelection) {
 			mySelection = this.gameObject.GetComponent<Selected>();
@@ -343,7 +343,7 @@ public class UnitStats : MonoBehaviour {
 
 				SelectedManager.main.updateControlGroups (myManager);
 				this.gameObject.SendMessage ("Dying",SendMessageOptions.DontRequireReceiver);
-			
+				veternStat.Died = true;
 				Destroy (this.gameObject);
 				
 			}

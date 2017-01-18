@@ -4,6 +4,10 @@ using System.Collections;
 public class FullMetalAchieve : Achievement{
 
 
+	public override string GetDecription()
+	{return Description;
+	}
+
 	public override void CheckBeginning (){
 	}
 

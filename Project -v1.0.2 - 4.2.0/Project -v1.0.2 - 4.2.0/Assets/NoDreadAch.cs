@@ -3,6 +3,9 @@ using System.Collections;
 
 public class NoDreadAch: Achievement{
 
+	public override string GetDecription()
+	{return Description;
+	}
 
 	public override void CheckBeginning (){
 	}
