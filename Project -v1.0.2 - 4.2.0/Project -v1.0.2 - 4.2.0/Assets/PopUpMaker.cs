@@ -102,4 +102,14 @@ public class PopUpMaker : MonoBehaviour {
 		return obj;
 	}
 
+
+	public static GameObject CreateStunIcon(GameObject obj)
+	{
+		GameObject toReturn = (GameObject)Instantiate (Resources.Load ("StunIcon"), obj.transform.position + Vector3.up* 9, Quaternion.identity, obj.transform);
+
+
+		return toReturn;
+	}
+
+
 }

@@ -13,6 +13,8 @@ public class barrierShield : MonoBehaviour {
 	public GameObject Effect;
 	public float DecayRate;
 
+	float TotalAbsorbed;
+
 	private float radius;
 	public Slider cooldownSlider;
 	// Use this for initialization
@@ -42,6 +44,8 @@ public class barrierShield : MonoBehaviour {
 		yield return new WaitForSeconds (1.1f);
 		GetComponent<Collider> ().enabled = false;
 		yield return new WaitForSeconds (1.9f);
+
+		PlayerPrefs.SetInt ("TotalBarrierBlocked", (int)TotalAbsorbed);
 		Destroy (this.gameObject);
 	}
 
@@ -60,6 +64,7 @@ public class barrierShield : MonoBehaviour {
 				if (dist > radius - 5 && dist < radius + 5) {
 					Debug.Log ("In range");
 					Health -= proj.damage;
+					TotalAbsorbed += proj.damage;
 					Instantiate (Effect, other.gameObject.transform.position, other.gameObject.transform.rotation);
 					proj.selfDestruct ();
 
@@ -92,6 +97,7 @@ public class barrierShield : MonoBehaviour {
 
 				if (dist > radius - 5 && dist < radius + 5) {
 					Health -= proj.damage;
+					TotalAbsorbed += proj.damage;
 					Instantiate (Effect, other.gameObject.transform.position,  other.gameObject.transform.rotation);
 					proj.selfDestruct ();
 

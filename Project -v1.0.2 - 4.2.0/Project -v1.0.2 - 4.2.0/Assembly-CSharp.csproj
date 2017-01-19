@@ -198,6 +198,7 @@
      <Compile Include="Assets\BackLashAura.cs" />
      <Compile Include="Assets\BackLashZone.cs" />
      <Compile Include="Assets\BallisticMissile.cs" />
+     <Compile Include="Assets\BarrierAch.cs" />
      <Compile Include="Assets\BasicBeamShot\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\BasicBeamShot\SampleStage\GetUI.cs" />
      <Compile Include="Assets\BasicBeamShot\Script\AutoDestroy.cs" />

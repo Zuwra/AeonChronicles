@@ -27,11 +27,6 @@ public class stunStrike : MonoBehaviour, Notify {
 
 
 
-	// Update is called once per frame
-	void Update () {
-
-
-	}
 
 	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 	{//Debug.Log ("Getting triggered");
@@ -40,7 +35,7 @@ public class stunStrike : MonoBehaviour, Notify {
 		if (target && source != target) {
 			//Debug.Log ("In here");
 			if (mustTarget != UnitTypes.UnitTypeTag.Dead) {
-				if (target.myStats.isUnitType (mustTarget)) {
+				if (!target.myStats.isUnitType (mustTarget)) {
 					return;}
 			}
 

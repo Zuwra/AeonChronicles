@@ -629,6 +629,8 @@ public class UnitManager : Unit,IOrderable{
 
 	public void setStun(bool StunOrNot, Object source)
 	{
+
+		Debug.Log ("getting stunned " + this.gameObject);
 		if (StunOrNot) {
 			stunSources.Add (source);
 		} else {
@@ -640,12 +642,34 @@ public class UnitManager : Unit,IOrderable{
 		}
 
 			isStunned = (stunSources.Count > 0);
+
+		Debug.Log ("Is stunned ");
+		if (isStunned && StunRun == null) {
+			StunRun = StartCoroutine (stunnedIcon());
+		}
 		
+	}
+
+	Coroutine StunRun;
+
+	IEnumerator stunnedIcon()
+	{
+		Debug.Log ("Starting stun");
+		GameObject icon =  PopUpMaker.CreateStunIcon (this.gameObject);
+		while (isStunned) {
+		
+			yield return null;
+		}
+
+		Destroy (icon);
 	}
 
 	public void StunForTime(Object source, float duration)
 	{
 		StartCoroutine (stunOverTime (source, duration));
+		if (isStunned && StunRun == null) {
+			StunRun = StartCoroutine (stunnedIcon());
+		}
 
 	}
 
