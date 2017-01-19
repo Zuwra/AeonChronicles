@@ -1,17 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\KillUnitAch.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\APMCounter.cs">
     <Files>
-      <File FileName="Assets\Achievement.cs" Line="8" Column="28" />
-      <File FileName="Assets\AchievementUI.cs" Line="148" Column="111" />
-      <File FileName="Assets\APMAchieve.cs" Line="8" Column="1" />
-      <File FileName="Assets\AllDestroyed.cs" Line="11" Column="2" />
-      <File FileName="Assets\AllLevelAch.cs" Line="11" Column="2" />
-      <File FileName="Assets\ArmyOfOneAch.cs" Line="3" Column="1" />
-      <File FileName="Assets\EnergyAchievement.cs" Line="12" Column="41" />
-      <File FileName="Assets\VeteranStats.cs" Line="20" Column="27" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="693" Column="13" />
-      <File FileName="Assets\KillUnitAch.cs" Line="33" Column="3" />
+      <File FileName="Assets\Achievement.cs" Line="1" Column="1" />
+      <File FileName="Assets\AchievementUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\APMAchieve.cs" Line="1" Column="1" />
+      <File FileName="Assets\AllDestroyed.cs" Line="1" Column="1" />
+      <File FileName="Assets\AllLevelAch.cs" Line="1" Column="1" />
+      <File FileName="Assets\ArmyOfOneAch.cs" Line="1" Column="1" />
+      <File FileName="Assets\EnergyAchievement.cs" Line="1" Column="1" />
+      <File FileName="Assets\VeteranStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\KillUnitAch.cs" Line="1" Column="1" />
+      <File FileName="Assets\DifficultyManager.cs" Line="90" Column="49" />
+      <File FileName="Assets\WaveSpawner.cs" Line="66" Column="38" />
+      <File FileName="Assets\APMCounter.cs" Line="86" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

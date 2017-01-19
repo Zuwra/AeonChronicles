@@ -196,17 +196,20 @@ public class LevelData  {
 		PlayerPrefs.SetInt ("Money", PlayerPrefs.GetInt ("Money") + amount);
 	}
 
+
+
 	public static int getDifficulty()
 	{
-
-		return PlayerPrefs.GetInt ("Dificulty", 1);
-		
+		return PlayerPrefs.GetInt ("Difficulty", 1);
 	}
 
 	public static void setDifficulty(int n)
 	{
 		PlayerPrefs.SetInt ("Difficulty", n);
 	}
+
+
+
 
 	public static void setUltLevel(int ultNum, int rank)
 	{

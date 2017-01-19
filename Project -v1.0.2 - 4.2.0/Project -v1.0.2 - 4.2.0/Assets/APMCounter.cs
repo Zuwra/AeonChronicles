@@ -86,20 +86,6 @@ public class APMCounter : MonoBehaviour {
 
 	public int getAPM()
 	{
-		float apm = 0;
-		int Acounter = actions.Count;
-
-		foreach (float f in actions) {
-
-			if ((Time.time - f) < 3.5) {
-				apm = Time.time - actions [0];
-
-				break;
-			} else {
-				Acounter--;
-			}
-		}
-
 		return (int)(totalActions/ (Clock.main.getTotalSecond() / 60));
 	}
 

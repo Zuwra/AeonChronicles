@@ -48,10 +48,13 @@ public class LandMineActivate : MonoBehaviour {
 		UnitManager otherManager = other.gameObject.GetComponent<UnitManager> ();
 		if (otherManager && !otherManager.PlayerOwner.Equals (1) && otherManager.getUnitStats()) {
 
-			float amount = otherManager.getUnitStats ().TakeDamage (currentDamage,myVet.gameObject,DamageTypes.DamageType.True);
+			float amount;
 			if (myVet) {
+				amount = otherManager.getUnitStats ().TakeDamage (currentDamage,myVet.gameObject,DamageTypes.DamageType.True);
 				myVet.veteranDamage (amount);
 			}
+			else
+			{amount = otherManager.getUnitStats ().TakeDamage (currentDamage,null,DamageTypes.DamageType.True);}
 
 			Instantiate (explosionEffect, this.gameObject.transform.position, Quaternion.identity);
 			Destroy (this.gameObject);

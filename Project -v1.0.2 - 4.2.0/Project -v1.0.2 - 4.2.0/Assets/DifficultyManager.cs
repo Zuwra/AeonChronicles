@@ -21,27 +21,30 @@ public class DifficultyManager : MonoBehaviour {
 	public List<GameObject> deleteOnEasy;
 
 	public List<GameObject> deleteOnMedium;
-
+	int difficulty;
 	// Use this for initialization
 	void Start () {
+		difficulty = LevelData.getDifficulty ();
 
-		if (LevelData.getDifficulty () == 1) {
+		Debug.Log ("Difficulty is " + difficulty);
+		if (difficulty == 1) {
 			LevelOneUpgradeTime *= 1.5f; 
 			LevelTwoUpgradeTime *= 1.5f;
 			LevelThreeUpgradeTime *= 1.5f;
-		} else if (LevelData.getDifficulty () == 2) {
+		} else if (difficulty == 2) {
 			
-		} else if (LevelData.getDifficulty () == 3) {
+		} else if (difficulty == 3) {
 			LevelOneUpgradeTime *= .7f;
 			LevelTwoUpgradeTime *= .7f;
 			LevelThreeUpgradeTime *= .7f;
 		}
 
+
 		StartCoroutine (UpgradeTimer (LevelOneUpgradeTime));
 		StartCoroutine (UpgradeTimer (LevelTwoUpgradeTime));
 		StartCoroutine (UpgradeTimer (LevelThreeUpgradeTime));
 
-		if (LevelData.getDifficulty() == 1) {
+		if (difficulty == 1) {
 			foreach (UnitManager man in GameObject.FindObjectsOfType<UnitManager>()) {
 				if (man.PlayerOwner == 2) {
 					if (man.myStats) {
@@ -68,7 +71,7 @@ public class DifficultyManager : MonoBehaviour {
 				Destroy (obj);
 			}
 
-		} else if (LevelData.getDifficulty() == 2) {
+		} else if (difficulty == 2) {
 			foreach (WaveSpawner ws in  GameObject.FindObjectsOfType<WaveSpawner>()) {
 				for (int i = 0; i < ws.myWaves.Count; i++) {
 					float releaseT = ws.myWaves [i].releaseTime;
@@ -81,13 +84,13 @@ public class DifficultyManager : MonoBehaviour {
 				Destroy (obj);
 			}
 		
-		} else if (LevelData.getDifficulty() == 3) {
+		} else if (difficulty == 3) {
 		
 			foreach (WaveSpawner ws in  GameObject.FindObjectsOfType<WaveSpawner>()) {
 				for (int i = 0; i < ws.myWaves.Count; i++) {
-					float releaseT = ws.myWaves [i].releaseTime;
-					ws.myWaves [i].setRelease (releaseT * HardWaveReduct * HardWaveReduct);//.releaseTime =releaseT * HardWaveReduct;
-
+					float releaseT = ws.myWaves [i].releaseTime -115;
+					ws.myWaves [i].setRelease (releaseT * HardWaveReduct );//.releaseTime =releaseT * HardWaveReduct;
+					ws.myWaves [i].repeatAddOn *= .85f;
 				}
 
 			}
@@ -127,7 +130,7 @@ public class DifficultyManager : MonoBehaviour {
 
 		UnitManager man = obj.GetComponent<UnitManager> ();
 
-		if (LevelData.getDifficulty() == 1) {
+		if (difficulty == 1) {
 
 
 					if (man && man.myStats) {
@@ -135,22 +138,15 @@ public class DifficultyManager : MonoBehaviour {
 						man.myStats.health *= EasyHealth;
 					}
 
-				
-
-		} else if (LevelData.getDifficulty() == 2) {
+		} else if (difficulty == 2) {
 			
-
-
-
-		} else if (LevelData.getDifficulty() == 3) {
+		} else if (difficulty == 3) {
 
 
 			if (man.myStats) {
 				man.myStats.Maxhealth += EasyHealth;
 				man.myStats.health += EasyHealth;
 			}
-
-
 
 		}
 
@@ -165,17 +161,7 @@ public class DifficultyManager : MonoBehaviour {
 				}
 		}
 
-
-
 	}
-
-	//TO DO : APPLY Debuffs to units created throughout the level.
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 
 }

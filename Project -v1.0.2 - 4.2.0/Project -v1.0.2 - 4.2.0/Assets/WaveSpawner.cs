@@ -55,6 +55,7 @@ public class WaveSpawner : MonoBehaviour {
 			if (ReplayWaves.Count > 0) {
 				float firstRelease = myWaves[0].releaseTime;
 				float addon = myWaves [0].repeatAddOn;
+				//Debug.Log (" Addon is " + addon);
 
 				myWaves = new List<attackWave> ();
 
@@ -63,7 +64,7 @@ public class WaveSpawner : MonoBehaviour {
 
 				for (int i = 0; i < tempWaves.Count; i++) {
 					myWaves.Add (new attackWave ());
-				//	Debug.Log (i + "  " + firstRelease + "   " + addon);
+					//Debug.Log (i + "  " + firstRelease + "   " + addon);
 					myWaves[i].releaseTime = firstRelease + i * addon;
 					myWaves[i].repeatAddOn = addon;
 					myWaves [i].repeat = 1;
@@ -81,6 +82,8 @@ public class WaveSpawner : MonoBehaviour {
 
 				// Still need to add in code for attack warnings and triggers
 				}
+
+				myWaves [myWaves.Count - 1].repeat = 50;
 			
 			}
 
