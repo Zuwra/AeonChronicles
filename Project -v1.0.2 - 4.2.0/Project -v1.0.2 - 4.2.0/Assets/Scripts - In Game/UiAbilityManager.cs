@@ -507,11 +507,11 @@ public class UiAbilityManager : MonoBehaviour {
 							}
 
 						if (man.abilityList [AbilityX * 4].getMyType()== Ability.type.passive) {
-							certainButtons [j].Qtext.enabled = false;
+							certainButtons [j+ AbilityX].Qtext.enabled = false;
 							cb.disabledColor = Color.white;
 							trans.GetComponent<Button> ().interactable = false;
 						} else {
-							certainButtons [j].Qtext.enabled = true;
+							certainButtons [j+ AbilityX].Qtext.enabled = true;
 						}
 
 						trans.GetComponent<Button> ().colors = cb;
@@ -569,12 +569,12 @@ public class UiAbilityManager : MonoBehaviour {
 							}
 
 						if (man.abilityList [1 + AbilityX * 4].getMyType() == Ability.type.passive) {
-							certainButtons [j].Wtext.enabled = false;
+							certainButtons [j+ AbilityX].Wtext.enabled = false;
 						
 							cb.disabledColor = Color.white;
 							trans.GetComponent<Button> ().interactable = false;
 						} else {
-							certainButtons [j].Wtext.enabled = true;
+							certainButtons [j+ AbilityX].Wtext.enabled = true;
 						}
 							trans.GetComponent<Button> ().colors = cb;
 
@@ -633,11 +633,11 @@ public class UiAbilityManager : MonoBehaviour {
 							}
 
 						if (man.abilityList [2 + AbilityX * 4].getMyType() == Ability.type.passive) {
-							certainButtons [j].Etext.enabled = false;
+							certainButtons [j+ AbilityX].Etext.enabled = false;
 							cb.disabledColor = Color.white;
 							trans.GetComponent<Button> ().interactable = false;
 						} else {
-							certainButtons [j].Etext.enabled = true;
+							certainButtons [j+ AbilityX].Etext.enabled = true;
 						}
 							trans.GetComponent<Button> ().colors = cb;
 
@@ -694,11 +694,11 @@ public class UiAbilityManager : MonoBehaviour {
 							}
 
 						if (man.abilityList [3 + AbilityX * 4].getMyType() == Ability.type.passive) {
-							certainButtons [j].Rtext.enabled = false;
+							certainButtons [j+ AbilityX].Rtext.enabled = false;
 							cb.disabledColor = Color.white;
 							trans.GetComponent<Button> ().interactable = false;
 						} else {
-							certainButtons [j].Rtext.enabled = true;
+							certainButtons [j+ AbilityX].Rtext.enabled = true;
 						}
 							trans.GetComponent<Button> ().colors = cb;
 

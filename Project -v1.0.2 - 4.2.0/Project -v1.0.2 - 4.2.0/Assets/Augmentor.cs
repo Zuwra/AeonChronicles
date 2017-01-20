@@ -53,8 +53,6 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 			return;
 		}
 
-	//	Debug.Log ("Attaching");
-
 		myRotate.speed *= 3;
 
 		manager.myStats.myHeight = UnitTypes.HeightType.Ground;
@@ -173,7 +171,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		MissileArmer armer = attached.GetComponent<MissileArmer> ();
 		UnitManager man = attached.GetComponent<UnitManager> ();
 
-
+		manager.myStats.myHeight = UnitTypes.HeightType.Air;
 
 		if (armer) {
 			armer.shields = true;

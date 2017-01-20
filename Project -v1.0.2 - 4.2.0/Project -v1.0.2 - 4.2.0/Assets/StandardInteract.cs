@@ -118,7 +118,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 			myManager.changeState (new AttckWhileMoveState (order.OrderLocation, myManager),false,order.queued);
 		} else {
-			myManager.changeState (new MoveState (order.OrderLocation, myManager),false,order.queued);
+			myManager.changeState (new MoveState (order.OrderLocation, myManager, false),false,order.queued);
 		}
 	}
 

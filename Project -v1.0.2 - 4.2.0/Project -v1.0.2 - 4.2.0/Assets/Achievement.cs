@@ -17,6 +17,15 @@ public abstract class Achievement : MonoBehaviour {
 
 	public abstract void CheckEnd ();
 
+	public string getRewardText()
+	{
+		if (TechReward > 0) {
+			return "Reward: +" + TechReward + " Tech Credits"; 
+		} else {
+			return "New Announcer Voice Pack";
+		}
+	}
+
 	public bool HasBeenRewarded()
 	{
 		if (PlayerPrefs.GetInt (Title + "Reward", 0) == 0) {

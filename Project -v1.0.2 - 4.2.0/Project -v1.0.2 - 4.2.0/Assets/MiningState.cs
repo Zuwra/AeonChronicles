@@ -5,7 +5,7 @@ public class MiningState : UnitState {
 
 	public float interactionDistance;
 
-	private GameObject target;
+	private  GameObject target;
 	private GameObject dropoff;
 	private GameObject hook;
 	private Vector3 startPos;
@@ -27,7 +27,7 @@ public class MiningState : UnitState {
 
 	private OreDispenser currentlyMining;
 
-	public MiningState(GameObject unit, UnitManager man,  float mineTime, float resourceOne, float resourceTwo, GameObject hooky, Vector3 hookStart)
+	public MiningState(OreDispenser unit, UnitManager man,  float mineTime, float resourceOne, float resourceTwo, GameObject hooky, Vector3 hookStart)
 	{
 		myManager = man;
 
@@ -37,9 +37,10 @@ public class MiningState : UnitState {
 		hook = hooky;
 		oreBlock = hook.transform.FindChild ("Cube").gameObject;
 		startPos = hookStart;
-		target = unit;
+		target = unit.gameObject;
 		//myMover.resetMoveLocation (target.transform.position);
 		currentlyMining = target.GetComponent<OreDispenser> ();
+		currentlyMining.currentMinor = this.myManager.gameObject;
 		//hooky.transform.position = man.gameObject.transform.position - hookStart;
 
 

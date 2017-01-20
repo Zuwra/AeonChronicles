@@ -55,11 +55,11 @@ public class MissileArmer :Ability{
 */
 			if (shields) {
 				if (shieldglobe) {
-					shieldList.RemoveAll (item => item == null);
 
 
 					foreach (DayexaShield ds in shieldList) {
-				
+					if (!ds) {
+						continue;}
 						if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
 							GameObject obj = (GameObject)Instantiate (shieldglobe, this.transform.position, Quaternion.identity);
 							if (ds) {
@@ -142,7 +142,7 @@ public class MissileArmer :Ability{
 
 		if (manage.PlayerOwner == manager.PlayerOwner) {
 
-
+			shieldList.RemoveAll (item => item == null);
 
 			if (nitro) {
 

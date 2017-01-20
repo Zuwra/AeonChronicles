@@ -46,9 +46,9 @@ public class MainMenuManager : MonoBehaviour {
 		SceneManager.LoadScene (2);
 	}
 
-	public void startMatch()
+	public void startMatch(Dropdown dropper)
 	{
-
+		setDifficulty (dropper);
 		resetProgress ();
 		SceneManager.LoadScene (1);
 	}
@@ -95,6 +95,13 @@ public class MainMenuManager : MonoBehaviour {
 
 		LevelData.reset ();
 
+
+	}
+
+
+	public void setDifficulty(Dropdown dropper)
+	{
+		LevelData.setDifficulty (dropper.value + 1);
 
 	}
 

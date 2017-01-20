@@ -147,7 +147,7 @@ public class AchievementUI : MonoBehaviour {
 			obj.transform.FindChild ("Title").GetComponent<Text> ().text = currentAchievments [i].Title;
 			obj.transform.FindChild ("Description").GetComponent<Text> ().text = currentAchievments [i].GetDecription();
 			obj.transform.FindChild ("Icon").GetComponent<Image> ().sprite = currentAchievments [i].myIcon;
-
+			obj.transform.FindChild ("Reward").GetComponent<Text> ().text = currentAchievments [i].getRewardText ();
 
 			if (currentAchievments[i].IsAccomplished ()) {
 				

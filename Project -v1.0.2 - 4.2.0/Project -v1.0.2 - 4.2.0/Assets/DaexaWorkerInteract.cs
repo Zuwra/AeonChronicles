@@ -37,7 +37,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 
 		float distance = 100000;
 
-		GameObject closest = null;
+		OreDispenser closest = null;
 		foreach (GameObject obj in myManager.neutrals) {
 			OreDispenser dis = obj.GetComponent<OreDispenser> ();
 			if (!dis || dis.currentMinor) {
@@ -46,7 +46,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 			float temp = Vector3.Distance (obj.transform.position, this.gameObject.transform.position);
 			if (temp < distance) {
 				distance = temp;
-				closest = obj;
+				closest = dis;
 			}
 		
 		}
@@ -99,7 +99,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		case Const.ORDER_Interact:
 			
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
-			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook,hookPos));
+			{myManager.changeState (new MiningState (order.Target.gameObject.GetComponent<OreDispenser>(), myManager, miningTime, resourceOne, resourceTwo, Hook,hookPos));
 				break;}
 			
 			checkHook ();
@@ -141,7 +141,7 @@ public class DaexaWorkerInteract : MonoBehaviour , Iinteract {
 		case Const.ORDER_Follow:
 			
 			if(order.Target.gameObject.GetComponent<OreDispenser> () != null)
-			{myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
+			{myManager.changeState (new MiningState (order.Target.gameObject.GetComponent<OreDispenser>(), myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
 				break;}
 
 			checkHook ();

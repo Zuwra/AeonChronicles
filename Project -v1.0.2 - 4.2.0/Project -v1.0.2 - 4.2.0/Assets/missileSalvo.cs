@@ -190,7 +190,7 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 		yield return new WaitForSeconds (1.2f);
 
 		ReFill = null;
-		mymanager.setStun (false, this);
+		mymanager.setStun (false, this, false);
 		;
 		inLanding = false;
 		if (home) {

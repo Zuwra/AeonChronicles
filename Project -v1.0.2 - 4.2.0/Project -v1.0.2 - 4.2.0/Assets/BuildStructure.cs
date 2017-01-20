@@ -63,7 +63,7 @@ public class BuildStructure:  UnitProduction {
 
 			}
 
-			
+
 		}
 
 	} 
@@ -73,7 +73,7 @@ public class BuildStructure:  UnitProduction {
 		mySelect.updateCoolDown (0);
 		HD.stopBuilding ();
 		Morphing = false;
-		myManager.setStun (false, this);
+		myManager.setStun (false, this, false);
 
 		myManager.changeState(new DefaultState());
 
@@ -107,7 +107,7 @@ public class BuildStructure:  UnitProduction {
 		Morphing = false;
 
 		racer.stopBuildingUnit (this);
-		myManager.setStun (false, this);
+		myManager.setStun (false, this, false);
 		myManager.changeState(new DefaultState());
 
 		Destroy (inConstruction.gameObject);
@@ -172,7 +172,7 @@ public class BuildStructure:  UnitProduction {
 			racer.buildingUnit (this);
 
 			myManager.changeState (new ChannelState (),true,false);
-			myManager.setStun (true, this);
+			myManager.setStun (true, this, false);
 			if (mySelect.IsSelected) {
 				SelectedManager.main.updateUI ();
 			}
@@ -205,7 +205,7 @@ public class BuildStructure:  UnitProduction {
 		mySelect.updateCoolDown (0);
 
 		GameManager.main.playerList[myManager.PlayerOwner-1].UnitCreated(unitToBuild.GetComponent<UnitStats> ().supply);
-		myManager.setStun (false, this);
+		myManager.setStun (false, this, false);
 		myManager.changeState(new DefaultState());
 		racer.stopBuildingUnit (this);
 	
@@ -234,7 +234,7 @@ public class BuildStructure:  UnitProduction {
 		Morphing = true;
 
 		myManager.changeState (new ChannelState (), false, false);
-		myManager.setStun (true, this);
+		myManager.setStun (true, this, false);
 		if (mySelect.IsSelected) {
 			SelectedManager.main.updateUI ();
 		}

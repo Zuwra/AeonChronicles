@@ -11,7 +11,7 @@ public class newWorkerInteract :  Ability, Iinteract {
 	public GameObject Hook;
 	private Vector3 hookPos;
 	private bool retractHook;
-	private OreDispenser myOre;
+	public OreDispenser myOre;
 	private GameObject oreBlock;
 	private OreDispenser lastOreDeposit;
 
@@ -41,6 +41,16 @@ public class newWorkerInteract :  Ability, Iinteract {
 			if ((myManager.getState () is ChannelState  && s is MoveState) || ( myManager.getState() is PlaceBuildingState&& s is DefaultState)) {
 				StartCoroutine (autocastReturn());
 			}
+
+		}
+
+		if (!(s is MiningState)) {
+			if (myOre) {
+				lastOreDeposit = myOre;
+
+				myOre.currentMinor = null;
+				myOre = null;
+			}
 		}
 
 		return s;
@@ -65,7 +75,7 @@ public class newWorkerInteract :  Ability, Iinteract {
 		float distance = 100000;
 		if (myManager.getState () is MiningState) {
 			return;}
-		GameObject closest = null;
+		OreDispenser closest = null;
 
 		foreach (GameObject obj in GameManager.main.playerList[2].getUnitList()) {
 			if (FogOfWar.current.IsInCompleteFog (obj.transform.position)) {
@@ -83,15 +93,12 @@ public class newWorkerInteract :  Ability, Iinteract {
 				//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
 				distance = temp;
 
-				closest = obj;
-				distance = temp;
-				//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
+				closest = dis;
 			}
 
 		}
 		if (closest != null) {
-			myOre = closest.GetComponent<OreDispenser> ();
-			myOre.currentMinor = this.gameObject;
+			myOre = closest;
 			myManager.changeState (new MiningState (closest, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
 		
 		}
@@ -104,7 +111,7 @@ public class newWorkerInteract :  Ability, Iinteract {
 		float distance = 130;
 		if (myManager.getState () is MiningState) {
 			return;}
-		GameObject closest = null;
+		OreDispenser closest = null;
 
 		foreach (GameObject obj in GameManager.main.playerList[2].getUnitList()) {
 			if (FogOfWar.current.IsInCompleteFog (obj.transform.position)) {
@@ -122,17 +129,16 @@ public class newWorkerInteract :  Ability, Iinteract {
 				//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
 				distance = temp;
 
-				closest = obj;
-				distance = temp;
-				//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
+				closest = dis;
+			
 			}
 
 		}
 		if (closest != null) {
-			myOre = closest.GetComponent<OreDispenser> ();
-			myOre.currentMinor = this.gameObject;
+			myOre = closest;
+		
 			myManager.changeState (new MiningState (closest, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
-
+	
 		} else {
 			myManager.changeState (new MoveState (targ.gameObject.transform.position, myManager));
 		
@@ -184,6 +190,7 @@ public class newWorkerInteract :  Ability, Iinteract {
 		case Const.ORDER_STOP:
 			if (myOre) {
 				lastOreDeposit = myOre;
+	
 				myOre.currentMinor = null;
 				myOre = null;
 
@@ -211,11 +218,12 @@ public class newWorkerInteract :  Ability, Iinteract {
 				if (!order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor) {
 					if (myOre) {
 						lastOreDeposit = myOre;
+	
 						myOre.currentMinor = null;
 						myOre = null;
 					}
 					myOre = order.Target.gameObject.GetComponent<OreDispenser> ();
-					myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos),false,order.queued);
+					myManager.changeState (new MiningState (order.Target.gameObject.GetComponent<OreDispenser>(), myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos),false,order.queued);
 					order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor = this.gameObject;
 				} else if (order.Target.gameObject.GetComponent<OreDispenser> ().currentMinor == this.gameObject) {
 				}
@@ -243,6 +251,7 @@ public class newWorkerInteract :  Ability, Iinteract {
 			
 			if (myOre) {
 				lastOreDeposit = myOre;
+
 				myOre.currentMinor = null;
 				myOre = null;
 			}
@@ -258,7 +267,7 @@ public class newWorkerInteract :  Ability, Iinteract {
 		case Const.ORDER_Follow:
 			
 			if (order.Target.gameObject.GetComponent<OreDispenser> () != null) {
-				myManager.changeState (new MiningState (order.Target.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos),false,order.queued);
+				myManager.changeState (new MiningState (order.Target.gameObject.GetComponent<OreDispenser>(), myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos),false,order.queued);
 				break;
 			}
 
@@ -321,11 +330,9 @@ public class newWorkerInteract :  Ability, Iinteract {
 	public void Activate()
 	{
 		if (lastOreDeposit) {
-
+			
 				if (lastOreDeposit.currentMinor == null) {
-				//	myOre = lastOreDeposit;
-				//	myOre.currentMinor = this.gameObject;
-					myManager.changeState (new MiningState (lastOreDeposit.gameObject, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
+				myManager.changeState (new MiningState (lastOreDeposit.gameObject.GetComponent<OreDispenser>(), myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
 				} else {
 					Redistribute (lastOreDeposit.gameObject);
 				}

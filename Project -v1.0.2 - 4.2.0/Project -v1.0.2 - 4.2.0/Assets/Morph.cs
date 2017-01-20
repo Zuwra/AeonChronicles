@@ -64,7 +64,7 @@ public class Morph :  UnitProduction {
 		myCost.refundCost ();
 		racer.UnitDied(unitToBuild.GetComponent<UnitStats>().supply, null);
 		racer.stopBuildingUnit (this);
-		myManager.setStun (false, this);
+		myManager.setStun (false, this, false);
 		myManager.changeState(new DefaultState());
 
 		if (mySelect.IsSelected) {
@@ -113,7 +113,7 @@ public class Morph :  UnitProduction {
 				Morphing = true;
 				racer.buildingUnit (this);
 				myManager.changeState (new ChannelState ());
-			myManager.setStun (true, this);
+			myManager.setStun (true, this, false);
 			if (mySelect.IsSelected) {
 				SelectedManager.main.updateUI ();
 			}

@@ -12,7 +12,7 @@ public class RepairTurret : Ability, Modifier{
 
 	public MultiShotParticle particleEff;
 	public int repairRate = 8;
-	private float nextActionTime;
+
 	private repairReturn returner;
 
 	public GameObject drone;
@@ -24,10 +24,12 @@ public class RepairTurret : Ability, Modifier{
 	void Start () {
 		mymanager = gameObject.transform.parent.GetComponentInParent<UnitManager> ();
 		//chargeCount = maxRepair;
-		nextActionTime = Time.time;
+
 		mymanager.myStats.addDeathTrigger (this);
 		droneScript = drone.GetComponent<RepairDrone> ();
 		droneScript.repairRate = repairRate;
+
+		InvokeRepeating ("Updater", .5f,1f);
 	
 	}
 	public UnitManager getManager()
@@ -39,12 +41,10 @@ public class RepairTurret : Ability, Modifier{
 	}
 
 
-	// Update is called once per frame
-	void Update () {
+	void Updater () {
 
 		//Debug.Log ("Mystate is " + mymanager.getState() + "  " + DroneAway);
-		if (Time.time > nextActionTime && !DroneAway) {
-			nextActionTime = Time.time + 1;
+		if (!DroneAway) {
 
 			if (mymanager.getState () is MoveState) {
 				if (!((MoveState)mymanager.getState ()).assumedMove) {

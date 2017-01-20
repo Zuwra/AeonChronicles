@@ -49,6 +49,14 @@ public  class Projectile : MonoBehaviour {
 	// Use this for initialization
 	public void Start () {	
 
+		AudSrc= GetComponent<AudioSource> ();
+		if (AudSrc) {
+			AudSrc.priority += Random.Range (-60, 0);
+			AudSrc.volume = ((float)Random.Range (1, 5)) / 10;
+			AudSrc.pitch +=((float)Random.Range (-3, 3)) / 10;
+		}
+
+
 		AudSrc = GetComponent<AudioSource> ();
 			if (AudSrc && mySound) {
 				SoundManager.PlayOneShotSound (AudSrc, mySound);
@@ -86,12 +94,7 @@ public  class Projectile : MonoBehaviour {
 			myIndiactor.GetComponentInChildren<Light> ().spotAngle = indicatorSize;
 		}
 
-		AudioSource aud = GetComponent<AudioSource> ();
-		if (aud) {
-			aud.priority += Random.Range (-60, 0);
-			aud.volume = ((float)Random.Range (1, 5)) / 10;
-			aud.pitch +=((float)Random.Range (-10, 10)) / 10;
-		}
+	
 	
 	}
 

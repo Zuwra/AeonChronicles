@@ -14,6 +14,7 @@ public class MoveState : UnitState{
 		myManager = man;
 
 		location = loc;
+		assumedMove = false;
 		//myMover.resetMoveLocation (location);
 	}
 
