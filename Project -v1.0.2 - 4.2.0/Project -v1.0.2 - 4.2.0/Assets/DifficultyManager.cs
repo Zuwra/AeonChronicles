@@ -72,10 +72,9 @@ public class DifficultyManager : MonoBehaviour {
 			}
 
 		} else if (difficulty == 2) {
-			foreach (WaveSpawner ws in  GameObject.FindObjectsOfType<WaveSpawner>()) {
+			foreach (WaveManager ws in  GameObject.FindObjectsOfType<WaveManager>()) {
 				for (int i = 0; i < ws.myWaves.Count; i++) {
-					float releaseT = ws.myWaves [i].releaseTime;
-					ws.myWaves [i].setRelease (releaseT * HardWaveReduct);//.releaseTime =releaseT * HardWaveReduct;
+					ws.myWaves [i].waveSpawnTime *= .95f;
 
 				}
 			
@@ -86,17 +85,16 @@ public class DifficultyManager : MonoBehaviour {
 		
 		} else if (difficulty == 3) {
 		
-			foreach (WaveSpawner ws in  GameObject.FindObjectsOfType<WaveSpawner>()) {
+			foreach (WaveManager ws in  GameObject.FindObjectsOfType<WaveManager>()) {
 				for (int i = 0; i < ws.myWaves.Count; i++) {
-					float releaseT = ws.myWaves [i].releaseTime -115;
-					ws.myWaves [i].setRelease (releaseT * HardWaveReduct );//.releaseTime =releaseT * HardWaveReduct;
-					ws.myWaves [i].repeatAddOn *= .85f;
+					ws.myWaves [i].waveSpawnTime *= .85f;
+				
 				}
 
 			}
 
 			foreach (bunnyPopulate bp in GameObject.FindObjectsOfType<bunnyPopulate>()) {
-				bp.repopulateTime -= 15;
+				bp.repopulateTime -= 20;
 			}
 		
 		}

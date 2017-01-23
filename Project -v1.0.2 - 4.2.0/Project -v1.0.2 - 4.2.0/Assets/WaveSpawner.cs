@@ -6,7 +6,6 @@ public class WaveSpawner : MonoBehaviour {
 
 	public float attackRadius;
 
-	private float nextActionTime = 10000;
 	private attackWave nextWave ;
 
 	public Vector3 rallyPoint;
@@ -26,22 +25,15 @@ public class WaveSpawner : MonoBehaviour {
 		public string textWarning;
 		public AudioClip audioWarning;
 		public Sprite myPic;
-
 	}
+
 	[System.Serializable]
 	public class attackWave
 	{public List<GameObject> waveType = new List<GameObject>();
 		public List<GameObject> mediumExtra= new List<GameObject>();
 		public List<GameObject> HardExtra= new List<GameObject>();
-		public float releaseTime;
-		public int repeat;
-		public float repeatAddOn;
 
-		public void setRelease (float n)
-		{
-			releaseTime = n;
 
-		}
 		public List<attackWarning> warnings = new List< attackWarning>();
 		public List<SceneEventTrigger> myTriggers = new List<SceneEventTrigger> ();
 	}
@@ -53,10 +45,7 @@ public class WaveSpawner : MonoBehaviour {
 		if (LevelData.getHighestLevel () > 3) {
 
 			if (ReplayWaves.Count > 0) {
-				float firstRelease = myWaves[0].releaseTime;
-				float addon = myWaves [0].repeatAddOn;
-				//Debug.Log (" Addon is " + addon);
-
+				
 				myWaves = new List<attackWave> ();
 
 				List<attackWave> tempWaves = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ()
@@ -65,9 +54,7 @@ public class WaveSpawner : MonoBehaviour {
 				for (int i = 0; i < tempWaves.Count; i++) {
 					myWaves.Add (new attackWave ());
 					//Debug.Log (i + "  " + firstRelease + "   " + addon);
-					myWaves[i].releaseTime = firstRelease + i * addon;
-					myWaves[i].repeatAddOn = addon;
-					myWaves [i].repeat = 1;
+
 					foreach (GameObject ob in tempWaves[i].waveType) {
 						myWaves [i].waveType.Add (ob);
 					}
@@ -83,7 +70,6 @@ public class WaveSpawner : MonoBehaviour {
 				// Still need to add in code for attack warnings and triggers
 				}
 
-				myWaves [myWaves.Count - 1].repeat = 50;
 			
 			}
 
@@ -92,15 +78,12 @@ public class WaveSpawner : MonoBehaviour {
 
 		raceMan = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 		difficultyM = GameObject.FindObjectOfType<DifficultyManager> ();
-		if (!triggerOnly) {
-			findNextWave ();
-		}
-
+	
 	
 	}
 
 
-
+	/*
 
 
 	// Update is called once per frame
@@ -159,7 +142,7 @@ public class WaveSpawner : MonoBehaviour {
 			findNextWave ();
 		}
 	
-	}
+	}*/
 
 	//autobalancing based on how many units the player has
 	void SpawnExtra(attackWave myWave)
@@ -220,32 +203,6 @@ public class WaveSpawner : MonoBehaviour {
 
 
 
-	public void findNextWave()
-		{
-		nextActionTime = 10000000;
-	
-	
-
-		foreach (attackWave aw in myWaves) {
-			if (aw.releaseTime < nextActionTime) {
-				nextActionTime = aw.releaseTime;
-				nextWave = aw;
-			
-			}
-		
-		}
-
-		if (nextWave.repeat == 1) {
-			myWaves.Remove (nextWave);
-
-		} else {
-			nextWave.repeat--;
-			nextWave.setRelease (nextWave.releaseTime + nextWave.repeatAddOn);// .releaseTime += nextWave.repeatAddOn;
-		
-		}
-
-
-	}
 
 
 	public void spawnWave()

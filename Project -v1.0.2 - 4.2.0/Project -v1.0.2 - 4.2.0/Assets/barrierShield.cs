@@ -62,7 +62,7 @@ public class barrierShield : MonoBehaviour {
 				float dist = Vector3.Distance (this.gameObject.transform.position, other.transform.position);
 
 				if (dist > radius - 5 && dist < radius + 5) {
-					Debug.Log ("In range");
+					
 					Health -= proj.damage;
 					TotalAbsorbed += proj.damage;
 					Instantiate (Effect, other.gameObject.transform.position, other.gameObject.transform.rotation);

@@ -12,10 +12,7 @@ public class DaexaSupplyDrop: TargetAbility{
 		myApplier = GetComponent<UltimateApplier> ();
 	}
 
-	// Update is called once per frame
-	void Update () {
 
-	}
 	override
 	public continueOrder canActivate(bool showError){
 
@@ -39,12 +36,9 @@ public class DaexaSupplyDrop: TargetAbility{
 	public  void setAutoCast(bool offOn){}
 
 	public override bool isValidTarget (GameObject target, Vector3 location){
-		if (target == null) {
-			return true;
-		}
+		
 
-		return (!target.GetComponent<UnitManager>());
-			
+		return true;			
 
 	}
 

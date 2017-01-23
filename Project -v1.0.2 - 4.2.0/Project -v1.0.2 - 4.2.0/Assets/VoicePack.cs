@@ -18,9 +18,11 @@ public class VoicePack : MonoBehaviour {
 	public List<AudioClip> buildingPlacement;
 	public List<AudioClip> EnemyWave;
 	public List<AudioClip> EnemyDreadNaughts;
+	public List<AudioClip> EnemyBunnies;
 	public List<AudioClip> ResearchFinished;
 	public List<AudioClip> OreDepleted;
 	public List<AudioClip> BuildingComplete;
+
 
 	public AudioClip getVoicePackLine()
 	{
@@ -86,5 +88,17 @@ public class VoicePack : MonoBehaviour {
 	public AudioClip getBuildingCompleteLine()
 	{
 		return BuildingComplete[Random.Range (0,BuildingComplete.Count - 1)];
+	}
+
+	public AudioClip getEnemyWaveLine( WaveContainer.waveWarningType waveType)
+	{
+		if (waveType == WaveContainer.waveWarningType.Bunny && EnemyBunnies.Count > 0) {
+			return EnemyBunnies [Random.Range (0,EnemyBunnies.Count - 1)];
+		}
+		else if (waveType == WaveContainer.waveWarningType.DreadNaught && EnemyDreadNaughts.Count > 0) {
+			return EnemyDreadNaughts [Random.Range (0,EnemyDreadNaughts.Count - 1)];
+		}
+
+		return EnemyWave [Random.Range (0,EnemyWave.Count - 1)];
 	}
 }

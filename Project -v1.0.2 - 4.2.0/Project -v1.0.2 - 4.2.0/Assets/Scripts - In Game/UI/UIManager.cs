@@ -105,6 +105,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 	// Update is called once per frame
 	void Update () 
 	{
+
+
 		if (Input.GetMouseButtonDown (1)) {
 
 			if (!EventSystem.current.IsPointerOverGameObject ()) 
@@ -145,10 +147,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 				lineRender.enabled = false;}
 
 		}
-
+		bool hitSomething;
 
 		switch (m_Mode)
 		{
+
 		case Mode.Normal:
 			CursorManager.main.normalMode ();
 			ModeNormalBehaviour ();
@@ -159,10 +162,16 @@ public class UIManager : MonoBehaviour, IUIManager {
 			break;
 		case Mode.targetAbility:
 			ModeNormalBehaviour ();
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 16)))
+			if (currentAbility.myTargetType == TargetAbility.targetType.ground) {
+				hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8);
+			} else {
+				hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16));
+			}
+
+			if (hitSomething)
 			{
 				Vector3 targetPoint = hit.point;
 				currentObject = hit.collider.gameObject;
@@ -200,7 +209,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 			 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~(1 << 16)))
+		
+			if (currentAbility.myTargetType == TargetAbility.targetType.ground) {
+				hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8);
+			} else {
+				hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16));
+			}
+
+			if (hitSomething)
 			{
 				Vector3 targetPoint = hit.point;
 				currentObject = hit.collider.gameObject;
@@ -571,8 +587,15 @@ public class UIManager : MonoBehaviour, IUIManager {
 			if (!EventSystem.current.IsPointerOverGameObject ()) {
 				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			
-				
-				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
+
+				bool hitSomething;
+				if (currentAbility.myTargetType == TargetAbility.targetType.ground) {
+					hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8);
+				} else {
+					hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16));
+				}
+
+				if (hitSomething) {
 					targetPoint = hit.point;
 			
 
@@ -600,8 +623,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 			if (!EventSystem.current.IsPointerOverGameObject ()) {
 				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		
+				bool hitSomething;
+				if (currentAbility.myTargetType == TargetAbility.targetType.ground) {
+					hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8);
+				} else {
+					hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16));
+				}
 
-				if (Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16))) {
+				if (hitSomething) {
 					targetPoint = hit.point;
 
 

@@ -16,7 +16,7 @@ public class AllDestroyed : Achievement{
 	public override void CheckEnd (){
 		if (!IsAccomplished ()) {
 			if (GameObject.FindObjectOfType<VictoryTrigger> ().levelNumber == LevelNum) {
-				if (GameObject.FindObjectOfType<GameManager> ().playerList [1].unitList.Count == 0) {
+				if (GameObject.FindObjectOfType<GameManager> ().playerList [1].getUnitList().Count == 0) {
 				
 					Accomplished ();
 				}

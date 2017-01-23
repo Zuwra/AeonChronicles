@@ -159,6 +159,12 @@ public class ErrorPrompt : MonoBehaviour {
 
 	}
 
+
+	public void EnemyWave(WaveContainer.waveWarningType waveType)
+	{ExpositionDisplayer.instance.displayText ("", 5, myVoicePack.getbaseAttackedLine(), 1, null, 4);
+		//showError ("Enemy Wave Detected!", myVoicePack.getbaseAttackedLine());
+	}
+
 	public bool checkIfOnScreen(Vector3 spot)
 	{Vector3 tempLocation = Camera.main.WorldToScreenPoint (spot);
 		if (tempLocation.x < 0) {

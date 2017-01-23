@@ -470,8 +470,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	{bool hasNull = false;
 		ResourceOne += resOne;
 		ResourceTwo += resTwo;
-		totalResOne += resOne;
-		totalResTwo += resTwo;
+
 
 
 		foreach (ManagerWatcher watch in myWatchers) {
@@ -486,6 +485,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		if (income) {
 			if (resOne >= 0 && resTwo >= 0) {
+
+
+				totalResOne += resOne;
+				totalResTwo += resTwo;
 				uiManager.production.GetComponent<EconomyManager> ().updateMoney ((int)resOne, (int)resTwo);
 			}
 		}

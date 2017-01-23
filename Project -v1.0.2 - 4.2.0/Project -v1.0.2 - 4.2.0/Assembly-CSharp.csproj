@@ -272,6 +272,7 @@
      <Compile Include="Assets\DayFFUpgrade.cs" />
      <Compile Include="Assets\DayexaShield.cs" />
      <Compile Include="Assets\DeathWinTrigger.cs" />
+     <Compile Include="Assets\DeployTurret.cs" />
      <Compile Include="Assets\DetachAugment.cs" />
      <Compile Include="Assets\DifficultyManager.cs" />
      <Compile Include="Assets\DoubleUpgrade.cs" />
@@ -306,6 +307,7 @@
      <Compile Include="Assets\Grinder.cs" />
      <Compile Include="Assets\GroundSetter.cs" />
      <Compile Include="Assets\GuiControls.cs" />
+     <Compile Include="Assets\HadrianLifeAch.cs" />
      <Compile Include="Assets\HalfLife.cs" />
      <Compile Include="Assets\HalfLifeStarter.cs" />
      <Compile Include="Assets\HarpyLandingPad.cs" />
@@ -313,6 +315,7 @@
      <Compile Include="Assets\HealthUpgrade.cs" />
      <Compile Include="Assets\HookFury.cs" />
      <Compile Include="Assets\HotkeyMenu.cs" />
+     <Compile Include="Assets\HotkeyPicSetter.cs" />
      <Compile Include="Assets\IEffect.cs" />
      <Compile Include="Assets\IconAttacker.cs" />
      <Compile Include="Assets\Iinteract.cs" />
@@ -569,6 +572,7 @@
      <Compile Include="Assets\VoicePack.cs" />
      <Compile Include="Assets\VoicePackUI.cs" />
      <Compile Include="Assets\WaveContainer.cs" />
+     <Compile Include="Assets\WaveManager.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />
      <Compile Include="Assets\ZephyrInteract.cs" />
      <Compile Include="Assets\airmover.cs" />
@@ -587,6 +591,7 @@
      <Compile Include="Assets\evasiveMenuvers.cs" />
      <Compile Include="Assets\explosion.cs" />
      <Compile Include="Assets\fogUI.cs" />
+     <Compile Include="Assets\gravityWell.cs" />
      <Compile Include="Assets\incendiaryUpgrade.cs" />
      <Compile Include="Assets\inflectionBarrier.cs" />
      <Compile Include="Assets\inflectionStarter.cs" />

@@ -22,17 +22,6 @@ public class VictoryScreen : MonoBehaviour {
 	public Text ArmorDamage;
 	public bool victoryScreen;
 
-	// Use this for initialization
-	void Start () {
-		if (LevelData.getsaveInfo().myLevels == null) {
-		//	Debug.Log ("No levels");
-			return;
-		}
-
-	
-
-
-	}
 
 
 
@@ -50,7 +39,7 @@ public class VictoryScreen : MonoBehaviour {
 			techDisplay.text = "" + (int)info.TechCredits;
 
 			if (info.Resources > 0) {
-				ResourceTitle.text = "Resources Collected: ";
+				ResourceTitle.text = "Resources Collected ";
 				ResourceDisplay.text = "" + info.Resources;
 			} else {
 				ResourceTitle.text = "";

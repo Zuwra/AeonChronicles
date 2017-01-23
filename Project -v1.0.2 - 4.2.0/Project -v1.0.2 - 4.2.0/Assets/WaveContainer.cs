@@ -6,6 +6,11 @@ using System;
 public class WaveContainer : MonoBehaviour {
 
 
+	public enum waveWarningType
+	{
+		Normal, Bunny, DreadNaught
+	}
+
 	public enum EnemyWave{
 		ScrapCrack, ScrapChem, DreadFleet, Bunny, CrackSkiff, ScrapSkif, BunnySKiff, ChemScrap
 	}
@@ -50,6 +55,7 @@ public class WaveContainer : MonoBehaviour {
 	public struct WaveOption{
 		public String name;
 		public List<WaveSpawner.attackWave> waveRampUp;
+		public waveWarningType warningType;
 	}
 
 }

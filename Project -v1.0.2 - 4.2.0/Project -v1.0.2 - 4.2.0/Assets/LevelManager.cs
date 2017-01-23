@@ -176,7 +176,7 @@ public class LevelManager : MonoBehaviour {
 		}
 		LevelData.setDifficulty (i.value + 1);
 		setDifficultyDropDowns (i.value);
-		Debug.Log ("Difficulty is " + LevelData.getDifficulty());
+	
 	
 	}
 
