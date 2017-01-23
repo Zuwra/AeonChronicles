@@ -53,7 +53,7 @@ public abstract class Achievement : MonoBehaviour {
 		PlayerPrefs.SetInt (Title, 1);
 	}
 
-	public void Reset()
+	public virtual void Reset()
 	{
 		PlayerPrefs.SetInt (Title, 0);
 	}

@@ -7,27 +7,25 @@ public class GraphicsMenu : MonoBehaviour {
 	private Dropdown qualityDrop;
 	private bool shadows = true; 
 	// Use this for initialization
+
 	void Start () {
 		qualityDrop = qualityDropObj.GetComponent<Dropdown> ();
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
 
 
 
 	public void toggleShadows()
 	{ shadows = !shadows;
 		
-		foreach (GameObject light in GameObject.FindGameObjectsWithTag ("Light")) {
+		foreach (Light light in GameObject.FindObjectsOfType<Light>()) {
 			if (shadows) {
-				light.GetComponent<Light> ().shadows = LightShadows.Hard;
+				light.shadows = LightShadows.Soft;
 
 			} else {
-				light.GetComponent<Light> ().shadows = LightShadows.None;
+				light.shadows = LightShadows.None;
 			}
 		}
 

@@ -33,4 +33,9 @@ public class KillUnitAch :Achievement {
 
 
 	}
+
+	public override void Reset()
+	{PlayerPrefs.SetInt (UnitName + "Deaths", 0);
+		PlayerPrefs.SetInt (Title, 0);
+	}
 }

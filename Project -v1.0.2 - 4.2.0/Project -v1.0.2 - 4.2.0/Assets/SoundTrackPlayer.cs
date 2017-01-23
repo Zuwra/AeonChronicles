@@ -22,7 +22,7 @@ public class SoundTrackPlayer : MonoBehaviour {
 			currentIndex = 0;}
 		mySrc.clip = myPlayList.myTracks [currentIndex];
 		mySrc.Play ();
-		Invoke ("playNextTrack", mySrc.clip.length);
+		Invoke ("playNextTrack", mySrc.clip.length -1.5f);
 
 
 	}

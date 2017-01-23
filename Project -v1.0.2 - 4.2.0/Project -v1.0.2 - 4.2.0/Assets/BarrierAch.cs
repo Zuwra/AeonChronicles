@@ -22,6 +22,11 @@ public class BarrierAch : Achievement{
 			
 		}
 
+	public override void Reset()
+	{
+		PlayerPrefs.SetInt (Title, 0);
+		PlayerPrefs.SetInt ("TotalBarrierBlocked", 0);
 
+	}
 
 }
