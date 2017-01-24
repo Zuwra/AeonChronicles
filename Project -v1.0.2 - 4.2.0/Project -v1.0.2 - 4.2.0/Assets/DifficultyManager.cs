@@ -57,7 +57,7 @@ public class DifficultyManager : MonoBehaviour {
 			}
 
 			foreach (MiningSawDamager saw in GameObject.FindObjectsOfType<MiningSawDamager>()) {
-				saw.damage *= (EasyDamage * 1.5f);
+				saw.damage *= (EasyDamage);
 			}
 
 			foreach (bunnyPopulate bp in GameObject.FindObjectsOfType<bunnyPopulate>()) {

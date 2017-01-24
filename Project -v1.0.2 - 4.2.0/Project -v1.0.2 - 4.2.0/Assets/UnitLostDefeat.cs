@@ -37,6 +37,7 @@ public class UnitLostDefeat : MonoBehaviour, LethalDamageinterface {
 
 				return true;
 			}
+			return false;
 		} else if (noUnits) {
 			foreach (GameObject unit in myRace.getUnitList()) {
 				if (!unit.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
@@ -56,7 +57,7 @@ public class UnitLostDefeat : MonoBehaviour, LethalDamageinterface {
 			}
 		
 		}
-		victory.Lose ();
+		//victory.Lose ();
 		return false;
 	}
 

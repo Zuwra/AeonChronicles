@@ -23,6 +23,7 @@ public class VictoryTrigger : MonoBehaviour {
 
 	public AudioClip victoryLine;
 	public AudioClip DefeatLine;
+	bool hasFinished;
 
 	public static VictoryTrigger instance;
 	// Use this for initialization
@@ -108,20 +109,25 @@ public class VictoryTrigger : MonoBehaviour {
 
 
 	public void Win()
-	{
-		VictoryScreen.enabled = true;
-		GameObject.FindObjectOfType<MainCamera> ().DisableScrolling ();
-		GetComponent<AchievementChecker> ().EndLevel ();
+	{if (!hasFinsihed) {
+			hasFinished = true;
+			VictoryScreen.enabled = true;
+			GameObject.FindObjectOfType<MainCamera> ().DisableScrolling ();
+			GetComponent<AchievementChecker> ().EndLevel ();
 
-		StartCoroutine(WinLevel ());
+			StartCoroutine (WinLevel ());
+		}
 	}
 
 
 	public void Lose()
-	{
-		DefeatScreen.enabled = true;
-		GameObject.FindObjectOfType<MainCamera> ().DisableScrolling ();
-		StartCoroutine(LoseLevel ());
+	{if (!hasFinsihed) {
+			hasFinished = true;
+			Debug.Log ("Lost");
+			DefeatScreen.enabled = true;
+			GameObject.FindObjectOfType<MainCamera> ().DisableScrolling ();
+			StartCoroutine (LoseLevel ());
+		}
 	}
 
 	IEnumerator WinLevel ()

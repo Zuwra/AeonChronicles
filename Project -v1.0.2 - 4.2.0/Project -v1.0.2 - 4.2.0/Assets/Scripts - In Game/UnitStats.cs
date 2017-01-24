@@ -94,7 +94,8 @@ public class UnitStats : MonoBehaviour {
 		}
 
 		if (isHero) {
-			veternStat= new VeteranStats(!isUnitType(UnitTypes.UnitTypeTag.Turret)&& !isUnitType(UnitTypes.UnitTypeTag.Structure), GetComponent<UnitManager>().UnitName,
+			bool HasAName = !isUnitType (UnitTypes.UnitTypeTag.Turret) && !isUnitType (UnitTypes.UnitTypeTag.Structure);
+			veternStat= new VeteranStats(HasAName, GetComponent<UnitManager>().UnitName,
 				!(isUnitType(UnitTypes.UnitTypeTag.Turret))&&!(isUnitType(UnitTypes.UnitTypeTag.Worker)) && !(isUnitType(UnitTypes.UnitTypeTag.Structure)),GetComponent<UnitManager>().UnitName 
 				, myManager.PlayerOwner, myManager);
 		}

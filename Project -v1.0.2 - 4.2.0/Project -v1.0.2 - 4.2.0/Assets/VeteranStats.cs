@@ -32,7 +32,8 @@ public class VeteranStats : IComparable<VeteranStats>{
 		if (hasName) {
 
 			UnitName = RaceNames.getInstance ().getName (myType);
-			if (playerNumber == 1) {
+
+			if ((playerNumber == 1 || playerNumber == 3) &&!theUnit.GetComponent<UnitStats>().isHero) {
 				backstory = getBackstory ();
 			} else {
 				backstory = "";}
