@@ -140,7 +140,7 @@ public class newWorkerInteract :  Ability, Iinteract {
 			myManager.changeState (new MiningState (closest, myManager, miningTime, resourceOne, resourceTwo, Hook, hookPos));
 	
 		} else {
-			myManager.changeState (new MoveState (targ.gameObject.transform.position, myManager));
+			//myManager.changeState (new MoveState (targ.gameObject.transform.position, myManager));
 		
 			ErrorPrompt.instance.showError ("Deposits already occupied");
 		}
