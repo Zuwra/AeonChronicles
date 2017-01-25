@@ -176,15 +176,13 @@ public class WaveManager : MonoBehaviour {
 
 	void setNextWave()
 	{
-
 		if (currentWaveIndex < CurrentWaves.Count - 1) {
 			currentWaveIndex++;
-		}
-		if (nextActionTime == myWaves [currentWaveIndex].waveSpawnTime) {
-			nextActionTime += 75;
-		} else {
 			nextActionTime = myWaves [currentWaveIndex].waveSpawnTime;
 		}
+		else{
+			nextActionTime += 140;
+		} 
 
 	}
 
@@ -192,14 +190,7 @@ public class WaveManager : MonoBehaviour {
 	//autobalancing based on how many units the player has
 	void SpawnExtra(WaveSpawner.attackWave myWave, GameObject Spawner)
 	{float delay = .1f;
-		if (raceMan.getArmyCount () * .75 > myWave.waveType.Count + myWave.HardExtra.Count + myWave.mediumExtra.Count) {
-			foreach (GameObject obj in myWave.waveType) {
-
-				StartCoroutine(MyCoroutine(delay, obj,Spawner));
-				delay += .2f;
-
-			}
-		}
+		
 			
 		if (raceMan.getArmyCount () * .50 >  myWave.waveType.Count + myWave.HardExtra.Count + myWave.mediumExtra.Count) {
 			foreach (GameObject obj in myWave.HardExtra) {

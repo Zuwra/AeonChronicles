@@ -10,7 +10,7 @@ public class GraphicsMenu : MonoBehaviour {
 
 	void Start () {
 		qualityDrop = qualityDropObj.GetComponent<Dropdown> ();
-	
+		qualityDrop.value = QualitySettings.GetQualityLevel ();
 	}
 
 

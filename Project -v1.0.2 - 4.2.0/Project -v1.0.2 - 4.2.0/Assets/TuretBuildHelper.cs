@@ -71,7 +71,9 @@ public class TuretBuildHelper :buildTurret{
 								audioSrc.PlayOneShot (soundEffect);
 							}
 							obj.placeTurret (createUnit ());
-
+						if (PlaceEffect) {
+							Instantiate (PlaceEffect, obj.transform.position, Quaternion.identity, obj.transform);
+						}
 
 						}
 

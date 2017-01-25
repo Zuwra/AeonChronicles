@@ -24,17 +24,6 @@ public class ObjectiveManager : MonoBehaviour {
 	void Awake () {
 		instance = this;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-		//if (blinking) {
-			//if (Time.time > turnOffTime) {
-			
-			//}
-		//}
-	
-	}
 
 
 	public void blink(bool input)
@@ -72,6 +61,7 @@ public class ObjectiveManager : MonoBehaviour {
 
 		GameObject obj = (GameObject)Instantiate (ObjectiveText);
 		obj.transform.SetParent (this.transform);
+		obj.transform.SetAsFirstSibling ();
 		Vector3 pos = obj.transform.position;
 		pos.z = 0;
 		obj.transform.position = pos;
@@ -84,7 +74,7 @@ public class ObjectiveManager : MonoBehaviour {
 
 			UIHighLight.main.highLight (obj, 2);
 		}
-
+		obj.transform.SetAsFirstSibling ();
 
 	}
 

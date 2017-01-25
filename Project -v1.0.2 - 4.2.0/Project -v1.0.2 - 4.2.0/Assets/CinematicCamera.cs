@@ -28,6 +28,12 @@ public class CinematicCamera : SceneEventTrigger {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKeyDown (KeyCode.Return) && currentScene >-1) {
+			exitScene ();
+		
+		}
+
 		if (currentScene > -1) {
 			if (Time.time > shotChangeTime) {
 				//NEW SHOT
@@ -86,6 +92,7 @@ public class CinematicCamera : SceneEventTrigger {
 	}
 
 	public void exitScene(){
+		
 		foreach(SceneEventTrigger trig in myScenes[currentScene].nextTrig){
 
 			trig.trigger (0, 0, Vector3.zero, null, false);

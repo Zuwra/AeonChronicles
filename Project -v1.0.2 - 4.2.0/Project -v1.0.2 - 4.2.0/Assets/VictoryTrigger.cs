@@ -50,7 +50,7 @@ public class VictoryTrigger : MonoBehaviour {
 		} 
 		else {
 			mainObjective.Add (obj);
-		
+
 			ObjectiveManager.instance.setObjective (obj);
 		}
 	
@@ -109,7 +109,7 @@ public class VictoryTrigger : MonoBehaviour {
 
 
 	public void Win()
-	{if (!hasFinsihed) {
+	{if (!hasFinished) {
 			hasFinished = true;
 			VictoryScreen.enabled = true;
 			GameObject.FindObjectOfType<MainCamera> ().DisableScrolling ();
@@ -121,7 +121,7 @@ public class VictoryTrigger : MonoBehaviour {
 
 
 	public void Lose()
-	{if (!hasFinsihed) {
+	{if (!hasFinished) {
 			hasFinished = true;
 			Debug.Log ("Lost");
 			DefeatScreen.enabled = true;
@@ -135,16 +135,22 @@ public class VictoryTrigger : MonoBehaviour {
 		ExpositionDisplayer.instance.displayText (6, victoryLine, 1);
 	
 		yield return new WaitForSeconds (2.5f);
+
+		int bonusTech =LevelData.getDifficulty ();
+		if (bonusTech == 1) {
+			bonusTech = 0;
+		} else if (bonusTech == 3) {
+			bonusTech = 5;}
 		//Set my victory screen
 		//LevelData.loadVetStats (GameManager.main.playerList [0].getUnitStats());
 		LevelData.levelInfo Ldata = createLevelInfo(levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
-			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
+			Clock.main.getTime(), TechCredits + techRewards + bonusTech, completeBonusObj + "/" + totalBonusObj);
 		foreach (VictoryScreen vs in GameObject.FindObjectsOfType<VictoryScreen> ()) {
 			vs.SetResults (Ldata, true);
 		}
 
 		LevelData.addLevelInfo (levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),
-			Clock.main.getTime(), TechCredits + techRewards, completeBonusObj + "/" + totalBonusObj);
+			Clock.main.getTime(), TechCredits + techRewards + bonusTech, completeBonusObj + "/" + totalBonusObj);
 		
 
 

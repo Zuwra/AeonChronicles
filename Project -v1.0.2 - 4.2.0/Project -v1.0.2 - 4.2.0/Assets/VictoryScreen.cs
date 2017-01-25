@@ -22,6 +22,8 @@ public class VictoryScreen : MonoBehaviour {
 	public Text ArmorDamage;
 	public bool victoryScreen;
 
+	public Text DifficultyTitle;
+	public Text DifficultyText;
 
 
 
@@ -37,6 +39,20 @@ public class VictoryScreen : MonoBehaviour {
 			allyDisplay.text = "" + (int)info.unitsLost;
 			objDisplay.text = "" + info.bonusObj;
 			techDisplay.text = "" + (int)info.TechCredits;
+
+
+			int bonusTech =LevelData.getDifficulty ();
+			if (bonusTech == 1) {
+				bonusTech = 0;
+			} else if (bonusTech == 3) {
+				bonusTech = 5;}
+
+			if (bonusTech == 0) {
+				DifficultyTitle.enabled = false;
+				DifficultyText.enabled = false;
+			} else {
+				DifficultyText.text = "" + bonusTech;
+			}
 
 			if (info.Resources > 0) {
 				ResourceTitle.text = "Resources Collected ";
