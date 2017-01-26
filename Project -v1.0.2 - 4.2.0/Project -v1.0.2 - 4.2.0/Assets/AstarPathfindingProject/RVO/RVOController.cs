@@ -198,8 +198,8 @@ namespace Pathfinding.RVO {
 			rvoAgent.AgentTimeHorizon = agentTimeHorizon;
 			rvoAgent.ObstacleTimeHorizon = obstacleTimeHorizon;
 			rvoAgent.Locked = locked;
-			rvoAgent.MaxNeighbours = maxNeighbours;
-			rvoAgent.DebugDraw = debug;
+			//rvoAgent.MaxNeighbours = maxNeighbours;
+			//rvoAgent.DebugDraw = debug;
 			rvoAgent.NeighbourDist = neighbourDist;
 			rvoAgent.Layer = layer;
 			rvoAgent.CollidesWith = collidesWith;

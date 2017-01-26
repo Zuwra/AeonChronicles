@@ -90,15 +90,18 @@ public class AugmentAetherVictory  : Objective {
 
 	IEnumerator actuallyComplete()
 	{
+		yield return null;
 		if (counterAttack) {
 			counterAttack.spawnWave (0);
 			if (attackTrig) {
 				attackTrig.trigger (0, 0, Vector3.zero, null, false);}
 
+		
+		
 		} else {
 			complete ();
 			nextArea ();
-			return true;
+			yield break;
 		}
 		finishedOnce = true;
 		yield return new WaitForSeconds (delayVic);
