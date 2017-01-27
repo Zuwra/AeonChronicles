@@ -27,6 +27,7 @@ public class IWeapon : MonoBehaviour {
 	bool initialSpeedSet;
 	bool initalDamageSet;
 
+
 	[Tooltip("Having arange that is longer than the vision range is not supported yet")]
 	public float range =5;
 	public float minimumRange;

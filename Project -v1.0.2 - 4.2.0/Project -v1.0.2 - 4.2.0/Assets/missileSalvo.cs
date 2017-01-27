@@ -174,15 +174,28 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 
 	}
 
-	IEnumerator loadingMissile()
-	{
 
+	IEnumerator Descend()
+	{
+		GetComponent<airmover> ().flyerHeight = 4;
+		inLanding = true;
+		float t = 0;
+		Vector3 startPosition = this.gameObject.transform.position;
+		while (t <= 1) {
+			t += Time.deltaTime;
+			transform.position = Vector3.Lerp (startPosition, padSpot, t);
+			yield return null;
+		}
+
+		//Loading missiles
 		home.startLanding (this.gameObject);
-		yield return new WaitForSeconds (.01f);
-		padSpot = Vector3.zero;
+		yield return new WaitForSeconds (.001f);
+
+		GetComponent<CharacterController> ().radius = 2.1f;
+
 		mymanager.StunForTime (this, 4.5f);
 		StopCoroutine (ReFill);
-	
+
 		yield return new WaitForSeconds (1.5f);
 		upRockets ();
 		yield return new WaitForSeconds (2f);
@@ -191,7 +204,7 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 
 		ReFill = null;
 		mymanager.setStun (false, this, false);
-		;
+
 		inLanding = false;
 		if (home) {
 			home.finished (this.gameObject);
@@ -199,12 +212,14 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 
 
 		home = null;
-
+		padSpot = Vector3.zero;
 		GetComponent<airmover> ().flyerHeight = flierheight;
 		mymanager.GiveOrder (Orders.CreateMoveOrder (this.transform.position+ transform.forward * 12) );
-	
 
 	}
+
+
+
 
 	IEnumerator checkForLandingPad()
 	{
@@ -217,10 +232,11 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 
 			
 				Vector3 temp = home.requestLanding (this.gameObject);
+
 				if (temp != Vector3.zero) {
 					padSpot = temp;
-					mymanager.GiveOrder (Orders.CreateMoveOrder (padSpot));
-				
+					StartCoroutine (Descend());
+	
 				}
 			}
 		
@@ -229,35 +245,12 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 	}
 
 
-	IEnumerator decsendLanding()
-	{
-		
-		while (Vector3.Distance(padSpot, transform.position) > 2f ) {
-		
-			yield return new WaitForSeconds (.1f);
-		}
-
-		StartCoroutine (loadingMissile ());
-	}
 
 	public virtual UnitState computeState(UnitState s)
 	{
 
-		if (padSpot != Vector3.zero && s is DefaultState && Vector3.Distance (transform.position, padSpot) < 20) {
-
-			if (GetComponent<airmover> ().flyerHeight == 4) {
-				StartCoroutine ( decsendLanding());
-				return s;
-
-
-			} else {
-
-				GetComponent<airmover> ().flyerHeight = 4;
-				inLanding = true;
-
-				return new MoveState (padSpot + transform.forward * .25f, mymanager);
-			}
-		} 
+		if (inLanding) {
+			return null;}
 
 		if (GetComponent<airmover> ().flyerHeight == 4 && inLanding) {
 			return new MoveState (padSpot + transform.forward * .25f, mymanager);

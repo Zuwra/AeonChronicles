@@ -502,7 +502,9 @@ public class UnitManager : Unit,IOrderable{
 
 		myState =interactor.computeState (nextState);
 		//Debug.Log ("Setting state to " + myState);
-		myState.initialize ();
+		if (myState!= null) {
+			myState.initialize ();
+		}
 	
 		checkIdleWorker ();
 
