@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 using UnityEngine.EventSystems;
@@ -54,7 +55,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	private RectTransform myRect;
 
 	public GameObject megaMap;
-
+	private Point[,] PointArray;
 
 	private FogOfWar fog;
 	Texture2D _texture;
@@ -108,6 +109,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		UnitTexture = InitialTexture (UnitTexture);
 
 
+		usedUnitPoints = new List<Point> ();
+		usedTriangleList = new List<Point> ();
 		img.sprite  = Sprite.Create(UnitTexture as Texture2D, new Rect(0f, 0f, textureWidth, textureHeight), Vector2.zero);
 
 		setFog ();
@@ -115,6 +118,13 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 		GameMenu.main.addDisableScript (this);
 		ScreenTrapz.sprite = Sprite.Create (screenTrapzoidTex as Texture2D, new Rect (0f, 0f, textureWidth, textureHeight), Vector2.zero);
+
+		PointArray = new Point[textureWidth,textureHeight];
+		for (int i = 0; i < textureWidth; i++) {
+			for (int j = 0; j < textureHeight; j++) {
+				PointArray [i, j] = new Point (i, j);
+			}
+		}
 
    
 		InvokeRepeating ("updateScreenRect", .1f, minimapUpdateRate);
@@ -148,7 +158,6 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
     // Update is called once per frame
     void Update()
     {
-
 
 		if (Time.time > nextActionTimea) {
 			nextActionTimea += minimapUpdateRate;
@@ -191,8 +200,15 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 
  
-	private void clearTexture(Texture2D tex ,bool[,] virtMap, bool apply)
+	private void clearTexture(Texture2D tex ,bool[,] virtMap, bool apply, List<Point> used)
     {
+		//Debug.Log ("Points " + used.Count);
+		foreach (Point p in used) {
+			virtMap [p.x,p.y] = false;
+			tex .SetPixel(p.x,p.y, Color.clear);
+		}
+		used.Clear ();
+		/*
         for (int i = 0; i < textureWidth; i++)
         {
             for (int j = 0; j < textureHeight; j++)
@@ -203,18 +219,38 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 				}
 
             }
-        }
+        }*/
         if (apply)
 			tex.Apply();
     }
 
+	class Point
+	{
 
+		public Point(int X, int Y)
+		{x = X;
+			y = Y;}
+		public int x, y;
+	}
 
+	List<Point> usedUnitPoints;
+	List<Point> usedTriangleList;
 	private void updateTexture(Texture2D tex, bool[,] virtMap)
 	{
-		clearTexture (tex, virtMap, false);
+		//Debug.Log ("A " + Environment.TickCount);
 
-		for(int i = 2; i >-1; i --){
+		clearTexture (tex, virtMap, false, usedUnitPoints);
+		//Debug.Log ("B " + Environment.TickCount);
+		int ChitX;
+		int ChitY;
+
+		int iCoord;
+		int jCoord;
+		int chitSize; 
+		float WidthScale = textureWidth/ WorldWidth;
+		float HeightScale = textureHeight / WorldHeight;
+
+		for(int i = 0; i <3; i ++){
 		//foreach (RaceManager race in gameMan.playerList) { // Loops 3 times
 			Color raceColor = getColorForRaceManager (gameMan.playerList[i]);
             
@@ -222,31 +258,42 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 				
 				if (unit == null) {
 					continue;}
-			
-               
-				int iCoord = (int)(((unit.transform.position.x - Left) / (WorldWidth)) * textureWidth);
-				int jCoord = (int)(((unit.transform.position.z - bottom) / (WorldHeight)) * textureHeight);
-				int chitSize = unitPixelSize;
+				
+				chitSize = unitPixelSize;
 				if (unit.layer == 10) {
 					chitSize *= 2;
 				}
+			
+				iCoord = (int)((unit.transform.position.x - Left) *WidthScale);
+				jCoord = (int)((unit.transform.position.z - bottom) *HeightScale);
+
 
 				for (int n = -chitSize; n <= chitSize; n++)
                 {
 
 					for (int j = -chitSize; j <=chitSize; j++)
 					{
+						ChitX = n + iCoord;
+						ChitY = j + jCoord;
 						try{
-						virtMap [n+ iCoord,j+ jCoord] = true;
-							tex.SetPixel(n + iCoord, j + jCoord, raceColor);}
+							if(!virtMap [ChitX,ChitY]){	
+								
+								usedUnitPoints.Add(PointArray[ChitX,ChitY]);
+								virtMap [ChitX,ChitY] = true;
+								tex.SetPixel(ChitX,ChitY, raceColor);}}
 						catch(Exception)
 						{
 							
 						}
                     }
-					}}
+					}
+				}
+			
             }
+		//Debug.Log ("C " + Environment.TickCount);
+		//Debug.Log ("Drawing " + counter);
 		tex.Apply();
+
         }
 
 	Vector2 topLeftP;
@@ -256,7 +303,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	RaycastHit hit;
 
 		private void updateScreenRect (){
-		clearTexture (screenTrapzoidTex, virtTrapezoid, false);
+		clearTexture (screenTrapzoidTex, virtTrapezoid, false,usedTriangleList);
 
 
 		//Debug.Log ("A" + DateTime.Now.Millisecond );
@@ -368,7 +415,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 			ctr += 1/Iterate;
 
 			if (t.x > 0 && t.y < tex.height && t.x <tex.width)
-			{
+				{usedTriangleList.Add (PointArray[(int)t.x, (int)t.y]);
 				virtMap [(int)t.x,(int)t.y] = true;
 				tex.SetPixel ((int)t.x, (int)t.y, Color.magenta);
 			}

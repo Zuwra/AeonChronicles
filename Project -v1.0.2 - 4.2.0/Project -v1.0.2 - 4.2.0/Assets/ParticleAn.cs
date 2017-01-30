@@ -28,7 +28,7 @@ public class ParticleAn : animate {
 				
 				ps.maxParticles = emmisionRate;
 			}
-			ps.startLifetime = ps.startLifetime;
+			ps.startLifetime = ps.main.startLifetime.constant;
 
 		}
 	

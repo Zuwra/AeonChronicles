@@ -211,10 +211,15 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 		}
 
 
+	
+		Vector3 MoveLocation = (padSpot - home.transform.position);
+		MoveLocation.x += Random.Range (-6, 6);
+		MoveLocation.Normalize ();
 		home = null;
 		padSpot = Vector3.zero;
 		GetComponent<airmover> ().flyerHeight = flierheight;
-		mymanager.GiveOrder (Orders.CreateMoveOrder (this.transform.position+ transform.forward * 12) );
+	
+		mymanager.GiveOrder (Orders.CreateMoveOrder (this.transform.position+ MoveLocation * 12) );
 
 	}
 

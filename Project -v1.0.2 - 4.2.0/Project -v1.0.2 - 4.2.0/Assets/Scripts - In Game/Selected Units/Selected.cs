@@ -95,6 +95,7 @@ public class Selected : MonoBehaviour {
 		catch(Exception) {
 			
 		}
+		setDisplayType (GameObject.FindObjectOfType<GamePlayMenu> ().getDisplayType ());
 
 	}
 
