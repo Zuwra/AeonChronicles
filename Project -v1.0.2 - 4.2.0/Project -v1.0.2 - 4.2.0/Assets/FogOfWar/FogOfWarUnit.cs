@@ -17,9 +17,11 @@ public class FogOfWarUnit : MonoBehaviour
     void Start()
     {
 		Initialize ();
-
+		hasMoved = true;
 		InvokeRepeating ("UpdateFog", Random.Range(0, updateFrequency), updateFrequency);
+		Invoke( "clearFog", 1);
     }
+
 
 	public void Initialize()
 	{  _transform = transform;

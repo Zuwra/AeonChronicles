@@ -35,6 +35,7 @@ public class TurretPlacer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
+		myRect = this.gameObject.GetComponent<RectTransform> ();
 	}
 
 
@@ -84,6 +85,11 @@ public class TurretPlacer : MonoBehaviour {
 	{return (myFactories.Count > 0);
 	}
 
+
+	RectTransform myRect;
+	Vector3 pos;
+	Vector3 dif ;
+	Vector3 location;
 	// Update is called once per frame
 	void Update () {
 		if (!unit) {
@@ -115,15 +121,14 @@ public class TurretPlacer : MonoBehaviour {
 
 		}
 
-		Vector3 pos = myMount.transform.position;
-		pos.y += 5;
-		this.gameObject.GetComponent<RectTransform> ().position = pos;
+		pos = myMount.transform.position + Vector3.up *5;
+		myRect.position = pos;
 
-		Vector3 dif = cam.transform.position - this.gameObject.transform.position;
-		dif *= .5f;
-		this.gameObject.GetComponent<RectTransform> ().position = dif + pos;
+		dif = (cam.transform.position - this.gameObject.transform.position) * .5f;
 
-		Vector3 location = cam.transform.position;
+		myRect.position = dif + pos;
+
+		location = cam.transform.position;
 		location.x = this.gameObject.transform.position.x;
 		gameObject.transform.LookAt (location);
 

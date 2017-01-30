@@ -323,7 +323,12 @@ public class UnitStats : MonoBehaviour {
 
 
 				if (deathCorpse != null) {
-					GameObject.Instantiate (deathCorpse, this.gameObject.transform.position, this.gameObject.transform.rotation);
+
+					RaycastHit objecthit;
+
+					Physics.Raycast (this.gameObject.transform.position, Vector3.down, out objecthit, 1000, 1 << 8);
+
+					GameObject.Instantiate (deathCorpse,objecthit.point, this.gameObject.transform.rotation);
 				}
 
 				if (deathSource) {

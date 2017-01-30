@@ -32,7 +32,7 @@ public class airmover : IMover {
 
 	void OnCollisionEnter(Collision coll)
 	{
-		Debug.Log ("Collided with " + coll.gameObject);
+	//	Debug.Log ("Collided with " + coll.gameObject);
 
 	
 	}

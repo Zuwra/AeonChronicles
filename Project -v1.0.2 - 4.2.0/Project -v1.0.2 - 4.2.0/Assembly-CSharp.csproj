@@ -286,6 +286,7 @@
      <Compile Include="Assets\EnableAbility.cs" />
      <Compile Include="Assets\EnergyAchievement.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
+     <Compile Include="Assets\ExplodeParts.cs" />
      <Compile Include="Assets\ExpositionDisplayer.cs" />
      <Compile Include="Assets\ExpositionTexts.cs" />
      <Compile Include="Assets\ExtendedBarrels.cs" />

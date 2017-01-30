@@ -26,9 +26,9 @@ public class TurretHealthDisplay : HealthDisplay {
 		percentHealth.text = "";
 	}
 	
-	// Update is called once per frame
+	Vector3 location;
 	void Update () {
-		Vector3 location = camy.transform.position;
+		location = camy.transform.position;
 		location.x = this.gameObject.transform.position.x;
 		gameObject.transform.LookAt (location);
 

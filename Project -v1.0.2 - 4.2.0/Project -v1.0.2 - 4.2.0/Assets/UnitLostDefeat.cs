@@ -54,7 +54,7 @@ public class UnitLostDefeat : MonoBehaviour, LethalDamageinterface {
 			}
 		
 		}
-		//victory.Lose ();
+		victory.Lose ();
 		return false;
 	}
 

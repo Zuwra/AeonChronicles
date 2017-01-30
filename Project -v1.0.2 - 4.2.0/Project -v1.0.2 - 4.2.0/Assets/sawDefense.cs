@@ -22,11 +22,7 @@ public class sawDefense : MonoBehaviour {
 
 	public AudioClip sliceSound;
 
-	// Use this for initialization
-	void Start () {
-	//	myAudio = GetComponent<AudioSource> ();
-	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (inAttack) {
