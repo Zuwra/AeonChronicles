@@ -19,10 +19,6 @@ public class UltimateApplier : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 
 	public void applyUlt(GameObject thingy, Object ab)

@@ -11,11 +11,7 @@ public class InstructionHelperManager : MonoBehaviour {
 		instance = this;
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
 	public  void addBUtton( string text, float duration, Sprite pic)
 	{

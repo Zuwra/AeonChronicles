@@ -15,12 +15,7 @@ public class UIHighLight : MonoBehaviour {
 	
 	}
 
-	// Update is called once per frame
-	void Update () {
-	
 
-
-	}
 	
 
 	public void highLight(GameObject input, int size)

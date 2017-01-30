@@ -16,10 +16,7 @@ public class PageUIManager : MonoBehaviour {
 		selectM = GameObject.FindObjectOfType<SelectedManager> ();
 	}
 
-	// Update is called once per frame
-	void Update () {
 
-	}
 
 	public void selectPage(int n)
 	{pageList [currentPage].image.color = Color.white;

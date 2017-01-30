@@ -9,6 +9,8 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	protected UnitManager myManager;
 	public bool attackWhileMoving;
 
+
+
 	// Use this for initialization
 	void Awake () {
 

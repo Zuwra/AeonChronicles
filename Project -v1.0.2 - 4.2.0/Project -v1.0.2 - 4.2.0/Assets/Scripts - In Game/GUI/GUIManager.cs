@@ -43,14 +43,7 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 
 	}
 	
-	// Update is called once per frame
-	void Update () 
-	{
-		//Tell all items that are being built to update themselves
-		//GUIEvents.TellItemsToUpdate(Time.deltaTime);
-		
 
-	}
 
 	
 	public bool IsWithin(Vector3 worldPos)

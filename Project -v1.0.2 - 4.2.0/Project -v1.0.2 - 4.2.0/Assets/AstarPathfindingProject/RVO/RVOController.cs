@@ -227,6 +227,7 @@ namespace Pathfinding.RVO {
 			adjustedY = pos.y;
 		}
 
+		RaycastHit hit;
 		public void Update () {
 			if (rvoAgent == null) return;
 
@@ -240,13 +241,12 @@ namespace Pathfinding.RVO {
 
 			UpdateAgentProperties();
 
-			RaycastHit hit;
 
 			//The non-interpolated position
 			Vector3 realPos = rvoAgent.InterpolatedPosition;
 			realPos.y = adjustedY;
 
-			if (mask != 0 && Physics.Raycast(realPos + Vector3.up*height*3f, Vector3.down, out hit, float.PositiveInfinity, mask)) {
+			if (mask != 0 && Physics.Raycast(realPos + Vector3.up*height*3f, Vector3.down, out hit, 50, mask)) {
 				adjustedY = hit.point.y;
 			} else {
 				adjustedY = 0;
@@ -282,7 +282,8 @@ namespace Pathfinding.RVO {
 			tr.position = realPos + Vector3.up*height*0.5f - center;
 			lastPosition = tr.position;
 
-			if (enableRotation && velocity != Vector3.zero) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity), Time.deltaTime * rotationSpeed * Mathf.Min(velocity.magnitude, 0.2f));
+			if (enableRotation && velocity != Vector3.zero)
+				transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity), Time.deltaTime * rotationSpeed * Mathf.Min(velocity.magnitude, 0.2f));
 		}
 
 		private static readonly Color GizmoColor = new Color(240/255f, 213/255f, 30/255f);

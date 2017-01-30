@@ -42,6 +42,9 @@ public class HealthDisplay : MonoBehaviour {
 		background.gameObject.SetActive (false);
 	}
 
-
+	public void activate(bool offOn)
+	{
+		this.gameObject.SetActive (offOn);
+	}
 
 }

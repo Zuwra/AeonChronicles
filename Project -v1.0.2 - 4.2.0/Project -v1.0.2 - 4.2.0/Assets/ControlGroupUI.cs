@@ -17,10 +17,7 @@ public class ControlGroupUI : MonoBehaviour {
 		selectM = GameObject.FindObjectOfType<SelectedManager> ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
 	public void selectGroup(int n)
 	{

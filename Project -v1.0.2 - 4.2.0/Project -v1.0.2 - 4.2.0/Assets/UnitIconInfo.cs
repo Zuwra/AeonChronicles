@@ -14,7 +14,6 @@ public class UnitIconInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	private UnitStats myStats;
 	public Image myImage;
 
-	private float nextActionTime;
 
 	BuildManager buildMan;
 	public Text BuildNum;
@@ -56,21 +55,6 @@ public class UnitIconInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	}
 
 
-	
-	// Update is called once per frame
-	void Update () {
-	
-		if (pointerIn) {
-			if (Time.time > nextActionTime) {
-				nextActionTime += .2f;
-				textBox.text = (int)myStats.health + "/" + (int)myStats.Maxhealth;
-
-				if (myStats.MaxEnergy > 0) {
-					energyText.text = (int)myStats.currentEnergy + "/" + (int)myStats.MaxEnergy;
-				}
-			}
-		}
-	}
 
 
 
@@ -78,13 +62,31 @@ public class UnitIconInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	{//pointerIn = true;
 		//this.enabled = true;
 		if (toolbox) {
-			nextActionTime = Time.time;
+
 			pointerIn = true;
 			toolbox.enabled = true;
 			myStats = myUnit.GetComponent<UnitManager> ().myStats;
+			StartCoroutine (PointerIsIn ());
+
 		}
 	
 	}
+
+	IEnumerator PointerIsIn()
+	{yield return null;
+		while (pointerIn) {
+			textBox.text = (int)myStats.health + "/" + (int)myStats.Maxhealth;
+
+			if (myStats.MaxEnergy > 0) {
+				energyText.text = (int)myStats.currentEnergy + "/" + (int)myStats.MaxEnergy;
+			}
+		
+			yield return new WaitForSeconds (.2f);
+		}
+
+
+	}
+
 
 	public void OnPointerExit(PointerEventData eventd)
 	{if (toolbox) {pointerIn = false;

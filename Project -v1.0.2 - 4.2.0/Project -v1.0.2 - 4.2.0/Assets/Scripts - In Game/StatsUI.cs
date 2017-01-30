@@ -25,10 +25,7 @@ public class StatsUI : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
 	public void loadUnit(UnitManager man, int number, string unitName)
 		{

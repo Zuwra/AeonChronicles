@@ -16,12 +16,10 @@ public class EconomyManager : MonoBehaviour {
 	private Dictionary<float, int> resTwoMap = new Dictionary<float, int>();
 	private int totalWorkers = 0;
 
-	private float nextActionTime;
-
 	// Use this for initialization
 	void Start () {
 		racer = GameManager.main.playerList [0];
-		nextActionTime = Time.time + 5.1f;
+	
 
 		updateWorker (0);
 
@@ -32,24 +30,13 @@ public class EconomyManager : MonoBehaviour {
 		if (racer.TwoName.Length > 0) {
 			ResourceTwo.text =  " ";
 		}
+
+		InvokeRepeating ("updateAverage", 1,4);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-		//Debug.Log (Time.time + "    " + nextActionTime);
-		if (Time.time > nextActionTime) {
-		
-			updateAverage ();
-		}
-
-
-	}
-
-
 
 	public void updateAverage()
-	{nextActionTime = Time.time +  4f;
+	{
 
 		if (racer.OneName.Length > 0) {
 			List<float> deleteThese = new List<float> ();

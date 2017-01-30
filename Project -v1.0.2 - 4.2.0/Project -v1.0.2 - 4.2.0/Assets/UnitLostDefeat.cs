@@ -19,10 +19,7 @@ public class UnitLostDefeat : MonoBehaviour, LethalDamageinterface {
 		myRace.addActualDeathWatcher (this);
 	}
 	
-	// Update is called once per frame
-	void Update () {
 
-	}
 	public bool lethalDamageTrigger(GameObject obj, GameObject source)
 	{
 		if (heros.Contains (obj)) {

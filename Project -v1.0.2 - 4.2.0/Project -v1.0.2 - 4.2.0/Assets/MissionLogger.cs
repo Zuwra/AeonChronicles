@@ -13,10 +13,6 @@ public class MissionLogger : MonoBehaviour {
 		instance = this;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 
 	public void AddLog(string s)

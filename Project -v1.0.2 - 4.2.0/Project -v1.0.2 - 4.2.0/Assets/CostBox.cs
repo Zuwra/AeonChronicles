@@ -22,15 +22,7 @@ public class CostBox : MonoBehaviour {
 	public Image OreIcon;
 
 	Color teal = new Color(.698f, .949f, 255);
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
 
 	public void setText(Ability input)
 	{if (input == null) {

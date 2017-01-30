@@ -233,8 +233,15 @@ public class FogOfWar : MonoBehaviour
     public Texture2D texture { get; private set; }
     byte[] _values;
 
+	public Texture2D getTexture()
+	{
+		HasUnFogged = false;
+		return texture;
+
+	}
+
     public float updateFrequency = 0.1f;
-    float _nextUpdate = 0.0f;
+  
 
     Transform _transform;
     Camera _camera;
@@ -269,7 +276,8 @@ public class FogOfWar : MonoBehaviour
         _camera = GetComponent<Camera>();
         _camera.depthTextureMode |= DepthTextureMode.Depth;
 
-        UpdateTexture();
+
+		InvokeRepeating( "UpdateTexture",1, .1f);
     }
 
     public void SetAll(byte value)
@@ -333,8 +341,11 @@ public class FogOfWar : MonoBehaviour
         return colliderrects.Count == 0 ? null : colliderrects;
     }
 
+
+	public bool HasUnFogged;
     public void Unfog(Vector3 position, float radius, int layermask = 0)
     {
+		HasUnFogged = true;
         FogFill fogfill = new FogFill(this, position, radius);
 
         ColliderFogRectList colliderrects = GetExtendedColliders(fogfill, layermask);
@@ -350,7 +361,7 @@ public class FogOfWar : MonoBehaviour
     }
 
     public void Unfog(Rect rect)
-    {
+	{	HasUnFogged = true;
         Vector2i min = WorldPositionToFogPosition(rect.min);
         Vector2i max = WorldPositionToFogPosition(rect.max);
         for (int y = min.y; y < max.y; ++y)
@@ -361,34 +372,25 @@ public class FogOfWar : MonoBehaviour
     }
 
     void UpdateTexture()
-    {
-        texture.LoadRawTextureData(_values);
-        texture.filterMode = filterMode;
-        //texture.wrapMode = TextureWrapMode.Clamp;
-        texture.Apply();
+	{if (HasUnFogged) {
+		
+			texture.LoadRawTextureData (_values);
+			texture.filterMode = filterMode;
+			//texture.wrapMode = TextureWrapMode.Clamp;
+			texture.Apply ();
 
-        byte partialfog = (byte)(partialFogAmount * 255);
+			byte partialfog = (byte)(partialFogAmount * 255);
 
-        for (int y = 0; y < mapResolution; ++y)
-        {
-            for (int x = 0; x < mapResolution; ++x)
-            {
-                int index = y * mapResolution + x;
-                if (_values[index] < partialfog)
-                    _values[index] = partialfog;
-            }
-        }
+			for (int y = 0; y < mapResolution; ++y) {
+				for (int x = 0; x < mapResolution; ++x) {
+					int index = y * mapResolution + x;
+					if (_values [index] < partialfog)
+						_values [index] = partialfog;
+				}
+			}
+		}
     }
 
-    void Update()
-    {
-        _nextUpdate -= Time.deltaTime;
-        if (_nextUpdate > 0)
-            return;
-
-        _nextUpdate = updateFrequency;
-        UpdateTexture();
-    }
 
     // Returns the corner points relative to the camera's position (not rotation)
     Matrix4x4 CalculateCameraFrustumCorners()

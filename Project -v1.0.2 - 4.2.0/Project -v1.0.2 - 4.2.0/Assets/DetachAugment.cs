@@ -13,10 +13,6 @@ public class DetachAugment : Ability {
 		//manager = GetComponent<UnitManager> ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void allowDetach(bool canDoit)
 	{

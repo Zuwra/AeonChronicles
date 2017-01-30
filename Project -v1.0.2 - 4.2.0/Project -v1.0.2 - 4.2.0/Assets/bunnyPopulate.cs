@@ -26,13 +26,14 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 			{
 			weap.addNotifyTrigger (this);
 		}
+
+		Invoke ("BunnyUpdate", nextRepopulate);
 	}
 	
 	// Update is called once per frame
-	void Update () {//HERE"S MY COMMENT
+	void BunnyUpdate () {
 
-		if (Time.time > nextRepopulate) {
-
+	
 			Vector3 hitzone = this.transform.position;
 			float radius = Random.Range (6, 20);
 			float angle = Random.Range (0, 360);
@@ -62,8 +63,8 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 			}
 			this.gameObject.transform.localScale = this.gameObject.transform.localScale + Vector3.one *.15f;
 			GetComponent<RVOController> ().radius += .15f;
-		}
-	
+
+		Invoke ("BunnyUpdate", nextRepopulate);
 	}
 
 	IEnumerator delayedStatChange(GameObject ob)

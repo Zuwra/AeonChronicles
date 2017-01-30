@@ -26,14 +26,10 @@ public class GamePlayMenu : MonoBehaviour {
 		if (!GameSettings.getAbility()) {
 			toggleAbilities ();
 		}
+		healthBarList ();
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 	public void toggleTools()
 	{
@@ -67,20 +63,21 @@ public class GamePlayMenu : MonoBehaviour {
 	public void healthBarList()
 	{
 		foreach (Selected sel in Object.FindObjectsOfType<Selected>()) {
+
 			if (healthList.value == 0) {
-				sel.mydisplayType = Selected.displayType.always;
+				sel.setDisplayType( Selected.displayType.always);
 			
 			
 	
 			} else if (healthList.value == 1) {
-				sel.mydisplayType = Selected.displayType.damaged;
+				sel.setDisplayType(Selected.displayType.damaged);
 			
 	
 			} else if (healthList.value == 2) {
-				sel.mydisplayType = Selected.displayType.selected;
+				sel.setDisplayType(Selected.displayType.selected);
 
 			} else {
-				sel.mydisplayType = Selected.displayType.never;
+			sel.setDisplayType( Selected.displayType.never);
 			
 			}
 		

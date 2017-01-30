@@ -7,15 +7,6 @@ public class bunnyManager : MonoBehaviour {
 	public Text bunnyCount;
 	public int currAmount;
 	public int maxAmount;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void changeInBunnyCount(int change)
 	{

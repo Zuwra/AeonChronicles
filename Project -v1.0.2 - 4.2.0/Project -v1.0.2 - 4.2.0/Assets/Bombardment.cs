@@ -7,16 +7,9 @@ public class Bombardment : TargetAbility{
 	public GameObject Explosion;
 	public int shotCount = 35;
 	public float myDamage = 40;
-	// Use this for initialization
-	void Start () {
-		
 
-	}
 
-	// Update is called once per frame
-	void Update () {
 
-	}
 	override
 	public continueOrder canActivate(bool showError){
 

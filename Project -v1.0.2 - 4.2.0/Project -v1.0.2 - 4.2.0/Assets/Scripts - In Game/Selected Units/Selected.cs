@@ -50,7 +50,7 @@ public class Selected : MonoBehaviour {
 	private UnitStats myStats;
 	//private bool onCooldown = false;
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{		Initialize ();
 
 	}
@@ -76,14 +76,12 @@ public class Selected : MonoBehaviour {
 			//energyFill= transform.FindChild("HealthDisplay").FindChild("EnergyBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 
 			coolDownSlider = transform.FindChild ("HealthDisplay").FindChild ("Cooldown").GetComponent<Slider> ();
-			coolFill=        coolDownSlider.transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
+			coolFill= coolDownSlider.transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 	
 
 
 
-
-		//If this unit is land based subscribe to the path changed event
-		mydisplayType = GameObject.Find("GamePlayMenu").GetComponent<GamePlayMenu>().getDisplayType();
+	
 		if (myStats.MaxEnergy == 0) {
 			energySlider.gameObject.SetActive (false);
 		} else {
@@ -97,34 +95,47 @@ public class Selected : MonoBehaviour {
 		catch(Exception) {
 			
 		}
+
 	}
 
 
 
 	public void setDisplayType(displayType t)
 	{mydisplayType = t;
+		
+
+		try{
 		if (!turretDisplay) {
+
+
 			switch (t) {
 			case displayType.always: 
 				buffDisplay.enabled = true;
 				healthslider.enabled = true;
-				if (myStats.MaxEnergy > 0) {
-					energySlider.gameObject.SetActive (true);
-				}
+				energySlider.gameObject.SetActive (myStats.MaxEnergy > 0);
+				
 				break;
 
 			case displayType.damaged:
 				if (!myStats.atFullHealth ()) {
+						
 					buffDisplay.enabled = true;
-					healthslider.gameObject.SetActive (false);
+					healthslider.gameObject.SetActive (true);
 				} else {
 					buffDisplay.enabled = false;
+					healthslider.gameObject.SetActive (false);
 				}
 
-				if (myStats.MaxEnergy > 0) {
+					if (myStats.MaxEnergy > 0 && !myStats.atFullEnergy()) {
 					energySlider.gameObject.SetActive (true);
 					buffDisplay.enabled = true;
 				}
+					else
+					{
+						energySlider.gameObject.SetActive (false);
+						buffDisplay.enabled = false;
+					}
+
 				break;
 
 			case  displayType.selected:
@@ -143,6 +154,8 @@ public class Selected : MonoBehaviour {
 				energySlider.gameObject.SetActive (false);
 				break;
 			}
+		}
+		}catch(Exception) {
 		}
 	}
 

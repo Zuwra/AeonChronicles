@@ -19,10 +19,6 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		detacher = GetComponent<DetachAugment> ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	IEnumerator delayCast()
 	{

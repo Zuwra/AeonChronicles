@@ -108,6 +108,8 @@ public class UnitStats : MonoBehaviour {
 		}
 	}
 
+
+
 	// Use this for initialization
 	void Start () {
 		if (!myManager) {
@@ -132,7 +134,35 @@ public class UnitStats : MonoBehaviour {
 
 		// FIX THIS REPEATING INEUMERNATER
 		StartCoroutine ("HealthEnergy");
+		if (HealthRegenPerSec > 0) {
+			InvokeRepeating ("regenHealth", .5f, .5f);
+		}
 	
+	}
+
+
+
+	IEnumerator HealthEnergy()
+	{
+		while(true){
+			yield return new WaitForSeconds (.5f);
+
+			//Regenerate Energy
+			if (currentEnergy < MaxEnergy && EnergyRegenPerSec >0) {
+
+				float actual = changeEnergy (EnergyRegenPerSec / 2);
+				veternStat.UpEnergy (actual);
+			}
+		}
+	}
+
+
+	void regenHealth(){
+		if (health < Maxhealth && HealthRegenPerSec > 0) {
+		float actual = veternStat.healingDone += heal (HealthRegenPerSec / 2);
+
+		veternStat.UpHealing (actual);
+		}
 	}
 
 
@@ -184,29 +214,7 @@ public class UnitStats : MonoBehaviour {
 
 
 
-	IEnumerator HealthEnergy()
-	{
-		while(true){
-			yield return new WaitForSeconds (.5f);
-		//Regenerate Health
-		
 
-
-		if (health < Maxhealth && HealthRegenPerSec > 0) {
-			float actual = veternStat.healingDone += heal (HealthRegenPerSec / 2);
-
-			veternStat.UpHealing (actual);
-		}
-
-
-		//Regenerate Energy
-		if (currentEnergy < MaxEnergy && EnergyRegenPerSec >0) {
-
-			float actual = changeEnergy (EnergyRegenPerSec / 2);
-			veternStat.UpEnergy (actual);
-		}
-	}
-	}
 
 	public float TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
 	{
@@ -315,7 +323,7 @@ public class UnitStats : MonoBehaviour {
 
 
 				if (deathCorpse != null) {
-					GameObject.Instantiate (deathCorpse, this.gameObject.transform.position, new Quaternion ());
+					GameObject.Instantiate (deathCorpse, this.gameObject.transform.position, this.gameObject.transform.rotation);
 				}
 
 				if (deathSource) {

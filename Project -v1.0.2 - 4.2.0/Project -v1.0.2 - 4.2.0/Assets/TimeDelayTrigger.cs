@@ -19,13 +19,13 @@ public class TimeDelayTrigger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		Invoke ("DelayedUpdate", timeDelay);
 	}
 
 	// Update is called once per frame
-	void Update () {
-		if (Clock.main.getTotalSecond () > timeDelay) {
+	void DelayedUpdate () {
+
 			StartCoroutine (Fire ());
-		}
 	}
 
 
@@ -37,6 +37,7 @@ public class TimeDelayTrigger : MonoBehaviour {
 		foreach (SceneEventTrigger trig in myTriggers) {
 			//Debug.Log ("Triggering " + trig);
 			trig.trigger (index, input, location, target, doIt);
+			yield return null;
 		}
 		Destroy (this);
 

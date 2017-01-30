@@ -11,7 +11,7 @@ public class ParticleAn : animate {
 	{
 		ps = GetComponent<ParticleSystem>();
 		change = active;
-		emmisionRate = ps.maxParticles;
+		emmisionRate = ps.main.maxParticles;
 		ps.maxParticles = 0;
 	}
 

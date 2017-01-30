@@ -12,10 +12,7 @@ public class SateliteScan : TargetAbility{
 		myType = type.target;
 	}
 
-	// Update is called once per frame
-	void Update () {
 
-	}
 	override
 	public continueOrder canActivate(bool showError){
 

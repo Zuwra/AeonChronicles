@@ -21,11 +21,7 @@ public class CursorManager : MonoBehaviour {
 		UnityEngine.Cursor.SetCursor (Cursors [0], new Vector2 (0, 0), CursorMode.ForceSoftware);
 		
 	}
-	
-	void Update()
-	{
 
-	}
 
 	public int getMode()
 	{

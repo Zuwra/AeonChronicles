@@ -87,10 +87,7 @@ public class Grid : MonoBehaviour, IGrid
 	}
 
 
-	void Awake()
-	{
-		//main = this;
-	}
+
 	
 	void Start()
 	{
@@ -100,11 +97,7 @@ public class Grid : MonoBehaviour, IGrid
 			StartCoroutine (InitialiseAsRoutine ());
 		}
 	}
-	
-	void Update()
-	{
-		
-	}
+
 	
 	void OnDrawGizmos()
 	{

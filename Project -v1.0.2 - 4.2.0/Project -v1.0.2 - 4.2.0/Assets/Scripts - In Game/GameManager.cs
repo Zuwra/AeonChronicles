@@ -43,11 +43,6 @@ public class GameManager : MonoBehaviour {
 			//activePlayer = playerList [playerNumber - 1];
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public RaceManager getActivePlayer()
 	{

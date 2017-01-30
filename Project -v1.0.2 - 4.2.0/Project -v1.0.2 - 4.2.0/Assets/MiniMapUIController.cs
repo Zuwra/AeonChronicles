@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
+
 using UnityEngine.EventSystems;
 
 public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointerUpHandler {
@@ -44,7 +45,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
    
 
     private float nextActionTimea;
-	private float nextActionTimeb;
+
 	private float nextActionTimec;
 
 	//Used for detecting MinimapClicks
@@ -90,10 +91,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		minimapHeight = myRect.rect.height ;
 
 		nextActionTimea = 0;
-		nextActionTimeb = Time.time + minimapUpdateRate/2;
-		nextActionTimeb = Time.time + minimapUpdateRate/3;
-
-
+	
 		WorldHeight = top - bottom;
 		WorldWidth = Right - Left;
 		fog = GameObject.FindObjectOfType<FogOfWar> ();
@@ -119,8 +117,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		ScreenTrapz.sprite = Sprite.Create (screenTrapzoidTex as Texture2D, new Rect (0f, 0f, textureWidth, textureHeight), Vector2.zero);
 
    
-	
-	
+		InvokeRepeating ("updateScreenRect", .1f, minimapUpdateRate);
+		InvokeRepeating ("setFog", .05f, minimapUpdateRate);
 	
 	
 	}
@@ -150,29 +148,14 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
     // Update is called once per frame
     void Update()
     {
-		if (dragging) {
-			mapMover ();
-		}
+
 
 		if (Time.time > nextActionTimea) {
 			nextActionTimea += minimapUpdateRate;
 			updateTexture (UnitTexture, virtUnitTexture);
 
-
 		} 
-		if (Time.time > nextActionTimec) {
-			nextActionTimec += minimapUpdateRate;
-
-			updateScreenRect ();
-
-		} 
-
-
-		if (Time.time > nextActionTimeb) {
-			nextActionTimeb += minimapUpdateRate;
-			setFog();
-
-		}
+	
 
 		if (Input.GetKeyUp (KeyCode.Tab)) {
 		
@@ -266,16 +249,22 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		tex.Apply();
         }
 
-
+	Vector2 topLeftP;
+	Vector2 topRightP;
+	Vector2 botLeftP;
+	Vector2 botRightP;
+	RaycastHit hit;
 
 		private void updateScreenRect (){
 		clearTexture (screenTrapzoidTex, virtTrapezoid, false);
 
+
+		//Debug.Log ("A" + DateTime.Now.Millisecond );
 		// DRAWING CAMERA TRAPEZOID
-		Vector2 topLeftP = Vector2.zero;
-		Vector2 topRightP= Vector2.zero;
-		Vector2 botLeftP= Vector2.zero;
-		Vector2 botRightP= Vector2.zero;
+		topLeftP = Vector2.zero;
+		topRightP= Vector2.zero;
+		botLeftP= Vector2.zero;
+		botRightP= Vector2.zero;
 
 
 
@@ -290,12 +279,12 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		//Bottom right
 		ray4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, 180, 0));
 
-
+	//	Debug.Log ("B" + DateTime.Now.Millisecond );
 
 		// LOTS OF COMMENTED OUT STUFF FOR OPTIMIZATIONS!
 	
 		//Find world co-ordinates
-		RaycastHit hit;
+
 		Physics.Raycast (ray1, out hit, Mathf.Infinity, 1 << 16);
 		Vector3 v1 = hit.point;
 
@@ -331,17 +320,16 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		//jC = (int)(((v4.z - bottom) / (WorldHeight)) * textureHeight);
 
 		botRightP = new Vector2 ((int)(((v1.x - Left) / (WorldWidth)) * textureWidth), (int)(((v1.z - bottom) / (WorldHeight)) * textureHeight));
-
+		//Debug.Log ("C" + DateTime.Now.Millisecond );
 	//	Debug.Log (topRightP + "   " + botRightP + "  " +hit.collider.gameObject);
-		drawLine(screenTrapzoidTex,virtTrapezoid, topLeftP,topRightP);
 
+		drawLine(screenTrapzoidTex,virtTrapezoid, topLeftP,topRightP);
 		drawLine(screenTrapzoidTex, virtTrapezoid,botLeftP,botRightP);
 		drawLine(screenTrapzoidTex, virtTrapezoid,botLeftP,topLeftP);
-		//Debug.Log ("Drawing Right Line " + botRightP + "  " + topRightP);
 		drawLine(screenTrapzoidTex, virtTrapezoid,botRightP,topRightP);
 
 		screenTrapzoidTex.Apply();
-        
+		//Debug.Log ("D" + DateTime.Now.Millisecond );
     }
 
 
@@ -369,14 +357,15 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	public void drawLine(Texture2D tex,bool[,] virtMap ,Vector2 p1, Vector2 p2)
 	{
 		Vector2 t = p1;
-		float frac = 1 / (Mathf.Pow (p2.x - p1.x, 2) + Mathf.Pow (p2.y - p1.y,2));
+	
+		float Iterate = Mathf.Max (Mathf.Abs (p1.x - p2.x), Mathf.Abs (p1.y - p2.y));
 		float ctr = 0;
-
-		while ((int)t.x != (int)p2.x || (int)t.y != (int)p2.y) {
-
+		int counter = 0;
+		while (((int)t.x != (int)p2.x || (int)t.y != (int)p2.y) && counter <= Iterate) {
+			counter++;
 			t = Vector2.Lerp (p1, p2, ctr);
-			ctr += frac;
-
+		
+			ctr += 1/Iterate;
 
 			if (t.x > 0 && t.y < tex.height && t.x <tex.width)
 			{
@@ -385,6 +374,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 			}
 		
 		}
+
 	
 	}
 
@@ -399,9 +389,12 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 			_texture.wrapMode = TextureWrapMode.Clamp;
 		}
 	
+		if (!fog.HasUnFogged) {
+			return;
+		}
 
 		//Debug.Log ("Size is " + fog.texture.width);
-		byte[] original = fog.texture.GetRawTextureData ();
+		byte[] original = fog.getTexture().GetRawTextureData ();
 		if (pixelsArray == null) {
 			pixelsArray  = new Color32[original.Length];
 		}
@@ -442,13 +435,11 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	{if (!this.enabled) {
 			return;}
 		if (eventData.button == PointerEventData.InputButton.Left) {
-			
 			dragging = true;
-			mapMover ();
-			//GetComponent<RectTransform> ().rect.width;
-		
-			//Debug.Log ( "Clicked    " + toMove.x + "   " + toMove.y);
+			StartCoroutine (DragMini ());
 
+		
+		
 		} else if (eventData.button == PointerEventData.InputButton.Right) {
 		
 
@@ -469,6 +460,15 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 	}
 
+
+	IEnumerator DragMini()
+	{
+		while (dragging) {
+			mapMover ();
+			yield return null;
+		}
+
+	}
 
 	public void attackMoveMinimap()
 	{

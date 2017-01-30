@@ -13,7 +13,7 @@ public class BuilderUI : MonoBehaviour {
 	public List<GameObject> numbers = new List<GameObject> ();
 	public Text perc;
 	private BuildManager myMan;
-	private float nextActionTime;
+
 	public Sprite defaultImage;
 	private bool buildingStuff;
 	public Canvas HelpBox;
@@ -21,20 +21,17 @@ public class BuilderUI : MonoBehaviour {
 	public Text moreSupply;
 	// Use this for initialization
 	void Start () {
-		nextActionTime = Time.time;
+
+
+		InvokeRepeating ("UpdateStuff", .3f, .3f);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void UpdateStuff () {
 
-		if (Time.time > nextActionTime) {
-			
-			nextActionTime += .3f;
+
 			if (myMan) {
 
-			
-
-				
 				if (myMan.buildOrder.Count > 0) {
 					if (!buildingStuff) {
 						buildingStuff = true;
@@ -55,7 +52,7 @@ public class BuilderUI : MonoBehaviour {
 					}
 					perc.text = "";
 				}
-			}
+
 		}
 	
 	}

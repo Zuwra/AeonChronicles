@@ -6,7 +6,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	public float attackRadius;
 
-	private attackWave nextWave ;
+	//private attackWave nextWave ;
 
 	public Vector3 rallyPoint;
 	public bool showPoint;
@@ -145,6 +145,7 @@ public class WaveSpawner : MonoBehaviour {
 	}*/
 
 	//autobalancing based on how many units the player has
+	/*
 	void SpawnExtra(attackWave myWave)
 	{float delay = .1f;
 		if (raceMan.getArmyCount () * .75 > myWave.waveType.Count + myWave.HardExtra.Count + myWave.mediumExtra.Count) {
@@ -166,7 +167,7 @@ public class WaveSpawner : MonoBehaviour {
 		}
 	}
 
-
+*/
 	IEnumerator MyCoroutine (float amount, GameObject obj)
 	{
 		yield return new WaitForSeconds(amount);
@@ -204,7 +205,7 @@ public class WaveSpawner : MonoBehaviour {
 
 
 
-
+	/*
 	public void spawnWave()
 	{
 		
@@ -222,7 +223,7 @@ public class WaveSpawner : MonoBehaviour {
 		}
 
 	}
-
+*/
 	public void spawnWave(int n )
 	{
 

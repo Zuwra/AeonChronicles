@@ -128,9 +128,7 @@ public class CustomRVO : IMover {
 		}
 	}
 
-	public void Update () {
-		
-	}
+
 	override
 	public void stop ()
 	{if (controller) {
