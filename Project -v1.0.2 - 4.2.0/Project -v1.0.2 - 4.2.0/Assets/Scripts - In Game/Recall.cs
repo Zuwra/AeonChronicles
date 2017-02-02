@@ -34,7 +34,7 @@ public class Recall : Ability, Modifier {
 	public override void setAutoCast(bool offOn){
 	}
 
-	public float modify(float damage, GameObject source)
+	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{
 		if (isChanneling) {
 			isChanneling = false;

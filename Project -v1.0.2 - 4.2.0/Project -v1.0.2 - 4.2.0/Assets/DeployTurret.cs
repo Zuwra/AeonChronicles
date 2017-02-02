@@ -4,97 +4,29 @@ using System.Collections.Generic;
 public class DeployTurret  : TargetAbility {
 
 
-	public GameObject BloodMistObj;
-
-
-	override
-	public continueOrder canActivate(bool showError){
-
-		continueOrder order = new continueOrder ();
-
-		if (!myCost.canActivate (this)) {
-			order.canCast = false;
-		} else {
-			order.nextUnitCast = false;
-		}
-		return order;
-	}
-
-	override
-	public void Activate()
-	{
-	}  // returns whether or not the next unit in the same group should also cast it
-
-
-	override
-	public  void setAutoCast(bool offOn){}
-
-	public override bool isValidTarget (GameObject target, Vector3 location){
-
-
-
-		return true;
-
-	}
-
-
-	override
-	public  bool Cast(GameObject target, Vector3 location)
-	{
-
-		if (target) {
-
-
-		} else {
-			myCost.payCost ();
-
-			Vector3 pos = location;
-			pos.y += 5;
-			Instantiate (BloodMistObj, pos, Quaternion.identity);
-		}
-
-		return false;
-
-	}
-	override
-	public void Cast(){
-
-
-
-		if (target) {
-
-
-		} else {
-			myCost.payCost ();
-
-			Vector3 pos = location;
-			pos.y += 5;
-			Instantiate (BloodMistObj, pos, Quaternion.identity);
-		}
-	}
-
-
-
-
-
 	UnitManager manager;
 
-
 	public GameObject UnitToBuild;
+
 	protected float timer =0;
 	protected bool buildingUnit = false;
 
-	public float BuildTime;
+
 	protected Selected mySelect;
 	protected HealthDisplay HD;
 	protected List<TurretMount> turretMounts = new List<TurretMount>();
-
+	public float ReplicationTime;
 	public GameObject PlaceEffect;
 
-	public bool rapidArms;
+	public TurretMount myMount;
+	GameObject currentTurret;
+
+	public List<Sprite> turretIcons;
+
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
 		myType = type.target;
+
 	}
 
 
@@ -106,42 +38,20 @@ public class DeployTurret  : TargetAbility {
 
 		HD = GetComponentInChildren<HealthDisplay>();
 
-		if (rapidArms) {
-			foreach (TurretMount tm in GameObject.FindObjectsOfType<TurretMount>()) {
-				if (!turretMounts.Contains (tm)) {
-					turretMounts.Add (tm);
-				}
-
-			}
-		}
+		InvokeRepeating ("AutoCasting", 1, .25f);
 	}
 
 	// Update is called once per frame
-	void Update () {
-		if (buildingUnit) {
+	void AutoCasting () {
 
-			timer -= Time.deltaTime;
-			mySelect.updateCoolDown (1 - timer/BuildTime);
-			if (timer <= 0) {
-				HD.stopBuilding ();
-				mySelect.updateCoolDown (0);
-				buildingUnit = false;
-
-		
-
-				chargeCount++;
-				if (mySelect.IsSelected) {
-					RaceManager.upDateUI ();
-				}
-
-			}
-		}
 		if(autocast){
 
 			if (turretMounts.Count > 0) {
 
-				turretMounts.RemoveAll (item => item == null);
+
 				foreach (TurretMount obj in turretMounts) {
+					if (!obj) {
+						continue;}
 
 					//You may place a turret and run out halfway through this loop
 					if (chargeCount == 0) {
@@ -151,15 +61,7 @@ public class DeployTurret  : TargetAbility {
 
 					if (obj.enabled == false) {
 						return;}
-					//Uncomment this if There is ever a unit that can carry turrets but not fire them
-					//if (obj.gameObject.GetComponentInParent<TurretPickUp> ()) {
-
-					//if (!obj.gameObject.GetComponentInParent<TurretPickUp> ().autocast) {
-
-					//return;
-					//}
-					//}
-
+			
 
 					if (obj.turret == null && obj.lastUnPlaceTime < Time.time -2) {
 						if (soundEffect) {
@@ -174,20 +76,91 @@ public class DeployTurret  : TargetAbility {
 				}
 
 			}
+
+		}
+	}
+
+	Coroutine currentReplciation;
+
+	public void TurretPlaced()
+	{active = true;
+		
+		currentTurret = myMount.turret;
+		IWeapon weap = currentTurret.GetComponent<IWeapon> ();
+		if(weap)
+		{manager.removeWeapon (weap);}
+		UnitManager turrManage = currentTurret.GetComponent<UnitManager> ();
+
+
+		turrManage.enabled = false;
+
+		currentReplciation = StartCoroutine (replicateTurrets());
+
+
+		if (turrManage.UnitName.Contains("Mini")) {
+			iconPic = turretIcons [1];
+		}
+		else if (turrManage.UnitName.Contains("Imperio")) {
+			iconPic = turretIcons [2];
+		}
+		else if (turrManage.UnitName.Contains("Repair")) {
+			iconPic = turretIcons [3];
+		}
+		else if (turrManage.UnitName.Contains( "Fire")) {
+			iconPic = turretIcons [4];
+		}
+		changeCharge (0);
+	}
+
+	public void TurretRemoved()
+	{
+		active = false;
+
+		currentTurret = null;
+		if (currentReplciation != null) {
+			StopCoroutine (currentReplciation);
+		}
+		iconPic = turretIcons [0];
+		changeCharge (0);
+	}
+
+	IEnumerator replicateTurrets()
+	{
+		if (chargeCount == 0) {
+			myCost.startCooldown ();
+		}
+		yield return new WaitForSeconds (ReplicationTime);
+		changeCharge (1);
+		if (chargeCount < 2) {
+			StartCoroutine (replicateTurrets());
 		}
 	}
 
 
+	public override bool isValidTarget (GameObject target, Vector3 location){
+
+		if (!target ||  target.name == "Terrain") {
+			return true;
+		}
+		return false;
+
+	}
 
 
 	public void turnOffAutoCast()
-		{autocast = false;	}
+	{autocast = false;
 
+	}
 
+	public override void setAutoCast(bool offOn)
+	{autocast = offOn;
+
+	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		
+		//need to set up calls to listener components
+		//this will need to be refactored for team games
 		if (other.isTrigger) {
 			return;}
 
@@ -224,8 +197,6 @@ public class DeployTurret  : TargetAbility {
 
 	void OnTriggerExit(Collider other)
 	{
-		if (rapidArms) {
-			return;}
 
 		//need to set up calls to listener components
 		//this will need to be refactored for team games
@@ -252,19 +223,95 @@ public class DeployTurret  : TargetAbility {
 		}
 	}
 
-	public GameObject createUnit()
+
+
+
+
+
+
+
+	override
+	public continueOrder canActivate (bool showError)
+	{continueOrder order = new continueOrder ();
+
+
+		order.nextUnitCast = false;
+
+		if (chargeCount == 0) {
+			order.canCast = false;}
+
+		if (!active) {
+			order.reasonList.Add (continueOrder.reason.requirement);
+		}
+
+		return order;
+
+	}
+
+	override
+	public void Activate()
+	{
+	}
+
+	override
+	public  bool Cast(GameObject target, Vector3 location)
 	{
 
-		Vector3 location = new Vector3(this.gameObject.transform.position.x + 25,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z);
-		chargeCount--;
-		if (mySelect.IsSelected) {
-			RaceManager.upDateUI ();
+		if (chargeCount == 2) {
+			currentReplciation = StartCoroutine (replicateTurrets ());
+		} else if (chargeCount == 1) {
+			myCost.startCooldown ();
 		}
-		GameObject tur = (GameObject)Instantiate(UnitToBuild, location, Quaternion.identity);
 
+		changeCharge (-1);
 
-		return tur;
+		Vector3 pos = location;
+
+		GameObject proj = (GameObject)Instantiate (UnitToBuild, pos+ Vector3.up * .5f, Quaternion.identity);
+		Instantiate (PlaceEffect,  pos+ Vector3.up * .5f, Quaternion.identity);
+		currentTurret.GetComponent<UnitManager> ().enabled = true;
+		GameObject newTurret =  (GameObject)Instantiate (currentTurret, pos + Vector3.up *2f, Quaternion.identity);
+		newTurret.transform.SetParent (proj.transform);
+	
+		UnitManager turrManage = newTurret.GetComponent<UnitManager> ();
+
+		turrManage.setInteractor( newTurret.AddComponent<StandardInteract> ());
+		turrManage.changeState(new turretState(turrManage));
+		newTurret.GetComponent<UnitStats> ().otherTags.Add (UnitTypes.UnitTypeTag.Static_Defense);
+		currentTurret.GetComponent<UnitManager> ().enabled = false;
+		return false;
+
 	}
+	override
+	public void Cast(){
+
+		if (chargeCount == 2) {
+			currentReplciation =  StartCoroutine (replicateTurrets());
+		}
+		else if (chargeCount == 1) {
+			myCost.startCooldown ();
+		}
+
+		changeCharge (-1);
+
+		Vector3 pos = location;
+	
+		GameObject proj = (GameObject)Instantiate (UnitToBuild, pos+ Vector3.up * .5f, Quaternion.identity);
+		Instantiate (PlaceEffect,  pos+ Vector3.up * .5f, Quaternion.identity);
+		currentTurret.GetComponent<UnitManager> ().enabled = true;
+		GameObject newTurret =  (GameObject)Instantiate (currentTurret, pos + Vector3.up *2f, Quaternion.identity);
+		newTurret.transform.SetParent (proj.transform);
+	
+		UnitManager turrManage = newTurret.GetComponent<UnitManager> ();
+
+		turrManage.setInteractor( newTurret.AddComponent<StandardInteract> ());
+		turrManage.changeState(new turretState(turrManage));
+		newTurret.GetComponent<UnitStats> ().otherTags.Add (UnitTypes.UnitTypeTag.Static_Defense);
+		currentTurret.GetComponent<UnitManager> ().enabled = false;
+
+
+	}
+
 
 
 	public void changeCharge(int n)
@@ -275,5 +322,22 @@ public class DeployTurret  : TargetAbility {
 		}
 	}
 
+	public GameObject createUnit()
+	{
 
+		Vector3 location = new Vector3(this.gameObject.transform.position.x + 25,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z);
+		changeCharge (-1);
+
+		GameObject tur = (GameObject)Instantiate(currentTurret, location, Quaternion.identity);
+
+		if (chargeCount == 2) {
+			currentReplciation = StartCoroutine (replicateTurrets ());
+		} else if (chargeCount == 1) {
+			myCost.startCooldown ();
+		}
+
+		changeCharge (-1);
+
+		return tur;
+	}
 }

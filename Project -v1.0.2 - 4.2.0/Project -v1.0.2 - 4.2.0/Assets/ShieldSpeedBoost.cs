@@ -42,13 +42,9 @@ public class ShieldSpeedBoost : Ability,Modifier {
 
 	}
 
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 
-	public float modify(float amount, GameObject src)
+	public float modify(float amount, GameObject src, DamageTypes.DamageType theType)
 	{
 
 		StartCoroutine (delayedEnergyCheck ());

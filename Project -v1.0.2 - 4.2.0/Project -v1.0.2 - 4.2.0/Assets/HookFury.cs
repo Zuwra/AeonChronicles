@@ -16,11 +16,6 @@ public class HookFury : MonoBehaviour, Modifier, Notify {
 		myWeapon.triggers.Add (this);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 
 
@@ -32,7 +27,7 @@ public class HookFury : MonoBehaviour, Modifier, Notify {
 
 	}
 
-	public float modify(float damage, GameObject source)
+	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{
 		myWeapon.removeAttackSpeedBuff (this);
 		myWeapon.changeAttackSpeed (-(.5f -  (myStats.health / myStats.Maxhealth) / 2), 0, false, this);

@@ -46,18 +46,6 @@ public class AbstractCost : MonoBehaviour {
 			stats = this.gameObject.GetComponent<UnitStats> ();
 		myGame = GameManager.main.getActivePlayer ();			
 		}
-		/*
-		// Update is called once per frame
-		void Update () {
-			if (cooldownTimer > 0) {
-				cooldownTimer -= Time.deltaTime;
-			//selectMan.updateCoolDown (cooldownTimer / cooldown);
-			}
-			
-			
-			
-		}
-	*/
 
 	IEnumerator onCooldown()
 	{	cooldownTimer = cooldown;
@@ -188,6 +176,11 @@ public class AbstractCost : MonoBehaviour {
 		cooldownTimer = 0;
 	}
 
+
+	public void startCooldown()
+	{
+		StartCoroutine (onCooldown());
+	}
 
 	public void payCost ()
 	{

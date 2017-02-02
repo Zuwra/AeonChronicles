@@ -25,7 +25,7 @@ public class RunicBlessing : MonoBehaviour, Modifier {
 	}
 
 
-	public float modify(float damage , GameObject source)
+	public float modify(float damage , GameObject source, DamageTypes.DamageType theType)
 	{
 
 		if (timer <= 0) {

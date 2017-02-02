@@ -114,7 +114,7 @@ public class UnitManager : Unit,IOrderable{
 			}
 		}
 
-	
+
 		if (cMover != null) {
 			changeState (new DefaultState ());
 		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.Turret)
@@ -123,6 +123,7 @@ public class UnitManager : Unit,IOrderable{
 
 			changeState (new turretState (this));
 		} else if( myStats.isUnitType (UnitTypes.UnitTypeTag.Static_Defense) ){
+			
 			changeState (new turretState (this));
 		}
 

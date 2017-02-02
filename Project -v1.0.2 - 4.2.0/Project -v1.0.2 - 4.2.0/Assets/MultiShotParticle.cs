@@ -38,9 +38,10 @@ public class MultiShotParticle : MonoBehaviour {
 
 
 		//ps.Clear ();
-		ps.Emit(emmitNUm);
-		ps.startLifetime = ps.startLifetime;
-
+		if (ps) {
+			ps.Emit (emmitNUm);
+			ps.startLifetime = ps.startLifetime;
+		}
 		foreach (ParticleSystem pps in otherP) {
 			pps.Emit(emmitNUm);
 			pps.startLifetime = ps.startLifetime;

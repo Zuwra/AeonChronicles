@@ -144,7 +144,7 @@ public class LevelData  {
 	public static int getHighestLevel()
 	{
 		if (PlayerPrefs.GetInt ("HighestLevel", -1) == -1) {
-			Debug.Log ("its zero");
+			//Debug.Log ("its zero");
 			return 0;
 		}
 		return PlayerPrefs.GetInt ("HighestLevel", -1);

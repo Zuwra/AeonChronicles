@@ -130,7 +130,7 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 
 
 
-	public float modify(float damage, GameObject source)
+	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{ 
 
 		if (myWeapon.myManager.myWeapon.Contains(myWeapon)) {

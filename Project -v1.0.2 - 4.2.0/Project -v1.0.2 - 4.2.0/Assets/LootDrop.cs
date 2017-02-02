@@ -12,7 +12,7 @@ public class LootDrop : MonoBehaviour,Modifier {
 
 	}
 
-	public float modify (float a, GameObject deathSource){
+	public float modify (float a, GameObject deathSource, DamageTypes.DamageType theType){
 
 		if (Loot) {
 			Instantiate (Loot, this.gameObject.transform.position, Quaternion.identity);

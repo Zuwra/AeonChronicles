@@ -25,7 +25,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	}
 	public virtual UnitState computeState(UnitState s)
 	{
-
+		
 		return s;
 	}
 

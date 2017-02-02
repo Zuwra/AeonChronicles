@@ -7,15 +7,7 @@ public class BloodMistAura : MonoBehaviour, Modifier {
 	private int numberOfClouds = 0;
 	UnitStats myStats;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
 	public void Initialize()
 	{
@@ -51,7 +43,7 @@ public class BloodMistAura : MonoBehaviour, Modifier {
 	}
 
 
-	public float modify(float damage, GameObject source)
+	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{
 		if (myStats.health > damage) {
 			return  damage / 2;

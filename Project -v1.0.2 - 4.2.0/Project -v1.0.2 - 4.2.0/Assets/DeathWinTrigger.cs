@@ -11,12 +11,9 @@ public class DeathWinTrigger : MonoBehaviour,Modifier {
 		//Debug.Log ("Adding to " + this.gameObject);
 	}
 
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-	public float modify(float num, GameObject obj)
+
+	public float modify(float num, GameObject obj, DamageTypes.DamageType theType)
 	{
 		foreach (TargetDeathVictory vict in GameObject.FindObjectsOfType<TargetDeathVictory> ()) {
 			vict.IDied (this.gameObject);

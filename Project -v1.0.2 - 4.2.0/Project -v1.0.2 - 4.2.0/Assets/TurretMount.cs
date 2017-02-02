@@ -37,7 +37,7 @@ public class TurretMount : MonoBehaviour, Modifier {
 	}
 
 
-	public float modify(float damage, GameObject source)
+	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{ 
 		if (turret) {
 			turret.SendMessage ("Dying", SendMessageOptions.DontRequireReceiver);
@@ -110,7 +110,7 @@ public class TurretMount : MonoBehaviour, Modifier {
 			manager.setWeapon (obj.GetComponent<IWeapon> ());
 		} 
 
-	
+		transform.parent.SendMessage ("TurretPlaced", SendMessageOptions.DontRequireReceiver);
 		manager.PlayerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
 		FButtonManager.main.updateTankNumber ();
 
@@ -131,7 +131,7 @@ public class TurretMount : MonoBehaviour, Modifier {
 
 		manager.removeWeapon(toReturn.GetComponent<IWeapon>());
 
-
+		transform.parent.SendMessage ("TurretRemoved", SendMessageOptions.DontRequireReceiver);
 		FButtonManager.main.updateTankNumber ();
 		//Debug.Log ("Deatched " + turret);
 		return toReturn;

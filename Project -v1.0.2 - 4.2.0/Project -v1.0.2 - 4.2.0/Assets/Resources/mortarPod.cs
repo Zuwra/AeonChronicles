@@ -82,7 +82,7 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 	}
 
 
-	public float modify(float damage, GameObject source)
+	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{ 
 
 		if (weapon.myManager.myWeapon.Contains(weapon)) {

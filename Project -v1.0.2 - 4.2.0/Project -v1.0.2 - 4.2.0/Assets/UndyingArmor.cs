@@ -9,11 +9,7 @@ public class UndyingArmor :  IEffect,Modifier {
 	private GameObject effectOnChar;
 	private UnitStats mystat;
 	private float endtime;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (onTarget) {
@@ -56,7 +52,7 @@ public class UndyingArmor :  IEffect,Modifier {
 	}
 
 
-	public float modify(float damage, GameObject source)
+	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{
 		endtime -= .25f;
 

@@ -218,13 +218,15 @@ public class UnitStats : MonoBehaviour {
 
 	public float TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
 	{
+
+		//Debug.Log ("Damage source " + source + "   " + type);
 		if (!otherTags.Contains (UnitTypes.UnitTypeTag.Invulnerable)) {
 			
 			bool setToZero = false;
-			if (type == DamageTypes.DamageType.Penetrating || type == DamageTypes.DamageType.Regular) {
+			if (type != DamageTypes.DamageType.True) {
 				foreach (Modifier mod in damageModifiers) {
 
-					amount = mod.modify (amount, source);
+					amount = mod.modify (amount, source, type);
 					if (amount <= 0) {
 						setToZero = true;
 						break;
@@ -232,7 +234,7 @@ public class UnitStats : MonoBehaviour {
 				}
 			}
 			if (!setToZero) {
-				if (type == DamageTypes.DamageType.Regular || type == DamageTypes.DamageType.Wound) {
+				if (type == DamageTypes.DamageType.Regular || type == DamageTypes.DamageType.Wound ) {
 
 					amount = Mathf.Max (amount - armor, 1);
 						
@@ -317,7 +319,7 @@ public class UnitStats : MonoBehaviour {
 				for(int i = deathTriggers.Count -1; i > -1; i --)
 				{
 					if (deathTriggers[i]!= null) {
-							deathTriggers[i].modify (0, deathSource);
+						deathTriggers[i].modify (0, deathSource, DamageTypes.DamageType.Regular);
 					}
 				}
 
@@ -411,6 +413,13 @@ public class UnitStats : MonoBehaviour {
 		}
 	}
 
+	public void addHighPriModifier(Modifier mod)
+	{
+		if (!damageModifiers.Contains (mod)) {
+			damageModifiers.Insert(0,mod);
+		}
+	}
+
 	public void removeModifier(Modifier mod)
 	{if (damageModifiers.Contains (mod)) {
 			damageModifiers.Remove (mod);
@@ -450,7 +459,7 @@ public class UnitStats : MonoBehaviour {
 
 	
 		foreach (Modifier mod in EnergyModifiers) {
-			n = mod.modify (n, this.gameObject);
+			n = mod.modify (n, this.gameObject, DamageTypes.DamageType.Regular);
 		}
 
 		if (n > 0 ) {

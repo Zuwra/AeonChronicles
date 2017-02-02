@@ -19,7 +19,7 @@ public  class Projectile : MonoBehaviour {
 	public GameObject Source;
 	public int sourceInt;
 
-
+	public DamageTypes.DamageType damageType = DamageTypes.DamageType.Regular;
 	public AudioClip mySound;
 	AudioSource AudSrc;
 	public float inaccuracy;
@@ -234,7 +234,7 @@ public  class Projectile : MonoBehaviour {
 			}
 			if (target != null && target.myStats != null) {
 
-				float total =  target.myStats.TakeDamage (damage, Source, DamageTypes.DamageType.Regular);
+				float total =  target.myStats.TakeDamage (damage, Source,damageType);
 				if (Source) {
 					UnitManager man = Source.GetComponent<UnitManager> ();
 					if (man) {

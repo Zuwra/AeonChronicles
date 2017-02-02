@@ -79,7 +79,7 @@ public class DayexaShield : Ability,Modifier , Notify{
 		rechargeTime = Time.time + RechargeDelay;
 	}
 
-	public float modify(float amount, GameObject src)
+	public float modify(float amount, GameObject src, DamageTypes.DamageType theType)
 	{
 		//Debug.Log ("Taking damage : " + amount);
 		float energyLost = Mathf.Min ( Absorbtion, myStats.currentEnergy);

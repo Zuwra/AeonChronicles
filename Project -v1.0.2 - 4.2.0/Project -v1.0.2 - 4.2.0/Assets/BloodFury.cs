@@ -36,7 +36,7 @@ public class BloodFury : MonoBehaviour, Modifier, Notify {
 
 	}
 
-	public float modify(float damage, GameObject source)
+	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{
 
 		myMover.removeSpeedBuff (this);

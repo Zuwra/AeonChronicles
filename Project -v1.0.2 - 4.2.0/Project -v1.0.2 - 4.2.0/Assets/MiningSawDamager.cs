@@ -8,6 +8,8 @@
 
 		private List<UnitStats> enemies = new List<UnitStats> ();
 
+
+	public DamageTypes.DamageType myType = DamageTypes.DamageType.Regular;
 		public int Owner;
 		public GameObject cutEffect;
 		public GameObject impactEffect;
@@ -38,10 +40,10 @@
 					foreach (UnitStats s in enemies) {
 
 					if (s.isUnitType (UnitTypes.UnitTypeTag.Turret)) {
-						s.TakeDamage (damage * (turretRatio), this.gameObject.gameObject.gameObject, DamageTypes.DamageType.Regular);
+						s.TakeDamage (damage * (turretRatio), this.gameObject.gameObject.gameObject, myType);
 					} else {
 
-						s.TakeDamage (damage, this.gameObject.gameObject.gameObject, DamageTypes.DamageType.Regular);
+						s.TakeDamage (damage, this.gameObject.gameObject.gameObject, myType);
 						iter++;
 						if (iter == 6) {
 								PopUpMaker.CreateGlobalPopUp (-(damage*2) + "", Color.red, s.gameObject.transform.position);

@@ -10,15 +10,10 @@ public class ChildDeathTrigger : MonoBehaviour, Modifier {
 		transform.root.GetComponentInParent<UnitManager> ().myStats.addDeathTrigger (this);
 	//	Debug.Log ("Trigger " + transform.root.GetComponentInParent<UnitManager> ().gameObject.name);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 
 
-	public float modify(float damage, GameObject source)
+	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{
 
 		if (this) {

@@ -12,10 +12,7 @@ public class TurretDeathTrigger : MonoBehaviour, Modifier{
 		mymanager.myStats.addDeathTrigger (this);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
 	public void place( )
 	{
@@ -33,7 +30,7 @@ public class TurretDeathTrigger : MonoBehaviour, Modifier{
 
 
 	// If I die, I need to let my parent tank know that I am gone
-	public float modify(float damage, GameObject source)
+	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{ 
 		transform.GetComponentInParent<TurretMount> ().unPlaceTurret();
 
