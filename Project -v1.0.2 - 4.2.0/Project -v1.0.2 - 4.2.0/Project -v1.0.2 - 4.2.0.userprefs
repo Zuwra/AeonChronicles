@@ -1,15 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\gravityWell.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\WaveManager.cs">
     <Files>
-      <File FileName="Assets\gravityWell.cs" Line="17" Column="28" />
-      <File FileName="Assets\DeployTurret.cs" Line="108" Column="4" />
-      <File FileName="Assets\BloodMist.cs" Line="10" Column="24" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="118" Column="24" />
-      <File FileName="Assets\MultiShotParticle.cs" Line="45" Column="1" />
-      <File FileName="Assets\Scripts - In Game\MoveState.cs" Line="42" Column="1" />
-      <File FileName="Assets\StandardInteract.cs" Line="28" Column="3" />
-      <File FileName="Assets\Scripts - In Game\DefaultState.cs" Line="42" Column="1" />
+      <File FileName="Assets\BloodMist.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\MultiShotParticle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\AbstractCost.cs" Line="1" Column="1" />
+      <File FileName="Assets\WaveManager.cs" Line="128" Column="12" />
+      <File FileName="Assets\Scripts - In Game\Classes\Orders.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Classes\Order.cs" Line="1" Column="1" />
+      <File FileName="Assets\StandardInteract.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\AttackMoveState.cs" Line="1" Column="1" />
+      <File FileName="Assets\VictoryTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\ErrorPrompt.cs" Line="161" Column="2" />
+      <File FileName="Assets\VoicePack.cs" Line="95" Column="53" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

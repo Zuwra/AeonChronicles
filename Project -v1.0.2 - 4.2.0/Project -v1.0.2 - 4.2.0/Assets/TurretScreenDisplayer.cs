@@ -17,12 +17,10 @@ public class TurretScreenDisplayer : MonoBehaviour {
 	public buildTurret D;
 
 
-	private float nextActionTime;
 	// Use this for initialization
 	void Start () {
 		manage = GetComponent<UnitManager> ();
-		nextActionTime = Time.time;
-
+	
 
 		if (rapidArms) {
 			foreach (TurretMount tm in GameObject.FindObjectsOfType<TurretMount>()) {
@@ -34,16 +32,15 @@ public class TurretScreenDisplayer : MonoBehaviour {
 			}
 		}
 
+		InvokeRepeating ("UpdateButts", .2f, .16f);
 	}
 
 
 
 	// Update is called once per frame
-	void Update () {
+	void UpdateButts () {
 
-		if (Time.time > nextActionTime) {
-			nextActionTime = Time.time + .15f;
-
+	
 			mounts.RemoveAll (item => item == null);
 			foreach (TurretMount obj in mounts) {
 				
@@ -59,8 +56,6 @@ public class TurretScreenDisplayer : MonoBehaviour {
 					updateButtons (obj.hasDisplayer);
 
 			}
-
-		}
 
 	}
 

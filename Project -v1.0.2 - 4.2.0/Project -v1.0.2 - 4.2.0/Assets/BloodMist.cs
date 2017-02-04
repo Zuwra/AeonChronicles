@@ -4,19 +4,31 @@ using System.Collections;
 public class BloodMist : TargetAbility {
 
 
+	protected Selected mySelect;
 	public GameObject BloodMistObj;
+	Coroutine currentCharger;
+
 	// Use this for initialization
 	void Start () {
 		myType = type.target;
+		mySelect = GetComponent<Selected> ();
 
+		if (chargeCount >-1) {
+			if(chargeCount < maxChargeCount){
+				currentCharger = StartCoroutine (increaseCharges ());
+			}
+		}
 	}
-
+	public float maxChargeCount;
 
 
 	override
 	public continueOrder canActivate(bool showError){
 
 		continueOrder order = new continueOrder ();
+		if (chargeCount == 0) {
+			order.canCast = false;
+		}
 
 		if (!myCost.canActivate (this)) {
 			order.canCast = false;
@@ -47,9 +59,19 @@ public class BloodMist : TargetAbility {
 	override
 	public  bool Cast(GameObject target, Vector3 location)
 	{
-
+		
+		if (chargeCount >-1) {
+			changeCharge (-1);
+			if (currentCharger == null) {
+				currentCharger = StartCoroutine (increaseCharges ());
+			}
+		}
 
 		myCost.payCost ();
+
+		if (chargeCount > 0) {
+			myCost.resetCoolDown ();
+		}
 
 		Vector3 pos = location;
 		pos.y += 5;
@@ -65,10 +87,17 @@ public class BloodMist : TargetAbility {
 	override
 	public void Cast(){
 
-
+		if (chargeCount >-1) {
+			changeCharge (-1);
+			if (currentCharger == null) {
+				currentCharger = StartCoroutine (increaseCharges ());
+			}
+		}
 
 		myCost.payCost ();
-
+		if (chargeCount > 0) {
+			myCost.resetCoolDown ();
+		}
 		GameObject proj = null;
 
 		Vector3 pos = location;
@@ -83,5 +112,36 @@ public class BloodMist : TargetAbility {
 
 	}
 
+
+	IEnumerator increaseCharges()
+	{
+		
+		if (chargeCount == 0) {
+			active = false;
+			myCost.startCooldown ();
+		}
+		yield return new WaitForSeconds (myCost.cooldown);
+		active = true;
+		changeCharge (1);
+
+		if (chargeCount < maxChargeCount) {
+			currentCharger = StartCoroutine (increaseCharges ());
+		} else {
+			currentCharger = null;
+		}
+	}
+	public void changeCharge(int n)
+	{
+		chargeCount += n;
+		if (chargeCount == 0) {
+			active = false;
+
+		}
+		if (mySelect.IsSelected) {
+			RaceManager.upDateUI ();
+			RaceManager.updateActivity ();
+
+		}
+	}
 
 }

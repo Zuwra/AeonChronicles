@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-public class DeployTurret  : TargetAbility {
+
+public class DeployTurret  : TargetAbility{
 
 
 	UnitManager manager;
@@ -128,8 +129,10 @@ public class DeployTurret  : TargetAbility {
 	{
 		if (chargeCount == 0) {
 			myCost.startCooldown ();
+			active = false;
 		}
 		yield return new WaitForSeconds (ReplicationTime);
+		active = true;
 		changeCharge (1);
 		if (chargeCount < 2) {
 			StartCoroutine (replicateTurrets());
@@ -141,6 +144,13 @@ public class DeployTurret  : TargetAbility {
 
 		if (!target ||  target.name == "Terrain") {
 			return true;
+		}
+
+
+		foreach (TurretMount tm in target.GetComponentsInChildren<TurretMount>()) {
+			if (!tm.turret) {
+				return true;
+			}
 		}
 		return false;
 
@@ -265,6 +275,22 @@ public class DeployTurret  : TargetAbility {
 
 		changeCharge (-1);
 
+
+		foreach (TurretMount tm in target.GetComponentsInChildren<TurretMount>()) {
+			if (!tm.turret) {
+				if (soundEffect) {
+					audioSrc.PlayOneShot (soundEffect);
+				}
+				tm.placeTurret (createUnit ());
+				if (PlaceEffect) {
+					Instantiate (PlaceEffect, tm.transform.position, Quaternion.identity, tm.transform);
+				}
+
+				return true;
+			}
+		}
+
+
 		Vector3 pos = location;
 
 		GameObject proj = (GameObject)Instantiate (UnitToBuild, pos+ Vector3.up * .5f, Quaternion.identity);
@@ -278,6 +304,7 @@ public class DeployTurret  : TargetAbility {
 		turrManage.setInteractor( newTurret.AddComponent<StandardInteract> ());
 		turrManage.changeState(new turretState(turrManage));
 		newTurret.GetComponent<UnitStats> ().otherTags.Add (UnitTypes.UnitTypeTag.Static_Defense);
+
 		currentTurret.GetComponent<UnitManager> ().enabled = false;
 		return false;
 
@@ -294,6 +321,21 @@ public class DeployTurret  : TargetAbility {
 
 		changeCharge (-1);
 
+		foreach (TurretMount tm in target.GetComponentsInChildren<TurretMount>()) {
+			if (!tm.turret) {
+				if (soundEffect) {
+					audioSrc.PlayOneShot (soundEffect);
+				}
+				tm.placeTurret (createUnit ());
+				if (PlaceEffect) {
+					Instantiate (PlaceEffect, tm.transform.position, Quaternion.identity, tm.transform);
+				}
+
+				return;
+			}
+		}
+
+
 		Vector3 pos = location;
 	
 		GameObject proj = (GameObject)Instantiate (UnitToBuild, pos+ Vector3.up * .5f, Quaternion.identity);
@@ -307,6 +349,7 @@ public class DeployTurret  : TargetAbility {
 		turrManage.setInteractor( newTurret.AddComponent<StandardInteract> ());
 		turrManage.changeState(new turretState(turrManage));
 		newTurret.GetComponent<UnitStats> ().otherTags.Add (UnitTypes.UnitTypeTag.Static_Defense);
+	
 		currentTurret.GetComponent<UnitManager> ().enabled = false;
 
 
@@ -317,7 +360,12 @@ public class DeployTurret  : TargetAbility {
 	public void changeCharge(int n)
 	{
 		chargeCount += n;
+		if (chargeCount == 0) {
+			active = false;
+	
+		}
 		if (mySelect.IsSelected) {
+			RaceManager.updateActivity ();
 			RaceManager.upDateUI ();
 		}
 	}
@@ -340,4 +388,7 @@ public class DeployTurret  : TargetAbility {
 
 		return tur;
 	}
+
+
+
 }

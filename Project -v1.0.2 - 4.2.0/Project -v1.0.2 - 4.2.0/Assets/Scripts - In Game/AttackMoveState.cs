@@ -38,6 +38,10 @@ public class AttackMoveState : UnitState {
 		if (type == MoveType.passive) {
 			// This is breaking stuff so I commented it out
 			//target = home;
+		} else if (type == MoveType.command) {
+			
+			home = location;
+			enemyDead = true;
 		} else {
 			enemyDead = true;
 		}

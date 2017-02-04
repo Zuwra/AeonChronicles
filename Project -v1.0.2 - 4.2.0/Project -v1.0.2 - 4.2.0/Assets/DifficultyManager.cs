@@ -94,7 +94,7 @@ public class DifficultyManager : MonoBehaviour {
 			}
 
 			foreach (bunnyPopulate bp in GameObject.FindObjectsOfType<bunnyPopulate>()) {
-				bp.repopulateTime -= 20;
+				bp.repopulateTime -= 15;
 			}
 		
 		}

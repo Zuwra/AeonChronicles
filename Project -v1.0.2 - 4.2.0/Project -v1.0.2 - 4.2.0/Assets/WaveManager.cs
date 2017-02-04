@@ -244,10 +244,12 @@ public class WaveManager : MonoBehaviour {
 
 
 	public void OnDrawGizmos()
-	{
+	{Gizmos.color = Color.blue;
 		foreach (GameObject obj in spawnLocations) {
-			Gizmos.color = Color.blue;
-			Gizmos.DrawLine (obj.transform.position, firstRallyPoint);
+			if (obj) {
+
+				Gizmos.DrawLine (obj.transform.position, firstRallyPoint);
+			}
 		}
 		Gizmos.color = Color.red;
 		Gizmos.DrawLine (EmergencySpawnLocation.transform.position, firstRallyPoint);

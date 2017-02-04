@@ -86,7 +86,7 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 			return true;
 		}
 		if (autocast && chargeCount <= 0) {
-			Activate ();
+			//Activate ();
 		}
 		return false;
 	}

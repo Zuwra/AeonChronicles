@@ -104,13 +104,17 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 		SoundMessage newMessage = new SoundMessage (sound, duration,pic,input, Priority, volume);
 		if (inMessage) {
+
+			//Debug.Log ("In a message " + input);
 			if (newMessage.priority > currentMessage.priority + 2) {
+			//	Debug.Log ("Interrupting " + input);
 				InteruptMessage ();
 				playMessage (newMessage);
 			
 			} else {
 				if (newMessage.priority > 0) {
 					bool inserted = false;
+					//Debug.Log ("Queeing message " + input);
 					for (int i = 0; i < messageQueue.Count; i++) {
 						if (newMessage.priority > messageQueue [i].priority ) {
 							//Debug.Log ("Inserting at " + i + "  "  + newMessage.myText);
@@ -127,6 +131,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 				//messageQueue.Sort ();
 			}
 		} else {
+			//Debug.Log ("No message " + input);
 			playMessage (newMessage);
 		}
 
@@ -157,7 +162,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	void playMessage(SoundMessage myMess)
 	{
-		//Debug.Log ("Playing Message " + myMess.myPic);
+		//Debug.Log ("Playing Message " + myMess.myText);
 		currentMessage = myMess;
 		inMessage = true;
 		if (myMess.myPic == null) {
@@ -166,10 +171,12 @@ public class ExpositionDisplayer : MonoBehaviour {
 		
 
 			this.enabled = true;
+			if (currentScrolling != null) {
+				StopCoroutine (currentScrolling);}
 			currentScrolling = StartCoroutine (scrollingText (myMess.myText));
 			myCanvas.enabled = true;
 		
-			MissionLogger.instance.AddLog (myMess.myText);
+			//MissionLogger.instance.AddLog (myMess.myText);
 
 			if (myMess.myText.Length < 100) {
 				myText.fontSize = 26;
@@ -206,7 +213,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	IEnumerator playNextSOund(float Duration)
 	{
-		yield return new WaitForSeconds (Duration + .3f);
+		yield return new WaitForSeconds (Duration + .2f);
 		if (messageQueue.Count > 0) {
 			playMessage (messageQueue [0]);
 			currentMessage = messageQueue [0];
