@@ -326,11 +326,15 @@ public class UnitStats : MonoBehaviour {
 
 				if (deathCorpse != null) {
 
-					RaycastHit objecthit;
+					Vector3 spawnLoc = this.gameObject.transform.position;
+					if (!isUnitType (UnitTypes.UnitTypeTag.Air)) {
+						RaycastHit objecthit;
 
-					Physics.Raycast (this.gameObject.transform.position, Vector3.down, out objecthit, 1000, 1 << 8);
+						Physics.Raycast (this.gameObject.transform.position, Vector3.down, out objecthit, 1000, 1 << 8);
+						spawnLoc = objecthit.point;
+					}
 
-					GameObject.Instantiate (deathCorpse,objecthit.point, this.gameObject.transform.rotation);
+					GameObject.Instantiate (deathCorpse,spawnLoc, this.gameObject.transform.rotation);
 				}
 
 				if (deathSource) {
