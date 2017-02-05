@@ -51,6 +51,7 @@
      <Compile Include="Assets\APMCounter.cs" />
      <Compile Include="Assets\AbilityBox.cs" />
      <Compile Include="Assets\AbilityFollowState.cs" />
+     <Compile Include="Assets\AbilityUpgrade.cs" />
      <Compile Include="Assets\Achievement.cs" />
      <Compile Include="Assets\AchievementChecker.cs" />
      <Compile Include="Assets\AchievementManager.cs" />
@@ -355,6 +356,7 @@
      <Compile Include="Assets\MiningSawDamager.cs" />
      <Compile Include="Assets\MiningState.cs" />
      <Compile Include="Assets\MissileArmer.cs" />
+     <Compile Include="Assets\MissileProjectile.cs" />
      <Compile Include="Assets\MissionLogger.cs" />
      <Compile Include="Assets\MissionManager.cs" />
      <Compile Include="Assets\MoneyPickUp.cs" />

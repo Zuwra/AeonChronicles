@@ -12,8 +12,8 @@ public  class Projectile : MonoBehaviour {
 	public float arcAngle;
 	public bool trackTarget;
 
-	private float distance;
-	private float currentDistance;
+	protected float distance;
+	protected float currentDistance;
 
 	//public ProjectileMover mover;
 	public GameObject Source;
@@ -24,7 +24,7 @@ public  class Projectile : MonoBehaviour {
 	AudioSource AudSrc;
 	public float inaccuracy;
 	//private bool selfDest = false;
-	private CharacterController control;
+	protected CharacterController control;
 
 	//If you are using an explosion , you should set the variables in the explosion prefab itself.
 	public GameObject explosionO;
@@ -163,7 +163,7 @@ public  class Projectile : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected void Update () {
 
 	
 		if (target != null) {

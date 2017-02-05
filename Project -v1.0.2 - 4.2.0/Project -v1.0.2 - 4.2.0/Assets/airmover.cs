@@ -41,6 +41,7 @@ public class airmover : IMover {
 	override
 	public void stop()
 	{GetComponent<UnitManager> ().animStop();
+		speed = .1f;
 	}
 
 	override

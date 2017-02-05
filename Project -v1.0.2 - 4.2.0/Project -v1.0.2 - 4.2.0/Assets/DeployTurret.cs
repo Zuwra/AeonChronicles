@@ -24,6 +24,8 @@ public class DeployTurret  : TargetAbility{
 
 	public List<Sprite> turretIcons;
 
+	public MultiShotParticle FabricateEffect;
+
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
 		myType = type.target;
@@ -120,6 +122,7 @@ public class DeployTurret  : TargetAbility{
 		currentTurret = null;
 		if (currentReplciation != null) {
 			StopCoroutine (currentReplciation);
+			FabricateEffect.stopEffect ();
 		}
 		iconPic = turretIcons [0];
 		changeCharge (0);
@@ -131,7 +134,9 @@ public class DeployTurret  : TargetAbility{
 			myCost.startCooldown ();
 			active = false;
 		}
+		FabricateEffect.continueEffect ();
 		yield return new WaitForSeconds (ReplicationTime);
+		FabricateEffect.stopEffect ();
 		active = true;
 		changeCharge (1);
 		if (chargeCount < 2) {
@@ -207,7 +212,7 @@ public class DeployTurret  : TargetAbility{
 
 	void OnTriggerExit(Collider other)
 	{
-
+		
 		//need to set up calls to listener components
 		//this will need to be refactored for team games
 		if (other.isTrigger) {
@@ -320,18 +325,19 @@ public class DeployTurret  : TargetAbility{
 		}
 
 		changeCharge (-1);
+		if (target) {
+			foreach (TurretMount tm in target.GetComponentsInChildren<TurretMount>()) {
+				if (!tm.turret) {
+					if (soundEffect) {
+						audioSrc.PlayOneShot (soundEffect);
+					}
+					tm.placeTurret (createUnit ());
+					if (PlaceEffect) {
+						Instantiate (PlaceEffect, tm.transform.position, Quaternion.identity, tm.transform);
+					}
 
-		foreach (TurretMount tm in target.GetComponentsInChildren<TurretMount>()) {
-			if (!tm.turret) {
-				if (soundEffect) {
-					audioSrc.PlayOneShot (soundEffect);
+					return;
 				}
-				tm.placeTurret (createUnit ());
-				if (PlaceEffect) {
-					Instantiate (PlaceEffect, tm.transform.position, Quaternion.identity, tm.transform);
-				}
-
-				return;
 			}
 		}
 

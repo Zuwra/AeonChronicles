@@ -19,7 +19,7 @@ public class BloodMist : TargetAbility {
 			}
 		}
 	}
-	public float maxChargeCount;
+	public int maxChargeCount;
 
 
 	override

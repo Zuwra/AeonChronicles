@@ -31,8 +31,10 @@ public class evasiveMenuvers : Ability,Modifier{
 	public float modify(float amount, GameObject src, DamageTypes.DamageType theType)
 		{
 		int rand = Random.Range (0, 100);
+		Debug.Log ("Current move speed is " + mover.speed);
 		if (rand <= mover.speed * chanceMultiplier) {
-			
+
+
 			amount = 0;
 			PopUpMaker.CreateGlobalPopUp ("Dodged", Color.yellow, this.transform.position);
 			if (MyAnim && Time.time > lastDodgeTime) {
