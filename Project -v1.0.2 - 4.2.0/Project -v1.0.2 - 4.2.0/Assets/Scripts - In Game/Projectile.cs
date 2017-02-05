@@ -56,8 +56,6 @@ public  class Projectile : MonoBehaviour {
 			AudSrc.pitch +=((float)Random.Range (-3, 3)) / 10;
 		}
 
-
-		AudSrc = GetComponent<AudioSource> ();
 			if (AudSrc && mySound) {
 				SoundManager.PlayOneShotSound (AudSrc, mySound);
 		}
@@ -98,11 +96,49 @@ public  class Projectile : MonoBehaviour {
 	
 	}
 
+	public void OnSpawn()
+	{currentDistance = 0;
+		if (AudSrc && mySound) {
+			SoundManager.PlayOneShotSound (AudSrc, mySound);
+		}
+
+		if (target) {
+			if (inaccuracy > 0) {
+				Vector3 hitzone = target.transform.position;
+				float radius = Random.Range (0, inaccuracy);
+				float angle = Random.Range (0, 360);
+
+				hitzone.x += Mathf.Sin (Mathf.Deg2Rad * angle) * radius;
+				hitzone.z += Mathf.Cos (Mathf.Deg2Rad * angle) * radius;
+
+				lastLocation = hitzone;
+
+
+
+
+			} else {
+				lastLocation = target.transform.position + randomOffset;
+			}
+
+			randomOffset = UnityEngine.Random.insideUnitSphere * target.GetComponent<CharacterController> ().radius * .9f;
+		} 
+
+
+		distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+
+		if (TargetIndicator != null) {
+
+			myIndiactor = (GameObject)Instantiate (TargetIndicator, lastLocation, Quaternion.identity);
+
+			myIndiactor.GetComponentInChildren<Light>().cookie = indicatorPic;
+			myIndiactor.GetComponentInChildren<Light> ().spotAngle = indicatorSize;
+		}
+
+	}
+
 
 	public void setLocation(Vector3 loc)
 	{
-
-
 
 		if (inaccuracy > 0) {
 			Vector3 hitzone = loc;
@@ -255,10 +291,12 @@ public  class Projectile : MonoBehaviour {
 		}
 
 		if (myIndiactor != null) {
+			
 			Destroy (myIndiactor);
 		}
 
-		Destroy (this.gameObject);
+		Lean.LeanPool.Despawn (this.gameObject, 0);
+		//Destroy (this.gameObject);
 
 	}
 

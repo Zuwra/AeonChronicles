@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using DigitalRuby.SoundManagerNamespace;
 public class AetherRelay : Ability{
 
 	List<DayexaShield> shieldList = new List<DayexaShield> ();
@@ -21,14 +21,12 @@ public class AetherRelay : Ability{
 		select = GetComponent<Selected> ();
 		manager = GetComponent<UnitManager> ();
 		nextActionTime = Time.time + 1;
+
+		InvokeRepeating ("UpdateAether", 1, 1);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Time.time > nextActionTime ) {
-
-			nextActionTime = Time.time + 1f;
-		
+	void UpdateAether () {
 
 			if (turnedOn) {
 				if (manager.myStats.currentEnergy <= 0) {
@@ -43,7 +41,9 @@ public class AetherRelay : Ability{
 				else{
 					manager.getUnitStats ().TakeDamage (.1f, this.gameObject,DamageTypes.DamageType.Regular);
 					manager.myStats.changeEnergy (-19.9f);
-
+					if (soundEffect) {
+						SoundManager.PlayOneShotSound(audioSrc, soundEffect);
+					}
 
 
 					foreach (UnitStats us in enemyStats) {
@@ -69,9 +69,6 @@ public class AetherRelay : Ability{
 				}
 			}
 
-		
-
-		}
 	}
 
 	void OnTriggerExit(Collider other)

@@ -57,6 +57,7 @@
      <Compile Include="Assets\AchievementUI.cs" />
      <Compile Include="Assets\ActivateObjAbil.cs" />
      <Compile Include="Assets\ActivateObject.cs" />
+     <Compile Include="Assets\AetherCapture.cs" />
      <Compile Include="Assets\AetherOvercharge.cs" />
      <Compile Include="Assets\AetherRelay.cs" />
      <Compile Include="Assets\AllDestroyed.cs" />
@@ -329,6 +330,13 @@
      <Compile Include="Assets\LandMineActivate.cs" />
      <Compile Include="Assets\LaserNode.cs" />
      <Compile Include="Assets\LaserNodeTurret.cs" />
+     <Compile Include="Assets\LeanPool\Examples\SimpleDelayedPooling.cs" />
+     <Compile Include="Assets\LeanPool\Examples\SimplePoolBenchmark.cs" />
+     <Compile Include="Assets\LeanPool\Examples\SimplePooling.cs" />
+     <Compile Include="Assets\LeanPool\Scripts\LeanClassPool.cs" />
+     <Compile Include="Assets\LeanPool\Scripts\LeanPool.cs" />
+     <Compile Include="Assets\LeanPool\Scripts\LeanPooledRigidbody.cs" />
+     <Compile Include="Assets\LeanPool\Scripts\LeanPooledRigidbody2D.cs" />
      <Compile Include="Assets\LevelData.cs" />
      <Compile Include="Assets\LevelManager.cs" />
      <Compile Include="Assets\LevelSelectmanager.cs" />

@@ -55,6 +55,7 @@ public class IWeapon : MonoBehaviour {
 
 	public List<Validator> validators = new List<Validator>();
 
+	Lean.LeanPool myBulletPool;
 
 	private struct attackSpeedMod{
 		public float perc;
@@ -87,6 +88,9 @@ public class IWeapon : MonoBehaviour {
 
 	void Awake()
 	{
+		if (projectile) {
+			myBulletPool = Lean.LeanPool.getSpawnPool (projectile);
+		}
 		baseAttackPeriod = attackPeriod;
 		InitialBaseDamage = baseDamage;
 		initalDamageSet = true;
@@ -291,9 +295,12 @@ public class IWeapon : MonoBehaviour {
 			if (projectile != null) {
 
 				if (turret) {
-					proj = (GameObject)Instantiate (projectile, turret.transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
+					
+					proj = myBulletPool.FastSpawn(turret.transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
+					//proj = (GameObject)Instantiate (projectile, turret.transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
 				} else {
-					proj = (GameObject)Instantiate (projectile, transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
+					proj =  myBulletPool.FastSpawn(transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
+					//proj = (GameObject)Instantiate (projectile, transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
 				}
 				originIndex++;
 				if (originIndex == originPoint.Count) {

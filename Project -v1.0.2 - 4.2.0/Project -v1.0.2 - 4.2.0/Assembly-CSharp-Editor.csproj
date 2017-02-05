@@ -76,6 +76,7 @@
      <Compile Include="Assets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetNoiseWorley.cs" />
      <Compile Include="Assets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetPreviewWindow.cs" />
      <Compile Include="Assets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetTextureGenerator.cs" />
+     <Compile Include="Assets\LeanPool\Editor\LeanPool_Editor.cs" />
      <Compile Include="Assets\LightningBolt\Editor\LightningBoltEditor.cs" />
      <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\Editor\MinDrawer.cs" />
      <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\Editor\SMAAEditor.cs" />

@@ -47,6 +47,8 @@ public class CinematicCamera : SceneEventTrigger {
 					
 					shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration* GameSettings.gameSpeed;
 					if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
+						
+				
 						hasNextDialogue = true;
 						nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay* GameSettings.gameSpeed;
 					}
@@ -55,7 +57,8 @@ public class CinematicCamera : SceneEventTrigger {
 
 			if (hasNextDialogue && Time.time > nextDialogue) {
 				hasNextDialogue = false;
-				ExpositionDisplayer.instance.displayText (myScenes [currentScene].myShots [currentShot].DialogueText,myScenes [currentScene].myShots [currentShot].duration
+				//Debug.Log ("PLaying  " +myScenes [currentScene].myShots [currentShot].DialogueText );
+				ExpositionDisplayer.instance.displayText (myScenes [currentScene].myShots [currentShot].DialogueText,myScenes [currentScene].myShots [currentShot].dialogueLength
 					,myScenes [currentScene].myShots [currentShot].dialogueAudio, .8f,myScenes [currentScene].myShots [currentShot].dialogueImage,5);
 			
 			}

@@ -274,6 +274,9 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (m == null) {
 			return false;}
 
+		if (m.PlayerOwner == 3) {
+			return true;}
+
 		if (m.PlayerOwner != manager.PlayerOwner) {
 			return false;}
 
@@ -408,7 +411,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 		if (manage != null) {
 
-			if (!attached && manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner  ) {
+			if (!attached && manage.PlayerOwner != this.gameObject.GetComponent<UnitManager>().PlayerOwner ) {
 
 				manager.changeState (new FollowState (order.Target.gameObject, manager),false,order.queued);
 			} else if(!attached && isValidTarget(order.Target, Vector3.zero)){

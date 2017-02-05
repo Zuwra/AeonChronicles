@@ -101,6 +101,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	public void displayText(string input, float duration, AudioClip sound, float volume, Sprite pic, int Priority)
 	{	
+		//Debug.Log ("Displaying " + duration);
 
 		SoundMessage newMessage = new SoundMessage (sound, duration,pic,input, Priority, volume);
 		if (inMessage) {
