@@ -21,7 +21,7 @@ public  class Projectile : MonoBehaviour {
 
 	public DamageTypes.DamageType damageType = DamageTypes.DamageType.Regular;
 	public AudioClip mySound;
-	AudioSource AudSrc;
+	protected AudioSource AudSrc;
 	public float inaccuracy;
 	//private bool selfDest = false;
 	protected CharacterController control;
@@ -165,6 +165,7 @@ public  class Projectile : MonoBehaviour {
 	// Update is called once per frame
 	protected void Update () {
 
+		//Debug.Log ("In here");
 	
 		if (target != null) {
 			lastLocation = target.transform.position + randomOffset;
@@ -208,7 +209,7 @@ public  class Projectile : MonoBehaviour {
 		if (!target) {
 			return;}
 		if (other.gameObject == target || other.gameObject.transform.IsChildOf(target.transform)) {
-			
+			//Debug.Log ("Terminating A");
 			Terminate (other.gameObject.GetComponent<UnitManager>());
 		}
 
@@ -218,11 +219,11 @@ public  class Projectile : MonoBehaviour {
 
 		if(!trackTarget && (other.gameObject!= Source || !other.gameObject.transform.IsChildOf(Source.transform) ))
 		{
-
+			//Debug.Log ("Terminating B");
 			Terminate(null);}
 	}
 	
-	void OnTriggerEnter(Collider other)
+	public virtual void OnTriggerEnter(Collider other)
 	{if (!target) {
 			return;}
 		
@@ -232,7 +233,7 @@ public  class Projectile : MonoBehaviour {
 	
 
 		if (other.gameObject == target || other.gameObject.transform.IsChildOf(target.transform)) {
-				
+			//Debug.Log ("Terminating C");
 			Terminate (other.gameObject.GetComponent<UnitManager> ());
 			return;
 			}
@@ -243,7 +244,7 @@ public  class Projectile : MonoBehaviour {
 
 			if(!trackTarget && (other.gameObject!= Source || !other.gameObject.transform.IsChildOf(Source.transform) ))
 				{
-				
+			//Debug.Log ("Terminating D");
 				Terminate(null);}
 		
 	}
@@ -251,7 +252,7 @@ public  class Projectile : MonoBehaviour {
 
 
 	public virtual void Terminate(UnitManager target)
-	{
+	{//Debug.Log ("Finished");
 		if (explosionO) {
 			GameObject explode = (GameObject)Instantiate (explosionO, this.gameObject.transform.position, Quaternion.identity);
 			//Debug.Log ("INstantiating explosion");
@@ -270,6 +271,7 @@ public  class Projectile : MonoBehaviour {
 			}
 			if (target != null && target.myStats != null) {
 
+				//Debug.Log ("Giveing damage");
 				float total =  target.myStats.TakeDamage (damage, Source,damageType);
 				if (Source) {
 					UnitManager man = Source.GetComponent<UnitManager> ();

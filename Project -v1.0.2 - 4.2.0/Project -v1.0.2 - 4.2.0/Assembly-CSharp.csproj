@@ -375,6 +375,7 @@
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\ParticleAn.cs" />
+     <Compile Include="Assets\PenetratingShot.cs" />
      <Compile Include="Assets\PlaceBuildingState.cs" />
      <Compile Include="Assets\PlasmaDischarge.cs" />
      <Compile Include="Assets\PopUp.cs" />

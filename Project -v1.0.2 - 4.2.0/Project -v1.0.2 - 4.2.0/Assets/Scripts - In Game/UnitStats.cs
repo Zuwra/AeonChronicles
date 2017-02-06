@@ -219,7 +219,7 @@ public class UnitStats : MonoBehaviour {
 	public float TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
 	{
 
-		//Debug.Log ("Damage source " + source + "   " + type);
+		//Debug.Log ("Damage source " + amount +"    "+ source + "   " + type);
 		if (!otherTags.Contains (UnitTypes.UnitTypeTag.Invulnerable)) {
 			
 			bool setToZero = false;
@@ -254,6 +254,8 @@ public class UnitStats : MonoBehaviour {
 					veternStat.UpMitigated(armor);
 					veternStat.UpdamTaken (amount);
 				}
+
+			//	Debug.Log ("Actual " + amount);
 				health -= amount;
 
 				if ((int)health <= 0) {

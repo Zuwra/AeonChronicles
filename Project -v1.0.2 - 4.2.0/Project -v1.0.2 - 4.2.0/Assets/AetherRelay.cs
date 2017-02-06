@@ -8,7 +8,7 @@ public class AetherRelay : Ability{
 	List<UnitStats> enemyStats = new List<UnitStats> ();
 	public float energyChargeRate;
 	UnitManager manager;
-	float nextActionTime;
+
 	private Selected select;
 	public MultiShotParticle myEffect;
 	public GameObject chargeEffect;
@@ -20,7 +20,7 @@ public class AetherRelay : Ability{
 		myType = type.activated;
 		select = GetComponent<Selected> ();
 		manager = GetComponent<UnitManager> ();
-		nextActionTime = Time.time + 1;
+
 
 		InvokeRepeating ("UpdateAether", 1, 1);
 	}
@@ -157,7 +157,7 @@ public class AetherRelay : Ability{
 			manager.getUnitStats ().changeEnergy (.1f);
 			myEffect.continueEffect ();
 			myCost.payCost ();
-			nextActionTime = Time.time + .02f;
+
 		} else {
 			
 			myEffect.stopEffect ();

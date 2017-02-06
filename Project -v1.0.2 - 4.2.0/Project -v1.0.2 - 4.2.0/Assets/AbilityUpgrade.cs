@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AbilityUpgrade : SpecificUpgrade {
 
+
+	public GameObject SuperPenetrator;
 	override
 	public void applyUpgrade(GameObject obj)
 	{
@@ -23,7 +25,14 @@ public class AbilityUpgrade : SpecificUpgrade {
 				obj.GetComponent<DeployTurret> ().chargeCount = 2;
 			} else if (manager.UnitName == "Chimera") {
 			
-			//TO DO - upgrade for Chimera
+				foreach (ChangeAmmo ca in manager.GetComponents<ChangeAmmo>()) {
+					if (ca.Name == "Ammo: Pentrating Shot [X]") {
+						ca.myAmmo = SuperPenetrator;
+					}
+				
+				}
+			
+
 			}	
 
 		}

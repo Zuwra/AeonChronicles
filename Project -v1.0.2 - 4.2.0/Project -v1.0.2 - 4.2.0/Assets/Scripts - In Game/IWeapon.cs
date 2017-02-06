@@ -57,6 +57,11 @@ public class IWeapon : MonoBehaviour {
 
 	Lean.LeanPool myBulletPool;
 
+	public void setBulletPool(Lean.LeanPool pool)
+	{
+		myBulletPool = pool;
+	}
+
 	private struct attackSpeedMod{
 		public float perc;
 		public float flat;
@@ -297,6 +302,7 @@ public class IWeapon : MonoBehaviour {
 				if (turret) {
 					
 					proj = myBulletPool.FastSpawn(turret.transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
+					Debug.Log ("Projectile is " + proj);
 					//proj = (GameObject)Instantiate (projectile, turret.transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
 				} else {
 					proj =  myBulletPool.FastSpawn(transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
@@ -320,6 +326,7 @@ public class IWeapon : MonoBehaviour {
 			} else {
 
 				//OnAttacking();
+				Debug.Log("Dealing direct Damage");
 				damage =target.myStats.TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
 				myManager.myStats.veteranDamage (damage);
 
