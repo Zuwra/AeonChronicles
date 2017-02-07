@@ -17,6 +17,8 @@ public class inflectionBarrier : MonoBehaviour {
 	//private float radius;
 	// Use this for initialization
 	void Start () {
+
+		Instantiate (Effect, this.gameObject.transform.position, Quaternion.identity);
 		//radius = GetComponent<SphereCollider> ().radius;
 
 	}

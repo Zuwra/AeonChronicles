@@ -37,18 +37,18 @@ public class PenetratingShot : Projectile {
 		}
 			
 
-		if (Physics.Raycast (this.gameObject.transform.position + Vector3.up * 4, Vector3.down, out objecthit, 100, ( 1 << 8))) {
+		if (Physics.Raycast (this.gameObject.transform.position + Vector3.up * 5, Vector3.down, out objecthit, 30, ( 1 << 8))) {
 			float dist = Vector3.Distance (objecthit.point, transform.position);
-			if (dist < 1f) {
+			if (dist < 5f) {
 				Vector3 newPos = transform.position;
-				newPos.y = objecthit.point.y + 1;
+				newPos.y = objecthit.point.y + 5;
 
 				gameObject.transform.position = newPos;
 
 
-			} else if (dist > 4) {
+			} else if (dist > 9) {
 				Vector3 newPos = transform.position;
-				newPos.y = objecthit.point.y + 4;
+				newPos.y = objecthit.point.y + 9;
 
 				gameObject.transform.position = newPos;
 			}

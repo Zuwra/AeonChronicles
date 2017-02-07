@@ -6,23 +6,29 @@ public class SingleTarget:  TargetAbility {
 
 	private UnitManager manage;
 	public GameObject missile;
-
+	protected Selected mySelect;
 	public List<UnitTypes.UnitTypeTag> cantTarget = new List<UnitTypes.UnitTypeTag>();
 	public List<UnitTypes.UnitTypeTag> mustTarget = new List<UnitTypes.UnitTypeTag> ();
 	public bool canTargetSelf;
 	public enum sideTarget{ally, enemy, all}
 	public sideTarget who;
-
+	public int maxChargeCount;
 	public IEffect myEffect;
+
+	Coroutine currentCharger;
 	// Use this for initialization
 	void Start () {
+		myType = type.target;
+		mySelect = GetComponent<Selected> ();
 		manage = this.gameObject.GetComponent<UnitManager> ();
+		if (chargeCount >-1) {
+			if(chargeCount < maxChargeCount){
+				currentCharger = StartCoroutine (increaseCharges ());
+			}
+		}
 	}
 
-	// Update is called once per frame
-	void Update () {
 
-	}
 
 	override
 	public continueOrder canActivate(bool showError){
@@ -99,8 +105,17 @@ public class SingleTarget:  TargetAbility {
 		Debug.Log ("Casting in here");
 		if (target) {
 
-			myCost.payCost ();
 
+			if (chargeCount >-1) {
+				changeCharge (-1);
+				if (currentCharger == null) {
+					currentCharger = StartCoroutine (increaseCharges ());
+				}
+			}
+			myCost.payCost ();
+			if (chargeCount > 0) {
+				myCost.resetCoolDown ();
+			}
 			GameObject proj = null;
 
 			if (missile) {
@@ -133,9 +148,16 @@ public class SingleTarget:  TargetAbility {
 
 		Debug.Log ("Casting in other");
 		if (target) {
-
+			if (chargeCount >-1) {
+				changeCharge (-1);
+				if (currentCharger == null) {
+					currentCharger = StartCoroutine (increaseCharges ());
+				}
+			}
 			myCost.payCost ();
-
+			if (chargeCount > 0) {
+				myCost.resetCoolDown ();
+			}
 			GameObject proj = null;
 
 			if (missile) {
@@ -145,7 +167,7 @@ public class SingleTarget:  TargetAbility {
 
 				Projectile script = proj.GetComponent<Projectile> ();
 				proj.SendMessage ("setSource", this.gameObject);
-				proj.SendMessage ("setTarget", target);
+				proj.SendMessage ("setTarget", target.GetComponent<UnitManager>());
 				if (script) {
 					script.target = target.GetComponent<UnitManager>();
 					script.Source = this.gameObject;
@@ -161,5 +183,38 @@ public class SingleTarget:  TargetAbility {
 
 	}
 
+
+
+
+	IEnumerator increaseCharges()
+	{
+
+		if (chargeCount == 0) {
+			active = false;
+			myCost.startCooldown ();
+		}
+		yield return new WaitForSeconds (myCost.cooldown);
+		active = true;
+		changeCharge (1);
+
+		if (chargeCount < maxChargeCount) {
+			currentCharger = StartCoroutine (increaseCharges ());
+		} else {
+			currentCharger = null;
+		}
+	}
+	public void changeCharge(int n)
+	{
+		chargeCount += n;
+		if (chargeCount == 0) {
+			active = false;
+
+		}
+		if (mySelect.IsSelected) {
+			RaceManager.upDateUI ();
+			RaceManager.updateActivity ();
+
+		}
+	}
 
 }
