@@ -536,11 +536,13 @@ public class IWeapon : MonoBehaviour {
 
 	public void OnDrawGizmos()
 	{
-		foreach (Vector3 vec in originPoint) {
-			if (turret) {
-				Gizmos.DrawSphere ((turret.transform.rotation) * vec + this.gameObject.transform.position, .5f);
-			} else {
-				Gizmos.DrawSphere ((transform.rotation) * vec + this.gameObject.transform.position, .5f);
+		if (originPoint != null) {
+			foreach (Vector3 vec in originPoint) {
+				if (turret) {
+					Gizmos.DrawSphere ((turret.transform.rotation) * vec + this.gameObject.transform.position, .5f);
+				} else {
+					Gizmos.DrawSphere ((transform.rotation) * vec + this.gameObject.transform.position, .5f);
+				}
 			}
 		}
 	}

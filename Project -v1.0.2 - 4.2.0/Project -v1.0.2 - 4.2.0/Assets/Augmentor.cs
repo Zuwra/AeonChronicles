@@ -82,7 +82,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (OD) {
 			OD.returnRate = 1.3f;
 		} 
-		else if (unitMan.UnitName.Contains("Yard") ||unitMan.UnitName == "Armory" ||unitMan.UnitName.Contains("Lab") || unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")  ) {
+		else if (unitMan.UnitName.Contains("Yard") ||unitMan.UnitName == "Armory" ||unitMan.UnitName.Contains("Lab") || unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")|| unitMan.UnitName.Contains("Flux")  ) {
 			unitMan.GetComponent<Selected> ().setCooldownColor (Color.yellow);
 			int xxx = 0;
 			foreach (Ability bu in unitMan.abilityList){
@@ -136,7 +136,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (OD) {
 			OD.returnRate = 1.3f;
 		} 
-		else if (unitMan.UnitName.Contains("Yard") ||unitMan.UnitName == "Armory" ||unitMan.UnitName.Contains("Lab") ||unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy")  ) {
+		else if (unitMan.UnitName.Contains("Yard") ||unitMan.UnitName == "Armory" ||unitMan.UnitName.Contains("Lab") ||unitMan.UnitName.Contains("Bay") || unitMan.UnitName.Contains("Academy") || unitMan.UnitName.Contains("Flux") ) {
 
 			int xxx = 0;
 			foreach (Ability bu in unitMan.abilityList){
@@ -177,7 +177,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		OreDispenser OD = attached.GetComponent<OreDispenser> ();
 		if (OD) {
 			OD.returnRate = 1;
-		} else if (man.UnitName.Contains ("Yard") || man.UnitName == "Armory" || man.UnitName.Contains ("Lab") || man.UnitName.Contains ("Bay") || man.UnitName.Contains ("Academy")) {
+		} else if (man.UnitName.Contains ("Yard") || man.UnitName == "Armory" || man.UnitName.Contains ("Lab") || man.UnitName.Contains ("Bay") || man.UnitName.Contains ("Academy")|| man.UnitName.Contains("Flux")) {
 			man.GetComponent<Selected> ().setCooldownColor (Color.white);
 			int xxx = 0;
 		
@@ -227,7 +227,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	{
 		if (attached) {
 			UnitManager man = attached.GetComponent<UnitManager> ();
-			if (man && (man.UnitName.Contains ("Yard") || man.UnitName == "Armory" || man.UnitName.Contains ("Lab") || man.UnitName.Contains ("Bay") || man.UnitName.Contains ("Academy"))) {
+			if (man && (man.UnitName.Contains ("Yard") || man.UnitName == "Armory" || man.UnitName.Contains ("Lab") || man.UnitName.Contains ("Bay") || man.UnitName.Contains ("Academy")|| man.UnitName.Contains("Flux"))) {
 				
 				attached.GetComponent<Selected> ().setCooldownColor (Color.white);
 			}
