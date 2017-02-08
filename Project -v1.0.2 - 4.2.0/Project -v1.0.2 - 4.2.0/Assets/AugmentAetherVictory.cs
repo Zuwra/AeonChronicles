@@ -8,7 +8,7 @@ public class AugmentAetherVictory  : Objective {
 
 	public AetherCapture myAetherCore;
 	public GameObject actualAetherCore;
-	List<AugmentAttachPoint> myGuys = new List<AugmentAttachPoint> ();
+
 	bool routineStarted = false;
 	public float delayVic;
 	public WaveSpawner counterAttack;

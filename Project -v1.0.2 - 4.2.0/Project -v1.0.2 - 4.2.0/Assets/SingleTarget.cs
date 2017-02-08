@@ -29,6 +29,16 @@ public class SingleTarget:  TargetAbility {
 	}
 
 
+	public void UpMaxCharge()
+	{
+		maxChargeCount++;
+
+		if (currentCharger == null) {
+			currentCharger = StartCoroutine (increaseCharges ());
+
+		}
+	}
+
 
 	override
 	public continueOrder canActivate(bool showError){

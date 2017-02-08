@@ -256,6 +256,7 @@
      <Compile Include="Assets\ChangeAmmo.cs" />
      <Compile Include="Assets\ChannelState.cs" />
      <Compile Include="Assets\ChildDeathTrigger.cs" />
+     <Compile Include="Assets\ChimeraDamUp.cs" />
      <Compile Include="Assets\CinematicBoxTrigger.cs" />
      <Compile Include="Assets\CinematicCamera.cs" />
      <Compile Include="Assets\ClickableButton.cs" />
@@ -266,6 +267,7 @@
      <Compile Include="Assets\ConcussiveUpgrade.cs" />
      <Compile Include="Assets\ConstructionUpgrade.cs" />
      <Compile Include="Assets\ControlGroupUI.cs" />
+     <Compile Include="Assets\CooldownUpgrade.cs" />
      <Compile Include="Assets\CostBox.cs" />
      <Compile Include="Assets\CustomRVO.cs" />
      <Compile Include="Assets\DaexaSupplyDrop.cs" />
@@ -591,6 +593,7 @@
      <Compile Include="Assets\VoiceContainer.cs" />
      <Compile Include="Assets\VoicePack.cs" />
      <Compile Include="Assets\VoicePackUI.cs" />
+     <Compile Include="Assets\VulcanChargeUp.cs" />
      <Compile Include="Assets\WaveContainer.cs" />
      <Compile Include="Assets\WaveManager.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />

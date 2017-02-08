@@ -19,6 +19,17 @@ public class BloodMist : TargetAbility {
 			}
 		}
 	}
+
+	public void UpMaxCharge()
+	{
+		maxChargeCount++;
+	
+			if (currentCharger == null) {
+				currentCharger = StartCoroutine (increaseCharges ());
+
+		}
+	}
+
 	public int maxChargeCount;
 
 

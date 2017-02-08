@@ -23,7 +23,7 @@ public class DeployTurret  : TargetAbility{
 	GameObject currentTurret;
 
 	public List<Sprite> turretIcons;
-
+	int maxChargeCount =2;
 	public MultiShotParticle FabricateEffect;
 
 	void Awake()
@@ -139,11 +139,22 @@ public class DeployTurret  : TargetAbility{
 		FabricateEffect.stopEffect ();
 		active = true;
 		changeCharge (1);
-		if (chargeCount < 2) {
+		if (chargeCount < maxChargeCount) {
 			StartCoroutine (replicateTurrets());
 		}
 	}
 
+	public void UpMaxCharge()
+	{
+		
+		maxChargeCount++;
+
+		if (currentReplciation == null) {
+			currentReplciation = StartCoroutine (replicateTurrets());
+			FabricateEffect.continueEffect();
+
+		}
+	}
 
 	public override bool isValidTarget (GameObject target, Vector3 location){
 
@@ -272,7 +283,7 @@ public class DeployTurret  : TargetAbility{
 	public  bool Cast(GameObject target, Vector3 location)
 	{
 
-		if (chargeCount == 2) {
+		if (chargeCount == maxChargeCount) {
 			currentReplciation = StartCoroutine (replicateTurrets ());
 		} else if (chargeCount == 1) {
 			myCost.startCooldown ();
@@ -317,7 +328,7 @@ public class DeployTurret  : TargetAbility{
 	override
 	public void Cast(){
 
-		if (chargeCount == 2) {
+		if (chargeCount == maxChargeCount) {
 			currentReplciation =  StartCoroutine (replicateTurrets());
 		}
 		else if (chargeCount == 1) {
@@ -384,7 +395,7 @@ public class DeployTurret  : TargetAbility{
 
 		GameObject tur = (GameObject)Instantiate(currentTurret, location, Quaternion.identity);
 
-		if (chargeCount == 2) {
+		if (chargeCount == maxChargeCount) {
 			currentReplciation = StartCoroutine (replicateTurrets ());
 		} else if (chargeCount == 1) {
 			myCost.startCooldown ();
