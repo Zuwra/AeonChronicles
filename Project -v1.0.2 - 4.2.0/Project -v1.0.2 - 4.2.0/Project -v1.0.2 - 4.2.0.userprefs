@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\IWeapon.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VoicePack.cs">
     <Files>
       <File FileName="Assets\ChangeAmmo.cs" Line="1" Column="1" />
       <File FileName="Assets\SingleTarget.cs" Line="1" Column="1" />
@@ -9,9 +9,8 @@
       <File FileName="Assets\DeployTurret.cs" Line="1" Column="1" />
       <File FileName="Assets\AugmentUpgrade.cs" Line="1" Column="1" />
       <File FileName="Assets\ChimeraDamUp.cs" Line="1" Column="1" />
-      <File FileName="Assets\CooldownUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\Augmentor.cs" Line="128" Column="34" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="548" Column="3" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\VoicePack.cs" Line="101" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

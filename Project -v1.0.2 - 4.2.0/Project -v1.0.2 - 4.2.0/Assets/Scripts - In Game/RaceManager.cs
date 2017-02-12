@@ -77,16 +77,28 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		uiManager = FindObjectOfType <RaceUIManager>();
 		uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
 
-		InvokeRepeating ("UltUpdate", .2f, .2f);
+		if (playerNumber == 1) {
+			InvokeRepeating ("UltUpdate", .2f, .2f);
+		}
 	
 	}
 
+	bool UltOneUp;
+	bool UltTwoUp;
+	bool UltThreeUp;
+	bool UltFourUp;
+
+
 	public void UltUpdate()
 	{
-		if (slideOne && UltOne.active) {
+		if (slideOne && UltOne.active && !UltOneUp) {
 			slideOne.value = UltOne.myCost.cooldownProgress ();
 			slideOne.gameObject.SetActive (slideOne.value < .99 && slideOne.value > .02f);
 			ultBOne.interactable = (slideOne.value  > .99);
+
+			if (ultBOne.interactable == true) {
+				UltOneUp = true;
+			}
 		
 
 		}

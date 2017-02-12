@@ -21,7 +21,10 @@ public class VoicePack : MonoBehaviour {
 	public List<AudioClip> EnemyBunnies;
 	public List<AudioClip> ResearchFinished;
 	public List<AudioClip> OreDepleted;
+	public List<AudioClip> OreOccupied;
 	public List<AudioClip> BuildingComplete;
+	public List<AudioClip> UltTwoComp;
+	public List<AudioClip> UltFourComp;
 
 
 	public AudioClip getVoicePackLine()
@@ -79,6 +82,11 @@ public class VoicePack : MonoBehaviour {
 		return OreDepleted[Random.Range (0,OreDepleted.Count - 1)];
 	}
 
+	public AudioClip getOreOccupiedLine()
+	{
+		return OreOccupied[Random.Range (0,OreOccupied.Count - 1)];
+	}
+
 	public AudioClip getDreadnaughtsLine()
 	{
 		return EnemyDreadNaughts[Random.Range (0,EnemyDreadNaughts.Count - 1)];
@@ -89,6 +97,17 @@ public class VoicePack : MonoBehaviour {
 	{
 		return BuildingComplete[Random.Range (0,BuildingComplete.Count - 1)];
 	}
+
+	public AudioClip getUltTwoComplete()
+	{
+		return UltTwoComp[Random.Range (0,UltTwoComp.Count - 1)];
+	}
+
+	public AudioClip getUltFourComplete()
+	{
+		return UltFourComp[Random.Range (0,UltFourComp.Count - 1)];
+	}
+
 
 	public AudioClip getEnemyWaveLine( WaveContainer.waveWarningType waveType)
 	{
