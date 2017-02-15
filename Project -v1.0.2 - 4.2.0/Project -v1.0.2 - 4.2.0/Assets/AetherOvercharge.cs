@@ -81,7 +81,7 @@ public class AetherOvercharge : Buff, Notify{
 
 	}
 
-	public void trigger(GameObject src, GameObject proj, UnitManager target, float damage)
+	public float trigger(GameObject src, GameObject proj, UnitManager target, float damage)
 	{
 		if (!spellHasBegun) {
 			nextActionTime = Time.time + 1;
@@ -89,6 +89,7 @@ public class AetherOvercharge : Buff, Notify{
 			startTime = Time.time;
 			StartCoroutine (delayRemove());
 		}
+		return damage;
 	}
 
 	IEnumerator delayRemove()

@@ -94,7 +94,7 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 
 
 
-	public void trigger(GameObject source, GameObject projectile,UnitManager target, float damage)	{
+	public float trigger(GameObject source, GameObject projectile,UnitManager target, float damage)	{
 		
 		chargeCount--;
 
@@ -113,7 +113,7 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 		if(MissileModels.Count > chargeCount && chargeCount >= 0){
 			MissileModels [chargeCount].SetActive (false);
 		}
-
+		return damage;
 	}
 
 	override

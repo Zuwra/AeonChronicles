@@ -51,11 +51,12 @@ public class BackLashAura : MonoBehaviour, Notify {
 	}
 
 
-	public void trigger(GameObject sou, GameObject proj,UnitManager target, float damage)
+	public float trigger(GameObject sou, GameObject proj,UnitManager target, float damage)
 	{if (source) {
 			source.heal (damage / 4);
 		}
 		myStats.TakeDamage (damage / 2, source.gameObject, DamageTypes.DamageType.Regular);
-	
+
+		return damage;
 	}
 }

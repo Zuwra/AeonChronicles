@@ -70,14 +70,14 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 		return false;
 	}
 
-	public void trigger(GameObject source, GameObject proj, UnitManager target, float damage)
+	public float trigger(GameObject source, GameObject proj, UnitManager target, float damage)
 		{
 		shotCount --;
 		HealthD.updateCoolDown (shotCount / totalShots);
 		if (FireAll) {
 			weapon.attackPeriod = .1f;
 		}
-
+		return damage;
 
 	}
 

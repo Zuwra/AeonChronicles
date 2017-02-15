@@ -10,11 +10,12 @@ public class PopUpOnHIt : MonoBehaviour, Notify {
 		GetComponent<Projectile> ().triggers.Add (this);
 	}
 	
-	public void trigger(GameObject source,GameObject proj,UnitManager target, float damage)
+	public float trigger(GameObject source,GameObject proj,UnitManager target, float damage)
 	{
 
 	
 		PopUpMaker.CreateGlobalPopUp (toShow, myColor, target.transform.position);
+		return damage;
 	}
 
 }

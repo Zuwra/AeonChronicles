@@ -18,7 +18,7 @@ public class HalfLifeStarter : MonoBehaviour, Notify{
 	}
 
 
-	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
+	public float trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 	{
 		Poison enemyPois = target.GetComponent<Poison> ();
 		if (enemyPois == null) {
@@ -33,7 +33,7 @@ public class HalfLifeStarter : MonoBehaviour, Notify{
 			enemyPois.remainingPoison = damageAmount;
 			enemyPois.damageRate = damageAmount / 6;
 			enemyPois.setEnergyDrain (theirStats.currentEnergy / 12);
-
+		return damage;
 	}
 
 

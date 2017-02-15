@@ -15,16 +15,11 @@ public class HeartStopper : MonoBehaviour, Notify {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 
 
 
-
-	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
+	public float trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 		{
 		Poison targetPois = target.GetComponent<Poison> ();
 		if (targetPois) {
@@ -39,6 +34,6 @@ public class HeartStopper : MonoBehaviour, Notify {
 			target.gameObject.AddComponent<Poison>();
 			target.GetComponent<Poison>().remainingPoison = 12;
 		}
-
+		return damage;
 	}
 }

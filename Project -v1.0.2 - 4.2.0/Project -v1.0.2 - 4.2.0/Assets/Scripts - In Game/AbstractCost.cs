@@ -4,6 +4,9 @@ using System.Collections;
 public class AbstractCost : MonoBehaviour {
 		
 		
+
+	Coroutine currenCooldown;
+
 	public enum CostType
 	{	unit, building, ability, upkeep}
 
@@ -40,7 +43,7 @@ public class AbstractCost : MonoBehaviour {
 			
 			if (!StartsRefreshed) {
 				cooldownTimer = cooldown;
-			StartCoroutine (onCooldown());
+			currenCooldown =  StartCoroutine (onCooldown());
 			}
 			
 			stats = this.gameObject.GetComponent<UnitStats> ();
@@ -49,7 +52,7 @@ public class AbstractCost : MonoBehaviour {
 
 	IEnumerator onCooldown()
 	{	cooldownTimer = cooldown;
-
+	//	Debug.Log ("Resting cooldown " + cooldownTimer);
 		while (true){
 			yield return 0;
 		if (cooldownTimer > 0) {
@@ -57,7 +60,7 @@ public class AbstractCost : MonoBehaviour {
 			//selectMan.updateCoolDown (cooldownTimer / cooldown);
 		}
 		else
-		{
+			{cooldownTimer = 0;
 			break;
 		}
 	}
@@ -172,14 +175,17 @@ public class AbstractCost : MonoBehaviour {
 	public void refundCost()
 	{
 		myGame.updateResources(ResourceOne, ResourceTwo, false);
-		Debug.Log ("Refunding " + this.gameObject);
+	//	Debug.Log ("Refunding " + this.gameObject);
 		cooldownTimer = 0;
 	}
 
 
 	public void startCooldown()
 	{
-		StartCoroutine (onCooldown());
+		if (currenCooldown != null) {
+			StopCoroutine (currenCooldown);
+		}
+		currenCooldown =  StartCoroutine (onCooldown());
 	}
 
 	public void payCost ()
@@ -198,7 +204,7 @@ public class AbstractCost : MonoBehaviour {
 
 		}
 
-		StartCoroutine (onCooldown());
+		startCooldown ();
 
 		
 	}

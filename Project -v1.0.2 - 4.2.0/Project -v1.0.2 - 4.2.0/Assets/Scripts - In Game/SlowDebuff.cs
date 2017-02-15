@@ -64,7 +64,7 @@ public class SlowDebuff : Behavior, Notify {
 		}
 	}
 
-	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
+	public float trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 	{SlowDebuff deb = target.GetComponent<SlowDebuff> ();
 		if (deb) {
 			if (stackable) {
@@ -81,7 +81,7 @@ public class SlowDebuff : Behavior, Notify {
 		}
 
 
-
+		return damage;
 	}
 
 

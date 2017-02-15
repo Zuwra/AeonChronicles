@@ -91,8 +91,9 @@ public class GatlingGun :  Ability,Notify, Validator, Modifier {
 	
 	}
 
-	public void trigger(GameObject source, GameObject proj,UnitManager target,float damage)
+	public float trigger(GameObject source, GameObject proj,UnitManager target,float damage)
 	{IncreaseSpeed (0, source);
+		return damage;
 	}
 
 	public void IncreaseSpeed(float damage, GameObject source)

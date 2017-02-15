@@ -9,7 +9,7 @@ public class AugmentAetherVictory  : Objective {
 	public AetherCapture myAetherCore;
 	public GameObject actualAetherCore;
 
-	bool routineStarted = false;
+	//bool routineStarted = false;
 	public float delayVic;
 	public WaveSpawner counterAttack;
 

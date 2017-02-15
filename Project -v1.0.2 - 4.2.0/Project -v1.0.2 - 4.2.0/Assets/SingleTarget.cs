@@ -47,6 +47,9 @@ public class SingleTarget:  TargetAbility {
 
 		if (!myCost.canActivate (this)) {
 			order.canCast = false;
+			if (myCost.energy == 0 && myCost.ResourceOne == 0 && chargeCount > 0) {
+				order.canCast = true;
+			}
 		} else {
 			order.nextUnitCast = false;
 		}
@@ -112,7 +115,7 @@ public class SingleTarget:  TargetAbility {
 	override
 	public  bool Cast(GameObject tar, Vector3 location)
 	{target = tar;
-		Debug.Log ("Casting in here");
+		
 		if (target) {
 
 
@@ -123,9 +126,7 @@ public class SingleTarget:  TargetAbility {
 				}
 			}
 			myCost.payCost ();
-			if (chargeCount > 0) {
-				myCost.resetCoolDown ();
-			}
+		
 			GameObject proj = null;
 
 			if (missile) {
@@ -156,7 +157,7 @@ public class SingleTarget:  TargetAbility {
 	public void Cast(){
 
 
-		Debug.Log ("Casting in other");
+	//	Debug.Log ("Casting in other");
 		if (target) {
 			if (chargeCount >-1) {
 				changeCharge (-1);
@@ -165,9 +166,7 @@ public class SingleTarget:  TargetAbility {
 				}
 			}
 			myCost.payCost ();
-			if (chargeCount > 0) {
-				myCost.resetCoolDown ();
-			}
+
 			GameObject proj = null;
 
 			if (missile) {
@@ -201,8 +200,9 @@ public class SingleTarget:  TargetAbility {
 
 		if (chargeCount == 0) {
 			active = false;
-			myCost.startCooldown ();
+		
 		}
+		myCost.startCooldown ();
 		yield return new WaitForSeconds (myCost.cooldown);
 		active = true;
 		changeCharge (1);

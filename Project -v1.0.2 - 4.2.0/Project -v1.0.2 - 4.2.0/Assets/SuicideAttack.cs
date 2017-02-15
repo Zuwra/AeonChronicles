@@ -8,10 +8,10 @@ public class SuicideAttack : MonoBehaviour, Notify {
 		GetComponent<IWeapon> ().addNotifyTrigger (this);
 	}
 
-	public void trigger(GameObject source, GameObject projectile,UnitManager target, float damage)	{
+	public float trigger(GameObject source, GameObject projectile,UnitManager target, float damage)	{
 
 		StartCoroutine (waitForFrame());
-
+		return damage;
 	}
 
 	IEnumerator waitForFrame()

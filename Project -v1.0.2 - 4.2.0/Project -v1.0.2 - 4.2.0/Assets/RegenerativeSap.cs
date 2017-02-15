@@ -22,7 +22,6 @@ public class RegenerativeSap : MonoBehaviour, Modifier {
 			nextActionTime += 1;
 		
 			heal ();
-		
 		}
 	}
 

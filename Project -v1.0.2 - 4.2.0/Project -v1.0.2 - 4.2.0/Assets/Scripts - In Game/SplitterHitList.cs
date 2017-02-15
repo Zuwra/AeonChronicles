@@ -22,11 +22,13 @@ public class SplitterHitList : MonoBehaviour,Notify{
 
 
 
-	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
+	public float trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 		{
 		proj.GetComponent<SplitterShot> ().chargesRemaning = chargeCount;
 		hitTargets.Clear ();
 		hitTargets.Add (target);
+
+		return damage;
 	}
 
 	public bool isValidEnemy(UnitManager obj)

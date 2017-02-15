@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class inflectionBarrier : MonoBehaviour {
+public class inflectionBarrier : MonoBehaviour, Notify {
 
 
 	public float Health;
 	public float duration;
 
 	public GameObject Effect;
-	GameObject source;
+	public GameObject source;
 
+	UnitManager attachedUnit;
 
 	public void setSource(GameObject o)
 	{source = o;}
@@ -28,13 +29,72 @@ public class inflectionBarrier : MonoBehaviour {
 
 		duration -= Time.deltaTime;
 		if (duration <= 0) {
+			foreach (IWeapon weap in  attachedUnit.myWeapon) {
+				weap.removeNotifyTrigger (this);
+			}
 			Destroy (this.gameObject);
 		}
 
 	}
 
+	public void initialize (UnitManager attachUnit)
+	{
+		attachedUnit = attachUnit;
+		foreach (IWeapon weap in  attachedUnit.myWeapon) {
+			weap.addNotifyTrigger (this);
+		
+		}
+
+	}
 
 
+	public float trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
+	{
+		Debug.Log ("Triggering");
+
+		Health -= damage;
+
+		Vector3 direction = source.transform.position +  (target.gameObject.transform.position - source.transform.position).normalized *9;
+		if (projectile) {
+
+			Projectile proj = projectile.GetComponent<Projectile> ();
+			if (proj) {
+				proj.Despawn ();
+				if (proj.explosionO) {
+
+
+
+					//GameObject explode = (GameObject)Instantiate (proj.explosionO , transform.transform.position, Quaternion.identity);
+					//Debug.Log ("INstantiating explosion");
+
+					attachedUnit.myStats.TakeDamage (damage,source,DamageTypes.DamageType.Regular);
+					explosion Escript =proj.explosionO.GetComponent<explosion> ();
+					if (Escript) {
+						
+						Instantiate (Escript.particleEff , direction, Quaternion.identity);
+					}
+
+
+
+				}
+
+
+			}
+		} 
+
+	
+		Instantiate (Effect, direction, Quaternion.identity);
+
+
+		if (Health <= 0) {
+			foreach (IWeapon weap in  attachedUnit.myWeapon) {
+				weap.removeNotifyTrigger (this);
+			}
+			Destroy (this.gameObject);
+		}
+		return 0;
+	}
+	/*
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Projectile") {
@@ -76,7 +136,7 @@ public class inflectionBarrier : MonoBehaviour {
 
 
 	}
-
+*/
 
 
 }

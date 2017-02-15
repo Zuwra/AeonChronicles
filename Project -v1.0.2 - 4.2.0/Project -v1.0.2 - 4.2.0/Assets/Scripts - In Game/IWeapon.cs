@@ -195,7 +195,7 @@ public class IWeapon : MonoBehaviour {
 			// Account for height advantage
 		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position) - target.GetComponent<CharacterController>().radius -myRadius;
 		float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
-		if (distance > (range + (verticalDistance)) || distance < minimumRange) {
+		if (distance > (range + (verticalDistance/2)) || distance < minimumRange) {
 		//	Debug.Log ("Not in range");
 			return false;}
 
@@ -230,7 +230,7 @@ public class IWeapon : MonoBehaviour {
 			float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
 
 			//Debug.Log (this.gameObject +  "  Distance " + distance + "   range " + range + "  vert  " + (verticalDistance *1.2));
-			if (distance > (range + (verticalDistance ))) {
+			if (distance > (range + (verticalDistance/2 ))) {
 			
 		
 				return false;
@@ -312,6 +312,8 @@ public class IWeapon : MonoBehaviour {
 				if (originIndex == originPoint.Count) {
 					originIndex = 0;}
 				Projectile script = proj.GetComponent<Projectile> ();
+
+				damage = fireTriggers (this.gameObject, proj, target, damage);
 				proj.SendMessage ("setSource", this.gameObject, SendMessageOptions.DontRequireReceiver);
 				proj.SendMessage ("setTarget", target,SendMessageOptions.DontRequireReceiver);
 				proj.SendMessage ("setDamage", damage,SendMessageOptions.DontRequireReceiver);
@@ -323,12 +325,16 @@ public class IWeapon : MonoBehaviour {
 					script.Source = this.gameObject;
 				}
 
+
 			} else {
 
 				//OnAttacking();
-				Debug.Log("Dealing direct Damage");
-				damage =target.myStats.TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
-				myManager.myStats.veteranDamage (damage);
+				//Debug.Log("Dealing direct Damage");
+				damage = fireTriggers (this.gameObject, proj, target, damage); 
+				if (damage > 0) {
+					damage = target.myStats.TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
+					myManager.myStats.veteranDamage (damage);
+				}
 
 			}
 			if (target == null) {
@@ -342,7 +348,7 @@ public class IWeapon : MonoBehaviour {
 			if (fireEffect) {
 				fireEffect.playEffect ();
 			}
-			fireTriggers (this.gameObject, proj, target, damage);
+		
 
 		}
 
@@ -358,12 +364,20 @@ public class IWeapon : MonoBehaviour {
 		triggers.Add (not);
 	}
 
-	public void fireTriggers(GameObject source, GameObject proj, UnitManager target, float damage)
+	public void removeNotifyTrigger(Notify not)
+	{
+		if (triggers.Contains (not)) {
+			triggers.Remove (not);
+		}
+	}
+
+	public float fireTriggers(GameObject source, GameObject proj, UnitManager target, float damage)
 	{	triggers.RemoveAll (item => item == null);
 		foreach (Notify obj in triggers) {
 		//	Debug.Log (obj);
-			obj.trigger(source,proj,target, damage);
+			damage =  obj.trigger(source,proj,target, damage);
 		}
+		return damage;
 	}
 
 	public int getUpgradeLevel ()

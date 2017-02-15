@@ -24,7 +24,7 @@ public class RadiationTreatment :  Ability, Notify {
 	}
 
 
-	public void trigger(GameObject source,GameObject proj,UnitManager target, float damage)
+	public float trigger(GameObject source,GameObject proj,UnitManager target, float damage)
 	{
 
 		if (lastTarget == target && myStats.veternStat.damageDone > lastDamageAmount) {
@@ -39,7 +39,7 @@ public class RadiationTreatment :  Ability, Notify {
 		}
 		lastDamageAmount = myStats.veternStat.damageDone;
 		lastTarget = target;
-		
+		return damage;
 	}
 
 

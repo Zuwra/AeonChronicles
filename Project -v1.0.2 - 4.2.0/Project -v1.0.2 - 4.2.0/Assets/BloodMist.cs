@@ -8,6 +8,9 @@ public class BloodMist : TargetAbility {
 	public GameObject BloodMistObj;
 	Coroutine currentCharger;
 
+	public int maxChargeCount = 2;
+
+
 	// Use this for initialization
 	void Start () {
 		myType = type.target;
@@ -29,8 +32,6 @@ public class BloodMist : TargetAbility {
 
 		}
 	}
-
-	public int maxChargeCount;
 
 
 	override
@@ -85,9 +86,7 @@ public class BloodMist : TargetAbility {
 
 		myCost.payCost ();
 
-		if (chargeCount > 0) {
-			myCost.resetCoolDown ();
-		}
+
 
 		Vector3 pos = location;
 		pos.y += 5;
@@ -106,14 +105,12 @@ public class BloodMist : TargetAbility {
 		if (chargeCount >-1) {
 			changeCharge (-1);
 			if (currentCharger == null) {
+				Debug.Log ("it's my birthday");
 				currentCharger = StartCoroutine (increaseCharges ());
 			}
 		}
 
-		myCost.payCost ();
-		if (chargeCount > 0) {
-			myCost.resetCoolDown ();
-		}
+	
 		GameObject proj = null;
 
 		Vector3 pos = location;
@@ -134,18 +131,24 @@ public class BloodMist : TargetAbility {
 		
 		if (chargeCount == 0) {
 			active = false;
-			myCost.startCooldown ();
 		}
+		myCost.startCooldown ();
 		yield return new WaitForSeconds (myCost.cooldown);
+
+
 		active = true;
 		changeCharge (1);
 
 		if (chargeCount < maxChargeCount) {
+	
 			currentCharger = StartCoroutine (increaseCharges ());
 		} else {
+			
 			currentCharger = null;
 		}
 	}
+
+
 	public void changeCharge(int n)
 	{
 		chargeCount += n;

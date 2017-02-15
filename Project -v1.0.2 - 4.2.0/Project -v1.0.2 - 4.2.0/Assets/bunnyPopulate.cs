@@ -88,12 +88,12 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 		GameObject.FindObjectOfType<bunnyManager> ().changeInBunnyCount (-1);
 	}
 
-	public void trigger(GameObject source, GameObject proj, UnitManager target,float damage)
+	public float trigger(GameObject source, GameObject proj, UnitManager target,float damage)
 	{
 
 		myLightning.Trigger ();
 
-
+		return damage;
 
 	}
 

@@ -21,13 +21,8 @@ public class EMPblast : MonoBehaviour, Notify {
 
 
 
-	// Update is called once per frame
-	void Update () {
 
-
-	}
-
-	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
+	public float trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 	{UnitManager manage = target.GetComponent<UnitManager> ();
 		if (manage && source != target) {
 
@@ -39,7 +34,7 @@ public class EMPblast : MonoBehaviour, Notify {
 		
 			}
 			}
-
+		return damage;
 	}
 
 

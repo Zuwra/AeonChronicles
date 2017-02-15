@@ -15,18 +15,14 @@ public class LifeSteal : MonoBehaviour, Notify {
 		popper = GetComponent<PopUpMaker> ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 
 
-	public void trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
+	public float trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
 	{
 		myStats.heal (damage * percentage);
 		popper.CreatePopUp ("+" + (int)(damage * percentage), Color.green);
-
+		return damage;
 	}
 
 

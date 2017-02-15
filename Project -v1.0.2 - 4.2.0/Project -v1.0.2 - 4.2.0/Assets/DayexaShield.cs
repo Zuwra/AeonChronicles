@@ -61,13 +61,13 @@ public class DayexaShield : Ability,Modifier , Notify{
 		}
 	}
 
-	public void trigger(GameObject source,GameObject proj, UnitManager target,float damage)
+	public float trigger(GameObject source,GameObject proj, UnitManager target,float damage)
 	{
 		if (AbsorbRecoil) {
 			myStats.changeEnergy (damage/12);
 		}
 
-
+		return damage;
 
 	}
 

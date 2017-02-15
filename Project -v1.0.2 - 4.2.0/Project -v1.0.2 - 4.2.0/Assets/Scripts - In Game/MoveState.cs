@@ -39,9 +39,11 @@ public class MoveState : UnitState{
 	override
 	public void Update () {
 
+	
 		if (myManager.cMover.move ()) 
 		{//Debug.Log ("Stopped");
-			myManager.changeState(new DefaultState());	}
+				myManager.changeState(new DefaultState());	}
+	
 
 	}
 

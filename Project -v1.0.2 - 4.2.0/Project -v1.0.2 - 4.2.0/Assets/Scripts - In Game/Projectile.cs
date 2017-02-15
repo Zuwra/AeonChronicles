@@ -303,7 +303,10 @@ public  class Projectile : MonoBehaviour {
 	}
 
 
-
+	public void Despawn()
+	{
+		Lean.LeanPool.Despawn (this.gameObject, 0);
+	}
 
 
 	public void setSource(GameObject so)

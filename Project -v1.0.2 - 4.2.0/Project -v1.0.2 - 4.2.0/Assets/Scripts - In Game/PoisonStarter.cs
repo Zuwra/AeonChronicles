@@ -15,13 +15,8 @@ public class PoisonStarter : MonoBehaviour, Notify{
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-
-	public void trigger(GameObject source,GameObject proj, UnitManager target, float damage)
+	public float trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 	{
 		Poison enemyPois = target.GetComponent<Poison> ();
 	if (enemyPois == null) {
@@ -38,6 +33,8 @@ public class PoisonStarter : MonoBehaviour, Notify{
 
 			enemyPois.AddPoisonStack();
 			}
+
+		return damage;
 		}
 
 

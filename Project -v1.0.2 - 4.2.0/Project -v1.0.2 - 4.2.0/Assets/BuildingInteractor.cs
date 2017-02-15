@@ -221,7 +221,10 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 	public UnitState computeState(UnitState s)
 	{
-		
+		if(s is MoveState)
+		{
+			return new DefaultState();
+		}
 		return s;
 	}
 

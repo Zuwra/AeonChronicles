@@ -16,7 +16,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	public List<WaveContainer.EnemyWave> ReplayWaves;
 
-	RaceManager raceMan;
+	//RaceManager raceMan;
 
 	[System.Serializable]
 	public class attackWarning
@@ -76,7 +76,7 @@ public class WaveSpawner : MonoBehaviour {
 		}
 
 
-		raceMan = GameObject.FindObjectOfType<GameManager> ().activePlayer;
+		//raceMan = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 		difficultyM = GameObject.FindObjectOfType<DifficultyManager> ();
 	
 	
