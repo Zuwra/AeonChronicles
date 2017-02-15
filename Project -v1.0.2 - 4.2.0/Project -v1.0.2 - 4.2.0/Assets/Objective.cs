@@ -21,10 +21,6 @@ public class Objective : SceneEventTrigger {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 		VictoryTrigger.instance.addObjective (this);

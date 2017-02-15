@@ -73,6 +73,8 @@ public abstract class Ability : MonoBehaviour {
 
 	public void newUnitCreated(string newUnit)
 	{
+
+		//Debug.Log ("I am " + this.gameObject + "   " + newUnit);
 		if (!initialized) {
 			initialize ();
 		}
@@ -81,6 +83,8 @@ public abstract class Ability : MonoBehaviour {
 		}
 
 		if (RequiredUnit.Contains(newUnit)) {
+
+			//Debug.Log ("I have a " + newUnit);
 			requirementList [newUnit] = true;
 		}
 

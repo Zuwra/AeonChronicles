@@ -534,6 +534,7 @@
      <Compile Include="Assets\ShieldSpeedBoost.cs" />
      <Compile Include="Assets\ShieldSpeedUpgrade.cs" />
      <Compile Include="Assets\ShieldUpgrade.cs" />
+     <Compile Include="Assets\SimpleSpawner.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />
      <Compile Include="Assets\SoundManager\Demo\SoundManagerDemo.cs" />
@@ -547,6 +548,7 @@
      <Compile Include="Assets\SpeedUpgrade.cs" />
      <Compile Include="Assets\StandardInteract.cs" />
      <Compile Include="Assets\SuicideAttack.cs" />
+     <Compile Include="Assets\SurviveVictory.cs" />
      <Compile Include="Assets\TargetAbility.cs" />
      <Compile Include="Assets\TargetCircle.cs" />
      <Compile Include="Assets\TargetCircleManager.cs" />
@@ -560,6 +562,7 @@
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TritonBarrierUpgrade.cs" />
      <Compile Include="Assets\TrueUpgradeManager.cs" />
+     <Compile Include="Assets\TunnelSpawner.cs" />
      <Compile Include="Assets\TurboRockets.cs" />
      <Compile Include="Assets\TuretBuildHelper.cs" />
      <Compile Include="Assets\TurretDeathTrigger.cs" />

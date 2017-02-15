@@ -43,6 +43,11 @@ public class BloodMist : TargetAbility {
 
 		if (!myCost.canActivate (this)) {
 			order.canCast = false;
+
+			// FIX THIS LINE IN THE FUTURE IF IT BREAKS! its currently in here to allow guys with multiple charges to use them even though the cooldown timer is shown.
+			if (myCost.energy == 0 && myCost.ResourceOne == 0 && chargeCount > 0) {
+				order.canCast = true;
+			}
 		} else {
 			order.nextUnitCast = false;
 		}

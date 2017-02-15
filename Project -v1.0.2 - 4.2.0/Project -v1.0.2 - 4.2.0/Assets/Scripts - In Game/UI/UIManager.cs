@@ -644,7 +644,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 				}
 				if (currentAbility.isValidTarget (currentObject, targetPoint)) {
 					((TargetAbility)currentAbility).Cast (currentObject, targetPoint);
-		
+					raceManager.castedGlobal (currentAbility);
+
 					SwitchMode (Mode.Normal);
 				}
 			}

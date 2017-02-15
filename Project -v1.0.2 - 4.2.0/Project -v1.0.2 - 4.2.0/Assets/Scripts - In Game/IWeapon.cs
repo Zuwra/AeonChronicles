@@ -302,7 +302,7 @@ public class IWeapon : MonoBehaviour {
 				if (turret) {
 					
 					proj = myBulletPool.FastSpawn(turret.transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
-					Debug.Log ("Projectile is " + proj);
+					//Debug.Log ("Projectile is " + proj);
 					//proj = (GameObject)Instantiate (projectile, turret.transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
 				} else {
 					proj =  myBulletPool.FastSpawn(transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);

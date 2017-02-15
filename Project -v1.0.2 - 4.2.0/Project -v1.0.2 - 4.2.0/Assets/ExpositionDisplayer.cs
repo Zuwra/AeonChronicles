@@ -108,7 +108,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 			//Debug.Log ("In a message " + input);
 			if (newMessage.priority > currentMessage.priority + 2) {
-			//	Debug.Log ("Interrupting " + input);
+				Debug.Log ("Interrupting " + input +"   " +  newMessage.priority);
 				InteruptMessage ();
 				playMessage (newMessage);
 			
@@ -142,7 +142,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	public void InteruptMessage()
 	{
-		//Debug.Log ("Interupting message");
+		Debug.Log ("Interupting message");
 		if (currentScrolling != null) {
 			StopCoroutine (currentScrolling);
 		}

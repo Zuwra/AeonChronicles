@@ -108,6 +108,18 @@ public class ErrorPrompt : MonoBehaviour {
 
 	}
 
+
+	public void UltTwoDone()
+	{
+		showError( "", myVoicePack.getUltTwoComplete());
+
+	}
+
+	public void UltFourDone()
+	{
+		showError( "", myVoicePack.getUltFourComplete());
+	
+	}
 	public void invalidGroundLocation()
 	{
 		showError( "Invalid Location", myVoicePack.getBadBuildingLine());

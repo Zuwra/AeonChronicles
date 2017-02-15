@@ -69,6 +69,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	private float totalResOne;
 	private float totalResTwo;
 
+
 	//public TechTree myTech;
 
 	// Use this for initialization
@@ -80,6 +81,11 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		if (playerNumber == 1) {
 			InvokeRepeating ("UltUpdate", .2f, .2f);
 		}
+
+		if (UltTwo &&  !UltTwo.myCost.StartsRefreshed) {
+			StartCoroutine (UltTwoNotif ());}
+		if (UltFour && !UltFour.myCost.StartsRefreshed) {
+			StartCoroutine (UltFourNotif ());}
 	
 	}
 
@@ -777,6 +783,29 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			}
 		}
 	}
+
+	public void castedGlobal(TargetAbility ult)
+	{
+		if (ult == UltFour) {
+			StartCoroutine (UltFourNotif());
+		} else if (ult == UltTwo) {
+			StartCoroutine (UltTwoNotif());
+		
+		}
+	}
+
+	IEnumerator UltTwoNotif()
+	{
+		yield return new WaitForSeconds (UltTwo.myCost.cooldown);
+		ErrorPrompt.instance.UltTwoDone ();
+	}
+
+	IEnumerator UltFourNotif()
+	{
+		yield return new WaitForSeconds (UltFour.myCost.cooldown);
+		ErrorPrompt.instance.UltFourDone ();
+	}
+
 
 	public int UnitsLost()
 	{return unitsLost;}
