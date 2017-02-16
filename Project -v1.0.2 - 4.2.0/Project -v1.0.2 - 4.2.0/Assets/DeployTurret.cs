@@ -158,7 +158,7 @@ public class DeployTurret  : TargetAbility{
 
 	public override bool isValidTarget (GameObject target, Vector3 location){
 
-		if (!target ||  target.name == "Terrain") {
+		if (!target ||  target.layer == 8) {
 			return true;
 		}
 

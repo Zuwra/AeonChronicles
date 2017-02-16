@@ -20,6 +20,7 @@ public class CooldownUpgrade : Upgrade
 			manager.GetComponent<DeployTurret> ().ReplicationTime -= 10;;
 			manager.GetComponent<SingleTarget> ().myCost.cooldown -=10;
 		}
+
 	}
 	public override void unApplyUpgrade (GameObject obj){
 

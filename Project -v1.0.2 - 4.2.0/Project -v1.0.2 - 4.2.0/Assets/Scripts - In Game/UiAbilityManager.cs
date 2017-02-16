@@ -138,7 +138,12 @@ public class UiAbilityManager : MonoBehaviour {
 				continue;
 			}
 			AbilityX = 0;
-			UnitManager man = currentPage.rows [j] [0].gameObject.GetComponent<UnitManager> ();
+			UnitManager man= null;
+			foreach(RTSObject obj in currentPage.rows[j]){
+				if(obj){
+					man = obj.gameObject.GetComponent<UnitManager> ();
+					break;}
+			}
 
 			for (int m = 0; m < man.abilityList.Count / 4 + 1; m++) {		
 

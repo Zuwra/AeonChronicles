@@ -105,7 +105,7 @@ public class BloodMist : TargetAbility {
 		if (chargeCount >-1) {
 			changeCharge (-1);
 			if (currentCharger == null) {
-				Debug.Log ("it's my birthday");
+				//Debug.Log ("it's my birthday");
 				currentCharger = StartCoroutine (increaseCharges ());
 			}
 		}

@@ -50,7 +50,7 @@ public class inflectionBarrier : MonoBehaviour, Notify {
 
 	public float trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
 	{
-		Debug.Log ("Triggering");
+		//Debug.Log ("Triggering");
 
 		Health -= damage;
 
