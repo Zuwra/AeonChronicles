@@ -71,7 +71,7 @@ public class WaveManager : MonoBehaviour {
 
 			if (ReplayWaves.Count > 0) {
 				container = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ();
-				waveOption = container.getWave (ReplayWaves [UnityEngine.Random.Range (0, ReplayWaves.Count - 1)]);
+				waveOption = container.getWave (ReplayWaves [UnityEngine.Random.Range (0, ReplayWaves.Count)]);
 				CurrentWaves = waveOption.waveRampUp;
 
 
@@ -110,7 +110,7 @@ public class WaveManager : MonoBehaviour {
 				spawner = myWaves [currentWaveIndex].SpawnObject;
 
 			} else if (!myWaves [currentWaveIndex].MustBeHere && !myWaves [currentWaveIndex].SpawnObject && spawnLocations.Count > 0) {
-				spawner = spawnLocations [Random.Range (0, spawnLocations.Count - 1)];
+				spawner = spawnLocations [Random.Range (0, spawnLocations.Count )];
 			} 
 
 			if (!spawner) {

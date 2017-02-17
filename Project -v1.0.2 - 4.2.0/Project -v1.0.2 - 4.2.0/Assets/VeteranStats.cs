@@ -143,14 +143,14 @@ public class VeteranStats : IComparable<VeteranStats>{
 	private List<string>  starter = new List<string> (new string[] {"Before joining the corp ","Back in his hometown, ", "For a long time, ", 
 		"Since he was a child ", "Even though he would never admit it ", "Years before he joined the Corp " });
 
-	private List<string>  storyChange = new List<string> (new string[] {"only one step behind." , "only he never had the privilidge of being an all powerful eye in the sky." ,
-		"except for the part where he joined the army instead of playing video games all the time.", " except for the part where he was fated to die in an upcomng battle."
-	,"and he means to take your place.", "only with less cake and more portals."});
+	private List<string>  storyChange = new List<string> (new string[] {"only one step behind. " , "only he never had the privilidge of being an all powerful eye in the sky. " ,
+		"except for the part where he joined the army instead of playing video games all the time. ", " except for the part where he was fated to die in an upcomng battle. "
+	,"and he means to take your place. ", "only with less cake and more portals. "});
 
 
 	private List<string>  terrors = new List<string> (new string[] {
-		" He's seen things.  Things you couldn't possibly imagine...   Terrible things that would haunt your dreams. Nightmares that wake him in a pool of sweat.",
-		" Every time he closes his eyes at night, abstract horrors and memories are all he sees... Shapes ... Colors.... Sounds... its all too vague to describe.", 
+		" He's seen things.  Things you couldn't possibly imagine...   Terrible things that would haunt your dreams. Nightmares that wake him in a pool of sweat. ",
+		" Every time he closes his eyes at night, abstract horrors and memories are all he sees... Shapes ... Colors.... Sounds... its all too vague to describe. ", 
 		" He has done terrible things which he can't write home about. He can't even talk to dog about them. Most people just think he's mute because of how little he talks. Maybe he is. ", 
 		" He wonders when the war will end, when his commanders will stop sending him into battle after battle for reasons he doesn't understand. "});
 
@@ -160,7 +160,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 	private List<string> escaped= new List<string> (new string[] { "by faking his own death", "","somehow", "through an air duct", "after being turned into a newt (he got better)", 
 		"by tunneling his way out", "by following the East Sea current", "with the help of his future self", "by murdering everyone" });
 
-	private List<string> additions=  new List<string> (new string[] { ", In addition to manning a deadly war machine. ", ". ", ". ", ", as well as managing the arsenal lockers." 
+	private List<string> additions=  new List<string> (new string[] { ", In addition to manning a deadly war machine. ", ". ", ". ", ", as well as managing the arsenal lockers. " 
 		," due to military incompetance. ", " in addition to manning heavy machinery. " + " because he didn't know how to do much else. ", " but he hijacked this vehicle for the day. " });
 
 	public string getIntro()
@@ -235,29 +235,29 @@ public class VeteranStats : IComparable<VeteranStats>{
 	//============================== Intro =========================================================
 	private string getSentanceA()
 	{
-		string s =  starter [UnityEngine.Random.Range (0, starter.Count - 1)] + UnitName + " was a "+ jobAdj[UnityEngine.Random.Range (0, jobAdj.Count - 1)] + " " + jobs [UnityEngine.Random.Range (0, jobs.Count - 1)] + ". ";
+		string s =  starter [UnityEngine.Random.Range (0, starter.Count )] + UnitName + " was a "+ jobAdj[UnityEngine.Random.Range (0, jobAdj.Count )] + " " + jobs [UnityEngine.Random.Range (0, jobs.Count )] + ". ";
 		s +=  getReason ();
 		return s;
 	}
 
 	private string getSentanceB()
 	{
-		string s = UnitName + " had always been very "+ pastEmotions[UnityEngine.Random.Range (0, pastEmotions.Count - 1)] + " as a "+ jobAdj[UnityEngine.Random.Range (0, jobAdj.Count - 1)] + " " + jobs [UnityEngine.Random.Range (0, jobs.Count - 1)] + ". ";
+		string s = UnitName + " had always been very "+ pastEmotions[UnityEngine.Random.Range (0, pastEmotions.Count - 1)] + " as a "+ jobAdj[UnityEngine.Random.Range (0, jobAdj.Count )] + " " + jobs [UnityEngine.Random.Range (0, jobs.Count)] + ". ";
 		s += getReason ();
 		return s;
 	}
 
 	private string getSentanceC()
 	{
-		string s = "At age " + UnityEngine.Random.Range(6,16) +" " + UnitName + " took up the family tradition of being a " + jobs [UnityEngine.Random.Range (0, jobs.Count - 1)] + ". ";
+		string s = "At age " + UnityEngine.Random.Range(6,16) +" " + UnitName + " took up the family tradition of being a " + jobs [UnityEngine.Random.Range (0, jobs.Count)] + ". ";
 		s +=  getReason ();
 		return s;
 	}
 
 	private string getSentanceD()
 	{
-		string s = UnitName + "'s mother and father were so "+pastEmotions[UnityEngine.Random.Range (0, pastEmotions.Count - 1)]+" when he left his old job as a " 
-			+ jobs [UnityEngine.Random.Range (0, jobs.Count - 1)] + " to become a member of the corp. ";
+		string s = UnitName + "'s mother and father were so "+pastEmotions[UnityEngine.Random.Range (0, pastEmotions.Count )]+" when he left his old job as a " 
+			+ jobs [UnityEngine.Random.Range (0, jobs.Count)] + " to become a member of the corp. ";
 		s += getReason ();
 		return s;
 	}
@@ -265,20 +265,20 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private string getSentanceE()
 	{
-		string s = UnitName + " has been in the corp his whole life." + terrors[UnityEngine.Random.Range (0, terrors.Count - 1)] +" I hope you never have to endure what he has....";
+		string s = UnitName + " has been in the corp his whole life." + terrors[UnityEngine.Random.Range (0, terrors.Count )] +" I hope you never have to endure what he has....";
 		return s;
 	}
 
 	private string getSentanceZ()
 	{
-		string s = UnitName + "'s story is the same as yours, " + storyChange [UnityEngine.Random.Range (0, storyChange.Count - 1)];
+		string s = UnitName + "'s story is the same as yours, " + storyChange [UnityEngine.Random.Range (0, storyChange.Count )];
 		s += getReason ();
 		return s;
 	}
 
 	private string getSentanceY()
 	{
-		string s = UnitName + " doesn't remember much of his childhood, " +   childhood[UnityEngine.Random.Range (0, childhood.Count - 1)];
+		string s = UnitName + " doesn't remember much of his childhood, " +   childhood[UnityEngine.Random.Range (0, childhood.Count)];
 		s += getReason ();
 		return s;
 	}
@@ -288,7 +288,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private string getSentanceF()
 	{
-		string s = UnitName + "'s entire family was " + negativeVerbs [UnityEngine.Random.Range (0, negativeVerbs.Count - 1)] + " by a gang of " + villians [UnityEngine.Random.Range (0, villians.Count - 1)] + 
+		string s = UnitName + "'s entire family was " + negativeVerbs [UnityEngine.Random.Range (0, negativeVerbs.Count)] + " by a gang of " + villians [UnityEngine.Random.Range (0, villians.Count)] + 
 			", and he's here to take their revenge. ";
 		s += getThird ();
 		return s;
@@ -296,14 +296,14 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private string getSentanceG()
 	{
-		string s ="He was never able to reach his dream of being a " + jobs [UnityEngine.Random.Range (0, jobs.Count - 1)] + ", so he settled for joining the corp. ";
+		string s ="He was never able to reach his dream of being a " + jobs [UnityEngine.Random.Range (0, jobs.Count )] + ", so he settled for joining the corp. ";
 		s += getThird ();
 		return s;
 	}
 
 	private string getSentanceH()
 	{
-		string s = "He lost a "+ bets [UnityEngine.Random.Range (0, bets.Count - 1)] + " bet and had to enlist in the corp. ";
+		string s = "He lost a "+ bets [UnityEngine.Random.Range (0, bets.Count )] + " bet and had to enlist in the corp. ";
 		s += getThird ();
 		return s;
 	}
@@ -311,30 +311,30 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private string getSentanceI()
 	{
-		string s ="He was always afraid of " + villians [UnityEngine.Random.Range (0, villians.Count - 1)]+  ", so he joined the corp get over his fear. ";
+		string s ="He was always afraid of " + villians [UnityEngine.Random.Range (0, villians.Count )]+  ", so he joined the corp get over his fear. ";
 		s += getThird ();
 		return s;
 	}
 
 	private string getSentanceII()
 	{
-		string s ="When things didn't work out back home, he got mixed up with the " + factions [UnityEngine.Random.Range (0, factions.Count - 1)] +
-			". He escaped " + escaped [UnityEngine.Random.Range (0, escaped.Count - 1)]  +" then joined the corp. ";
+		string s ="When things didn't work out back home, he got mixed up with the " + factions [UnityEngine.Random.Range (0, factions.Count )] +
+			". He escaped " + escaped [UnityEngine.Random.Range (0, escaped.Count )]  +" then joined the corp. ";
 		s += getThird ();
 		return s;
 	}
 
 	private string getSentanceJ()
 	{
-		string s = spyJob[UnityEngine.Random.Range (0, spyJob.Count - 1)]  
-			+ factions [UnityEngine.Random.Range (0, factions.Count - 1)] + " . " + fellowReactions[UnityEngine.Random.Range (0, fellowReactions.Count - 1)];
+		string s = spyJob[UnityEngine.Random.Range (0, spyJob.Count )]  
+			+ factions [UnityEngine.Random.Range (0, factions.Count )] + " . " + fellowReactions[UnityEngine.Random.Range (0, fellowReactions.Count )];
 		s += getThird ();
 		return s;
 	}
 
 	private string getSentanceJJ()
 	{
-		string s =  "He had been on the run for years from " + factions [UnityEngine.Random.Range (0, factions.Count - 1)] + " before he escaped by joining the military. ";
+		string s =  "He had been on the run for years from " + factions [UnityEngine.Random.Range (0, factions.Count )] + " before he escaped by joining the military. ";
 		s += getThird ();
 		return s;
 	}
@@ -342,26 +342,26 @@ public class VeteranStats : IComparable<VeteranStats>{
 	//============================================================ Third ===========================================================
 	private string getSentanceM()
 	{
-		string s = "After joining the corp he was quickly given the duty of " + office [UnityEngine.Random.Range (0, office.Count - 1)]+ 
+		string s = "After joining the corp he was quickly given the duty of " + office [UnityEngine.Random.Range (0, office.Count )]+ 
 			additions[UnityEngine.Random.Range (0, additions.Count - 1)];
 		return s;
 	}
 
 	private string getSentanceN()
 	{
-		string s = "While in the corp he gained the nick name of " + nicknames [UnityEngine.Random.Range (0, nicknames.Count - 1)] + ". ";
+		string s = "While in the corp he gained the nick name of " + nicknames [UnityEngine.Random.Range (0, nicknames.Count)] + ". ";
 		return s;
 	}
 
 	private string getSentanceO()
 	{
-		string s = "During his free time " + UnitName + " likes to " + thingsToDo[UnityEngine.Random.Range (0, thingsToDo.Count - 1)] +". ";
+		string s = "During his free time " + UnitName + " likes to " + thingsToDo[UnityEngine.Random.Range (0, thingsToDo.Count )] +". ";
 		return s;
 	}
 
 	private string getSentanceP()
 	{
-		string s = "After he retires, " + UnitName + " plans to go to grad school to become a " + jobs [UnityEngine.Random.Range (0, jobs.Count - 1)] +". ";
+		string s = "After he retires, " + UnitName + " plans to go to grad school to become a " + jobs [UnityEngine.Random.Range (0, jobs.Count )] +". ";
 		return s;
 	}
 
@@ -373,12 +373,12 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private string getSentanceAA()
 	{
-		string s = "Even though he lost a " +bodyParts [UnityEngine.Random.Range (0, bodyParts.Count - 1)] + " during combat," + UnitName +" still serves proudly.";
+		string s = "Even though he lost a " +bodyParts [UnityEngine.Random.Range (0, bodyParts.Count )] + " during combat, " + UnitName +" still serves proudly. ";
 		return s;
 	}
 	private string getSentanceBB()
 	{
-		string s = UnitName + " got his "+bodyParts [UnityEngine.Random.Range (0, bodyParts.Count - 1)] + " shot off and he has never been the same. ";
+		string s = UnitName + " got his "+bodyParts [UnityEngine.Random.Range (0, bodyParts.Count)] + " shot off and he has never been the same. ";
 		return s;
 	}
 

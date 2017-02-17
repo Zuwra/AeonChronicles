@@ -11,7 +11,7 @@ public class TunnelSpawner : MonoBehaviour {
 
 	GameObject[] usedPoints;
 
-
+	int diff;
 	public GameObject tunnelObject;
 	[Tooltip("How many seconds on average between each spawn")]
 	public float spawnRate;
@@ -22,6 +22,12 @@ public class TunnelSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		usedPoints = new GameObject[spawnPoints.Count];
+		diff = LevelData.getDifficulty ();
+	
+		firstSpawnTime -= ((diff -1) * 15);
+		increaseSpawnRate += ((diff -1) * .2f);
+		spawnRate -= ((diff -1) * 2);
+
 		Invoke("SpawnWave", firstSpawnTime);
 	}
 	
@@ -30,7 +36,7 @@ public class TunnelSpawner : MonoBehaviour {
 
 		bool used= false;
 		for (int i = 0; i < 6; i++) {
-			int index = Random.Range (0, spawnPoints.Count - 1);
+			int index = Random.Range (0, spawnPoints.Count);
 			if (usedPoints [index] == null) {
 				Instantiate (tunnelObject, spawnPoints [index], Quaternion.identity);
 				used = true;

@@ -16,8 +16,10 @@ public class SimpleSpawner : MonoBehaviour {
 	void Start () {
 		difficultyM = GameObject.FindObjectOfType<DifficultyManager> ();
 		if (enemyTypes.Count > 0) {
-			Invoke ("SpawnEnemy", 15);
+			Invoke ("SpawnEnemy", 12);
 		}
+
+		spawnRate -= ((LevelData.getDifficulty() -1) * 2);
 		attackPoint = GameObject.FindObjectOfType<sPoint> ().transform.position;
 	}
 
