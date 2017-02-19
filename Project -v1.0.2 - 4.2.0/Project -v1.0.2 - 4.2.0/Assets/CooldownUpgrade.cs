@@ -18,6 +18,7 @@ public class CooldownUpgrade : Upgrade
 		{
 			manager.GetComponent<BloodMist> ().myCost.cooldown -= 10;
 			manager.GetComponent<DeployTurret> ().ReplicationTime -= 10;;
+			manager.GetComponent<DeployTurret> ().myCost.cooldown -= 10;
 			manager.GetComponent<SingleTarget> ().myCost.cooldown -=10;
 		}
 

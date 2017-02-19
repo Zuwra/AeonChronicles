@@ -65,7 +65,7 @@ public class TunnelSpawner : MonoBehaviour {
 	{
 		foreach (Vector3 vec in spawnPoints) {
 		
-			Gizmos.DrawSphere (vec, 3);
+			Gizmos.DrawSphere (vec, 8);
 		}
 
 
