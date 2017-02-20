@@ -285,6 +285,7 @@
      <Compile Include="Assets\DropDownDudeFinder.cs" />
      <Compile Include="Assets\DuplexPlating.cs" />
      <Compile Include="Assets\EMPblast.cs" />
+     <Compile Include="Assets\EarthQuake.cs" />
      <Compile Include="Assets\EconomyManager.cs" />
      <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\EnableAbility.cs" />

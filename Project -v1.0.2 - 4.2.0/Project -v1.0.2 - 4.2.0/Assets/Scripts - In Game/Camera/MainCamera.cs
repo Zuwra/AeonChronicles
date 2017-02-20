@@ -360,7 +360,43 @@ public class MainCamera : MonoBehaviour, ICamera {
 	}
 
 
+	public void ShakeCamera(float Duration, float Intensity)
+	{
+		StartCoroutine(CameraShake(Duration, Intensity));
+	}
 
+	IEnumerator CameraShake(float duration, float intensity)
+	{
+
+		float elapsed = 0.0f;
+		Vector3 totalMovement = Vector3.zero;
+
+		while (elapsed < duration) {
+
+	
+
+			float MiniShake = 0;
+	
+			Vector3 toMove = new Vector3(Random.value  - .5f, Random.value  - .5f,Random.value - .5f) * intensity;
+
+
+			while(MiniShake < .1f)
+				{MiniShake += Time.deltaTime;
+				transform.Translate (toMove * Time.deltaTime);
+				totalMovement += toMove * Time.deltaTime;
+				yield return null;
+				}
+			elapsed += MiniShake;
+
+		}
+
+		float ReturnTime = 0.0f;
+		while (ReturnTime< .1f) {
+			ReturnTime += Time.deltaTime;
+			transform.Translate ((totalMovement * -1) * Time.deltaTime/ .1f);
+			yield return null;
+		}
+	}
 
 }
 
