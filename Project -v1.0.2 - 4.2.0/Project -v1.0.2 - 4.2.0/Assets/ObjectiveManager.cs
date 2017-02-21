@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class ObjectiveManager : MonoBehaviour {
 
@@ -79,9 +80,12 @@ public class ObjectiveManager : MonoBehaviour {
 	}
 
 	public void updateObjective(Objective obj)
-	{
+	{try{
 		bonusObjectives [obj].GetComponentInChildren<Text> ().text =  "" + obj.description;
-	
+		}
+		catch(Exception ){
+			mainObjectives[obj].GetComponentInChildren<Text> ().text =  "" + obj.description;
+		}
 	}
 
 

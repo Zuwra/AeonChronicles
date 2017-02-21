@@ -13,7 +13,7 @@ public class EarthQuake : MonoBehaviour {
 	public Text percentage;
 	public float CameraShakeIntensity = 8;
 	int lastPercent;
-
+	public SurviveVictory survival;
 
 	public MultiShotParticle myParticle;
 	public GameObject QuakeBuilding;
@@ -59,10 +59,16 @@ public class EarthQuake : MonoBehaviour {
 	public void generateEarthQuake()
 	{
 		if (!Coolingdown) {
-			MainCamera.main.ShakeCamera (1.6f,CameraShakeIntensity);
+			MainCamera.main.ShakeCamera (1.2f,CameraShakeIntensity);
 			if (myParticle) {
 				myParticle.playEffect ();
 			}
+			if (survival) {
+				survival.increaseWait ();
+			}
+
+			if (QuakeBuilding) {
+				QuakeBuilding.GetComponentInChildren<Animator> ().SetTrigger("Pulse");}
 			GameObject[] unitListCopy = enemyRace.getUnitList ().ToArray ();
 			for (int i = 0; i < unitListCopy.Length; i++) {
 
