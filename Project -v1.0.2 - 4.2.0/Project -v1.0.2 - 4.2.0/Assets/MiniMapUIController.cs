@@ -15,7 +15,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 
 	public GameObject warningSymbol;
-
+	public Sprite defaultWarning;
 	private bool[,] virtUnitTexture;
 	private Texture2D UnitTexture;
 
@@ -136,10 +136,15 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 	public void showWarning(Vector3 location)
 	{
-		StartCoroutine (displayWarning (location));
+		StartCoroutine (displayWarning (location, defaultWarning));
 	}
 
-	IEnumerator displayWarning( Vector3 location)
+	public void showWarning(Vector3 location, Sprite myImage)
+	{
+		StartCoroutine (displayWarning (location, myImage));
+	}
+
+	IEnumerator displayWarning( Vector3 location, Sprite symbol)
 	{
 		RectTransform newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
 		int iCoord = (int)(((location.x - Left) / (WorldWidth)) * newParent.rect.width);
@@ -149,10 +154,41 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 
 		GameObject obj = (GameObject)Instantiate (warningSymbol, new Vector2(iCoord, jCoord), Quaternion.identity, newParent);
+		obj.GetComponent<Image> ().sprite = symbol;
 		obj.transform.localPosition = new Vector2 (iCoord - newParent.rect.width/2 , jCoord - newParent.rect.height/2);
 		yield return new WaitForSeconds (10);
 		Destroy (obj);
 	}
+
+	List<GameObject> currentIcons = new List<GameObject> ();
+
+	public GameObject showUnitIcon( Vector3 location, Sprite symbol)
+	{
+		RectTransform newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
+		int iCoord = (int)(((location.x - Left) / (WorldWidth)) * newParent.rect.width);
+		int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * newParent.rect.height);
+
+		//Debug.Log ("Creating warning");
+
+
+		GameObject obj = (GameObject)Instantiate (warningSymbol, new Vector2(iCoord, jCoord), Quaternion.identity, newParent);
+		obj.GetComponent<Image> ().sprite = symbol;
+		obj.transform.localPosition = new Vector2 (iCoord - newParent.rect.width/2 , jCoord - newParent.rect.height/2);
+		currentIcons.Add (obj);
+		return obj;
+	}
+
+	public void deleteUnitIcon(GameObject iconObj)
+	{
+		if (currentIcons.Contains (iconObj)) {
+			currentIcons.Remove (iconObj);
+			Destroy (iconObj);
+		}
+	}
+
+
+
+
 
 
     // Update is called once per frame

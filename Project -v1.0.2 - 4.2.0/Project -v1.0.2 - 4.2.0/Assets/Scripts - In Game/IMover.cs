@@ -60,8 +60,10 @@ public abstract class IMover: MonoBehaviour {
 
 	public void changeSpeed(float perc, float flat, bool perm, Object obj )
 	{if (perm) {
+			//Debug.Log ("Initial speed " + initialSpeed + "   " + flat + "   " + perc);
 			initialSpeed += flat;
 			initialSpeed *= perc;
+			//Debug.Log ("Final speed is " + initialSpeed);
 	} else {
 		// This will need to be changed if a source can apply different amounts of speed changes
 		foreach (SpeedMod a in ASMod) {
