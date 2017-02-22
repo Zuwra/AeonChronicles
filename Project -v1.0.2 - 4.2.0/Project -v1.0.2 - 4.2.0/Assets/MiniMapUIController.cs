@@ -74,11 +74,11 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	Ray ray4 ;
 
 	Texture2D panelTex ;
-
+	RectTransform newParent;
 
     // Use this for initialization
     void Start () {
-
+		newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
 		// Use for Fog of War
 		Texture2D panelTex = new Texture2D (1, 1);
 		panelTex.SetPixels32 (new Color32[] { new Color32 (255, 255, 255, 64) });
@@ -125,7 +125,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 				PointArray [i, j] = new Point (i, j);
 			}
 		}
-
+		WidthScale = textureWidth/ WorldWidth;
+		HeightScale = textureHeight / WorldHeight;
    
 		InvokeRepeating ("updateScreenRect", .1f, minimapUpdateRate);
 		InvokeRepeating ("setFog", .05f, minimapUpdateRate);
@@ -146,7 +147,6 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 	IEnumerator displayWarning( Vector3 location, Sprite symbol)
 	{
-		RectTransform newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
 		int iCoord = (int)(((location.x - Left) / (WorldWidth)) * newParent.rect.width);
 		int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * newParent.rect.height);
 
@@ -183,6 +183,15 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		if (currentIcons.Contains (iconObj)) {
 			currentIcons.Remove (iconObj);
 			Destroy (iconObj);
+		}
+	}
+
+	public void updateUnitPos(GameObject sprite, Vector3 location)
+	{
+		if (currentIcons.Contains (sprite)) {
+			int iCoord = (int)((location.x - Left) * WidthScale);
+			int jCoord = (int)((location.y - bottom) * HeightScale);
+			sprite.transform.localPosition = new Vector2 (iCoord - newParent.rect.width / 2, jCoord - newParent.rect.height / 2);
 		}
 	}
 
@@ -271,6 +280,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 	List<Point> usedUnitPoints;
 	List<Point> usedTriangleList;
+	float WidthScale;
+	float HeightScale;
 	private void updateTexture(Texture2D tex, bool[,] virtMap)
 	{
 		//Debug.Log ("A " + Environment.TickCount);
@@ -283,8 +294,6 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		int iCoord;
 		int jCoord;
 		int chitSize; 
-		float WidthScale = textureWidth/ WorldWidth;
-		float HeightScale = textureHeight / WorldHeight;
 
 		for(int i = 0; i <3; i ++){
 		//foreach (RaceManager race in gameMan.playerList) { // Loops 3 times

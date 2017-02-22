@@ -1,14 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UnitSlower.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UI\UIManager.cs">
     <Files>
       <File FileName="Assets\EarthQuake.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="1" Column="1" />
       <File FileName="Assets\MultiShotParticle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsHelper.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitSlower.cs" Line="20" Column="3" />
-      <File FileName="Assets\Scripts - In Game\IMover.cs" Line="57" Column="3" />
+      <File FileName="Assets\UnitSlower.cs" Line="1" Column="1" />
+      <File FileName="Assets\MiniMapIconer.cs" Line="30" Column="46" />
+      <File FileName="Assets\MiniMapUIController.cs" Line="196" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="834" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
