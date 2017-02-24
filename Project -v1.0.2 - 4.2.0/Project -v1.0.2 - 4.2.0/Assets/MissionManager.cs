@@ -41,6 +41,12 @@ public class MissionManager : MonoBehaviour {
 
 	}
 
+	public void Replay()
+	{
+		StartMission( PlayerPrefs.GetInt("RecentLevel", 1));
+
+	}
+
 
 	public void StartMission(int levelNum)
 	{

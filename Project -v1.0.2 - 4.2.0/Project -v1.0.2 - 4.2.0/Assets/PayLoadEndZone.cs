@@ -20,6 +20,8 @@ public class PayLoadEndZone : MonoBehaviour {
 					VictoryTrigger.instance.Lose ();
 				}
 			
+			} else {
+				manage.gameObject.SetActive (false);
 			}
 
 		}

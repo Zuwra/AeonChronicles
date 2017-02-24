@@ -1,15 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UI\UIManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PayLoadEndZone.cs">
     <Files>
       <File FileName="Assets\EarthQuake.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="1" Column="1" />
-      <File FileName="Assets\MultiShotParticle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitSlower.cs" Line="1" Column="1" />
-      <File FileName="Assets\MiniMapIconer.cs" Line="30" Column="46" />
-      <File FileName="Assets\MiniMapUIController.cs" Line="196" Column="3" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="834" Column="1" />
+      <File FileName="Assets\Scripts - In Game\MoveState.cs" Line="29" Column="35" />
+      <File FileName="Assets\AstarPathfindingProject\RVO\RVOController.cs" Line="242" Column="28" />
+      <File FileName="Assets\CustomRVO.cs" Line="152" Column="34" />
+      <File FileName="Assets\Scripts - In Game\BuildUnit.cs" Line="172" Column="3" />
+      <File FileName="Assets\MiniMapUIController.cs" Line="189" Column="64" />
+      <File FileName="Assets\Scripts - In Game\IMover.cs" Line="118" Column="3" />
+      <File FileName="Assets\UnitSlower.cs" Line="31" Column="3" />
+      <File FileName="Assets\PayLoadEndZone.cs" Line="25" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

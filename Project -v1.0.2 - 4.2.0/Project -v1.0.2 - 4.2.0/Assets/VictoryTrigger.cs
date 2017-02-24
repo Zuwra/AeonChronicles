@@ -29,6 +29,7 @@ public class VictoryTrigger : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		instance = this;
+		PlayerPrefs.SetInt ("RecentLevel", levelNumber);
 	}
 	
 	// Update is called once per frame

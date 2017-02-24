@@ -164,7 +164,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 	public GameObject showUnitIcon( Vector3 location, Sprite symbol)
 	{
-		RectTransform newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
+		//RectTransform newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
 		int iCoord = (int)(((location.x - Left) / (WorldWidth)) * newParent.rect.width);
 		int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * newParent.rect.height);
 
@@ -189,8 +189,9 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	public void updateUnitPos(GameObject sprite, Vector3 location)
 	{
 		if (currentIcons.Contains (sprite)) {
-			int iCoord = (int)((location.x - Left) * WidthScale);
-			int jCoord = (int)((location.y - bottom) * HeightScale);
+			
+			int iCoord = (int)(((location.x - Left) / (WorldWidth)) * newParent.rect.width);
+			int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * newParent.rect.height);
 			sprite.transform.localPosition = new Vector2 (iCoord - newParent.rect.width / 2, jCoord - newParent.rect.height / 2);
 		}
 	}
@@ -460,9 +461,13 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 			ctr += 1/Iterate;
 
 			if (t.x > 0 && t.y < tex.height && t.x <tex.width)
-				{usedTriangleList.Add (PointArray[(int)t.x, (int)t.y]);
+				{
+				try{
+				usedTriangleList.Add (PointArray[(int)t.x, (int)t.y]);
 				virtMap [(int)t.x,(int)t.y] = true;
-				tex.SetPixel ((int)t.x, (int)t.y, Color.magenta);
+					tex.SetPixel ((int)t.x, (int)t.y, Color.magenta);}
+				catch(Exception){
+				}
 			}
 		
 		}

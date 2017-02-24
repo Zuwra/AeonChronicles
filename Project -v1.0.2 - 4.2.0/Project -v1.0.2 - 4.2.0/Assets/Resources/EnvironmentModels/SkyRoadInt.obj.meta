@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: pCube24
     100002: //RootNode
+    100004: SkyRoadInt:pCube24
     400000: pCube24
     400002: //RootNode
+    400004: SkyRoadInt:pCube24
     2300000: pCube24
+    2300002: SkyRoadInt:pCube24
     3300000: pCube24
+    3300002: SkyRoadInt:pCube24
     4300000: pCube24
+    4300002: SkyRoadInt:pCube24
   materials:
     importMaterials: 1
     materialName: 0

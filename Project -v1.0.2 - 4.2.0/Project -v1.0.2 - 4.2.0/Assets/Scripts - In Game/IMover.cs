@@ -111,7 +111,9 @@ public abstract class IMover: MonoBehaviour {
 			speed = MaxSpeed;}
 		
 		RVOController rvo = GetComponent<RVOController> ();
-		rvo.maxSpeed = MaxSpeed;
+		if (rvo) {
+			rvo.maxSpeed = MaxSpeed;
+		}
 	
 	}
 

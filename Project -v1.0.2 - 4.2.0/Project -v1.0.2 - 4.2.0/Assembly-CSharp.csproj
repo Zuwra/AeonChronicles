@@ -367,6 +367,7 @@
      <Compile Include="Assets\MissileProjectile.cs" />
      <Compile Include="Assets\MissionLogger.cs" />
      <Compile Include="Assets\MissionManager.cs" />
+     <Compile Include="Assets\MissionMapManager.cs" />
      <Compile Include="Assets\MoneyPickUp.cs" />
      <Compile Include="Assets\Morph.cs" />
      <Compile Include="Assets\MultiShotParticle.cs" />

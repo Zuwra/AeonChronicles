@@ -88,24 +88,14 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			StartCoroutine (UltFourNotif ());}
 	
 	}
-
-	bool UltOneUp;
-	bool UltTwoUp;
-	bool UltThreeUp;
-	bool UltFourUp;
-
+		
 
 	public void UltUpdate()
 	{
-		if (slideOne && UltOne.active && !UltOneUp) {
+		if (slideOne && UltOne.active ) {
 			slideOne.value = UltOne.myCost.cooldownProgress ();
 			slideOne.gameObject.SetActive (slideOne.value < .99 && slideOne.value > .02f);
 			ultBOne.interactable = (slideOne.value  > .99);
-
-			if (ultBOne.interactable == true) {
-				UltOneUp = true;
-			}
-		
 
 		}
 
@@ -747,7 +737,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void useAbilityOne()
 	{if (UltOne != null) {
+			Debug.Log ("Casting ");
 			if (UltOne.active && UltOne.canActivate (true).canCast) {
+				Debug.Log ("Cast it fo real");
 				uiManage.SwitchMode (Mode.globalAbility);
 				uiManage.setAbility (UltOne, 1);
 			}

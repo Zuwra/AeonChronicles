@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour {
 	public List<GameObject> Expositions = new List<GameObject> ();
 
 	public List<Dropdown> difficultyBars = new List<Dropdown> ();
+	public List<string> levelNames;
 	public List<Button> levelButtons = new List<Button> ();
 	public GameObject currentIntro;
 	public Canvas Technology;
@@ -36,7 +37,7 @@ public class LevelManager : MonoBehaviour {
 	public GameObject defaultTurret;
 
 	public VoiceContainer voicePacks;
-
+	public Text ReplayButtonText;
 
 	public static LevelManager main;
 	// Use this for initialization
@@ -55,6 +56,7 @@ public class LevelManager : MonoBehaviour {
 			levelButtons [i].interactable = (i <= Mathf.Min(3, LevelData.getHighestLevel()));
 		}
 
+		ReplayButtonText.text = "Replay:\n" + levelNames [PlayerPrefs.GetInt ("RecentLevel")];
 
 		//levelIntros [LevelData.currentLevel].SetActive (true);
 		if (levelIntros.Count > 0) {
@@ -84,8 +86,6 @@ public class LevelManager : MonoBehaviour {
 		changeMoney (0);
 
 	}
-
-
 
 
 

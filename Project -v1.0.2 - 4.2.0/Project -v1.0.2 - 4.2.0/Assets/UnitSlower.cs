@@ -21,14 +21,35 @@ public class UnitSlower : MonoBehaviour {
 		UnitManager manage = col.GetComponent<UnitManager> ();
 		if (manage) {
 			if (manage.PlayerOwner == playerOwner && manage.cMover) {
-				if (slowUnits) {
-					manage.cMover.changeSpeed (.45f, 0, true, this);
-				} else {
-					manage.cMover.changeSpeed (1.5f, 0, true, this);
-				}
+				StartCoroutine (waitForSec (manage));
 			
 			}
 		}
+	}
+
+	void OnTriggerExit(Collider col)
+	{
+		UnitManager manage = col.GetComponent<UnitManager> ();
+		if (manage) {
+			if (manage.PlayerOwner == playerOwner && manage.cMover) {
+				manage.cMover.removeSpeedBuff (this);
+
+			}
+		}
+	}
+
+
+	IEnumerator waitForSec( UnitManager manage)
+	{
+		yield return null;
+
+		if (slowUnits) {
+			manage.cMover.changeSpeed (.45f, 0, false, this);
+		} else {
+			manage.cMover.changeSpeed (1.5f, 0,false, this);
+		}
+
+
 	}
 
 

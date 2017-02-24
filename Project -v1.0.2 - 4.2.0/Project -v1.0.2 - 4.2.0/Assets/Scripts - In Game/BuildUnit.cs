@@ -175,10 +175,10 @@ public class BuildUnit : UnitProduction {
 			constObject.SetActive (false);
 		}
 		HD.stopBuilding ();
-		Vector3 location = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z);
+		Vector3 location = new Vector3(this.gameObject.transform.position.x + 4,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z -7);
 
 		GameObject unit = (GameObject)Instantiate(unitToBuild, location, Quaternion.identity);
-
+		unit.transform.LookAt (location + Vector3.right + Vector3.back);
 		UnitManager unitMan = unit.GetComponent<UnitManager> ();
 		unitMan.setInteractor();
 		unitMan.interactor.initialize ();
@@ -186,7 +186,7 @@ public class BuildUnit : UnitProduction {
 
 			//Sends units outside of the Construction yard, so it looks like they were built inside.
 			unitMan.GiveOrder (Orders.CreateMoveOrder(new Vector3(this.gameObject.transform.position.x +10,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z -16)));
-
+			//Debug.Log ("ordering to move " + new Vector3(this.gameObject.transform.position.x +10,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z -16));
 			//Queue a command if they have a rally point or unit
 			if (myInteractor.rallyUnit != null) {
 				
