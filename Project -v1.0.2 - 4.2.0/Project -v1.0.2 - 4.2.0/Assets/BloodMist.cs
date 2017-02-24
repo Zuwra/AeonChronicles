@@ -38,7 +38,7 @@ public class BloodMist : TargetAbility {
 	public continueOrder canActivate(bool showError){
 
 		continueOrder order = new continueOrder ();
-		if (chargeCount == 0) {
+		if (chargeCount == 0 && chargeCount != -1) {
 			order.canCast = false;
 		}
 
@@ -50,6 +50,9 @@ public class BloodMist : TargetAbility {
 				order.canCast = true;
 			}
 		} else {
+			order.nextUnitCast = false;
+		}
+		if (order.canCast) {
 			order.nextUnitCast = false;
 		}
 		return order;
@@ -133,7 +136,7 @@ public class BloodMist : TargetAbility {
 			active = false;
 		}
 		myCost.startCooldown ();
-		yield return new WaitForSeconds (myCost.cooldown);
+		yield return new WaitForSeconds (myCost.cooldown-.2f);
 
 
 		active = true;

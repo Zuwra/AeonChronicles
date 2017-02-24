@@ -32,7 +32,9 @@ public class TurretDeathTrigger : MonoBehaviour, Modifier{
 	// If I die, I need to let my parent tank know that I am gone
 	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{ 
-		transform.GetComponentInParent<TurretMount> ().unPlaceTurret();
+		if (transform.GetComponentInParent<TurretMount> ()) {
+			transform.GetComponentInParent<TurretMount> ().unPlaceTurret ();
+		}
 
 
 		//mymanager.myStats.kill (source);

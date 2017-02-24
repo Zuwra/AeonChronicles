@@ -131,11 +131,11 @@ public class DeployTurret  : TargetAbility{
 	IEnumerator replicateTurrets()
 	{
 		if (chargeCount == 0) {
-			myCost.startCooldown ();
-			active = false;
+		active = false;
 		}
+		myCost.startCooldown ();
 		FabricateEffect.continueEffect ();
-		yield return new WaitForSeconds (ReplicationTime);
+		yield return new WaitForSeconds (ReplicationTime -.2f);
 		FabricateEffect.stopEffect ();
 		active = true;
 		changeCharge (1);
@@ -264,12 +264,15 @@ public class DeployTurret  : TargetAbility{
 		order.nextUnitCast = false;
 
 		if (chargeCount == 0) {
-			order.canCast = false;}
+
+			Debug.Log ("Charge is 0");
+			order.canCast = false;
+			order.nextUnitCast = true;}
 
 		if (!active) {
 			order.reasonList.Add (continueOrder.reason.requirement);
 		}
-
+		//Debug.Log ("Returning " + order.canCast);
 		return order;
 
 	}
@@ -285,10 +288,9 @@ public class DeployTurret  : TargetAbility{
 
 		if (chargeCount == maxChargeCount) {
 			currentReplciation = StartCoroutine (replicateTurrets ());
-		} else if (chargeCount == 1) {
-			myCost.startCooldown ();
-		}
+		} 
 
+		myCost.startCooldown ();
 		changeCharge (-1);
 
 
@@ -331,9 +333,9 @@ public class DeployTurret  : TargetAbility{
 		if (chargeCount == maxChargeCount) {
 			currentReplciation =  StartCoroutine (replicateTurrets());
 		}
-		else if (chargeCount == 1) {
+	
 			myCost.startCooldown ();
-		}
+
 
 		changeCharge (-1);
 		if (target) {
@@ -375,7 +377,7 @@ public class DeployTurret  : TargetAbility{
 
 
 	public void changeCharge(int n)
-	{
+	{//Debug.Log ("Calling Change Charge");
 		chargeCount += n;
 		if (chargeCount == 0) {
 			active = false;
@@ -391,17 +393,18 @@ public class DeployTurret  : TargetAbility{
 	{
 
 		Vector3 location = new Vector3(this.gameObject.transform.position.x + 25,this.gameObject.transform.position.y+4,this.gameObject.transform.position.z);
-		changeCharge (-1);
+		//changeCharge (-1);
 
 		GameObject tur = (GameObject)Instantiate(currentTurret, location, Quaternion.identity);
 
 		if (chargeCount == maxChargeCount) {
 			currentReplciation = StartCoroutine (replicateTurrets ());
-		} else if (chargeCount == 1) {
-			myCost.startCooldown ();
-		}
+		} 
+			
+		myCost.startCooldown ();
 
-		changeCharge (-1);
+
+		//changeCharge (-1);
 
 		return tur;
 	}

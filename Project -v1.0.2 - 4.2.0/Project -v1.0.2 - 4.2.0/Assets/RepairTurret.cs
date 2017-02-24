@@ -55,7 +55,9 @@ public class RepairTurret : Ability, Modifier{
 		
 			if(target &&  Vector3.Distance (target.transform.position, this.gameObject.transform.position) < 40)
 			{
-				mymanager.cMover.stop ();
+				if (mymanager.cMover) {
+					mymanager.cMover.stop ();
+				}
 				mymanager.changeState (new DefaultState());
 				droneScript.setTarget (target);
 				DroneAway = true;

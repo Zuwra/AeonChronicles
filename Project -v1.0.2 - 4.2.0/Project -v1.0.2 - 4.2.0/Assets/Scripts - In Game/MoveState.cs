@@ -40,7 +40,7 @@ public class MoveState : UnitState{
 	public void Update () {
 
 	
-		if (myManager.cMover.move ()) 
+		if (myManager.cMover && myManager.cMover.move ()) 
 		{
 				myManager.changeState(new DefaultState());	}
 	

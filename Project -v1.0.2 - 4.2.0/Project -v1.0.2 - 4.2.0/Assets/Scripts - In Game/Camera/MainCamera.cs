@@ -155,7 +155,7 @@ public class MainCamera : MonoBehaviour, ICamera {
             }
 
         }
-        Debug.Log("END WHILE");
+      //  Debug.Log("END WHILE");
 
     }
 

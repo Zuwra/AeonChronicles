@@ -203,7 +203,7 @@ public class SingleTarget:  TargetAbility {
 		
 		}
 		myCost.startCooldown ();
-		yield return new WaitForSeconds (myCost.cooldown);
+		yield return new WaitForSeconds (myCost.cooldown-.2f);
 		active = true;
 		changeCharge (1);
 

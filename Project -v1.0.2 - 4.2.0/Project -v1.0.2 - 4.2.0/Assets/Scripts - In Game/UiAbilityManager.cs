@@ -74,9 +74,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 		if (Input.GetKeyUp (KeyCode.Q)) {
-			
 				callAbility (0);
-
 		} else if (Input.GetKeyUp (KeyCode.W)) {
 			callAbility (1);
 		} else if (Input.GetKeyUp (KeyCode.E)) {
@@ -527,7 +525,13 @@ public class UiAbilityManager : MonoBehaviour {
 
 						Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
 						if (man.abilityList [AbilityX * 4].chargeCount > -1) {
-							charger.text =  ""+man.abilityList [0 + AbilityX * 4].chargeCount;
+						
+							int totalCharge = 0;
+							foreach (RTSObject rts in  uiPage.rows[j]) {
+								totalCharge += rts.abilityList [AbilityX * 4].chargeCount;
+							}
+								
+							charger.text =  "" +totalCharge;//+man.abilityList [0 + AbilityX * 4].chargeCount;
 						} else {
 							charger.text = "";
 							}}
@@ -584,12 +588,22 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.GetComponent<Button> ().colors = cb;
 
 
-							trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [1 + AbilityX * 4].canAutoCast;
+						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [1 + AbilityX * 4].canAutoCast;
 						certainButtons [j + AbilityX].WAuto.enabled = man.abilityList [1 + AbilityX * 4].autocast;
 
 							Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
 							if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
-								charger.text = "" + man.abilityList [1 + AbilityX * 4].chargeCount;
+								
+		
+
+								int totalCharge = 0;
+								foreach (RTSObject rts in  uiPage.rows[j]) {
+									totalCharge += rts.abilityList [1 + AbilityX * 4].chargeCount;
+								}
+
+								charger.text =  "" +totalCharge;//+man.abilityList [1 + AbilityX * 4].chargeCount;
+
+							//charger.text = "" + man.abilityList [1 + AbilityX * 4].chargeCount;
 							} else {
 								charger.text = "";
 							}
@@ -652,7 +666,14 @@ public class UiAbilityManager : MonoBehaviour {
 
 							Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
 							if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
-								charger.text = "" + man.abilityList [2 + AbilityX * 4].chargeCount;
+
+							int totalCharge = 0;
+							foreach (RTSObject rts in  uiPage.rows[j]) {
+								totalCharge += rts.abilityList [2 + AbilityX * 4].chargeCount;
+							}
+
+							charger.text =  "" +totalCharge;
+								//charger.text = "" + man.abilityList [2 + AbilityX * 4].chargeCount;
 							} else {
 								charger.text = "";
 							}
@@ -714,7 +735,15 @@ public class UiAbilityManager : MonoBehaviour {
 
 							Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
 							if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
-								charger.text = "" + man.abilityList [3 + AbilityX * 4].chargeCount;
+							int totalCharge = 0;
+							foreach (RTSObject rts in  uiPage.rows[j]) {
+								totalCharge += rts.abilityList [3 + AbilityX * 4].chargeCount;
+							}
+
+							charger.text =  "" +totalCharge;
+
+
+								//charger.text = "" + man.abilityList [3 + AbilityX * 4].chargeCount;
 							} else {
 								charger.text = "";
 							}
@@ -825,14 +854,32 @@ public class UiAbilityManager : MonoBehaviour {
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [AbilityX * 4].iconPic;
 				
-					
-							trans.GetComponent<Button> ().interactable = man.abilityList [AbilityX * 4].active;
+						bool active = false;
+						foreach (RTSObject obj in currentPage.rows [j]) {
+							UnitManager Uman = obj.getUnitManager ();
+						
+							if (!Uman.Silenced() && !Uman.Stunned()) {
+								active = (Uman.abilityList [ AbilityX * 4].active);
+							}
+							if (active) {
+								break;}
+						}
+
+
+						trans.GetComponent<Button> ().interactable = active; //man.abilityList [AbilityX * 4].active;
 					
 
 							Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
 							if (man.abilityList [AbilityX * 4].chargeCount > -1) {
-							
-								charger.text = "" + man.abilityList [AbilityX * 4].chargeCount;
+
+							int totalCharge = 0;
+							foreach (RTSObject rts in  uiPage.rows[j]) {
+								totalCharge += rts.abilityList [AbilityX * 4].chargeCount;
+							}
+
+							charger.text =  "" +totalCharge;
+
+								//charger.text = "" + man.abilityList [AbilityX * 4].chargeCount;
 							} else {
 								charger.text = "";
 							}
@@ -846,12 +893,34 @@ public class UiAbilityManager : MonoBehaviour {
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [1 + AbilityX * 4].iconPic;
 					
+						Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
+							
 
-							Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
-							trans.GetComponent<Button> ().interactable = man.abilityList [1 + AbilityX * 4].active;
+						bool active = false;
+						foreach (RTSObject obj in currentPage.rows [j]) {
+							UnitManager Uman = obj.getUnitManager ();
+
+							if (!Uman.Silenced() && !Uman.Stunned()) {
+								active = (Uman.abilityList [1 +  AbilityX * 4].active);
+							}
+							if (active) {
+								break;}
+						}
+
+
+						trans.GetComponent<Button> ().interactable = active;
+
+						//trans.GetComponent<Button> ().interactable = man.abilityList [1 + AbilityX * 4].active;
 
 							if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
-								charger.text = "" + man.abilityList [1 + AbilityX * 4].chargeCount;
+							int totalCharge = 0;
+							foreach (RTSObject rts in  uiPage.rows[j]) {
+								totalCharge += rts.abilityList [1 + AbilityX * 4].chargeCount;
+							}
+
+							charger.text =  "" +totalCharge;
+
+							//charger.text = "" + man.abilityList [1 + AbilityX * 4].chargeCount;
 
 							} else {
 								charger.text = "";
@@ -865,11 +934,35 @@ public class UiAbilityManager : MonoBehaviour {
 							//Transform trans = UIButtons [n].transform.FindChild ("EButton");
 					
 						trans.GetComponent<Image> ().sprite = man.abilityList [2 + AbilityX * 4].iconPic;
-							trans.GetComponent<Button> ().interactable = man.abilityList [2 + AbilityX * 4].active;
+
+
+						bool active = false;
+						foreach (RTSObject obj in currentPage.rows [j]) {
+							UnitManager Uman = obj.getUnitManager ();
+
+							if (!Uman.Silenced() && !Uman.Stunned()) {
+								active = (Uman.abilityList [2+ AbilityX * 4].active);
+							}
+							if (active) {
+								break;}
+						}
+
+
+						trans.GetComponent<Button> ().interactable = active;
+
+						//trans.GetComponent<Button> ().interactable = man.abilityList [2 + AbilityX * 4].active;
 
 							Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
 							if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
-								charger.text = "" + man.abilityList [2 + AbilityX * 4].chargeCount;
+								
+							int totalCharge = 0;
+							foreach (RTSObject rts in  uiPage.rows[j]) {
+								totalCharge += rts.abilityList [2 + AbilityX * 4].chargeCount;
+							}
+
+							charger.text =  "" +totalCharge;
+
+							//charger.text = "" + man.abilityList [2 + AbilityX * 4].chargeCount;
 							} else {
 								charger.text = "";
 							}
@@ -883,10 +976,31 @@ public class UiAbilityManager : MonoBehaviour {
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [3 + AbilityX * 4].iconPic;
 
-							trans.GetComponent<Button> ().interactable = man.abilityList [3 + AbilityX * 4].active;
+						bool active = false;
+						foreach (RTSObject obj in currentPage.rows [j]) {
+							UnitManager Uman = obj.getUnitManager ();
+
+							if (!Uman.Silenced() && !Uman.Stunned()) {
+								active = (Uman.abilityList [3+ AbilityX * 4].active);
+							}
+							if (active) {
+								break;}
+						}
+
+
+						trans.GetComponent<Button> ().interactable = active;
+
+						//trans.GetComponent<Button> ().interactable = man.abilityList [3 + AbilityX * 4].active;
 							Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
 							if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
-								charger.text = "" + man.abilityList [3 + AbilityX * 4].chargeCount;
+							int totalCharge = 0;
+							foreach (RTSObject rts in  uiPage.rows[j]) {
+								totalCharge += rts.abilityList [3 + AbilityX * 4].chargeCount;
+							}
+
+							charger.text =  "" +totalCharge;	
+
+							//charger.text = "" + man.abilityList [3 + AbilityX * 4].chargeCount;
 							} else {
 								charger.text = "";
 							}
@@ -1097,15 +1211,16 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public void callAbility(int n)
 	{
-		
+
+		//Debug.Log("CAlling " + n + "   " + quickButtons [n].IsInteractable() +"   " + quickAbility[n].myAbility + "   "+quickButtons[n].IsActive()  );
 		if (Input.GetKey (KeyCode.LeftAlt)) {
 			selectMan.setAutoCast (n);
 			selectMan.AutoCastUI ();
 			audSrc.PlayOneShot (ButtonPress, .1f);
 
 		}else if (quickButtons [n].IsInteractable() && quickAbility[n].myAbility && quickButtons[n].IsActive()){// && quickAbility[n].myAbility.active) {
-		
-				selectMan.callAbility (n);
+			
+			selectMan.callAbility (n);
 			audSrc.PlayOneShot (ButtonPress, .1f);
 			
 		}
@@ -1223,7 +1338,14 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 				if (man.abilityList [abilityNum].chargeCount > -1) {
-					charger.text = "" + man.abilityList [abilityNum].chargeCount;
+					int totalCharge = 0;
+					foreach (RTSObject rts in currentPage.rows [j]) {
+						totalCharge += rts.abilityList [ abilityNum * 4].chargeCount;
+					}
+
+					charger.text =  "" +totalCharge;
+
+					//charger.text = "" + man.abilityList [abilityNum].chargeCount;
 				} else {
 					charger.text = "";
 				}
