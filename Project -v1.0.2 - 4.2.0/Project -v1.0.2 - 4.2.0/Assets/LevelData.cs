@@ -130,6 +130,10 @@ public class LevelData  {
 		foreach (Achievement Ach in ((GameObject)Resources.Load("Achievements")).GetComponents<Achievement>()) {
 			Ach.Reset ();
 		}
+
+		for (int i = 0; i < 12; i++) {
+			PlayerPrefs.SetInt ("L" + i + "Win", 0);
+		}
 	}
 
 

@@ -1,18 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TurretDeathTrigger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelManager.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="1208" Column="3" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="341" Column="46" />
-      <File FileName="Assets\DeployTurret.cs" Line="380" Column="41" />
-      <File FileName="Assets\BloodMist.cs" Line="56" Column="31" />
-      <File FileName="Assets\SingleTarget.cs" Line="203" Column="3" />
-      <File FileName="Assets\Page.cs" Line="193" Column="40" />
-      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="154" Column="23" />
-      <File FileName="Assets\Scripts - In Game\MoveState.cs" Line="30" Column="1" />
-      <File FileName="Assets\ParticleAn.cs" Line="26" Column="1" />
       <File FileName="Assets\RepairTurret.cs" Line="59" Column="31" />
       <File FileName="Assets\TurretDeathTrigger.cs" Line="36" Column="68" />
+      <File FileName="Assets\MissionMapManager.cs" Line="31" Column="44" />
+      <File FileName="Assets\VictoryTrigger.cs" Line="116" Column="92" />
+      <File FileName="Assets\LevelData.cs" Line="118" Column="2" />
+      <File FileName="Assets\LevelManager.cs" Line="40" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

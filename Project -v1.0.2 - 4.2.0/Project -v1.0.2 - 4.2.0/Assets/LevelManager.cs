@@ -56,7 +56,7 @@ public class LevelManager : MonoBehaviour {
 			levelButtons [i].interactable = (i <= Mathf.Min(3, LevelData.getHighestLevel()));
 		}
 
-		ReplayButtonText.text = "Replay:\n" + levelNames [PlayerPrefs.GetInt ("RecentLevel")];
+		ReplayButtonText.text = "Replay Previous:\n" + levelNames [PlayerPrefs.GetInt ("RecentLevel")];
 
 		//levelIntros [LevelData.currentLevel].SetActive (true);
 		if (levelIntros.Count > 0) {
