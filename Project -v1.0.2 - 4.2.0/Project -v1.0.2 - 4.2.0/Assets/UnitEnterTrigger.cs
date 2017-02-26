@@ -13,7 +13,7 @@ public class UnitEnterTrigger : MonoBehaviour {
 	public  bool doIt;
 	public float delay;
 
-
+	public List<string> specificUnits;
 	public List<SceneEventTrigger> myTriggers;
 
 
@@ -23,9 +23,15 @@ public class UnitEnterTrigger : MonoBehaviour {
 	{
 		if (other.GetComponent<UnitManager> ())
 		if (other.GetComponent<UnitManager> ().PlayerOwner == player) {
-			//Debug.Log (other.gameObject);
-			StartCoroutine (Fire ());
 
+			if (specificUnits.Count > 0) {
+				if (specificUnits.Contains (other.GetComponent<UnitManager> ().UnitName)) {
+					StartCoroutine (Fire ());
+				}
+			} else {
+				//Debug.Log (other.gameObject);
+				StartCoroutine (Fire ());
+			}
 		}
 	}
 

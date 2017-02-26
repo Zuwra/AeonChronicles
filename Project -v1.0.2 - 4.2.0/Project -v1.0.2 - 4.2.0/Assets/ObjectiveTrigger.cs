@@ -6,7 +6,7 @@ public class ObjectiveTrigger : SceneEventTrigger {
 	// triggers new bonus objective when your troops enter an area
 	public Objective myObj;
 	public bool finishObjective;
-	public bool UnitEnter;
+	//public bool UnitEnter;
 
 
 	void OnTriggerEnter(Collider other)

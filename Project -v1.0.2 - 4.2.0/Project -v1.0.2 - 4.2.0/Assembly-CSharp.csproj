@@ -386,6 +386,7 @@
      <Compile Include="Assets\ParticleAn.cs" />
      <Compile Include="Assets\PayLoadCreator.cs" />
      <Compile Include="Assets\PayLoadEndZone.cs" />
+     <Compile Include="Assets\PayloadFirendlyEndZone.cs" />
      <Compile Include="Assets\PenetratingShot.cs" />
      <Compile Include="Assets\PlaceBuildingState.cs" />
      <Compile Include="Assets\PlasmaDischarge.cs" />
@@ -568,6 +569,7 @@
      <Compile Include="Assets\TextTrigger.cs" />
      <Compile Include="Assets\ThrasherBlade.cs" />
      <Compile Include="Assets\TimeDelayTrigger.cs" />
+     <Compile Include="Assets\TimedObjective.cs" />
      <Compile Include="Assets\ToolTip.cs" />
      <Compile Include="Assets\TritonBarrierUpgrade.cs" />
      <Compile Include="Assets\TrueUpgradeManager.cs" />

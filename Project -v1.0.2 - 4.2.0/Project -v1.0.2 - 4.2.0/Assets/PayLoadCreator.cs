@@ -17,7 +17,7 @@ public class PayLoadCreator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		if(myPayloads.Count> 0){
+		if(myPayloads.Count> 0 && endZone){
 			Invoke( "SpawnPayload", spawnTimes[0]);
 		}
 
