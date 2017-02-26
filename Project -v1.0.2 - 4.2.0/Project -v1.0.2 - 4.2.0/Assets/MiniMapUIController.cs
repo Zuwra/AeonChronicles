@@ -76,9 +76,14 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	Texture2D panelTex ;
 	RectTransform newParent;
 
+
+	void Awake()
+	{
+		newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
+	}
     // Use this for initialization
     void Start () {
-		newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
+		
 		// Use for Fog of War
 		Texture2D panelTex = new Texture2D (1, 1);
 		panelTex.SetPixels32 (new Color32[] { new Color32 (255, 255, 255, 64) });

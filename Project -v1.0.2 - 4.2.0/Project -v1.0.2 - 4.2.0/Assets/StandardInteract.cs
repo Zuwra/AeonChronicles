@@ -25,14 +25,14 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	}
 	public virtual UnitState computeState(UnitState s)
 	{
-		
+		//Debug.Log ("Getting called up here");
 		return s;
 	}
 
 	// When creating other interactor classes, make sure to pass all relevant information into whatever new state is being created (IMover, IWeapon, UnitManager)
 	public virtual void computeInteractions (Order order)
 	{
-		//Debug.Log ("Queued " + order.queued);
+	//	Debug.Log ("Queued " + order.queued);
 		switch (order.OrderType) {
 		case Const.Order_HoldGround:
 	

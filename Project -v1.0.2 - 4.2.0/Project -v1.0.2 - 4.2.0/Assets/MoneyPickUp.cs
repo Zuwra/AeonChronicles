@@ -7,15 +7,7 @@ public class MoneyPickUp : MonoBehaviour {
 	public float resTwo;
 
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
 
 	public void OnTriggerEnter(Collider other)
 	{
@@ -27,7 +19,7 @@ public class MoneyPickUp : MonoBehaviour {
 
 				if (resOne > 0) {
 
-					PopUpMaker.CreateGlobalPopUp ("+" + resOne, Color.white, this.gameObject.transform.position);
+					PopUpMaker.CreateGlobalPopUp ("+" + resOne + " Ore", Color.white, this.gameObject.transform.position);
 				} else {
 					PopUpMaker.CreateGlobalPopUp ("+" + resTwo, Color.cyan, this.gameObject.transform.position);
 				}

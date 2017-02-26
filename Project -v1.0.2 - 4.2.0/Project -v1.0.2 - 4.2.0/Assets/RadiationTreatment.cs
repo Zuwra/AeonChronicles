@@ -19,7 +19,9 @@ public class RadiationTreatment :  Ability, Notify {
 		myStats = GetComponent<UnitStats> ();
 		lastDamageAmount = 0;
 		myWeap = GetComponent<IWeapon> ();
-		myWeap.addNotifyTrigger (this);
+		if (myWeap) {
+			myWeap.addNotifyTrigger (this);
+		}
 		myType = type.passive;
 	}
 

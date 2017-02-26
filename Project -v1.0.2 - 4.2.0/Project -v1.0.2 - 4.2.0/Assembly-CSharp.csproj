@@ -612,6 +612,8 @@
      <Compile Include="Assets\WaveContainer.cs" />
      <Compile Include="Assets\WaveManager.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />
+     <Compile Include="Assets\WayPoint.cs" />
+     <Compile Include="Assets\WayPointInteracter.cs" />
      <Compile Include="Assets\ZephyrInteract.cs" />
      <Compile Include="Assets\airmover.cs" />
      <Compile Include="Assets\animate.cs" />
