@@ -102,7 +102,7 @@ public class LevelManager : MonoBehaviour {
 	public void closeLevelIntro()
 	{
 		currentIntro.SetActive (false);
-		MainScreen.SetActive (true);
+		//MainScreen.SetActive (true);
 
 		foreach (ToolTip tt in GameObject.FindObjectsOfType<ToolTip>()) {
 			tt.toolbox.enabled = false;

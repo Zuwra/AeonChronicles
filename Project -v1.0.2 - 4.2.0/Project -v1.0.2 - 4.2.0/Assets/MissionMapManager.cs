@@ -14,6 +14,10 @@ public class MissionMapManager : MonoBehaviour {
 
 	public List<int> firstLevelPulse;
 
+
+	[Tooltip("SHould hve three pic in here, bronze, silver, gold")]
+	public List<Sprite> DifficultyPics;
+
 	// Use this for initialization
 	void Start () {
 
@@ -23,8 +27,10 @@ public class MissionMapManager : MonoBehaviour {
 		int highestLevel = LevelData.getHighestLevel ();
 
 		for (int i = 0; i < missionButtons.Count; i++) {
-			if (i <= highestLevel) {
+			if (i <= highestLevel) { 
 				missionButtons [i].interactable = (true);
+				if(PlayerPrefs.GetInt ("L" + i + "Dif", -1) > -1){
+					missionButtons [i].GetComponent<Image> ().sprite = DifficultyPics [PlayerPrefs.GetInt ("L" + i + "Dif", -1)];}
 			}
 				else{
 				missionButtons [i].interactable = (false);

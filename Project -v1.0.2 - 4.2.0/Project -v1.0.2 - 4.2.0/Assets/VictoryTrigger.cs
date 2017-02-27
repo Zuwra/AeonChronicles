@@ -114,6 +114,12 @@ public class VictoryTrigger : MonoBehaviour {
 			hasFinished = true;
 			VictoryScreen.enabled = true;
 			PlayerPrefs.SetInt ("L" + levelNumber+"Win", PlayerPrefs.GetInt ("L" + levelNumber+"Win") + 1);
+
+			int diff = LevelData.getDifficulty ()-1;
+			if (diff > PlayerPrefs.GetInt ("L" + levelNumber + "Dif", -1)) {
+		
+				PlayerPrefs.SetInt ("L" + levelNumber + "Dif", diff);
+			}
 			GameObject.FindObjectOfType<MainCamera> ().DisableScrolling ();
 			GetComponent<AchievementChecker> ().EndLevel ();
 

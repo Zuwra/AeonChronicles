@@ -26,7 +26,7 @@ public class DifficultyManager : MonoBehaviour {
 	void Start () {
 		difficulty = LevelData.getDifficulty ();
 
-		Debug.Log ("Difficulty is " + difficulty);
+
 		if (difficulty == 1) {
 			LevelOneUpgradeTime *= 1.5f; 
 			LevelTwoUpgradeTime *= 1.5f;

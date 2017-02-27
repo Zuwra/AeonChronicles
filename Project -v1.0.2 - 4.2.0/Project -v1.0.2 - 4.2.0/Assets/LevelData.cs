@@ -132,6 +132,7 @@ public class LevelData  {
 		}
 
 		for (int i = 0; i < 12; i++) {
+			PlayerPrefs.SetInt ("L" + i + "Dif", -1);
 			PlayerPrefs.SetInt ("L" + i + "Win", 0);
 		}
 	}
