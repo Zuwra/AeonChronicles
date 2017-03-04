@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/gameCreation.unity
+- path: Assets/SkythianCat/Hand_Painted_Nature_Kit_LITE/DEMO/Demo_2/Demo_scene_2.unity
   isLoaded: 1
   isActive: 1
