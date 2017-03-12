@@ -22,7 +22,7 @@ public class FullMetalAchieve : Achievement{
 				counter++;
 
 			}
-			if(counter == 22)
+			if(counter >=20)
 			{
 				Accomplished ();
 			}
