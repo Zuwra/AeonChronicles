@@ -249,6 +249,7 @@
      <Compile Include="Assets\DataChecker.cs" />
      <Compile Include="Assets\DayFFUpgrade.cs" />
      <Compile Include="Assets\DayexaShield.cs" />
+     <Compile Include="Assets\DeathCubeVulnerable.cs" />
      <Compile Include="Assets\DeathWinTrigger.cs" />
      <Compile Include="Assets\DeployTurret.cs" />
      <Compile Include="Assets\DetachAugment.cs" />

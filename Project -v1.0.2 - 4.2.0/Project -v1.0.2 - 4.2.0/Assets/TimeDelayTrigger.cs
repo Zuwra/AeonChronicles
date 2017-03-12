@@ -18,7 +18,7 @@ public class TimeDelayTrigger : MonoBehaviour {
 	public List<SceneEventTrigger> myTriggers;
 	// Use this for initialization
 	void Start () {
-
+		Debug.Log ("I am on "  + this.gameObject);
 		Invoke ("DelayedUpdate", timeDelay);
 	}
 

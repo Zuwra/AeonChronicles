@@ -41,7 +41,7 @@ public class Objective : SceneEventTrigger {
 
 	public void unComplete()
 	{completed = false;
-		Debug.Log ("uncompelted");
+		Debug.Log ("uncompleted");
 		VictoryTrigger.instance.unComplete (this);
 	}
 

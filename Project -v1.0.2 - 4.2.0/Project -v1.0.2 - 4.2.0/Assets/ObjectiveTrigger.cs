@@ -8,9 +8,9 @@ public class ObjectiveTrigger : SceneEventTrigger {
 	public bool finishObjective;
 	//public bool UnitEnter;
 
-
-	void OnTriggerEnter(Collider other)
-	{/*
+	/*
+	//void OnTriggerEnter(Collider other)
+	//{
 		if (UnitEnter) {
 			if (other.GetComponent<UnitManager> ())
 			if (other.GetComponent<UnitManager> ().PlayerOwner == 1) {
@@ -18,9 +18,9 @@ public class ObjectiveTrigger : SceneEventTrigger {
 				trigger (0, 0, Vector3.zero, null, finishObjective);
 
 			}
-		}*/
-	}
-
+		}
+	//}
+	*/
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 		if (finishObjective) {

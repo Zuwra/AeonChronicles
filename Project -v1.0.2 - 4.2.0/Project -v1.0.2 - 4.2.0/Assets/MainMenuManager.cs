@@ -13,16 +13,12 @@ public class MainMenuManager : MonoBehaviour {
 	public Canvas loadCanvas;
 	public Canvas OptionsCan;
 
+	public AudioSource audioSource;
 	private Canvas currentScreen;
 
 	// Use this for initialization
 	void Start () {
 		currentScreen = MainMenu;
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
 	
 	}
 
@@ -59,7 +55,10 @@ public class MainMenuManager : MonoBehaviour {
 	}
 
 	public void toCampaign()
-		{loadScreen (campaign);}
+		{loadScreen (campaign);
+		audioSource.Play ();
+	
+	}
 
 	public void Exit()
 	{
@@ -87,7 +86,9 @@ public class MainMenuManager : MonoBehaviour {
 	{loadScreen (Credits);}
 
 	public void toMain()
-	{loadScreen (MainMenu);}
+	{loadScreen (MainMenu);
+		audioSource.Stop ();
+	}
 
 
 	public void resetProgress()
