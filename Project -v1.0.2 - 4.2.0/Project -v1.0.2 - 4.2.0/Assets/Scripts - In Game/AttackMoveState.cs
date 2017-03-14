@@ -62,15 +62,14 @@ public class AttackMoveState : UnitState {
 	// Update is called once per frame
 	override
 	public void Update () {
-	//	Debug.Log ("I am " + myManager.gameObject + "   in attackMove");
-
+		
 	
 		if (Time.time > nextActionTime) {
 			nextActionTime += .2f;
 			UnitManager temp =  myManager.findBestEnemy ();
 
 			if (temp) {
-		
+				
 				enemy = temp;
 				if (myManager.cMover) {
 		
@@ -89,7 +88,7 @@ public class AttackMoveState : UnitState {
 			bool attacked = false;
 			foreach (IWeapon weap in myManager.myWeapon) {
 				if (weap.inRange (enemy)) {
-			
+
 
 					if (myManager.cMover) {
 						

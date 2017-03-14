@@ -188,22 +188,22 @@ public class IWeapon : MonoBehaviour {
 		foreach (Validator val in validators) {
 			if(val.validate(this.gameObject,target.gameObject) == false)
 			{
-				//Debug.Log ("Not valid");
+				Debug.Log ("Not valid");
 				return false;}
 		}
 
 			// Account for height advantage
-		float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position) - target.GetComponent<CharacterController>().radius -myRadius;
+		float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.GetComponent<CharacterController> ().radius ;
+
 		float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
-		if (distance > (range + (verticalDistance/2)) || distance < minimumRange) {
-		//	Debug.Log ("Not in range");
+		if (distance > (range + (verticalDistance/3)) || (minimumRange >0 && distance < minimumRange)) {
+			
 			return false;}
 
 		UnitStats targetStats= target.GetComponent<UnitStats>();
 		foreach (UnitTypes.UnitTypeTag tag in cantAttackTypes) {
 			if (targetStats.isUnitType (tag))
-			{	//	Debug.Log (Title + "cant attack");
-				return false;	}
+			{return false;	}
 		}
 
 		//offCooldown = false;
@@ -224,13 +224,11 @@ public class IWeapon : MonoBehaviour {
 			}
 
 
+			float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.GetComponent<CharacterController> ().radius;
 
-
-			float distance = Vector3.Distance (this.gameObject.transform.position, target.transform.position) - target.GetComponent<CharacterController> ().radius - myRadius;
 			float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
 
-			//Debug.Log (this.gameObject +  "  Distance " + distance + "   range " + range + "  vert  " + (verticalDistance *1.2));
-			if (distance > (range + (verticalDistance/2 ))) {
+			if (distance > (range + (verticalDistance/3 )) ||  (minimumRange >0 && distance < minimumRange)) {
 			
 		
 				return false;

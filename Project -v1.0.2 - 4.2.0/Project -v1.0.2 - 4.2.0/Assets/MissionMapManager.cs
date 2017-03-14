@@ -13,9 +13,9 @@ public class MissionMapManager : MonoBehaviour {
 	public List<Button> missionButtons;
 
 	public List<int> firstLevelPulse;
+	public GameObject MainScreen;
 
-
-	[Tooltip("SHould hve three pic in here, bronze, silver, gold")]
+	[Tooltip("Should have three pic in here, bronze, silver, gold")]
 	public List<Sprite> DifficultyPics;
 
 	// Use this for initialization
@@ -62,6 +62,7 @@ public class MissionMapManager : MonoBehaviour {
 	public void toggleMissionMap()
 	{
 		GetComponent<Canvas> ().enabled = !GetComponent<Canvas> ().enabled;
+		MainScreen.SetActive (!GetComponent<Canvas> ().enabled);
 
 	}
 }
