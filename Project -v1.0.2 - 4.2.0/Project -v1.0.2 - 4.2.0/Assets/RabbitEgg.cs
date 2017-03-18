@@ -23,7 +23,7 @@ public class RabbitEgg : MonoBehaviour,Modifier  {
 	public float modify(float amount, GameObject src, DamageTypes.DamageType theType)
 	{
 		if (!hatching) {
-			StartCoroutine (gestate ());
+			startHatch ();
 		}
 		return amount;
 	}
@@ -33,7 +33,7 @@ public class RabbitEgg : MonoBehaviour,Modifier  {
 		if (hatchOnSight && !hatching) {
 			UnitManager manage = col.GetComponent<UnitManager> ();
 			if (manage &&  manage.PlayerOwner == 1) {
-				StartCoroutine (gestate());
+				startHatch ();
 			
 			}
 
@@ -41,7 +41,10 @@ public class RabbitEgg : MonoBehaviour,Modifier  {
 	
 	}
 
-
+	public void startHatch()
+	{
+		StartCoroutine (gestate());
+	}
 
 
 	IEnumerator gestate()

@@ -12,6 +12,7 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 	private UnitStats myStats;
 
 	public LightningBoltScript myLightning;
+	public GameObject EggObject;
 
 	UnitManager mymanager;
 
@@ -43,7 +44,8 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 
 
 			GameObject ob = (GameObject)Instantiate (this.gameObject, hitzone, Quaternion.identity);//do the thing
-			StartCoroutine(delayedStatChange(ob));
+			ob.GetComponent<RabbitEgg>().startHatch();
+			
 
 			nextRepopulate = repopulateTime + Random.Range(0,randomSpawnRange);
 			repopulateTime += 5;
