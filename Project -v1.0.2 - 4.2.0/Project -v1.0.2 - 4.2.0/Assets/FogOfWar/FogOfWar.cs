@@ -253,10 +253,10 @@ public class FogOfWar : MonoBehaviour
     static Shader _clearFogShader = null;
     public static Shader clearFogShader { get { if (_clearFogShader == null) _clearFogShader = Resources.Load<Shader>("ClearFogShader"); return _clearFogShader; } }
 
-    void Awake()
+	public   void Initialize()
     {
         current = this;
-
+		mapResolution = (int)(mapSize / 2.8f);
         texture = new Texture2D(mapResolution, mapResolution, TextureFormat.Alpha8, false);
 
         _material = new Material(fogOfWarShader);

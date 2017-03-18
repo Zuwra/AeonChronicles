@@ -105,6 +105,7 @@ public class CinematicCamera : SceneEventTrigger {
 		MainCamera.main.gameObject.transform.position = previousCamPos ;
 		if (GameMenu.main) {
 			GameMenu.main.EnableInput();}
+		currentShot = 0;
 
 	}
 

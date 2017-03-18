@@ -42,10 +42,19 @@ public class MainCamera : MonoBehaviour, ICamera {
 	//Vector3 camStartPos;
 	bool middleMouseDown;
 	//TESTING
-
+	public Vector3 TopRightBorder;
+	public Vector3 BottomLeftBorder;
 	void Awake()
 	{
 		main = this;
+
+		SetBoundries ( BottomLeftBorder.x,BottomLeftBorder.z, TopRightBorder.x,TopRightBorder.z);
+
+
+		GetComponent<FogOfWar> ().mapOffset = new Vector2 (( m_Boundries.xMin - m_Boundries.xMax)/2 + m_Boundries.xMax,(   m_Boundries.yMin -m_Boundries.yMax)/2 + m_Boundries.yMax);
+		GetComponent<FogOfWar> ().mapSize = Mathf.Abs (m_Boundries.xMin - m_Boundries.xMax);
+		GetComponent<FogOfWar> ().Initialize ();
+
 	}
 
 	// Use this for initialization
@@ -56,11 +65,14 @@ public class MainCamera : MonoBehaviour, ICamera {
 		//Set up camera position
 		if (StartPoint != null)
 		{goToStart ();
-			transform.position = new Vector3(StartPoint.transform.position.x, m_MinFieldOfView + 70, StartPoint.transform.position.z-AngleOffset);
+			transform.position = new Vector3(StartPoint.transform.position.x, m_MinFieldOfView + 90, StartPoint.transform.position.z-AngleOffset);
 		}
 		AngleOffset = 45 -((transform.position.y - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
 		//Set up camera rotation
 		transform.rotation = Quaternion.Euler (90-AngleOffset, 0, 0);
+
+
+	
 	}
 
 	// Update is called once per frame
@@ -207,9 +219,10 @@ public class MainCamera : MonoBehaviour, ICamera {
 				transform.position = new Vector3(m_Boundries.xMax, transform.position.y, transform.position.z);
 			}
 
-			if (transform.position.z < m_Boundries.yMin)
+
+			if (transform.position.z < m_Boundries.yMin -10)
 			{
-				transform.position = new Vector3(transform.position.x, transform.position.y, m_Boundries.yMin);
+				//transform.position = new Vector3(transform.position.x, transform.position.y, m_Boundries.yMin);
 			}
 			else if (transform.position.z > m_Boundries.yMax)
 			{
@@ -228,18 +241,18 @@ public class MainCamera : MonoBehaviour, ICamera {
 
 	private void CheckEdgeMovement()
 	{
-		Ray r1 = Camera.main.ViewportPointToRay (new Vector3(0,1,0));
-		//Ray r2 = Camera.main.ScreenPointToRay (new Vector3(Screen.width,Screen.height-1,0));
-		//Ray r2 = Camera.main.ScreenPointToRay (new Vector3(Screen.width-1,Screen.height-1,0));
-		Ray r3 = Camera.main.ViewportPointToRay (new Vector3(0,0,0));
-		Ray r4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width-1,0,0));
+		Ray r1 = Camera.main.ScreenPointToRay (new Vector3(Screen.width/2,Screen.height-1,0)); // TOP
+
+		Ray r3 = Camera.main.ScreenPointToRay (new Vector3(0,50,0)); //Bottom Left
+		Ray r4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width-1,50,0)); //Bottom Right
 
 		float left, right, top, bottom;
 
 		RaycastHit h1;
 
+
+
 		Physics.Raycast (r1, out h1, Mathf.Infinity, 1<< 16);		
-		left = h1.point.x;
 		top = h1.point.z;
 
 		Physics.Raycast (r4, out h1, Mathf.Infinity, 1<< 16);
@@ -247,6 +260,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 
 		Physics.Raycast (r3, out h1, Mathf.Infinity, 1<< 16);
 		bottom = h1.point.z;
+		left = h1.point.x;
 
 		if (left < m_Boundries.xMin)
 		{
@@ -255,12 +269,13 @@ public class MainCamera : MonoBehaviour, ICamera {
 		else if (right > m_Boundries.xMax)
 		{
 			//Debug.Log ("hit right side");
-			//Camera.main.transform.Translate (new Vector3(m_Boundries.xMax-right,0,0), Space.World);
+			Camera.main.transform.Translate (new Vector3(m_Boundries.xMax-right,0,0), Space.World);
 		}
 
-		if (bottom < m_Boundries.yMin)
+		if (bottom < m_Boundries.yMin -10)
 		{
-			Camera.main.transform.Translate (new Vector3(0,0,m_Boundries.yMin-bottom), Space.World);
+
+			Camera.main.transform.Translate (new Vector3(0,0,(m_Boundries.yMin-10)-bottom), Space.World);
 		}
 		else if (top > m_Boundries.yMax)
 		{
@@ -344,11 +359,10 @@ public class MainCamera : MonoBehaviour, ICamera {
 
 	public void SetBoundries (float minX, float minY, float maxX, float maxY)
 	{
-
 		m_Boundries = new Rect();
 		m_Boundries.xMin = minX;
 		m_Boundries.xMax = maxX;
-		m_Boundries.yMin = minY+1;
+		m_Boundries.yMin = minY;
 		m_Boundries.yMax = maxY;
 
 
@@ -396,6 +410,13 @@ public class MainCamera : MonoBehaviour, ICamera {
 			transform.Translate ((totalMovement * -1) * Time.deltaTime/ .1f);
 			yield return null;
 		}
+	}
+
+	void OnDrawGizmos()
+	{	
+		Gizmos.DrawCube (TopRightBorder, Vector3.one*10);
+		Gizmos.DrawCube (BottomLeftBorder, Vector3.one*10);
+
 	}
 
 }

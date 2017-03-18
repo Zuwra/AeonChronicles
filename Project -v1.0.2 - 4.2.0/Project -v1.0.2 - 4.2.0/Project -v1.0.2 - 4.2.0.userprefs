@@ -1,21 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RabbitEgg.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FogOfWar\FogOfWar.cs">
     <Files>
-      <File FileName="Assets\PayLoadCreator.cs" Line="1" Column="1" />
-      <File FileName="Assets\LocationObjective.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\MoneyPickUp.cs" Line="1" Column="1" />
-      <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\MiniMapUIController.cs" Line="1" Column="1" />
-      <File FileName="Assets\DeathCubeVulnerable.cs" Line="1" Column="1" />
-      <File FileName="Assets\TimedObjective.cs" Line="1" Column="1" />
-      <File FileName="Assets\TextTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\TimeDelayTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\KillUnitAch.cs" Line="1" Column="1" />
-      <File FileName="Assets\FullMetalAchieve.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\RabbitEgg.cs" Line="44" Column="26" />
+      <File FileName="Assets\MiniMapUIController.cs" Line="373" Column="3" />
+      <File FileName="Assets\ObjectiveManager.cs" Line="38" Column="3" />
+      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="61" Column="16" />
+      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="554" Column="102" />
+      <File FileName="Assets\Scripts - In Game\GUI\GUIManager.cs" Line="45" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="76" Column="2" />
+      <File FileName="Assets\FogOfWar\FogOfWar.cs" Line="256" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

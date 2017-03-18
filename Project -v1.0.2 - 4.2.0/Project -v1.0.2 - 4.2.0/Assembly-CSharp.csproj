@@ -460,7 +460,6 @@
      <Compile Include="Assets\Scripts - In Game\FollowState.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\Events\GUIEvents.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\GUIManager.cs" />
-     <Compile Include="Assets\Scripts - In Game\GUI\MiniMapController.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\Modules\Drag Select\DragSelect.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\Modules\Item Progress\ItemProgressTextures.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\Styles\GUIStyles.cs" />
@@ -485,7 +484,6 @@
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGrid.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ILevelLoader.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IManager.cs" />
-     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IMiniMapController.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ISelectedManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IThreadManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IUIManager.cs" />

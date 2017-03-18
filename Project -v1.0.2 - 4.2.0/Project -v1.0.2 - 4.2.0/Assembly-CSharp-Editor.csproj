@@ -81,7 +81,6 @@
      <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\Editor\MinDrawer.cs" />
      <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\Editor\SMAAEditor.cs" />
      <Compile Include="Assets\Scripts - In Game\Editor\GridEditor.cs" />
-     <Compile Include="Assets\Scripts - In Game\Editor\MiniMapControllerEditor.cs" />
      <Compile Include="Assets\UIAddons\Editor\EditorTools.cs" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_Pr_Dt.shader" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

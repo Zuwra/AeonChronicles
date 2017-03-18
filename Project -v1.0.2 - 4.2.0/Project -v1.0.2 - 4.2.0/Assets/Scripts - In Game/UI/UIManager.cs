@@ -27,9 +27,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 	private SelectedManager m_SelectedManager;
 	private ICamera m_Camera;
 	private IGUIManager m_GuiManager;
-	private IMiniMapController m_MiniMapController;
-
-
 
 	//Building Placement variables
 
@@ -86,8 +83,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		m_SelectedManager =  GameObject.FindObjectOfType<SelectedManager>();
 		m_Camera = GameObject.FindObjectOfType<MainCamera> (); //ManagerResolver.Resolve<ICamera>();	
 		m_GuiManager =GameObject.FindObjectOfType<GUIManager>();// ManagerResolver.Resolve<IGUIManager>();
-		m_MiniMapController =  GameObject.FindObjectOfType<MiniMapController>();// ManagerResolver.Resolve<IMiniMapController>();
-		
+	
 		//Attach Event Handlers
 		EventsManager eventsManager =GameObject.FindObjectOfType<EventsManager>();// ManagerResolver.Resolve<IEventsManager>();
 	//	Debug.Log("Addin to " + eventsManager.gameObject);
@@ -824,14 +820,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 		//Zoom In/Out
 		//Debug.Log("Zooming in UI manager");
 		m_Camera.Zoom (sender, e);
-		m_MiniMapController.ReCalculateViewRect ();
+		//m_MiniMapController.ReCalculateViewRect ();
 	}
 	
 	private void MouseAtScreenEdgeHandler(object sender, ScreenEdgeEventArgs e)
 	{
 	
 		m_Camera.Pan (sender, e);
-		m_MiniMapController.ReCalculateViewRect ();
+		//m_MiniMapController.ReCalculateViewRect ();
 	}
 	
 	//-----------------------------------KeyBoard Handler---------------------------------

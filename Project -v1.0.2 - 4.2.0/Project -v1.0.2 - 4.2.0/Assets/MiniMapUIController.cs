@@ -25,13 +25,13 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	public Image fogger;
 	public int unitPixelSize = 3;
 
-    public float Left = 726f; 
+    float Left = 726f; 
   
 	private bool dragging;
-    public float top = 1400f; 
+    float top = 1400f; 
    
-	public float Right = 1447f;
-	public float bottom = 730f;
+	float Right = 1447f;
+	float bottom = 730f;
 
 
 	private float WorldHeight;
@@ -76,6 +76,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	Texture2D panelTex ;
 	RectTransform newParent;
 
+	MainCamera myCam;
+
 
 	void Awake()
 	{
@@ -83,6 +85,11 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	}
     // Use this for initialization
     void Start () {
+		myCam = GameObject.FindObjectOfType<MainCamera> ();
+		Left = myCam.getBoundries ().xMin;
+		Right = myCam.getBoundries ().xMax;
+		top = myCam.getBoundries ().yMax;
+		bottom = myCam.getBoundries ().yMin;
 		
 		// Use for Fog of War
 		Texture2D panelTex = new Texture2D (1, 1);
@@ -366,7 +373,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 
 
-		ray1 = Camera.main.ScreenPointToRay (new Vector3(0,180,0));
+		ray1 = Camera.main.ScreenPointToRay (new Vector3(0,150,0));
 
 		//Top left
 		ray2 = Camera.main.ScreenPointToRay (new Vector3(0, Screen.height-1, 0));
@@ -375,7 +382,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		ray3 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, Screen.height-1, 0));
 
 		//Bottom right
-		ray4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, 180, 0));
+		ray4 = Camera.main.ScreenPointToRay (new Vector3(Screen.width, 150, 0));
 
 	//	Debug.Log ("B" + DateTime.Now.Millisecond );
 

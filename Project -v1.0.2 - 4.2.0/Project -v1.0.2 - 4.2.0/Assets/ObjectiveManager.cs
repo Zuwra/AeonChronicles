@@ -40,9 +40,9 @@ public class ObjectiveManager : MonoBehaviour {
 
 	public void setBonusObjectives(Objective input)
 	{bonusTitle.gameObject.SetActive (true);
-		GameObject obj = (GameObject)Instantiate (ObjectiveText);
-		obj.transform.SetParent (this.transform);
+		GameObject obj = (GameObject)Instantiate (ObjectiveText, this.transform);
 		obj.GetComponentInChildren<Text> ().text ="" +  input.description;
+
 		if (!bonusObjectives.ContainsKey (input)) {
 			bonusObjectives.Add (input, obj);
 		}
@@ -60,8 +60,8 @@ public class ObjectiveManager : MonoBehaviour {
 	public void setObjective(Objective input)
 	{//Debug.Log ("adding objective");
 
-		GameObject obj = (GameObject)Instantiate (ObjectiveText);
-		obj.transform.SetParent (this.transform);
+		GameObject obj = (GameObject)Instantiate (ObjectiveText, this.transform);
+
 		obj.transform.SetAsFirstSibling ();
 		Vector3 pos = obj.transform.position;
 		pos.z = 0;
