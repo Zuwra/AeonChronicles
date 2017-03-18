@@ -131,7 +131,8 @@ public class WaveManager : MonoBehaviour {
 			}
 
 
-			foreach (MiniMapUIController mini in GameObject.FindObjectsOfType<MiniMapUIController>()) {
+			foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
+				
 				mini.showWarning (this.transform.position);
 			}
 

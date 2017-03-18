@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour {
 
 	private bool initialized = false;
 	public static GameManager main;
-
+	public List<MiniMapUIController> MiniMaps;
 
 	// Use this for initialization
 	void Awake () {
@@ -26,7 +27,18 @@ public class GameManager : MonoBehaviour {
 				//playerList[race.playerNumber-1] = race;}
 
 		//activePlayer = playerList [playerNumber - 1];
-	
+
+		foreach (MiniMapUIController min in MiniMaps) {
+			min.AwakeInitialize ();
+		}
+
+	}
+
+	void Start()
+	{
+		foreach (MiniMapUIController min in MiniMaps) {
+			min.Initialize ();
+		}
 
 	}
 

@@ -79,12 +79,27 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	MainCamera myCam;
 
 
+	float UIWidth;
+	float UIHeight;
+
+	public void AwakeInitialize(){
+		if (newParent != null) {
+			Awake ();}
+
+	}
+
 	void Awake()
-	{
+	{   bool wasOn = transform.parent.gameObject.activeSelf;
+		transform.parent.gameObject.SetActive (true);
 		newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
+		UIWidth = newParent.rect.width;
+		UIHeight = newParent.rect.height;
+		transform.parent.gameObject.SetActive (wasOn);
 	}
     // Use this for initialization
-    void Start () {
+    public void Initialize() {
+
+		Debug.Log ("Starting");
 		myCam = GameObject.FindObjectOfType<MainCamera> ();
 		Left = myCam.getBoundries ().xMin;
 		Right = myCam.getBoundries ().xMax;
@@ -159,15 +174,15 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 	IEnumerator displayWarning( Vector3 location, Sprite symbol)
 	{
-		int iCoord = (int)(((location.x - Left) / (WorldWidth)) * newParent.rect.width);
-		int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * newParent.rect.height);
+		int iCoord = (int)(((location.x - Left) / (WorldWidth)) *UIWidth);
+		int jCoord = (int)(((location.z - bottom) / (WorldHeight)) *UIHeight);
 
 		//Debug.Log ("Creating warning");
 
 
 		GameObject obj = (GameObject)Instantiate (warningSymbol, new Vector2(iCoord, jCoord), Quaternion.identity, newParent);
 		obj.GetComponent<Image> ().sprite = symbol;
-		obj.transform.localPosition = new Vector2 (iCoord - newParent.rect.width/2 , jCoord - newParent.rect.height/2);
+		obj.transform.localPosition = new Vector2 (iCoord - UIWidth/2 , jCoord - UIHeight/2);
 		yield return new WaitForSeconds (10);
 		Destroy (obj);
 	}
@@ -177,15 +192,15 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	public GameObject showUnitIcon( Vector3 location, Sprite symbol)
 	{
 		//RectTransform newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
-		int iCoord = (int)(((location.x - Left) / (WorldWidth)) * newParent.rect.width);
-		int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * newParent.rect.height);
+		int iCoord = (int)(((location.x - Left) / (WorldWidth)) * UIWidth);
+		int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * UIHeight);
 
 		//Debug.Log ("Creating warning");
 
 
 		GameObject obj = (GameObject)Instantiate (warningSymbol, new Vector2(iCoord, jCoord), Quaternion.identity, newParent);
 		obj.GetComponent<Image> ().sprite = symbol;
-		obj.transform.localPosition = new Vector2 (iCoord - newParent.rect.width/2 , jCoord - newParent.rect.height/2);
+		obj.transform.localPosition = new Vector2 (iCoord - UIWidth/2 , jCoord - UIHeight/2);
 		currentIcons.Add (obj);
 		return obj;
 	}
@@ -202,9 +217,9 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	{
 		if (currentIcons.Contains (sprite)) {
 			
-			int iCoord = (int)(((location.x - Left) / (WorldWidth)) * newParent.rect.width);
-			int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * newParent.rect.height);
-			sprite.transform.localPosition = new Vector2 (iCoord - newParent.rect.width / 2, jCoord - newParent.rect.height / 2);
+			int iCoord = (int)(((location.x - Left) / (WorldWidth)) * UIWidth);
+			int jCoord = (int)(((location.z - bottom) / (WorldHeight)) *UIHeight);
+			sprite.transform.localPosition = new Vector2 (iCoord - UIWidth / 2, jCoord - UIHeight / 2);
 		}
 	}
 
