@@ -68,7 +68,6 @@ public class AetherCapture : MonoBehaviour {
 		if (foggy) {
 			foggy.radius = myManager.visionRange + 3;
 			foggy.enabled = true;
-			foggy.Initialize ();
 		}
 
 		GameManager.main.activePlayer.applyUpgrade (myManager.gameObject);

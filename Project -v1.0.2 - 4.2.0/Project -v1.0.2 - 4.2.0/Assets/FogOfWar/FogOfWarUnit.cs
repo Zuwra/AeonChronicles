@@ -12,22 +12,15 @@ public class FogOfWarUnit : MonoBehaviour
 
 
 	private bool hasMoved = true;
-    Transform _transform;
 
     void Start()
     {
-		Initialize ();
 		hasMoved = true;
 		InvokeRepeating ("UpdateFog", Random.Range(0, updateFrequency), updateFrequency);
 		Invoke( "clearFog", 1);
     }
 
 
-	public void Initialize()
-	{  _transform = transform;
-
-		
-	}
 
     void UpdateFog()
     {
@@ -46,6 +39,6 @@ public class FogOfWarUnit : MonoBehaviour
 	{hasMoved = false;
 		//_nextUpdate = updateFrequency;
 		//FogOfWar.current.Unfog(_transform.position, 1);
-		FogOfWar.current.Unfog(_transform.position, radius, lineOfSightMask);
+		FogOfWar.current.Unfog(transform.position, radius, lineOfSightMask);
 	}
 }

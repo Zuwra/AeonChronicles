@@ -40,6 +40,7 @@ public class PayloadFirendlyEndZone : MonoBehaviour {
 		yield return new WaitForSeconds (waitTime);
 		loc.SetActive (true);
 		loc.GetComponent<FogOfWarUnit> ().enabled = true;
+		loc.GetComponent<FogOfWarUnit> ().move ();
 		loc.GetComponent<ObjectiveTrigger> ().myObj = myObjectives [payloadIndex];
 		myObjectives [payloadIndex].enabled = true;
 		payloadIndex++;

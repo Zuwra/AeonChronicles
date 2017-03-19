@@ -28,7 +28,6 @@ public class CapturableUnit : MonoBehaviour {
 		if (foggy) {
 			foggy.radius = myManagers [0].visionRange + 3;
 			foggy.enabled = true;
-			foggy.Initialize ();
 		}
 
 		GameManager.main.activePlayer.applyUpgrade (this.gameObject);

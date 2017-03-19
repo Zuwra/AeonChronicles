@@ -1,16 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MiniMapUIController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PayloadFirendlyEndZone.cs">
     <Files>
-      <File FileName="Assets\MiniMapUIController.cs" Line="234" Column="3" />
+      <File FileName="Assets\MiniMapUIController.cs" Line="1" Column="1" />
       <File FileName="Assets\ObjectiveManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Camera\MainCamera.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\FogOfWar\FogOfWar.cs" Line="256" Column="28" />
-      <File FileName="Assets\MiniMapIconer.cs" Line="50" Column="3" />
-      <File FileName="Assets\Scripts - In Game\GameManager.cs" Line="32" Column="27" />
-      <File FileName="Assets\WaveManager.cs" Line="136" Column="48" />
+      <File FileName="Assets\FogOfWar\FogOfWar.cs" Line="1" Column="1" />
+      <File FileName="Assets\MiniMapIconer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\WaveManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\PayLoadCreator.cs" Line="24" Column="3" />
+      <File FileName="Assets\PayloadFirendlyEndZone.cs" Line="40" Column="46" />
+      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="17" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

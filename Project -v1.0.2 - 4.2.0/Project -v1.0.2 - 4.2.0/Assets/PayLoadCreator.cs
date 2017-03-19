@@ -17,7 +17,7 @@ public class PayLoadCreator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		if(myPayloads.Count> 0 && endZone){
+		if(myPayloads.Count> 0){
 			Invoke( "SpawnPayload", spawnTimes[0]);
 		}
 
@@ -26,9 +26,11 @@ public class PayLoadCreator : MonoBehaviour {
 
 	void SpawnPayload()
 	{
+		Debug.Log ("Turning on Payload");
 		myPayloads [currentIndex].SetActive (true);
-		myPayloads [currentIndex].GetComponent<UnitManager> ().GiveOrder (Orders.CreateMoveOrder(endZone.transform.position));
-
+		if (endZone) {
+			myPayloads [currentIndex].GetComponent<UnitManager> ().GiveOrder (Orders.CreateMoveOrder (endZone.transform.position));
+		}
 
 		currentIndex ++;
 		if (currentIndex < myPayloads.Count - 1) {
