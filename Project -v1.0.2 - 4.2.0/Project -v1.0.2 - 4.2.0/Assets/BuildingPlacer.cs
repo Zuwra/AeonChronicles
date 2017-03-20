@@ -139,10 +139,10 @@ public class BuildingPlacer : MonoBehaviour {
 
 	public void setRenderers(Material m)
 	{
-		
-		foreach (MeshRenderer mr in building.GetComponentsInChildren<MeshRenderer>()) {
-			mr.material = m;
+		if (building) {
+			foreach (MeshRenderer mr in building.GetComponentsInChildren<MeshRenderer>()) {
+				mr.material = m;
+			}
 		}
-
 	}
 }

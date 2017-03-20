@@ -65,7 +65,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 		//Set up camera position
 		if (StartPoint != null)
 		{goToStart ();
-			transform.position = new Vector3(StartPoint.transform.position.x, m_MinFieldOfView + 90, StartPoint.transform.position.z-AngleOffset);
+			transform.position = new Vector3(StartPoint.transform.position.x, m_MinFieldOfView + 105, StartPoint.transform.position.z-AngleOffset);
 		}
 		AngleOffset = 45 -((transform.position.y - m_MinFieldOfView) / m_MaxFieldOfView) * 45;
 		//Set up camera rotation

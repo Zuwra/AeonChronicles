@@ -706,7 +706,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			if (attacker) {
 				if (listTop.myVoices.attacking.Count > 0) {
 					do {
-						n = Random.Range (0, listTop.myVoices.attacking.Count -1);
+						n = Random.Range (0, listTop.myVoices.attacking.Count);
 					} while(n == lsatVoiceIndex);
 
 					ExpositionDisplayer.instance.displayText ("", 2, listTop.myVoices.attacking [n], .5f, null, 0);

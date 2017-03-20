@@ -164,12 +164,15 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 	public void showWarning(Vector3 location)
 	{
-		StartCoroutine (displayWarning (location, defaultWarning));
+		if (this.gameObject.activeInHierarchy) {
+			StartCoroutine (displayWarning (location, defaultWarning));
+		}
 	}
 
 	public void showWarning(Vector3 location, Sprite myImage)
-	{
-		StartCoroutine (displayWarning (location, myImage));
+	{if (this.gameObject.activeInHierarchy) {
+			StartCoroutine (displayWarning (location, myImage));
+		}
 	}
 
 	IEnumerator displayWarning( Vector3 location, Sprite symbol)
