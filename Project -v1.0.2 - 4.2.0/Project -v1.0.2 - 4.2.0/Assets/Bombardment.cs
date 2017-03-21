@@ -75,12 +75,12 @@ public class Bombardment : TargetAbility{
 		Projectile script = proj.GetComponent<Projectile> ();
 		proj.SendMessage ("setSource", this.gameObject, SendMessageOptions.DontRequireReceiver);
 
+		if (script) {
+			script.damage = myDamage;
 
-		script.damage = myDamage;
-
-		script.Source = this.gameObject;
-		script.setLocation (location);
-
+			script.Source = this.gameObject;
+			script.setLocation (location);
+		}
 		
 	}
 

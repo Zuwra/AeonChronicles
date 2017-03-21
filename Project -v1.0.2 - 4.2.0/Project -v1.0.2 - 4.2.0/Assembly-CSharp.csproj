@@ -331,6 +331,7 @@
      <Compile Include="Assets\InstructionDisplayer.cs" />
      <Compile Include="Assets\InstructionHelper.cs" />
      <Compile Include="Assets\InstructionHelperManager.cs" />
+     <Compile Include="Assets\ItemDropper.cs" />
      <Compile Include="Assets\KillModifier.cs" />
      <Compile Include="Assets\KillUnitAch.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />

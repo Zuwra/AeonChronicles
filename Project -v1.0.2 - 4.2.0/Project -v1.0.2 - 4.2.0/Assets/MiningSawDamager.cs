@@ -83,6 +83,8 @@
 
 		void OnTriggerEnter(Collider other)
 		{
+		if (other.isTrigger) {
+			return;}
 
 		if (other.name == "Ground" && impactEffect) {
 			Instantiate (impactEffect, getImpactLocation(), Quaternion.identity);

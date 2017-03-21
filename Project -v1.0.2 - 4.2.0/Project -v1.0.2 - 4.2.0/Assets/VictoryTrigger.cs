@@ -73,16 +73,14 @@ public class VictoryTrigger : MonoBehaviour {
 			}
 			ObjectiveManager.instance.completeMain (obj);
 
-			foreach (Objective o in mainObjective) {
-				if (!o.completed) {
-					return;}
-			}
-			Win ();
+			//foreach (Objective o in mainObjective) {
+				//if (!o.completed) {
+				//	return;}
+			//}
+			//Win ();
 		}
-
-
-
 	}
+
 	public void unComplete(Objective obj)
 	{TechCredits -= obj.reward;
 		if (obj.bonus) {

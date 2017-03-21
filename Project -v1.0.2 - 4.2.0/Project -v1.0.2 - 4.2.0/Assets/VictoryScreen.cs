@@ -47,11 +47,13 @@ public class VictoryScreen : MonoBehaviour {
 			} else if (bonusTech == 3) {
 				bonusTech = 5;}
 
-			if (bonusTech == 0) {
-				DifficultyTitle.enabled = false;
-				DifficultyText.enabled = false;
-			} else {
-				DifficultyText.text = "" + bonusTech;
+			if (DifficultyText) {
+				if (bonusTech == 0) {
+					DifficultyTitle.enabled = false;
+					DifficultyText.enabled = false;
+				} else {
+					DifficultyText.text = "" + bonusTech;
+				}
 			}
 
 			if (info.Resources > 0) {

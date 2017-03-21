@@ -79,7 +79,9 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 
 	// Attack move towards a ground location (Tab - ground)
 	public virtual void  AttackMove(Order order)
-	{
+	{if (!myManager) {
+			return;
+		}
 		if (myManager.myWeapon.Count > 0) {
 
 			myManager.changeState (new AttackMoveState (null, order.OrderLocation, AttackMoveState.MoveType.command, myManager, myManager.gameObject.transform.position),false,order.queued);
