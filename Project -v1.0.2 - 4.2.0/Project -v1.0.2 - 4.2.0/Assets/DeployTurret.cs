@@ -265,7 +265,6 @@ public class DeployTurret  : TargetAbility{
 
 		if (chargeCount == 0) {
 
-			Debug.Log ("Charge is 0");
 			order.canCast = false;
 			order.nextUnitCast = true;}
 

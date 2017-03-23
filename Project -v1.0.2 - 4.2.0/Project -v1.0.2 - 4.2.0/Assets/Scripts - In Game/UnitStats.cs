@@ -257,7 +257,7 @@ public class UnitStats : MonoBehaviour {
 
 			//	Debug.Log ("Actual " + amount);
 				health -= amount;
-
+			
 				if ((int)health <= 0) {
 					kill (source);
 				} else {
@@ -311,6 +311,7 @@ public class UnitStats : MonoBehaviour {
 
 
 			//}
+
 			FinishDeath = false;
 			if (this) {
 				FinishDeath = GameManager.main.playerList [myManager.PlayerOwner - 1].UnitDying (this.gameObject, deathSource, true);
@@ -362,11 +363,12 @@ public class UnitStats : MonoBehaviour {
 					//Debug.Log ("Triggering children");
 					//man.myStats.kill (deathSource);
 				//}
-
+	
 				SelectedManager.main.updateControlGroups (myManager);
 				this.gameObject.SendMessage ("Dying",SendMessageOptions.DontRequireReceiver);
 				veternStat.Died = true;
 				Destroy (this.gameObject);
+			
 				
 			}
 		}

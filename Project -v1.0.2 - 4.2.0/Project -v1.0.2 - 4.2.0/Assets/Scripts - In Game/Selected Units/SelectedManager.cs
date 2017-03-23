@@ -649,7 +649,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
 
-			if (obj.gameObject.GetComponent<UnitManager> ().UnitName == (tempAbilityGroups [i])[0].gameObject.GetComponent<UnitManager> ().UnitName) {
+			if (obj && obj.gameObject.GetComponent<UnitManager> ().UnitName == (tempAbilityGroups [i])[0].gameObject.GetComponent<UnitManager> ().UnitName) {
 				tempAbilityGroups [i].Remove (obj);
 
 				if (tempAbilityGroups [i].Count == 0) {

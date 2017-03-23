@@ -246,7 +246,7 @@ namespace Pathfinding.RVO {
 			Vector3 realPos = rvoAgent.InterpolatedPosition;
 			realPos.y = adjustedY;
 
-			if (mask != 0 && Physics.Raycast(realPos + Vector3.up*height*5f, Vector3.down, out hit, 50, mask)) {
+			if (mask != 0 && Physics.Raycast(realPos + Vector3.up*height*7f, Vector3.down, out hit, 50, mask)) {
 			//	Debug.Log ("Hitting " + hit.collider);
 				adjustedY = hit.point.y;
 			} else {

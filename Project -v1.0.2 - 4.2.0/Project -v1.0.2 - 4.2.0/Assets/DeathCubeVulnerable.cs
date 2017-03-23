@@ -21,7 +21,8 @@ public class DeathCubeVulnerable : SceneEventTrigger {
 		foreach (UnitManager manage in DeathCubes) {
 			if (manage) {
 				try{
-					manage.myStats.otherTags.Remove (UnitTypes.UnitTypeTag.Invulnerable);
+					manage.GetComponent<MiningSawDamager>().enabled = false;
+					//manage.myStats.otherTags.Remove (UnitTypes.UnitTypeTag.Invulnerable);
 				}catch(System.Exception){
 
 				}
@@ -33,7 +34,8 @@ public class DeathCubeVulnerable : SceneEventTrigger {
 		foreach (UnitManager manage in DeathCubes) {
 			if (manage) {
 				try{
-					manage.myStats.otherTags.Add(UnitTypes.UnitTypeTag.Invulnerable);
+					manage.GetComponent<MiningSawDamager>().enabled = true;
+					//manage.myStats.otherTags.Add(UnitTypes.UnitTypeTag.Invulnerable);
 				}catch(System.Exception){
 
 				}

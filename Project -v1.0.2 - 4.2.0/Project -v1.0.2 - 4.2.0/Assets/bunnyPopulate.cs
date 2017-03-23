@@ -43,7 +43,8 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 			hitzone.z += Mathf.Cos (Mathf.Deg2Rad * angle) * radius;
 
 
-			GameObject ob = (GameObject)Instantiate (this.gameObject, hitzone, Quaternion.identity);//do the thing
+		GameObject ob = (GameObject)Instantiate (EggObject, hitzone, Quaternion.identity);//do the thing
+
 			ob.GetComponent<RabbitEgg>().startHatch();
 			
 

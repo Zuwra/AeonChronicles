@@ -49,8 +49,10 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 				Stop (order);
 				break;
 
-			case Const.ORDER_MOVE_TO:
+		case Const.ORDER_MOVE_TO:
+			if (myManager.cMover) {
 				Move (order);
+			}
 				break;
 
 			case Const.ORDER_Interact:
@@ -58,9 +60,11 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 				break;
 
 		// ATTACK MOVE - Move towards a location and attack enemies on the way.
-			case Const.ORDER_AttackMove:
+		case Const.ORDER_AttackMove:
 		//	Debug.Log ("Setting to attack move");
+			if (myManager.cMover) {
 				AttackMove (order);
+			}
 
 				break;
 

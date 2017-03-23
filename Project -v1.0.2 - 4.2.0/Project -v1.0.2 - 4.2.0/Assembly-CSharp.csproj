@@ -590,6 +590,7 @@
      <Compile Include="Assets\UltimateApplier.cs" />
      <Compile Include="Assets\UndyingArmor.cs" />
      <Compile Include="Assets\UnitCardCreater.cs" />
+     <Compile Include="Assets\UnitDisappear.cs" />
      <Compile Include="Assets\UnitEnterTrigger.cs" />
      <Compile Include="Assets\UnitIconInfo.cs" />
      <Compile Include="Assets\UnitLostDefeat.cs" />
