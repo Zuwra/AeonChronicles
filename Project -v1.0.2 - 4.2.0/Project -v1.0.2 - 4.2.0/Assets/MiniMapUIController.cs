@@ -99,7 +99,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
     // Use this for initialization
     public void Initialize() {
 
-		Debug.Log ("Starting");
+		//Debug.Log ("Starting");
 		myCam = GameObject.FindObjectOfType<MainCamera> ();
 		Left = myCam.getBoundries ().xMin;
 		Right = myCam.getBoundries ().xMax;
