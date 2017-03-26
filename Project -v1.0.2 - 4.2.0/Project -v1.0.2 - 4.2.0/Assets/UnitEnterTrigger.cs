@@ -45,6 +45,9 @@ public class UnitEnterTrigger : MonoBehaviour {
 			//Debug.Log ("Triggering " + trig);
 			trig.trigger (index, input, location, target, doIt);
 		}
+		GetComponent<Collider> ().enabled = false;
+
+		yield return new WaitForSeconds (15);
 		Destroy (this.gameObject);
 
 	}

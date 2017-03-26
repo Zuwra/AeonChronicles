@@ -13,6 +13,9 @@ public class UnitSlower : MonoBehaviour {
 	public float slowAmount = -.45f;
 
 	public List<string> excludedUnits;
+
+	List<UnitManager> inSight = new List<UnitManager>();
+
 	// Use this for initialization
 	void Start () {
 		playerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
@@ -25,8 +28,11 @@ public class UnitSlower : MonoBehaviour {
 		//Debug.Log ("Entering unit " + col.gameObject);
 		UnitManager manage = col.GetComponent<UnitManager> ();
 		if (manage) {
-			if (manage.PlayerOwner == playerOwner && manage.cMover && !excludedUnits.Contains(manage.UnitName)) {
+			if (manage.PlayerOwner == playerOwner && manage.cMover && !excludedUnits.Contains (manage.UnitName)) {
 				StartCoroutine (waitForSec (manage));
+			
+			} else if (manage.PlayerOwner == 1) {
+				Dying ();
 			
 			}
 		}
@@ -36,17 +42,32 @@ public class UnitSlower : MonoBehaviour {
 	{
 		UnitManager manage = col.GetComponent<UnitManager> ();
 		if (manage) {
-			if (manage.PlayerOwner == playerOwner && manage.cMover && !excludedUnits.Contains(manage.UnitName)) {
+			if (manage.PlayerOwner == playerOwner && manage.cMover && !excludedUnits.Contains(manage.UnitName) && inSight.Contains(manage)) {
 				manage.cMover.removeSpeedBuff (this);
 
 			}
 		}
 	}
 
+	public void Dying()
+	{
+		foreach (UnitManager manage in inSight) {
+			if (manage && manage.cMover) {
+				manage.cMover.removeSpeedBuff (this);
+			}
+		
+		}
+
+		inSight.Clear ();
+
+
+	}
 
 	IEnumerator waitForSec( UnitManager manage)
 	{
 		yield return null;
+		inSight.Add (manage);
+
 		if (slowUnits) {
 			manage.cMover.changeSpeed (slowAmount, 0, false, this);
 		} else {
@@ -55,6 +76,8 @@ public class UnitSlower : MonoBehaviour {
 
 
 	}
+
+
 
 
 }

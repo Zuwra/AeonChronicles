@@ -23,7 +23,7 @@ public class ObjectiveTrigger : SceneEventTrigger {
 	*/
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
-		if (finishObjective) {
+		if (finishObjective && myObj) {
 			myObj.complete ();
 		} else {
 			VictoryTrigger.instance.addObjective (myObj);
