@@ -378,9 +378,11 @@ public class UnitStats : MonoBehaviour {
 	public void veteranDamage(float amount)
 	{
 		if (otherTags.Contains (UnitTypes.UnitTypeTag.Turret)) {
-			
+			try{
 			transform.root.GetComponent<UnitManager> ().myStats.veternStat.damageDone += amount;
-
+			}
+			catch{
+			}
 		}
 		veternStat.damageDone += amount;
 	}
@@ -390,8 +392,11 @@ public class UnitStats : MonoBehaviour {
 		kills++;
 		veternStat.kills++;
 		if (otherTags.Contains (UnitTypes.UnitTypeTag.Turret)) {
+			try{
 			transform.root.GetComponent<UnitManager> ().myStats.upKills ();
-	
+			}
+			catch{
+			}
 		}
 		foreach (KillModifier km in killMods) {
 			km.incKill ();

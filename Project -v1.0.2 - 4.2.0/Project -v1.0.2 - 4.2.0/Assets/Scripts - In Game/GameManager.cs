@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
 		//activePlayer = playerList [playerNumber - 1];
 
 		foreach (MiniMapUIController min in MiniMaps) {
-			min.AwakeInitialize ();
+			min.DubAwake();
 		}
 
 	}

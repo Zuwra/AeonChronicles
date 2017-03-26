@@ -9,6 +9,10 @@ public class UnitSlower : MonoBehaviour {
 
 	int playerOwner;
 	float mySpeed;
+
+	public float slowAmount = -.45f;
+
+	public List<string> excludedUnits;
 	// Use this for initialization
 	void Start () {
 		playerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
@@ -18,9 +22,10 @@ public class UnitSlower : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider col)
 	{
+		//Debug.Log ("Entering unit " + col.gameObject);
 		UnitManager manage = col.GetComponent<UnitManager> ();
 		if (manage) {
-			if (manage.PlayerOwner == playerOwner && manage.cMover) {
+			if (manage.PlayerOwner == playerOwner && manage.cMover && !excludedUnits.Contains(manage.UnitName)) {
 				StartCoroutine (waitForSec (manage));
 			
 			}
@@ -31,7 +36,7 @@ public class UnitSlower : MonoBehaviour {
 	{
 		UnitManager manage = col.GetComponent<UnitManager> ();
 		if (manage) {
-			if (manage.PlayerOwner == playerOwner && manage.cMover) {
+			if (manage.PlayerOwner == playerOwner && manage.cMover && !excludedUnits.Contains(manage.UnitName)) {
 				manage.cMover.removeSpeedBuff (this);
 
 			}
@@ -42,11 +47,10 @@ public class UnitSlower : MonoBehaviour {
 	IEnumerator waitForSec( UnitManager manage)
 	{
 		yield return null;
-
 		if (slowUnits) {
-			manage.cMover.changeSpeed (.45f, 0, false, this);
+			manage.cMover.changeSpeed (slowAmount, 0, false, this);
 		} else {
-			manage.cMover.changeSpeed (1.5f, 0,false, this);
+			manage.cMover.changeSpeed (.5f, 0,false, this);
 		}
 
 

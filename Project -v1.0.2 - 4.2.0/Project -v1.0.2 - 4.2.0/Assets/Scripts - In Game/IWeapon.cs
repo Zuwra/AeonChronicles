@@ -176,6 +176,7 @@ public class IWeapon : MonoBehaviour {
 
 	public bool canAttack(UnitManager target)
 	{
+
 		if (!offCooldown) {
 			//Debug.Log (Title + " On cooldown");
 			return false;}

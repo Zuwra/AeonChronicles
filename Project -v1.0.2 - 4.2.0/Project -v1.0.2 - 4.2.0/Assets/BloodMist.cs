@@ -25,7 +25,7 @@ public class BloodMist : TargetAbility {
 
 	public void UpMaxCharge()
 	{
-		maxChargeCount++;
+		maxChargeCount = 3;
 	
 			if (currentCharger == null) {
 				currentCharger = StartCoroutine (increaseCharges ());
@@ -158,6 +158,9 @@ public class BloodMist : TargetAbility {
 		if (chargeCount == 0) {
 			active = false;
 
+		}
+		if (chargeCount > maxChargeCount) {
+			chargeCount = maxChargeCount;
 		}
 		if (mySelect.IsSelected) {
 			RaceManager.upDateUI ();

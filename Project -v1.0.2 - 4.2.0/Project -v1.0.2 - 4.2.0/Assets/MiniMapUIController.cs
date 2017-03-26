@@ -82,24 +82,22 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	float UIWidth;
 	float UIHeight;
 
-	public void AwakeInitialize(){
-		if (newParent != null) {
-			Awake ();}
 
-	}
-
-	void Awake()
-	{   bool wasOn = transform.parent.gameObject.activeSelf;
+	bool wasOn = true;
+	public void DubAwake()
+	{ Debug.Log ("Going here");
+		wasOn = transform.parent.gameObject.activeSelf;
 		transform.parent.gameObject.SetActive (true);
 		newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
 		UIWidth = newParent.rect.width;
 		UIHeight = newParent.rect.height;
-		transform.parent.gameObject.SetActive (wasOn);
+	
 	}
-    // Use this for initialization
+
+
     public void Initialize() {
 
-		//Debug.Log ("Starting");
+		Debug.Log ("Startin g " + this.gameObject);
 		myCam = GameObject.FindObjectOfType<MainCamera> ();
 		Left = myCam.getBoundries ().xMin;
 		Right = myCam.getBoundries ().xMax;
@@ -158,6 +156,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		InvokeRepeating ("updateScreenRect", .1f, minimapUpdateRate);
 		InvokeRepeating ("setFog", .05f, minimapUpdateRate);
 	
+		transform.parent.gameObject.SetActive (wasOn);
 	
 	}
 
@@ -284,18 +283,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 			tex .SetPixel(p.x,p.y, Color.clear);
 		}
 		used.Clear ();
-		/*
-        for (int i = 0; i < textureWidth; i++)
-        {
-            for (int j = 0; j < textureHeight; j++)
-            {
-				if (virtMap [i,j]) {
-					virtMap [i,j] = false;
-					tex .SetPixel(i, j, Color.clear);
-				}
 
-            }
-        }*/
         if (apply)
 			tex.Apply();
     }
@@ -511,6 +499,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	Color32 blackColor = new Color32 (0, 0, 0, 255);
 	public void setFog()
 	{
+
 		if (_texture == null) {
 			_texture = new Texture2D (fog.texture.width, fog.texture.height);
 			_texture.wrapMode = TextureWrapMode.Clamp;

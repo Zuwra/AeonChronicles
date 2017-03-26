@@ -87,9 +87,12 @@ public class ProductionManager : MonoBehaviour {
 	IEnumerator addNUmber(UnitProduction produce, bool addIt)
 	{
 		yield return new WaitForSeconds(0);
-	
+		try{
 		iconList [produce.Name].transform.FindChild("Text").GetComponent<Text> ().text
 		= ""+abilityList [produce.Name].Count;
+		}
+		catch{
+		}
 
 		if (addIt) {
 			iconList [produce.Name].GetComponent<DropDownDudeFinder> ().myProducer.Add (produce.gameObject);

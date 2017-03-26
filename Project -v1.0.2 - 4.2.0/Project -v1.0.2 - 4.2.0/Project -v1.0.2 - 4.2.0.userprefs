@@ -1,16 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\evasiveMenuvers.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\BloodMist.cs">
     <Files>
-      <File FileName="Assets\MiniMapUIController.cs" Line="101" Column="3" />
-      <File FileName="Assets\ObjectiveManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitDisappear.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitEnterTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\pulsefieldupgrade.cs" Line="13" Column="17" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\DeathCubeVulnerable.cs" Line="1" Column="1" />
-      <File FileName="Assets\bunnyPopulate.cs" Line="1" Column="1" />
-      <File FileName="Assets\evasiveMenuvers.cs" Line="27" Column="3" />
+      <File FileName="Assets\FogOfWar\FogOfWar.cs" Line="1" Column="1" />
+      <File FileName="Assets\MiniMapUIController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="391" Column="3" />
+      <File FileName="Assets\UnitSlower.cs" Line="8" Column="24" />
+      <File FileName="Assets\PayLoadCreator.cs" Line="34" Column="3" />
+      <File FileName="Assets\ResearchUpgrade.cs" Line="1" Column="1" />
+      <File FileName="Assets\VulcanChargeUp.cs" Line="21" Column="49" />
+      <File FileName="Assets\BloodMist.cs" Line="163" Column="33" />
+      <File FileName="Assets\DeployTurret.cs" Line="384" Column="2" />
+      <File FileName="Assets\SingleTarget.cs" Line="219" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -33,7 +33,7 @@ public class PayLoadCreator : MonoBehaviour {
 		}
 
 		currentIndex ++;
-		if (currentIndex < myPayloads.Count - 1) {
+		if (currentIndex < myPayloads.Count) {
 			Invoke( "SpawnPayload", spawnTimes[currentIndex]-spawnTimes[currentIndex -1]);
 		}
 	}

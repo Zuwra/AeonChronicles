@@ -90,6 +90,7 @@ public class inflectionBarrier : MonoBehaviour, Notify {
 			foreach (IWeapon weap in  attachedUnit.myWeapon) {
 				weap.removeNotifyTrigger (this);
 			}
+			if(this && this.gameObject)
 			Destroy (this.gameObject);
 		}
 		return 0;

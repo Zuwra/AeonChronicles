@@ -17,7 +17,8 @@ public class AugmentAetherVictory  : Objective {
 
 	bool finishedOnce;
 	public SceneEventTrigger attackTrig;
-
+	public  Selected CoolDown;
+	float TimeLeft =30;
 
 	void Start()
 	{base.Start ();
@@ -27,23 +28,48 @@ public class AugmentAetherVictory  : Objective {
 
 	IEnumerator checkForVictory()
 	{
-
-
 		while (true) {
 			
-			yield return new WaitForSeconds (2);
+			yield return new WaitForSeconds (1);
 
-			if (actualAetherCore.GetComponent<AugmentAttachPoint> ().myAugment) {
+			if (TimeLeft <= 0) {
 				break;
+			}
+			if (actualAetherCore.GetComponent<AugmentAttachPoint> ().myAugment) {
+				StartCoroutine (cooldownBar ());
+				spawnWave ();
+
 			
 			}
 		}
-		attackTrig.trigger (0, 0, Vector3.zero, null, false);
-		counterAttack.spawnWave (waveNumber);
-		yield return new WaitForSeconds (delayVic);
 		myAetherCore.capture ();
+		nextArea ();
+	}
 
+	IEnumerator cooldownBar()
+	{
+		float miniCooldown = 1;
+		while(miniCooldown > 0)
+		{
+
+			yield return new WaitForSeconds (.1f);
+			miniCooldown -= .1f;
+			TimeLeft -= .1f;
+			CoolDown.updateCoolDown (TimeLeft / 30);
 		
+		}
+
+	}
+
+	bool waveHasSpawned;
+	void spawnWave()
+	{
+		if (!waveHasSpawned) {
+			waveHasSpawned = true;
+			attackTrig.trigger (0, 0, Vector3.zero, null, false);
+			counterAttack.spawnWave (waveNumber);
+		}
+	
 	}
 
 

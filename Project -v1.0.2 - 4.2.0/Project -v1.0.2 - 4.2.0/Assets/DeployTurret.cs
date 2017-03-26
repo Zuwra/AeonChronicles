@@ -47,7 +47,7 @@ public class DeployTurret  : TargetAbility{
 	// Update is called once per frame
 	void AutoCasting () {
 
-		if(autocast){
+		if(autocast && currentTurret){
 
 			if (turretMounts.Count > 0) {
 
@@ -147,7 +147,7 @@ public class DeployTurret  : TargetAbility{
 	public void UpMaxCharge()
 	{
 		
-		maxChargeCount++;
+		maxChargeCount =3;
 
 		if (currentReplciation == null) {
 			currentReplciation = StartCoroutine (replicateTurrets());
@@ -356,20 +356,21 @@ public class DeployTurret  : TargetAbility{
 
 		Vector3 pos = location;
 	
-		GameObject proj = (GameObject)Instantiate (UnitToBuild, pos+ Vector3.up * .5f, Quaternion.identity);
-		Instantiate (PlaceEffect,  pos+ Vector3.up * .5f, Quaternion.identity);
-		currentTurret.GetComponent<UnitManager> ().enabled = true;
-		GameObject newTurret =  (GameObject)Instantiate (currentTurret, pos + Vector3.up *2f, Quaternion.identity);
-		newTurret.transform.SetParent (proj.transform);
+		if (currentTurret) {
+			GameObject proj = (GameObject)Instantiate (UnitToBuild, pos + Vector3.up * .5f, Quaternion.identity);
+			Instantiate (PlaceEffect, pos + Vector3.up * .5f, Quaternion.identity);
+			currentTurret.GetComponent<UnitManager> ().enabled = true;
+			GameObject newTurret = (GameObject)Instantiate (currentTurret, pos + Vector3.up * 2f, Quaternion.identity);
+			newTurret.transform.SetParent (proj.transform);
 	
-		UnitManager turrManage = newTurret.GetComponent<UnitManager> ();
+			UnitManager turrManage = newTurret.GetComponent<UnitManager> ();
 
-		turrManage.setInteractor( newTurret.AddComponent<StandardInteract> ());
-		turrManage.changeState(new turretState(turrManage));
-		newTurret.GetComponent<UnitStats> ().otherTags.Add (UnitTypes.UnitTypeTag.Static_Defense);
+			turrManage.setInteractor (newTurret.AddComponent<StandardInteract> ());
+			turrManage.changeState (new turretState (turrManage));
+			newTurret.GetComponent<UnitStats> ().otherTags.Add (UnitTypes.UnitTypeTag.Static_Defense);
 	
-		currentTurret.GetComponent<UnitManager> ().enabled = false;
-
+			currentTurret.GetComponent<UnitManager> ().enabled = false;
+		}
 
 	}
 
@@ -381,6 +382,9 @@ public class DeployTurret  : TargetAbility{
 		if (chargeCount == 0) {
 			active = false;
 	
+		}
+		if (chargeCount > maxChargeCount) {
+			chargeCount = maxChargeCount;
 		}
 		if (mySelect.IsSelected) {
 			RaceManager.updateActivity ();

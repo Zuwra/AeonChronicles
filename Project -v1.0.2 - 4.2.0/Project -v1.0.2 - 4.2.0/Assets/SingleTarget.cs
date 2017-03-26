@@ -31,7 +31,7 @@ public class SingleTarget:  TargetAbility {
 
 	public void UpMaxCharge()
 	{
-		maxChargeCount++;
+		maxChargeCount = 3;
 
 		if (currentCharger == null) {
 			currentCharger = StartCoroutine (increaseCharges ());
@@ -219,6 +219,9 @@ public class SingleTarget:  TargetAbility {
 		if (chargeCount == 0) {
 			active = false;
 
+		}
+		if (chargeCount > maxChargeCount) {
+			chargeCount = maxChargeCount;
 		}
 		if (mySelect.IsSelected) {
 			RaceManager.upDateUI ();

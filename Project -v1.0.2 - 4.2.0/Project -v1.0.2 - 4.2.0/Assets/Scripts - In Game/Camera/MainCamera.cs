@@ -52,7 +52,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 
 
 		GetComponent<FogOfWar> ().mapOffset = new Vector2 (( m_Boundries.xMin - m_Boundries.xMax)/2 + m_Boundries.xMax,(   m_Boundries.yMin -m_Boundries.yMax)/2 + m_Boundries.yMax);
-		GetComponent<FogOfWar> ().mapSize = Mathf.Abs (m_Boundries.xMin - m_Boundries.xMax);
+		GetComponent<FogOfWar> ().mapSize = (int)Mathf.Abs (m_Boundries.xMin - m_Boundries.xMax);
 		GetComponent<FogOfWar> ().Initialize ();
 
 	}
@@ -224,9 +224,9 @@ public class MainCamera : MonoBehaviour, ICamera {
 			{
 				//transform.position = new Vector3(transform.position.x, transform.position.y, m_Boundries.yMin);
 			}
-			else if (transform.position.z > m_Boundries.yMax)
+			else if (transform.position.z > m_Boundries.yMax +60)
 			{
-				transform.position = new Vector3(transform.position.x, transform.position.y, m_Boundries.yMax);
+				transform.position = new Vector3(transform.position.x, transform.position.y, m_Boundries.yMax+60);
 			}
 
 			CheckEdgeMovement ();
@@ -277,9 +277,9 @@ public class MainCamera : MonoBehaviour, ICamera {
 
 			Camera.main.transform.Translate (new Vector3(0,0,(m_Boundries.yMin-10)-bottom), Space.World);
 		}
-		else if (top > m_Boundries.yMax)
+		else if (top > m_Boundries.yMax +60)
 		{
-			Camera.main.transform.Translate (new Vector3(0,0,m_Boundries.yMax-top), Space.World);
+			Camera.main.transform.Translate (new Vector3(0,0,m_Boundries.yMax + 60-top), Space.World);
 		}
 	}
 
