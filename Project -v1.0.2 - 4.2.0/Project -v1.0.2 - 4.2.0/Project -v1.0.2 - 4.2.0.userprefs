@@ -1,18 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UnitAppear.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\mortarPod.cs">
     <Files>
       <File FileName="Assets\FogOfWar\FogOfWar.cs" Line="1" Column="1" />
       <File FileName="Assets\MiniMapUIController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitSlower.cs" Line="1" Column="1" />
-      <File FileName="Assets\PayLoadCreator.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitDisappear.cs" Line="16" Column="42" />
-      <File FileName="Assets\UnitAppear.cs" Line="76" Column="2" />
-      <File FileName="Assets\ObjectiveTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\VictoryTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitEnterTrigger.cs" Line="50" Column="40" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="325" Column="12" />
+      <File FileName="Assets\UnitDisappear.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="503" Column="3" />
+      <File FileName="Assets\MiningSawDamager.cs" Line="43" Column="12" />
+      <File FileName="Assets\Resources\mortarPod.cs" Line="10" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

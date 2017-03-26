@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
+public class mortarPod : MonoBehaviour, Validator, Notify{//, Modifier {
 
 
 
@@ -31,7 +31,7 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 			weapon.attackPeriod = .01f;
 		}
 
-		weapon.myManager.myStats.addDeathTrigger (this);
+	//	weapon.myManager.myStats.addDeathTrigger (this);
 
 	}
 	
@@ -81,7 +81,7 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 
 	}
 
-
+	/*
 	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{ 
 
@@ -98,6 +98,6 @@ public class mortarPod : MonoBehaviour, Validator, Notify, Modifier {
 		weapon.myManager.changeState (new DefaultState ());
 	}
 		return 0 ;
-	}
+	}*/
 
 }
