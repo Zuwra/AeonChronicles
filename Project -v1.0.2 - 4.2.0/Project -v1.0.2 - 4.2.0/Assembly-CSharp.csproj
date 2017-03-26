@@ -289,6 +289,7 @@
      <Compile Include="Assets\Effects\BasicBeamShot\Script\ShotParticleEmitter.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\ShotParticle_Scale.cs" />
      <Compile Include="Assets\Effects\LightningBolt\LightningBoltScript.cs" />
+     <Compile Include="Assets\Elemental Free\Scripts\GE_ELF_Demo.cs" />
      <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\EnableAbility.cs" />
      <Compile Include="Assets\EnergyAchievement.cs" />
@@ -765,6 +766,7 @@
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\Terrain\SFS_Te_Nt.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />
      <None Include="Assets\SMAA-master\SMAA-master\SMAA\Shaders\SMAA.cginc" />
+     <None Include="Assets\Elemental Free\Readme.txt" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />

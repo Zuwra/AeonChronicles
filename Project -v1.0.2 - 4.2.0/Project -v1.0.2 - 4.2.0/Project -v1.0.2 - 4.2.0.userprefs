@@ -1,18 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\BloodMist.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Elemental Free\Scripts\GE_ELF_Demo.cs">
     <Files>
       <File FileName="Assets\FogOfWar\FogOfWar.cs" Line="1" Column="1" />
       <File FileName="Assets\MiniMapUIController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="391" Column="3" />
-      <File FileName="Assets\UnitSlower.cs" Line="8" Column="24" />
-      <File FileName="Assets\PayLoadCreator.cs" Line="34" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\UnitSlower.cs" Line="1" Column="1" />
+      <File FileName="Assets\PayLoadCreator.cs" Line="1" Column="1" />
       <File FileName="Assets\ResearchUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\VulcanChargeUp.cs" Line="21" Column="49" />
-      <File FileName="Assets\BloodMist.cs" Line="163" Column="33" />
-      <File FileName="Assets\DeployTurret.cs" Line="384" Column="2" />
-      <File FileName="Assets\SingleTarget.cs" Line="219" Column="26" />
+      <File FileName="Assets\VulcanChargeUp.cs" Line="1" Column="1" />
+      <File FileName="Assets\BloodMist.cs" Line="1" Column="1" />
+      <File FileName="Assets\DeployTurret.cs" Line="1" Column="1" />
+      <File FileName="Assets\SingleTarget.cs" Line="1" Column="1" />
+      <File FileName="Assets\Elemental Free\Scripts\GE_ELF_Demo.cs" Line="99" Column="45" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

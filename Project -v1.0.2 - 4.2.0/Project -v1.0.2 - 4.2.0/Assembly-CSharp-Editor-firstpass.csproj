@@ -175,6 +175,7 @@
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\Terrain\SFS_Te_Nt.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />
      <None Include="Assets\SMAA-master\SMAA-master\SMAA\Shaders\SMAA.cginc" />
+     <None Include="Assets\Elemental Free\Readme.txt" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
