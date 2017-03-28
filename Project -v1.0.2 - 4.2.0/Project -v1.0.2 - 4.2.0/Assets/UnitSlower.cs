@@ -8,7 +8,7 @@ public class UnitSlower : MonoBehaviour {
 	public bool slowUnits;
 
 	int playerOwner;
-	float mySpeed;
+	//float mySpeed;
 
 	public float slowAmount = -.45f;
 
@@ -19,7 +19,7 @@ public class UnitSlower : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerOwner = GetComponentInParent<UnitManager> ().PlayerOwner;
-		mySpeed = GetComponentInParent<UnitManager> ().cMover.MaxSpeed;
+		//mySpeed = GetComponentInParent<UnitManager> ().cMover.MaxSpeed;
 		
 	}
 	

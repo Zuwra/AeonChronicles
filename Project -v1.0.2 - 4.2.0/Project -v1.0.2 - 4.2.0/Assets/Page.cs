@@ -216,9 +216,14 @@ public class Page  {
 		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
 
 		foreach (RTSObject rts in rows[n/4]) {
+			try{
 			if(((TargetAbility)rts.abilityList [X]).isValidTarget ( target,location))
 			{
 				return true;
+			}
+			}catch (System.Exception e){
+				Debug.Log (e.StackTrace);
+				Debug.Log ("I am calling " + rts.name + " but it broke! X: " + X + " :(");
 			}
 		
 		}

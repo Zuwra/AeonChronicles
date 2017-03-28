@@ -67,7 +67,10 @@ public class ArmyUIManager : MonoBehaviour {
 
 
 	public void unitLost(GameObject unit)
-	{UnitManager manage = unit.GetComponent<UnitManager> ();
+	{if (!unit) {
+			return;}
+		
+		UnitManager manage = unit.GetComponent<UnitManager> ();
 
 
 		if (unitList.ContainsKey (manage.UnitName)) {

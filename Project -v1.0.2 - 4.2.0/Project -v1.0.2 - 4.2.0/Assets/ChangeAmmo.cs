@@ -22,6 +22,7 @@ public class ChangeAmmo : Ability {
 
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
+		select = GetComponent<Selected> ();
 		myType = type.activated;
 	}
 
@@ -31,7 +32,7 @@ public class ChangeAmmo : Ability {
 		}
 
 
-		select = GetComponent<Selected> ();
+
 		//myManager = GetComponent<UnitManager> ();
 		if (autocast) {
 			Activate ();

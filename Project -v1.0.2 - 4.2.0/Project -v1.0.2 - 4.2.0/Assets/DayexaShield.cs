@@ -79,6 +79,8 @@ public class DayexaShield : Ability,Modifier , Notify{
 		rechargeTime = Time.time + RechargeDelay;
 	}
 
+	float lastShieldEffect;
+
 	public float modify(float amount, GameObject src, DamageTypes.DamageType theType)
 	{
 		//Debug.Log ("Taking damage : " + amount);
@@ -107,7 +109,9 @@ public class DayexaShield : Ability,Modifier , Notify{
 		myStats.EnergyRegenPerSec = 0;
 		inCombat = true;
 		rechargeTime = Time.time + RechargeDelay;
-		if (shieldEffect && damageReduction > 0) {
+		if (shieldEffect && damageReduction > 0 && lastShieldEffect < Time.time-.6f) {
+			lastShieldEffect = Time.time;
+
 			GameObject obj = (GameObject)Instantiate (shieldEffect, this.gameObject.transform.position, this.gameObject.transform.rotation);
 			obj.transform.SetParent (this.gameObject.transform);
 		}
