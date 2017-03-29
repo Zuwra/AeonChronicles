@@ -1,22 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Page.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MiniMapUIController.cs">
     <Files>
-      <File FileName="Assets\FogOfWar\FogOfWar.cs" Line="1" Column="1" />
-      <File FileName="Assets\MiniMapUIController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitDisappear.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\MiningSawDamager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\mortarPod.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitSlower.cs" Line="74" Column="37" />
-      <File FileName="Assets\DayexaShield.cs" Line="108" Column="3" />
-      <File FileName="Assets\ChimeraDamUp.cs" Line="18" Column="40" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="266" Column="1" />
-      <File FileName="Assets\ArmyUIManager.cs" Line="72" Column="3" />
-      <File FileName="Assets\ChangeAmmo.cs" Line="26" Column="27" />
-      <File FileName="Assets\Page.cs" Line="231" Column="3" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="767" Column="2" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="616" Column="30" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="731" Column="2" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\DeployTurret.cs" Line="1" Column="1" />
+      <File FileName="Assets\TurretDeathTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Page.cs" Line="218" Column="33" />
+      <File FileName="Assets\MiniMapUIController.cs" Line="96" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

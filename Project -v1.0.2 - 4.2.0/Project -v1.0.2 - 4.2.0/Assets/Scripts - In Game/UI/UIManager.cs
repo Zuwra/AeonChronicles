@@ -86,9 +86,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 		//Attach Event Handlers
 		EventsManager eventsManager =GameObject.FindObjectOfType<EventsManager>();// ManagerResolver.Resolve<IEventsManager>();
-	//	Debug.Log("Addin to " + eventsManager.gameObject);
+
 		eventsManager.MouseClick += ButtonClickedHandler;
-		//ButtonClickedHandler (null,null);
+
 		eventsManager.MouseScrollWheel += ScrollWheelHandler;
 		eventsManager.KeyAction += KeyBoardPressedHandler;
 		eventsManager.ScreenEdgeMousePosition += MouseAtScreenEdgeHandler;
@@ -713,8 +713,25 @@ public class UIManager : MonoBehaviour, IUIManager {
 		return true;
 	}
 
-	public void setAbility(Ability abil, int n)
-	{currentAbilityNUmber = n;
+	//Called if a fule group of units is killed to see ifthey were in target mode.
+	public void checkForDeadUnit(string unitName)
+	{
+		
+		if (unitName == currentTargetUnit) {
+			if (m_Mode == Mode.targetAbility) {
+				m_SelectedManager.stoptarget ();
+				SwitchMode (Mode.Normal);
+			}
+		
+		}
+
+	}
+
+	string currentTargetUnit;
+
+	public void setAbility(Ability abil, int n, string UnitName)
+	{currentTargetUnit = UnitName;
+		currentAbilityNUmber = n;
 		currentAbility = (TargetAbility)abil;
 		if (currentAbility.myTargetType == TargetAbility.targetType.unit) {
 			

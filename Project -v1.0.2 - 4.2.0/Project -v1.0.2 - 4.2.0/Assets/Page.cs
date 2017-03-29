@@ -215,6 +215,11 @@ public class Page  {
 		
 		int X = n - rows [n / 4] [0].AbilityStartingRow * 4;
 
+		if (rows [n / 4].Count == 0) {
+			throw new UnityException ();
+		}
+
+
 		foreach (RTSObject rts in rows[n/4]) {
 			try{
 			if(((TargetAbility)rts.abilityList [X]).isValidTarget ( target,location))

@@ -138,11 +138,16 @@ public class UiAbilityManager : MonoBehaviour {
 			AbilityX = 0;
 			UnitManager man= null;
 			foreach(RTSObject obj in currentPage.rows[j]){
+
 				if(obj){
 					man = obj.gameObject.GetComponent<UnitManager> ();
+
 					break;}
 			}
-
+			if (!man) {
+				continue;
+				Debug.Log ("I is null");
+			}
 			for (int m = 0; m < man.abilityList.Count / 4 + 1; m++) {		
 
 					if (man.abilityList.Count > AbilityX * 4) {
@@ -334,7 +339,8 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 	public void loadUI(Page uiPage)
-	{currentPage = uiPage;
+	{
+		currentPage = uiPage;
 		// Clear old info in the buttons and stats
 		foreach (StatsUI obj in Stats) {
 			obj.clear ();
@@ -1051,6 +1057,7 @@ public class UiAbilityManager : MonoBehaviour {
 			n = uiPage.rows [j] [0].AbilityStartingRow;
 
 			//Sets the unit's stats and count
+		
 			UnitManager man = uiPage.rows [j] [0].gameObject.GetComponent<UnitManager> ();
 
 

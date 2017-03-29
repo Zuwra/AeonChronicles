@@ -290,8 +290,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public bool UnitDying(GameObject Unit, GameObject deathSource, bool trueDeath)
 	{bool finishDeath = true;
 
-		//Debug.Log ("starting triggers");
-
+	
 		if (trueDeath) {
 			foreach (LethalDamageinterface trigger in lethalTrigger) {
 
@@ -741,7 +740,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			if (UltOne.active && UltOne.canActivate (true).canCast) {
 				Debug.Log ("Cast it fo real");
 				uiManage.SwitchMode (Mode.globalAbility);
-				uiManage.setAbility (UltOne, 1);
+				uiManage.setAbility (UltOne, 1, "");
 			}
 		}
 	}
@@ -751,7 +750,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		if (UltTwo != null) {
 			if (UltTwo.active && UltTwo.canActivate (true).canCast) {
 				uiManage.SwitchMode (Mode.globalAbility);
-				uiManage.setAbility (UltTwo, 1);
+				uiManage.setAbility (UltTwo, 1, "");
 			}
 		}
 	}
@@ -761,7 +760,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		if (UltThree != null) {
 			if (UltThree.active && UltThree.canActivate (true).canCast) {
 				uiManage.SwitchMode (Mode.globalAbility);
-				uiManage.setAbility (UltThree, 1);
+				uiManage.setAbility (UltThree, 1, "");
 			}
 		}
 	}
@@ -771,7 +770,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		if (UltFour != null) {
 			if (UltFour.active && UltFour.canActivate (true).canCast) {
 				uiManage.SwitchMode (Mode.globalAbility);
-				uiManage.setAbility (UltFour, 1);
+				uiManage.setAbility (UltFour, 1, "");
 			}
 		}
 	}

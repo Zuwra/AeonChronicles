@@ -340,7 +340,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 					((TargetAbility)UIPages [currentPage].getAbility (n)).range);
 				uiManage.SwitchMode (Mode.targetAbility);
 
-				uiManage.setAbility (UIPages [currentPage].getAbility (n), n);
+				uiManage.setAbility (UIPages [currentPage].getAbility (n), n,UIPages [currentPage].getUnitsFromAbilities(n)[0].getUnitManager().UnitName);
 			
 			} else if (UIPages [currentPage].isBuildingAbility (n)) {
 				//Debug.Log ("In here 2 ");
@@ -567,16 +567,16 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
         while (usedUnits.Count < tempAbilityGroups.Count)
         {
-            int min = 100;
+            int minPriority = 100;
 
-            foreach (List<RTSObject> obj in tempAbilityGroups)
-			{obj.RemoveAll (item => item == null);
+            foreach (List<RTSObject> objList in tempAbilityGroups)
+			{//objList.RemoveAll (item => item == null);
 				   
-				if (obj[0].AbilityPriority <= min && !usedUnits.Contains(obj[0]))
+				if (objList[0].AbilityPriority <= minPriority && !usedUnits.Contains(objList[0]))
                 {
 
-                    bestPick = obj;
-                    min = obj[0].AbilityPriority;
+					bestPick = objList;
+					minPriority = objList[0].AbilityPriority;
                 }
             }
             usedUnits.Add(bestPick[0]);
@@ -595,8 +595,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
                     UIPages.Add(new Page());
                 }
             }
-
+		
             UIPages[n].addUnit(bestPick);
+		
 
         }
 		if (abilityManager) {
@@ -613,7 +614,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
     public void DeselectAll()
-	{//Debug.Log ("Deselcting all");
+	{
+		uiManage.SwitchToModeNormal ();
+
         if (SelectedObjects.Count == 0)
             return;
         foreach (RTSObject obj in SelectedObjects)
@@ -638,23 +641,25 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     **/
     public void DeselectObject(RTSObject obj)
     {
+		if (!obj)
+			return;
+
         //don't bother deselecting it if it's not selected in the first place
         if (!SelectedObjects.Contains(obj))
             return;
 
-        if (obj)
-        {
-            obj.SetDeselected();
-        }
-
+        obj.SetDeselected();
+		UnitManager manage = obj.gameObject.GetComponent<UnitManager> ();
 		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
 
-			if (obj && obj.gameObject.GetComponent<UnitManager> ().UnitName == (tempAbilityGroups [i])[0].gameObject.GetComponent<UnitManager> ().UnitName) {
+
+			if (manage.UnitName == (tempAbilityGroups [i])[0].gameObject.GetComponent<UnitManager> ().UnitName) {
 				tempAbilityGroups [i].Remove (obj);
 
 				if (tempAbilityGroups [i].Count == 0) {
 
 					tempAbilityGroups.Remove (tempAbilityGroups [i]);
+					uiManage.checkForDeadUnit (manage.UnitName);
 
 				}
 

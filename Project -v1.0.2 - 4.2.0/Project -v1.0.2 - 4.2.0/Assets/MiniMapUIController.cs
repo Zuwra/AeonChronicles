@@ -85,7 +85,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 	bool wasOn = true;
 	public void DubAwake()
-	{ Debug.Log ("Going here");
+	{ 
 		wasOn = transform.parent.gameObject.activeSelf;
 		transform.parent.gameObject.SetActive (true);
 		newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
@@ -97,7 +97,6 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
     public void Initialize() {
 
-		Debug.Log ("Startin g " + this.gameObject);
 		myCam = GameObject.FindObjectOfType<MainCamera> ();
 		Left = myCam.getBoundries ().xMin;
 		Right = myCam.getBoundries ().xMax;
