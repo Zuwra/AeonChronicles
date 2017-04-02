@@ -28,10 +28,10 @@ public class RadiationTreatment :  Ability, Notify {
 
 	public float trigger(GameObject source,GameObject proj,UnitManager target, float damage)
 	{
-
+		//Debug.Log ("Being triggered");
 		if (lastTarget == target && myStats.veternStat.damageDone > lastDamageAmount) {
 			runningTotal += damageIncreaseAmount;
-			proj.GetComponent<Projectile> ().damage += runningTotal;
+			//proj.GetComponent<Projectile> ().damage += runningTotal;
 			proj.GetComponent<PopUpOnHIt>().toShow = "-" +(proj.GetComponent<Projectile> ().damage+ runningTotal);
 
 		} else {
@@ -41,7 +41,7 @@ public class RadiationTreatment :  Ability, Notify {
 		}
 		lastDamageAmount = myStats.veternStat.damageDone;
 		lastTarget = target;
-		return damage;
+		return damage + runningTotal;
 	}
 
 

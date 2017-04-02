@@ -13,7 +13,6 @@
 		public int Owner;
 		public GameObject cutEffect;
 		public GameObject impactEffect;
-		private float nextAction;
 		public float damage = 5;
 		public float turretRatio = .2f;
 	private AudioSource myAudio;
@@ -24,15 +23,13 @@
 
 		// Use this for initialization
 		void Start () {
-			nextAction = Time.time;
 		myAudio = GetComponent<AudioSource> ();
+
+		InvokeRepeating ("UpdateDamage", .1f, .2f);
 		}
 
 		// Update is called once per frame
-		void Update () {
-
-			if (Time.time > nextAction) {
-			nextAction = Time.time + .2f;
+		void UpdateDamage () {
 
 				if (enemies.Count > 0) {
 	
@@ -57,7 +54,6 @@
 					}
 				}
 
-			}
 
 		}
 

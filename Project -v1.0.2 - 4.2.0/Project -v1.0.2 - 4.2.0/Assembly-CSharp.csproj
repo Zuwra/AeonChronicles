@@ -230,6 +230,7 @@
      <Compile Include="Assets\ChannelState.cs" />
      <Compile Include="Assets\ChildDeathTrigger.cs" />
      <Compile Include="Assets\ChimeraDamUp.cs" />
+     <Compile Include="Assets\ChimeraRangeUpgrade.cs" />
      <Compile Include="Assets\CinematicBoxTrigger.cs" />
      <Compile Include="Assets\CinematicCamera.cs" />
      <Compile Include="Assets\ClickableButton.cs" />

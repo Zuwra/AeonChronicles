@@ -77,7 +77,7 @@ public class Bombardment : TargetAbility{
 
 		if (script) {
 			script.damage = myDamage;
-
+			script.sourceInt = 1;
 			script.Source = this.gameObject;
 			script.setLocation (location);
 		}

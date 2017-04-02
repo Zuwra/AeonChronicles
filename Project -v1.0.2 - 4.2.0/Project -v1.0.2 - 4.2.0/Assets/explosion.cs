@@ -68,7 +68,7 @@ public class explosion : MonoBehaviour {
 
 			if (manager) {
 
-				if (!friendlyFire && source &&source.GetComponent<GameManager> ()) {
+				if (!friendlyFire && source && mySrcMan) {
 					return;
 				}
 
