@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 // Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
 
 Shader "HeyBlairGames/PTG/Planet Parallax Specular"
@@ -67,7 +69,7 @@ Shader "HeyBlairGames/PTG/Planet Parallax Specular"
 					TANGENT_SPACE_ROTATION;
 					
 					vertOut OUT;
-	    			OUT.pos				= mul( UNITY_MATRIX_MVP, v.vertex );
+	    			OUT.pos				= UnityObjectToClipPos( v.vertex );
 	    			OUT.uv_GroundMap	= v.texcoord.xy;
 	    			OUT.norm			= normalize( mul( unity_ObjectToWorld, float4( v.normal, 1 ) ) ).xyz;
 	    			OUT.lightDir		= normalize( float4( mul( rotation, mul( unity_WorldToObject, lightDir ).xyz ), 0 ) );

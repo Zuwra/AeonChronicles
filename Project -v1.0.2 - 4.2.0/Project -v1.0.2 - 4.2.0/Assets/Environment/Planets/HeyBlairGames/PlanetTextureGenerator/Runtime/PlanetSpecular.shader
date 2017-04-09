@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 Shader "HeyBlairGames/PTG/Planet Specular"
 {
@@ -53,7 +55,7 @@ Shader "HeyBlairGames/PTG/Planet Specular"
 				vertOut vert( appdata_tan v )
 				{
 					vertOut OUT;
-	    			OUT.pos				= mul( UNITY_MATRIX_MVP, v.vertex );
+	    			OUT.pos				= UnityObjectToClipPos( v.vertex );
 	    			OUT.uv_GroundMap	= v.texcoord.xy;
 	    			OUT.norm			= mul( unity_ObjectToWorld, float4( v.normal, 1 ) ).xyz;
 	    			OUT.lightDir		= normalize( _WorldSpaceLightPos0 );
