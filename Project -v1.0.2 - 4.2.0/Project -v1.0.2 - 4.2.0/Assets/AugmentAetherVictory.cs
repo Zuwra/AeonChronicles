@@ -20,7 +20,7 @@ public class AugmentAetherVictory  : Objective {
 	public  Selected CoolDown;
 	float TimeLeft =30;
 
-	void Start()
+	new void Start()
 	{base.Start ();
 	
 		StartCoroutine (checkForVictory ());

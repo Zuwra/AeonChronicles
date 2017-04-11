@@ -20,7 +20,7 @@ public class IWeapon : MonoBehaviour {
 
 	int upgradeLevel = 0;
 
-	private float myRadius;
+	//private float myRadius;
 
 	public float baseDamage;
 	private float InitialBaseDamage ;
@@ -112,7 +112,7 @@ public class IWeapon : MonoBehaviour {
 		}
 		myManager = this.gameObject.GetComponent<UnitManager> ();
 
-		myRadius = GetComponent<CharacterController> ().radius;
+		//myRadius = GetComponent<CharacterController> ().radius;
 		if (turret) {
 			turretClass = turret.GetComponent<turret> ();
 		}

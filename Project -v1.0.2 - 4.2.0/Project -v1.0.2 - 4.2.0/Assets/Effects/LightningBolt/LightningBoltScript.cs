@@ -258,7 +258,7 @@ namespace DigitalRuby.LightningBolt
         private void UpdateLineRenderer()
         {
             int segmentCount = (segments.Count - startIndex) + 1;
-            lineRenderer.SetVertexCount(segmentCount);
+			lineRenderer.positionCount = segmentCount;//.SetVertexCount(segmentCount);
 
             if (segmentCount < 1)
             {
@@ -281,7 +281,7 @@ namespace DigitalRuby.LightningBolt
         private void Start()
         {
             lineRenderer = GetComponent<LineRenderer>();
-            lineRenderer.SetVertexCount(0);
+			lineRenderer.positionCount = 0;//.SetVertexCount(0);
             UpdateFromMaterialChange();
         }
 
@@ -334,7 +334,7 @@ namespace DigitalRuby.LightningBolt
 				UpdateLineRenderer();
 				yield return new WaitForSeconds(.05f);
 			}
-			 lineRenderer.SetVertexCount(0);
+			lineRenderer.positionCount = 0;//.SetVertexCount(0);
 		}
 
 

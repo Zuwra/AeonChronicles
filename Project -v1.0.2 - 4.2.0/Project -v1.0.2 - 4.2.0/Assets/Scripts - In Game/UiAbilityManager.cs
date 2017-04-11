@@ -146,7 +146,6 @@ public class UiAbilityManager : MonoBehaviour {
 			}
 			if (!man) {
 				continue;
-				Debug.Log ("I is null");
 			}
 			for (int m = 0; m < man.abilityList.Count / 4 + 1; m++) {		
 

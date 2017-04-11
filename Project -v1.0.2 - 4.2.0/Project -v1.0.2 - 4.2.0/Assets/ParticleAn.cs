@@ -12,6 +12,8 @@ public class ParticleAn : animate {
 		ps = GetComponent<ParticleSystem>();
 		change = active;
 		emmisionRate = ps.main.maxParticles;
+		ParticleSystem.MainModule myModule = ps.main;
+		myModule.maxParticles = 0;
 		ps.maxParticles = 0;
 	}
 

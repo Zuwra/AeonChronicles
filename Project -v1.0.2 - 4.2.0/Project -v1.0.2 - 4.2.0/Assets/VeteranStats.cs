@@ -122,7 +122,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 	
 
 
-	private List<string>  spyJob = new List<string> (new string[] {"He was approached with an offer to join the corp as a spy for ", "He was formerly an operative for ",
+	private List<string>  spyJob = new List<string> (new string[] {"He was approached with an offer to join the army as a spy for ", "He was formerly an operative for ",
 		"Before he came down with a serious case of gout, he had been an agent for "});
 
 	private List<string> factions = new List<string> (new string[] {"the Bunny Conversation Society", "the Coalition", "Alfredo Sauce United", "the Infinite Consortium", "the Cypher Police", 
@@ -140,8 +140,8 @@ public class VeteranStats : IComparable<VeteranStats>{
 	private List<string>  parallel = new List<string> (new string[] {"and wonders if there is some parallel Universe with a different version of himself. ", 
 		" and if he could have had more pie.", " and if its all even really worth it."});
 
-	private List<string>  starter = new List<string> (new string[] {"Before joining the corp ","Back in his hometown, ", "For a long time, ", 
-		"Since he was a child ", "Even though he would never admit it ", "Years before he joined the Corp " });
+	private List<string>  starter = new List<string> (new string[] {"Before joining the army ","Back in his hometown, ", "For a long time, ", 
+		"Since he was a child ", "Even though he would never admit it ", "Years before he joined SteelCrest " });
 
 	private List<string>  storyChange = new List<string> (new string[] {"only one step behind. " , "only he never had the privilidge of being an all powerful eye in the sky. " ,
 		"except for the part where he joined the army instead of playing video games all the time. ", " except for the part where he was fated to die in an upcomng battle. "
@@ -162,6 +162,9 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private List<string> additions=  new List<string> (new string[] { ", In addition to manning a deadly war machine. ", ". ", ". ", ", as well as managing the arsenal lockers. " 
 		," due to military incompetance. ", " in addition to manning heavy machinery. " + " because he didn't know how to do much else. ", " but he hijacked this vehicle for the day. " });
+
+	private List<string> OvercomeFear=  new List<string> (new string[] {", so he joined the army get over his fear. ", ", so he enlisted to grow more as a person. ",
+		", but he doesn't think he'll ever get over his fear. ", ", which his peers made fun of him for as a child. ", " even though people said they don't actually exist. "});
 
 	public string getIntro()
 	{int rand = UnityEngine.Random.Range (0, 7);
@@ -242,7 +245,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private string getSentanceB()
 	{
-		string s = UnitName + " had always been very "+ pastEmotions[UnityEngine.Random.Range (0, pastEmotions.Count - 1)] + " as a "+ jobAdj[UnityEngine.Random.Range (0, jobAdj.Count )] + " " + jobs [UnityEngine.Random.Range (0, jobs.Count)] + ". ";
+		string s = UnitName + " had always been very "+ pastEmotions[UnityEngine.Random.Range (0, pastEmotions.Count )] + " as a "+ jobAdj[UnityEngine.Random.Range (0, jobAdj.Count )] + " " + jobs [UnityEngine.Random.Range (0, jobs.Count)] + ". ";
 		s += getReason ();
 		return s;
 	}
@@ -257,7 +260,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 	private string getSentanceD()
 	{
 		string s = UnitName + "'s mother and father were so "+pastEmotions[UnityEngine.Random.Range (0, pastEmotions.Count )]+" when he left his old job as a " 
-			+ jobs [UnityEngine.Random.Range (0, jobs.Count)] + " to become a member of the corp. ";
+			+ jobs [UnityEngine.Random.Range (0, jobs.Count)] + " to become a member of the army. ";
 		s += getReason ();
 		return s;
 	}
@@ -265,7 +268,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private string getSentanceE()
 	{
-		string s = UnitName + " has been in the corp his whole life." + terrors[UnityEngine.Random.Range (0, terrors.Count )] +" I hope you never have to endure what he has....";
+		string s = UnitName + " has been in the army his whole life." + terrors[UnityEngine.Random.Range (0, terrors.Count )] +" I hope you never have to endure what he has....";
 		return s;
 	}
 
@@ -289,21 +292,21 @@ public class VeteranStats : IComparable<VeteranStats>{
 	private string getSentanceF()
 	{
 		string s = UnitName + "'s entire family was " + negativeVerbs [UnityEngine.Random.Range (0, negativeVerbs.Count)] + " by a gang of " + villians [UnityEngine.Random.Range (0, villians.Count)] + 
-			", and he's here to take their revenge. ";
+			", and he's here for revenge. ";
 		s += getThird ();
 		return s;
 	}
 
 	private string getSentanceG()
 	{
-		string s ="He was never able to reach his dream of being a " + jobs [UnityEngine.Random.Range (0, jobs.Count )] + ", so he settled for joining the corp. ";
+		string s ="He was never able to reach his dream of being a " + jobs [UnityEngine.Random.Range (0, jobs.Count )] + ", so he settled for joining the army. ";
 		s += getThird ();
 		return s;
 	}
 
 	private string getSentanceH()
 	{
-		string s = "He lost a "+ bets [UnityEngine.Random.Range (0, bets.Count )] + " bet and had to enlist in the corp. ";
+		string s = "He lost a "+ bets [UnityEngine.Random.Range (0, bets.Count )] + " bet and had to enlist in the army. ";
 		s += getThird ();
 		return s;
 	}
@@ -311,7 +314,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private string getSentanceI()
 	{
-		string s ="He was always afraid of " + villians [UnityEngine.Random.Range (0, villians.Count )]+  ", so he joined the corp get over his fear. ";
+		string s ="He was always afraid of " + villians [UnityEngine.Random.Range (0, villians.Count )]+ OvercomeFear [UnityEngine.Random.Range (0, OvercomeFear.Count )] ;
 		s += getThird ();
 		return s;
 	}
@@ -319,7 +322,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 	private string getSentanceII()
 	{
 		string s ="When things didn't work out back home, he got mixed up with the " + factions [UnityEngine.Random.Range (0, factions.Count )] +
-			". He escaped " + escaped [UnityEngine.Random.Range (0, escaped.Count )]  +" then joined the corp. ";
+			". He escaped " + escaped [UnityEngine.Random.Range (0, escaped.Count )]  +" then joined the army. ";
 		s += getThird ();
 		return s;
 	}
@@ -327,7 +330,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 	private string getSentanceJ()
 	{
 		string s = spyJob[UnityEngine.Random.Range (0, spyJob.Count )]  
-			+ factions [UnityEngine.Random.Range (0, factions.Count )] + " . " + fellowReactions[UnityEngine.Random.Range (0, fellowReactions.Count )];
+			+ factions [UnityEngine.Random.Range (0, factions.Count )] + ". " + fellowReactions[UnityEngine.Random.Range (0, fellowReactions.Count )];
 		s += getThird ();
 		return s;
 	}
@@ -342,14 +345,14 @@ public class VeteranStats : IComparable<VeteranStats>{
 	//============================================================ Third ===========================================================
 	private string getSentanceM()
 	{
-		string s = "After joining the corp he was quickly given the duty of " + office [UnityEngine.Random.Range (0, office.Count )]+ 
-			additions[UnityEngine.Random.Range (0, additions.Count - 1)];
+		string s = "After joining the army he was quickly given the duty of " + office [UnityEngine.Random.Range (0, office.Count )]+ 
+			additions[UnityEngine.Random.Range (0, additions.Count)];
 		return s;
 	}
 
 	private string getSentanceN()
 	{
-		string s = "While in the corp he gained the nick name of " + nicknames [UnityEngine.Random.Range (0, nicknames.Count)] + ". ";
+		string s = "While in the army he gained the nick name of " + nicknames [UnityEngine.Random.Range (0, nicknames.Count)] + ". ";
 		return s;
 	}
 
@@ -367,7 +370,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private string getSentanceQ()
 	{
-		string s = questions [UnityEngine.Random.Range (0, questions.Count - 1)]  + parallel [UnityEngine.Random.Range (0, parallel.Count - 1)] ;
+		string s = questions [UnityEngine.Random.Range (0, questions.Count)]  + parallel [UnityEngine.Random.Range (0, parallel.Count )] ;
 		return s;
 	}
 

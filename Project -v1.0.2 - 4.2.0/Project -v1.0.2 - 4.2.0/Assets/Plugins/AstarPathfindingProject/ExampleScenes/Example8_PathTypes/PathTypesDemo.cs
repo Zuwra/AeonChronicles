@@ -207,9 +207,13 @@ public class PathTypesDemo : MonoBehaviour {
 
 				LineRenderer lr = ob.GetComponent<LineRenderer>();
 				lr.sharedMaterial = lineMat;
-				lr.SetWidth(lineWidth, lineWidth);
 
-				lr.SetVertexCount(vpath.Count);
+				lr.startWidth = lineWidth;
+				lr.endWidth = lineWidth;
+				//lr.SetWidth(lineWidth, lineWidth);
+
+				lr.positionCount = vpath.Count;
+				//lr.SetVertexCount(vpath.Count);
 				for (int j = 0; j < vpath.Count; j++) {
 					lr.SetPosition(j, vpath[j] + pathOffset);
 				}
@@ -321,9 +325,13 @@ public class PathTypesDemo : MonoBehaviour {
 			GameObject ob = new GameObject("LineRenderer", typeof(LineRenderer));
 			LineRenderer lr = ob.GetComponent<LineRenderer>();
 			lr.sharedMaterial = lineMat;
-			lr.SetWidth(lineWidth, lineWidth);
+			lr.startWidth = lineWidth;
+			lr.endWidth = lineWidth;
 
-			lr.SetVertexCount(p.vectorPath.Count);
+		//	lr.SetWidth(lineWidth, lineWidth);
+
+			//lr.SetVertexCount(p.vectorPath.Count);
+			lr.positionCount = p.vectorPath.Count;
 			for (int i = 0; i < p.vectorPath.Count; i++) {
 				lr.SetPosition(i, p.vectorPath[i] + pathOffset);
 			}

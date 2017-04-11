@@ -18,6 +18,20 @@ public class PayloadFirendlyEndZone : MonoBehaviour {
 	int payloadIndex;
 	// Use this for initialization
 	void Start () {
+		 
+		GameObject DeleteOne = AreaOne [Random.Range (0, AreaOne.Count)];
+		DeleteOne.transform.parent.gameObject.SetActive (false);
+		AreaOne.Remove (DeleteOne);
+
+		GameObject DeleteTwo = AreaOne [Random.Range (0, AreaOne.Count)];
+		DeleteTwo.transform.parent.gameObject.SetActive (false);
+		AreaOne.Remove (DeleteTwo);
+
+		GameObject DeleteThree = AreaTwo [Random.Range (0, AreaTwo.Count)];
+		DeleteThree.transform.parent.gameObject.SetActive (false);
+		AreaTwo.Remove (DeleteThree);
+
+
 		foreach (GameObject obj in AreaOne) {
 			obj.SetActive (false);
 

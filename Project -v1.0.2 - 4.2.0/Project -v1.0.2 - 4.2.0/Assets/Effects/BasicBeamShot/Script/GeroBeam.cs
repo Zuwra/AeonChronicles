@@ -56,8 +56,11 @@ public class GeroBeam : MonoBehaviour {
 		
 		Vector3 NowPos = Vector3.zero;
 
-		LR.SetWidth(Width*BP.Scale,Width*BP.Scale);
-        LR.SetColors(BP.BeamColor, BP.BeamColor);
+		LR.startWidth = Width * BP.Scale;
+		LR.endWidth = Width * BP.Scale;
+		LR.startColor = BP.BeamColor;
+		LR.endColor = BP.BeamColor; 
+        //LR.SetColors(BP.BeamColor, BP.BeamColor);
         MaxLength = BP.MaxLength;
         for (int i=LRSize-1;i > 0;i--)
 		{

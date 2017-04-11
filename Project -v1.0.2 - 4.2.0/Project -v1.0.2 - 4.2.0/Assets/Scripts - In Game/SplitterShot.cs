@@ -107,7 +107,7 @@ public class SplitterShot : Projectile {
 	}
 
 
-	void OnTriggerEnter(Collider other)
+	new void OnTriggerEnter(Collider other)
 	{
 		if (Source) {
 

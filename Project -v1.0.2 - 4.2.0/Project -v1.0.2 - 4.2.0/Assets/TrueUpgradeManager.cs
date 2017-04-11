@@ -11,6 +11,16 @@ public class TrueUpgradeManager : MonoBehaviour {
 	public List<CampaignUpgrade.UpgradesPiece> myUpgrades= new List<CampaignUpgrade.UpgradesPiece>();
 	// Use this for initialization
 
+	void OnEnable()
+	{
+		SceneManager.sceneLoaded += LevelWasLoaded;
+	}
+
+	void OnDisable()
+	{
+		SceneManager.sceneLoaded -= LevelWasLoaded;
+	}
+
 	bool hasBeenToLevel;
 	void Start()
 	{
@@ -31,7 +41,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 		}
 	}
 
-	void OnLevelWasLoaded()
+	void LevelWasLoaded(Scene myScene, LoadSceneMode mode)
 	{
 		if (SceneManager.GetActiveScene ().buildIndex != 3 && SceneManager.GetActiveScene ().buildIndex != 0) {
 			RaceManager racer = GameObject.FindObjectOfType<GameManager> ().activePlayer;
@@ -47,7 +57,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 				Destroy (this.gameObject);
 			}
 		}
-
+		SceneManager.sceneLoaded -= LevelWasLoaded;
 	}
 
 	public void playSound ()

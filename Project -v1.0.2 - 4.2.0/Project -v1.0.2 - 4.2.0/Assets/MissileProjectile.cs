@@ -14,7 +14,7 @@ public class MissileProjectile : Projectile {
 	int currentCurve = 0;
 
 	// Use this for initialization
-	void Start () {
+	new void Start () {
 		base.Start ();
 
 		nextX = (Random.value -.5f) * wildness;
@@ -22,7 +22,7 @@ public class MissileProjectile : Projectile {
 
 	}
 
-	public void OnSpawn()
+	public new void OnSpawn()
 		{
 		base.OnSpawn ();
 
@@ -33,7 +33,7 @@ public class MissileProjectile : Projectile {
 
 	}
 
-	void Update()
+	new void Update()
 	{
 		if (target != null) {
 			lastLocation = target.transform.position + randomOffset;

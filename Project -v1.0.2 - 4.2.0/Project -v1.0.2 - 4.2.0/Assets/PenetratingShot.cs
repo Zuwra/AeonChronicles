@@ -11,7 +11,7 @@ public class PenetratingShot : Projectile {
 	public float PercDamLost;
 	public float TotalRange;
 
-	public void Start () {
+	public new void Start () {
 		AudSrc= GetComponent<AudioSource> ();
 		//randomOffset = UnityEngine.Random.insideUnitSphere * target.GetComponent<CharacterController> ().radius * .9f;
 		control = GetComponent<CharacterController> ();
@@ -19,7 +19,7 @@ public class PenetratingShot : Projectile {
 
 	}
 
-	void OnSpawn()
+	new void OnSpawn()
 	{
 		currentDistance = 0;
 		NumGuysHit = 0;
@@ -27,7 +27,7 @@ public class PenetratingShot : Projectile {
 	}
 
 	RaycastHit objecthit;
-	void Update()
+	new void Update()
 	{
 		//Debug.Log("Updating penetratiin g" + currentDistance +   "     "+TotalRange);
 		if(currentDistance > TotalRange)
@@ -75,7 +75,7 @@ public class PenetratingShot : Projectile {
 	
 	}
 		
-	public void setTarget(UnitManager so)
+	public new void setTarget(UnitManager so)
 	{
 
 		target = so;

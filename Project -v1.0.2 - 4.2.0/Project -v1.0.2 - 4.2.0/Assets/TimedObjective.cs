@@ -8,7 +8,7 @@ public class TimedObjective : Objective {
 
 	string initialDescript;
 	// Use this for initialization
-	void Start () {
+	new void Start () {
 		base.Start ();
 		initialDescript = description;
 		StartCoroutine (countDown());

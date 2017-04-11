@@ -24,7 +24,7 @@ public class ThrasherBlade : Projectile {
 		trueROlltime = rollTime;
 	}
 
-	void Update () {
+	new void Update () {
 
 		Vector3 tempDir = dir;
 		//Make sure your the right height above the terrain
@@ -71,7 +71,7 @@ public class ThrasherBlade : Projectile {
 	void OnControllerColliderHit(ControllerColliderHit other)
 	{
 	}
-	void OnTriggerEnter(Collider other)
+	new void OnTriggerEnter(Collider other)
 	{}
 
 	 void OnTriggerExit(Collider other)

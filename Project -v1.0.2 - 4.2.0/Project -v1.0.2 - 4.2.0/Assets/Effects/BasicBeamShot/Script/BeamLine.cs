@@ -29,7 +29,8 @@ public class BeamLine : MonoBehaviour {
 		if(!bStop)
 			NowLength = Mathf.Lerp(0,MaxLength,NowAnm);
 		float width = Mathf.Lerp(StartSize,0,NowAnm);
-		line.SetWidth(width,width);
+		line.startWidth = width;
+		line.endWidth = width;//.SetWidth(width,width);
 		float length = NowLength;
 		line.SetPosition(0,transform.position);
 		line.SetPosition(1,transform.position+(transform.forward*length));
@@ -38,7 +39,10 @@ public class BeamLine : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		line = GetComponent<LineRenderer>();
-		line.SetColors(BeamColor,BeamColor);
+		line.startColor = BeamColor;
+		line.endColor = BeamColor;
+
+		//line.SetColors(BeamColor,BeamColor);
 		NowAnm = 0;
 		NowLength = 0;
 		bStop = false;
