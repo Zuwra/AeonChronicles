@@ -504,6 +504,7 @@
      <Compile Include="Assets\continueOrder.cs" />
      <Compile Include="Assets\deathTrigger.cs" />
      <Compile Include="Assets\deexaArmor.cs" />
+     <Compile Include="Assets\dialogManager.cs" />
      <Compile Include="Assets\energyDrain.cs" />
      <Compile Include="Assets\evasiveMenuvers.cs" />
      <Compile Include="Assets\explosion.cs" />
