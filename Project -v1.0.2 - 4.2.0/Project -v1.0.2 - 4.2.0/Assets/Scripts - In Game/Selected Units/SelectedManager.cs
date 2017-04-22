@@ -228,7 +228,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         }
 
 		if (Input.GetKeyUp (KeyCode.Delete)) {
-			SelectedObjects [0].GetComponent<UnitStats> ().kill (null);
+			if (SelectedObjects.Count > 0 && SelectedObjects [0] != null) {
+				SelectedObjects [0].GetComponent<UnitStats> ().kill (null);
+			}
 		}
 
 		else if (Input.GetKeyUp (KeyCode.Space)) {

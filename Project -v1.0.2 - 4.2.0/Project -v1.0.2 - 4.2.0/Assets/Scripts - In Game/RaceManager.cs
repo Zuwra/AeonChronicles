@@ -247,16 +247,16 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void UnitDied(float supply, UnitManager obj) 
 	{
-		if (unitRoster.ContainsKey (obj.UnitName)) {
-			try {
-				unitRoster[obj.UnitName].Remove(obj);
-			}
-			catch (SystemException s) {
-				Debug.Log ("Unit does Not exist in unit roster");
-				return;
+		if (obj) {
+			if (unitRoster.ContainsKey (obj.UnitName)) {
+				try {
+					unitRoster [obj.UnitName].Remove (obj);
+				} catch (SystemException s) {
+					Debug.Log ("Unit does Not exist in unit roster");
+					return;
+				}
 			}
 		}
-
 		if (supply < 0) {
 
 
