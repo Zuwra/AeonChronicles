@@ -89,9 +89,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 			if (Input.GetKeyDown (KeyCode.BackQuote)) {
 				DeselectAll();
-				foreach (GameObject obj in raceMan.getAllUnitsOnScreen())
+				foreach (UnitManager obj in raceMan.getAllUnitsOnScreen())
 				{
-					AddObject(obj.GetComponent<UnitManager>());
+					AddObject(obj);
 				}
 				CreateUIPages (0);
 			}
@@ -1047,17 +1047,20 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     public void selectAllArmy()
 	{ 
 		DeselectAll ();
-		raceMan.getUnitList().RemoveAll (item => item == null);
-        foreach (GameObject obj in raceMan.getUnitList())
-        {
-			UnitStats hisStats = obj.GetComponent<UnitStats> ();
-			if (!hisStats.isUnitType(UnitTypes.UnitTypeTag.Structure)
-				&& !hisStats.isUnitType(UnitTypes.UnitTypeTag.Worker)
-				&& !hisStats.isUnitType(UnitTypes.UnitTypeTag.Turret))
-            {
-                AddObject(obj.GetComponent<UnitManager>());
-            }
-        }
+
+		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
+			foreach (UnitManager obj in pair.Value) {
+        //foreach (GameObject obj in raceMan.getUnitList())
+       // {
+
+				if (!obj.myStats.isUnitType(UnitTypes.UnitTypeTag.Structure)
+					&& !obj.myStats.isUnitType(UnitTypes.UnitTypeTag.Worker)
+					&& !obj.myStats.isUnitType(UnitTypes.UnitTypeTag.Turret))
+           			 {
+               		 AddObject(obj);
+            		}
+				}
+			}
 		CreateUIPages(0);
     }
 
@@ -1102,31 +1105,30 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	public void selectAllUnArmedTanks()
 	{
 		DeselectAll();
-		raceMan.getUnitList().RemoveAll (item => item == null);
 
-		foreach (GameObject obj in raceMan.getUnitList())
-		{TurretMount tm = obj.GetComponentInChildren<TurretMount> ();
-			if (tm && !tm.turret  ) {
-				AddObject(obj.GetComponent<UnitManager>());
+		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
+			foreach (UnitManager obj in pair.Value) {
 
+				TurretMount tm = obj.GetComponentInChildren<TurretMount> ();
+				if (tm && !tm.turret) {
+					AddObject (obj);
+
+				}
 			}
-
 		}
-			
-	
-
+		
 		CreateUIPages(0);
 	}
 
 	public float getUnarmedTankCount()
 	{float i = 0;
-		raceMan.getUnitList().RemoveAll (item => item == null);
-		foreach (GameObject obj in raceMan.getUnitList())
-		{TurretMount tm = obj.GetComponentInChildren<TurretMount> ();
-			if (tm && !tm.turret ) {
-				i++;
+		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
+			foreach (UnitManager obj in pair.Value) {
+				TurretMount tm = obj.GetComponentInChildren<TurretMount> ();
+				if (tm && !tm.turret) {
+					i++;
+				}
 			}
-
 		}
 		return i;
 	}
@@ -1136,17 +1138,19 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{List<UnitManager> idleWorkers = new List<UnitManager> ();
         
 
-			foreach (GameObject obj in raceMan.getUnitList()) {
+		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
+			foreach (UnitManager obj in pair.Value) {
 
-				if (!obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Worker)) {
-					continue;
-				}
-				UnitManager manager = obj.GetComponent<UnitManager> ();
-				if (!manager.isIdle ()) {
-					continue;
-				} else {
-					idleWorkers.Add (manager);
-				}
+				if (!obj.myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+				continue;
+			}
+
+			if (!obj.isIdle ()) {
+				continue;
+			} else {
+				idleWorkers.Add (obj);
+			}
+		}
 			}
 		if (idleWorkers.Count == 0) {
 			return;}
@@ -1174,20 +1178,17 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	public void globalSelect(int n )
 	{ DeselectAll();
 
-		foreach (GameObject obj in raceMan.getUnitList())
-		{
+		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
+			foreach (UnitManager manager in pair.Value) {
 
-			UnitManager manager = obj.GetComponent<UnitManager>();
-			if (manager.myStats.isUnitType (UnitTypes.UnitTypeTag.Turret) && globalSelection[n].Contains(manager.UnitName)) {
+			if (manager.myStats.isUnitType (UnitTypes.UnitTypeTag.Turret) && globalSelection [n].Contains (manager.UnitName)) {
 				
 				AddObject (manager.transform.root.GetComponent<UnitManager> ());
 				AddObject (manager);
+			} else if (globalSelection [n].Contains (manager.UnitName)) {
+				AddObject (manager);
 			}
-
-			else if (globalSelection[n].Contains(manager.UnitName))
-			{
-				AddObject(manager);
-			}
+		}
 		}
 		CreateUIPages(0);}
 
@@ -1227,12 +1228,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	public void selectAllBuildings ()
 	{DeselectAll();
-		foreach (GameObject obj in raceMan.getUnitList())
-		{
-
-			if (obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure))
-			{
-				AddObject(obj.GetComponent<UnitManager>());
+		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
+			foreach (UnitManager manager in pair.Value) {
+				
+				if (manager.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+				AddObject (manager);
+				}
 			}
 		}
 		CreateUIPages(0);

@@ -209,12 +209,13 @@ public class ErrorPrompt : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.BackQuote)) {
 
-				MainCamera.main.generalMove(attackLocations[currentAlertIndex]);			
+			if (attackLocations.Count > 0) {
+				MainCamera.main.generalMove (attackLocations [currentAlertIndex]);			
 				currentAlertIndex++;
 				if (currentAlertIndex == attackLocations.Count) {
 					currentAlertIndex = 0;
 				}
-			
+			}
 		}
 
 	}

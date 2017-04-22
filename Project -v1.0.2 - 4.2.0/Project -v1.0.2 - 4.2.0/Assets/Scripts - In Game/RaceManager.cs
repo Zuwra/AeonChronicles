@@ -51,7 +51,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
    
 	private List<ManagerWatcher> myWatchers = new List<ManagerWatcher>();
 
-	public List<GameObject> unitList = new List<GameObject>();
+	//public List<GameObject> unitList = new List<GameObject>();
+	Dictionary<string, List<UnitManager>> unitRoster =  new Dictionary<string, List<UnitManager>>();
+
 	private MVPCalculator MVP = new MVPCalculator();
 	//used for unit ability validation
 	private Dictionary<string, int > unitTypeCount = new Dictionary<string, int>();
@@ -129,11 +131,15 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		temp [0] = onOff;
 		temp [1] = upgrade;
 		//temp [2] = unitname;
-		foreach (GameObject obj in unitList) {
-			if (obj != null) {
-				if (obj.GetComponent<UnitManager> ().UnitName == unitname) {
 
-					obj.SendMessage ("commence", temp);
+		foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
+			foreach (UnitManager tempMan  in pair.Value) {
+				if (tempMan == null) {
+					continue;}
+
+				if (tempMan.UnitName == unitname) {
+
+					tempMan.gameObject.SendMessage ("commence", temp);
 
 				}
 			}
@@ -153,17 +159,20 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		myUpgrades.Add ((Upgrade)temp);
 
 
-		foreach (GameObject obj in unitList) {
 
-			upgrade.applyUpgrade (obj);
+		foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
+			foreach (UnitManager tempMan  in pair.Value) {
 
-			if (obj.GetComponent<UnitManager> ().UnitName == unitname) {
+
+				upgrade.applyUpgrade (tempMan.gameObject);
+
+				if (tempMan.UnitName == unitname) {
 				
-			obj.SendMessage ("researched", upgrade);
+					tempMan.gameObject.SendMessage ("researched", upgrade);
 			
+				}
 			}
 		}
-
 		selectedManager.updateUI ();
 
 	}
@@ -212,9 +221,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 
-	public void applyUpgrade(GameObject obj )
+	public void applyUpgrade(UnitManager obj )
 	{	foreach (Upgrade up in myUpgrades) {
-			up.applyUpgrade (obj);
+			up.applyUpgrade (obj.gameObject);
 			obj.SendMessage ("researched", up,SendMessageOptions.DontRequireReceiver);
 		}
 	}
@@ -236,6 +245,31 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		
 	}
 
+	public void UnitDied(float supply, UnitManager obj) 
+	{
+		if (unitRoster.ContainsKey (obj.UnitName)) {
+			try {
+				unitRoster[obj.UnitName].Remove(obj);
+			}
+			catch (SystemException s) {
+				Debug.Log ("Unit does Not exist in unit roster");
+				return;
+			}
+		}
+
+		if (supply < 0) {
+
+
+			supplyMax += supply;
+		} else {
+			currentSupply -= supply;
+		}
+
+
+		updateSupply (currentSupply,  Mathf.Min(supplyCap, supplyMax));
+	}
+
+	/*
 	public void UnitDied(float supply, GameObject obj)
 	{
 		if (unitList.Contains (obj)) {
@@ -256,7 +290,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	
 
 	}
-
+*/
 	public void UnitCreated(float supply)
 	{//Debug.Log ("Created " + supply);
 		if (supply < 0) {
@@ -304,25 +338,31 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		}
 
 		if (finishDeath) { 
+
+			UnitManager unitMan = Unit.GetComponent<UnitManager> ();
+
 			if (uiManager != null) {
 				if (playerNumber == 1) {
-					uiManager.production.GetComponent<ArmyUIManager> ().unitLost (Unit);
+					uiManager.production.GetComponent<ArmyUIManager> ().unitLost (unitMan);
 				}
 			}
 		
-
-			string unitName = Unit.GetComponent<UnitManager> ().UnitName;
+		
+			string unitName = unitMan.UnitName;
 
 			if (unitTypeCount.ContainsKey (unitName)) {
 				unitTypeCount [unitName]--;
 
 
 				// No Units of tis type, call update function on units abilities
-				if (unitTypeCount [unitName] == 0 && trueDeath) {
-					unitList.RemoveAll (item => item == null);
-					foreach (GameObject o in unitList) {
 
-						foreach (Ability a in o.GetComponent<UnitManager>().abilityList) {
+				if (unitTypeCount [unitName] == 0 && trueDeath) {
+					//unitList.RemoveAll (item => item == null);
+					//foreach (GameObject o in unitList) {
+					unitRoster[unitName].RemoveAll (item => item == null);
+					foreach (UnitManager o in unitRoster[unitName]) {
+
+						foreach (Ability a in o.abilityList){//  o.GetComponent<UnitManager>().abilityList) {
 							if(a != null)
 							a.UnitDied (unitName);
 
@@ -331,7 +371,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				}
 
 			} 
-			if (Unit.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+			if (unitMan.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 				//This rescans the Astar graph after the unit dies
 				GraphUpdateObject b =new GraphUpdateObject(Unit.GetComponent<CharacterController>().bounds); 
 
@@ -350,18 +390,20 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			unitsLost++;
 
 
-			unitList.Remove(Unit);
+			unitRoster [unitName].Remove (unitMan);
+
+			//unitList.Remove(Unit);
 			if (trueDeath) {
 				foreach (LethalDamageinterface trigger in deathTrigger) {
 					trigger.lethalDamageTrigger (Unit, deathSource);
 				}
 			}
 		}
-		if (Unit.GetComponentInChildren<TurretMount> ()) {
-			FButtonManager.main.updateTankNumber ();
-		}
+		//if (Unit.GetComponentInChildren<TurretMount> ()) {
+		//	FButtonManager.main.updateTankNumber ();
+		//}
 		if (playerNumber == 1) {
-			FButtonManager.main.updateNumbers (unitList);
+			FButtonManager.main.updateNumbers (unitRoster);
 		}
 		return finishDeath;
 	}
@@ -375,20 +417,21 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
-	public void addUnit(GameObject obj )
+	public void addUnit(UnitManager obj )
 	{
 		
-		if (!unitList.Contains (obj)) {
-			unitList.Add (obj);
+		if (!unitRoster.ContainsKey (obj.UnitName)) {
+			unitRoster.Add(obj.UnitName, new List<UnitManager>());
 		}
+		unitRoster [obj.UnitName].Add (obj);
 		if (playerNumber == 1) {
 			if (FButtonManager.main == null) {
 				FButtonManager.main = GameObject.FindObjectOfType<FButtonManager> ();
 			}
-			FButtonManager.main.updateNumbers (unitList);
+			FButtonManager.main.updateNumbers (unitRoster);
 
 
-			if (obj.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+			if (obj.myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
 
 				if (uiManager != null) {
 					uiManager.production.GetComponent<EconomyManager> ().updateWorker (1);
@@ -405,7 +448,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 
-		if (obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+		if (obj.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			//This rescans the Astar graph after the unit dies
 			GraphUpdateObject b =new GraphUpdateObject(obj.GetComponent<CharacterController>().bounds); 
 			StartCoroutine (DeathRescan (b));
@@ -413,7 +456,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	
 
-		string unitName = obj.GetComponent<UnitManager> ().UnitName;
+		string unitName = obj.UnitName;
 
 		if (unitTypeCount.ContainsKey (unitName)) {
 			
@@ -429,15 +472,17 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			//apply all existing units built to new unit
 			foreach (KeyValuePair<string, int> n in unitTypeCount) {
 
-				if (n.Value > 0 ) {
+				if (n.Value < 1) {
+					continue;
+				}
 
-					foreach (Ability ab in obj.GetComponent<UnitManager>().abilityList) {
-						if (ab != null) {
-							//Debug.Log ("checking against a " + n.Key);
-							ab.newUnitCreated (n.Key);
-						}
+				foreach (Ability ab in obj.abilityList) {
+					if (ab != null) {
+						//Debug.Log ("checking against a " + n.Key);
+						ab.newUnitCreated (n.Key);
 					}
 				}
+				
 			}
 
 
@@ -451,16 +496,18 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		}
 		//Debug.Log ("Just built a " + unitName + "    " + unitTypeCount[unitName]);
 		// new unit, call update function on units abilities
-		if(unitTypeCount[unitName] ==1){
+		if (unitTypeCount [unitName] == 1) {
 
-			foreach (GameObject o in unitList) {
-				if (o != null) {
-					foreach (Ability a in o.GetComponent<UnitManager>().abilityList) {
-						if (a != null) {
-							//Debug.Log ("checking a " + a.Name + "   " + unitName);
-							a.newUnitCreated (unitName);
-						}
+			foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
+				foreach (UnitManager o in pair.Value) {
+					if (o != null) {
+						foreach (Ability a in o.abilityList) {
+							if (a != null) {
+								//Debug.Log ("checking a " + a.Name + "   " + unitName);
+								a.newUnitCreated (unitName);
+							}
 				
+						}
 					}
 				}
 			}
@@ -528,10 +575,25 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
-	public List<GameObject> getUnitList()
+	public Dictionary<string, List<UnitManager>> getUnitList()
 	{
-		unitList.RemoveAll(item => item == null);
-		return unitList;
+		cleanUnitRoster ();
+		return unitRoster;
+	}
+
+	public Dictionary<string, List<UnitManager>> getFastUnitList()
+	{
+		return unitRoster;
+	}
+
+	public void cleanUnitRoster()
+	{
+		foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
+
+			pair.Value.RemoveAll(item => item == null);
+
+		}
+
 	}
 
 	public void addDropOff(GameObject obj)
@@ -558,52 +620,53 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		return nearest;
 	}
 
-	public List<GameObject> getUnitSelection(Vector3 upperLeft, Vector3 bottRight)
-	{unitList.RemoveAll(item => item == null);
+
+//Get all units in a given selection rectangle
+	public List<UnitManager> getUnitSelection(Vector3 upperLeft, Vector3 bottRight)
+	{cleanUnitRoster ();
 		bool selectBuildings = true;
 		bool bDown = Input.GetKey (KeyCode.B);
 
-		List<GameObject> foundUnits = new List<GameObject> ();
-	
-		foreach (GameObject obj in unitList) {
-			Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
-			//Debug.Log ("Checking " + tempLocation + "   within  "+ upperLeft + " bot " + bottRight);
-			if (tempLocation.x + obj.GetComponent<CharacterController> ().radius * 5 < upperLeft.x) {
-				continue;
-			}
-			if (tempLocation.x - obj.GetComponent<CharacterController> ().radius * 5 > bottRight.x) {
-				continue;
-			}
-			if (tempLocation.y - obj.GetComponent<CharacterController> ().radius * 5 > upperLeft.y) {
-				continue;
-			}
-			if (tempLocation.y + obj.GetComponent<CharacterController> ().radius * 5 < bottRight.y) {
-				continue;
-			}
-				
-			foundUnits.Add (obj);
-			if (!bDown) {
-				if (!obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
-					selectBuildings = false;
+		List<UnitManager> foundUnits = new List<UnitManager> ();
+
+		foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
+			foreach (UnitManager obj in pair.Value) {
+				Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
+				//Debug.Log ("Checking " + tempLocation + "   within  "+ upperLeft + " bot " + bottRight);
+				if (tempLocation.x + obj.GetComponent<CharacterController> ().radius * 5 < upperLeft.x) {
+					continue;
 				}
+				if (tempLocation.x - obj.GetComponent<CharacterController> ().radius * 5 > bottRight.x) {
+					continue;
+				}
+				if (tempLocation.y - obj.GetComponent<CharacterController> ().radius * 5 > upperLeft.y) {
+					continue;
+				}
+				if (tempLocation.y + obj.GetComponent<CharacterController> ().radius * 5 < bottRight.y) {
+					continue;
+				}
+				
+				foundUnits.Add (obj);
+				if (!bDown) {
+					if (!obj.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+						selectBuildings = false;
+					}
 
-
-
-			} else {
-				if (obj.GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
-					selectBuildings = false;
+				} else {
+					if (obj.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+						selectBuildings = false;
+					}
 				}
 			}
 		}
-
 			for (int i = foundUnits.Count - 1; i > -1; i--) {
 				if (!bDown ) {
-				if (!selectBuildings && foundUnits [i].GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {	
+				if (!selectBuildings && foundUnits [i].myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {	
 						foundUnits.Remove (foundUnits [i]);
 					}
 				} else {
 				
-				if (!selectBuildings && !foundUnits [i].GetComponent<UnitStats> ().isUnitType (UnitTypes.UnitTypeTag.Structure)) {	
+				if (!selectBuildings && !foundUnits [i].myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {	
 						foundUnits.Remove (foundUnits [i]);
 					}
 
@@ -614,74 +677,74 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	}
 
 
-	public List<GameObject> getUnitOnScreen(bool select, string Unitname)
+	public List<UnitManager> getUnitOnScreen(bool select, string Unitname)
 	{
-		unitList.RemoveAll(item => item == null);
+		cleanUnitRoster ();
 
-		List<GameObject> foundUnits = new List<GameObject> ();
+		List<UnitManager> foundUnits = new List<UnitManager> ();
 
-		foreach (GameObject obj in unitList) {
-			UnitManager tempMan = obj.GetComponent<UnitManager> ();
-			if (tempMan.UnitName != Unitname) {
-				continue;
-			}
-
-			Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
-			//Debug.Log ("Checking " + tempLocation + "   within  "+ upperLeft + " bot " + bottRight);
-			if (tempLocation.x + obj.GetComponent<CharacterController> ().radius * 5 < 0) {
-				continue;
-			}
-			if (tempLocation.x - obj.GetComponent<CharacterController> ().radius * 5 > Screen.width) {
-				continue;
-			}
-			if (tempLocation.y - obj.GetComponent<CharacterController> ().radius * 5 > Screen.height) {
-				continue;
-			}
-			if (tempLocation.y + obj.GetComponent<CharacterController> ().radius * 5 < 0) {
-				continue;
-			}
-
-			foundUnits.Add (obj);
-		
+		if (!unitRoster.ContainsKey (Unitname)) {
+			return foundUnits;
 		}
 
-	
+		foreach (UnitManager obj in unitRoster[Unitname]) {
+
+				Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
+				//Debug.Log ("Checking " + tempLocation + "   within  "+ upperLeft + " bot " + bottRight);
+				if (tempLocation.x + obj.GetComponent<CharacterController> ().radius * 5 < 0) {
+					continue;
+				}
+				if (tempLocation.x - obj.GetComponent<CharacterController> ().radius * 5 > Screen.width) {
+					continue;
+				}
+				if (tempLocation.y - obj.GetComponent<CharacterController> ().radius * 5 > Screen.height) {
+					continue;
+				}
+				if (tempLocation.y + obj.GetComponent<CharacterController> ().radius * 5 < 0) {
+					continue;
+				}
+
+				foundUnits.Add (obj);
+		
+			}
+
 
 		return foundUnits; 
 	}
 
 
-	public List<GameObject> getAllUnitsOnScreen()
+	public List<UnitManager> getAllUnitsOnScreen()
 	{
-		unitList.RemoveAll(item => item == null);
+		cleanUnitRoster ();
 
-		List<GameObject> foundUnits = new List<GameObject> ();
+		List<UnitManager> foundUnits = new List<UnitManager> ();
 
-		foreach (GameObject obj in unitList) {
-			UnitManager tempMan = obj.GetComponent<UnitManager> ();
-			if (tempMan.myStats.isUnitType(UnitTypes.UnitTypeTag.Structure) || tempMan.myStats.isUnitType(UnitTypes.UnitTypeTag.Worker)) {
-				continue;
-			}
+		foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
+			foreach (UnitManager tempMan  in pair.Value) {
+				
+				if (tempMan.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure) || tempMan.myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+					continue;
+				}
 
-			Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
-			//Debug.Log ("Checking " + tempLocation + "   within  "+ upperLeft + " bot " + bottRight);
-			if (tempLocation.x + obj.GetComponent<CharacterController> ().radius * 5 < 0) {
-				continue;
-			}
-			if (tempLocation.x - obj.GetComponent<CharacterController> ().radius * 5 > Screen.width) {
-				continue;
-			}
-			if (tempLocation.y - obj.GetComponent<CharacterController> ().radius * 5 > Screen.height) {
-				continue;
-			}
-			if (tempLocation.y + obj.GetComponent<CharacterController> ().radius * 5 < 0) {
-				continue;
-			}
+				Vector3 tempLocation = Camera.main.WorldToScreenPoint (tempMan.transform.position);
+				//Debug.Log ("Checking " + tempLocation + "   within  "+ upperLeft + " bot " + bottRight);
+				if (tempLocation.x + tempMan.GetComponent<CharacterController> ().radius * 5 < 0) {
+					continue;
+				}
+				if (tempLocation.x -tempMan.GetComponent<CharacterController> ().radius * 5 > Screen.width) {
+					continue;
+				}
+				if (tempLocation.y - tempMan.GetComponent<CharacterController> ().radius * 5 > Screen.height) {
+					continue;
+				}
+				if (tempLocation.y + tempMan.GetComponent<CharacterController> ().radius * 5 < 0) {
+					continue;
+				}
 
-			foundUnits.Add (obj);
+				foundUnits.Add (tempMan);
 
+			}
 		}
-
 		return foundUnits; 
 	}
 
@@ -810,12 +873,13 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public int getArmyCount()
 	{int total = 0;
-		foreach (GameObject obj in unitList) {
-			UnitManager tempMan = obj.GetComponent<UnitManager> ();
-			if (tempMan.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure) || tempMan.myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
-				continue;
-			}
-			total++;
+		cleanUnitRoster ();
+
+		foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
+			if (pair.Value.Count == 0 || pair.Value [0].myStats.isUnitType (UnitTypes.UnitTypeTag.Structure) || pair.Value [0].myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
+				continue;}
+			total += pair.Value.Count;
+
 		}
 		return total;
 	}

@@ -74,7 +74,9 @@ public class TurretTipDisplayer: MonoBehaviour, IPointerEnterHandler, IPointerEx
 	}
 	void OnDestroy()
 	{
-		TurretUIPanel.instance.TurnOff ();
+		if (TurretUIPanel.instance) {
+			TurretUIPanel.instance.TurnOff ();
+		}
 	}
 
 }

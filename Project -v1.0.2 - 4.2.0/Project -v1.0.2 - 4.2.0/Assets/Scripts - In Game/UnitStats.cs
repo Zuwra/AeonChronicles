@@ -348,7 +348,7 @@ public class UnitStats : MonoBehaviour {
 				//fix this when we have multiplayer games
 				if (myManager.PlayerOwner == 1) {
 					
-					GameManager.main.playerList[myManager.PlayerOwner-1].UnitDied (supply, this.gameObject);
+					GameManager.main.playerList[myManager.PlayerOwner-1].UnitDied (supply, myManager);
 				}
 
 				if (mySelection.IsSelected) {

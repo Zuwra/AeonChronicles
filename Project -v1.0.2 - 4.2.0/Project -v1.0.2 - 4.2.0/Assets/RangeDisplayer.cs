@@ -11,10 +11,6 @@ public class RangeDisplayer : MonoBehaviour , IPointerEnterHandler, IPointerExit
 		selection = GameObject.FindObjectOfType<SelectedManager> ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void OnPointerEnter(PointerEventData eventd)
 	{

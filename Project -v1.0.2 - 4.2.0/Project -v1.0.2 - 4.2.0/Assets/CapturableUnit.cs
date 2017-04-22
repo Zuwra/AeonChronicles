@@ -30,10 +30,11 @@ public class CapturableUnit : MonoBehaviour {
 			foggy.enabled = true;
 		}
 
-		GameManager.main.activePlayer.applyUpgrade (this.gameObject);
-		GameManager.main.activePlayer.UnitCreated (GetComponent<UnitStats>().supply);
-		GameManager.main.activePlayer.addUnit (this.gameObject);
-		GameManager.main.activePlayer.addVeteranStat (GetComponent<UnitStats>().veternStat);
+		UnitManager man = this.gameObject.GetComponent<UnitManager> ();
+		GameManager.main.activePlayer.applyUpgrade (man);
+		GameManager.main.activePlayer.UnitCreated (man.myStats.supply);
+		GameManager.main.activePlayer.addUnit (man);
+		GameManager.main.activePlayer.addVeteranStat (man.myStats.veternStat);
 
 		if (cutscene) {
 			GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);

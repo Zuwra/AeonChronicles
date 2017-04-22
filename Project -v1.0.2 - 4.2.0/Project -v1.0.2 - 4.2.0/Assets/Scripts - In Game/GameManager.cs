@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
 	public static GameManager main;
 	public List<MiniMapUIController> MiniMaps;
 
+
+
 	// Use this for initialization
 	void Awake () {
 		main = this;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class newWorkerInteract :  Ability, Iinteract {
 
@@ -77,25 +78,28 @@ public class newWorkerInteract :  Ability, Iinteract {
 			return;}
 		OreDispenser closest = null;
 
-		foreach (GameObject obj in GameManager.main.playerList[2].getUnitList()) {
-			if (FogOfWar.current.IsInCompleteFog (obj.transform.position)) {
-				continue;
-			}
-			OreDispenser dis = obj.GetComponent<OreDispenser> ();
+		foreach (KeyValuePair<string, List<UnitManager>> pair in  GameManager.main.playerList[2].getUnitList()) {
+			foreach (UnitManager obj in pair.Value) {
 
-			if (!dis || dis.currentMinor) {
+				if (FogOfWar.current.IsInCompleteFog (obj.transform.position)) {
+					continue;
+				}
+				OreDispenser dis = obj.GetComponent<OreDispenser> ();
+
+				if (!dis || dis.currentMinor) {
 				
-				continue;
+					continue;
+				}
+
+				float temp = Vector3.Distance (obj.transform.position, this.gameObject.transform.position);
+				if (temp < distance) {
+					//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
+					distance = temp;
+
+					closest = dis;
+				}
+
 			}
-
-			float temp = Vector3.Distance (obj.transform.position, this.gameObject.transform.position);
-			if (temp < distance) {
-				//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
-				distance = temp;
-
-				closest = dis;
-			}
-
 		}
 		if (closest != null) {
 			myOre = closest;
@@ -113,26 +117,28 @@ public class newWorkerInteract :  Ability, Iinteract {
 			return;}
 		OreDispenser closest = null;
 
-		foreach (GameObject obj in GameManager.main.playerList[2].getUnitList()) {
-			if (FogOfWar.current.IsInCompleteFog (obj.transform.position)) {
-				continue;
-			}
-			OreDispenser dis = obj.GetComponent<OreDispenser> ();
+		foreach (KeyValuePair<string, List<UnitManager>> pair in  GameManager.main.playerList[2].getUnitList()) {
+			foreach (UnitManager obj in pair.Value) {
 
-			if (!dis || dis.currentMinor) {
+				if (FogOfWar.current.IsInCompleteFog (obj.transform.position)) {
+					continue;
+				}
+				OreDispenser dis = obj.GetComponent<OreDispenser> ();
 
-				continue;
-			}
+				if (!dis || dis.currentMinor) {
 
-			float temp = Vector3.Distance (obj.transform.position, targ.transform.position);
-			if (temp < distance) {
-				//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
-				distance = temp;
+					continue;
+				}
 
-				closest = dis;
+				float temp = Vector3.Distance (obj.transform.position, targ.transform.position);
+				if (temp < distance) {
+					//Debug.Log ("Setting " + obj +  "   " + temp + "   " + distance);
+					distance = temp;
+
+					closest = dis;
 			
+				}
 			}
-
 		}
 		if (closest != null) {
 			myOre = closest;

@@ -88,7 +88,7 @@ public class UnitManager : Unit,IOrderable{
 
 	
 		GameManager man = GameObject.FindObjectOfType<GameManager> ();
-			if (PlayerOwner == man.playerNumber) {
+		if (PlayerOwner == man.playerNumber) {
 				this.gameObject.tag = "Player";
 			} 
 
@@ -97,7 +97,7 @@ public class UnitManager : Unit,IOrderable{
 
 		if (!Clock.main || Clock.main.getTotalSecond () < 1 || !myStats.isUnitType (UnitTypes.UnitTypeTag.Structure) || UnitName== "Augmentor") {
 		//	Debug.Log (" manager " + man.playerList.Length + "   " + (PlayerOwner - 1) +"  " + this.gameObject);
-			man.playerList [PlayerOwner - 1].addUnit (this.gameObject);
+			man.playerList [PlayerOwner - 1].addUnit (this);
 		}
 
 		if (gameObject.GetComponent<CharacterController> () && visionSphere != null) {

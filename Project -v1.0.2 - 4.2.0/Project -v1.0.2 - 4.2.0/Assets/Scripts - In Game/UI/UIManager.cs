@@ -441,10 +441,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 				if (currentObject.GetComponent<UnitManager> ()) {
 					
-					foreach (GameObject obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
+					foreach (UnitManager obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
 
 			
-						m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+						m_SelectedManager.AddObject (obj);
 					}
 				}
 				m_SelectedManager.CreateUIPages (0);
@@ -511,11 +511,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 					if (IsControlDown ) {
 
 					
-							foreach (GameObject obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
+						foreach (UnitManager obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
 							if (!Input.GetKey (KeyCode.LeftAlt)) {
-								m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+								m_SelectedManager.AddObject (obj);
 							} else {
-								m_SelectedManager.DeselectObject (getUnitManagerFromObject (obj));
+								m_SelectedManager.DeselectObject (obj);
 							}
 								}
 
@@ -546,28 +546,28 @@ public class UIManager : MonoBehaviour, IUIManager {
 	
 						//if we're control-dragging, deselect everything in the drag area
 				if (IsControlDown) {
-					foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight)) {
-						m_SelectedManager.DeselectObject (getUnitManagerFromObject (obj));
+					foreach (UnitManager obj in raceManager.getUnitSelection(upperLeft, bottRight)) {
+						m_SelectedManager.DeselectObject (obj);
 						Refresh = true;
 					}
 				}
                 //if we're shift-dragging, add everything in the drag area  
                 else if (IsShiftDown) {
-					foreach (GameObject obj in raceManager.getUnitSelection(upperLeft, bottRight)) {
-						m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+					foreach (UnitManager obj in raceManager.getUnitSelection(upperLeft, bottRight)) {
+						m_SelectedManager.AddObject (obj);
 						Refresh = true;
 					}
 				}
                 //if we're dragging, deselect everything, then add everything in the drag area
                 else {
 							
-					List<GameObject> unitSel = raceManager.getUnitSelection (upperLeft, bottRight);
+					List<UnitManager> unitSel = raceManager.getUnitSelection (upperLeft, bottRight);
 					if (unitSel.Count > 0) {
 						Refresh = true;
 						m_SelectedManager.DeselectAll ();
 					
-						foreach (GameObject obj in raceManager.getUnitSelection(upperLeft,bottRight)) {
-							m_SelectedManager.AddObject (getUnitManagerFromObject (obj));
+						foreach (UnitManager obj in raceManager.getUnitSelection(upperLeft,bottRight)) {
+							m_SelectedManager.AddObject (obj);
 						}
 					}
 				}

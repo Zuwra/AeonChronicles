@@ -13,12 +13,12 @@ public class BuildUnitObjective : Objective  {
 
 
 
-	public void buildUnit(GameObject obj)
+	public void buildUnit(UnitManager obj)
 	{
 
 		for (int i = 0; i < unitsToBuild.Count; i++) {
 
-			if (unitsToBuild [i].GetComponent<UnitManager> ().UnitName == obj.GetComponent<UnitManager> ().UnitName) {
+			if (unitsToBuild [i].GetComponent<UnitManager> ().UnitName == obj.UnitName) {
 				if (anyCombo) {
 					total++;
 					//Debug.Log (total +"  " +unitsToBuild.Count );

@@ -8,18 +8,6 @@ public class TurretPlacerManager : MonoBehaviour {
 	public List<TurretMount> mounts = new List<TurretMount>();
 	public bool centerOn;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-
-
 
 	public void deactivate(bool offOn)
 	{centerOn = offOn;

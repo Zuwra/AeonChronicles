@@ -39,7 +39,7 @@ public class DayexaShield : Ability,Modifier , Notify{
 		}
 		GetComponent<UnitManager> ().addNotify (this);
 		
-	
+		InvokeRepeating ("UpdateShield", 1, 1);
 	}
 	
 	// Update is called once per frame
@@ -53,12 +53,13 @@ public class DayexaShield : Ability,Modifier , Notify{
 				myStats.EnergyRegenPerSec = rechargeRate;
 			}
 
-			if (Time.time > nextActionTime) {
-				damageAbsorbed = 0;
-				nextActionTime = Time.time + 1;
-			}
-		
 		}
+	}
+
+	void UpdateShield()
+	{
+		damageAbsorbed = 0;
+		nextActionTime = Time.time + 1;
 	}
 
 	public float trigger(GameObject source,GameObject proj, UnitManager target,float damage)

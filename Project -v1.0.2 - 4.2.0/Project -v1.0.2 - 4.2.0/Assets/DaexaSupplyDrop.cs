@@ -58,9 +58,12 @@ public class DaexaSupplyDrop: TargetAbility{
 		spawnLoc.y += 150;
 		location.y += 5;
 		proj = (GameObject)Instantiate (prefab, spawnLoc, Quaternion.identity);
-		proj.GetComponent<UnitManager>().setInteractor();
-		proj.GetComponent<UnitManager> ().interactor.initialize ();
-		racer.applyUpgrade (proj);
+
+		UnitManager tempMan = proj.GetComponent<UnitManager> ();
+		tempMan.setInteractor ();
+		tempMan.interactor.initialize ();
+		racer.applyUpgrade (tempMan);
+
 		proj.GetComponent<SpaceDrop> ().setLocation (location);
 		if (myApplier) {
 			myApplier.applyUlt (proj, this);

@@ -69,17 +69,22 @@ public class EarthQuake : MonoBehaviour {
 
 			if (QuakeBuilding) {
 				QuakeBuilding.GetComponentInChildren<Animator> ().SetTrigger("Pulse");}
-			GameObject[] unitListCopy = enemyRace.getUnitList ().ToArray ();
-			for (int i = 0; i < unitListCopy.Length; i++) {
 
-				if (unitListCopy[i]!= null) {
+		
+
+			//Making an array to not change the original list while iterating through
+
+			foreach (KeyValuePair<string, List<UnitManager>> pair in enemyRace.getUnitList ()) {
+				UnitManager[] unitListCopy = pair.Value.ToArray ();
+
+				for (int i = 0; i < unitListCopy.Length; i++) {
 					if(Vector3.Distance(QuakeBuilding.transform.position, unitListCopy[i].transform.position) < 400){
-						unitListCopy[i].GetComponent<UnitStats> ().TakeDamage (120, null, DamageTypes.DamageType.Penetrating);
-						unitListCopy[i].GetComponent<UnitManager> ().StunForTime (QuakeBuilding, 10);
+						unitListCopy[i].myStats.TakeDamage (150, null, DamageTypes.DamageType.Penetrating);
+						unitListCopy[i].StunForTime (QuakeBuilding, 10);
 					}
 				}
-
 			}
+				
 
 			StartCoroutine (onCooldown ());
 

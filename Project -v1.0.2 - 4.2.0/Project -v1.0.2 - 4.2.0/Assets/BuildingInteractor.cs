@@ -114,9 +114,8 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 					myManager.abilityList [i].enabled = true;
 				}
 			}
-
-			GameManager man = GameObject.FindObjectOfType<GameManager>();
-			man.playerList [myManager.PlayerOwner - 1].addUnit (this.gameObject);
+				
+			GameManager.main.playerList [myManager.PlayerOwner - 1].addUnit (myManager);
 
 			foreach (ResearchUpgrade ru in GetComponents<ResearchUpgrade>()) {
 				ru.UpdateAvailable ();

@@ -30,17 +30,20 @@ public class FButtonManager : MonoBehaviour {
 	
 
 
-	public void updateNumbers(List<GameObject> myUnits)
+	public void updateNumbers(Dictionary<string, List<UnitManager>> myUnits)
 	{
 		int tArmy = 0;
 		int totalBuilding = 0;
 
-		foreach (GameObject obj in myUnits) {
-			UnitManager manage = obj.GetComponent<UnitManager> ();
-			if (manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
-				totalBuilding++;
-			} else if (!manage.myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)&& !obj.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Turret) ) {
+		foreach (KeyValuePair<string, List<UnitManager>> pair in myUnits) {
+			if (pair.Value.Count > 0) {
+			
+				if (pair.Value [0].myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+					totalBuilding++;
+				}
+			 else if (!pair.Value[0].myStats.isUnitType (UnitTypes.UnitTypeTag.Worker) && !pair.Value[0].myStats.isUnitType (UnitTypes.UnitTypeTag.Turret)) {
 				tArmy++;
+				}
 			}
 		}
 

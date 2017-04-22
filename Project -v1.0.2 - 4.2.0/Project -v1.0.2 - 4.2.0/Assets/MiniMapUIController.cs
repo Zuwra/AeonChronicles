@@ -313,46 +313,46 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		int jCoord;
 		int chitSize; 
 
-		for(int i = 0; i <3; i ++){
-		//foreach (RaceManager race in gameMan.playerList) { // Loops 3 times
-			Color raceColor = getColorForRaceManager (gameMan.playerList[i]);
+		for (int i = 0; i < 3; i++) {
+			//foreach (RaceManager race in gameMan.playerList) { // Loops 3 times
+			Color raceColor = getColorForRaceManager (gameMan.playerList [i]);
             
-			foreach (GameObject unit in gameMan.playerList[i].getUnitList()) { // Loops 0 -100 ish timesif(unit){
+			foreach (KeyValuePair<string, List<UnitManager>> pair in  gameMan.playerList[i].getFastUnitList()) {
+				foreach (UnitManager unit  in pair.Value) {
+					if (!unit) {
+						continue;}
+					//foreach (GameObject unit in gameMan.playerList[i].getUnitList()) { // Loops 0 -100 ish timesif(unit){
 				
-				if (unit == null) {
-					continue;}
-				
-				chitSize = unitPixelSize;
-				if (unit.layer == 10) {
-					chitSize *= 2;
-				}
+					chitSize = unitPixelSize;
+					if (unit.gameObject.layer == 10) {
+						chitSize *= 2;
+					}
 			
-				iCoord = (int)((unit.transform.position.x - Left) *WidthScale);
-				jCoord = (int)((unit.transform.position.z - bottom) *HeightScale);
+					iCoord = (int)((unit.transform.position.x - Left) * WidthScale);
+					jCoord = (int)((unit.transform.position.z - bottom) * HeightScale);
 
 
-				for (int n = -chitSize; n <= chitSize; n++)
-                {
+					for (int n = -chitSize; n <= chitSize; n++) {
 
-					for (int j = -chitSize; j <=chitSize; j++)
-					{
-						ChitX = n + iCoord;
-						ChitY = j + jCoord;
-						try{
-							if(!virtMap [ChitX,ChitY]){	
+						for (int j = -chitSize; j <= chitSize; j++) {
+							ChitX = n + iCoord;
+							ChitY = j + jCoord;
+							try {
+								if (!virtMap [ChitX, ChitY]) {	
 								
-								usedUnitPoints.Add(PointArray[ChitX,ChitY]);
-								virtMap [ChitX,ChitY] = true;
-								tex.SetPixel(ChitX,ChitY, raceColor);}}
-						catch(Exception)
-						{
+									usedUnitPoints.Add (PointArray [ChitX, ChitY]);
+									virtMap [ChitX, ChitY] = true;
+									tex.SetPixel (ChitX, ChitY, raceColor);
+								}
+							} catch (Exception) {
 							
+							}
 						}
-                    }
 					}
 				}
 			
-            }
+			}
+		}
 		//Debug.Log ("C " + Environment.TickCount);
 		//Debug.Log ("Drawing " + counter);
 		tex.Apply();

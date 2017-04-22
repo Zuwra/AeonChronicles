@@ -36,23 +36,25 @@ public class UnitLostDefeat : MonoBehaviour, LethalDamageinterface {
 			}
 			return false;
 		} else if (noUnits) {
-			foreach (GameObject unit in myRace.getUnitList()) {
-				if (!unit.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 
-				
-					return true;
+			foreach (KeyValuePair<string, List<UnitManager>> pair in  myRace.getUnitList()) {
+				foreach (UnitManager unit in pair.Value) {
+					
+					if (!unit.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+						return true;
+					}
 				}
 			}
-		
 		} else if (noBuildings) {
-			foreach (GameObject unit in myRace.getUnitList()) {
+			foreach (KeyValuePair<string, List<UnitManager>> pair in  myRace.getUnitList()) {
+				foreach (UnitManager unit in pair.Value) {
 				// We have a structure, so we don't lose
-				if (unit.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+				if (unit.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 
 					return true;
 				}
 			}
-		
+			}
 		}
 		victory.Lose ();
 		return false;

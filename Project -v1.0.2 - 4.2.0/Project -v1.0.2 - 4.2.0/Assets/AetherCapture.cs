@@ -51,9 +51,9 @@ public class AetherCapture : MonoBehaviour {
 			foggy.enabled = true;
 		}
 
-		GameManager.main.activePlayer.applyUpgrade (myManager.gameObject);
+		GameManager.main.activePlayer.applyUpgrade (myManager);
 		GameManager.main.activePlayer.UnitCreated (myManager.GetComponent<UnitStats>().supply);
-		GameManager.main.activePlayer.addUnit (myManager.gameObject);
+		GameManager.main.activePlayer.addUnit (myManager);
 		GameManager.main.activePlayer.addVeteranStat (myManager.GetComponent<UnitStats>().veternStat);
 
 		if (cutscene) {

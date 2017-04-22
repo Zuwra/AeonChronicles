@@ -21,29 +21,23 @@ public class ArmyUIManager : MonoBehaviour {
 	
 	}
 
-	public void updateUnits(GameObject unit)
+	public void updateUnits(UnitManager manage)
 		{
-		UnitManager manage = unit.GetComponent<UnitManager> ();
+		//UnitManager manage = unit.GetComponent<UnitManager> ();
 
-		if (unitList.ContainsKey (manage.UnitName)) {
-			
-			unitList [manage.UnitName].Add (unit);
+		if (!unitList.ContainsKey (manage.UnitName)) {
+			unitList.Add (manage.UnitName, new List<GameObject> ());
+			unitCount++;
 			if (this.gameObject.activeSelf) {
+				StartCoroutine (createIcon (manage));
+			}
+		}
+		unitList [manage.UnitName].Add (manage.gameObject);
+
+		if (this.gameObject.activeSelf) {
 				StartCoroutine (addNUmber (manage,true));
-			}
 		} 
-		else {
-			
-				List<GameObject> list = new List<GameObject> ();
-				list.Add (unit);
-				unitList.Add (manage.UnitName, list);
-				unitCount++;
 
-			if (this.gameObject.activeSelf) {
-				StartCoroutine (createIcon (unit));
-			}
-		
-			}
 
 	}
 
@@ -66,16 +60,14 @@ public class ArmyUIManager : MonoBehaviour {
 
 
 
-	public void unitLost(GameObject unit)
-	{if (!unit) {
+	public void unitLost(UnitManager  manage)
+	{if (!manage) {
 			return;}
 		
-		UnitManager manage = unit.GetComponent<UnitManager> ();
-
 
 		if (unitList.ContainsKey (manage.UnitName)) {
 
-			unitList [manage.UnitName].Remove (unit);
+			unitList [manage.UnitName].Remove (manage.gameObject);
 
 			//if (!unitList.ContainsKey(manage.UnitName)) {
 			if(unitList [manage.UnitName].Count == 0){
@@ -106,14 +98,13 @@ public class ArmyUIManager : MonoBehaviour {
 	}
 
 
-	IEnumerator createIcon(GameObject unit)
+	IEnumerator createIcon(UnitManager manage)
 	{		yield return new WaitForSeconds(0);
 		
-		UnitManager manage = unit.GetComponent<UnitManager> ();
-
+	
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
 		icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text = manage.UnitName;
-		icon.GetComponent<DropDownDudeFinder> ().myProducer.Add (unit);
+		icon.GetComponent<DropDownDudeFinder> ().myProducer.Add (manage.gameObject);
 		icon.transform.rotation = unitPanel.transform.rotation;
 
 		icon.transform.SetParent (unitPanel.transform);
