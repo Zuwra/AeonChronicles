@@ -29,7 +29,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 	override
 	public void Cast(){
-		
+		Debug.Log ("Cast A");
 		Unattach ();
 		if (!target) {
 			manager.changeState (new DefaultState ());
@@ -398,9 +398,13 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	{
 		if (!attached) {
 			if (!attached && isValidTarget (order.Target, Vector3.zero)) {
-				manager.UseTargetAbility (order.Target, Vector3.zero, 0,false);
+				manager.UseTargetAbility (order.Target, Vector3.zero, 0, false);
 				//Debug.Log ("Ordered to follow");
 				return;
+			}
+		} else {
+			if (isValidTarget (order.Target, Vector3.zero)) {
+				manager.UseTargetAbility (order.Target, Vector3.zero, 0, false);
 			}
 		}
 
@@ -460,25 +464,40 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		//manager.changeState (new HoldState(manager));
 	}
 
+
 	//Right click on a unit/object. how is this different than interact? is it only on allied units?
 	public void Follow(Order order){
 		if (order.Target == this.gameObject) {
 			return;
 		}
+		if (!order.Target) {
+		
+			return;}
 
 		if (!attached) {
-			if (!attached && isValidTarget (order.Target, Vector3.zero)) {
+			if (isValidTarget (order.Target, Vector3.zero)) {
+				manager.UseTargetAbility (order.Target, Vector3.zero, 0, order.queued);
+				//Debug.Log ("Ordered to follow");
+			} else {
+				manager.changeState (new MoveState (order.OrderLocation, manager, true), false, order.queued);
+				if (target) {
+					target = null;
+				}
+			}
+		} else {
+		
+
+			if (isValidTarget (order.Target, Vector3.zero)) {
 				manager.UseTargetAbility (order.Target, Vector3.zero, 0, order.queued);
 				//Debug.Log ("Ordered to follow");
 			}
-			else{
-				manager.changeState (new MoveState (order.OrderLocation,manager,true),false,order.queued);
-				if (target) {
-					target = null;}
+
+
 			}
+
 		}
 
-	}
+
 
 
 

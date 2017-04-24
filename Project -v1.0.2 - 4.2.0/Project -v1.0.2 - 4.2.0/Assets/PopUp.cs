@@ -6,16 +6,17 @@ public class PopUp : MonoBehaviour {
 	public float speed = 5;
 	// Use this for initialization
 	void Start () {
-		cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
+		cam = MainCamera.main.gameObject;
 	
 	}
 	
 	// Update is called once per frame
+	Vector3 location;
 	void Update () {
 
 		this.transform.Translate (Vector3.up * Time.deltaTime * speed);
 	
-		Vector3 location = cam.transform.position;
+		location = cam.transform.position;
 		location.x = this.gameObject.transform.position.x;
 		gameObject.transform.LookAt (location);
 	

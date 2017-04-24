@@ -438,8 +438,8 @@ public class UiAbilityManager : MonoBehaviour {
 					int picCount = Mathf.Min (uiPage.rows [j].Count, 18);
 					int separation = 59;
 
-					if (uiPage.rows [j].Count > 12) {
-						separation = Mathf.Max (10, 408 / picCount);
+					if (uiPage.rows [j].Count > 14) {
+						separation = Mathf.Max (10, 508 / picCount);
 					}
 				
 					int currentX = 140;

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UnitCardCreater : MonoBehaviour {
 
+
 	public GameObject unitIcon;
 	public Text UnitName;
 	public Text health;
@@ -12,6 +13,7 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text SpellResist;
 	public Image SpellIcon;
 	public Text speed;
+
 
 	public List<GameObject> weaponIcons = new List<GameObject> ();
 	public Text weaponTitle;
@@ -76,6 +78,7 @@ public class UnitCardCreater : MonoBehaviour {
 			}
 		}
 	}
+
 
 	public void toggleStats ()
 	{VetStats.text = blankText;

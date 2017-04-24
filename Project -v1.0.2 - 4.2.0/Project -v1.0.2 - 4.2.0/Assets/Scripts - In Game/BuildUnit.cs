@@ -33,7 +33,7 @@ public class BuildUnit : UnitProduction {
 
 	void Start () {
 		buildMan = GetComponent<BuildManager> ();
-		racer = GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<GameManager> ().activePlayer;
+		racer = GameManager.main.activePlayer;
 		myInteractor = GetComponent <BuildingInteractor> ();
 		mySelect = GetComponent<Selected> ();
 
@@ -157,7 +157,7 @@ public class BuildUnit : UnitProduction {
 
 		HD.loadIMage(unitToBuild.GetComponent<UnitStats> ().Icon);
 		timer = buildTime;
-		GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
+		GameManager.main.activePlayer.UnitCreated (unitToBuild.GetComponent<UnitStats> ().supply);
 
 		buildingUnit = true;
 		racer.buildingUnit (this);

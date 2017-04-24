@@ -183,8 +183,8 @@ public class LevelManager : MonoBehaviour {
 	public void setDifficultyDropDowns(int i )
 	{
 		foreach (Dropdown dd in difficultyBars) {
-			if (dd.value!= i) {
-				dd.value = i;
+			if (dd.value!= i-1) {
+				dd.value = i-1;
 			}
 		}
 	}

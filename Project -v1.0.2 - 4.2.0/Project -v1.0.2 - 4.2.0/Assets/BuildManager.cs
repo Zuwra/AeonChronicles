@@ -16,18 +16,13 @@ public class BuildManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		raceMan = GameObject.FindObjectOfType<GameManager> ().activePlayer ;
+		raceMan = GameManager.main.activePlayer ;
 		build = GameObject.FindObjectOfType<BuilderUI> ();
 		mySelect = GetComponent<Selected> ();
 		if (GetComponent<newWorkerInteract> ()) {
 			isWorker = true;}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 	public void cancel()
 	{

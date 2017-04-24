@@ -31,7 +31,9 @@ public class Objective : SceneEventTrigger {
 		completed = true;
 
 		foreach (SceneEventTrigger trig in myEvents) {
-			trig.trigger (0, 0, Vector3.zero, null, false);
+			if (trig) {
+				trig.trigger (0, 0, Vector3.zero, null, false);
+			}
 		}
 
 		if(nextObjective){

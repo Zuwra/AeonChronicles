@@ -34,7 +34,7 @@ public class TextTrigger : SceneEventTrigger {
 
 				//ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic,Priority);
 				if (stealCamera > 0) {
-					GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);
+					MainCamera.main.setCutScene (this.gameObject.transform.position, 120);
 				}
 			}
 		}

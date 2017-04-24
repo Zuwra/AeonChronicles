@@ -84,9 +84,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			InvokeRepeating ("UltUpdate", .2f, .2f);
 		}
 
-		if (UltTwo &&  !UltTwo.myCost.StartsRefreshed) {
+		if (UltTwo &&  !UltTwo.myCost.StartsRefreshed && UltTwo.active) {
 			StartCoroutine (UltTwoNotif ());}
-		if (UltFour && !UltFour.myCost.StartsRefreshed) {
+		if (UltFour && !UltFour.myCost.StartsRefreshed && UltFour.active) {
 			StartCoroutine (UltFourNotif ());}
 	
 	}
@@ -389,8 +389,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 			unitsLost++;
 
-
-			unitRoster [unitName].Remove (unitMan);
+			try{
+				unitRoster [unitName].Remove (unitMan);}
+			catch{
+			}
 
 			//unitList.Remove(Unit);
 			if (trueDeath) {
@@ -552,6 +554,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void updateSupply( float current, float max){
 		bool hasNull= false;
 		foreach (ManagerWatcher watch in myWatchers) {
+			Debug.Log ("Manager watcher "+watch);
 			if(watch != null){
 				watch.updateSupply(current, max);}
 			else{hasNull = true;}

@@ -30,29 +30,38 @@ public class BuilderUI : MonoBehaviour {
 	void UpdateStuff () {
 
 
-			if (myMan) {
+		if (myMan) {
 
-				if (myMan.buildOrder.Count > 0) {
-					if (!buildingStuff) {
-						buildingStuff = true;
-						foreach (Button b in que) {
-							b.gameObject.SetActive (true);
-						}
-
+			if (myMan.buildOrder.Count > 0) {
+				if (!buildingStuff) {
+					buildingStuff = true;
+					foreach (Button b in que) {
+						b.gameObject.SetActive (true);
 					}
 
-					
-					perc.text = (int)(myMan.buildOrder [0].getProgress () * 100) + "%";
-				} else {
-					if (buildingStuff) {
-						buildingStuff = false;
-						foreach (Button b in que) {
-							b.gameObject.SetActive (false);
-						}
-					}
-					perc.text = "";
 				}
 
+				if (myMan.waitingOnSupply) {
+					NoSupply ();
+					perc.text = "";
+				} else if (!myMan.waitingOnSupply) {
+					hasSupply ();
+					perc.text = (int)(myMan.buildOrder [0].getProgress () * 100) + "%";
+				}
+					
+
+			} else {
+				if (buildingStuff) {
+					buildingStuff = false;
+					foreach (Button b in que) {
+						b.gameObject.SetActive (false);
+					}
+				}
+				perc.text = "";
+			}
+
+		} else {
+			moreSupply.enabled = false;
 		}
 	
 	}
