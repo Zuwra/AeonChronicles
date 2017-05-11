@@ -1,20 +1,24 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\IWeapon.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\bunnyManager.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="391" Column="4" />
-      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="717" Column="26" />
-      <File FileName="Assets\ResearchUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\VictoryTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\WaveManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitCardCreater.cs" Line="1" Column="1" />
-      <File FileName="Assets\Objective.cs" Line="33" Column="49" />
-      <File FileName="Assets\PayLoadCreator.cs" Line="24" Column="3" />
-      <File FileName="Assets\TextTrigger.cs" Line="33" Column="54" />
+      <File FileName="Assets\SuicideAttack.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\ExplodeOnDeath.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Modifier.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="1" Column="1" />
+      <File FileName="Assets\ExpositionDisplayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\DifficultyManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\DifficultyEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets\AugmentAetherVictory.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Core\Unit.cs" Line="1" Column="1" />
+      <File FileName="Assets\WaveSpawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Augmentor.cs" Line="477" Column="19" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="372" Column="2" />
+      <File FileName="Assets\AetherCapture.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
+      <File FileName="Assets\bunnyManager.cs" Line="34" Column="51" />
+      <File FileName="Assets\dialogManager.cs" Line="21" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

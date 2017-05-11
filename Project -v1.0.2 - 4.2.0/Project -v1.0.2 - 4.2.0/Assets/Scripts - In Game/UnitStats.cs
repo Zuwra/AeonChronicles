@@ -299,10 +299,13 @@ public class UnitStats : MonoBehaviour {
 
 	}
 
-
+	private bool dead = false;
 
 	public void kill(GameObject deathSource)
-	{bool FinishDeath= true;
+	{
+		if (dead)
+			return;
+		bool FinishDeath= true;
 		if (!otherTags.Contains(UnitTypes.UnitTypeTag.Invulnerable)) {
 			//foreach (Method effect in lethalDamage) {
 
@@ -318,6 +321,7 @@ public class UnitStats : MonoBehaviour {
 			}
 
 			if (FinishDeath) {
+				dead = true;
 				deathTriggers.RemoveAll (item => item == null);
 				for(int i = deathTriggers.Count -1; i > -1; i --)
 				{

@@ -39,25 +39,28 @@ public class AetherCapture : MonoBehaviour {
 
 	public void capture()
 	{
-		myManager.PlayerOwner = 1;
-		myManager.visionRange -= 5;
-		myManager.GetComponent<SphereCollider> ().radius = myManager.visionRange;
+		if (myManager) {
+			myManager.PlayerOwner = 1;
+			myManager.visionRange -= 5;
+			myManager.GetComponent<SphereCollider> ().radius = myManager.visionRange;
+		
 
 
 
-		FogOfWarUnit foggy = GetComponent<FogOfWarUnit> ();
-		if (foggy) {
-			foggy.radius = myManager.visionRange + 3;
-			foggy.enabled = true;
-		}
+			FogOfWarUnit foggy = GetComponent<FogOfWarUnit> ();
+			if (foggy) {
+				foggy.radius = myManager.visionRange + 3;
+				foggy.enabled = true;
+			}
 
-		GameManager.main.activePlayer.applyUpgrade (myManager);
-		GameManager.main.activePlayer.UnitCreated (myManager.GetComponent<UnitStats>().supply);
-		GameManager.main.activePlayer.addUnit (myManager);
-		GameManager.main.activePlayer.addVeteranStat (myManager.GetComponent<UnitStats>().veternStat);
+			GameManager.main.activePlayer.applyUpgrade (myManager);
+			GameManager.main.activePlayer.UnitCreated (myManager.GetComponent<UnitStats> ().supply);
+			GameManager.main.activePlayer.addUnit (myManager);
+			GameManager.main.activePlayer.addVeteranStat (myManager.GetComponent<UnitStats> ().veternStat);
 
-		if (cutscene) {
-			GameObject.FindObjectOfType<MainCamera> ().setCutScene (myManager.gameObject.transform.position, 120);
+			if (cutscene) {
+				GameObject.FindObjectOfType<MainCamera> ().setCutScene (myManager.gameObject.transform.position, 120);
+			}
 		}
 	}
 	/*

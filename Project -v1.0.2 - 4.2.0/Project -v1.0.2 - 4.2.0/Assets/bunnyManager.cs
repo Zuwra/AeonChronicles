@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class bunnyManager : MonoBehaviour {
 
@@ -18,10 +19,45 @@ public class bunnyManager : MonoBehaviour {
 
 	Coroutine flashing;
 
+	public List<voiceLineRandomizer> lineTriggers;
+
+	[System.Serializable]
+	public class voiceLineRandomizer{
+		public int triggerNumber;
+		public List<int> voiceLineOptions;
+		private float timeSinceLastPlayed = Time.fixedTime;
+		int lastOneUsed = -1;
+
+		public void playVoiceLine() {
+			if (Time.fixedTime - timeSinceLastPlayed > 60) {
+				timeSinceLastPlayed = Time.fixedTime;
+				int rand = Random.Range (0, voiceLineOptions.Count - 1);
+				if(voiceLineOptions.Count > 1) {
+					while (lastOneUsed == rand) {
+						rand = Random.Range (0, voiceLineOptions.Count - 1);
+					}
+				} 
+				lastOneUsed = rand;
+				dialogManager.instance.playLine (voiceLineOptions[rand]); //play that one here
+			}
+		}
+	}
+
+
 	public void changeInBunnyCount(int change)
 	{
+		int oldAmount = currAmount;
 		currAmount =GameObject.FindObjectsOfType<bunnyPopulate>().Length -1;
 
+
+		if (oldAmount < currAmount) {
+			foreach (voiceLineRandomizer v in lineTriggers) {
+				if (currAmount == v.triggerNumber) {
+					v.playVoiceLine ();
+					break;
+				}
+			}
+		}
 
 
 		if (currAmount > maxAmount * .85) {
