@@ -33,7 +33,7 @@ public class TurretDeathTrigger : MonoBehaviour, Modifier{
 		FButtonManager.main.updateTankNumber ();
 
 
-		//mymanager.myStats.kill (null);
+		mymanager.myStats.kill (null);
 	
 
 	}

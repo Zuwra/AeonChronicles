@@ -1181,16 +1181,24 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{ DeselectAll();
 
 		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
-			foreach (UnitManager manager in pair.Value) {
 
-			if (manager.myStats.isUnitType (UnitTypes.UnitTypeTag.Turret) && globalSelection [n].Contains (manager.UnitName)) {
-				
-				AddObject (manager.transform.root.GetComponent<UnitManager> ());
-				AddObject (manager);
-			} else if (globalSelection [n].Contains (manager.UnitName)) {
-				AddObject (manager);
+			if (globalSelection [n].Contains (pair.Key)) {
+			
+				foreach (UnitManager manager in pair.Value) {
+
+					if (manager.myStats.isUnitType (UnitTypes.UnitTypeTag.Turret)) {
+
+						AddObject (manager.transform.root.GetComponent<UnitManager> ());
+						AddObject (manager);
+					} else {
+						AddObject (manager);
+					}
+				}
+
+			
 			}
-		}
+
+		
 		}
 		CreateUIPages(0);}
 

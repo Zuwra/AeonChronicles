@@ -59,7 +59,11 @@ public class VictoryTrigger : MonoBehaviour {
 
 	public void CompleteObject(Objective obj)
 	{	TechCredits += obj.reward;
-		
+
+		if (!ObjectiveManager.instance.hasObjective (obj)) {
+			addObjective (obj);
+		}
+
 		if (obj.bonus) {
 			Debug.Log ("Completed bonus");
 			completeBonusObj++;

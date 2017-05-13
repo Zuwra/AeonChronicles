@@ -25,12 +25,13 @@ public class bunnyManager : MonoBehaviour {
 	public class voiceLineRandomizer{
 		public int triggerNumber;
 		public List<int> voiceLineOptions;
-		private float timeSinceLastPlayed = Time.fixedTime;
+		private float timeSinceLastPlayed = 0;
 		int lastOneUsed = -1;
 
+
 		public void playVoiceLine() {
-			if (Time.fixedTime - timeSinceLastPlayed > 60) {
-				timeSinceLastPlayed = Time.fixedTime;
+			if (Time.time - timeSinceLastPlayed > 30) {
+				timeSinceLastPlayed = Time.time;
 				int rand = Random.Range (0, voiceLineOptions.Count - 1);
 				if(voiceLineOptions.Count > 1) {
 					while (lastOneUsed == rand) {

@@ -19,6 +19,7 @@ public class LevelStartPlacer : MonoBehaviour {
 	void OnDrawGizmos()
 	{
 		foreach (Vector3 vec in startingLocations) {
+			Gizmos.color = Color.red;
 			Gizmos.DrawSphere (vec, 2);
 		}
 	}

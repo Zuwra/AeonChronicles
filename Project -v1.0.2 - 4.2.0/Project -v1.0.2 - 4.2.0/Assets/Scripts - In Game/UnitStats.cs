@@ -76,17 +76,24 @@ public class UnitStats : MonoBehaviour {
 
 	}
 
+	public void SetTags()
+	{
+		tagSet = true;
+		TotalTags.Clear ();
+		foreach (UnitTypes.UnitTypeTag t in otherTags) {
+
+			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,t.ToString()));
+		}
+		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,armorType.ToString()));
+		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,myHeight.ToString()));
+		TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
+
+	}
+
 	public void Initialize()
 	{
 		if (!tagSet) {
-			tagSet = true;
-			foreach (UnitTypes.UnitTypeTag t in otherTags) {
-
-				TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,t.ToString()));
-			}
-			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,armorType.ToString()));
-			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,myHeight.ToString()));
-			TotalTags.Add ((UnitTypes.UnitTypeTag)Enum.Parse(typeof(UnitTypes.UnitTypeTag) ,sizeType.ToString()));
+			SetTags ();
 		}
 		if (!myManager) {
 			myManager = this.gameObject.GetComponent<UnitManager> ();
@@ -116,8 +123,7 @@ public class UnitStats : MonoBehaviour {
 			myManager = this.gameObject.GetComponent<UnitManager> ();
 			myManager.myStats = this;
 		}
-
-		//nextActionTime = Time.time + .5f;
+			
 		if (isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 	
 		}

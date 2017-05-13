@@ -29,7 +29,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 	override
 	public void Cast(){
-		Debug.Log ("Cast A");
+
 		Unattach ();
 		if (!target) {
 			manager.changeState (new DefaultState ());
@@ -44,7 +44,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		BuildingInteractor BI = target.GetComponent<BuildingInteractor> ();
 
 		if (!BI.ConstructDone ()) {
-			//Debug.Log ("Delaying check");
+
 			StartCoroutine (delayCast());
 			return;
 		}
@@ -52,6 +52,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		myRotate.speed *= 3;
 
 		manager.myStats.myHeight = UnitTypes.HeightType.Ground;
+		manager.myStats.SetTags ();
 		detacher.allowDetach (true);
 		attached = target;
 		target.GetComponent<UnitManager> ().myStats.addDeathTrigger (this);
@@ -167,7 +168,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		MissileArmer armer = attached.GetComponent<MissileArmer> ();
 		UnitManager man = attached.GetComponent<UnitManager> ();
 
-		manager.myStats.myHeight = UnitTypes.HeightType.Air;
+		manager.myStats.SetTags ();
 
 		if (armer) {
 			armer.shields = true;

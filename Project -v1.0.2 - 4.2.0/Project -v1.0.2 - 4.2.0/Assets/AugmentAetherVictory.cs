@@ -78,11 +78,21 @@ public class AugmentAetherVictory  : Objective {
 
 	public void nextArea()
 	{
-		if(nextObjective){
-			complete ();
+		complete ();
+
+		if (nextObjective && !nextObjective.completed) {
+			
 			Debug.Log ("Calling next area");
 			nextObjective.GetComponent<FogOfWarUnit> ().enabled = true;
+
 		}
+
+		foreach (AugmentAetherVictory aug in GameObject.FindObjectsOfType<AugmentAetherVictory>()) {
+			if (!aug.completed) {
+				return;
+			}
+		}
+		GameObject.FindObjectOfType<VictoryTrigger> ().Win ();
 
 	}
 

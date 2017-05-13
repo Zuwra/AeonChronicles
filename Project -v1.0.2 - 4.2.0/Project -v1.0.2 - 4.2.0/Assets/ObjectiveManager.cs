@@ -88,6 +88,13 @@ public class ObjectiveManager : MonoBehaviour {
 		}
 	}
 
+	public bool hasObjective(Objective obj)
+	{
+		return (bonusObjectives.ContainsKey (obj) || mainObjectives.ContainsKey (obj));
+			
+	}
+
+
 
 	public void completeBonus(Objective obj)
 		{
