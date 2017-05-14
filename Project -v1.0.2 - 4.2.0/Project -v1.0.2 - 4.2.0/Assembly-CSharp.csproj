@@ -271,6 +271,7 @@
      <Compile Include="Assets\PrefabDrop.cs" />
      <Compile Include="Assets\Prefabs\DaexaUnits\CoyoteMoveFireUpgrade.cs" />
      <Compile Include="Assets\Prefabs\Level2\Formations.cs" />
+     <Compile Include="Assets\PrismTower.cs" />
      <Compile Include="Assets\ProductionManager.cs" />
      <Compile Include="Assets\PulseCannon.cs" />
      <Compile Include="Assets\RabbitEgg.cs" />
