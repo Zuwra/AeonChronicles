@@ -51,7 +51,7 @@ public class ShieldGlobe : MonoBehaviour {
 			dir *= speed * Time.deltaTime;
 			this.gameObject.transform.Translate (dir);
 
-			if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 2 + targetRadius) {
+			if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 3 + targetRadius) {
 				if (!isOverCharge) {
 					target.GetComponent<UnitManager> ().myStats.changeEnergy (5);
 

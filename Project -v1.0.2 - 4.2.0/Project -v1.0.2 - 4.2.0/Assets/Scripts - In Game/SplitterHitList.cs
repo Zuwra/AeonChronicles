@@ -14,16 +14,16 @@ public class SplitterHitList : MonoBehaviour,Notify{
 	{this.gameObject.GetComponent<IWeapon> ().triggers.Add (this);
 		hitTargets = new List<UnitManager> ();
 
-		this.gameObject.GetComponent<IWeapon> ().attackPeriod = chargeCount * 2;
+	//	this.gameObject.GetComponent<IWeapon> ().attackPeriod = chargeCount * 2;
 	}
 
-	void Update()
-	{}
 
 
 
 	public float trigger(GameObject source,GameObject proj, UnitManager target, float damage)
 		{
+
+		//Debug.Log ("Clearing the list");
 		proj.GetComponent<SplitterShot> ().chargesRemaning = chargeCount;
 		hitTargets.Clear ();
 		hitTargets.Add (target);
@@ -33,16 +33,20 @@ public class SplitterHitList : MonoBehaviour,Notify{
 
 	public bool isValidEnemy(UnitManager obj)
 	{
-		//Debug.Log ("Does orignal contain it?" +hitTargets.Contains (obj));
+		//Debug.Log ("Does orignal contain it?" +hitTargets.Contains (obj) + "   " + obj.gameObject);
 		return !hitTargets.Contains (obj);
 		
 	}
 
 	public void increaseChargeCount()
-		{chargeCount ++;
-		this.gameObject.GetComponent<IWeapon> ().attackPeriod = chargeCount * 2;
+	{
+		chargeCount++;
 	}
+		//this.gameObject.GetComponent<IWeapon> ().attackPeriod = chargeCount * 2;
+
 	public void decreaseChargeCount()
-	{chargeCount --;
-		this.gameObject.GetComponent<IWeapon> ().attackPeriod = chargeCount * 2;}
+	{
+		chargeCount--;
+	}
+		//this.gameObject.GetComponent<IWeapon> ().attackPeriod = chargeCount * 2;}
 }

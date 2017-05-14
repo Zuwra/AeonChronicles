@@ -438,6 +438,7 @@
      <Compile Include="Assets\TargetCircleManager.cs" />
      <Compile Include="Assets\TargetDeathVictory.cs" />
      <Compile Include="Assets\Teleport.cs" />
+     <Compile Include="Assets\TempInvulnerable.cs" />
      <Compile Include="Assets\TextChanger.cs" />
      <Compile Include="Assets\TextHolder.cs" />
      <Compile Include="Assets\TextTrigger.cs" />

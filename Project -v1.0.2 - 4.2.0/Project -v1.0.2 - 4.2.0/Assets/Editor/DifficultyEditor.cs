@@ -212,7 +212,31 @@ public class DifficultyEditor : EditorWindow {
 			Debug.Log ("awwwwwn <3");
 		}
 
+
+		replaceUnit = EditorGUILayout.TextField("Replace Unit Name" , replaceUnit);
+		if (GUILayout.Button ("Replace Unit")) {
+			if (Selection.objects.Length > 0) {
+
+				GameObject prefab = (GameObject)PrefabUtility.GetPrefabParent (Selection.objects [0]);
+
+				foreach (UnitManager manage in GameObject.FindObjectsOfType<UnitManager>()) {
+					if (manage.UnitName == replaceUnit) {
+
+						GameObject obj =  (GameObject)Instantiate (Selection.objects [0], manage.transform.position, manage.transform.rotation, manage.transform.parent);
+						obj =  PrefabUtility.ConnectGameObjectToPrefab(obj,  prefab);
+						obj.transform.position = manage.transform.position;
+						DestroyImmediate (manage.gameObject);
+				
+					}
+				}
+			}
+		
+		}
+
+
 	}
+
+	string replaceUnit = "";
 
 	void Awake() {
 		//when open up window this code runs

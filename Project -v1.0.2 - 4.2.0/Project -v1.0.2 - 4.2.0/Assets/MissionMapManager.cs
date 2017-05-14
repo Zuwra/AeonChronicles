@@ -56,13 +56,17 @@ public class MissionMapManager : MonoBehaviour {
 	public void loadMissionIntro(int num)
 	{
 		levelman.openLevelIntro (num);
+		toggleMissionMap (false);
+		MainScreen.SetActive (false);
 
 	}
 
-	public void toggleMissionMap()
+	public void toggleMissionMap(bool onOrOff)
 	{
-		GetComponent<Canvas> ().enabled = !GetComponent<Canvas> ().enabled;
-		MainScreen.SetActive (!GetComponent<Canvas> ().enabled);
+		Debug.Log ("Opening Mission Map");
+		GetComponent<Canvas> ().enabled = onOrOff;
+
+		MainScreen.SetActive (!onOrOff);
 
 	}
 }

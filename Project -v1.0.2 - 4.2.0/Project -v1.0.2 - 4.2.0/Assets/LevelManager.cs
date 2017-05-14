@@ -104,9 +104,13 @@ public class LevelManager : MonoBehaviour {
 		currentIntro.SetActive (false);
 		//MainScreen.SetActive (true);
 
+		GameObject.FindObjectOfType<MissionMapManager> ().toggleMissionMap (true);
+
 		foreach (ToolTip tt in GameObject.FindObjectsOfType<ToolTip>()) {
 			tt.toolbox.enabled = false;
 		}
+
+
 	}
 
 	public void openLevelIntro(int n)

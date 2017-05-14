@@ -68,7 +68,7 @@ public class explosion : MonoBehaviour {
 
 			if (manager) {
 
-				if (!friendlyFire && source && mySrcMan) {
+				if (!friendlyFire && source && !mySrcMan) {
 					return;
 				}
 
