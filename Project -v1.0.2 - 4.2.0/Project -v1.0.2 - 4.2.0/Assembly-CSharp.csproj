@@ -176,6 +176,7 @@
      <Compile Include="Assets\ExtendedBarrels.cs" />
      <Compile Include="Assets\FButtonManager.cs" />
      <Compile Include="Assets\FadeOut.cs" />
+     <Compile Include="Assets\FlatDamageBoost.cs" />
      <Compile Include="Assets\FogIndicator.cs" />
      <Compile Include="Assets\FogOfWar\FogOfWar.cs" />
      <Compile Include="Assets\FogOfWar\FogOfWarUnit.cs" />

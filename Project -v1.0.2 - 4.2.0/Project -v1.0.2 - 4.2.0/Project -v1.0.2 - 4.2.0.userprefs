@@ -1,23 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PrismTower.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FlatDamageBoost.cs">
     <Files>
       <File FileName="Assets\SuicideAttack.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
       <File FileName="Assets\ExplodeOnDeath.cs" Line="1" Column="1" />
       <File FileName="Assets\DifficultyManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Editor\DifficultyEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\TempInvulnerable.cs" Line="1" Column="1" />
-      <File FileName="Assets\ShieldGlobe.cs" Line="1" Column="1" />
-      <File FileName="Assets\PrismTower.cs" Line="20" Column="3" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="295" Column="4" />
-      <File FileName="Assets\Resources\mortarPod.cs" Line="4" Column="39" />
+      <File FileName="Assets\FlatDamageBoost.cs" Line="99" Column="3" />
+      <File FileName="Assets\Buff.cs" Line="9" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <RunToCursorBreakpoint file="C:\Users\Mathew\Desktop\AeonChronicles\Project -v1.0.2 - 4.2.0\Project -v1.0.2 - 4.2.0\Assets\PrismTower.cs" line="50" column="3" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

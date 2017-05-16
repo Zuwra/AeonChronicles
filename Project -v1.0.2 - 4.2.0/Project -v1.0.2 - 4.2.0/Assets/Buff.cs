@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public abstract class Buff : MonoBehaviour {
+public class Buff : MonoBehaviour {
 
 	public Sprite HelpIcon;
 	[TextArea(3,10)]
@@ -23,6 +23,17 @@ public abstract class Buff : MonoBehaviour {
 
 
 	}
+
+	public void applyDebuff()
+	{
+		myManager.myStats.addDebuff (this, true);
+	}
+
+	public void removeDebuff()
+	{
+		myManager.myStats.removeDebuff(this, true);
+	}
+
 
 
 	public void removeBuff()

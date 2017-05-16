@@ -554,7 +554,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void updateSupply( float current, float max){
 		bool hasNull= false;
 		foreach (ManagerWatcher watch in myWatchers) {
-			Debug.Log ("Manager watcher "+watch);
+		//	Debug.Log ("Manager watcher "+watch);
 			if(watch != null){
 				watch.updateSupply(current, max);}
 			else{hasNull = true;}

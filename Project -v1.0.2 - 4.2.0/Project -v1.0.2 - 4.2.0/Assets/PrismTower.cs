@@ -35,11 +35,15 @@ public class PrismTower : MonoBehaviour , Notify{
 			timeOfLastAttack = Time.time;
 
 			if (origin != this) {
-				StartCoroutine( DisplayLine (Asker.gameObject, 15, 15));
+				if (Asker.gameObject) {
+					StartCoroutine (DisplayLine (Asker.gameObject, 15, 15));
+				}
 				toReturn = lendDamage;
 			}
 			foreach (PrismTower p in pt) {
-				toReturn += p.sendForAid (origin,this);
+				if (p) {
+					toReturn += p.sendForAid (origin, this);
+				}
 			}
 		}
 
