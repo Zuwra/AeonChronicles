@@ -167,6 +167,7 @@
      <Compile Include="Assets\Effects\LightningBolt\LightningBoltScript.cs" />
      <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\EnableAbility.cs" />
+     <Compile Include="Assets\EnemySearchAI.cs" />
      <Compile Include="Assets\EnergyAchievement.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
      <Compile Include="Assets\ExplodeOnDeath.cs" />

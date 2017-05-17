@@ -55,16 +55,32 @@ public class UnitCardCreater : MonoBehaviour {
 		builder = GetComponent<BuilderUI> ();
 	
 	}
-	
+
+
+	float remainingOre;
+	int maxHealth;
+	int currentHealth;
+	int currentEnergy;
+
 	// Update is called once per frame
 	void Update () {
 		if (currentUnit) {
 			if (myDispense) {
-				OreText.text = "Remaining Ore: "+ myDispense.OreRemaining;
-			} else {
+				if (remainingOre != myDispense.OreRemaining) {
+					OreText.text = "Remaining Ore: " + myDispense.OreRemaining;
+					remainingOre = myDispense.OreRemaining;
+				}
 
-				health.text = "  " + (int)currentUnit.myStats.health + "/" + (int)currentUnit.myStats.Maxhealth;
-				if (currentUnit.myStats.MaxEnergy > 0) {
+			} else {
+				if (currentHealth != (int)currentUnit.myStats.health || maxHealth != (int)currentUnit.myStats.Maxhealth) {
+				
+					health.text = "  " + (int)currentUnit.myStats.health + "/" + (int)currentUnit.myStats.Maxhealth;
+					currentHealth = (int)currentUnit.myStats.health; 
+					maxHealth = (int)currentUnit.myStats.Maxhealth;
+				}
+
+				if (currentUnit.myStats.MaxEnergy > 0 && currentEnergy != ((int)currentUnit.myStats.currentEnergy)) {
+					currentEnergy = (int)currentUnit.myStats.currentEnergy;
 					energyText.text = "  " + (int)currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
 
 				}

@@ -222,6 +222,8 @@ public class WaveManager : MonoBehaviour {
 		}
 
 		GameObject unit = (GameObject)Instantiate (obj, hitzone, Quaternion.identity);
+
+		unit.AddComponent<EnemySearchAI> ();
 		//Debug.Log ("Making new guys! " + nextActionTime);
 		yield return new WaitForSeconds(.1f);
 

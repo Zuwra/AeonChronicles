@@ -10,7 +10,11 @@ public class selfDestructTimer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (showTimer) {
-			hd = GetComponent<Selected> ();
+			StartCoroutine (checkForDeathWithUI ());
+
+
+		} else {
+			StartCoroutine (checkForDeath());
 		}
 
 		deathTime = Time.time + timer;
@@ -18,29 +22,43 @@ public class selfDestructTimer : MonoBehaviour {
 
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Time.time > deathTime) {
+
+	IEnumerator checkForDeath()
+	{
+		yield return null;
+		while (Time.time < deathTime) {
+			yield return new WaitForSeconds (.07f);
+		}
+
+		if (GetComponent<UnitStats> ()) {
+			GetComponent<UnitStats> ().kill (null);
+		} else {
+
+			Destroy (this.gameObject);}
+
+	}
+
+	IEnumerator checkForDeathWithUI()
+	{
+		hd = GetComponent<Selected> ();
+		yield return null;
+		while (Time.time < deathTime) {
 			if (hd) {
-				hd.updateCoolDown (1);
+				hd.updateCoolDown ((deathTime - Time.time) / timer);
 			}
-				if (GetComponent<UnitStats> ()) {
-				GetComponent<UnitStats> ().kill (null);
-			} else {
-	
-				Destroy (this.gameObject);}
-		}
-			if(hd){
-		hd.updateCoolDown ((deathTime - Time.time) / timer);
-			}
+			yield return new WaitForSeconds (.05f);
+
 		}
 
-	
+		if (hd) {
+			hd.updateCoolDown (1);
+		}
+		if (GetComponent<UnitStats> ()) {
+			GetComponent<UnitStats> ().kill (null);
+		} else {
 
+			Destroy (this.gameObject);}
+	}
 
-
-
-	
 
 }
