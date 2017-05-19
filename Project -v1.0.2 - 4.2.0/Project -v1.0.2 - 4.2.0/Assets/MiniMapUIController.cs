@@ -315,9 +315,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	//This method gets called alot so it is optimized like xrazy
 	private void updateTexture (Texture2D tex, bool[,] virtMap)
 	{
-		//Debug.Log ("A " + Environment.TickCount);
-		float ratioW = _texture.width/textureWidth;
-		float ratioH = _texture.height/textureHeight;
+
 		clearTexture (tex, virtMap, false, usedUnitPoints);
 
 		for (int i = 0; i < 3; i++) {
@@ -339,10 +337,10 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 					}
 
 					if (unit.gameObject.layer == 10) {
-						chitSize = 2;
-						for (int n = -chitSize; n <= chitSize; n++) {
+						//chitSize = 2;
+						for (int n = -2; n <= 2; n++) {
 
-							for (int j = -chitSize; j <= chitSize; j++) {
+							for (int j = -2; j <= 2; j++) {
 								ChitX = n + iCoord;
 								ChitY = j + jCoord;
 								try {

@@ -93,12 +93,13 @@ public class ProductionManager : MonoBehaviour {
 		}
 		catch{
 		}
-
-		if (addIt) {
-			iconList [produce.Name].GetComponent<DropDownDudeFinder> ().myProducer.Add (produce.gameObject);
-		} else {
-			iconList [produce.Name].GetComponent<DropDownDudeFinder> ().myProducer.Remove (produce.gameObject);
-		}
+		if (iconList [produce.Name]) {
+			if (addIt) {
+				iconList [produce.Name].GetComponent<DropDownDudeFinder> ().myProducer.Add (produce.gameObject);
+			} else {
+				iconList [produce.Name].GetComponent<DropDownDudeFinder> ().myProducer.Remove (produce.gameObject);
+			}
+		}// TO DO FIX THIS IN RARE CASES WHERE NOTHING IS IN THERE
 	}
 
 

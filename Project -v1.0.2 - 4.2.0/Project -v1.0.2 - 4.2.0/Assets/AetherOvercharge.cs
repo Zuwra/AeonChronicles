@@ -19,10 +19,6 @@ public class AetherOvercharge : Buff, Notify{
 	bool spellHasBegun;
 	public GameObject AetherEffect;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {

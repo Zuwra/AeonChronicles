@@ -1,24 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MiniMapUIController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AetherOvercharge.cs">
     <Files>
       <File FileName="Assets\SuicideAttack.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
       <File FileName="Assets\ExplodeOnDeath.cs" Line="1" Column="1" />
       <File FileName="Assets\DifficultyManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Editor\DifficultyEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\FlatDamageBoost.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\DifficultyEditor.cs" Line="112" Column="34" />
+      <File FileName="Assets\FlatDamageBoost.cs" Line="64" Column="4" />
       <File FileName="Assets\Buff.cs" Line="1" Column="1" />
-      <File FileName="Assets\WaveSpawner.cs" Line="188" Column="2" />
-      <File FileName="Assets\EnemySearchAI.cs" Line="37" Column="12" />
-      <File FileName="Assets\WaveManager.cs" Line="230" Column="40" />
-      <File FileName="Assets\NewUnitTrigger.cs" Line="8" Column="2" />
-      <File FileName="Assets\UnitCardCreater.cs" Line="80" Column="6" />
-      <File FileName="Assets\OneShotParticleSystem.cs" Line="25" Column="10" />
-      <File FileName="Assets\Plugins\AstarPathfindingProject\Core\AstarPath.cs" Line="1115" Column="20" />
-      <File FileName="Assets\selfDestructTimer.cs" Line="41" Column="35" />
-      <File FileName="Assets\LeanPool\Scripts\LeanPool.cs" Line="330" Column="32" />
-      <File FileName="Assets\MiniMapUIController.cs" Line="40" Column="2" />
+      <File FileName="Assets\PayloadFirendlyEndZone.cs" Line="44" Column="16" />
+      <File FileName="Assets\UnitAppear.cs" Line="58" Column="55" />
+      <File FileName="Assets\WaveManager.cs" Line="40" Column="51" />
+      <File FileName="Assets\AetherOvercharge.cs" Line="101" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

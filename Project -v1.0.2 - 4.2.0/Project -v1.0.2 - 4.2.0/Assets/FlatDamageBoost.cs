@@ -16,7 +16,7 @@ public class FlatDamageBoost : MonoBehaviour, Modifier {
 		float toReturn = damage + damage * PercDamageIncrease;
 		toReturn += FlatDamageIncrease;
 
-		Debug.Log ("Returning " + toReturn);
+	//	Debug.Log ("Returning " + toReturn);
 		return toReturn;
 
 	}
@@ -53,11 +53,10 @@ public class FlatDamageBoost : MonoBehaviour, Modifier {
 
 		if (manage.PlayerOwner != Owner) {
 			enemies.Add (manage.myStats);
-			Debug.Log ("Adding modifer");
+			//Debug.Log ("Adding modifer");
 			manage.myStats.addModifier (this);
 			Buff buff = manage.gameObject.AddComponent<Buff> ();
 			buff.HelpIcon = DebuffIcon;
-			buff.name = "Flat Damaged";
 			buff.toolDescription = "This unit takes an extra " + FlatDamageIncrease + ""+ (PercDamageIncrease*100)+"%" +" Damage from each enemy attack.";
 			buff.applyDebuff();
 

@@ -110,14 +110,14 @@ public class SplitterShot : Projectile {
 				}
 			}
 			else {
-				Debug.Log("Destroying here");
+			//	Debug.Log("Destroying here");
 				Destroy (this.gameObject);
 			}
 
 
 
 		} else {
-			Debug.Log ("Last here");
+		//	Debug.Log ("Last here");
 			Destroy (this.gameObject);
 		}
 
