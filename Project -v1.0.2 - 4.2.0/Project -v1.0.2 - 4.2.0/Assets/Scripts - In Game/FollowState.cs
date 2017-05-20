@@ -33,12 +33,18 @@ public class FollowState : UnitState {
 	}
 
 	public override void initialize()
-	{myManager.cMover.resetMoveLocation (target.transform.position);
-
-		refreshTime = 30 - (int)myManager.cMover.getMaxSpeed();
-		if (refreshTime < 5) {
-			refreshTime = 8;
+	{
+		if (!myManager.cMover) {
+			myManager.changeState(new DefaultState());
+			return;
 		}
+			myManager.cMover.resetMoveLocation (target.transform.position);
+
+			refreshTime = 30 - (int)myManager.cMover.getMaxSpeed ();
+			if (refreshTime < 5) {
+				refreshTime = 8;
+			}
+
 	}
 
 	override

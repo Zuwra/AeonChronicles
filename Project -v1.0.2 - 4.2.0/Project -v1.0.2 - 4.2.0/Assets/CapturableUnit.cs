@@ -14,6 +14,7 @@ public class CapturableUnit : MonoBehaviour {
 
 	public void capture()
 	{
+
 		foreach(UnitManager manage in myManagers){
 			if (!manage) {
 				continue;}

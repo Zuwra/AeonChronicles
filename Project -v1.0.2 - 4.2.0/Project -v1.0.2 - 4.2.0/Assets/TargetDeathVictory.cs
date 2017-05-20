@@ -8,7 +8,6 @@ public class TargetDeathVictory : Objective {
 
 	string initialDescription;
 	int totalTargetCount;
-
 	// Use this for initialization
 	new void Start () {
 		base.Start ();

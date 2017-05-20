@@ -37,7 +37,7 @@ public class Objective : SceneEventTrigger {
 		}
 
 		if(nextObjective){
-			VictoryTrigger.instance.addObjective (nextObjective);}
+			nextObjective.trigger (0, 0, Vector3.zero, null, false);}
 		VictoryTrigger.instance.CompleteObject (this);
 	}
 
