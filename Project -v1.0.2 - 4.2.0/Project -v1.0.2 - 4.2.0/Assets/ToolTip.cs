@@ -9,16 +9,24 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 	public string helpText;
 
 	public Canvas toolbox;
+	public GameObject ToolObj;
 
 	public void OnPointerEnter(PointerEventData eventd)
 	{
-		toolbox.enabled = true;
+		if (toolbox) {
+			toolbox.enabled = true;
+		} else {
+			ToolObj.SetActive (true);
+		}
 		//toolbox.gameObject.GetComponentInChildren<Text> ().text = helpText;
 	}
 
 	public void OnPointerExit(PointerEventData eventd)
-	{
-		toolbox.enabled = false;
+	{if (toolbox) {
+			toolbox.enabled = false;
+		}else {
+			ToolObj.SetActive (false);
+		}
 	}
 
 
@@ -31,7 +39,9 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 	// Use this for initialization
 	void Start () {
 		if (toolbox == null) {
-			toolbox = GameObject.Find ("ToolTipBox").GetComponent<Canvas> ();
+			try{
+				toolbox = GameObject.Find ("ToolTipBox").GetComponent<Canvas> ();}
+			catch(System.Exception){}
 		}
 	}
 

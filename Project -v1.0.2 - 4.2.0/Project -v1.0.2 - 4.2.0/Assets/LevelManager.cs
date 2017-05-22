@@ -109,7 +109,11 @@ public class LevelManager : MonoBehaviour {
 		GameObject.FindObjectOfType<MissionMapManager> ().toggleMissionMap (true);
 
 		foreach (ToolTip tt in GameObject.FindObjectsOfType<ToolTip>()) {
-			tt.toolbox.enabled = false;
+			if (tt.toolbox) {
+				tt.toolbox.enabled = false;
+			} else {
+				tt.ToolObj.SetActive (false);
+			}
 		}
 
 
