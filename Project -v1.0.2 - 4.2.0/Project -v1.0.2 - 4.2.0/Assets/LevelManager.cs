@@ -39,13 +39,15 @@ public class LevelManager : MonoBehaviour {
 	public VoiceContainer voicePacks;
 	public Text ReplayButtonText;
 
+	public LevelIntroMaker IntroMaker;
+
 	public static LevelManager main;
 	// Use this for initialization
 	void Awake () {
 		mySource = GetComponent<AudioSource> ();
 		main = this;
 		foreach (GameObject obj in levelIntros) {
-			obj.SetActive (false);
+		//	obj.SetActive (false);
 		}
 
 		foreach (GameObject ob in Expositions) {
@@ -101,7 +103,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void closeLevelIntro()
 	{
-		currentIntro.SetActive (false);
+		currentIntro.GetComponent<Canvas> ().enabled = false;// .SetActive (false);
 		//MainScreen.SetActive (true);
 
 		GameObject.FindObjectOfType<MissionMapManager> ().toggleMissionMap (true);
@@ -115,8 +117,9 @@ public class LevelManager : MonoBehaviour {
 
 	public void openLevelIntro(int n)
 	{
-		levelIntros [n].SetActive (true);
-		currentIntro = levelIntros [n];
+		levelIntros [0].GetComponent<Canvas> ().enabled = true; //.SetActive (true);
+		IntroMaker.LoadLevel (LevelCompilation.getLevelInfo ().MyLevels [n]);
+		currentIntro = levelIntros [0];
 		MainScreen.SetActive (false);
 		//currentIntro.SetActive (!currentIntro.activeSelf );
 	}

@@ -43,7 +43,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 
 	void LevelWasLoaded(Scene myScene, LoadSceneMode mode)
 	{
-		if (SceneManager.GetActiveScene ().buildIndex != 3 && SceneManager.GetActiveScene ().buildIndex != 0) {
+		if (SceneManager.GetActiveScene ().buildIndex != 2 && SceneManager.GetActiveScene ().buildIndex != 0) {
 			RaceManager racer = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 			hasBeenToLevel = true;
 

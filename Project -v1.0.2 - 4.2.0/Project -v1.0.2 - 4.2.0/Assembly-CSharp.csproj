@@ -223,7 +223,11 @@
      <Compile Include="Assets\LeanPool\Scripts\LeanPool.cs" />
      <Compile Include="Assets\LeanPool\Scripts\LeanPooledRigidbody.cs" />
      <Compile Include="Assets\LeanPool\Scripts\LeanPooledRigidbody2D.cs" />
+     <Compile Include="Assets\LevelCompilation.cs" />
      <Compile Include="Assets\LevelData.cs" />
+     <Compile Include="Assets\LevelInfo.cs" />
+     <Compile Include="Assets\LevelInfoInspector.cs" />
+     <Compile Include="Assets\LevelIntroMaker.cs" />
      <Compile Include="Assets\LevelManager.cs" />
      <Compile Include="Assets\LevelSelectmanager.cs" />
      <Compile Include="Assets\LevelStartPlacer.cs" />
