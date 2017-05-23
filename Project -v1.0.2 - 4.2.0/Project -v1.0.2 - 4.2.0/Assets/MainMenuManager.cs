@@ -51,7 +51,7 @@ public class MainMenuManager : MonoBehaviour {
 
 	public void toCampaignLevelSelect()
 	{
-		SceneManager.LoadScene (3);
+		SceneManager.LoadScene (2);
 	}
 
 	public void toCampaign()

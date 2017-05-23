@@ -21,6 +21,15 @@ public class LevelInfo {
 	int ShortestTime;// in seconds
 	public bool unlocked;
 
+	public int getCompletionCount()
+	{Resources.Load<LevelCompilation> ("LevelEditor").loadGame ();
+		return CompletionCount;}
+
+	public void increaseCompCount()
+	{
+		CompletionCount++;
+		Resources.Load<LevelCompilation> ("LevelEditor").saveGame ();
+	}
 
 	[System.Serializable]
 	public class NewThing{

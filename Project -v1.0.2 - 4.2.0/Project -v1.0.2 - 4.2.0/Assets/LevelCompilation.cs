@@ -19,6 +19,14 @@ public class LevelCompilation : MonoBehaviour {
 		System.IO.File.WriteAllText ("BattleMoreLevelInfo", jsonString);
 	}
 
+	public void loadGame()
+	{
+
+		LevelList ll = JsonUtility.FromJson<LevelList>(System.IO.File.ReadAllText("BattleMoreLevelInfo"));
+		Resources.Load<GameObject> ("LevelEditor").GetComponent<LevelCompilation> ().MyLevels = ll.ls;
+
+	}
+
 	static LevelCompilation myComp;
 
 	public static LevelCompilation getLevelInfo()
@@ -29,6 +37,8 @@ public class LevelCompilation : MonoBehaviour {
 		return myComp;
 
 	}
+		
+
 
 }
 

@@ -17,7 +17,7 @@ public class VictoryTrigger : MonoBehaviour {
 
 	public int levelNumber;
 	public int EnemiesDest;
-	public int Resources;
+	public int ResourceAmount;
 	public string time;
 	public int TechCredits;
 
@@ -115,6 +115,9 @@ public class VictoryTrigger : MonoBehaviour {
 	{if (!hasFinished) {
 			hasFinished = true;
 			VictoryScreen.enabled = true;
+
+			LevelCompilation myComp = ((GameObject)(Resources.Load<GameObject> ("LevelEditor"))).GetComponent<LevelCompilation>();
+			myComp.MyLevels [levelNumber].increaseCompCount ();
 			PlayerPrefs.SetInt ("L" + levelNumber+"Win", PlayerPrefs.GetInt ("L" + levelNumber+"Win") + 1);
 
 			int diff = LevelData.getDifficulty ()-1;
@@ -215,7 +218,7 @@ public class VictoryTrigger : MonoBehaviour {
 		VictoryScreen.enabled = false;
 		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
 		DefeatScreen.enabled = false;
-		SceneManager.LoadScene (3);
+		SceneManager.LoadScene (2);
 
 	}
 

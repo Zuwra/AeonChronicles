@@ -151,6 +151,11 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+	public void MainMenu()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene (0);
+	}
+
 	public void showMainScreen()
 	{
 

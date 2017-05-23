@@ -3,13 +3,16 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelManager.cs">
     <Files>
       <File FileName="Assets\LevelData.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelInfoInspector.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelCompilation.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelIntroMaker.cs" Line="17" Column="1" />
-      <File FileName="Assets\MissionMapManager.cs" Line="58" Column="25" />
-      <File FileName="Assets\LevelManager.cs" Line="52" Column="3" />
-      <File FileName="Assets\TrueUpgradeManager.cs" Line="44" Column="56" />
+      <File FileName="Assets\LevelInfoInspector.cs" Line="22" Column="2" />
+      <File FileName="Assets\LevelInfo.cs" Line="23" Column="2" />
+      <File FileName="Assets\MissionMapManager.cs" Line="45" Column="19" />
+      <File FileName="Assets\LevelManager.cs" Line="145" Column="28" />
+      <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\MissionManager.cs" Line="54" Column="20" />
+      <File FileName="Assets\LevelIntroButton.cs" Line="30" Column="3" />
+      <File FileName="Assets\VictoryTrigger.cs" Line="221" Column="30" />
+      <File FileName="Assets\VictoryScreen.cs" Line="39" Column="45" />
+      <File FileName="Assets\MainMenuManager.cs" Line="46" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

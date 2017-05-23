@@ -14,5 +14,9 @@ public class LevelInfoInspector : Editor {
 	{LevelCompilation myTarget = (LevelCompilation)target;
 		DrawDefaultInspector ();
 
+		if (GUILayout.Button ("Save Json")) {
+			myTarget.saveGame ();
+		}
+
 	}
 }

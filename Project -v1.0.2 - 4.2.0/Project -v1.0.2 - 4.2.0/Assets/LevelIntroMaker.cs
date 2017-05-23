@@ -11,18 +11,26 @@ public class LevelIntroMaker : MonoBehaviour {
 	public Text LevelDescription;
 	public Text LevelTitle;
 
+
 	public GameObject newUnitPrefab;
 	public GameObject newUnitPanel;
 
 	public Text Intelligence;
-	List<GameObject> newUnitIcons = new List<GameObject>();
+	public List<GameObject> newUnitIcons = new List<GameObject>();
+
+	LevelInfo currentInfo;
 
 	public void LoadLevel(LevelInfo info)
 	{
+		currentInfo = info;
 		GeneralSprite.sprite = info.GeneralPic;
 		LevelScenery.sprite = info.ScenaryPic;
+		int index = 0;
+		if (info.getCompletionCount () > 0) {
+			index = info.getCompletionCount () % info.Description.Count;
+		}
 
-		LevelDescription.text = info.Description [0].LongDescription;
+		LevelDescription.text = info.Description [ index].LongDescription;
 		LevelTitle.text = info.LevelName;
 	
 
@@ -59,5 +67,10 @@ public class LevelIntroMaker : MonoBehaviour {
 
 	}
 
+
+	public void LoadLevel()
+	{
+		GameObject.FindObjectOfType<MissionManager> ().StartMission (currentInfo.SceneNumber);
+	}
 
 }

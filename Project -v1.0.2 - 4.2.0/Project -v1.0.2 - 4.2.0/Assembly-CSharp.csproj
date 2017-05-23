@@ -227,6 +227,7 @@
      <Compile Include="Assets\LevelData.cs" />
      <Compile Include="Assets\LevelInfo.cs" />
      <Compile Include="Assets\LevelInfoInspector.cs" />
+     <Compile Include="Assets\LevelIntroButton.cs" />
      <Compile Include="Assets\LevelIntroMaker.cs" />
      <Compile Include="Assets\LevelManager.cs" />
      <Compile Include="Assets\LevelSelectmanager.cs" />
