@@ -117,8 +117,9 @@ public class VictoryTrigger : MonoBehaviour {
 			VictoryScreen.enabled = true;
 
 			LevelCompilation myComp = ((GameObject)(Resources.Load<GameObject> ("LevelEditor"))).GetComponent<LevelCompilation>();
+			//LevelCompilation.loadGameStatic ().ls [levelNumber].increaseCompCount ();
 			myComp.MyLevels [levelNumber].increaseCompCount ();
-			PlayerPrefs.SetInt ("L" + levelNumber+"Win", PlayerPrefs.GetInt ("L" + levelNumber+"Win") + 1);
+			//PlayerPrefs.SetInt ("L" + levelNumber+"Win", PlayerPrefs.GetInt ("L" + levelNumber+"Win") + 1);
 
 			int diff = LevelData.getDifficulty ()-1;
 			if (diff > PlayerPrefs.GetInt ("L" + levelNumber + "Dif", -1)) {

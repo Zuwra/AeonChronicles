@@ -10,7 +10,6 @@ public class LevelCompilation : MonoBehaviour {
 		public int HighestId;
 
 
-
 	public void saveGame()
 	{
 		LevelList ll = new LevelList (MyLevels);
@@ -19,20 +18,39 @@ public class LevelCompilation : MonoBehaviour {
 		System.IO.File.WriteAllText ("BattleMoreLevelInfo", jsonString);
 	}
 
-	public void loadGame()
+
+	public static void saveGameStatic()
+	{
+
+		string jsonString = JsonUtility.ToJson(myComp);
+		Debug.Log ("Saving game " + jsonString );
+		System.IO.File.WriteAllText ("BattleMoreLevelInfo", jsonString);
+	}
+
+	public LevelList loadGame()
 	{
 
 		LevelList ll = JsonUtility.FromJson<LevelList>(System.IO.File.ReadAllText("BattleMoreLevelInfo"));
-		Resources.Load<GameObject> ("LevelEditor").GetComponent<LevelCompilation> ().MyLevels = ll.ls;
+		return ll;
+		//Resources.Load<GameObject> ("LevelEditor").GetComponent<LevelCompilation> ().MyLevels = ll.ls;
+
+	}
+	public static LevelList loadGameStatic()
+	{
+
+		LevelList ll = JsonUtility.FromJson<LevelList>(System.IO.File.ReadAllText("BattleMoreLevelInfo"));
+		return ll;
+		//Resources.Load<GameObject> ("LevelEditor").GetComponent<LevelCompilation> ().MyLevels = ll.ls;
 
 	}
 
-	static LevelCompilation myComp;
+	static LevelList myComp;
 
-	public static LevelCompilation getLevelInfo()
+	public static LevelList getLevelInfo()
 	{
 		if (myComp == null) {
-			myComp = Resources.Load<GameObject> ("LevelEditor").GetComponent<LevelCompilation>();
+			myComp = loadGameStatic ();
+			//myComp = Resources.Load<GameObject> ("LevelEditor").GetComponent<LevelCompilation>();
 		}
 		return myComp;
 
@@ -43,7 +61,7 @@ public class LevelCompilation : MonoBehaviour {
 }
 
 [System.Serializable]
-class LevelList
+public class LevelList
 {
 	[SerializeField]
 	public List<LevelInfo> ls;

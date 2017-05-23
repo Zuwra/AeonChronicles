@@ -122,7 +122,8 @@ public class LevelManager : MonoBehaviour {
 	public void openLevelIntro(int n)
 	{
 		levelIntros [0].GetComponent<Canvas> ().enabled = true; //.SetActive (true);
-		IntroMaker.LoadLevel (LevelCompilation.getLevelInfo ().MyLevels [n]);
+		LevelCompilation comp = Resources.Load<GameObject> ("LevelEditor").GetComponent<LevelCompilation> ();
+		IntroMaker.LoadLevel (comp.MyLevels[n]);
 		currentIntro = levelIntros [0];
 		MainScreen.SetActive (false);
 		//currentIntro.SetActive (!currentIntro.activeSelf );

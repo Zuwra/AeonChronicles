@@ -22,14 +22,53 @@ public class LevelInfo {
 	public bool unlocked;
 
 	public int getCompletionCount()
-	{Resources.Load<LevelCompilation> ("LevelEditor").loadGame ();
-		return CompletionCount;}
+	{
+		return PlayerPrefs.GetInt ("L" + SceneNumber +"Win", 0);
+
+		//LevelCompilation.loadGameStatic ();
+		//Resources.Load<LevelCompilation> ("LevelEditor").loadGame ();
+		//return CompletionCount;
+	}
 
 	public void increaseCompCount()
 	{
-		CompletionCount++;
-		Resources.Load<LevelCompilation> ("LevelEditor").saveGame ();
+
+		PlayerPrefs.SetInt ("L" + SceneNumber +"Win", PlayerPrefs.GetInt ("L" + SceneNumber+"Win") + 1);
+
+		//CompletionCount++;
+		//LevelCompilation.saveGameStatic ();
+		//Resources.Load<LevelCompilation> ("LevelEditor").saveGame ();
 	}
+
+
+	public int getHighestDiff()
+	{
+		return PlayerPrefs.GetInt ("L" +SceneNumber + "Dif", 1);
+	}
+
+	public void setHighestDiff(int n)
+	{
+
+		int diff = LevelData.getDifficulty ()-1;
+		if (diff > PlayerPrefs.GetInt ("L" + SceneNumber + "Dif", -1)) {
+
+			PlayerPrefs.SetInt ("L" +SceneNumber + "Dif", diff);
+		}
+
+	}
+
+	public void Reset()
+	{
+		PlayerPrefs.SetInt ("L" + SceneNumber +"Win", 0);
+		PlayerPrefs.SetInt ("L" +SceneNumber + "Dif", 1);
+	}
+
+	//int diff = LevelData.getDifficulty ()-1;
+	//if (diff > PlayerPrefs.GetInt ("L" + SceneNumber + "Dif", -1)) {
+
+	//	PlayerPrefs.SetInt ("L" + SceneNumber + "Dif", diff);
+	//}
+
 
 	[System.Serializable]
 	public class NewThing{
