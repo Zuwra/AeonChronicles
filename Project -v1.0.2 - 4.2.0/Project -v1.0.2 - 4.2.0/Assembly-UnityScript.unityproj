@@ -52,7 +52,7 @@
      <Compile Include="Assets\Effects\BasicBeamShot\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" />
      <Compile Include="Assets\Effects\BasicBeamShot\Character Controllers\Sources\Scripts\ThirdPersonController.js" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_Pr_Dt.shader" />
-     <None Include="Assets\Asset Usage Finder\readme.txt" />
+     <None Include="Assets\Editor\readme.txt" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

@@ -46,19 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Asset Usage Finder\Editor\Data\AssetDependencies.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\Data\CacheManager.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\Data\DependencyBase.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\Data\FileDependency.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\Data\FindDependencies.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\Data\InSceneDependency.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\Data\ResultRow.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\Data\SearchTarget.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\Data\SerializableCache.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\DependencyWindow.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\FeedbackPopup.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\Styles\ContentStylePair.cs" />
-     <Compile Include="Assets\Asset Usage Finder\Editor\Styles\DependencyStyle.cs" />
      <Compile Include="Assets\AstarPathfindingEditor\Editor\AnimationLinkEditor.cs" />
      <Compile Include="Assets\AstarPathfindingEditor\Editor\AstarPathEditor.cs" />
      <Compile Include="Assets\AstarPathfindingEditor\Editor\AstarUpdateChecker.cs" />
@@ -82,7 +69,20 @@
      <Compile Include="Assets\AstarPathfindingEditor\Editor\RVOSquareObstacleEditor.cs" />
      <Compile Include="Assets\AstarPathfindingEditor\Editor\RecastMeshObjEditor.cs" />
      <Compile Include="Assets\AstarPathfindingEditor\Editor\SeekerEditor.cs" />
+     <Compile Include="Assets\Editor\Data\AssetDependencies.cs" />
+     <Compile Include="Assets\Editor\Data\CacheManager.cs" />
+     <Compile Include="Assets\Editor\Data\DependencyBase.cs" />
+     <Compile Include="Assets\Editor\Data\FileDependency.cs" />
+     <Compile Include="Assets\Editor\Data\FindDependencies.cs" />
+     <Compile Include="Assets\Editor\Data\InSceneDependency.cs" />
+     <Compile Include="Assets\Editor\Data\ResultRow.cs" />
+     <Compile Include="Assets\Editor\Data\SearchTarget.cs" />
+     <Compile Include="Assets\Editor\Data\SerializableCache.cs" />
+     <Compile Include="Assets\Editor\DependencyWindow.cs" />
      <Compile Include="Assets\Editor\DifficultyEditor.cs" />
+     <Compile Include="Assets\Editor\FeedbackPopup.cs" />
+     <Compile Include="Assets\Editor\Styles\ContentStylePair.cs" />
+     <Compile Include="Assets\Editor\Styles\DependencyStyle.cs" />
      <Compile Include="Assets\Effects\LightningBolt\Editor\LightningBoltEditor.cs" />
      <Compile Include="Assets\Environment\Planets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetAsset.cs" />
      <Compile Include="Assets\Environment\Planets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetComponentEditor.cs" />
@@ -97,7 +97,7 @@
      <Compile Include="Assets\Scripts - In Game\Editor\GridEditor.cs" />
      <Compile Include="Assets\UIAddons\Editor\EditorTools.cs" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_Pr_Dt.shader" />
-     <None Include="Assets\Asset Usage Finder\readme.txt" />
+     <None Include="Assets\Editor\readme.txt" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
