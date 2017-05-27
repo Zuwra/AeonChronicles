@@ -162,14 +162,14 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
 			foreach (UnitManager tempMan  in pair.Value) {
-
+				if(tempMan){
 
 				upgrade.applyUpgrade (tempMan.gameObject);
 
-				if (tempMan.UnitName == unitname) {
+					if (tempMan.UnitName == unitname) {
 				
-					tempMan.gameObject.SendMessage ("researched", upgrade);
-			
+						tempMan.gameObject.SendMessage ("researched", upgrade);
+					}
 				}
 			}
 		}

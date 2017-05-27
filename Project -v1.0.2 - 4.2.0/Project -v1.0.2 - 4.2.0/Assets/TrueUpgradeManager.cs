@@ -37,18 +37,18 @@ public class TrueUpgradeManager : MonoBehaviour {
 
 
 			foreach (CampaignUpgrade cu in CampUpRef) {
-				cu.setInitialStuff ();
+			//	cu.setInitialStuff ();
 			}
 		}
 	}
 
 	void LevelWasLoaded(Scene myScene, LoadSceneMode mode)
 	{
-		Debug.Log ("level was loaded " + SceneManager.GetActiveScene().buildIndex);
+		//Debug.Log ("level was loaded " + SceneManager.GetActiveScene().buildIndex);
 		if (SceneManager.GetActiveScene ().buildIndex != 2 && SceneManager.GetActiveScene ().buildIndex != 0) {
 			RaceManager racer = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 			hasBeenToLevel = true;
-			Debug.Log ("Applying to Upgrade Ball");
+			//Debug.Log ("Applying to Upgrade Ball");
 			foreach (CampaignUpgrade.UpgradesPiece cu in myUpgrades) {
 				if (cu.pointer) {
 					racer.addUpgrade (cu.pointer, "");

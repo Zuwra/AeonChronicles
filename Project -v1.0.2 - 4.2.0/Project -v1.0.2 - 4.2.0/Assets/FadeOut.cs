@@ -26,7 +26,7 @@ public class FadeOut : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (Time.timeSinceLevelLoad +"  " +  fadeStartTime);
+		//Debug.Log (Time.timeSinceLevelLoad +"  " +  fadeStartTime);
 		if (Time.timeSinceLevelLoad > fadeStartTime) {
 			
 			myImage.color = new Color (0, 0, 0, 1 - (Time.timeSinceLevelLoad -  fadeStartTime) / fadeLength);

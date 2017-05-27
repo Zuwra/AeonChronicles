@@ -98,6 +98,8 @@ public class LevelData  {
 	{
 		loadGame ();
 	
+
+		Debug.Log ("Applying Upgrade " + s + "  " + u);
 		bool hitSomething = false;
 		foreach (keyValue kv in currentInfo.appliedUpgrades) {
 			if (kv.theName == s) {
@@ -122,7 +124,7 @@ public class LevelData  {
 		loadGame ();
 
 		PlayerPrefs.SetInt ("HighestLevel", 0);
-		Debug.Log ("Hieghest level is 0");
+		//Debug.Log ("Hieghest level is 0");
 		setMoney (0);
 		currentInfo = new saveInfo ();
 		saveGame ();
@@ -160,7 +162,7 @@ public class LevelData  {
 	{
 		if (currentInfo == null) {
 			try{
-			string inputJson = System.IO.File.ReadAllText("AeonSaveFile");
+			string inputJson = System.IO.File.ReadAllText("AeonSaveFile.txt");
 			currentInfo = JsonUtility.FromJson<saveInfo> (inputJson);
 			//	Debug.Log ("Loading info " + inputJson);
 			}
@@ -179,7 +181,7 @@ public class LevelData  {
 		
 		string jsonString = JsonUtility.ToJson(currentInfo);
 		//Debug.Log ("Saving game " + jsonString);
-		System.IO.File.WriteAllText ("AeonSaveFile", jsonString);
+		System.IO.File.WriteAllText ("AeonSaveFile.txt", jsonString);
 
 	}
 

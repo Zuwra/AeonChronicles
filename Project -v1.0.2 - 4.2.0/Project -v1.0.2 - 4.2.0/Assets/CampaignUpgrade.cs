@@ -25,7 +25,6 @@ public class CampaignUpgrade : MonoBehaviour {
 	public List<GameObject> unitsToUpgrade = new List<GameObject>();
 
 	private bool justSetIndex;
-	//private int myIndex = 0;
 
 	[System.Serializable]
 	public class UpgradesPiece{
@@ -48,145 +47,88 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	}
 
-
-	//private CampUpgradeManager myManager;
-
-	public void setUpgrade()
-	{
-		
-		LevelData.applyUpgrade (this.gameObject.ToString (), myDropDown.value);
-			
-		GameObject.FindObjectOfType<TrueUpgradeManager> ().playSound ();
-		GameObject.FindObjectOfType<CampTechCamManager> ().AssignTechEffect ();
-		//Debug.Log ("Getting set " + this.gameObject.ToString() + "  "+ myDropDown.value +"  size  " + myUpgrades.Count);
-
-		if (myUpgrades.Count > myDropDown.value) {
-			theDescription.text = myUpgrades [myDropDown.value].description;
-
-
-			foreach (Image i in myPic) {
-				i.sprite = myUpgrades [myDropDown.value].pic;
-			}
-
-			if (currentUpgrade) {
-				foreach (GameObject o in unitsToUpgrade) {
-					//Debug.Log ("Removing +" + o);
-					currentUpgrade.unitsToApply.Remove(o.GetComponent<UnitManager>().UnitName);
-					//currentUpgrade.unApplyUpgrade (o);
-				}
-			}
-			currentUpgrade = myUpgrades [myDropDown.value].pointer;
-
-			//Debug.Log ("Setting description to " + theDescription.text + "   " + currentUpgrade + "   "  + unitsToUpgrade.Count);
-			if (currentUpgrade) {
-				foreach (GameObject o in unitsToUpgrade) {
-					Debug.Log ("Adding " + o + " to " + currentUpgrade);
-					//currentUpgrade.applyUpgrade (o);
-					if (o.GetComponent<UnitManager> ()) {
-						currentUpgrade.unitsToApply.Add (o.GetComponent<UnitManager> ().UnitName);
-					}
-				}
-			}
-		}
-	}
-
-	public void setUpgrade(int n)
-	{
-		LevelData.applyUpgrade (this.gameObject.ToString (),n);
-
-	}
-
-
-
-
 	// Use this for initialization
 	void Start () {
 
-	
-		List<string> options = new List<string> ();
-		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
-
-			if (up.isUnlocked() && myTypes.Contains (up.myType) && !myUpgrades.Contains(up)) {
-		
-					myUpgrades.Add (up);
-					options.Add (up.name);
-
-			}
-
-		}
-	
-		myDropDown.AddOptions (options);
-	
-
-		myDropDown.RefreshShownValue ();
-		//setUpgrade ();
 		StartCoroutine (delayInit());
-
 	}
 
 
 	IEnumerator delayInit()
-	{yield return new WaitForSeconds (.1f);
+	{yield return new WaitForSeconds (.2f);
+
+		setDropDownOptions ();
+		myDropDown.value = PlayerPrefs.GetInt (this.gameObject.ToString (), 0);
+		SetImageDescript ();
+		this.gameObject.SetActive (false);
+	}
 
 
+	public void setUpgrade()
+	{
+
+		if (currentUpgrade) {
+			foreach (GameObject o in unitsToUpgrade) {
+				currentUpgrade.unitsToApply.Remove(o.GetComponent<UnitManager>().UnitName);
+			}
+		}
+
+
+		PlayerPrefs.SetInt (this.gameObject.ToString (), myDropDown.value);
+		LevelData.applyUpgrade (this.gameObject.ToString (), myDropDown.value);
+			
+		GameObject.FindObjectOfType<TrueUpgradeManager> ().playSound ();
+		GameObject.FindObjectOfType<CampTechCamManager> ().AssignTechEffect ();
+
+		SetImageDescript ();
+		if (currentUpgrade) {
+			foreach (GameObject o in unitsToUpgrade) {
+				if (o.GetComponent<UnitManager> ()) {
+					currentUpgrade.unitsToApply.Add (o.GetComponent<UnitManager> ().UnitName);
+				}
+			}
+		}
+			
+	}
+
+
+
+	public void SetImageDescript()
+	{
 		theDescription.text = myUpgrades [myDropDown.value].description;
 
 		foreach (Image i in myPic) {
 			i.sprite = myUpgrades [myDropDown.value].pic;
 		}
 		currentUpgrade = myUpgrades [myDropDown.value].pointer;
-
-	
-
-		foreach (LevelData.keyValue kv in LevelData.getsaveInfo().appliedUpgrades) {
-	
-			if (kv.theName == this.gameObject.ToString ()) {
-		
-					myDropDown.value = kv.index;
-					/*foreach(GameObject o in unitsToUpgrade)
-						{if (currentUpgrade) {
-						Debug.Log ("removing " + o + "   from " + currentUpgrade);
-						//currentUpgrade.unitsToApply.Remove (o.GetComponent<UnitManager>().UnitName);
-							//currentUpgrade.unApplyUpgrade (o);
-						}
-					}*/
-
-
-				}
-
-			//setUpgrade (i);
-		}
-	
-		//this.gameObject.SetActive (false);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
 	public void reInitialize()
 	{
-		List<string> options = new List<string> ();
-		foreach (UpgradesPiece up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
-		//	Debug.Log ("Checking " + up.name);
-			if (myTypes.Contains (up.myType) && !myUpgrades.Contains(up) && !options.Contains(up.name)) {//up.unlocked &&
-				myUpgrades.Add (up);
-				options.Add (up.name);
-
-			}
-
-		}
-
-		myDropDown.AddOptions (options);
-
-		//setUpgrade ();
+		setDropDownOptions ();
 
 	}
 
 
 	public void setInitialStuff()
 	{
+		setDropDownOptions ();
+
+		SetImageDescript ();
+
+		int index = PlayerPrefs.GetInt (this.gameObject.ToString (), 0);
+		myDropDown.value = index;
+		myDropDown.Select ();
+		myDropDown.RefreshShownValue ();
+
+
+		this.gameObject.SetActive (false);
+
+	}
+
+	public void setDropDownOptions()
+	{
 		List<string> options = new List<string> ();
 		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
 
@@ -200,40 +142,6 @@ public class CampaignUpgrade : MonoBehaviour {
 		}
 
 		myDropDown.AddOptions (options);
-
-
 		myDropDown.RefreshShownValue ();
-
-
-		theDescription.text = myUpgrades [myDropDown.value].description;
-
-		foreach (Image i in myPic) {
-			i.sprite = myUpgrades [myDropDown.value].pic;
-		}
-		currentUpgrade = myUpgrades [myDropDown.value].pointer;
-
-
-
-		foreach (LevelData.keyValue kv in LevelData.getsaveInfo().appliedUpgrades) {
-
-			if (kv.theName == this.gameObject.ToString ()) {
-
-				myDropDown.value = kv.index;
-				/*foreach(GameObject o in unitsToUpgrade)
-						{if (currentUpgrade) {
-						Debug.Log ("removing " + o + "   from " + currentUpgrade);
-						//currentUpgrade.unitsToApply.Remove (o.GetComponent<UnitManager>().UnitName);
-							//currentUpgrade.unApplyUpgrade (o);
-						}
-					}*/
-
-
-			}
-
-			//setUpgrade (i);
-		}
-
-		this.gameObject.SetActive (false);
-
 	}
 }
