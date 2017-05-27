@@ -80,9 +80,11 @@ public class CampaignUpgrade : MonoBehaviour {
 			//Debug.Log ("Setting description to " + theDescription.text + "   " + currentUpgrade + "   "  + unitsToUpgrade.Count);
 			if (currentUpgrade) {
 				foreach (GameObject o in unitsToUpgrade) {
-					//Debug.Log ("Adding " + o + " to " + currentUpgrade);
+					Debug.Log ("Adding " + o + " to " + currentUpgrade);
 					//currentUpgrade.applyUpgrade (o);
-					currentUpgrade.unitsToApply.Add(o.GetComponent<UnitManager>().UnitName);
+					if (o.GetComponent<UnitManager> ()) {
+						currentUpgrade.unitsToApply.Add (o.GetComponent<UnitManager> ().UnitName);
+					}
 				}
 			}
 		}

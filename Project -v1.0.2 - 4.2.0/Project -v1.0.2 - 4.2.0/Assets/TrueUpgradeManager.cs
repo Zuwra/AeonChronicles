@@ -18,6 +18,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 
 	void OnDisable()
 	{
+		Debug.Log ("Disabling");
 		SceneManager.sceneLoaded -= LevelWasLoaded;
 	}
 
@@ -26,7 +27,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 	{
 		//Debug.Log ("Calling from " + this.gameObject);
 		if (this && !hasBeenToLevel) {
-			if (SceneManager.GetActiveScene ().buildIndex == 3) {
+			if (SceneManager.GetActiveScene ().buildIndex == 2) {
 				DontDestroyOnLoad (this.gameObject);
 		
 			} 
@@ -43,10 +44,11 @@ public class TrueUpgradeManager : MonoBehaviour {
 
 	void LevelWasLoaded(Scene myScene, LoadSceneMode mode)
 	{
+		Debug.Log ("level was loaded " + SceneManager.GetActiveScene().buildIndex);
 		if (SceneManager.GetActiveScene ().buildIndex != 2 && SceneManager.GetActiveScene ().buildIndex != 0) {
 			RaceManager racer = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 			hasBeenToLevel = true;
-
+			Debug.Log ("Applying to Upgrade Ball");
 			foreach (CampaignUpgrade.UpgradesPiece cu in myUpgrades) {
 				if (cu.pointer) {
 					racer.addUpgrade (cu.pointer, "");
@@ -57,7 +59,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 				Destroy (this.gameObject);
 			}
 		}
-		SceneManager.sceneLoaded -= LevelWasLoaded;
+		//SceneManager.sceneLoaded -= LevelWasLoaded;
 	}
 
 	public void playSound ()

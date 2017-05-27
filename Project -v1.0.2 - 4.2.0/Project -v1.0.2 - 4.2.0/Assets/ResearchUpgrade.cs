@@ -43,6 +43,7 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 				{mySelect.updateCoolDown (0);
 				ErrorPrompt.instance.ResearchComplete(upgrades [currentUpgrade].Name + " Complete ", this.transform.position);
 
+				raceMan.stopBuildingUnit (this);
 				HD.stopBuilding ();
 				buildMan.unitFinished (this);
 				researching = false;

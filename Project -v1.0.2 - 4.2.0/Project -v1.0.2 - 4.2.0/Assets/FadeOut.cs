@@ -26,12 +26,13 @@ public class FadeOut : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time > fadeStartTime) {
+		Debug.Log (Time.timeSinceLevelLoad +"  " +  fadeStartTime);
+		if (Time.timeSinceLevelLoad > fadeStartTime) {
 			
-			myImage.color = new Color (0, 0, 0, 1 - (Time.time - fadeStartTime) / fadeLength);
-			myText.color = new Color (1, 1, 1, 1 - (Time.time - fadeStartTime) / fadeLength);
+			myImage.color = new Color (0, 0, 0, 1 - (Time.timeSinceLevelLoad -  fadeStartTime) / fadeLength);
+			myText.color = new Color (1, 1, 1, 1 - (Time.timeSinceLevelLoad -  fadeStartTime) / fadeLength);
 
-			if (Time.time > fadeStartTime + fadeLength) {
+			if (Time.timeSinceLevelLoad >fadeStartTime + fadeLength) {
 				myImage.color = new Color (0, 0, 0, 0);
 				myText.color = new Color (0, 0, 0, 0);
 
@@ -43,6 +44,7 @@ public class FadeOut : MonoBehaviour {
 
 	
 	}
+
 
 
 

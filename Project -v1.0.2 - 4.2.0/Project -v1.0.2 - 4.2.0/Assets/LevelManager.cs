@@ -10,13 +10,11 @@ public class LevelManager : MonoBehaviour {
 
 	public GameObject MainScreen;
 
-	public List<GameObject> levelIntros = new List<GameObject> ();
+	public GameObject levelIntros;
 	public List<GameObject> Expositions = new List<GameObject> ();
 
-	public List<Dropdown> difficultyBars = new List<Dropdown> ();
-	public List<string> levelNames;
-	public List<Button> levelButtons = new List<Button> ();
-	public GameObject currentIntro;
+	public Dropdown difficultyBars;
+
 	public Canvas Technology;
 	public Canvas TechTree;
 	public Canvas UltTree;
@@ -46,26 +44,19 @@ public class LevelManager : MonoBehaviour {
 	void Awake () {
 		mySource = GetComponent<AudioSource> ();
 		main = this;
-		foreach (GameObject obj in levelIntros) {
-		//	obj.SetActive (false);
-		}
+
 
 		foreach (GameObject ob in Expositions) {
 			ob.SetActive (false);
 		}
 		Debug.Log (" current level " + LevelData.getHighestLevel());
-		for (int i = 0; i < levelButtons.Count; i++) {
-			levelButtons [i].interactable = (i <= Mathf.Min(3, LevelData.getHighestLevel()));
-		}
 
-		ReplayButtonText.text = "Replay Previous:\n" + levelNames [PlayerPrefs.GetInt ("RecentLevel")];
+		ReplayButtonText.text = "Replay Previous:\n" + LevelCompilation.getLevelInfo().ls[PlayerPrefs.GetInt ("RecentLevel")].LevelName;
 
-		//levelIntros [LevelData.currentLevel].SetActive (true);
-		if (levelIntros.Count > 0) {
-			currentIntro = levelIntros [ Mathf.Min(3, LevelData.getHighestLevel())];
-		
-		currentTech = Vehicles;
-			if (LevelData.getHighestLevel() == 0) {
+
+
+			currentTech = Vehicles;
+		if (LevelData.getHighestLevel() == 0) {
 			techButton.interactable = false;
 			UltButton.interactable = false;
 			} else if (LevelData.getHighestLevel() == 1) {
@@ -77,14 +68,14 @@ public class LevelManager : MonoBehaviour {
 		}
 		
 
-		}
+		
 
 		Turrets.enabled = false;
 		Structures.enabled = false;
 		Vehicles.enabled = false;
 
-		setDifficultyDropDowns (LevelData.getDifficulty());
-
+		difficultyBars.value = LevelData.getDifficulty () - 1;
+	
 		changeMoney (0);
 
 	}
@@ -103,7 +94,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void closeLevelIntro()
 	{
-		currentIntro.GetComponent<Canvas> ().enabled = false;// .SetActive (false);
+		levelIntros.GetComponent<Canvas> ().enabled = false;// .SetActive (false);
 		//MainScreen.SetActive (true);
 
 		GameObject.FindObjectOfType<MissionMapManager> ().toggleMissionMap (true);
@@ -121,12 +112,11 @@ public class LevelManager : MonoBehaviour {
 
 	public void openLevelIntro(int n)
 	{
-		levelIntros [0].GetComponent<Canvas> ().enabled = true; //.SetActive (true);
+		levelIntros.GetComponent<Canvas> ().enabled = true; //.SetActive (true);
 		LevelCompilation comp = Resources.Load<GameObject> ("LevelEditor").GetComponent<LevelCompilation> ();
 		IntroMaker.LoadLevel (comp.MyLevels[n]);
-		currentIntro = levelIntros [0];
 		MainScreen.SetActive (false);
-		//currentIntro.SetActive (!currentIntro.activeSelf );
+	
 	}
 
 	public void ToggleVehicle()
@@ -148,6 +138,7 @@ public class LevelManager : MonoBehaviour {
 		currentTech.enabled = false;
 		currentTech = Turrets;
 		Turrets.enabled = true;
+
 		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultTurret);
 	}
 
@@ -166,12 +157,15 @@ public class LevelManager : MonoBehaviour {
 
 	public void ToggleTech()
 	{	mySource.PlayOneShot (buttonPress);
-		Technology.gameObject.SetActive (!Technology.gameObject.activeSelf);//.enabled = !Technology.enabled;
-		LevelSelector.SetActive(!LevelSelector.activeSelf);
-		if (LevelSelector.activeSelf) {
+		Technology.enabled = (!Technology.enabled);//.enabled = !Technology.enabled;'
+
+		currentTech.enabled = Technology.enabled;
+		LevelSelector.GetComponent<Canvas>().enabled = !LevelSelector.GetComponent<Canvas>().enabled;
+
+		if (LevelSelector.GetComponent<Canvas> ().enabled) {
 			GameObject.FindObjectOfType<CampTechCamManager> ().returnToStart ();
-		}
-		//currentIntro.SetActive (!currentIntro.activeSelf );
+		} 
+
 	}
 
 	public void toggleTechTree()
@@ -192,18 +186,9 @@ public class LevelManager : MonoBehaviour {
 			mySource.PlayOneShot (buttonPress);
 		}
 		LevelData.setDifficulty (i.value + 1);
-		setDifficultyDropDowns (i.value);
+		//setDifficultyDropDowns (i.value);
 	
 	
-	}
-
-	public void setDifficultyDropDowns(int i )
-	{
-		foreach (Dropdown dd in difficultyBars) {
-			if (dd.value!= i-1) {
-				dd.value = i-1;
-			}
-		}
 	}
 
 

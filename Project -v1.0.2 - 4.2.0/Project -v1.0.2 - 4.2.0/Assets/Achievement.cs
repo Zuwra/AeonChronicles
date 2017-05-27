@@ -9,7 +9,7 @@ public abstract class Achievement : MonoBehaviour {
 	public Sprite myIcon;
 
 	public enum Earnings{all, unearned, earned}
-	public enum Level{all, campaign, one, two,three, four, anyLevel}
+	public enum Level{all, campaign, one, two,three, four,five, six,seven,eight,nine,ten,eleven,twelve,thirteen, anyLevel}
 	public abstract void CheckBeginning ();
 	public abstract string GetDecription ();
 	public Level myLevel;

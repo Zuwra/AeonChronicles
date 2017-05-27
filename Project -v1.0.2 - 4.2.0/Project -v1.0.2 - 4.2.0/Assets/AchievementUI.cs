@@ -60,12 +60,24 @@ public class AchievementUI : MonoBehaviour {
 			myLevel = Achievement.Level.four;
 			break;
 		case 5:
-			myLevel = Achievement.Level.anyLevel;
+			myLevel = Achievement.Level.five;
 			break;
 		case 6:
-			myLevel = Achievement.Level.campaign;
+			myLevel = Achievement.Level.six;
+			break;
+		case 7:
+			myLevel = Achievement.Level.seven;
 			break;
 
+		case 8:
+			myLevel = Achievement.Level.eight;
+			break;
+		case 9:
+			myLevel = Achievement.Level.anyLevel;
+			break;
+		case 10:
+			myLevel = Achievement.Level.campaign;
+			break;
 
 		}
 	}
