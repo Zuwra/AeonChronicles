@@ -26,8 +26,11 @@ public class ShieldSpeedBoost : Ability,Modifier {
 
 	// Use this for initialization
 	void Start () {
-		if (!BoostEffect) {
+		if (!BoostEffect) {try {
 			BoostEffect = transform.FindChild ("BoostEffect").GetComponent<MultiShotParticle> ();
+			}
+			catch(System.Exception)
+			{Destroy (this);}
 		}
 		select = GetComponent<Selected> ();
 		mymanager = GetComponent<UnitManager> ();

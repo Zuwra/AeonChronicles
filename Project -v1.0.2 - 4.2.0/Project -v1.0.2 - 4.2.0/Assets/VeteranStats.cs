@@ -18,6 +18,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 	public string backstory;
 
 	public bool Died = false;
+	public float DeathTime;
 	public UnitManager myUnit;
 
 	public VeteranStats(bool hasName, string myType, bool isW, string myName, int playerNumber, UnitManager theUnit)

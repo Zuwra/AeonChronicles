@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class incendiaryUpgrade:Upgrade{
+public class incendiaryUpgrade:SpecificUpgrade{
 
 	public GameObject incendProj;
 	public GameObject gatProj;
@@ -13,13 +13,18 @@ public class incendiaryUpgrade:Upgrade{
 	//public GameObject UIButton;
 
 	public override void applyUpgrade (GameObject obj){
-		if (obj.GetComponent<Projectile> ()) {
-			obj.GetComponent<IWeapon> ().projectile = incendProj;
+
+		if (confirmUnit (obj)) {
+			if (obj.GetComponent<Projectile> ()) {
+				obj.GetComponent<IWeapon> ().projectile = incendProj;
+			}
 		}
 	}
 
 
 	public override void unApplyUpgrade (GameObject obj){
+
+		if (confirmUnit (obj)) {
 		if (obj.GetComponent<Projectile> ()) {
 
 			UnitManager manage = obj.GetComponent<UnitManager> ();
@@ -31,6 +36,6 @@ public class incendiaryUpgrade:Upgrade{
 		}
 
 		//obj.GetComponent<SlowDebuff> ().enabled = false;
-
+		}
 	}
 }

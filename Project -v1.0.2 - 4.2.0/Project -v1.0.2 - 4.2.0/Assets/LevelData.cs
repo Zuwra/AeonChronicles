@@ -88,8 +88,9 @@ public class LevelData  {
 	public static void addUpgrade(Upgrade up)
 	{loadGame ();
 
-
-		currentInfo.purchasedUpgrades.Add (up.Name);
+		if (up) {
+			currentInfo.purchasedUpgrades.Add (up.Name);
+		}
 		saveGame ();
 	}
 
@@ -99,7 +100,7 @@ public class LevelData  {
 		loadGame ();
 	
 
-		Debug.Log ("Applying Upgrade " + s + "  " + u);
+		//Debug.Log ("Applying Upgrade " + s + "  " + u);
 		bool hitSomething = false;
 		foreach (keyValue kv in currentInfo.appliedUpgrades) {
 			if (kv.theName == s) {
@@ -122,6 +123,7 @@ public class LevelData  {
 	public static void reset()
 	{
 		loadGame ();
+		PlayerPrefs.DeleteAll ();
 
 		PlayerPrefs.SetInt ("HighestLevel", 0);
 		//Debug.Log ("Hieghest level is 0");

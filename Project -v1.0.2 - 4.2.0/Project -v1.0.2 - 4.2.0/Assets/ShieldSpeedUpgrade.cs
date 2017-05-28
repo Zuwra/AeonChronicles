@@ -7,10 +7,10 @@ public class ShieldSpeedUpgrade : SpecificUpgrade {
 	public void applyUpgrade(GameObject obj)
 	{if (confirmUnit (obj)) {
 			ShieldSpeedBoost ssb = obj.GetComponent<ShieldSpeedBoost> ();
-
-			ssb.enabled = true;
-			obj.GetComponent<UnitManager> ().abilityList.Add (ssb);
-
+			if (ssb) {
+				ssb.enabled = true;
+				obj.GetComponent<UnitManager> ().abilityList.Add (ssb);
+			}
 		}
 
 	}

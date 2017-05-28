@@ -48,7 +48,7 @@ public class Bombardment : TargetAbility{
 
 		for (int i = 0; i < shotCount; i++) {
 		
-			StartCoroutine( Fire ((i * .07f), location));
+			StartCoroutine( Fire ((i * .07f), location, i));
 		}
 
 
@@ -59,14 +59,26 @@ public class Bombardment : TargetAbility{
 
 
 
-	IEnumerator Fire (float time, Vector3 location)
+	IEnumerator Fire (float time, Vector3 location, int index)
 	{
 
 		yield return new WaitForSeconds(time);
 		GameObject proj = null;
 
 
-		Vector3 spawnLoc = location;
+		Vector3 hitzone = location;
+		float radius = ((float)index/(float)shotCount )* 43;// Random.Range (0, 40);
+		float angle = index * 15;// Random.Range (0, 360);
+
+		if (index % 2 == 1) {
+			angle += 180;
+		}
+		hitzone.x += Mathf.Sin (Mathf.Deg2Rad * angle) * radius;
+		hitzone.z += Mathf.Cos (Mathf.Deg2Rad * angle) * radius;
+
+	
+
+		Vector3 spawnLoc = hitzone;
 		spawnLoc.y += 200;
 
 
@@ -79,7 +91,7 @@ public class Bombardment : TargetAbility{
 			script.damage = myDamage;
 			script.sourceInt = 1;
 			script.Source = this.gameObject;
-			script.setLocation (location);
+			script.setLocation (hitzone);
 		}
 		
 	}
@@ -88,11 +100,6 @@ public class Bombardment : TargetAbility{
 
 	override
 	public void Cast(){
-
-
-
-
-
 	}
 
 

@@ -16,7 +16,7 @@ public class buildTurret :UnitProduction{
 
 	protected Selected mySelect;
 	protected HealthDisplay HD;
-	protected List<TurretMount> turretMounts = new List<TurretMount>();
+	public List<TurretMount> turretMounts = new List<TurretMount>();
 
 	protected BuildManager buildMan;
 	public GameObject PlaceEffect;

@@ -377,6 +377,7 @@ public class UnitStats : MonoBehaviour {
 				SelectedManager.main.updateControlGroups (myManager);
 				this.gameObject.SendMessage ("Dying",SendMessageOptions.DontRequireReceiver);
 				veternStat.Died = true;
+				veternStat.DeathTime = Time.timeSinceLevelLoad;
 				Destroy (this.gameObject);
 			
 				

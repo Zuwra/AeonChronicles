@@ -15,10 +15,12 @@ public class TurretMount : MonoBehaviour, Modifier {
 		GetComponentInParent<UnitStats> ().addDeathTrigger (this);
 
 		FButtonManager.main.updateTankNumber ();
-		if (rapidArms) {
+
+
+		if (GameManager.main.activePlayer.upgradeBall.GetComponent<RapidArmsUpgrade>()) {
 		
 			foreach (buildTurret bt in GameObject.FindObjectsOfType<buildTurret>()) {
-				
+
 				bt.addMount (this);
 			}
 		
@@ -29,7 +31,6 @@ public class TurretMount : MonoBehaviour, Modifier {
 					addShop (tm);
 				
 				}
-
 			}
 		}
 
