@@ -13,7 +13,7 @@ public class CampShieldUpgrade :SpecificUpgrade{
 
 	public override void applyUpgrade (GameObject obj){
 
-		Debug.Log ("Applying Specific ");
+	
 		if (confirmUnit (obj)) {
 			//Debug.Log ("Checking " + obj);
 			UnitStats us = obj.GetComponent<UnitStats> ();
@@ -24,7 +24,7 @@ public class CampShieldUpgrade :SpecificUpgrade{
 
 
 	public override void unApplyUpgrade (GameObject obj){
-		Debug.Log ("Unapplying");
+
 		if (confirmUnit (obj)) {
 			UnitStats us = obj.GetComponent<UnitStats> ();
 			us.MaxEnergy /= 1.5f;

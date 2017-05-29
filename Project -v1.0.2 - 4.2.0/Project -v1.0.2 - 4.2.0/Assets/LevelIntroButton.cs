@@ -14,6 +14,7 @@ public class LevelIntroButton : MonoBehaviour {
 	public Image completedPic;
 
 
+
 	// Use this for initialization
 	void Start () {
 		LevelCompilation myComp = Resources.Load<LevelCompilation> ("LevelEditor");
@@ -31,6 +32,11 @@ public class LevelIntroButton : MonoBehaviour {
 
 		if (myComp.MyLevels [LevelIndex].getCompletionCount () == 0) {
 			completedPic.GetComponent<UIAddons.PulseEffect> ().isPulsing = true;
+		} else {
+			MissionMapManager mapper =  GameObject.FindObjectOfType<MissionMapManager> ();
+
+			completedPic.sprite = mapper.DifficultyPics [PlayerPrefs.GetInt ("L" + LevelIndex + "Dif", 0)];
+		
 		}
 		if (LevelIndex == 0) {
 			return;
@@ -43,6 +49,9 @@ public class LevelIntroButton : MonoBehaviour {
 				}
 			}
 		}
+	
+
+
 		gameObject.SetActive (false);
 	}
 

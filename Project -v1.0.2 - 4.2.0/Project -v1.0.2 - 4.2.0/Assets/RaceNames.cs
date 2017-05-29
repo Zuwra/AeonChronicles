@@ -22,10 +22,10 @@ public class RaceNames  {
 	string[] LSixranks = new string[6]{"Fresh Prince","Altimeter", "Quaestionarius",  "Commander in chief", "High lord of the Universe", "Supreme Commander"};
 
 
-	 string[] names = new string[36]{"Aelia","Caryn","Jace", "Chauren","Optimus","Tamra", "Aetius", "Carya", "Emano","Taciton",
+	 string[] names = new string[40]{"Aelia","Caryn","Jace", "Chauren","Optimus","Tamra", "Aetius", "Carya", "Emano","Taciton",
 		"Cato","Varus", "Domitio", "Bentin", "Silvanus", "Valerian", "Porso", "Agricola", "Metallan", "Timon", 
-		"Eton", "Adamus", "Soren", "Mathou", "Jordana", "Colton", "Rheinhardt", "Zostro", "Akimus","Comodus",
-		"Gisborne","Porsche", "Hanzo", "Torbous", "Talion", "Chanswello"};
+		"Eton", "Adamus", "Soren", "Mathou", "Jordana", "Colton", "Reinhardt", "Zostro", "Akimus","Comodus",
+		"Gisborne","Porsche", "Hanzo", "Torbous", "Talion", "Chanswel", "Timothus", "Cheske", "Treynor", "Llinc"};
 
 	string[] bunnyNames = new string[36]{ "bunnykins", "cotton candy", "fluffy", "buffalo", "scamper", "thumper", "Oliver", "lingo", "Easter"
 		, "Themistocles-consumer of clovers", "hopper", "nibbler", "Lola", "Harvey", "Roger", "bugs","muncher",  "Judie Hopps", "zappy", "fluffer", 

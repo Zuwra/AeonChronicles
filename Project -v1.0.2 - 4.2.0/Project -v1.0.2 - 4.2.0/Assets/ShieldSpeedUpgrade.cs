@@ -10,6 +10,7 @@ public class ShieldSpeedUpgrade : SpecificUpgrade {
 			if (ssb) {
 				ssb.enabled = true;
 				obj.GetComponent<UnitManager> ().abilityList.Add (ssb);
+			
 			}
 		}
 

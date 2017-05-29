@@ -57,7 +57,14 @@ public class CampaignUpgrade : MonoBehaviour {
 	{yield return new WaitForSeconds (.2f);
 
 		setDropDownOptions ();
-		myDropDown.value = PlayerPrefs.GetInt (this.gameObject.ToString (), 0);
+
+		string upGradeName = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
+		for (int i = 0; i < myDropDown.options.Count; i++) {
+			if (myDropDown.options [i].text == upGradeName) {
+				myDropDown.value = i;
+			}
+		}
+		//myDropDown.value = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
 		SetImageDescript ();
 		this.gameObject.SetActive (false);
 	}
@@ -73,9 +80,8 @@ public class CampaignUpgrade : MonoBehaviour {
 		}
 
 
-		PlayerPrefs.SetInt (this.gameObject.ToString (), myDropDown.value);
+		PlayerPrefs.SetString (this.gameObject.ToString (), myDropDown.options[myDropDown.value].text);
 		LevelData.applyUpgrade (this.gameObject.ToString (), myDropDown.value);
-			
 		GameObject.FindObjectOfType<TrueUpgradeManager> ().playSound ();
 		GameObject.FindObjectOfType<CampTechCamManager> ().AssignTechEffect ();
 
@@ -116,8 +122,14 @@ public class CampaignUpgrade : MonoBehaviour {
 
 		SetImageDescript ();
 
-		int index = PlayerPrefs.GetInt (this.gameObject.ToString (), 0);
-		myDropDown.value = index;
+
+
+		string upGradeName = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
+		for (int i = 0; i < myDropDown.options.Count; i++) {
+			if (myDropDown.options [i].text == upGradeName) {
+				myDropDown.value = i;
+			}
+		}
 		myDropDown.Select ();
 		myDropDown.RefreshShownValue ();
 

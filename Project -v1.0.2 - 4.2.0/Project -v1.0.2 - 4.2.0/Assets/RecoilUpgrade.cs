@@ -7,9 +7,19 @@ public class RecoilUpgrade : SpecificUpgrade {
 	public void applyUpgrade(GameObject obj)
 	{
 		if (confirmUnit (obj)) {
-			obj.GetComponent<DayexaShield> ().AbsorbRecoil = true;
+			StartCoroutine (waitAbit (obj));
 		}
 	
+	}
+
+	IEnumerator waitAbit(GameObject obj)
+	{
+		yield return new WaitForSeconds (.1f);
+		DayexaShield ds = obj.GetComponent<DayexaShield> ();
+		if (!ds) {
+			ds = obj.transform.parent.GetComponentInParent<DayexaShield> ();
+		}
+		ds.AbsorbRecoil = true;
 	}
 
 	public override void unApplyUpgrade (GameObject obj){

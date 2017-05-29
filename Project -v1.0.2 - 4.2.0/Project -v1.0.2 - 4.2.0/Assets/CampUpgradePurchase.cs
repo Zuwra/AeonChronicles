@@ -72,6 +72,7 @@ public class CampUpgradePurchase : MonoBehaviour {
 		}
 
 		if (myUpgrade) {
+			Debug.Log ("Adding upgrade " + myUpgrade.Name + "  " + myType + "   " + this.gameObject);
 			GameObject.FindObjectOfType<TrueUpgradeManager> ().upgradeBought (myUpgrade, myType);
 		}
 

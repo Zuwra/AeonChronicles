@@ -139,8 +139,10 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 			padSpot = Vector3.zero;
 			float distance = 100000;
 
-			foreach (HarpyLandingPad arm in Object.FindObjectsOfType<HarpyLandingPad>()) {
-				if (!arm.hasAvailable()) {
+			HarpyLandingPad[] landingPads = GameObject.FindObjectsOfType<HarpyLandingPad> ();
+
+			foreach (HarpyLandingPad arm in landingPads) {
+				if (!arm.hasAvailable() || !arm.GetComponent<BuildingInteractor>().ConstructDone()) {
 					continue;
 				}
 
@@ -153,7 +155,10 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 			}
 
 			if (!home) { // we didn't find one the first time because they are all in use, go and wait in line
-				foreach (HarpyLandingPad arm in Object.FindObjectsOfType<HarpyLandingPad>()) {
+				foreach (HarpyLandingPad arm in landingPads) {
+					if (!arm.GetComponent<BuildingInteractor>().ConstructDone()) {
+						continue;
+					}
 					float temp = Vector3.Distance (arm.gameObject.transform.position, this.gameObject.transform.position);
 					if (temp < distance) {
 						distance = temp;

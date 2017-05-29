@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CampaignUltUpgrade : Upgrade {
+public class CampaignUltUpgrade  : SpecificUpgrade {
 
 	public int level;
 	public int ultNumber;
