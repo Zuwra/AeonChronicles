@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShieldSpeedBoost : Ability,Modifier {
+public class ShieldSpeedBoost : Buff,Modifier {
 	
 
 	public float speedBoost = .5f;
@@ -17,10 +17,14 @@ public class ShieldSpeedBoost : Ability,Modifier {
 	private float nextActionTime;
 
 
-
-	void Awake()
+	void OnEnable()
 	{
-		myType = type.passive;
+		Invoke ("DelayedAwake", .3f);
+	}
+
+	void DelayedAwake()
+	{
+		GetComponent<UnitStats> ().addBuff (this, false);	
 	}
 
 
@@ -89,25 +93,6 @@ public class ShieldSpeedBoost : Ability,Modifier {
 			RaceManager.upDateSingleCard ();
 		}
 	}
-
-
-
-	public override void setAutoCast(bool offOn){
-	}
-
-
-	override
-	public continueOrder canActivate (bool showError)
-	{
-
-		continueOrder order = new continueOrder ();
-		return order;
-	}
-
-	override
-	public void Activate()
-	{
-		//return true;//next unit should also do this.
-	}
+		
 
 }

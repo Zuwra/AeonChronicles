@@ -9,7 +9,7 @@ public class ShieldSpeedUpgrade : SpecificUpgrade {
 			ShieldSpeedBoost ssb = obj.GetComponent<ShieldSpeedBoost> ();
 			if (ssb) {
 				ssb.enabled = true;
-				obj.GetComponent<UnitManager> ().abilityList.Add (ssb);
+				//obj.GetComponent<UnitManager> ().abilityList.Add (ssb);
 			
 			}
 		}
@@ -20,7 +20,7 @@ public class ShieldSpeedUpgrade : SpecificUpgrade {
 		if (confirmUnit (obj)) {
 			ShieldSpeedBoost ssb = obj.GetComponent<ShieldSpeedBoost> ();
 			ssb.enabled = false;
-			obj.GetComponent<UnitManager> ().abilityList.Remove (ssb);
+		//	obj.GetComponent<UnitManager> ().abilityList.Remove (ssb);
 		}
 	}
 }
