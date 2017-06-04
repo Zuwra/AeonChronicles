@@ -20,6 +20,22 @@ public class LevelInfo {
 	int HardestDifficulty;
 	int ShortestTime;// in seconds
 	public bool unlocked;
+	public Sprite MinimapPic;
+	public TopUIActivations UIBarsNUlts;
+	public float startingMoney = 500;
+
+	[System.Serializable]
+	public class TopUIActivations
+	{
+		public bool UltOneActivated = true;
+		public bool UltTwoActivated= true;
+		public bool UltThreeActivated= true;
+		public bool UltFourActivated= true;
+		public bool LeftBarOpen= true;
+		public bool RightBarOpen= true;
+		public bool resourcesOpen= true;
+		public bool CommandsOpen= false;
+	}
 
 	public int getCompletionCount()
 	{

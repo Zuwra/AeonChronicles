@@ -450,7 +450,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 						GameObject unit = (GameObject)Instantiate (buttonTemplate);
 
-						unit.transform.FindChild ("UnitIconTemplate").GetComponent<UnitIconInfo> ().setInfo (uiPage.rows [j] [k].gameObject); //.myUnit = uiPage.rows [j] [k].gameObject;
+						unit.transform.Find ("UnitIconTemplate").GetComponent<UnitIconInfo> ().setInfo (uiPage.rows [j] [k].gameObject); //.myUnit = uiPage.rows [j] [k].gameObject;
 						unit.transform.localScale = this.transform.localScale;
 					
 						unit.transform.rotation = this.transform.rotation;
@@ -461,7 +461,7 @@ public class UiAbilityManager : MonoBehaviour {
 						//unit.transform.FindChild("UnitIconTemplate").GetComponent<Image> ().sprite = uiPage.rows [j] [k].gameObject.GetComponent<UnitStats> ().Icon;
 					
 						currentX += separation;
-						unit.transform.FindChild("UnitIconTemplate").GetComponent<Button> ().onClick.AddListener(delegate() {IconClick(unit);});
+						unit.transform.Find("UnitIconTemplate").GetComponent<Button> ().onClick.AddListener(delegate() {IconClick(unit);});
 					
 						unitIcons.Add (unit, uiPage.rows [j] [k].gameObject);
 						uiPage.rows [j] [k].gameObject.GetComponent<Selected> ().setIcon (unit);
@@ -482,7 +482,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > AbilityX * 4){
 						if(man.abilityList [AbilityX * 4] !=null){
-						Transform trans = certainButtons [n].QButton.transform.FindChild("QButton");
+						Transform trans = certainButtons [n].QButton.transform.Find("QButton");
 
 
 				
@@ -524,11 +524,11 @@ public class UiAbilityManager : MonoBehaviour {
 
 						trans.GetComponent<Button> ().colors = cb;
 
-						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
+						trans.Find ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [0 + AbilityX * 4].canAutoCast;
 
 						certainButtons [j+ AbilityX].QAuto.enabled = man.abilityList [0 + AbilityX * 4].autocast;
 
-						Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
+						Text charger = trans.Find ("Charge1").GetComponent<Text> ();
 						if (man.abilityList [AbilityX * 4].chargeCount > -1) {
 						
 							int totalCharge = 0;
@@ -549,7 +549,7 @@ public class UiAbilityManager : MonoBehaviour {
 							certainButtons [j].WSlide.gameObject.SetActive (false);
 
 
-						Transform trans = certainButtons [n].WButton.transform.FindChild("WButton");;
+						Transform trans = certainButtons [n].WButton.transform.Find("WButton");;
 
 						trans.parent.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [1 + AbilityX * 4].iconPic;
@@ -593,10 +593,10 @@ public class UiAbilityManager : MonoBehaviour {
 							trans.GetComponent<Button> ().colors = cb;
 
 
-						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [1 + AbilityX * 4].canAutoCast;
+						trans.Find ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [1 + AbilityX * 4].canAutoCast;
 						certainButtons [j + AbilityX].WAuto.enabled = man.abilityList [1 + AbilityX * 4].autocast;
 
-							Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
+							Text charger = trans.Find ("Charge2").GetComponent<Text> ();
 							if (man.abilityList [1 + AbilityX * 4].chargeCount > -1) {
 								
 		
@@ -625,7 +625,7 @@ public class UiAbilityManager : MonoBehaviour {
 							certainButtons [j].ESlide.gameObject.SetActive (false);
 
 
-						Transform trans = certainButtons [n].EButton.transform.FindChild("EButton");;
+						Transform trans = certainButtons [n].EButton.transform.Find("EButton");;
 
 						trans.parent.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [2 + AbilityX * 4].iconPic;
@@ -665,11 +665,11 @@ public class UiAbilityManager : MonoBehaviour {
 						}
 							trans.GetComponent<Button> ().colors = cb;
 
-						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [2 + AbilityX * 4].canAutoCast;
+						trans.Find ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [2 + AbilityX * 4].canAutoCast;
 						certainButtons [j+ AbilityX].EAuto.enabled = man.abilityList [2+ AbilityX * 4].autocast;
 
 
-							Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
+							Text charger = trans.Find ("Charge3").GetComponent<Text> ();
 							if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
 
 							int totalCharge = 0;
@@ -693,7 +693,7 @@ public class UiAbilityManager : MonoBehaviour {
 							certainButtons [j].RSlide.gameObject.SetActive (false);
 
 
-						Transform trans = certainButtons [n].RButton.transform.FindChild("RButton");;
+						Transform trans = certainButtons [n].RButton.transform.Find("RButton");;
 	
 						trans.parent.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [3 + AbilityX * 4].iconPic;
@@ -733,12 +733,12 @@ public class UiAbilityManager : MonoBehaviour {
 						}
 							trans.GetComponent<Button> ().colors = cb;
 
-						trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [3 + AbilityX * 4].canAutoCast;
+						trans.Find ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [3 + AbilityX * 4].canAutoCast;
 						certainButtons [j+ AbilityX].RAuto.enabled = man.abilityList [3 + AbilityX * 4].autocast;
 
 
 
-							Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
+							Text charger = trans.Find ("Charge4").GetComponent<Text> ();
 							if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
 							int totalCharge = 0;
 							foreach (RTSObject rts in  uiPage.rows[j]) {
@@ -854,7 +854,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if (man.abilityList.Count > AbilityX * 4) {
 						if (man.abilityList [AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].QButton.transform.FindChild("QButton");;
+						Transform trans = certainButtons [n].QButton.transform.Find("QButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("QButton");
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [AbilityX * 4].iconPic;
@@ -874,7 +874,7 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Button> ().interactable = active; //man.abilityList [AbilityX * 4].active;
 					
 
-							Text charger = trans.FindChild ("Charge1").GetComponent<Text> ();
+							Text charger = trans.Find ("Charge1").GetComponent<Text> ();
 							if (man.abilityList [AbilityX * 4].chargeCount > -1) {
 
 							int totalCharge = 0;
@@ -893,12 +893,12 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count >1+( AbilityX * 4)){
 						if (man.abilityList [1 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].WButton.transform.FindChild("WButton");;
+						Transform trans = certainButtons [n].WButton.transform.Find("WButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("WButton");
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [1 + AbilityX * 4].iconPic;
 					
-						Text charger = trans.FindChild ("Charge2").GetComponent<Text> ();
+						Text charger = trans.Find ("Charge2").GetComponent<Text> ();
 							
 
 						bool active = false;
@@ -935,7 +935,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
 						if (man.abilityList [2 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].EButton.transform.FindChild("EButton");;
+						Transform trans = certainButtons [n].EButton.transform.Find("EButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("EButton");
 					
 						trans.GetComponent<Image> ().sprite = man.abilityList [2 + AbilityX * 4].iconPic;
@@ -957,7 +957,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 						//trans.GetComponent<Button> ().interactable = man.abilityList [2 + AbilityX * 4].active;
 
-							Text charger = trans.FindChild ("Charge3").GetComponent<Text> ();
+							Text charger = trans.Find ("Charge3").GetComponent<Text> ();
 							if (man.abilityList [2 + AbilityX * 4].chargeCount > -1) {
 								
 							int totalCharge = 0;
@@ -976,7 +976,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
 						if (man.abilityList [3 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].RButton.transform.FindChild("RButton");;
+						Transform trans = certainButtons [n].RButton.transform.Find("RButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("RButton");
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [3 + AbilityX * 4].iconPic;
@@ -996,7 +996,7 @@ public class UiAbilityManager : MonoBehaviour {
 						trans.GetComponent<Button> ().interactable = active;
 
 						//trans.GetComponent<Button> ().interactable = man.abilityList [3 + AbilityX * 4].active;
-							Text charger = trans.FindChild ("Charge4").GetComponent<Text> ();
+							Text charger = trans.Find ("Charge4").GetComponent<Text> ();
 							if (man.abilityList [3 + AbilityX * 4].chargeCount > -1) {
 							int totalCharge = 0;
 							foreach (RTSObject rts in  uiPage.rows[j]) {
@@ -1068,7 +1068,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 				if (man.abilityList.Count > AbilityX * 4) {
 					if (man.abilityList [AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].QButton.transform.FindChild ("QButton");
+						Transform trans = certainButtons [n].QButton.transform.Find ("QButton");
 
 						ColorBlock cb = trans.GetComponent<Button> ().colors;
 
@@ -1102,7 +1102,7 @@ public class UiAbilityManager : MonoBehaviour {
 			if(man.abilityList.Count >1+( AbilityX * 4)){
 				if (man.abilityList [1 + AbilityX * 4] != null) {
 
-					Transform trans = certainButtons [n].WButton.transform.FindChild ("WButton");
+					Transform trans = certainButtons [n].WButton.transform.Find ("WButton");
 					ColorBlock cb= trans.GetComponent<Button> ().colors;
 
 					bool active = false;
@@ -1140,7 +1140,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 			if(man.abilityList.Count > 2+(AbilityX * 4)){
 				if (man.abilityList [2 +AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].EButton.transform.FindChild ("EButton");
+						Transform trans = certainButtons [n].EButton.transform.Find ("EButton");
 					ColorBlock cb= trans.GetComponent<Button> ().colors;
 
 
@@ -1175,7 +1175,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 			if(man.abilityList.Count >3+( AbilityX * 4)){
 				if (man.abilityList [3 +AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].RButton.transform.FindChild ("RButton");
+						Transform trans = certainButtons [n].RButton.transform.Find ("RButton");
 					ColorBlock cb= trans.GetComponent<Button> ().colors;
 
 
@@ -1255,23 +1255,23 @@ public class UiAbilityManager : MonoBehaviour {
 				Text charger;
 
 				if (buttonNumber % 4 == 0) {
-					trans = certainButtons [j].QButton.transform.FindChild("QButton");
-					charger = trans.FindChild ("Charge1").GetComponent<Text> ();
+					trans = certainButtons [j].QButton.transform.Find("QButton");
+					charger = trans.Find ("Charge1").GetComponent<Text> ();
 					certainButtons [j].QAuto.enabled = man.abilityList [abilityNum].autocast;
 					}
 				else if (buttonNumber % 4 == 1) {
-					trans = certainButtons [j].WButton.transform.FindChild("WButton");
-					charger = trans.FindChild ("Charge2").GetComponent<Text> ();
+					trans = certainButtons [j].WButton.transform.Find("WButton");
+					charger = trans.Find ("Charge2").GetComponent<Text> ();
 					certainButtons [j].WAuto.enabled = man.abilityList [abilityNum].autocast;
 				}
 				else if (buttonNumber % 4 == 2) {
-					trans = certainButtons [j].EButton.transform.FindChild("EButton");
-					charger = trans.FindChild ("Charge3").GetComponent<Text> ();
+					trans = certainButtons [j].EButton.transform.Find("EButton");
+					charger = trans.Find ("Charge3").GetComponent<Text> ();
 					certainButtons [j].EAuto.enabled = man.abilityList [abilityNum].autocast;
 				}
 				else {
-					trans = certainButtons [j].RButton.transform.FindChild("RButton");
-					charger = trans.FindChild ("Charge4").GetComponent<Text> ();
+					trans = certainButtons [j].RButton.transform.Find("RButton");
+					charger = trans.Find ("Charge4").GetComponent<Text> ();
 					certainButtons [j].RAuto.enabled = man.abilityList [abilityNum].autocast;
 				}
 
@@ -1340,7 +1340,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 				trans.GetComponent<Button> ().colors = cb;
 
-				trans.FindChild ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [abilityNum].canAutoCast;
+				trans.Find ("AutoCast").GetComponent<Image> ().enabled = man.abilityList [abilityNum].canAutoCast;
 
 
 				if (man.abilityList [abilityNum].chargeCount > -1) {

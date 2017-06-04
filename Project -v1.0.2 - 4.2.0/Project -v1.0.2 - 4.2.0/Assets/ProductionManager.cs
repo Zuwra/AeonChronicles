@@ -38,7 +38,7 @@ public class ProductionManager : MonoBehaviour {
 
 				foreach (KeyValuePair<string, List<UnitProduction>> pair in abilityList) {try{
 						
-					Transform t = iconList [pair.Key].transform.FindChild ("Percent");
+					Transform t = iconList [pair.Key].transform.Find ("Percent");
 
 						t.GetComponent<Slider> ().value = pair.Value [0].getProgress ();
 							}
@@ -88,7 +88,7 @@ public class ProductionManager : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(0);
 		try{
-		iconList [produce.Name].transform.FindChild("Text").GetComponent<Text> ().text
+		iconList [produce.Name].transform.Find("Text").GetComponent<Text> ().text
 		= ""+abilityList [produce.Name].Count;
 		}
 		catch{
@@ -142,9 +142,9 @@ public class ProductionManager : MonoBehaviour {
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
 		if (produce.unitToBuild) {
 
-			icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text = produce.unitToBuild.GetComponent<UnitManager> ().UnitName;
+			icon.transform.Find ("ProductionHelp").GetComponentInChildren<Text> ().text = produce.unitToBuild.GetComponent<UnitManager> ().UnitName;
 		} else {
-			icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text = produce.Name;
+			icon.transform.Find ("ProductionHelp").GetComponentInChildren<Text> ().text = produce.Name;
 		}
 		icon.GetComponent<DropDownDudeFinder> ().myProducer.Add (produce.gameObject);
 		icon.transform.rotation = unitPanel.transform.rotation;

@@ -90,7 +90,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	{ 
 		wasOn = transform.parent.gameObject.activeSelf;
 		transform.parent.gameObject.SetActive (true);
-		newParent = (RectTransform)this.transform.parent.FindChild ("ScreenTrap");
+		newParent = (RectTransform)this.transform.parent.Find ("ScreenTrap");
 		UIWidth = newParent.rect.width;
 		UIHeight = newParent.rect.height;
 	

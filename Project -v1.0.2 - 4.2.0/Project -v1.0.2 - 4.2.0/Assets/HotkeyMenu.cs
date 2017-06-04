@@ -133,8 +133,8 @@ public class HotkeyMenu : MonoBehaviour {
 				}
 			}
 
-			GameObject toggle = transform.FindChild ("UseIt").gameObject;
-			GameObject name = transform.FindChild ("UnitName").gameObject;
+			GameObject toggle = transform.Find ("UseIt").gameObject;
+			GameObject name = transform.Find ("UnitName").gameObject;
 			int n = 0;
 			foreach (GameObject obj in objectList) {
 				GameObject tempName = (GameObject)Instantiate (name, this.gameObject.transform.position, Quaternion.identity);

@@ -7,7 +7,6 @@ public class LevelCompilation : MonoBehaviour {
 
 	[SerializeField]
 		public List<LevelInfo> MyLevels = new List<LevelInfo>();
-		public int HighestId;
 
 
 	public void saveGame()

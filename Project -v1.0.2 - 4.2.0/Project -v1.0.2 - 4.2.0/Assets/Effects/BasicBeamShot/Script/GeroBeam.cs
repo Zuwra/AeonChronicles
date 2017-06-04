@@ -26,10 +26,10 @@ public class GeroBeam : MonoBehaviour {
 		LRSize = 16;
 		NowLength = 0.0f;
 		LR = this.GetComponent<LineRenderer>();
-		HitObj = this.transform.FindChild("GeroBeamHit").GetComponent<GeroBeamHit>();
+		HitObj = this.transform.Find("GeroBeamHit").GetComponent<GeroBeamHit>();
        // HitObjSize = HitObj.transform.localScale;
-        SHP_Emitter = this.transform.FindChild("ShotParticle_Emitter").GetComponent<ShotParticleEmitter>();
-        Flash = this.transform.FindChild("BeamFlash").gameObject;
+        SHP_Emitter = this.transform.Find("ShotParticle_Emitter").GetComponent<ShotParticleEmitter>();
+        Flash = this.transform.Find("BeamFlash").gameObject;
         F_Vec = new Vector3[LRSize+1];
         FlashSize = Flash.transform.localScale.x;
         for (int i=0;i < LRSize+1;i++)

@@ -45,7 +45,7 @@ public class ArmyUIManager : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(0);
 		try{
-		iconList [manage.UnitName].transform.FindChild("Text").GetComponent<Text> ().text
+		iconList [manage.UnitName].transform.Find("Text").GetComponent<Text> ().text
 		= ""+unitList [manage.UnitName].Count;
 
 			if (addIt) {
@@ -103,7 +103,7 @@ public class ArmyUIManager : MonoBehaviour {
 		
 	
 		GameObject icon = (GameObject)Instantiate (template, unitPanel.transform.position, Quaternion.identity);
-		icon.transform.FindChild ("ProductionHelp").GetComponentInChildren<Text> ().text = manage.UnitName;
+		icon.transform.Find ("ProductionHelp").GetComponentInChildren<Text> ().text = manage.UnitName;
 		icon.GetComponent<DropDownDudeFinder> ().myProducer.Add (manage.gameObject);
 		icon.transform.rotation = unitPanel.transform.rotation;
 

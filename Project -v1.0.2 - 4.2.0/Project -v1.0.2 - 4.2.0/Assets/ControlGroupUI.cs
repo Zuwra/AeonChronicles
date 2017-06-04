@@ -27,8 +27,8 @@ public class ControlGroupUI : MonoBehaviour {
 	public void activateTab(int n, int count, Sprite icon)
 	{
 		controlList [n].gameObject.SetActive (true);
-		controlList [n].gameObject.transform.FindChild ("Count").GetComponent<Text> ().text = "" + count;
-		controlList [n].gameObject.transform.FindChild ("Image").GetComponent<Image> ().sprite = icon;
+		controlList [n].gameObject.transform.Find ("Count").GetComponent<Text> ().text = "" + count;
+		controlList [n].gameObject.transform.Find ("Image").GetComponent<Image> ().sprite = icon;
 	}
 
 

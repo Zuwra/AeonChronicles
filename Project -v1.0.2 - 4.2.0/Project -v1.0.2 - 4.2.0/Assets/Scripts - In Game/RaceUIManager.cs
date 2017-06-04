@@ -41,9 +41,9 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			TwoName = raceManager.TwoName;
 
 		
-			resourceOne = this.gameObject.transform.FindChild ("Resources").FindChild ("ResourceOne").GetComponent<Text> ();
-			resourceTwo = this.gameObject.transform.FindChild ("Resources").FindChild ("ResourceTwo").GetComponent<Text> ();
-			supply = this.gameObject.transform.FindChild ("Resources").FindChild ("Supply").GetComponent<Text> ();
+			resourceOne = this.gameObject.transform.Find ("Resources").Find ("ResourceOne").GetComponent<Text> ();
+			resourceTwo = this.gameObject.transform.Find ("Resources").Find ("ResourceTwo").GetComponent<Text> ();
+			supply = this.gameObject.transform.Find ("Resources").Find ("Supply").GetComponent<Text> ();
 
 			if (OneName != "") {
 				resourceOne.text = "" + raceManager.ResourceOne;

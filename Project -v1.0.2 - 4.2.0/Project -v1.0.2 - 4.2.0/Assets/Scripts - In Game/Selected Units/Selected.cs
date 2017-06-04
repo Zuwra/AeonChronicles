@@ -67,16 +67,16 @@ public class Selected : MonoBehaviour {
 		buffDisplay = GetComponentInChildren<HealthDisplay> ();
 	
 		try{
-		turretDisplay = transform.FindChild("HealthDisplay").GetComponent<TurretHealthDisplay> ();
+		turretDisplay = transform.Find("HealthDisplay").GetComponent<TurretHealthDisplay> ();
 		if (!turretDisplay) {
-			healthslider = transform.FindChild ("HealthDisplay").FindChild ("HealthBar").GetComponent<Slider> ();
-			healthFill = transform.FindChild ("HealthDisplay").FindChild ("HealthBar").transform.FindChild ("Fill Area").FindChild ("Fill").GetComponent<Image> ();
+			healthslider = transform.Find ("HealthDisplay").Find ("HealthBar").GetComponent<Slider> ();
+			healthFill = transform.Find ("HealthDisplay").Find ("HealthBar").transform.Find ("Fill Area").Find ("Fill").GetComponent<Image> ();
 		} 
-			energySlider = transform.FindChild ("HealthDisplay").FindChild ("EnergyBar").GetComponent<Slider> ();
+			energySlider = transform.Find ("HealthDisplay").Find ("EnergyBar").GetComponent<Slider> ();
 			//energyFill= transform.FindChild("HealthDisplay").FindChild("EnergyBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 
-			coolDownSlider = transform.FindChild ("HealthDisplay").FindChild ("Cooldown").GetComponent<Slider> ();
-			coolFill= coolDownSlider.transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
+			coolDownSlider = transform.Find ("HealthDisplay").Find ("Cooldown").GetComponent<Slider> ();
+			coolFill= coolDownSlider.transform.Find("Fill Area").Find("Fill").GetComponent<Image>();
 	
 
 
@@ -171,10 +171,10 @@ public class Selected : MonoBehaviour {
 			return;}
 		
 
-		unitIcon = obj.transform.FindChild("UnitIconTemplate").gameObject;
+		unitIcon = obj.transform.Find("UnitIconTemplate").gameObject;
 
 		IconInfo = unitIcon.GetComponent<UnitIconInfo> ();
-		IconSlider = obj.transform.FindChild ("Slider").gameObject.GetComponent<Slider>();
+		IconSlider = obj.transform.Find ("Slider").gameObject.GetComponent<Slider>();
 		if (!turretDisplay) {
 			//Debug.Log (this.gameObject);
 			if (healthslider.value > .6) {

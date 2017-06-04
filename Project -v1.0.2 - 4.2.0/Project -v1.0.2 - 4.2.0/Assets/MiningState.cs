@@ -35,7 +35,7 @@ public class MiningState : UnitState {
 		resourceOneAmount = resourceOne;
 		resourceTwoAmount= resourceTwo;
 		hook = hooky;
-		oreBlock = hook.transform.FindChild ("Cube").gameObject;
+		oreBlock = hook.transform.Find ("Cube").gameObject;
 		startPos = hookStart;
 		target = unit.gameObject;
 		//myMover.resetMoveLocation (target.transform.position);

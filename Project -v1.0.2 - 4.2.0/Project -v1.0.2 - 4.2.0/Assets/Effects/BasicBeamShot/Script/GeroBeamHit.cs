@@ -42,9 +42,9 @@ public class GeroBeamHit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         col = new Color(1, 1, 1);
-		ParticleA = transform.FindChild("GeroParticleA").gameObject;
-		ParticleB = transform.FindChild("GeroParticleB").gameObject;
-		HitFlash = transform.FindChild("BeamFlash").gameObject;
+		ParticleA = transform.Find("GeroParticleA").gameObject;
+		ParticleB = transform.Find("GeroParticleB").gameObject;
+		HitFlash = transform.Find("BeamFlash").gameObject;
 		PatA = ParticleA.gameObject.GetComponent<ParticleSystem>();
 		PatA_rate = PatA.emission.rate.constant;
 

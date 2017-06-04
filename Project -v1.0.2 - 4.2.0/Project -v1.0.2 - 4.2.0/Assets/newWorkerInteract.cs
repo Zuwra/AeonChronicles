@@ -20,7 +20,7 @@ public class newWorkerInteract :  Ability, Iinteract {
 	void Start () {
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
-		oreBlock = Hook.transform.FindChild ("Cube").gameObject;
+		oreBlock = Hook.transform.Find ("Cube").gameObject;
 
 		StartCoroutine (delayer());
 		if (Hook) {

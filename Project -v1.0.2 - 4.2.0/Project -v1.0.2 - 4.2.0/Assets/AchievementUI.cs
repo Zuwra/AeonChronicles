@@ -156,15 +156,15 @@ public class AchievementUI : MonoBehaviour {
 	
 		for (int i =num*6; i < num*6+Mathf.Min (currentAchievments.Count - num*6, 6); i++) {
 			GameObject obj = (GameObject)Instantiate (Panel, this.transform);
-			obj.transform.FindChild ("Title").GetComponent<Text> ().text = currentAchievments [i].Title;
-			obj.transform.FindChild ("Description").GetComponent<Text> ().text = currentAchievments [i].GetDecription();
-			obj.transform.FindChild ("Icon").GetComponent<Image> ().sprite = currentAchievments [i].myIcon;
-			obj.transform.FindChild ("Reward").GetComponent<Text> ().text = currentAchievments [i].getRewardText ();
+			obj.transform.Find ("Title").GetComponent<Text> ().text = currentAchievments [i].Title;
+			obj.transform.Find ("Description").GetComponent<Text> ().text = currentAchievments [i].GetDecription();
+			obj.transform.Find ("Icon").GetComponent<Image> ().sprite = currentAchievments [i].myIcon;
+			obj.transform.Find ("Reward").GetComponent<Text> ().text = currentAchievments [i].getRewardText ();
 
 			if (currentAchievments[i].IsAccomplished ()) {
 				
-				obj.transform.FindChild ("Icon").GetComponent<Image> ().material = null;
-				obj.transform.FindChild ("Title").GetComponent<Text> ().text  += "   -Done!"; 
+				obj.transform.Find ("Icon").GetComponent<Image> ().material = null;
+				obj.transform.Find ("Title").GetComponent<Text> ().text  += "   -Done!"; 
 			} 
 
 			obj.transform.localScale = new Vector3 (1,1,1);

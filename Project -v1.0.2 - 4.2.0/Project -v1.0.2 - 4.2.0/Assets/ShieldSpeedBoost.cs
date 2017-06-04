@@ -31,7 +31,7 @@ public class ShieldSpeedBoost : Buff,Modifier {
 	// Use this for initialization
 	void Start () {
 		if (!BoostEffect) {try {
-			BoostEffect = transform.FindChild ("BoostEffect").GetComponent<MultiShotParticle> ();
+			BoostEffect = transform.Find ("BoostEffect").GetComponent<MultiShotParticle> ();
 			}
 			catch(System.Exception)
 			{Destroy (this);}

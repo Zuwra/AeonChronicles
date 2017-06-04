@@ -14,7 +14,7 @@ public class BeamCollision : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		BL = (BeamLine)this.gameObject.transform.FindChild("BeamLine").GetComponent<BeamLine>();
+		BL = (BeamLine)this.gameObject.transform.Find("BeamLine").GetComponent<BeamLine>();
 		BP = this.transform.root.gameObject.GetComponent<BeamParam>();
 	}
 	

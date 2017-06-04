@@ -143,8 +143,8 @@ public class UnitCardCreater : MonoBehaviour {
 		hasUnit = true;
 		unitIcon.GetComponentInChildren<Image>().sprite = manager.myStats.Icon;
 		UnitName.text = manager.UnitName;
-		health.text = " "+(int)manager.myStats.health + "/" + (int)manager.myStats.Maxhealth;
-		armor.text =  " " +manager.myStats.armor;
+		health.text = (int)manager.myStats.health + "/" + (int)manager.myStats.Maxhealth;
+		armor.text = ""+manager.myStats.armor;
 		if (manager.myStats.spellResist > 0) {
 			SpellResist.gameObject.SetActive (true);
 			SpellIcon.gameObject.SetActive (true);
@@ -202,7 +202,7 @@ public class UnitCardCreater : MonoBehaviour {
 	
 				weaponIcons [i].SetActive (manager.myWeapon.Count > i);
 			if (manager.myWeapon.Count > i) {
-				weaponIcons [i].transform.FindChild("DamageIcon").GetComponent<Image> ().sprite = manager.myWeapon [i].myIcon;
+				weaponIcons [i].transform.Find("DamageIcon").GetComponent<Image> ().sprite = manager.myWeapon [i].myIcon;
 				if (manager.myWeapon [i].getUpgradeLevel () > 0) {
 					weaponIcons [i].transform.GetComponentInChildren<Text> ().text = "" + manager.myWeapon [i].getUpgradeLevel ();
 				} else {
@@ -222,7 +222,7 @@ public class UnitCardCreater : MonoBehaviour {
 			
 				GameObject ic = (GameObject)Instantiate (Resources.Load ("BuffIcon"));
 				ic.transform.SetParent (BuffList.transform);
-				ic.transform.FindChild ("BuffHelp").GetComponentInChildren<Text> ().text = dabuff.toolDescription;
+				ic.transform.Find ("BuffHelp").GetComponentInChildren<Text> ().text = dabuff.toolDescription;
 				ic.GetComponent<Image> ().sprite = dabuff.HelpIcon;
 			}
 		}
@@ -231,7 +231,7 @@ public class UnitCardCreater : MonoBehaviour {
 			if (dabuff != null) {
 				GameObject ic = (GameObject)Instantiate (Resources.Load ("BuffIcon"));
 				ic.transform.SetParent (BuffList.transform);
-				ic.transform.FindChild ("BuffHelp").GetComponentInChildren<Text> ().text = dabuff.toolDescription;
+				ic.transform.Find ("BuffHelp").GetComponentInChildren<Text> ().text = dabuff.toolDescription;
 				ic.GetComponent<Image> ().sprite = dabuff.HelpIcon;
 			}
 		}

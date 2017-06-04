@@ -12,7 +12,7 @@ public class FogIndicator : MonoBehaviour {
 	void Start () {
 
 		myCam = GameObject.FindObjectOfType<MainCamera> ().GetComponent<Camera> ();
-		child = transform.FindChild ("Image").GetComponent<RectTransform> ();
+		child = transform.Find ("Image").GetComponent<RectTransform> ();
 	
 
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);

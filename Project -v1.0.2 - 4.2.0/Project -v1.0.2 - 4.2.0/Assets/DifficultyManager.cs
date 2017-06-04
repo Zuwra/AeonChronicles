@@ -15,6 +15,11 @@ public class DifficultyManager : MonoBehaviour {
 	public float LevelTwoUpgradeTime;
 	public float LevelThreeUpgradeTime;
 
+	[Tooltip("1 is normal time, 0-1 makes waves come faster, above 1 makes them come slower.")]
+	public float EasyWaveTimeMod = 1.2f;
+	[Tooltip("1 is normal time, 0-1 makes waves come faster, above 1 makes them come slower.")]
+	public float HardWaveTimeMod = .8f;
+
 	int upgradeCount;
 
 	[Tooltip("This will also delete everything in medium list")]
@@ -56,6 +61,14 @@ public class DifficultyManager : MonoBehaviour {
 		
 			}
 
+			foreach (WaveManager ws in  GameObject.FindObjectsOfType<WaveManager>()) {
+				for (int i = 0; i < ws.myWaves.Count; i++) {
+					ws.myWaves [i].waveSpawnTime *= EasyWaveTimeMod;
+
+				}
+
+			}
+
 			foreach (MiningSawDamager saw in GameObject.FindObjectsOfType<MiningSawDamager>()) {
 				saw.damage *= (EasyDamage);
 			}
@@ -72,13 +85,7 @@ public class DifficultyManager : MonoBehaviour {
 			}
 
 		} else if (difficulty == 2) {
-			foreach (WaveManager ws in  GameObject.FindObjectsOfType<WaveManager>()) {
-				for (int i = 0; i < ws.myWaves.Count; i++) {
-					ws.myWaves [i].waveSpawnTime *= .95f;
-
-				}
 			
-			}
 			foreach (GameObject obj in deleteOnMedium) {
 				Destroy (obj);
 			}
@@ -87,7 +94,7 @@ public class DifficultyManager : MonoBehaviour {
 		
 			foreach (WaveManager ws in  GameObject.FindObjectsOfType<WaveManager>()) {
 				for (int i = 0; i < ws.myWaves.Count; i++) {
-					ws.myWaves [i].waveSpawnTime *= .85f;
+					ws.myWaves [i].waveSpawnTime *= HardWaveTimeMod;
 				
 				}
 
