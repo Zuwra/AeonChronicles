@@ -29,10 +29,11 @@ public class TargetDeathVictory : Objective {
 		VictoryTrigger.instance.addObjective (this);
 
 		foreach (GameObject go in targets) {
-			foreach (FogOfWarUnit fog in go.GetComponents<FogOfWarUnit>()) {
-				fog.enabled = true;
+			if (go) {
+				foreach (FogOfWarUnit fog in go.GetComponents<FogOfWarUnit>()) {
+					fog.enabled = true;
+				}
 			}
-		
 		}
 	}
 

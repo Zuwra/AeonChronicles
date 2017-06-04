@@ -5,51 +5,60 @@ using UnityEngine;
 public class PayloadFirendlyEndZone : MonoBehaviour {
 
 
-	public List<GameObject> AreaOne;
-	[Tooltip("This is the time between each wave, or since the start of the level for the first one")]
-	public List<float> AreaOneSpawnTimes;
 
-	public List<GameObject> AreaTwo;
-	public List<float> AreaTwoSpawnTimes;
-
+	public List<VariableTargetZones> targetZones;
 	public List<Objective> myObjectives;
 
+	[Tooltip("Objectives will be invisible until they are added to objectives")]
+	public bool hideUntilRevealed;
+
+	Coroutine currentCo;
 
 	int payloadIndex;
 	// Use this for initialization
 	void Start () {
-		 
-		GameObject DeleteOne = AreaOne [Random.Range (0, AreaOne.Count)];
-		DeleteOne.transform.parent.gameObject.SetActive (false);
-		AreaOne.Remove (DeleteOne);
 
-		GameObject DeleteTwo = AreaOne [Random.Range (0, AreaOne.Count)];
-		DeleteTwo.transform.parent.gameObject.SetActive (false);
-		AreaOne.Remove (DeleteTwo);
-
-		GameObject DeleteThree = AreaTwo [Random.Range (0, AreaTwo.Count)];
-		DeleteThree.transform.parent.gameObject.SetActive (false);
-		AreaTwo.Remove (DeleteThree);
-
-
-		foreach (GameObject obj in AreaOne) {
-			obj.SetActive (false);
-
-		}
-		foreach (GameObject obj in AreaTwo) {
-			obj.SetActive (false);
-
+		foreach (VariableTargetZones zone in targetZones) {
+		
+			while (zone.AreaTargets.Count > zone.SinceLastLaunch.Count) {
+				int n = Random.Range (0, zone.AreaTargets.Count);
+				zone.AreaTargets [n].transform.parent.gameObject.SetActive (false);
+				zone.AreaTargets.RemoveAt (n);
+			}
+		
 		}
 
-		int spawnIndex = Random.Range (0, AreaOne.Count);
-		StartCoroutine (OpenLocation (AreaOne [spawnIndex], AreaOneSpawnTimes [0]));
-		AreaOne.RemoveAt (spawnIndex);
-		AreaOneSpawnTimes.RemoveAt (0);
+		if(hideUntilRevealed){
+			foreach (VariableTargetZones zone in targetZones) 
+			{
+				foreach (GameObject obj in zone.AreaTargets) {
+					obj.SetActive (false);
+				}
+			}
+		}
+
+
+		int spawnIndex = Random.Range (0, targetZones[0].AreaTargets.Count);
+		currentLoc = targetZones [0].AreaTargets [spawnIndex];
+		currentCo =  StartCoroutine (OpenLocation (targetZones[0].AreaTargets[spawnIndex],targetZones[0].SinceLastLaunch[0]));
+		targetZones[0].AreaTargets.RemoveAt (spawnIndex);
+		targetZones[0].SinceLastLaunch.RemoveAt (0);
 
 	}
-	
+
+	GameObject currentLoc;
+
+	public void DoItNow()
+	{
+		StopCoroutine (currentCo);
+		currentCo =  StartCoroutine (OpenLocation (currentLoc,20));
+
+	}
+
 	IEnumerator OpenLocation(GameObject loc, float waitTime)
 	{
+
+
 
 		yield return new WaitForSeconds (waitTime);
 		loc.SetActive (true);
@@ -59,22 +68,27 @@ public class PayloadFirendlyEndZone : MonoBehaviour {
 		myObjectives [payloadIndex].enabled = true;
 		payloadIndex++;
 
-		if (AreaOneSpawnTimes.Count > 0) {
-		
-			int spawnIndex = Random.Range (0, AreaOne.Count);
-			StartCoroutine (OpenLocation (AreaOne [spawnIndex], AreaOneSpawnTimes [0]));
-			AreaOne.RemoveAt (spawnIndex);
-			AreaOneSpawnTimes.RemoveAt (0);
-
-		} else if(AreaTwoSpawnTimes.Count > 0) {
-
-			int spawnIndex = Random.Range (0, AreaTwo.Count);
-			StartCoroutine (OpenLocation (AreaTwo [spawnIndex], AreaTwoSpawnTimes [0]));
-			AreaTwo.RemoveAt (spawnIndex);
-			AreaTwoSpawnTimes.RemoveAt (0);
-		
+		while (targetZones.Count >0 && targetZones [0].AreaTargets.Count == 0) {
+			targetZones.RemoveAt (0);
 		}
+
+		if (targetZones.Count > 0) {
+			
+			int spawnIndex = Random.Range (0, targetZones[0].AreaTargets.Count);
+			currentLoc = targetZones [0].AreaTargets [spawnIndex];
+			currentCo =  StartCoroutine (OpenLocation (targetZones[0].AreaTargets[spawnIndex],targetZones[0].SinceLastLaunch[0]));
+			targetZones[0].AreaTargets.RemoveAt (spawnIndex);
+			targetZones[0].SinceLastLaunch.RemoveAt (0);
+
+		} 
 	}
 
+
+	[System.Serializable]
+	public class VariableTargetZones{
+		public List<GameObject> AreaTargets;
+		public List<float> SinceLastLaunch;
+
+	}
 
 }

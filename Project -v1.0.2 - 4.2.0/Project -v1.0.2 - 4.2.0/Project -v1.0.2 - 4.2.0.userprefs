@@ -1,15 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UISetter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TargetDeathVictory.cs">
     <Files>
-      <File FileName="Assets\LevelInfo.cs" Line="17" Column="59" />
-      <File FileName="Assets\LevelCompilation.cs" Line="11" Column="2" />
+      <File FileName="Assets\LevelInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelCompilation.cs" Line="1" Column="1" />
       <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelData.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitCardCreater.cs" Line="150" Column="42" />
-      <File FileName="Assets\UISetter.cs" Line="73" Column="4" />
-      <File FileName="Assets\DifficultyManager.cs" Line="25" Column="62" />
-      <File FileName="Assets\WaveManager.cs" Line="167" Column="6" />
+      <File FileName="Assets\PayloadFirendlyEndZone.cs" Line="56" Column="3" />
+      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="1" Column="1" />
+      <File FileName="Assets\ObjectiveTrigger.cs" Line="43" Column="1" />
+      <File FileName="Assets\TimedObjective.cs" Line="5" Column="36" />
+      <File FileName="Assets\Objective.cs" Line="36" Column="15" />
+      <File FileName="Assets\PayLoadCreator.cs" Line="31" Column="3" />
+      <File FileName="Assets\TargetDeathVictory.cs" Line="32" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

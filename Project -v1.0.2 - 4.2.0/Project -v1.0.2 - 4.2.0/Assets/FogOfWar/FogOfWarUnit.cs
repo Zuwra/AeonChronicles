@@ -17,7 +17,8 @@ public class FogOfWarUnit : MonoBehaviour
     {
 		hasMoved = true;
 		InvokeRepeating ("UpdateFog", Random.Range(0, updateFrequency), updateFrequency);
-		Invoke( "clearFog", 1);
+		Invoke( "clearFog", .3f);
+	
     }
 
 

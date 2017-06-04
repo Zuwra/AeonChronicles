@@ -6,6 +6,8 @@ public class ObjectiveTrigger : SceneEventTrigger {
 	// triggers new bonus objective when your troops enter an area
 	public Objective myObj;
 	public bool finishObjective;
+
+	public UnityEngine.Events.UnityEvent FunctionTrigger;
 	//public bool UnitEnter;
 
 	/*
@@ -27,6 +29,10 @@ public class ObjectiveTrigger : SceneEventTrigger {
 			myObj.complete ();
 		} else {
 			VictoryTrigger.instance.addObjective (myObj);
+		}
+
+		if (FunctionTrigger != null) {
+			FunctionTrigger.Invoke ();
 		}
 		//Destroy (this.gameObject);
 	

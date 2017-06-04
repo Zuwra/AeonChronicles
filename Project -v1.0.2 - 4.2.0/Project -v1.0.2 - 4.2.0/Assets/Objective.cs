@@ -12,6 +12,8 @@ public class Objective : SceneEventTrigger {
 	public Objective nextObjective;
 	public bool UltimateObjective;
 
+	public UnityEngine.Events.UnityEvent OnComplete;
+
 	public List<SceneEventTrigger> myEvents = new List<SceneEventTrigger>();
 	// Use this for initialization
 	public void Start () {
@@ -39,6 +41,10 @@ public class Objective : SceneEventTrigger {
 		if(nextObjective){
 			nextObjective.trigger (0, 0, Vector3.zero, null, false);}
 		VictoryTrigger.instance.CompleteObject (this);
+	
+		OnComplete.Invoke ();
+
+
 	}
 
 	public void unComplete()

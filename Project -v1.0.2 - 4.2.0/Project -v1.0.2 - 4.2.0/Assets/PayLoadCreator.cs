@@ -20,12 +20,22 @@ public class PayLoadCreator : MonoBehaviour {
 	}
 
 
+	public void SpawnEarly(float delayTime)
+	{
+		CancelInvoke ("SpawnPayload");
+
+		if (currentIndex < PayLoadWaves.Count) {
+
+			Invoke( "SpawnPayload", 20 );
+		}
+	}
+
 	void SpawnPayload()
 	{
 		if (PayLoadWaves [currentIndex].TextIndex > -1) {
 			dialogManager.instance.playLine (PayLoadWaves [currentIndex].TextIndex);
 		}
-		Debug.Log ("Turning on Payload");
+	//	Debug.Log ("Turning on Payload");
 		foreach (GameObject obj in PayLoadWaves[currentIndex].myPayloads) {
 			obj.SetActive (true);
 
