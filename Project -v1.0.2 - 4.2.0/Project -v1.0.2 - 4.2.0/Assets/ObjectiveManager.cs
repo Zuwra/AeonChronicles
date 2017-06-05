@@ -99,7 +99,7 @@ public class ObjectiveManager : MonoBehaviour {
 	public void completeBonus(Objective obj)
 		{
 		bonusObjectives [obj].GetComponentInChildren<Toggle> ().isOn = true;
-		bonusObjectives [obj].GetComponentInChildren<Text> ().fontSize = 8;
+		bonusObjectives [obj].GetComponentInChildren<Text> ().fontSize = 7;
 		bonusObjectives [obj].GetComponentInChildren<Text> ().color = new Color (.6f,1,.74f,.5f);
 		blink (true);
 	}
@@ -120,7 +120,7 @@ public class ObjectiveManager : MonoBehaviour {
 	{
 
 		bonusObjectives [obj].GetComponentInChildren<Toggle> ().isOn = false;
-		bonusObjectives [obj].GetComponentInChildren<Text> ().fontSize = 8;
+		bonusObjectives [obj].GetComponentInChildren<Text> ().fontSize = 7;
 		bonusObjectives [obj].GetComponentInChildren<Text> ().color = Color.red;
 
 	}
@@ -130,7 +130,7 @@ public class ObjectiveManager : MonoBehaviour {
 	public void completeMain(Objective obj)
 		{
 		mainObjectives [obj].GetComponentInChildren<Toggle> ().isOn = true;
-		mainObjectives [obj].GetComponentInChildren<Text> ().fontSize = 8;
+		mainObjectives [obj].GetComponentInChildren<Text> ().fontSize = 7;
 		mainObjectives [obj].GetComponentInChildren<Text> ().color = new Color (.6f,1,.74f,.5f);
 		blink (true);
 	}

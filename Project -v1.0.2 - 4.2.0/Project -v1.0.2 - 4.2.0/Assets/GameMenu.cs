@@ -103,7 +103,7 @@ public class GameMenu : MonoBehaviour {
 	}
 
 	public void quitGame()
-	{SceneManager.LoadScene (0);}
+	{SceneManager.LoadScene (1);}
 
 	public void openOptions()
 	{setMenu (OptionMenu);

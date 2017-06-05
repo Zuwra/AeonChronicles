@@ -46,12 +46,12 @@ public class MainMenuManager : MonoBehaviour {
 	{
 		setDifficulty (dropper);
 		resetProgress ();
-		SceneManager.LoadScene (1);
+		SceneManager.LoadScene (5);
 	}
 
 	public void toCampaignLevelSelect()
 	{
-		SceneManager.LoadScene (2);
+		SceneManager.LoadScene (1);
 	}
 
 	public void toCampaign()
