@@ -102,22 +102,28 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 		} else if (Input.GetKeyDown (KeyCode.F12)) {
 			fTwelve ();
 		} else if (Input.GetKeyDown (KeyCode.P)) {
-			production.value = 1;
-			chanageDropDown ();
-		} else if (Input.GetKeyDown (KeyCode.I)) {
 			production.value = 2;
 			chanageDropDown ();
-		} else if (Input.GetKeyDown (KeyCode.U)) {
+		} else if (Input.GetKeyDown (KeyCode.I)) {
+			production.value = 3;
+			chanageDropDown ();
+		} 
+		else if (Input.GetKeyDown (KeyCode.K)) {
+			production.value = 1;
+			chanageDropDown ();
+		}
+		else if (Input.GetKeyDown (KeyCode.U)) {
 			production.value = 0;
 			chanageDropDown ();
 		} else if (Input.GetKeyDown (KeyCode.O)) {
-			production.value = 3;
-			chanageDropDown ();
-		}
-		else if (Input.GetKeyDown (KeyCode.L)) {
 			production.value = 4;
 			chanageDropDown ();
 		}
+		else if (Input.GetKeyDown (KeyCode.L)) {
+			production.value = 5;
+			chanageDropDown ();
+		}
+
 	
 	}
 
@@ -144,6 +150,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			currentProdManager = dropdowns [0];
 			currentProdManager.SetActive (true);
 		}
+
 		else if (production.value == 1) {
 			
 			currentProdManager = dropdowns [1];
@@ -162,6 +169,12 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			currentProdManager.SetActive (true);
 
 		}
+			else if (production.value == 4) {
+
+				currentProdManager = dropdowns [4];
+				currentProdManager.SetActive (true);
+
+			}
 		else{
 			currentProdManager.SetActive (false);
 		}

@@ -8,9 +8,11 @@ public class UltTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 	public bool Ability;
 
-	public AbstractCost myUltCost;
+	AbstractCost myUltCost;
 	public Text cooldown;
 
+	[Tooltip("Should be between 1 and 4")]
+	public int UltNumber;
 
 	public Canvas toolbox;
 
@@ -55,6 +57,23 @@ public class UltTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 	void Start () {
 		if (toolbox == null) {
 			toolbox = GameObject.Find ("ToolTipBox").GetComponent<Canvas> ();
+		}
+
+		switch(UltNumber){
+		case 1:
+			myUltCost = GameManager.main.playerList [0].UltOne.myCost;
+			break;
+		case 2:
+			myUltCost = GameManager.main.playerList [0].UltTwo.myCost;
+			break;
+		case 3:
+			myUltCost = GameManager.main.playerList [0].UltThree.myCost;
+			break;
+		case 4:
+			myUltCost = GameManager.main.playerList [0].UltFour.myCost;
+			break;
+
+		
 		}
 	}
 

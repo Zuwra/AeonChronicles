@@ -14,13 +14,15 @@ public class GameManager : MonoBehaviour {
 
 	private bool initialized = false;
 	public static GameManager main;
-	public List<MiniMapUIController> MiniMaps;
+	public 	List<MiniMapUIController> MiniMaps;
 
 
 
 	// Use this for initialization
 	void Awake () {
 		main = this;
+
+
 	//	playerList = new RaceManager[3];
 	//	playerList = new RaceManager[GetComponents<RaceManager>().Length];
 		//if(!initialized)

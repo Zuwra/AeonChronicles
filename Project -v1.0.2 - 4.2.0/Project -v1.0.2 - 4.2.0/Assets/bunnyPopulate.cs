@@ -15,11 +15,13 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 	public GameObject EggObject;
 
 	UnitManager mymanager;
-
+	bunnyManager bunnyMan;
 	// Use this for initialization
 	void Start () {
 		mymanager = GetComponent<UnitManager> ();
-		GameObject.FindObjectOfType<bunnyManager> ().changeInBunnyCount (1);
+		bunnyMan =	GameObject.FindObjectOfType<bunnyManager> ();
+		if(bunnyMan){
+			bunnyMan.changeInBunnyCount (1);}
 		nextRepopulate = Time.time + repopulateTime + Random.Range(0,randomSpawnRange);
 		myStats = GetComponent<UnitStats> ();
 
@@ -88,7 +90,9 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 
 
 	public void Dying (){
-		GameObject.FindObjectOfType<bunnyManager> ().changeInBunnyCount (-1);
+		if(bunnyMan){
+			bunnyMan.changeInBunnyCount (-1);
+	}
 	}
 
 	public float trigger(GameObject source, GameObject proj, UnitManager target,float damage)

@@ -343,7 +343,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 			if (uiManager != null) {
 				if (playerNumber == 1) {
-					uiManager.production.GetComponent<ArmyUIManager> ().unitLost (unitMan);
+					foreach (ArmyUIManager uiMan in uiManager.production.GetComponents<ArmyUIManager> ()) {
+						uiMan.unitLost (unitMan);
+					}
 				}
 			}
 		
@@ -441,7 +443,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			}
 
 			if (uiManager != null) {
-				uiManager.production.GetComponent<ArmyUIManager> ().updateUnits (obj);
+				foreach (ArmyUIManager uiMan in uiManager.production.GetComponents<ArmyUIManager> ()) {
+					uiMan.updateUnits (obj);
+				}
+					
 			}
 
 		}

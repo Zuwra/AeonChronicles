@@ -13,6 +13,7 @@ public class ArmyUIManager : MonoBehaviour {
 	private Dictionary<string, GameObject> iconList = new Dictionary<string,GameObject>();
 	private int unitCount = 0;
 
+	public bool Buildings;
 	float startingY;
 	RectTransform trans;
 	void Start()
@@ -24,6 +25,17 @@ public class ArmyUIManager : MonoBehaviour {
 	public void updateUnits(UnitManager manage)
 		{
 		//UnitManager manage = unit.GetComponent<UnitManager> ();
+		if (!Buildings) {
+			if (manage.myStats.otherTags.Contains (UnitTypes.UnitTypeTag.Structure)) {
+				return; // I don't display building but this guy is a building
+			}
+		
+		} else if (!manage.myStats.otherTags.Contains (UnitTypes.UnitTypeTag.Structure)) {
+			return; // Displays buildings but it isn't one
+		}
+			
+
+			
 
 		if (!unitList.ContainsKey (manage.UnitName)) {
 			unitList.Add (manage.UnitName, new List<GameObject> ());
@@ -37,8 +49,6 @@ public class ArmyUIManager : MonoBehaviour {
 		if (this.gameObject.activeSelf) {
 				StartCoroutine (addNUmber (manage,true));
 		} 
-
-
 	}
 
 	IEnumerator addNUmber(UnitManager manage, bool addIt)
@@ -64,6 +74,15 @@ public class ArmyUIManager : MonoBehaviour {
 	{if (!manage) {
 			return;}
 		
+
+		if (!Buildings) {
+			if (manage.myStats.otherTags.Contains (UnitTypes.UnitTypeTag.Structure)) {
+				return; // I don't display building but this guy is a building
+			}
+
+		} else if (!manage.myStats.otherTags.Contains (UnitTypes.UnitTypeTag.Structure)) {
+			return; // Displays buildings but it isn't one
+		}
 
 		if (unitList.ContainsKey (manage.UnitName)) {
 
