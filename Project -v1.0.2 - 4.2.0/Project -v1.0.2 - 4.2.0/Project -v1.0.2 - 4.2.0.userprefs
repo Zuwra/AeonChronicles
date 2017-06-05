@@ -1,26 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MainMenuManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VictoryScreen.cs">
     <Files>
       <File FileName="Assets\LevelInfo.cs" Line="1" Column="1" />
       <File FileName="Assets\LevelCompilation.cs" Line="1" Column="1" />
       <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
       <File FileName="Assets\PayloadFirendlyEndZone.cs" Line="1" Column="1" />
       <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets\ObjectiveTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\TimedObjective.cs" Line="1" Column="1" />
-      <File FileName="Assets\Objective.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\bunnyPopulate.cs" Line="1" Column="1" />
-      <File FileName="Assets\UltTip.cs" Line="1" Column="1" />
-      <File FileName="Assets\HotkeyMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\ArmyUIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="120" Column="23" />
-      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\ObjectiveManager.cs" Line="91" Column="41" />
-      <File FileName="Assets\LevelManager.cs" Line="148" Column="48" />
-      <File FileName="Assets\GameMenu.cs" Line="187" Column="2" />
-      <File FileName="Assets\MainMenuManager.cs" Line="82" Column="28" />
+      <File FileName="Assets\VeteranVicDisplayer.cs" Line="27" Column="3" />
+      <File FileName="Assets\VictoryScreen.cs" Line="220" Column="5" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="788" Column="4" />
+      <File FileName="Assets\VeteranStats.cs" Line="4" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -489,6 +489,7 @@
      <Compile Include="Assets\Upgradable.cs" />
      <Compile Include="Assets\Upgrade.cs" />
      <Compile Include="Assets\VeteranStats.cs" />
+     <Compile Include="Assets\VeteranVicDisplayer.cs" />
      <Compile Include="Assets\VictoryScreen.cs" />
      <Compile Include="Assets\VictoryTrigger.cs" />
      <Compile Include="Assets\VoiceContainer.cs" />
