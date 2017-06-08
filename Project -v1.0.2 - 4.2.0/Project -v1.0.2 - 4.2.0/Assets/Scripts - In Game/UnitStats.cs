@@ -59,7 +59,7 @@ public class UnitStats : MonoBehaviour {
 	public GameObject deathCorpse;
 	public GameObject deathEffect;
 	public GameObject takeDamageEffect;
-
+	public Sprite UnitPortrait;
 	bool tagSet = false;
 
 	public List<Buff> goodBuffs = new List<Buff>();

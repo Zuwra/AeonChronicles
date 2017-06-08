@@ -47,7 +47,7 @@ public class UnitCardCreater : MonoBehaviour {
 	public Text OreText;
 
 	public GameObject BuffList;
-
+	public Image UnitPortrait;
 	string blankText = "";
 
 	// Use this for initialization
@@ -139,6 +139,13 @@ public class UnitCardCreater : MonoBehaviour {
 
 		obj.gameObject.GetComponent<Selected> ().setIcon (unitIcon.gameObject);
 		UnitDescription.text = manager.myStats.UnitDescription;
+
+		if (manager.myStats.UnitPortrait) {
+			UnitPortrait.sprite = manager.myStats.UnitPortrait;
+			UnitPortrait.transform.parent.gameObject.SetActive (true);
+		} else {
+			UnitPortrait.transform.parent.gameObject.SetActive (false);
+		}
 
 		hasUnit = true;
 		unitIcon.GetComponentInChildren<Image>().sprite = manager.myStats.Icon;
@@ -235,6 +242,8 @@ public class UnitCardCreater : MonoBehaviour {
 				ic.GetComponent<Image> ().sprite = dabuff.HelpIcon;
 			}
 		}
+
+
 
 		builder.loadUnit (obj);
 
