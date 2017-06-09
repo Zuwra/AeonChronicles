@@ -22,15 +22,18 @@ public class RaceNames  {
 	string[] LSixranks = new string[6]{"Fresh Prince","Altimeter", "Quaestionarius",  "Commander in chief", "High lord of the Universe", "Supreme Commander"};
 
 
-	 string[] names = new string[40]{"Aelia","Caryn","Jace", "Chauren","Optimus","Tamra", "Aetius", "Carya", "Emano","Taciton",
+	 string[] names = new string[70]{"Aelia","Caryn","Jace", "Chauren","Optimus","Tamra", "Aetius", "Carya", "Emano","Taciton",
 		"Cato","Varus", "Domitio", "Bentin", "Silvanus", "Valerian", "Porso", "Agricola", "Metallan", "Timon", 
 		"Eton", "Adamus", "Soren", "Mathou", "Jordana", "Colton", "Reinhardt", "Zostro", "Akimus","Comodus",
-		"Gisborne","Porsche", "Hanzo", "Torbous", "Talion", "Chanswel", "Timothus", "Cheske", "Treynor", "Llinc"};
+		"Gisborne","Porsche", "Hanzo", "Torbous", "Talion", "Chanswel", "Timothus", "Cheske", "Treynor", "Llinc", 
+	"Batius", "Kenton", "Martellus", "Martello", "Nutello", "Lilliana", "Markov", "Shyvan", "Flouncy", "Zyro",
+	"Yorick", "Borick", "Torick", "Zorick", "Rurek", "Raximunder", "Arwon", "Gimlock", "Grimlog","Farilee",
+	"Nydalon", "Karacticus", "Portholomew", "Porthos", "Pormethius", "Ohri", "Rammasok", "Ezir", "Lissandria", "Mazure"};
 
-	string[] bunnyNames = new string[36]{ "bunnykins", "cotton candy", "fluffy", "buffalo", "scamper", "thumper", "Oliver", "lingo", "Easter"
+	string[] bunnyNames = new string[37]{ "bunnykins", "cotton candy", "fluffy", "buffalo", "scamper", "thumper", "Oliver", "lingo", "Easter"
 		, "Themistocles-consumer of clovers", "hopper", "nibbler", "Lola", "Harvey", "Roger", "bugs","muncher",  "Judie Hopps", "zappy", "fluffer", 
 		"fluffluff", "fuzzy eyes", "Long Ears", "short ears", "mushu", "chomper", "Trixy", "carrot face", "fluff butt", "fuzzy bunny", 
-		"cottontail" , "dumb bunny", "clever bunny", "sniffles", "radar", "yoshi"};
+		"cottontail" , "dumb bunny", "clever bunny", "sniffles", "radar", "yoshi", "porcipine"};
 
 
 

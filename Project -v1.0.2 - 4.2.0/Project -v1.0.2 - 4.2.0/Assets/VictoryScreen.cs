@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 
 public class VictoryScreen : MonoBehaviour {
 
@@ -80,21 +81,53 @@ public class VictoryScreen : MonoBehaviour {
 
 
 			List<VeteranStats> vetStats = GameManager.main.activePlayer.getVeteranStats ();
-			/*
-			List<VeteranStats> bestDamage = new List<VeteranStats> ();
-			List<VeteranStats> bestKills = new List<VeteranStats> ();
-			List<VeteranStats> bestScore = new List<VeteranStats> ();
-			List<VeteranStats> bestHealing = new List<VeteranStats> ();
-			List<VeteranStats> bestTank = new List<VeteranStats> ();
-*/
-			float lowestDamage = -1;
-			float lowestKills = -1;
-			float lowestScore = -1;
-			float lowestHealing = -1;
-			float lowestTank = -1;
+
+			for (int i = vetStats.Count - 1; i > -1; i--) {
+				if (vetStats[i].UnitName == "") {
+
+					vetStats.RemoveAt (i);
+
+				}
+			}
+			//vetStats.RemoveAll (isATurret);
+
+
+			float lowestDamage = 1;
+			float lowestKills = 1;
+			float lowestScore = 1;
+			float lowestHealing = 1;
+			float lowestTank = 1;
 			Debug.Log ("Count is " + vetStats.Count);
 
 			foreach (VeteranStats stat in vetStats) {
+
+
+				float score = stat.calculateScore ();
+				if (score >= lowestScore) {
+					if (bestScore.Count == 0) {
+						bestScore.Add (stat);
+						lowestScore = score;
+					} else {
+						for (int i = 0; i < bestScore.Count; i++) {
+							if (score > bestScore [i].calculateScore ()) {
+								bestScore.Insert (i, stat);
+								break;
+							}
+						}
+						if (bestScore.Count > 6) {
+							bestScore.RemoveAt (6);
+
+							lowestScore = bestScore [5].calculateScore();
+						} else {
+							lowestScore = bestScore [bestScore.Count - 1].calculateScore ();
+						}
+
+
+					}
+				}
+
+
+
 				if (stat.damageDone >= lowestDamage) {
 					if (bestDamage.Count == 0) {
 						bestDamage.Add (stat);
@@ -106,10 +139,10 @@ public class VictoryScreen : MonoBehaviour {
 								break;
 							}
 						}
-						if (bestDamage.Count > 3) {
-							bestDamage.RemoveAt (3);
+						if (bestDamage.Count > 6) {
+							bestDamage.RemoveAt (6);
 
-							lowestDamage = bestDamage [2].damageDone;
+							lowestDamage = bestDamage [5].damageDone;
 						} else {
 							lowestDamage = bestDamage [bestDamage.Count - 1].damageDone;
 						}
@@ -129,10 +162,10 @@ public class VictoryScreen : MonoBehaviour {
 								break;
 							}
 						}
-						if (bestKills.Count > 3) {
-							bestKills.RemoveAt (3);
+						if (bestKills.Count > 6) {
+							bestKills.RemoveAt (6);
 
-							lowestKills = bestKills [2].kills;
+							lowestKills = bestKills [5].kills;
 						} else {
 							lowestKills = bestKills [bestKills.Count - 1].kills;
 						}
@@ -153,10 +186,10 @@ public class VictoryScreen : MonoBehaviour {
 								break;
 							}
 						}
-						if (bestHealing.Count > 3) {
-							bestHealing.RemoveAt (3);
+						if (bestHealing.Count > 6) {
+							bestHealing.RemoveAt (6);
 
-							lowestHealing = bestHealing [2].healingDone;
+							lowestHealing = bestHealing [5].healingDone;
 						} else {
 							lowestHealing = bestHealing [bestHealing.Count - 1].healingDone;
 						}
@@ -176,10 +209,10 @@ public class VictoryScreen : MonoBehaviour {
 								break;
 							}
 						}
-						if (bestTank.Count > 3) {
-							bestTank.RemoveAt (3);
+						if (bestTank.Count > 6) {
+							bestTank.RemoveAt (6);
 
-							lowestTank = bestTank [2].damageTaken;
+							lowestTank = bestTank [5].damageTaken;
 						} else {
 							lowestTank = bestTank [bestTank.Count - 1].damageTaken;
 						}
@@ -189,55 +222,73 @@ public class VictoryScreen : MonoBehaviour {
 				}
 
 
-				float score = stat.calculateScore ();
-				if (score >= lowestScore) {
-					if (bestScore.Count == 0) {
-						bestScore.Add (stat);
-						lowestScore = score;
-					} else {
-						for (int i = 0; i < bestScore.Count; i++) {
-							if (score > bestScore [i].calculateScore ()) {
-								bestScore.Insert (i, stat);
-								break;
-							}
-						}
-						if (bestScore.Count > 3) {
-							bestScore.RemoveAt (3);
-
-							lowestScore = bestScore [2].calculateScore();
-						} else {
-							lowestScore = bestScore [bestScore.Count - 1].calculateScore ();
-						}
-
-
-					}
-				}
-
-
-
-
 
 			}
 
-			Debug.Log ("I am on " + this.gameObject);
+			List<VeteranStats> usedGuys = new List<VeteranStats> ();
+			Dictionary<string, int> usedUnits = new Dictionary<string,int> ();
+
+
 			GameObject newTemplate =  (GameObject)Instantiate (VeteranStatTemplate, secondGrid);
-			newTemplate.GetComponent<VeteranVicDisplayer> ().SetStats (bestKills [0], "Destroyer");
-
-			newTemplate =  (GameObject)Instantiate (VeteranStatTemplate, secondGrid);
-			newTemplate.GetComponent<VeteranVicDisplayer> ().SetStats (bestTank [0], "Tank of Tanks");
-
-			newTemplate =  (GameObject)Instantiate (VeteranStatTemplate, secondGrid);
-			newTemplate.GetComponent<VeteranVicDisplayer> ().SetStats (bestHealing [0], "The Healer");
-
-			newTemplate =  (GameObject)Instantiate (VeteranStatTemplate, secondGrid);
-			newTemplate.GetComponent<VeteranVicDisplayer> ().SetStats (bestDamage [0], "The Damager");
-
-			newTemplate =  (GameObject)Instantiate (VeteranStatTemplate, secondGrid);
 			newTemplate.GetComponent<VeteranVicDisplayer> ().SetStats (bestScore [0], "MVP");
+			usedGuys.Add (bestScore[0]);
+			usedUnits.Add (bestScore [0].unitType, 1);
+
+
+
+			SortList (usedUnits, usedGuys, "Destroyer", bestKills);
+
+			SortList (usedUnits, usedGuys, "Tank of Tanks", bestTank);
+
+			SortList (usedUnits, usedGuys, "The Healer", bestHealing);
+
+			SortList (usedUnits, usedGuys, "The Damager", bestDamage);
+
+		
 
 		}
 
 
+
+
+	}
+
+	public bool isATurret(VeteranStats stat)
+	{
+		if (stat.UnitName == "MiniGun" || stat.UnitName == "Repair Bay" || stat.UnitName == "Imperio Cannon" || stat.UnitName == "Fire Storm Pod") {
+			return true;
+		}
+
+		return false;
+	}
+
+
+	void SortList(Dictionary<string,int> usedUnits, List<VeteranStats> usedGuys, string award, List<VeteranStats> thingToCompare)
+	{
+		int ind = 0;
+		while ( thingToCompare.Count > ind) {
+
+
+			if ( usedGuys.Contains (thingToCompare [ind]) ||(  usedUnits.ContainsKey (thingToCompare [ind].unitType) && usedUnits [thingToCompare [ind].unitType]  >= 2)) {
+				Debug.Log ("Skipping " + thingToCompare[ind].unitType + "  " + thingToCompare[ind].UnitName);
+				ind ++;
+				}
+			else
+				{
+					break;
+				}
+		}
+
+		if (thingToCompare.Count > ind) {
+			GameObject newTemplate = (GameObject)Instantiate (VeteranStatTemplate, secondGrid);
+			newTemplate.GetComponent<VeteranVicDisplayer> ().SetStats (thingToCompare [ind],award);
+			if (usedUnits.ContainsKey (thingToCompare [ind].unitType)) {
+				usedUnits [thingToCompare [ind].unitType] = 2;
+			} else {
+				usedUnits.Add (thingToCompare [ind].unitType, 1);
+			}
+
+		}
 
 
 	}

@@ -21,12 +21,13 @@ public class VeteranStats : IComparable<VeteranStats>{
 	public bool Died = false;
 	public float DeathTime;
 	public UnitManager myUnit;
+	public Sprite mySprite;
 
 	public VeteranStats(bool hasName, string myType, bool isW, string myName, int playerNumber, UnitManager theUnit)
 	{
 		unitType = myType;
 		isWarrior = isW;
-
+		mySprite = theUnit.myStats.Icon;
 		if (myName != "") {
 			UnitName = myName;
 		}
