@@ -27,7 +27,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 	{
 		//Debug.Log ("Calling from " + this.gameObject);
 		if (this && !hasBeenToLevel) {
-			if (SceneManager.GetActiveScene ().buildIndex == 2) {
+			if (SceneManager.GetActiveScene ().buildIndex == 1) {
 				DontDestroyOnLoad (this.gameObject);
 		
 			} 
@@ -45,7 +45,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 	void LevelWasLoaded(Scene myScene, LoadSceneMode mode)
 	{
 		//Debug.Log ("level was loaded " + SceneManager.GetActiveScene().buildIndex);
-		if (SceneManager.GetActiveScene ().buildIndex != 2 && SceneManager.GetActiveScene ().buildIndex != 0) {
+		if (SceneManager.GetActiveScene ().buildIndex != 1 && SceneManager.GetActiveScene ().buildIndex != 0) {
 			RaceManager racer = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 			hasBeenToLevel = true;
 			//Debug.Log ("Applying to Upgrade Ball");
