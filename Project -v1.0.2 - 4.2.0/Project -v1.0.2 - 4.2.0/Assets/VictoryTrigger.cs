@@ -219,7 +219,7 @@ public class VictoryTrigger : MonoBehaviour {
 		VictoryScreen.enabled = false;
 		GameObject.FindObjectOfType<MainCamera> ().EnableScrolling ();
 		DefeatScreen.enabled = false;
-		SceneManager.LoadScene (2);
+		SceneManager.LoadScene (1);
 
 	}
 

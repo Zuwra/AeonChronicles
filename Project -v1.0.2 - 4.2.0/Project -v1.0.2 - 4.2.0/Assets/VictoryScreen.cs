@@ -70,15 +70,7 @@ public class VictoryScreen : MonoBehaviour {
 				ResourceDisplay.text = "";
 			}
 
-			string Uname = "Name\n\n";
-			string UType = "Unit Type\n\n";
-			string killString = "Kills\n\n";
-			string damageS = "Damage Dealt\n";
-			string energyS = "Energy Regenerated\n";
-			string ArmorS = "Damage on Armor\n";
-
-			int index = 1;
-
+	
 
 			List<VeteranStats> vetStats = GameManager.main.activePlayer.getVeteranStats ();
 
@@ -228,12 +220,12 @@ public class VictoryScreen : MonoBehaviour {
 			List<VeteranStats> usedGuys = new List<VeteranStats> ();
 			Dictionary<string, int> usedUnits = new Dictionary<string,int> ();
 
-
-			GameObject newTemplate =  (GameObject)Instantiate (VeteranStatTemplate, secondGrid);
-			newTemplate.GetComponent<VeteranVicDisplayer> ().SetStats (bestScore [0], "MVP");
-			usedGuys.Add (bestScore[0]);
-			usedUnits.Add (bestScore [0].unitType, 1);
-
+			if (bestScore.Count > 0) {
+				GameObject newTemplate = (GameObject)Instantiate (VeteranStatTemplate, secondGrid);
+				newTemplate.GetComponent<VeteranVicDisplayer> ().SetStats (bestScore [0], "MVP");
+				usedGuys.Add (bestScore [0]);
+				usedUnits.Add (bestScore [0].unitType, 1);
+			}
 
 
 			SortList (usedUnits, usedGuys, "Destroyer", bestKills);
@@ -265,12 +257,15 @@ public class VictoryScreen : MonoBehaviour {
 
 	void SortList(Dictionary<string,int> usedUnits, List<VeteranStats> usedGuys, string award, List<VeteranStats> thingToCompare)
 	{
+		if (thingToCompare.Count == 0) {
+			return;
+		}
 		int ind = 0;
 		while ( thingToCompare.Count > ind) {
 
 
 			if ( usedGuys.Contains (thingToCompare [ind]) ||(  usedUnits.ContainsKey (thingToCompare [ind].unitType) && usedUnits [thingToCompare [ind].unitType]  >= 2)) {
-				Debug.Log ("Skipping " + thingToCompare[ind].unitType + "  " + thingToCompare[ind].UnitName);
+				//Debug.Log ("Skipping " + thingToCompare[ind].unitType + "  " + thingToCompare[ind].UnitName);
 				ind ++;
 				}
 			else

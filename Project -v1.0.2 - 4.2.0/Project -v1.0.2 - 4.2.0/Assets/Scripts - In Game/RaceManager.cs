@@ -251,7 +251,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			if (unitRoster.ContainsKey (obj.UnitName)) {
 				try {
 					unitRoster [obj.UnitName].Remove (obj);
-				} catch (SystemException s) {
+				} catch (SystemException) {
 					Debug.Log ("Unit does Not exist in unit roster");
 					return;
 				}

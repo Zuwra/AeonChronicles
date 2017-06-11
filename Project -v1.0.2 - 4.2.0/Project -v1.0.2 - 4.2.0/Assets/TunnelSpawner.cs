@@ -38,7 +38,7 @@ public class TunnelSpawner : MonoBehaviour {
 		for (int i = 0; i < 6; i++) {
 			int index = Random.Range (0, spawnPoints.Count);
 			if (usedPoints [index] == null) {
-				Instantiate (tunnelObject, spawnPoints [index], Quaternion.identity);
+				usedPoints[index] = (GameObject)Instantiate (tunnelObject, spawnPoints [index], Quaternion.identity);
 				used = true;
 				break;
 			}
@@ -47,7 +47,7 @@ public class TunnelSpawner : MonoBehaviour {
 		if (!used) {
 			for (int i = 0; i < spawnPoints.Count; i++) {
 				if (usedPoints [i] == null) {
-					Instantiate (tunnelObject, spawnPoints [i], Quaternion.identity);
+					usedPoints[i] = Instantiate (tunnelObject, spawnPoints [i], Quaternion.identity);
 					break;
 				}
 			}

@@ -54,8 +54,14 @@ public class CampaignUpgrade : MonoBehaviour {
 
 
 	IEnumerator delayInit()
-	{yield return new WaitForSeconds (.2f);
+	{
 
+		if (myTypes.Contains(upgradeType.Munition)) {
+			yield return new WaitForSeconds (.1f);
+		} else {
+			yield return new WaitForSeconds (.2f);
+		}
+	
 		setDropDownOptions ();
 
 		string upGradeName = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
@@ -140,9 +146,13 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	public void setDropDownOptions()
 	{
+
+		
 		List<string> options = new List<string> ();
 		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
-
+			if (this.gameObject.name == "Railgun") {
+				Debug.Log ("Checking " + up.isUnlocked() +"  "+ myTypes.Contains (up.myType) +"  "+ !myUpgrades.Contains(up));
+			}
 			if (up.isUnlocked() && myTypes.Contains (up.myType) && !myUpgrades.Contains(up)) {
 
 				myUpgrades.Add (up);

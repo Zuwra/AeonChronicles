@@ -29,23 +29,23 @@ public class VeteranVicDisplayer : MonoBehaviour {
 		Award.text = reward;
 		Description.text = stat.unitType + "\n";
 		if(stat.damageDone > 25){
-			Description.text += "Damage Dealt: " + stat.damageDone + "\n";}
+			Description.text += "Damage Dealt: " + (int)stat.damageDone + "\n";}
 		
 		if (stat.kills > 0) {
 			Description.text += "Kills: " + stat.kills + "\n";
 		}
 		if (stat.healingDone > 50) {
-			Description.text += "Repairs Done: " + stat.healingDone + "\n";
+			Description.text += "Repairs Done: " +  (int)stat.healingDone + "\n";
 		}
 		if (stat.energyGained > 10) {
-			Description.text += "Energy Regenerated: " + stat.energyGained + "\n";}
+			Description.text += "Energy Regenerated: " +  (int)stat.energyGained + "\n";}
 		
 		if (stat.mitigatedDamage > 5) {
-			Description.text += "Enemy Damage Reduced by Armor: " + stat.mitigatedDamage + "\n";
+			Description.text += "Enemy Damage Reduced by Armor: " +  (int)stat.mitigatedDamage + "\n";
 		}
 
 		if (stat.damageTaken > 5) {
-			Description.text += "Damage Taken: " + stat.damageTaken;
+			Description.text += "Damage Taken: " +  (int)stat.damageTaken;
 		}
 	}
 }

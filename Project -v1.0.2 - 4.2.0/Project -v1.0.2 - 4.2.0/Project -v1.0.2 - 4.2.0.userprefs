@@ -1,11 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TrueUpgradeManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VeteranVicDisplayer.cs">
     <Files>
-      <File FileName="Assets\VeteranVicDisplayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\VictoryScreen.cs" Line="1" Column="1" />
+      <File FileName="Assets\VeteranVicDisplayer.cs" Line="38" Column="73" />
+      <File FileName="Assets\VictoryScreen.cs" Line="270" Column="6" />
       <File FileName="Assets\VeteranStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\TrueUpgradeManager.cs" Line="23" Column="3" />
+      <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\deexaArmor.cs" Line="1" Column="1" />
+      <File FileName="Assets\DaexaSupplyDrop.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\VictoryTrigger.cs" Line="217" Column="25" />
+      <File FileName="Assets\CampaignUpgrade.cs" Line="59" Column="48" />
+      <File FileName="Assets\CampTechCamManager.cs" Line="68" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

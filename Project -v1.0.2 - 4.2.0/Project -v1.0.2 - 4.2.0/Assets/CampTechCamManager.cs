@@ -67,7 +67,7 @@ public class CampTechCamManager : MonoBehaviour {
 
 		foreach (TechOption to in TechChoices) {
 			if (to.levelAcquired > n) {
-				to.HUD.SetActive (false);
+				//to.HUD.SetActive (false);
 				to.openButton.SetActive (false);
 				to.CamFocus.SetActive (false);
 			}
