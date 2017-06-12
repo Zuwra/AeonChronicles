@@ -49,8 +49,11 @@ public class TrueUpgradeManager : MonoBehaviour {
 			RaceManager racer = GameObject.FindObjectOfType<GameManager> ().activePlayer;
 			hasBeenToLevel = true;
 			//Debug.Log ("Applying to Upgrade Ball");
+
 			foreach (CampaignUpgrade.UpgradesPiece cu in myUpgrades) {
 				if (cu.pointer) {
+
+
 					racer.addUpgrade (cu.pointer, "");
 				}
 			}

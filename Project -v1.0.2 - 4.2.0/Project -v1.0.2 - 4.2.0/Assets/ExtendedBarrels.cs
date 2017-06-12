@@ -11,7 +11,9 @@ public class ExtendedBarrels :SpecificUpgrade{
 	//public GameObject UIButton;
 
 	public override void applyUpgrade (GameObject obj){
+		Debug.Log ("Trying to appl " + obj.name);
 		if (confirmUnit (obj)) {
+			Debug.Log (" Applying range to " + obj.name);
 			foreach (IWeapon weap in obj.GetComponents<IWeapon>()) {
 				weap.range *= 1.15f;
 			}

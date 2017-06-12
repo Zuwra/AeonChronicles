@@ -173,8 +173,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				}
 			}
 		}
-		selectedManager.updateUI ();
-
+		if (Time.timeSinceLevelLoad > 1) {
+			selectedManager.updateUI ();
+		}
 	}
 
 	public static void  findSelectMan()

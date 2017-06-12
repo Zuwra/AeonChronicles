@@ -9,7 +9,7 @@ public class LevelIntroMaker : MonoBehaviour {
 	public Image LevelScenery;
 
 	public Text LevelDescription;
-	public Text LevelTitle;
+	public List<Text> LevelTitles;
 
 
 	public GameObject newUnitPrefab;
@@ -31,8 +31,9 @@ public class LevelIntroMaker : MonoBehaviour {
 		}
 
 		LevelDescription.text = info.Description [ index].LongDescription;
-		LevelTitle.text = info.LevelName;
-	
+		foreach (Text t in LevelTitles) {
+			t.text = info.LevelName;
+		}
 
 		newUnitPanel.SetActive (!(info.newUnits.Count == 0 && info.newAbilities.Count == 0));
 
@@ -71,6 +72,9 @@ public class LevelIntroMaker : MonoBehaviour {
 	public void LoadLevel()
 	{
 		GameObject.FindObjectOfType<MissionManager> ().StartMission (currentInfo.SceneNumber);
+		foreach (Text t in LevelTitles) {
+			t.text = currentInfo.LevelName;
+		}
 	}
 
 }

@@ -150,9 +150,7 @@ public class CampaignUpgrade : MonoBehaviour {
 		
 		List<string> options = new List<string> ();
 		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
-			if (this.gameObject.name == "Railgun") {
-				Debug.Log ("Checking " + up.isUnlocked() +"  "+ myTypes.Contains (up.myType) +"  "+ !myUpgrades.Contains(up));
-			}
+
 			if (up.isUnlocked() && myTypes.Contains (up.myType) && !myUpgrades.Contains(up)) {
 
 				myUpgrades.Add (up);

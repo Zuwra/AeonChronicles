@@ -58,7 +58,9 @@ public class dialogManager : MonoBehaviour {
 [System.Serializable]
 public class DialogLine
 {
+	public string summary;
 	public Character CharacterImage;
+	[Tooltip(" 4 = Announcer level dialog")]
 	public int Priority = 4;
 	[Tooltip("Only use this if you don't want one of the main characters as the sprite")]
 	public Sprite AlternatePic;

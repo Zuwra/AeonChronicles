@@ -18,7 +18,7 @@ public class StatsUI : MonoBehaviour {
 	private Text ThreeText;
 	public Text UnitName;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		OneText = columnOne.GetComponent<Text> ();
 		TwoText = columnTwo.GetComponent<Text> ();
 		ThreeText = columnThree.GetComponent<Text> ();

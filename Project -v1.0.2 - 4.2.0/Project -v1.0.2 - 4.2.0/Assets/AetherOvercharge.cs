@@ -27,6 +27,7 @@ public class AetherOvercharge : Buff, Notify{
 				endSpell ();
 				Destroy (this);
 			}
+
 			if (spellHasBegun && Time.time > nextActionTime) {
 	
 				nextActionTime += 1;
@@ -46,7 +47,7 @@ public class AetherOvercharge : Buff, Notify{
 
 		toolDescription = descrip;
 		HelpIcon = toolIcon;
-
+		spellHasBegun = true;
 		attackSpeed = AS;
 		attackDamage = dam;
 		onTarget = true;
@@ -56,8 +57,9 @@ public class AetherOvercharge : Buff, Notify{
 		duration = dur;
 		unitman.myStats.changeEnergy (unitman.myStats.MaxEnergy * rechargeAmount);
 		applyBuff ();
-		PopUpMaker.CreateGlobalPopUp ("+" + (int)(unitman.myStats.MaxEnergy * rechargeAmount), Color.blue, unitman.gameObject.transform.position);
-
+		if (rechargeAmount > 0) {
+			PopUpMaker.CreateGlobalPopUp ("+" + (int)(unitman.myStats.MaxEnergy * rechargeAmount), Color.blue, unitman.gameObject.transform.position);
+		}
 		AetherEffect = (GameObject)Instantiate (effect, this.gameObject.transform.position, this.gameObject.transform.rotation);
 		AetherEffect.transform.SetParent (this.gameObject.transform);
 
