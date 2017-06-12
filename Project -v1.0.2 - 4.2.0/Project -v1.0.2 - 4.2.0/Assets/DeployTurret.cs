@@ -89,6 +89,10 @@ public class DeployTurret  : TargetAbility{
 	{active = true;
 		
 		currentTurret = myMount.turret;
+
+		if (currentTurret.GetComponent<RepairTurret> ()) {
+			currentTurret.GetComponent<RepairTurret> ().enabled = false;
+		}
 		IWeapon weap = currentTurret.GetComponent<IWeapon> ();
 		if(weap)
 		{manager.removeWeapon (weap);}
@@ -307,13 +311,16 @@ public class DeployTurret  : TargetAbility{
 			}
 		}
 
-
+	
 		Vector3 pos = location;
 
 		GameObject proj = (GameObject)Instantiate (UnitToBuild, pos+ Vector3.up * .5f, Quaternion.identity);
 		Instantiate (PlaceEffect,  pos+ Vector3.up * .5f, Quaternion.identity);
 		currentTurret.GetComponent<UnitManager> ().enabled = true;
 		GameObject newTurret =  (GameObject)Instantiate (currentTurret, pos + Vector3.up *2f, Quaternion.identity);
+		if (newTurret.GetComponent<RepairTurret> ()) {
+			newTurret.GetComponent<RepairTurret> ().enabled = true;
+		}
 		newTurret.transform.SetParent (proj.transform);
 	
 		UnitManager turrManage = newTurret.GetComponent<UnitManager> ();
@@ -326,6 +333,7 @@ public class DeployTurret  : TargetAbility{
 		return false;
 
 	}
+
 	override
 	public void Cast(){
 
@@ -361,6 +369,9 @@ public class DeployTurret  : TargetAbility{
 			Instantiate (PlaceEffect, pos + Vector3.up * .5f, Quaternion.identity);
 			currentTurret.GetComponent<UnitManager> ().enabled = true;
 			GameObject newTurret = (GameObject)Instantiate (currentTurret, pos + Vector3.up * 2f, Quaternion.identity);
+			if (newTurret.GetComponent<RepairTurret> ()) {
+				newTurret.GetComponent<RepairTurret> ().enabled = true;
+			}
 			newTurret.transform.SetParent (proj.transform);
 	
 			UnitManager turrManage = newTurret.GetComponent<UnitManager> ();
