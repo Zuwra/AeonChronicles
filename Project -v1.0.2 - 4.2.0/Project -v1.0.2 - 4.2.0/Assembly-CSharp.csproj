@@ -94,6 +94,7 @@
      <Compile Include="Assets\BuildingPlacer.cs" />
      <Compile Include="Assets\CampShieldUpgrade.cs" />
      <Compile Include="Assets\CampTechCamManager.cs" />
+     <Compile Include="Assets\CampTooltip.cs" />
      <Compile Include="Assets\CampUpgradePurchase.cs" />
      <Compile Include="Assets\CampaignUltUpgrade.cs" />
      <Compile Include="Assets\CampaignUpgrade.cs" />

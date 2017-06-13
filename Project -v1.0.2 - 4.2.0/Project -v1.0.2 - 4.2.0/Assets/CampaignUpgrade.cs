@@ -110,6 +110,13 @@ public class CampaignUpgrade : MonoBehaviour {
 
 		foreach (Image i in myPic) {
 			i.sprite = myUpgrades [myDropDown.value].pic;
+
+			CampTooltip tip = i.GetComponent<CampTooltip> ();
+			if (tip) {
+				tip.helpText = myUpgrades [myDropDown.value].description;
+				tip.Title = myUpgrades [myDropDown.value].name;
+			
+			}
 		}
 		currentUpgrade = myUpgrades [myDropDown.value].pointer;
 	}
