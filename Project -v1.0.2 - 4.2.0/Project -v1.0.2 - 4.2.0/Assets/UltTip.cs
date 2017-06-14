@@ -11,6 +11,9 @@ public class UltTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 	AbstractCost myUltCost;
 	public Text cooldown;
 
+	CanvasGroup render;
+	Coroutine myFade;
+
 	[Tooltip("Should be between 1 and 4")]
 	public int UltNumber;
 
@@ -20,14 +23,24 @@ public class UltTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 	public void OnPointerEnter(PointerEventData eventd)
 	{
+		if (myFade != null) {
+			StopCoroutine (myFade);
+		}
+		myFade= StartCoroutine (toggleWindow( true));
+
 		updater = StartCoroutine (updateCooldown());
-		toolbox.enabled = true;
+		//toolbox.enabled = true;
 		//toolbox.gameObject.GetComponentInChildren<Text> ().text = helpText;
 	}
 
 	public void OnPointerExit(PointerEventData eventd)
 	{
-		toolbox.enabled = false;
+		//toolbox.enabled = false;
+		if (myFade != null) {
+			StopCoroutine (myFade);
+		}
+		myFade =  StartCoroutine (toggleWindow( false));
+
 		StopCoroutine (updater);
 	}
 
@@ -75,9 +88,43 @@ public class UltTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 		
 		}
+
+		render = toolbox.GetComponent<CanvasGroup> ();
+		if (!render) {
+			render = toolbox.gameObject.AddComponent<CanvasGroup> ();
+		}
 	}
 
 
 
+
+	IEnumerator toggleWindow(  bool onOrOff)
+	{
+
+
+		if (onOrOff) {
+			float startalpha = render.alpha /.15f;	
+			toolbox.enabled = (onOrOff);
+			for (float i = startalpha; i < .15f; i += Time.deltaTime) {
+
+				render.alpha  = (i/.15f);
+				yield return null;
+			}
+			render.alpha  = 1;
+		} 
+
+		else {
+
+			for (float i = .3f ; i > 0; i -= Time.deltaTime) {
+
+				render.alpha = (i/.3f);
+				yield return null;
+			}
+
+			render.alpha  = 0;
+			toolbox.enabled = (onOrOff);
+		}
+
+	}
 
 }

@@ -11,10 +11,17 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 	public Canvas toolbox;
 	public GameObject ToolObj;
 
+	CanvasGroup render;
+	Coroutine myFade;
+
 	public void OnPointerEnter(PointerEventData eventd)
 	{
 		if (toolbox) {
-			toolbox.enabled = true;
+			if (myFade != null) {
+				StopCoroutine (myFade);
+			}
+			myFade= StartCoroutine (toggleWindow( true));
+			//toolbox.enabled = true;
 		} else {
 			ToolObj.SetActive (true);
 		}
@@ -23,7 +30,11 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
 	public void OnPointerExit(PointerEventData eventd)
 	{if (toolbox) {
-			toolbox.enabled = false;
+			if (myFade != null) {
+				StopCoroutine (myFade);
+			}
+			myFade =  StartCoroutine (toggleWindow( false));
+		//	toolbox.enabled = false;
 		}else {
 			ToolObj.SetActive (false);
 		}
@@ -39,10 +50,44 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 	// Use this for initialization
 	void Start () {
 		if (toolbox == null) {
-			try{
-				toolbox = GameObject.Find ("ToolTipBox").GetComponent<Canvas> ();}
-			catch(System.Exception){}
+			try {
+				toolbox = GameObject.Find ("ToolTipBox").GetComponent<Canvas> ();
+			} catch (System.Exception) {
+			}
 		}
+		if (toolbox) {
+			render = toolbox.GetComponent<CanvasGroup> ();
+			if (!render) {
+				render = toolbox.gameObject.AddComponent<CanvasGroup> ();
+			}
+		}
+	}
+
+
+	IEnumerator toggleWindow(  bool onOrOff)
+	{
+		if (onOrOff) {
+			float startalpha = render.alpha /.15f;	
+			toolbox.enabled = (onOrOff);
+			for (float i = startalpha; i < .15f; i += Time.deltaTime) {
+
+				render.alpha  = (i/.15f);
+				yield return null;
+			}
+			render.alpha  = 1;
+		} 
+
+		else {
+
+			for (float i = .3f ; i > 0; i -= Time.deltaTime) {
+				render.alpha = (i/.3f);
+				yield return null;
+			}
+
+			render.alpha  = 0;
+			toolbox.enabled = (onOrOff);
+		}
+
 	}
 
 
