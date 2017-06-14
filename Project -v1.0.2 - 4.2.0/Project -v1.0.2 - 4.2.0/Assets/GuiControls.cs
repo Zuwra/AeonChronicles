@@ -6,32 +6,26 @@ using UnityEngine.UI;
 public class GuiControls : MonoBehaviour {
 
 	public Canvas commandPanel;
-	public Text minimizeB;
+	public Sprite MaxSprite;
+	public Sprite minSprite;
+	Image myImage;
 
-	// Use this for initialization
-	void Start () {
-	
+	void Start()
+	{
+		myImage = GetComponent<Image> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 
 	public void minimize()
 	{if (commandPanel != null) {
 			commandPanel.enabled = !commandPanel.enabled;
 
-			if (minimizeB) {
-				if (commandPanel.enabled) {
-
-					minimizeB.text = "-";
-				} else {
-					minimizeB.text = "+";
-				}
+			if (commandPanel.enabled) {
+				myImage.sprite = minSprite;
+			} else {
+				myImage.sprite = MaxSprite;
 			}
+	
 		}
 	}
 }

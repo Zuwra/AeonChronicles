@@ -482,12 +482,12 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > AbilityX * 4){
 						if(man.abilityList [AbilityX * 4] !=null){
-						Transform trans = certainButtons [n].QButton.transform.Find("QButton");
+						Transform trans = certainButtons [n].QButton.transform;//.Find("QButton");
 
 
 				
 						certainButtons [j].QSlide.gameObject.SetActive (false);
-						trans.parent.gameObject.SetActive (true);
+						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [0 + AbilityX * 4];
 
@@ -549,9 +549,9 @@ public class UiAbilityManager : MonoBehaviour {
 							certainButtons [j].WSlide.gameObject.SetActive (false);
 
 
-						Transform trans = certainButtons [n].WButton.transform.Find("WButton");;
+						Transform trans = certainButtons [n].WButton.transform;//.Find("WButton");;
 
-						trans.parent.gameObject.SetActive (true);
+						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [1 + AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [1 + AbilityX * 4];
 
@@ -625,9 +625,9 @@ public class UiAbilityManager : MonoBehaviour {
 							certainButtons [j].ESlide.gameObject.SetActive (false);
 
 
-						Transform trans = certainButtons [n].EButton.transform.Find("EButton");;
+						Transform trans = certainButtons [n].EButton.transform;//.Find("EButton");;
 
-						trans.parent.gameObject.SetActive (true);
+						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [2 + AbilityX * 4].iconPic;
 							trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [2 + AbilityX * 4];
 
@@ -693,9 +693,9 @@ public class UiAbilityManager : MonoBehaviour {
 							certainButtons [j].RSlide.gameObject.SetActive (false);
 
 
-						Transform trans = certainButtons [n].RButton.transform.Find("RButton");;
+						Transform trans = certainButtons [n].RButton.transform;//.Find("RButton");;
 	
-						trans.parent.gameObject.SetActive (true);
+						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [3 + AbilityX * 4].iconPic;
 						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [3 + AbilityX * 4];
 

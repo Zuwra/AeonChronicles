@@ -81,6 +81,7 @@
      <Compile Include="Assets\Editor\DependencyWindow.cs" />
      <Compile Include="Assets\Editor\DifficultyEditor.cs" />
      <Compile Include="Assets\Editor\FeedbackPopup.cs" />
+     <Compile Include="Assets\Editor\LevelInfoInspector.cs" />
      <Compile Include="Assets\Editor\Styles\ContentStylePair.cs" />
      <Compile Include="Assets\Editor\Styles\DependencyStyle.cs" />
      <Compile Include="Assets\Effects\LightningBolt\Editor\LightningBoltEditor.cs" />

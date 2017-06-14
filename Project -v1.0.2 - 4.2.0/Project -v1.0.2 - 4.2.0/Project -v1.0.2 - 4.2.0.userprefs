@@ -1,21 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ExtendedBarrels.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UiAbilityManager.cs">
     <Files>
       <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
       <File FileName="Assets\CampTechCamManager.cs" Line="1" Column="1" />
       <File FileName="Assets\ShieldSpeedBoost.cs" Line="1" Column="1" />
-      <File FileName="Assets\ExtendedBarrels.cs" Line="23" Column="2" />
+      <File FileName="Assets\ExtendedBarrels.cs" Line="1" Column="1" />
       <File FileName="Assets\SpecificUpgrade.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\StatsUI.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampUpgradePurchase.cs" Line="1" Column="1" />
-      <File FileName="Assets\RepairTurret.cs" Line="1" Column="1" />
-      <File FileName="Assets\DeployTurret.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitUtility.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampTooltip.cs" Line="18" Column="53" />
-      <File FileName="Assets\ToolTip.cs" Line="19" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="632" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

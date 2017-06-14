@@ -74,14 +74,14 @@ public class UnitCardCreater : MonoBehaviour {
 			} else {
 				if (currentHealth != (int)currentUnit.myStats.health || maxHealth != (int)currentUnit.myStats.Maxhealth) {
 				
-					health.text = "  " + (int)currentUnit.myStats.health + "/" + (int)currentUnit.myStats.Maxhealth;
+					health.text =  (int)currentUnit.myStats.health + "/" + (int)currentUnit.myStats.Maxhealth;
 					currentHealth = (int)currentUnit.myStats.health; 
 					maxHealth = (int)currentUnit.myStats.Maxhealth;
 				}
 
 				if (currentUnit.myStats.MaxEnergy > 0 && currentEnergy != ((int)currentUnit.myStats.currentEnergy)) {
 					currentEnergy = (int)currentUnit.myStats.currentEnergy;
-					energyText.text = "  " + (int)currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
+					energyText.text = (int)currentUnit.myStats.currentEnergy + "/" + currentUnit.myStats.MaxEnergy;	
 
 				}
 			}
@@ -165,7 +165,7 @@ public class UnitCardCreater : MonoBehaviour {
 		if (manager.cMover != null) {
 			if (manager.cMover.getMaxSpeed () > 0) {
 				speedIcon.enabled = true;
-				speed.text = " " + manager.cMover.getMaxSpeed ();
+				speed.text = "" + manager.cMover.getMaxSpeed ();
 			} else {
 				speed.text = blankText;
 				speedIcon.enabled = false;
