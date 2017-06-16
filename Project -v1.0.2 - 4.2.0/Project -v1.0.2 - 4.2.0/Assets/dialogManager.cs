@@ -9,13 +9,13 @@ public class dialogManager : MonoBehaviour {
 
 	public List<DialogLine> VoiceLines;
 
-
+	dialogManager RootPrafab;
 	public static dialogManager instance;
 
 	// Use this for initialization
 	void Start () {
 		instance = this;
-		
+		RootPrafab = ((GameObject)Resources.Load ("CharacterHolder")).GetComponent<dialogManager>();
 	}
 
 	public void playLine (int index)
@@ -33,15 +33,15 @@ public class dialogManager : MonoBehaviour {
 
 		switch (character) {
 		case Character.Hadrian:
-			return myCharacters [0];
+			return RootPrafab.myCharacters [0];
 		case Character.Katrina:
-			return myCharacters [1];
+			return RootPrafab.myCharacters [1];
 		case Character.Jarvis:
-			return myCharacters [2];
+			return RootPrafab.myCharacters [2];
 		case Character.Ludacrus:
-			return myCharacters [3];
+			return RootPrafab.myCharacters [3];
 		case Character.Paradox:
-			return myCharacters [4];
+			return RootPrafab.myCharacters [4];
 
 		}
 

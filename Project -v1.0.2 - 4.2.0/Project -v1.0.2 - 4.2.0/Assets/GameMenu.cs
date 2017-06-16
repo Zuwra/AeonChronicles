@@ -14,7 +14,6 @@ public class GameMenu : MonoBehaviour {
 	public Button optionsB;
 	public Button hotkeysB;
 	public Button raceTipsB;
-	public Button pauseB;
 	public Button returnToGameB;
 	public Button MissionLogB;
 
