@@ -322,7 +322,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 	//Truedeath applies to thing like summons and building placers. they aren't real units so they shouldnt be treated as such.
-	public bool UnitDying(GameObject Unit, GameObject deathSource, bool trueDeath)
+	public bool UnitDying(UnitManager Unit, GameObject deathSource, bool trueDeath)
 	{bool finishDeath = true;
 
 	
@@ -340,18 +340,17 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		if (finishDeath) { 
 
-			UnitManager unitMan = Unit.GetComponent<UnitManager> ();
 
 			if (uiManager != null) {
 				if (playerNumber == 1) {
 					foreach (ArmyUIManager uiMan in uiManager.production.GetComponents<ArmyUIManager> ()) {
-						uiMan.unitLost (unitMan);
+						uiMan.unitLost (Unit);
 					}
 				}
 			}
 		
 		
-			string unitName = unitMan.UnitName;
+			string unitName = Unit.UnitName;
 
 			if (unitTypeCount.ContainsKey (unitName)) {
 				unitTypeCount [unitName]--;
@@ -374,7 +373,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				}
 
 			} 
-			if (unitMan.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+			if (Unit.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 				//This rescans the Astar graph after the unit dies
 				GraphUpdateObject b =new GraphUpdateObject(Unit.GetComponent<CharacterController>().bounds); 
 
@@ -393,7 +392,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			unitsLost++;
 
 			try{
-				unitRoster [unitName].Remove (unitMan);}
+				unitRoster [unitName].Remove (Unit);}
 			catch{
 			}
 

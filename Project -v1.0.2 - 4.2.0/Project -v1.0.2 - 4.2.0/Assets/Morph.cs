@@ -148,7 +148,7 @@ public class Morph :  UnitProduction {
 		}
 		racer.stopBuildingUnit (this);
 		RaceManager.removeUnitSelect (myManager);
-		GameManager.main.playerList[myManager.PlayerOwner-1].UnitDying (this.gameObject, null, false);
+		GameManager.main.playerList[myManager.PlayerOwner-1].UnitDying (myManager, null, false);
 		unit.GetComponent<Selected> ().Initialize ();
 	
 

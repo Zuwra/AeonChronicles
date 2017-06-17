@@ -951,7 +951,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	IEnumerator delayBuildDeath(GameObject m_objectBeingPlaced)
 	{
 		yield return new WaitForSeconds(.01f);
-		raceManager.UnitDying (m_ObjectBeingPlaced, null,false);
+		raceManager.UnitDying (m_ObjectBeingPlaced.GetComponent<UnitManager>(), null,false);
 	}
 
 

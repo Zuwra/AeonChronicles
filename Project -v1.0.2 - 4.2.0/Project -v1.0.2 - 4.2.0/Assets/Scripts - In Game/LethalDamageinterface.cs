@@ -5,7 +5,7 @@ public interface LethalDamageinterface  {
 
 
 
-	bool lethalDamageTrigger(GameObject unit, GameObject deathSource);
+	bool lethalDamageTrigger(UnitManager unit, GameObject deathSource);
 
 
 

@@ -11,8 +11,7 @@ public class ImmortalityProtocol : MonoBehaviour,LethalDamageinterface {
 
 	// Use this for initialization
 	void Start () {
-
-		GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().addDeathWatcher (this);
+		GameManager.main.activePlayer.addDeathWatcher (this);
 	
 	}
 	
@@ -27,11 +26,11 @@ public class ImmortalityProtocol : MonoBehaviour,LethalDamageinterface {
 		}
 	}
 
-	public bool lethalDamageTrigger(GameObject unit, GameObject deathsource)
+	public bool lethalDamageTrigger(UnitManager unit, GameObject deathsource)
 	{if (canRecall && !onCooldown) {
-			if(!unit.GetComponent<UnitStats>().isUnitType(UnitTypes.UnitTypeTag.Structure) &&
-			   unit.GetComponent<UnitManager>().PlayerOwner == GameObject.FindGameObjectWithTag ("GameRaceManager").GetComponent<RaceManager> ().playerNumber){
-				EmergencyRecall(unit);
+			if(!unit.myStats.isUnitType(UnitTypes.UnitTypeTag.Structure) &&
+			   unit.PlayerOwner == 1){
+				EmergencyRecall(unit.gameObject);
 				return false;
 			}
 		}

@@ -8,27 +8,27 @@ public class PopUpMaker : MonoBehaviour {
 	public Color textColor;
 	public Sprite mySprite;
 
-	//If the text isnt showing up make sure the alpha level is all the way up
-	// Use this for initialization
-	void Start () {
+	static GameObject PopUpThingy;
+	static GameObject StunThingy;
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	 GameObject PopUpThing;
+	 GameObject StunThing;
 
 	public void CreatePopUp(string input, Color c)
 	{Vector3 location = this.transform.position;
 		location.y += 5;
-		GameObject obj = (GameObject)Instantiate (Resources.Load ("PopUp"), location, Quaternion.identity);
+
+		if (!PopUpThing) {
+			PopUpThing = Resources.Load<GameObject> ("PopUp");
+		}
+
+		GameObject obj = (GameObject)Instantiate (PopUpThing, location, Quaternion.identity);
 		if (mySprite != null) {
-			obj.GetComponentInChildren<Image> ().enabled = true;
-			obj.GetComponentInChildren<Image> ().sprite = mySprite;
+		//	obj.GetComponent<TextMesh>().te.GetComponentInChildren<Image> ().enabled = true;
+			obj.GetComponentInChildren<SpriteRenderer> ().sprite = mySprite;
 		} else {
-			obj.GetComponentInChildren<Text> ().text = input;
-			obj.GetComponentInChildren<Text> ().color = c;
+			obj.GetComponent<TextMesh> ().text = input;
+			obj.GetComponent<TextMesh> ().color = c;
 		}
 
 
@@ -37,13 +37,18 @@ public class PopUpMaker : MonoBehaviour {
 	public void CreatePopUp(string input, Color c, Vector3 loc)
 	{Vector3 location = loc;
 		location.y += 5;
-		GameObject obj = (GameObject)Instantiate (Resources.Load ("PopUp"), location, Quaternion.identity);
+
+		if (!PopUpThing) {
+			PopUpThing = Resources.Load<GameObject> ("PopUp");
+		}
+
+		GameObject obj = (GameObject)Instantiate (PopUpThing, location, Quaternion.identity);
 		if (mySprite != null) {
-			obj.GetComponentInChildren<Image> ().enabled = true;
-			obj.GetComponentInChildren<Image> ().sprite = mySprite;
+			obj.GetComponentInChildren<SpriteRenderer> ().enabled = true;
+			obj.GetComponentInChildren<SpriteRenderer> ().sprite = mySprite;
 		} else {
-			obj.GetComponentInChildren<Text> ().text = input;
-			obj.GetComponentInChildren<Text> ().color = c;
+			obj.GetComponent<TextMesh> ().text = input;
+			obj.GetComponent<TextMesh> ().color = c;
 		}
 
 
@@ -53,26 +58,35 @@ public class PopUpMaker : MonoBehaviour {
 	public void CreatePopUp()
 	{Vector3 location = this.transform.position;
 		location.y +=5;
-		GameObject obj = (GameObject)Instantiate (Resources.Load ("PopUp"), location, Quaternion.identity);
+
+		if (!PopUpThing) {
+			PopUpThing = Resources.Load<GameObject> ("PopUp");
+		}
+
+		GameObject obj = (GameObject)Instantiate (PopUpThing, location, Quaternion.identity);
 		if (mySprite != null) {
-			obj.GetComponentInChildren<Image> ().enabled = true;
-			obj.GetComponentInChildren<Image> ().sprite = mySprite;
+			obj.GetComponentInChildren<SpriteRenderer> ().enabled = true;
+			obj.GetComponentInChildren<SpriteRenderer> ().sprite = mySprite;
 		} else {
-			obj.GetComponentInChildren<Text> ().text = mytext;
-			obj.GetComponentInChildren<Text> ().color = textColor;
+			obj.GetComponent<TextMesh> ().text = mytext;
+			obj.GetComponent<TextMesh> ().color = textColor;
 		}
 
 	}
 
 	public void CreatePopUp(Vector3 location)
 	{location.y += 5;
-		GameObject obj = (GameObject)Instantiate (Resources.Load ("PopUp"), location, Quaternion.identity);
+		if (!PopUpThing) {
+			PopUpThing = Resources.Load<GameObject> ("PopUp");
+		}
+
+		GameObject obj = (GameObject)Instantiate (PopUpThing, location, Quaternion.identity);
 		if (mySprite != null) {
-			obj.GetComponentInChildren<Image> ().enabled = true;
-			obj.GetComponentInChildren<Image> ().sprite = mySprite;
+			obj.GetComponentInChildren<SpriteRenderer> ().enabled = true;
+			obj.GetComponentInChildren<SpriteRenderer> ().sprite = mySprite;
 		} else {
-			obj.GetComponentInChildren<Text> ().text = mytext;
-			obj.GetComponentInChildren<Text> ().color = textColor;
+			obj.GetComponent<TextMesh> ().text = mytext;
+			obj.GetComponent<TextMesh> ().color = textColor;
 		}
 
 	}
@@ -83,9 +97,16 @@ public class PopUpMaker : MonoBehaviour {
 	public static GameObject CreateGlobalPopUp(string input, Color c, Vector3 loc)
 	{Vector3 location = loc;
 		location.y += 5;
-		GameObject obj = (GameObject)Instantiate (Resources.Load ("PopUp"), location, Quaternion.identity);
-		obj.GetComponentInChildren<Text> ().color = c;
-		obj.GetComponentInChildren<Text> ().text = input;
+
+		if (!PopUpThingy) {
+			PopUpThingy = Resources.Load<GameObject> ("PopUp");
+		}
+
+		GameObject obj =Instantiate<GameObject> (PopUpThingy, location, Quaternion.identity);
+		TextMesh childText = obj.GetComponent<TextMesh> ();
+
+		childText.color = c;
+		childText.text = input;
 
 		return obj;
 	}
@@ -93,9 +114,14 @@ public class PopUpMaker : MonoBehaviour {
 	public static GameObject CreateGlobalPopUp(string input, Color c, Vector3 loc, float duration)
 	{Vector3 location = loc;
 		location.y += 5;
-		GameObject obj = (GameObject)Instantiate (Resources.Load ("PopUp"), location, Quaternion.identity);
-		obj.GetComponentInChildren<Text> ().color = c;
-		obj.GetComponentInChildren<Text> ().text = input;
+		if (!PopUpThingy) {
+			PopUpThingy = Resources.Load<GameObject> ("PopUp");
+		}
+
+		GameObject obj = Instantiate<GameObject> (PopUpThingy, location, Quaternion.identity);
+		TextMesh childText =obj.GetComponent<TextMesh> ();
+		childText.color = c;
+		childText.text = input;
 		obj.GetComponent<selfDestructTimer> ().timer = duration;
 		obj.GetComponent<PopUp> ().speed = duration / 5;
 
@@ -105,7 +131,11 @@ public class PopUpMaker : MonoBehaviour {
 
 	public static GameObject CreateStunIcon(GameObject obj)
 	{
-		GameObject toReturn = (GameObject)Instantiate (Resources.Load ("StunIcon"), obj.transform.position + Vector3.up* 9, Quaternion.identity, obj.transform);
+		if (StunThingy == null) {
+			StunThingy = Resources.Load<GameObject> ("StunIcon");
+		}
+
+		GameObject toReturn = Instantiate<GameObject> (StunThingy, obj.transform.position + Vector3.up* 9, Quaternion.identity, obj.transform);
 
 
 		return toReturn;

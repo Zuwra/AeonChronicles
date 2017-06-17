@@ -23,7 +23,7 @@ public class TurretDeathTrigger : MonoBehaviour, Modifier{
 
 	public void Dying()
 	{
-		GameManager.main.playerList[mymanager.PlayerOwner-1].UnitDying (this.gameObject, null, true);
+		GameManager.main.playerList[mymanager.PlayerOwner-1].UnitDying (mymanager, null, true);
 		if (GetComponent<Selected>().IsSelected) {
 
 			RaceManager.removeUnitSelect(mymanager);

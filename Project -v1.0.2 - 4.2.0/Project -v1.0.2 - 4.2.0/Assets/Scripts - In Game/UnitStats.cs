@@ -120,14 +120,10 @@ public class UnitStats : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (!myManager) {
-			myManager = this.gameObject.GetComponent<UnitManager> ();
+			myManager = GetComponent<UnitManager> ();
 			myManager.myStats = this;
 		}
-			
-		if (isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 	
-		}
-
 		if (Clock.main.getTotalSecond()< 1 && myManager.PlayerOwner == 1) {
 			
 			GameManager.main.playerList[myManager.PlayerOwner-1].UnitCreated (supply);		
@@ -139,9 +135,12 @@ public class UnitStats : MonoBehaviour {
 		}
 
 		// FIX THIS REPEATING INEUMERNATER
-		StartCoroutine ("HealthEnergy");
+		if (EnergyRegenPerSec > 0) {
+
+			StartCoroutine (HealthEnergy());
+		}
 		if (HealthRegenPerSec > 0) {
-			InvokeRepeating ("regenHealth", .5f, .5f);
+			StartCoroutine (regenHealth());
 		}
 	
 	}
@@ -150,24 +149,37 @@ public class UnitStats : MonoBehaviour {
 
 	IEnumerator HealthEnergy()
 	{
+		float regenPerHalfSecond = EnergyRegenPerSec / 2;
 		while(true){
 			yield return new WaitForSeconds (.5f);
 
 			//Regenerate Energy
-			if (currentEnergy < MaxEnergy && EnergyRegenPerSec >0) {
-
-				float actual = changeEnergy (EnergyRegenPerSec / 2);
+			if (currentEnergy < MaxEnergy ) { //&& EnergyRegenPerSec >0
+				
+				float actual = changeEnergy (regenPerHalfSecond);
 				veternStat.UpEnergy (actual);
 			}
 		}
 	}
 
 
-	void regenHealth(){
-		if (health < Maxhealth && HealthRegenPerSec > 0) {
-		float actual = veternStat.healingDone += heal (HealthRegenPerSec / 2);
+	IEnumerator regenHealth(){
 
-		veternStat.UpHealing (actual);
+		float regenPerHalfSecond = HealthRegenPerSec;
+
+		float waitTime = 1;
+		if (HealthRegenPerSec > 2) {
+			regenPerHalfSecond = HealthRegenPerSec / 2;
+			waitTime = .5f;
+		}
+
+		while(true){
+			yield return new WaitForSeconds (waitTime);
+
+		if (health < Maxhealth) { //&& HealthRegenPerSec > 0
+			float actual = heal (regenPerHalfSecond);;
+			veternStat.UpHealing (actual);
+			}
 		}
 	}
 
@@ -284,16 +296,12 @@ public class UnitStats : MonoBehaviour {
 
 	public void SetHealth (float percent)
 	{
-		//Debug.Log ("health is " + percent);
 		health = Maxhealth * percent;
-
-
 		updateHealthBar ();
 	}
 
 	private void updateHealthBar()
 	{
-
 			mySelection.updateHealthBar (health / Maxhealth);
 	
 	}
@@ -323,7 +331,7 @@ public class UnitStats : MonoBehaviour {
 
 			FinishDeath = false;
 			if (this) {
-				FinishDeath = GameManager.main.playerList [myManager.PlayerOwner - 1].UnitDying (this.gameObject, deathSource, true);
+				FinishDeath = GameManager.main.playerList [myManager.PlayerOwner - 1].UnitDying (myManager, deathSource, true);
 			}
 
 			if (FinishDeath) {

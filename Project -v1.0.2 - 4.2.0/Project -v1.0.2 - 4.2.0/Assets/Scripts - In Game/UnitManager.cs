@@ -41,6 +41,7 @@ public class UnitManager : Unit,IOrderable{
 	//List of weapons modifiers that need to be applied to weapons as they are put on this guy
 	private List<Notify> potentialNotify = new List<Notify>();
 
+	public FogOfWarUnit fogger;
 	[System.Serializable]
 	public struct voiceResponse
 	{
@@ -59,7 +60,6 @@ public class UnitManager : Unit,IOrderable{
 		if(interactor == null)
 		{
 			interactor = (Iinteract)gameObject.GetComponent(typeof(Iinteract));
-
 		}
 
 		if (visionSphere == null) {
@@ -87,12 +87,12 @@ public class UnitManager : Unit,IOrderable{
 		}
 
 	
-		GameManager man = GameObject.FindObjectOfType<GameManager> ();
+		GameManager man = 	GameManager.getInstance ();//GameObject.FindObjectOfType<GameManager> ();
 		if (PlayerOwner == man.playerNumber) {
 				this.gameObject.tag = "Player";
 			} 
 
-			man.initialize (); // Initializes data, if this is the first unit to wake up.
+			//man.initialize (); // Initializes data, if this is the first unit to wake up.
 			myStats.Initialize();
 
 		if (!Clock.main || Clock.main.getTotalSecond () < 1 || !myStats.isUnitType (UnitTypes.UnitTypeTag.Structure) || UnitName== "Augmentor") {
@@ -100,17 +100,23 @@ public class UnitManager : Unit,IOrderable{
 			man.playerList [PlayerOwner - 1].addUnit (this);
 		}
 
+		if (!fogger) {
+			fogger = GetComponent<FogOfWarUnit> ();
+		}
+
 		if (gameObject.GetComponent<CharacterController> () && visionSphere != null) {
 			float distance = visionRange + gameObject.GetComponent<CharacterController> ().radius;
 			visionSphere.radius = distance;
 
-			if (GetComponent<FogOfWarUnit> ()) {
-				GetComponent<FogOfWarUnit> ().radius = distance +3;
+
+			if(fogger){
+				fogger.radius = distance +3;
 			}
-		} else {
+		}
+		 else {
 			visionSphere.radius = visionRange;
-			if (GetComponent<FogOfWarUnit> ()) {
-				GetComponent<FogOfWarUnit> ().radius = visionRange +3;
+			if (fogger) {
+				fogger.radius = visionRange +3;
 			}
 		}
 

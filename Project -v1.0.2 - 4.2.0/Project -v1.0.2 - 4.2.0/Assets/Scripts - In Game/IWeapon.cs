@@ -110,8 +110,9 @@ public class IWeapon : MonoBehaviour {
 		if (audioSrc) {
 			audioSrc.priority += Random.Range (-60, 0);
 		}
-		myManager = this.gameObject.GetComponent<UnitManager> ();
-
+		if (!myManager) {
+			myManager = GetComponent<UnitManager> ();
+		}
 		//myRadius = GetComponent<CharacterController> ().radius;
 		if (turret) {
 			turretClass = turret.GetComponent<turret> ();
@@ -164,9 +165,9 @@ public class IWeapon : MonoBehaviour {
 				return false;}
 		}
 
-		UnitStats targetStats= target.GetComponent<UnitStats>();
+
 		foreach (UnitTypes.UnitTypeTag tag in cantAttackTypes) {
-			if (targetStats.isUnitType (tag))
+			if (target.myStats.isUnitType (tag))
 			{	//	Debug.Log (Title + "cant attack");
 				return false;	}
 		}
@@ -201,9 +202,8 @@ public class IWeapon : MonoBehaviour {
 			
 			return false;}
 
-		UnitStats targetStats= target.GetComponent<UnitStats>();
 		foreach (UnitTypes.UnitTypeTag tag in cantAttackTypes) {
-			if (targetStats.isUnitType (tag))
+			if (target.myStats.isUnitType (tag))
 			{return false;	}
 		}
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour {
 
-	private GameObject cam;
+	private Transform cam;
 	//public List<Image> buffList = new List<Image>();
 
 
@@ -14,17 +14,16 @@ public class HealthDisplay : MonoBehaviour {
 	public Image background;
 	Vector3 LookLocation;
 
-	//private List<int> colorList = new List<int>();
 	// Use this for initialization
 	void Start () {
-		cam = GameObject.FindObjectOfType<MainCamera> ().gameObject;
+		cam = MainCamera.main.transform;// GameObject.FindObjectOfType<MainCamera> ().gameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-			LookLocation = cam.transform.position;
-			LookLocation.x = this.gameObject.transform.position.x;
+			LookLocation = cam.position;
+			LookLocation.x = gameObject.transform.position.x;
 			gameObject.transform.LookAt (LookLocation);
 
 	}

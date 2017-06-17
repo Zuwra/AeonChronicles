@@ -20,9 +20,9 @@ public class UnitLostDefeat : MonoBehaviour, LethalDamageinterface {
 	}
 	
 
-	public bool lethalDamageTrigger(GameObject obj, GameObject source)
+	public bool lethalDamageTrigger(UnitManager obj, GameObject source)
 	{
-		if (heros.Contains (obj)) {
+		if (heros.Contains (obj.gameObject)) {
 			victory.Lose ();
 
 			return true;

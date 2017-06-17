@@ -48,9 +48,9 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{
 		GameMenu.main.addDisableScript (this);
 		uiManage = (UIManager)FindObjectOfType (typeof(UIManager));
-		abilityManager = GameObject.FindObjectOfType<UiAbilityManager>();
-        raceMan = GameObject.Find("GameRaceManager").GetComponent<GameManager>().activePlayer;
-		main = this;
+		abilityManager = UiAbilityManager.main;
+		raceMan = GameManager.main.activePlayer;
+
 		controlUI = GameObject.FindObjectOfType<ControlGroupUI> ();
 		pageUI = GameObject.FindObjectOfType<PageUIManager> ();
 		targetManager = GameObject.FindObjectOfType<TargetCircleManager> ();
@@ -229,7 +229,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		if (Input.GetKeyUp (KeyCode.Delete)) {
 			if (SelectedObjects.Count > 0 && SelectedObjects [0] != null) {
-				SelectedObjects [0].GetComponent<UnitStats> ().kill (null);
+				SelectedObjects [0].getUnitStats().kill (null);
 			}
 		}
 
@@ -308,10 +308,10 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		if (onOff) {
 			foreach (List<RTSObject> obj in UIPages[currentPage].rows) {
 				if (obj != null && obj.Count > 0) {
-					if (obj[0].gameObject.GetComponent<UnitManager> ().myWeapon.Count >0) {
+					if (obj[0].getUnitManager().myWeapon.Count >0) {
 
 						float maxRange = 0;
-						foreach (IWeapon weap in obj[0].gameObject.GetComponent<UnitManager> ().myWeapon) {
+						foreach (IWeapon weap in obj[0].getUnitManager().myWeapon) {
 							if (weap.range > maxRange) {
 								maxRange = weap.range;
 							}
@@ -375,7 +375,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
     public void Awake()
-    {
+	{		main = this;
 
         for (int i = 0; i < 10; i++)
         {
@@ -425,7 +425,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		List<RTSObject> tempList = new List<RTSObject> ();
 		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
 
-			if (obj.gameObject.GetComponent<UnitManager> ().UnitName == (tempAbilityGroups [i]) [0].gameObject.GetComponent<UnitManager> ().UnitName) {
+			if (obj.getUnitManager().UnitName == (tempAbilityGroups [i]) [0].getUnitManager().UnitName) {
 				foreach (RTSObject rts in (tempAbilityGroups [i])) {
 					tempList.Add (rts);
 				}
@@ -453,8 +453,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	{
 		List<RTSObject> tempList = new List<RTSObject> ();
 		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
-
-			if (obj.gameObject.GetComponent<UnitManager> ().UnitName != (tempAbilityGroups [i]) [0].gameObject.GetComponent<UnitManager> ().UnitName) {
+			//if (obj.gameObject.GetComponent<UnitManager> ().UnitName != (tempAbilityGroups [i]) [0].gameObject.GetComponent<UnitManager> ().UnitName) {
+			if (obj.getUnitManager().UnitName != (tempAbilityGroups [i]) [0].getUnitManager().UnitName) {
 				foreach (RTSObject rts in (tempAbilityGroups [i])) {
 					tempList.Add (rts);
 				}
@@ -483,7 +483,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     {
         foreach (List<RTSObject> lis in tempAbilityGroups)
         {
-            if (obj.gameObject.GetComponent<UnitManager>().UnitName == (lis[0]).gameObject.GetComponent<UnitManager>().UnitName)
+			if (obj.getUnitManager().UnitName == (lis[0]).getUnitManager().UnitName)
             {
                 lis.Add(obj);
                 return;
@@ -503,7 +503,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				Group [i].RemoveAll (item => item == null);
 				Group [i].Remove (obj);
 				if (Group [i].Count > 0) {
-					controlUI.activateTab (i, Group [i].Count, Group [i] [0].GetComponent<UnitStats> ().Icon);
+					controlUI.activateTab (i, Group [i].Count, Group [i] [0].getUnitStats().Icon);
 				} else {
 					controlUI.deactivate (i);
 				}
@@ -651,11 +651,11 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             return;
 
         obj.SetDeselected();
-		UnitManager manage = obj.gameObject.GetComponent<UnitManager> ();
+		UnitManager manage = obj.getUnitManager();
 		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
 
 
-			if (manage.UnitName == (tempAbilityGroups [i])[0].gameObject.GetComponent<UnitManager> ().UnitName) {
+			if (manage.UnitName == (tempAbilityGroups [i])[0].getUnitManager().UnitName) {
 				tempAbilityGroups [i].Remove (obj);
 
 				if (tempAbilityGroups [i].Count == 0) {
@@ -704,7 +704,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		if(soundIndex != 1)
 			{return;}
 
-		UnitManager listTop = SelectedObjects [0].gameObject.GetComponent<UnitManager> ();
+			UnitManager listTop = SelectedObjects [0].getUnitManager();
 			lastVoiceTime = Time.time;
 	
 			int n =-1;
@@ -737,7 +737,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	public void GiveOrder(Order order)
 	{//fix this once we get to multiplayer games
 
-		if(SelectedObjects.Count <= 0 || SelectedObjects[0].gameObject.GetComponent<UnitManager>().PlayerOwner != 1)
+		if(SelectedObjects.Count <= 0 || SelectedObjects[0].getUnitManager().PlayerOwner != 1)
 			{return;}
 			
 
@@ -771,11 +771,15 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		} else if (order.OrderType == 6 ) {
 			// INTERACT
-			if (order.Target.GetComponent<Selected> ()) {
-				order.Target.GetComponent<Selected> ().interact ();
+			Selected sel = order.Target.GetComponent<Selected>();
+			UnitManager manage = order.Target.GetComponent<UnitManager>();
+			UnitManager managePar = order.Target.GetComponentInParent<UnitManager> ();
+
+			if (sel) {
+				sel.interact ();
 			}
-			if ((order.Target.GetComponent<UnitManager> () && order.Target.GetComponent<UnitManager> ().PlayerOwner != 1)
-			    || (order.Target.GetComponentInParent<UnitManager> () && order.Target.GetComponentInParent<UnitManager> ().PlayerOwner != 1)) {
+			if ((manage && manage.PlayerOwner != 1)
+				|| (managePar && managePar.PlayerOwner != 1)) {
 				AudioSrc.PlayOneShot (attackSound, .1f);
 
 				if (FogOfWar.current.IsInCompleteFog (location)) {
@@ -824,7 +828,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	public void GiveMoveSpread(Vector3 a,  Vector3 b)
 	{//fix this once we get to multiplayer games
 
-		if(SelectedObjects.Count <= 0 || SelectedObjects[0].gameObject.GetComponent<UnitManager>().PlayerOwner != 1)
+		if(SelectedObjects.Count <= 0 || SelectedObjects[0].getUnitManager().PlayerOwner != 1)
 		{return;}
 			
 		if (FogOfWar.current.IsInCompleteFog ( Vector3.Lerp(a,b,.5f))) {
@@ -1011,7 +1015,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
         }
         CreateUIPages(0);
-		controlUI.activateTab (groupNumber, Group [groupNumber].Count, Group [groupNumber] [0].GetComponent<UnitStats> ().Icon);
+		controlUI.activateTab (groupNumber, Group [groupNumber].Count, Group [groupNumber] [0].getUnitStats().Icon);
 
     }
 
@@ -1076,7 +1080,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 				}
 			}
 			if (Group [i].Count > 0) {
-					controlUI.activateTab (i, Group [i].Count, Group [i] [0].GetComponent<UnitStats> ().Icon);
+				controlUI.activateTab (i, Group [i].Count, Group [i] [0].getUnitStats().Icon);
 				} else {
 					controlUI.deactivate (i);
 				}
@@ -1096,7 +1100,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             }
         }
 		foreach (RTSObject u in SelectedObjects) {
-			if (u.GetComponent<UnitManager> ().myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+			if (u.getUnitStats().isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 				DeselectObject (u);
 			}
 		}

@@ -28,7 +28,7 @@ public class Selected : MonoBehaviour {
 	public Slider energySlider;
 	//private Image energyFill;
 
-	private Slider coolDownSlider;
+	public Slider coolDownSlider;
 	private Image coolFill;
 
 	private float tempSelectTime;
@@ -63,19 +63,27 @@ public class Selected : MonoBehaviour {
 		myStats = this.gameObject.GetComponent<UnitStats> ();
 		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
 
-
-		buffDisplay = GetComponentInChildren<HealthDisplay> ();
-	
+		if (!buffDisplay) {
+			buffDisplay = GetComponentInChildren<HealthDisplay> ();
+		}
 		try{
-		turretDisplay = transform.Find("HealthDisplay").GetComponent<TurretHealthDisplay> ();
+
+			Transform healthDisplay = transform.Find("HealthDisplay");
+			turretDisplay = healthDisplay.GetComponent<TurretHealthDisplay> ();
 		if (!turretDisplay) {
-			healthslider = transform.Find ("HealthDisplay").Find ("HealthBar").GetComponent<Slider> ();
-			healthFill = transform.Find ("HealthDisplay").Find ("HealthBar").transform.Find ("Fill Area").Find ("Fill").GetComponent<Image> ();
+				if(!healthslider){
+					healthslider =  healthDisplay.Find ("HealthBar").GetComponent<Slider> ();}
+				
+				healthFill =  healthDisplay.Find ("HealthBar").transform.Find ("Fill Area").Find ("Fill").GetComponent<Image> ();
 		} 
-			energySlider = transform.Find ("HealthDisplay").Find ("EnergyBar").GetComponent<Slider> ();
+			if(!energySlider){
+				energySlider = healthDisplay.Find ("EnergyBar").GetComponent<Slider> ();
+			}
 			//energyFill= transform.FindChild("HealthDisplay").FindChild("EnergyBar").transform.FindChild("Fill Area").FindChild("Fill").GetComponent<Image>();
 
-			coolDownSlider = transform.Find ("HealthDisplay").Find ("Cooldown").GetComponent<Slider> ();
+			if(!coolDownSlider){
+				coolDownSlider =  healthDisplay.Find ("Cooldown").GetComponent<Slider> ();
+			}
 			coolFill= coolDownSlider.transform.Find("Fill Area").Find("Fill").GetComponent<Image>();
 	
 

@@ -16,7 +16,7 @@ public class APMCounter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		Application.targetFrameRate = 150;
 		nextActionTime = Time.time + 3;
 
 
@@ -77,9 +77,10 @@ public class APMCounter : MonoBehaviour {
 
 		if (Acounter > 0) {
 
-			counter.text = "Actions Per Minute\n" + (int)((Acounter / apm) * 60) +"\nGame Average\n" + (int)(totalActions/ (Clock.main.getTotalSecond() / 60));
+			counter.text = "Actions Per Minute\n" + (int)((Acounter / apm) * 60) +"\nGame Average\n" + (int)(totalActions/ (Clock.main.getTotalSecond() / 60)) +
+				"\n\nFPS: "+(int)(1/Time.smoothDeltaTime);
 		} else {
-			counter.text = "Actions Per Minute\n0" +"\nGame Average\n" + (int)(totalActions/ (Clock.main.getTotalSecond() / 60));
+			counter.text = "Actions Per Minute\n0" +"\nGame Average\n" + (int)(totalActions/ (Clock.main.getTotalSecond() / 60)) + 	"\n\nFPS: " + (int)(1/Time.smoothDeltaTime);;
 		}
 	}
 

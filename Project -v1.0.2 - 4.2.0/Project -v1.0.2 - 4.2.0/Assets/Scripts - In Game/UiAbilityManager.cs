@@ -16,6 +16,8 @@ public class UiAbilityManager : MonoBehaviour {
 	public List<Button> quickButtons = new List<Button>();
 	public List<AbilityBox> quickAbility = new List<AbilityBox>();
 
+
+	public static UiAbilityManager main;
 	[System.Serializable]
 	public struct buttonSet{
 		public GameObject QButton;
@@ -61,12 +63,17 @@ public class UiAbilityManager : MonoBehaviour {
 
 	private float nextActionTime;
 
+	void Awake()
+	{
+		main = this;
+	}
+
 	// Use this for initialization
 	void Start () {
 		audSrc = GameObject.FindObjectOfType<ExpositionDisplayer> ().GetComponent<AudioSource> ();
 		GameMenu.main.addDisableScript (this);
 		nextActionTime = Time.time;
-		selectMan = GameObject.FindObjectOfType<SelectedManager> ();
+		selectMan = SelectedManager.main; 
 	}
 	
 	// Update is called once per frame
