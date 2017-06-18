@@ -201,8 +201,13 @@ public  class Projectile : MonoBehaviour {
 
 		if (distance - currentDistance < 1.5f) {
 			if (target && trackTarget) {
-				distance = Vector3.Distance (transform.position, target.transform.position + randomOffset);
-				currentDistance = 0;
+				float trueDist = Vector3.Distance (transform.position, target.transform.position + randomOffset);
+				if (trueDist > 2) {
+					distance = trueDist;
+					currentDistance = 0;
+				} else {
+					Terminate (target);
+				}
 			} else {
 				Terminate (target);
 			}

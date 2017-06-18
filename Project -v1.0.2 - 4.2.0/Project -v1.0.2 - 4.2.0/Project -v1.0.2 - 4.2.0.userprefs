@@ -1,20 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\APMCounter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ExpositionDisplayer.cs">
     <Files>
+      <File FileName="Assets\GuiControls.cs" Line="14" Column="3" />
       <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
       <File FileName="Assets\CampTechCamManager.cs" Line="1" Column="1" />
       <File FileName="Assets\ShieldSpeedBoost.cs" Line="1" Column="1" />
-      <File FileName="Assets\ExtendedBarrels.cs" Line="1" Column="1" />
-      <File FileName="Assets\SpecificUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\MiniMapUIController.cs" Line="334" Column="6" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="97" Column="31" />
-      <File FileName="Assets\PopUpMaker.cs" Line="19" Column="19" />
-      <File FileName="Assets\PopUp.cs" Line="1" Column="1" />
-      <File FileName="Assets\RepairTurret.cs" Line="29" Column="31" />
-      <File FileName="Assets\RepairDrone.cs" Line="31" Column="64" />
-      <File FileName="Assets\HealthDisplay.cs" Line="24" Column="3" />
-      <File FileName="Assets\APMCounter.cs" Line="21" Column="3" />
+      <File FileName="Assets\ExpositionDisplayer.cs" Line="266" Column="1" />
+      <File FileName="Assets\airmover.cs" Line="52" Column="42" />
+      <File FileName="Assets\TextTrigger.cs" Line="31" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

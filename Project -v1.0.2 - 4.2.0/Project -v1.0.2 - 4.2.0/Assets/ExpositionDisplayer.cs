@@ -103,11 +103,13 @@ public class ExpositionDisplayer : MonoBehaviour {
 	{	
 
 		SoundMessage newMessage = new SoundMessage (sound, duration,pic,input, Priority, volume);
+
+	//	Debug.Log ("Getting new mesage " + input + "  " + sound.name);
 		if (inMessage) {
 
 			//Debug.Log ("In a message " + input);
-			if (newMessage.priority > currentMessage.priority + 2) {
-				Debug.Log ("Interrupting " + input +"   " +  newMessage.priority);
+			if (Priority > currentMessage.priority + 2) {
+				//Debug.Log ("Interrupting " + input +"   " +  Priority + "  \n" + currentMessage.myClip.name +" "+currentMessage.myText+  "  "+ currentMessage.priority);
 				InteruptMessage ();
 				playMessage (newMessage);
 			
@@ -141,7 +143,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	public void InteruptMessage()
 	{
-		Debug.Log ("Interupting message");
+		//Debug.Log ("Interupting message");
 		if (currentScrolling != null) {
 			StopCoroutine (currentScrolling);
 		}
@@ -162,7 +164,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	void playMessage(SoundMessage myMess)
 	{
-		//Debug.Log ("Playing Message " + myMess.myText);
+		//Debug.Log ("Playing Message " + myMess.myText + "  " + myMess.myClip.name);
 		currentMessage = myMess;
 		inMessage = true;
 		if (myMess.myPic == null) {
@@ -192,7 +194,9 @@ public class ExpositionDisplayer : MonoBehaviour {
 				myAudio.Play ();
 			}
 		}
-
+		if (currentDuration != null) {
+			StopCoroutine (currentDuration);
+		}
 		currentDuration = StartCoroutine (playNextSOund(myMess.duration));
 	
 	}
@@ -205,6 +209,10 @@ public class ExpositionDisplayer : MonoBehaviour {
 			myAudio.volume = myMess.volume;
 			myAudio.clip = myMess.myClip;
 			myAudio.Play ();
+
+			if (currentDuration != null) {
+				StopCoroutine (currentDuration);
+			}
 			currentDuration = StartCoroutine (playNextSOund(myMess.duration));
 			//SoundManager.PlayOneShotSound (myAudio, myMess.myClip);
 		}
@@ -245,8 +253,11 @@ public class ExpositionDisplayer : MonoBehaviour {
 			myAudio.volume = volume;
 			myAudio.PlayOneShot (sound,1);
 		}
+		if (currentDuration != null) {
+			StopCoroutine (currentDuration);
+		}
 
-		StartCoroutine (playNextSOund (duration));
+		currentDuration = StartCoroutine (playNextSOund (duration));
 	}
 
 

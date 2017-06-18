@@ -861,7 +861,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if (man.abilityList.Count > AbilityX * 4) {
 						if (man.abilityList [AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].QButton.transform.Find("QButton");;
+						Transform trans = certainButtons [n].QButton.transform;//.Find("QButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("QButton");
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [AbilityX * 4].iconPic;
@@ -900,7 +900,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count >1+( AbilityX * 4)){
 						if (man.abilityList [1 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].WButton.transform.Find("WButton");;
+						Transform trans = certainButtons [n].WButton.transform;//.Find("WButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("WButton");
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [1 + AbilityX * 4].iconPic;
@@ -942,7 +942,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count > 2+(AbilityX * 4)){
 						if (man.abilityList [2 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].EButton.transform.Find("EButton");;
+						Transform trans = certainButtons [n].EButton.transform;//.Find("EButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("EButton");
 					
 						trans.GetComponent<Image> ().sprite = man.abilityList [2 + AbilityX * 4].iconPic;
@@ -983,7 +983,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 					if(man.abilityList.Count >3+( AbilityX * 4)){
 						if (man.abilityList [3 + AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].RButton.transform.Find("RButton");;
+						Transform trans = certainButtons [n].RButton.transform;//.Find("RButton");;
 							//Transform trans = UIButtons [n].transform.FindChild ("RButton");
 
 						trans.GetComponent<Image> ().sprite = man.abilityList [3 + AbilityX * 4].iconPic;
@@ -1075,7 +1075,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 				if (man.abilityList.Count > AbilityX * 4) {
 					if (man.abilityList [AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].QButton.transform.Find ("QButton");
+						Transform trans = certainButtons [n].QButton.transform;//.Find ("QButton");
 
 						ColorBlock cb = trans.GetComponent<Button> ().colors;
 
@@ -1109,7 +1109,7 @@ public class UiAbilityManager : MonoBehaviour {
 			if(man.abilityList.Count >1+( AbilityX * 4)){
 				if (man.abilityList [1 + AbilityX * 4] != null) {
 
-					Transform trans = certainButtons [n].WButton.transform.Find ("WButton");
+						Transform trans = certainButtons [n].WButton.transform;//.Find ("WButton");
 					ColorBlock cb= trans.GetComponent<Button> ().colors;
 
 					bool active = false;
@@ -1147,7 +1147,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 			if(man.abilityList.Count > 2+(AbilityX * 4)){
 				if (man.abilityList [2 +AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].EButton.transform.Find ("EButton");
+						Transform trans = certainButtons [n].EButton.transform;//.Find ("EButton");
 					ColorBlock cb= trans.GetComponent<Button> ().colors;
 
 
@@ -1182,7 +1182,7 @@ public class UiAbilityManager : MonoBehaviour {
 
 			if(man.abilityList.Count >3+( AbilityX * 4)){
 				if (man.abilityList [3 +AbilityX * 4] != null) {
-						Transform trans = certainButtons [n].RButton.transform.Find ("RButton");
+						Transform trans = certainButtons [n].RButton.transform;//.Find ("RButton");
 					ColorBlock cb= trans.GetComponent<Button> ().colors;
 
 
@@ -1262,22 +1262,22 @@ public class UiAbilityManager : MonoBehaviour {
 				Text charger;
 
 				if (buttonNumber % 4 == 0) {
-					trans = certainButtons [j].QButton.transform.Find("QButton");
+					trans = certainButtons [j].QButton.transform;//.Find("QButton");
 					charger = trans.Find ("Charge1").GetComponent<Text> ();
 					certainButtons [j].QAuto.enabled = man.abilityList [abilityNum].autocast;
 					}
 				else if (buttonNumber % 4 == 1) {
-					trans = certainButtons [j].WButton.transform.Find("WButton");
+					trans = certainButtons [j].WButton.transform;//.Find("WButton");
 					charger = trans.Find ("Charge2").GetComponent<Text> ();
 					certainButtons [j].WAuto.enabled = man.abilityList [abilityNum].autocast;
 				}
 				else if (buttonNumber % 4 == 2) {
-					trans = certainButtons [j].EButton.transform.Find("EButton");
+					trans = certainButtons [j].EButton.transform;//.Find("EButton");
 					charger = trans.Find ("Charge3").GetComponent<Text> ();
 					certainButtons [j].EAuto.enabled = man.abilityList [abilityNum].autocast;
 				}
 				else {
-					trans = certainButtons [j].RButton.transform.Find("RButton");
+					trans = certainButtons [j].RButton.transform;//.Find("RButton");
 					charger = trans.Find ("Charge4").GetComponent<Text> ();
 					certainButtons [j].RAuto.enabled = man.abilityList [abilityNum].autocast;
 				}

@@ -48,7 +48,7 @@ public class Bombardment : TargetAbility{
 
 		for (int i = 0; i < shotCount; i++) {
 		
-			StartCoroutine( Fire ((i * .07f), location, i));
+			StartCoroutine( Fire ((i * .083f), location, i));
 		}
 
 
@@ -85,8 +85,8 @@ public class Bombardment : TargetAbility{
 		proj = (GameObject)Instantiate (Explosion, spawnLoc, Quaternion.identity);
 
 		Projectile script = proj.GetComponent<Projectile> ();
-		proj.SendMessage ("setSource", this.gameObject, SendMessageOptions.DontRequireReceiver);
-
+		//proj.SendMessage ("setSource", this.gameObject, SendMessageOptions.DontRequireReceiver);
+		script.setSource (this.gameObject);
 		if (script) {
 			script.damage = myDamage;
 			script.sourceInt = 1;

@@ -10,7 +10,7 @@ public class GuiControls : MonoBehaviour {
 	public Sprite minSprite;
 	Image myImage;
 
-	void Start()
+	void Awake()
 	{
 		myImage = GetComponent<Image> ();
 	}
@@ -23,6 +23,9 @@ public class GuiControls : MonoBehaviour {
 			if (commandPanel.enabled) {
 				myImage.sprite = minSprite;
 			} else {
+				if (myImage == null) {
+					Debug.Log(this.gameObject.name + "   is null");
+				}
 				myImage.sprite = MaxSprite;
 			}
 	

@@ -18,6 +18,9 @@ public class RabbitEgg : MonoBehaviour,Modifier  {
 		if (hatchOnDamage) {
 			GetComponent<UnitStats>().addModifier (this);
 		}
+		if (!hatchOnSight) {
+			GetComponent<SphereCollider> ().enabled = false;
+		}
 	}
 	
 	public float modify(float amount, GameObject src, DamageTypes.DamageType theType)
