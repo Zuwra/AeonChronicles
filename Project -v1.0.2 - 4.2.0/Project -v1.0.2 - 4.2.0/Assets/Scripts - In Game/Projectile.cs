@@ -7,6 +7,7 @@ public  class Projectile : MonoBehaviour {
 
 
 	public UnitManager target;
+ 	 UnitManager SourceMan;
 	public float damage;
 	public float speed;
 	public float arcAngle;
@@ -78,11 +79,12 @@ public  class Projectile : MonoBehaviour {
 				lastLocation = target.transform.position + randomOffset;
 			}
 		
-			randomOffset = UnityEngine.Random.insideUnitSphere * target.GetComponent<CharacterController> ().radius * .9f;
+			randomOffset = UnityEngine.Random.insideUnitSphere * target.CharController.radius * .9f;
 		} 
 
-		control = GetComponent<CharacterController> ();
-		distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+			control = GetComponent<CharacterController> ();
+
+		distance = Vector3.Distance (transform.position, lastLocation);
 
 		if (TargetIndicator != null) {
 
@@ -123,6 +125,17 @@ public  class Projectile : MonoBehaviour {
 			randomOffset = UnityEngine.Random.insideUnitSphere * target.GetComponent<CharacterController> ().radius * .9f;
 		} 
 
+		if (trackTarget) {
+			InvokeRepeating ("lookAtTarget", .05f, .05f);
+		}
+
+		if (arcAngle > 0 && myModel) {
+			arcAngle *= 3;
+			InvokeRepeating ("ArcUp", .07f, .07f);
+
+		}
+
+
 
 		distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
 
@@ -136,6 +149,20 @@ public  class Projectile : MonoBehaviour {
 
 	}
 
+
+	void ArcUp()
+	{
+
+			myModel.transform.LookAt (this.transform.position + transform.forward* -1 + Vector3.up * -yAmount);
+	}
+
+	void lookAtTarget()
+	{
+		if (target != null) {
+			lastLocation = target.transform.position + randomOffset;
+		}
+		gameObject.transform.LookAt (lastLocation);
+	}
 
 	public void setLocation(Vector3 loc)
 	{
@@ -161,44 +188,50 @@ public  class Projectile : MonoBehaviour {
 		gameObject.transform.LookAt (lastLocation);
 		distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
 	}
-	
+
+	float yAmount;
+
 	// Update is called once per frame
 	protected void Update () {
 
-		//Debug.Log ("In here");
-	
-		if (target != null) {
-			lastLocation = target.transform.position + randomOffset;
-			//Debug.Log("attacking on " +Vector3.Distance(lastLocation,this.gameObject.transform.position));
+		//if (target != null) {
+			//lastLocation = target.transform.position + randomOffset;
 
-		} 
+	//	} 
 
-		if(distance - currentDistance <1.5)
-		{
-			Terminate(target);
+		if (distance - currentDistance < 1.5f) {
+			if (target && trackTarget) {
+				distance = Vector3.Distance (transform.position, target.transform.position + randomOffset);
+				currentDistance = 0;
+			} else {
+				Terminate (target);
+			}
 		}
-
-		if (trackTarget) {
-			gameObject.transform.LookAt (lastLocation);
-		}
+			/*
+			if (distance < 1.6f) {
+				Terminate (target);
+			} else {
+				currentDistance = 0;
+			}
+		}*/
+		/*
+		if (arcAngle > 0) {
+			yAmount = (((distance / 2) - currentDistance) / distance) * arcAngle * Time.deltaTime;
+			control.Move (Vector3.up * yAmount);
+		}*/
+		//if (trackTarget) {
+		//	gameObject.transform.LookAt (lastLocation);
+		//}
 
 	
 		gameObject.transform.Translate (Vector3.forward* speed * Time.deltaTime *40);
 
 		currentDistance += speed * Time.deltaTime * 40;
-
-		if (arcAngle > 0) {
-
-			float yAmount;
-
-			yAmount = (( (distance/2) - currentDistance )/distance) * arcAngle *3* Time.deltaTime;
-			control.Move (Vector3.up * yAmount);
-
-			if (myModel) {
-				myModel.transform.LookAt (this.transform.position + transform.forward* -1 + Vector3.up * -yAmount);
-			}
-			//gameObject.transform.Translate (Vector3.up * yAmount );
 	
+		if (arcAngle > 0) {
+			yAmount = (((distance / 2) - currentDistance) / distance) * arcAngle * Time.deltaTime;
+			control.Move (Vector3.up * yAmount);
+		
 		}
 
 	
@@ -273,16 +306,15 @@ public  class Projectile : MonoBehaviour {
 
 				//Debug.Log ("Giveing damage");
 				float total =  target.myStats.TakeDamage (damage, Source,damageType);
-				if (Source) {
-					UnitManager man = Source.GetComponent<UnitManager> ();
-					if (man) {
-						man.myStats.veteranDamage (total);
-					}
+				if (SourceMan)
+					{
+					SourceMan.myStats.veteranDamage (total);
+
 				}
 			}
 			if (target == null) {
 				{
-					Source.GetComponent<UnitManager> ().cleanEnemy ();}
+					SourceMan.cleanEnemy ();}
 			}
 		} 
 	
@@ -313,12 +345,13 @@ public  class Projectile : MonoBehaviour {
 	{
 		
 		Source = so;
-		if (so.GetComponent<UnitManager> ()) {
-			sourceInt = so.GetComponent<UnitManager> ().PlayerOwner;
+		SourceMan = so.GetComponent<UnitManager> ();
+		if (SourceMan) {
+			sourceInt = SourceMan.PlayerOwner;
 		} else {
 			sourceInt = 1;
 		}
-		if (TargetIndicator != null && Source.GetComponent<UnitManager> ().PlayerOwner != 1 ) {
+		if (TargetIndicator != null && SourceMan.PlayerOwner != 1 ) {
 			TargetIndicator.GetComponentInChildren<Light> ().color = Color.red;
 		}
 	}

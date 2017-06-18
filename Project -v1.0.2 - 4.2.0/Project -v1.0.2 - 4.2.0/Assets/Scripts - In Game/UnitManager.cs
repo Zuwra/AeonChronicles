@@ -41,6 +41,7 @@ public class UnitManager : Unit,IOrderable{
 	//List of weapons modifiers that need to be applied to weapons as they are put on this guy
 	private List<Notify> potentialNotify = new List<Notify>();
 
+	public CharacterController CharController;
 	public FogOfWarUnit fogger;
 	[System.Serializable]
 	public struct voiceResponse
@@ -80,6 +81,10 @@ public class UnitManager : Unit,IOrderable{
 					myWeapon.Add (w);
 				}
 			}
+		}
+
+		if (!CharController) {
+			CharController = GetComponent<CharacterController> ();
 		}
 
 		if (myStats == null) {

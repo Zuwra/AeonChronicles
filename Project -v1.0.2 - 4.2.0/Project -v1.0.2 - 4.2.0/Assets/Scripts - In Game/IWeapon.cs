@@ -113,7 +113,7 @@ public class IWeapon : MonoBehaviour {
 		if (!myManager) {
 			myManager = GetComponent<UnitManager> ();
 		}
-		//myRadius = GetComponent<CharacterController> ().radius;
+
 		if (turret) {
 			turretClass = turret.GetComponent<turret> ();
 		}
@@ -195,7 +195,7 @@ public class IWeapon : MonoBehaviour {
 		}
 
 			// Account for height advantage
-		float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.GetComponent<CharacterController> ().radius ;
+		float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.CharController.radius ;
 
 		float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
 		if (distance > (range + (verticalDistance/3)) || (minimumRange >0 && distance < minimumRange)) {
@@ -225,7 +225,7 @@ public class IWeapon : MonoBehaviour {
 			}
 
 
-			float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.GetComponent<CharacterController> ().radius;
+			float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.CharController.radius;
 
 			float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
 
@@ -393,7 +393,7 @@ public class IWeapon : MonoBehaviour {
 	public bool isValidTarget(UnitManager target)
 	{
 		if (range < 4) {
-			if (target.GetComponent<airmover> ()) {
+			if (target.cMover is airmover) {
 				return false;
 			}
 

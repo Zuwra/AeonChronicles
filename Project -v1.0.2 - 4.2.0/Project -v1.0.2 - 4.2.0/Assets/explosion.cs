@@ -75,9 +75,9 @@ public class explosion : MonoBehaviour {
 				if (friendlyFire || sourceInt != manager.PlayerOwner) {
 
 					float amount = damageAmount	;
-					UnitStats stats = other.gameObject.GetComponent<UnitStats> ();
+					UnitStats stats = manager.myStats;
 					foreach ( IWeapon.bonusDamage tag in extraDamage) {
-						if ( stats.isUnitType (tag.type)) {
+						if ( manager.myStats.isUnitType (tag.type)) {
 							amount += tag.bonus;
 						}
 					}
