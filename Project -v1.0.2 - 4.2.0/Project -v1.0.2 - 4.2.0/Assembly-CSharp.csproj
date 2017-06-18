@@ -239,6 +239,7 @@
      <Compile Include="Assets\MainMenuManager.cs" />
      <Compile Include="Assets\Masochism.cs" />
      <Compile Include="Assets\MassCapture.cs" />
+     <Compile Include="Assets\MegaMap.cs" />
      <Compile Include="Assets\MenuAnimationPlayer.cs" />
      <Compile Include="Assets\MenuverUpgrade.cs" />
      <Compile Include="Assets\MiniMapIconer.cs" />

@@ -45,7 +45,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 	public float heightOffset;
    
-
+	public Sprite UnitSprite;
 	private float nextActionTimea;
 
 	private float nextActionTimec;
@@ -138,7 +138,8 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 
 		usedUnitPoints = new List<Point> ();
 		usedTriangleList = new List<Point> ();
-		img.sprite = Sprite.Create (UnitTexture as Texture2D, new Rect (0f, 0f, textureWidth, textureHeight), Vector2.zero);
+		UnitSprite = Sprite.Create (UnitTexture as Texture2D, new Rect (0f, 0f, textureWidth, textureHeight), Vector2.zero);
+		img.sprite = UnitSprite;
 
 
 
@@ -248,9 +249,9 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 			attackMoveMinimap ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.M)) {
-			toggleMegaMap ();
-		}
+		//if (Input.GetKeyDown (KeyCode.M)) {
+		//	toggleMegaMap ();
+		//}
 	}
 
 	public void toggleMegaMap ()

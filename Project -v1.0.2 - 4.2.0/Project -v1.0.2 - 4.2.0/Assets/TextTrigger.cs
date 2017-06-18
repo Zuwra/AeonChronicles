@@ -30,7 +30,7 @@ public class TextTrigger : SceneEventTrigger {
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
 				//UIHighLight.main.highLight (null, 0);
 			} else {
-				Debug.Log ("Triggering from " + this.gameObject.name);
+			//	Debug.Log ("Triggering from " + this.gameObject.name);
 				dialogManager.instance.playLine (VoiceLineIndex);
 
 				//ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic,Priority);

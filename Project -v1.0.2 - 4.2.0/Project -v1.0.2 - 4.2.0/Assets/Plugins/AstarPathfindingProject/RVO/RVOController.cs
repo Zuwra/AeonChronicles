@@ -195,8 +195,8 @@ namespace Pathfinding.RVO {
 			rvoAgent.Radius = radius;
 			rvoAgent.MaxSpeed = maxSpeed;
 			rvoAgent.Height = height;
-			rvoAgent.AgentTimeHorizon = agentTimeHorizon;
-			rvoAgent.ObstacleTimeHorizon = obstacleTimeHorizon;
+			//rvoAgent.AgentTimeHorizon = agentTimeHorizon;
+			//rvoAgent.ObstacleTimeHorizon = obstacleTimeHorizon;
 			rvoAgent.Locked = locked;
 			//rvoAgent.MaxNeighbours = maxNeighbours;
 			//rvoAgent.DebugDraw = debug;
@@ -246,11 +246,13 @@ namespace Pathfinding.RVO {
 			Vector3 realPos = rvoAgent.InterpolatedPosition;
 			realPos.y = adjustedY;
 
-			if (mask != 0 && Physics.Raycast(realPos + Vector3.up*height*7f, Vector3.down, out hit, 50, mask)) {
-			//	Debug.Log ("Hitting " + hit.collider);
-				adjustedY = hit.point.y;
-			} else {
-				adjustedY = 0;
+			if (desiredVelocity != Vector3.zero) {
+				if (mask != 0 && Physics.Raycast (realPos + Vector3.up * height * 10f, Vector3.down, out hit, 55, mask)) {
+					//	Debug.Log ("Hitting " + hit.collider);
+					adjustedY = hit.point.y;
+				} else {
+					adjustedY = 0;
+				}
 			}
 			realPos.y = adjustedY;
 
@@ -276,7 +278,9 @@ namespace Pathfinding.RVO {
 			}
 
 	#if ASTARDEBUG
-			Debug.DrawRay(position, desiredVelocity + force*wallAvoidForce);
+			if (debug) {
+				Debug.DrawRay (position, desiredVelocity + force * wallAvoidForce);
+			}
 	#endif
 			rvoAgent.DesiredVelocity = desiredVelocity + force*wallAvoidForce;
 

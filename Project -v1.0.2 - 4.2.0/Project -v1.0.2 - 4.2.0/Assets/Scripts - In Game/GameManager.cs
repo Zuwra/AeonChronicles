@@ -29,7 +29,9 @@ public class GameManager : MonoBehaviour {
 		main = this;
 
 		foreach (MiniMapUIController min in MiniMaps) {
-			min.DubAwake();
+			if (min) {
+				min.DubAwake ();
+			}
 		}
 
 	}
@@ -37,9 +39,10 @@ public class GameManager : MonoBehaviour {
 	void Start()
 	{
 		foreach (MiniMapUIController min in MiniMaps) {
-			min.Initialize ();
+			if (min) {
+				min.Initialize ();
+			}
 		}
-
 	}
 
 
