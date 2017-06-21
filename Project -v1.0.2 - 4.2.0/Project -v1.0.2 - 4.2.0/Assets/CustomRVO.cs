@@ -65,7 +65,9 @@ public class CustomRVO : IMover {
 		#endif
 		//resetMoveLocation(-transform.position); // + transform.forward * 400);
 		controller = GetComponent<RVOController>();
+
 	}
+
 
 
 	override

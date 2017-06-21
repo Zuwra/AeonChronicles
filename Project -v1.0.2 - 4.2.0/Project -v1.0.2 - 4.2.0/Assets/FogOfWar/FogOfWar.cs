@@ -278,7 +278,15 @@ public class FogOfWar : MonoBehaviour
 
 		HasUnFogged = true;
 		InvokeRepeating( "UpdateTexture",1, .1f);
+		Invoke("delayedFogger",1.1f);
+		Invoke ("UpdateTexture", 1.2f);
+
     }
+
+	void delayedFogger()
+	{
+		HasUnFogged = true;
+	}
 
     public void SetAll(byte value)
     {
@@ -372,7 +380,7 @@ public class FogOfWar : MonoBehaviour
     }
 
     void UpdateTexture()
-	{if (HasUnFogged) {
+		{if (HasUnFogged) {
 		
 			texture.LoadRawTextureData (_values);
 			texture.filterMode = filterMode;
