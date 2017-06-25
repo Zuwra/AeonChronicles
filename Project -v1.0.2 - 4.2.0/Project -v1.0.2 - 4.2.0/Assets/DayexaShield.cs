@@ -11,13 +11,11 @@ public class DayexaShield : Ability,Modifier , Notify{
 
 	public float RechargeDelay;
 	public float rechargeRate;
-	private bool inCombat;
 
 	public GameObject shieldEffect;
 	public bool AbsorbRecoil;
 	public float maxDamagePerSec = 100000;
 
-	private float nextActionTime;
 	private float damageAbsorbed;
 
 	void Awake()
@@ -38,28 +36,21 @@ public class DayexaShield : Ability,Modifier , Notify{
 
 		}
 		GetComponent<UnitManager> ().addNotify (this);
-		
-		InvokeRepeating ("UpdateShield", 1, 1);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 
-		if (inCombat) {
-
-			if (Time.time > rechargeTime) {
-				inCombat = false;
-				myStats.EnergyRegenPerSec = rechargeRate;
-			}
-
+		if (maxDamagePerSec < 9999) {
+			InvokeRepeating ("UpdateShield", 1, 1);
 		}
 	}
+
+	public void ApplyMaxDamageUpgrade(float max)
+	{maxDamagePerSec = max;
+		InvokeRepeating ("UpdateShield", 1, 1);
+	}
+
 
 	void UpdateShield()
 	{
 		damageAbsorbed = 0;
-		nextActionTime = Time.time + 1;
 	}
 
 	public float trigger(GameObject source,GameObject proj, UnitManager target,float damage)
@@ -73,59 +64,88 @@ public class DayexaShield : Ability,Modifier , Notify{
 	}
 
 	public void startRecharge()
-	{inCombat = true;
+	{
+		if (waiting != null) {
+			StopCoroutine (waiting);
+		}
+		myStats.setEnergyRegen(rechargeRate);
+
 	}
+
+
+
 	public void stopRecharge()
-	{inCombat = true;
+	{if (waiting == null) {
+			waiting = StartCoroutine (DeCharging());
+		}
 		rechargeTime = Time.time + RechargeDelay;
 	}
+
+
 
 	float lastShieldEffect;
 
 	public float modify(float amount, GameObject src, DamageTypes.DamageType theType)
-	{
-		//Debug.Log ("Taking damage : " + amount);
-		float energyLost = Mathf.Min ( Absorbtion, myStats.currentEnergy);
-
-		if (energyLost > amount) {
-			energyLost = amount;
+	{	
 		
-		}
-		float damageReduction = energyLost;
-		//Debug.Log ("Energy : " + energyLost);
-		//For the triton Max denergy lost per second upgrade
-		if (energyLost > 0) {
-			damageAbsorbed += energyLost;
-			if (damageAbsorbed > maxDamagePerSec) {
-				energyLost = 0;
+		if (myStats.currentEnergy > 0) {
+			float energyLost = Mathf.Min (Absorbtion, myStats.currentEnergy);
+
+			if (energyLost > amount) {
+				energyLost = amount;
+		
+			}
+			float damageReduction = energyLost;
+
+			//For the triton Max denergy lost per second upgrade
+			if (energyLost > 0) {
+				damageAbsorbed += energyLost;
+				if (damageAbsorbed > maxDamagePerSec) {
+					energyLost = 0;
+				}
+
 			}
 
+			rechargeTime = Time.time + RechargeDelay;
+			myStats.changeEnergy (-energyLost);
+
+			if (waiting == null) {
+				waiting = StartCoroutine (DeCharging ());
+			}
+
+
+			if (shieldEffect && damageReduction > 0 && lastShieldEffect < Time.time - .6f) {
+				lastShieldEffect = Time.time;
+
+				GameObject obj = (GameObject)Instantiate (shieldEffect, this.gameObject.transform.position, this.gameObject.transform.rotation, this.transform);
+			}
+			return (amount - damageReduction);
 		}
-
-
-
-		myStats.changeEnergy (-energyLost);
-
-
-		myStats.EnergyRegenPerSec = 0;
-		inCombat = true;
-		rechargeTime = Time.time + RechargeDelay;
-		if (shieldEffect && damageReduction > 0 && lastShieldEffect < Time.time-.6f) {
-			lastShieldEffect = Time.time;
-
-			GameObject obj = (GameObject)Instantiate (shieldEffect, this.gameObject.transform.position, this.gameObject.transform.rotation);
-			obj.transform.SetParent (this.gameObject.transform);
+		else {
+			return amount;
 		}
-		//Debug.Log ("Returning : " + (amount - energyLost));
-		return (amount - damageReduction);
 	}
 
 	public void changeAbsorption(float amount)
 	{
 		Absorbtion += amount;
 		Descripton = "[Passive]\nIncominng damage is reduced by " + Absorbtion + " as long as there is energy available. Regenerates " + rechargeRate + " energy per second out of combat.";
+	
+	}
 
-		
+	Coroutine waiting;
+
+	IEnumerator DeCharging()
+	{
+		yield return null;
+		myStats.setEnergyRegen(0);
+		while (Time.time < rechargeTime)
+			{
+			yield return null;
+			}
+		myStats.setEnergyRegen( rechargeRate);
+		waiting = null;
+
 	}
 
 	public override void setAutoCast(bool offOn){

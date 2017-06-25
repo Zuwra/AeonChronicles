@@ -21,12 +21,16 @@ public class GuiControls : MonoBehaviour {
 			commandPanel.enabled = !commandPanel.enabled;
 
 			if (commandPanel.enabled) {
-				myImage.sprite = minSprite;
+				if (minSprite) {
+					myImage.sprite = minSprite;
+				}
 			} else {
 				if (myImage == null) {
-					Debug.Log(this.gameObject.name + "   is null");
+					//Debug.Log (this.gameObject.name + "   is null");
 				}
-				myImage.sprite = MaxSprite;
+				else if (MaxSprite) {
+					myImage.sprite = MaxSprite;
+				}
 			}
 	
 		}

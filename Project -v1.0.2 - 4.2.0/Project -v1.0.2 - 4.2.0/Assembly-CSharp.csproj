@@ -63,10 +63,12 @@
      <Compile Include="Assets\AetherRelay.cs" />
      <Compile Include="Assets\AllDestroyed.cs" />
      <Compile Include="Assets\AllLevelAch.cs" />
+     <Compile Include="Assets\AngleWeapon.cs" />
      <Compile Include="Assets\ArmoryInteractor.cs" />
      <Compile Include="Assets\ArmyOfOneAch.cs" />
      <Compile Include="Assets\ArmyUIManager.cs" />
      <Compile Include="Assets\AttachGrinder.cs" />
+     <Compile Include="Assets\AttackMoveAngled.cs" />
      <Compile Include="Assets\AudioPlayer.cs" />
      <Compile Include="Assets\AugmentAetherVictory.cs" />
      <Compile Include="Assets\AugmentAttachPoint.cs" />
@@ -267,6 +269,7 @@
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\ParticleAn.cs" />
+     <Compile Include="Assets\Patrol.cs" />
      <Compile Include="Assets\PayLoadCreator.cs" />
      <Compile Include="Assets\PayLoadEndZone.cs" />
      <Compile Include="Assets\PayloadFirendlyEndZone.cs" />

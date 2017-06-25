@@ -49,7 +49,7 @@ public class IWeapon : MonoBehaviour {
 	private UnitManager PointSource;
 
 
-	private bool offCooldown = true;
+	protected bool offCooldown = true;
 
 	public List<Notify> triggers = new List<Notify> ();
 
@@ -175,26 +175,21 @@ public class IWeapon : MonoBehaviour {
 		return true;
 	}
 
-	public bool canAttack(UnitManager target)
+	public virtual bool canAttack(UnitManager target)
 	{
 
 		if (!offCooldown) {
-			//Debug.Log (Title + " On cooldown");
 			return false;}
 		if (!target) {
-			//	Debug.Log (Title + " No title");
 			return false;}
 	
-
-
 		foreach (Validator val in validators) {
 			if(val.validate(this.gameObject,target.gameObject) == false)
 			{
-				//Debug.Log ("Not valid");
 				return false;}
 		}
 
-			// Account for height advantage
+		// Account for height advantage
 		float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.CharController.radius ;
 
 		float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
@@ -207,10 +202,8 @@ public class IWeapon : MonoBehaviour {
 			{return false;	}
 		}
 
-		//offCooldown = false;
 		return true;
 	
-
 	}
 
 	public bool inRange(UnitManager target)
@@ -249,7 +242,7 @@ public class IWeapon : MonoBehaviour {
 		if (toStun && damagePoint > 0) {
 			toStun.cMover.changeSpeed (-1, 0, false, this);
 
-				StartCoroutine (ComeOffDamagePoint (damagePoint));
+			StartCoroutine (ComeOffDamagePoint (damagePoint));
 
 			PointSource = toStun;
 		}

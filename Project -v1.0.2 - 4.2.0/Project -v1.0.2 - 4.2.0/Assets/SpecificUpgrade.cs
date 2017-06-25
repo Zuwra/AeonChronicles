@@ -8,7 +8,7 @@ public class SpecificUpgrade : Upgrade {
 
 	override
 	public void applyUpgrade(GameObject obj)
-	{	Debug.Log ("Applying upper ");
+	{	
 	}
 
 	override

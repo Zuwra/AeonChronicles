@@ -137,7 +137,8 @@ public class UnitStats : MonoBehaviour {
 		// FIX THIS REPEATING INEUMERNATER
 		if (EnergyRegenPerSec > 0) {
 
-			StartCoroutine (HealthEnergy());
+			 setEnergyRegen (EnergyRegenPerSec);
+		//	StartCoroutine (HealthEnergy());
 		}
 		if (HealthRegenPerSec > 0) {
 			StartCoroutine (regenHealth());
@@ -147,9 +148,27 @@ public class UnitStats : MonoBehaviour {
 
 
 
-	IEnumerator HealthEnergy()
+	Coroutine EnergyUpdater;
+
+	public void setEnergyRegen(float amount)
+	{
+		EnergyRegenPerSec = amount;
+		if (amount == 0) {
+			if (EnergyUpdater != null) {
+				StopCoroutine (EnergyUpdater);
+			}
+		}
+		else if (EnergyUpdater == null) {
+			//Debug.Log ("Starting energy regen " + Time.time);
+			EnergyUpdater = StartCoroutine (EnergyReg ());
+		}
+	}
+
+
+	IEnumerator EnergyReg()
 	{
 		float regenPerHalfSecond = EnergyRegenPerSec / 2;
+
 		while(true){
 			yield return new WaitForSeconds (.5f);
 
@@ -498,14 +517,16 @@ public class UnitStats : MonoBehaviour {
 
 			amount = Math.Min (n, MaxEnergy - currentEnergy);
 			currentEnergy += amount;
-		} else {
+			updateEnergyBar ();
+		} 
+		else if(n < 0){
 			currentEnergy += n;
 			if (currentEnergy < 0) {
 				currentEnergy = 0;
 			}
+			updateEnergyBar ();
 		}
-
-		updateEnergyBar ();
+			
 		return amount;
 	}
 

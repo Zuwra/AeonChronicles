@@ -1,16 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CustomRVO.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GuiControls.cs">
     <Files>
-      <File FileName="Assets\GuiControls.cs" Line="1" Column="1" />
-      <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampTechCamManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\ShieldSpeedBoost.cs" Line="1" Column="1" />
-      <File FileName="Assets\ExpositionDisplayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\MegaMap.cs" Line="1" Column="1" />
-      <File FileName="Assets\MiniMapUIController.cs" Line="1" Column="1" />
-      <File FileName="Assets\CustomRVO.cs" Line="193" Column="10" />
-      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="8" Column="86" />
+      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="175" Column="15" />
+      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="331" Column="19" />
+      <File FileName="Assets\StandardInteract.cs" Line="123" Column="2" />
+      <File FileName="Assets\Scripts - In Game\AttckWhileMoveState.cs" Line="37" Column="5" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="340" Column="3" />
+      <File FileName="Assets\missileSalvo.cs" Line="424" Column="38" />
+      <File FileName="Assets\AttackMoveAngled.cs" Line="47" Column="1" />
+      <File FileName="Assets\AngleWeapon.cs" Line="12" Column="3" />
+      <File FileName="Assets\Prefabs\DaexaUnits\CoyoteMoveFireUpgrade.cs" Line="4" Column="44" />
+      <File FileName="Assets\SpecificUpgrade.cs" Line="14" Column="10" />
+      <File FileName="Assets\GuiControls.cs" Line="21" Column="49" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

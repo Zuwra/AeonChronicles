@@ -10,8 +10,14 @@ public class CoyoteMoveFireUpgrade : SpecificUpgrade{
 			UnitManager manager = obj.GetComponent<UnitManager> ();
 
 			if (manager) {
-				if (manager.UnitName == "Zephyr") {
+				if (manager.UnitName == "Manticore") {
 					obj.GetComponent<StandardInteract> ().attackWhileMoving = true;
+				} else if (manager.UnitName == "Zephyr") {
+				
+					foreach (AngleWeapon angle in manager.GetComponents<AngleWeapon>()) {
+						angle.angleOfAttack = 45;
+
+					}
 				}
 			}
 		}
@@ -23,7 +29,7 @@ public class CoyoteMoveFireUpgrade : SpecificUpgrade{
 			UnitManager manager = obj.GetComponent<UnitManager> ();
 
 			if (manager) {
-				if (manager.UnitName == "Zephyr") {
+				if (manager.UnitName == "Manticore") {
 					obj.GetComponent<StandardInteract> ().attackWhileMoving = false;
 				}
 			}

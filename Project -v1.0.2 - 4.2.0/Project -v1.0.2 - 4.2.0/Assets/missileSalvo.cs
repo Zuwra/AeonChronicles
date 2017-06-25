@@ -278,7 +278,8 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 		if (inLanding) {
 			return null;}
 
-		if (GetComponent<airmover> ().flyerHeight == 4 && inLanding) {
+		airmover air = GetComponent<airmover> ();
+		if (air && air.flyerHeight == 4 && inLanding) {
 			return new MoveState (padSpot + transform.forward * .25f, mymanager);
 		}
 	
