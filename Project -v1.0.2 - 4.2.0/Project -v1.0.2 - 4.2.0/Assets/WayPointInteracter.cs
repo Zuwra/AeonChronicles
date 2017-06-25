@@ -19,13 +19,13 @@ public class WayPointInteracter : StandardInteract {
 
 		if (s is DefaultState && next) {
 
-			Invoke ("giveOrder", .3f);
+			Invoke ("giveOrder", .01f);
 		}
 		return s;
 	}
 
 
-	void 	giveOrder()
+	void giveOrder()
 	{
 		WayPoint temp = next;
 		next = next.nextPoint (previous);

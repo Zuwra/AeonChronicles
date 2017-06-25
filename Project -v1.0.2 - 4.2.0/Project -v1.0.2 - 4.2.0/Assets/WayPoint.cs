@@ -7,7 +7,7 @@ public class WayPoint : MonoBehaviour {
 	public List<WayPoint> myFriends;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		foreach(WayPoint w in myFriends)
 		{
 			if (!w.myFriends.Contains (this)) {

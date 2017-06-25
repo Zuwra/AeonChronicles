@@ -21,11 +21,12 @@ public class AngleWeapon : IWeapon{
 				return false;}
 		}
 
-		if (angleOfAttack  == 0 || Vector3.Angle (transform.forward, ( target.transform.position - transform.position)) > angleOfAttack) {
+		if (myManager.getState () is AttckWhileMoveState) {
+			if (angleOfAttack == 0 || Vector3.Angle (transform.forward, (target.transform.position - transform.position)) > angleOfAttack) {
 			
-			return false;
+				return false;
+			}
 		}
-
 		// Account for height advantage
 		float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.CharController.radius ;
 

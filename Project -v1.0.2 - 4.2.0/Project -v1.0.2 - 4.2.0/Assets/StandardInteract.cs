@@ -121,7 +121,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	}
 	//Right click on the ground
 	public void Move(Order order)
-	{Debug.Log (" Ordering " + attackWhileMoving + "   " + myManager.myWeapon.Count);
+	{//Debug.Log (" Ordering " + attackWhileMoving + "   " + myManager.myWeapon.Count);
 		if (attackWhileMoving &&  myManager.myWeapon.Count >0) {
 			
 			myManager.changeState (new AttckWhileMoveState (order.OrderLocation, myManager),false,order.queued);
