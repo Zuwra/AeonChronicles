@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\WayPoint.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MiniMapIconer.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
@@ -9,13 +9,11 @@
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\missileSalvo.cs" Line="1" Column="1" />
       <File FileName="Assets\AttackMoveAngled.cs" Line="1" Column="1" />
-      <File FileName="Assets\AngleWeapon.cs" Line="23" Column="3" />
-      <File FileName="Assets\Prefabs\DaexaUnits\CoyoteMoveFireUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\SpecificUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\GuiControls.cs" Line="1" Column="1" />
-      <File FileName="Assets\RaceObjective.cs" Line="33" Column="4" />
-      <File FileName="Assets\VeteranStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\WayPoint.cs" Line="9" Column="16" />
+      <File FileName="Assets\AngleWeapon.cs" Line="1" Column="1" />
+      <File FileName="Assets\RaceObjective.cs" Line="17" Column="18" />
+      <File FileName="Assets\UnitAppear.cs" Line="34" Column="2" />
+      <File FileName="Assets\SurviveVictory.cs" Line="18" Column="25" />
+      <File FileName="Assets\MiniMapIconer.cs" Line="53" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

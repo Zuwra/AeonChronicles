@@ -7,18 +7,43 @@ public class RaceObjective : Objective {
 
 	public RaceObjective RootObj;
 
+	public float RaceStartTime;
+
 	public LineRenderer lineRend;
+	float startTime;
+	string rawObjectText;
 	void Start()
 	{
-		if (checkPoints != null) {
-			foreach (GameObject obj in checkPoints) {
-				RaceObjective racer = obj.AddComponent<RaceObjective> ();
-				racer.RootObj = this;
+		if (!RootObj) {
+			Debug.Log ("I am on " + gameObject);
+			startTime = Time.time;
+			VictoryTrigger.instance.addObjective (this);
+			rawObjectText = description;
+			if (checkPoints != null) {
+				foreach (GameObject obj in checkPoints) {
+					RaceObjective racer = obj.AddComponent<RaceObjective> ();
+					racer.RootObj = this;
+				}
 			}
+			InvokeRepeating ("UpdateObj", 1, 1);
+		}
+	}
+
+	public void UpdateObj()
+	{
+		float timeleft = RaceStartTime - (Time.time - startTime);
+		if (timeleft < 0) {
+			timeleft = 0;
 		}
 
-
+		description = rawObjectText + " " + Clock.convertToString(timeleft);
+		VictoryTrigger.instance.UpdateObjective (this);
+		if (timeleft < 0) {
+			complete ();
+			CancelInvoke ("UpdateObj");
+		}
 	}
+
 
 	public List<GameObject> checkPoints;
 

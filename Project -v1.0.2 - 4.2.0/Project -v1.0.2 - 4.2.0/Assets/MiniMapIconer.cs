@@ -22,7 +22,7 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 
 		foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
 
-			if (mini.enabled) {
+			if (mini && mini.enabled) {
 				myIcons.Add (mini.showUnitIcon (this.transform.position, myIcon));
 			}
 		}
@@ -53,7 +53,7 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 	{
 		foreach (GameObject obj in myIcons) {
 			foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
-				if (obj && mini.enabled) {
+				if (obj && mini && mini.enabled) {
 					mini.updateUnitPos(obj,this.transform.position);
 				}
 			}
