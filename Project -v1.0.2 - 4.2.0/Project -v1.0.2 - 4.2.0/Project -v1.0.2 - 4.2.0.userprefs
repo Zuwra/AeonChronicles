@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MiniMapIconer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\gravityWell.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
@@ -8,12 +8,12 @@
       <File FileName="Assets\Scripts - In Game\AttckWhileMoveState.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\missileSalvo.cs" Line="1" Column="1" />
-      <File FileName="Assets\AttackMoveAngled.cs" Line="1" Column="1" />
-      <File FileName="Assets\AngleWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\RaceObjective.cs" Line="17" Column="18" />
-      <File FileName="Assets\UnitAppear.cs" Line="34" Column="2" />
-      <File FileName="Assets\SurviveVictory.cs" Line="18" Column="25" />
-      <File FileName="Assets\MiniMapIconer.cs" Line="53" Column="3" />
+      <File FileName="Assets\ObjectiveTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapturableUnit.cs" Line="39" Column="3" />
+      <File FileName="Assets\Objective.cs" Line="15" Column="50" />
+      <File FileName="Assets\AreaDamage.cs" Line="38" Column="55" />
+      <File FileName="Assets\MiningSawDamager.cs" Line="126" Column="1" />
+      <File FileName="Assets\gravityWell.cs" Line="55" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

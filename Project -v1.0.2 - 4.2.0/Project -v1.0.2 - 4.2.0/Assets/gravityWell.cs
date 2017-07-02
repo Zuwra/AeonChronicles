@@ -30,7 +30,7 @@ public class gravityWell : MonoBehaviour, Modifier {
 	}
 
 	public float modify (float amount, GameObject source, DamageTypes.DamageType theType){
-		Debug.Log ("Modifying damage " + theType);
+	//	Debug.Log ("Modifying damage " + theType);
 		if (theType == DamageTypes.DamageType.Energy) {
 			return 0;
 		}	
@@ -53,6 +53,10 @@ public class gravityWell : MonoBehaviour, Modifier {
 		
 		}
 
+		AreaDamage area = other.GetComponent<AreaDamage> ();
+		if (area) {
+			Destroy (area.transform.root.gameObject);
+		}
 
 	}
 

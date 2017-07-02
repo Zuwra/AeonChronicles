@@ -64,6 +64,7 @@
      <Compile Include="Assets\AllDestroyed.cs" />
      <Compile Include="Assets\AllLevelAch.cs" />
      <Compile Include="Assets\AngleWeapon.cs" />
+     <Compile Include="Assets\AreaDamage.cs" />
      <Compile Include="Assets\ArmoryInteractor.cs" />
      <Compile Include="Assets\ArmyOfOneAch.cs" />
      <Compile Include="Assets\ArmyUIManager.cs" />

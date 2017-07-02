@@ -11,7 +11,7 @@ public class CapturableUnit : MonoBehaviour {
 	// and disable the FogOfWarUnitScript
 	// Set the Vision Range in the Unitmanger 5 more than what it should be,
 
-
+	public UnityEngine.Events.UnityEvent OnCapture;
 	public void capture()
 	{
 
@@ -37,6 +37,7 @@ public class CapturableUnit : MonoBehaviour {
 		GameManager.main.activePlayer.addUnit (man);
 		GameManager.main.activePlayer.addVeteranStat (man.myStats.veternStat);
 
+		OnCapture.Invoke ();
 		if (cutscene) {
 			GameObject.FindObjectOfType<MainCamera> ().setCutScene (this.gameObject.transform.position, 120);
 		}

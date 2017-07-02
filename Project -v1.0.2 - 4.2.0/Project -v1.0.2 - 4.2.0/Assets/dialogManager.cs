@@ -42,6 +42,8 @@ public class dialogManager : MonoBehaviour {
 			return RootPrafab.myCharacters [3];
 		case Character.Paradox:
 			return RootPrafab.myCharacters [4];
+		case Character.BackSlash:
+			return RootPrafab.myCharacters [5];
 
 		}
 
@@ -83,6 +85,4 @@ public class VoiceInstance
 
 }
 
-public enum Character{ Hadrian, Katrina, Jarvis, Ludacrus, Paradox }
-
-
+public enum Character{ Hadrian, Katrina, Jarvis, Ludacrus, Paradox, BackSlash } //Backslash has a sidekick named tilda
