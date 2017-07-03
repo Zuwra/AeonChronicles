@@ -65,20 +65,20 @@ public class DayexaShield : Ability,Modifier , Notify{
 
 	public void startRecharge()
 	{
-		if (waiting != null) {
-			StopCoroutine (waiting);
+		if (currentCharging != null) {
+			StopCoroutine (currentCharging);
 		}
-		myStats.setEnergyRegen(rechargeRate);
+			currentCharging = StartCoroutine (chargeShields (.1f));
 
 	}
 
 
 
 	public void stopRecharge()
-	{if (waiting == null) {
-			waiting = StartCoroutine (DeCharging());
+	{
+		if (currentCharging != null) {
+			StopCoroutine (currentCharging);
 		}
-		rechargeTime = Time.time + RechargeDelay;
 	}
 
 
@@ -106,12 +106,13 @@ public class DayexaShield : Ability,Modifier , Notify{
 
 			}
 
-			rechargeTime = Time.time + RechargeDelay;
 			myStats.changeEnergy (-energyLost);
 
-			if (waiting == null) {
-				waiting = StartCoroutine (DeCharging ());
+
+			if (currentCharging != null) {
+				StopCoroutine (currentCharging);
 			}
+			currentCharging = StartCoroutine (chargeShields (RechargeDelay));
 
 
 			if (shieldEffect && damageReduction > 0 && lastShieldEffect < Time.time - .6f) {
@@ -132,21 +133,7 @@ public class DayexaShield : Ability,Modifier , Notify{
 		Descripton = "[Passive]\nIncominng damage is reduced by " + Absorbtion + " as long as there is energy available. Regenerates " + rechargeRate + " energy per second out of combat.";
 	
 	}
-
-	Coroutine waiting;
-
-	IEnumerator DeCharging()
-	{
-		yield return null;
-		myStats.setEnergyRegen(0);
-		while (Time.time < rechargeTime)
-			{
-			yield return null;
-			}
-		myStats.setEnergyRegen( rechargeRate);
-		waiting = null;
-
-	}
+		
 
 	public override void setAutoCast(bool offOn){
 	}
@@ -164,6 +151,18 @@ public class DayexaShield : Ability,Modifier , Notify{
 	public void Activate()
 	{
 		//return true;//next unit should also do this.
+	}
+
+	Coroutine currentCharging;
+
+	IEnumerator chargeShields(float delay)
+	{
+		yield return new WaitForSeconds (delay);
+		while(true){
+
+			myStats.changeEnergy (rechargeRate / 2);
+			yield return new WaitForSeconds (.5f);
+			}
 	}
 
 }

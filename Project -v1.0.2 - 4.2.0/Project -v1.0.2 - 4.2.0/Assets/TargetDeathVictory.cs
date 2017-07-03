@@ -5,6 +5,13 @@ using System.Collections.Generic;
 public class TargetDeathVictory : Objective {
 
 	public List<GameObject> targets = new List<GameObject> ();
+	public List<VoiceTrigger> VoiceTriggers;
+
+	[System.Serializable]
+	public struct VoiceTrigger{
+		public int numDied;
+		public int VoiceLine;
+	}
 
 	string initialDescription;
 	int totalTargetCount;
@@ -39,8 +46,7 @@ public class TargetDeathVictory : Objective {
 
 
 	public void IDied(GameObject obj)
-	{//Debug.Log ("I died " + obj.name);
-		
+	{
 		targets.RemoveAll(item => item == null);
 		if (targets.Contains (obj)) {
 			targets.Remove (obj);
@@ -48,6 +54,14 @@ public class TargetDeathVictory : Objective {
 		}
 		if (totalTargetCount > 1) {
 			int targetsKilled = totalTargetCount - targets.Count;
+
+			foreach (VoiceTrigger trig in VoiceTriggers) {
+
+				if (targetsKilled == trig.numDied) {
+					dialogManager.instance.playLine (trig.VoiceLine);
+				}
+			}
+
 			description = initialDescription + "  " +targetsKilled + "/" + totalTargetCount;
 			VictoryTrigger.instance.UpdateObjective (this);
 		}

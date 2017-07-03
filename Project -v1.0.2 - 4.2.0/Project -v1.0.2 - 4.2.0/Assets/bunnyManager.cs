@@ -82,7 +82,7 @@ public class bunnyManager : MonoBehaviour {
 			myPanel.color = green;
 		}
 
-		bunnyCount.text = "Vicious Bunny Count \n" + currAmount + " / " + maxAmount;
+		bunnyCount.text = "Vicious Bunnies Left \n" + currAmount + " / " + maxAmount;
 
 		if (currAmount >= maxAmount) {
 			VictoryTrigger.instance.Lose();

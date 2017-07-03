@@ -4,7 +4,8 @@ using UnityEngine;
 using System.Collections;
 
 public class sPoint : MonoBehaviour {
-	
+
+
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.yellow;

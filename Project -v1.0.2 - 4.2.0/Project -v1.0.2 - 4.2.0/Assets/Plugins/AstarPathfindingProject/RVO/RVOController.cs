@@ -163,15 +163,67 @@ namespace Pathfinding.RVO {
 			tr = transform;
 
 			// Find the RVOSimulator in this scene
-			cachedSimulator = cachedSimulator ?? FindObjectOfType(typeof(RVOSimulator)) as RVOSimulator;
+			cachedSimulator = cachedSimulator ?? FindObjectOfType (typeof(RVOSimulator)) as RVOSimulator;
 			if (cachedSimulator == null) {
 				cachedSimulator = GameObject.FindObjectOfType<RVOSimulator> ();
 			}
 			if (cachedSimulator == null) {
-				Debug.LogError("No RVOSimulator component found in the scene. Please add one.");
+				Debug.LogError ("No RVOSimulator component found in the scene. Please add one.");
 			} else {
-				simulator = cachedSimulator.GetSimulator();
+				simulator = cachedSimulator.GetSimulator ();
 			}
+		}
+
+
+		void Start(){
+			Vector3 realPos = rvoAgent.InterpolatedPosition;
+			realPos.y = adjustedY;
+
+			if (mask != 0 && Physics.Raycast (realPos + Vector3.up * height * 10f, Vector3.down, out hit, 55, mask)) {
+					//	Debug.Log ("Hitting " + hit.collider);
+				adjustedY = hit.point.y;
+			} else {
+				adjustedY = 0;
+			}
+
+			realPos.y = adjustedY;
+
+			rvoAgent.SetYPosition(adjustedY);
+
+			Vector3 force = Vector3.zero;
+
+			if (wallAvoidFalloff > 0 && wallAvoidForce > 0) {
+				List<ObstacleVertex> obst = rvoAgent.NeighbourObstacles;
+
+				if (obst != null) for (int i = 0; i < obst.Count; i++) {
+						Vector3 a = obst[i].position;
+						Vector3 b = obst[i].next.position;
+
+						Vector3 closest = position - VectorMath.ClosestPointOnSegment(a, b, position);
+
+						if (closest == a || closest == b) continue;
+
+						float dist = closest.sqrMagnitude;
+						closest /= dist*wallAvoidFalloff;
+						force += closest;
+					}
+			}
+				
+			rvoAgent.DesiredVelocity = desiredVelocity + force*wallAvoidForce;
+
+			tr.position = realPos + Vector3.up*height*0.5f - center;
+
+
+
+
+			/*
+
+			if (mask != 0 && Physics.Raycast (Vector3.up * height * 10f, Vector3.down, out hit, 55, mask)) {
+				//	Debug.Log ("Hitting " + hit.collider);
+				//Debug.Log(hit.point.y +"   "+ height*0.5f +"   "+ center.y + "  "+ hit.collider.gameObject);
+				adjustedY = hit.point.y + height*0.5f + center.y;
+				transform.position = new Vector3 (transform.position.x, adjustedY, transform.position.z);
+			}*/
 		}
 
 		public void OnEnable () {

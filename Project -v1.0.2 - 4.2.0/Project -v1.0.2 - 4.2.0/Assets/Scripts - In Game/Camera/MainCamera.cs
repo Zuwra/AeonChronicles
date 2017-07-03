@@ -61,6 +61,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	void Start () 
 	{	if (StartPoint == null) {
 			StartPoint = GameObject.FindObjectOfType<sPoint> ().gameObject;
+
 		}
 		//Set up camera position
 		if (StartPoint != null)
@@ -175,6 +176,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 	{
 		if (StartPoint != null) {
 			transform.position = new Vector3 (StartPoint.transform.position.x, transform.position.y, StartPoint.transform.position.z - AngleOffset);
+			//Debug.Log ("Start Should be " + new Vector3 (StartPoint.transform.position.x, transform.position.y, StartPoint.transform.position.z - AngleOffset));
 		}
 	}
 	public void generalMove(Vector3 input){

@@ -79,6 +79,7 @@ public class WaveManager : MonoBehaviour {
 
 
 		} else {
+			waveOption = container.getWave (ReplayWaves [UnityEngine.Random.Range (0, ReplayWaves.Count)]);
 			CurrentWaves = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ()
 				.getWave (FirstPlayWaveType).waveRampUp;
 		}
@@ -132,8 +133,9 @@ public class WaveManager : MonoBehaviour {
 
 
 			foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
-				
-				mini.showWarning (this.transform.position);
+				if (mini) {
+					mini.showWarning (this.transform.position);
+				}
 			}
 
 

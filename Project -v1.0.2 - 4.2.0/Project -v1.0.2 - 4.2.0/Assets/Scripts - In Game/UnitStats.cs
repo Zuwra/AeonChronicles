@@ -502,7 +502,7 @@ public class UnitStats : MonoBehaviour {
 	}
 
 	public float changeEnergy(float n)
-	{
+	{Debug.Log ("Recharging " + n);
 		if (MaxEnergy == 0) {
 		
 			return 0;}

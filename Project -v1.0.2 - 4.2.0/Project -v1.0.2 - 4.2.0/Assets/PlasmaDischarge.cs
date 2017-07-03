@@ -38,7 +38,7 @@ public class PlasmaDischarge : Ability {
 
 		} else if (on) {
 			if (popUp) {
-				popUp.GetComponentInChildren<Text> ().text = ""+(int)((duration - (timer - Time.time)) * damagePerSecond);
+				popUp.GetComponent<TextMesh> ().text = ""+(int)((duration - (timer - Time.time)) * damagePerSecond);
 			}
 		}
 

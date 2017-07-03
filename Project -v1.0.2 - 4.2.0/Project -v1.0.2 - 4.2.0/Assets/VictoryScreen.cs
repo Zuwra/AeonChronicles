@@ -89,7 +89,7 @@ public class VictoryScreen : MonoBehaviour {
 			float lowestScore = 1;
 			float lowestHealing = 1;
 			float lowestTank = 1;
-			Debug.Log ("Count is " + vetStats.Count);
+		//	Debug.Log ("Count is " + vetStats.Count);
 
 			foreach (VeteranStats stat in vetStats) {
 
