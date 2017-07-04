@@ -55,7 +55,7 @@ public class LandMineActivate : MonoBehaviour {
 			}
 			else
 			{amount = otherManager.getUnitStats ().TakeDamage (currentDamage,null,DamageTypes.DamageType.True);}
-
+			PlayerPrefs.SetInt ("TotalPlasmaMineDamage", PlayerPrefs.GetInt("TotalPlasmaMineDamage") +  (int)amount);
 			Instantiate (explosionEffect, this.gameObject.transform.position, Quaternion.identity);
 			Destroy (this.gameObject);
 

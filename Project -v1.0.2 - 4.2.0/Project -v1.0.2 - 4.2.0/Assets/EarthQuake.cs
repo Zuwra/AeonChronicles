@@ -66,7 +66,7 @@ public class EarthQuake : MonoBehaviour {
 			if (survival) {
 				survival.increaseWait ();
 			}
-
+			PlayerPrefs.SetInt ("EarthQuake", PlayerPrefs.GetInt ("EarthQuake") + 1);
 			if (QuakeBuilding) {
 				QuakeBuilding.GetComponentInChildren<Animator> ().SetTrigger("Pulse");}
 

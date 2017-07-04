@@ -15,7 +15,7 @@ public class KillUnitAch :Achievement {
 
 	public override void CheckEnd ()
 	{
-
+		if (!IsAccomplished ()) {
 			int counter = 0;
 
 			foreach (VeteranStats vets in  GameObject.FindObjectOfType<GameManager> ().playerList[1].getVeteranStats()) {
@@ -30,7 +30,7 @@ public class KillUnitAch :Achievement {
 			if (total >= MinNumber) {
 				Accomplished ();
 			}
-
+		}
 
 	}
 

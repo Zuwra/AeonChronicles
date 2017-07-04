@@ -45,7 +45,7 @@ public class barrierShield : MonoBehaviour {
 		GetComponent<Collider> ().enabled = false;
 		yield return new WaitForSeconds (1.9f);
 
-		PlayerPrefs.SetInt ("TotalBarrierBlocked", (int)TotalAbsorbed);
+		PlayerPrefs.SetInt ("TotalBarrierBlocked", PlayerPrefs.GetInt("TotalBarrierBlocked") +  (int)TotalAbsorbed);
 		Destroy (this.gameObject);
 	}
 

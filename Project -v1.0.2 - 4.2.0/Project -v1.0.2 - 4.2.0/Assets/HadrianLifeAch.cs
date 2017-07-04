@@ -3,7 +3,10 @@ using System.Collections;
 
 public class HadrianLifeAch : Achievement{
 
-
+	public string UnitName;
+	public float maxDamage;
+	public int levelNum;
+	public int lowestDifficulty;
 	public override string GetDecription()
 	{return Description;
 	}
@@ -15,14 +18,23 @@ public class HadrianLifeAch : Achievement{
 	public override void CheckEnd (){
 		if (!IsAccomplished ()) {
 			//Debug.Log ("level " + GameObject.FindObjectOfType<VictoryTrigger> ().levelNumber == 0 +"     difficulty " + LevelData.getDifficulty ());
-			if (GameObject.FindObjectOfType<VictoryTrigger> ().levelNumber == 0 && LevelData.getDifficulty () > 1) {
-				GameObject had = GameObject.Find ("Hadrian");
+			if (GameObject.FindObjectOfType<VictoryTrigger> ().levelNumber != levelNum || LevelData.getDifficulty() < lowestDifficulty) {
+				return;
 
-				if (had && had.GetComponent<UnitStats>().health >= 450) {
+			}
+			float totalDamage = 0;
+			foreach (VeteranStats vets in  GameObject.FindObjectOfType<GameManager> ().playerList[0].getUnitStats()) {
+				if (vets.UnitName == UnitName) {
+					totalDamage += vets.damageTaken;
 
-					Accomplished ();
+					if (vets.damageTaken <= maxDamage) {
+						Accomplished ();
+					}
+
 				}
-
+			}
+			if (totalDamage <= maxDamage) {
+				Accomplished ();
 			}
 		}
 	}

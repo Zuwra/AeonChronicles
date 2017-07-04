@@ -128,6 +128,7 @@
      <Compile Include="Assets\DataChecker.cs" />
      <Compile Include="Assets\DayFFUpgrade.cs" />
      <Compile Include="Assets\DayexaShield.cs" />
+     <Compile Include="Assets\DeathCubeAchievement.cs" />
      <Compile Include="Assets\DeathCubeVulnerable.cs" />
      <Compile Include="Assets\DeathWinTrigger.cs" />
      <Compile Include="Assets\DeployTurret.cs" />
@@ -169,6 +170,7 @@
      <Compile Include="Assets\Effects\BasicBeamShot\Script\ShotParticle_Scale.cs" />
      <Compile Include="Assets\Effects\Elemental Free\Scripts\GE_ELF_Demo.cs" />
      <Compile Include="Assets\Effects\LightningBolt\LightningBoltScript.cs" />
+     <Compile Include="Assets\EggAchievement.cs" />
      <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\EnableAbility.cs" />
      <Compile Include="Assets\EnemySearchAI.cs" />
@@ -261,8 +263,11 @@
      <Compile Include="Assets\NewUnitPanel.cs" />
      <Compile Include="Assets\NewUnitTrigger.cs" />
      <Compile Include="Assets\NimbusAch.cs" />
+     <Compile Include="Assets\NoBuildingDeadAchievement.cs" />
      <Compile Include="Assets\NoDreadAch.cs" />
+     <Compile Include="Assets\NumberCheckAcheivement.cs" />
      <Compile Include="Assets\OathFury.cs" />
+     <Compile Include="Assets\ObjectExistAchievement.cs" />
      <Compile Include="Assets\Objective.cs" />
      <Compile Include="Assets\ObjectiveManager.cs" />
      <Compile Include="Assets\ObjectiveTrigger.cs" />
@@ -435,6 +440,7 @@
      <Compile Include="Assets\SimpleSpawner.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />
+     <Compile Include="Assets\SoloKillAchievement.cs" />
      <Compile Include="Assets\SoundManager\Demo\SoundManagerDemo.cs" />
      <Compile Include="Assets\SoundManager\SoundManager.cs" />
      <Compile Include="Assets\SoundOptions.cs" />
@@ -486,6 +492,7 @@
      <Compile Include="Assets\UnitCardCreater.cs" />
      <Compile Include="Assets\UnitDisappear.cs" />
      <Compile Include="Assets\UnitEnterTrigger.cs" />
+     <Compile Include="Assets\UnitExistAchievement.cs" />
      <Compile Include="Assets\UnitIconInfo.cs" />
      <Compile Include="Assets\UnitLostDefeat.cs" />
      <Compile Include="Assets\UnitProduction.cs" />
