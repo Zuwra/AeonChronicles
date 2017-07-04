@@ -35,7 +35,7 @@ public class airmover : IMover {
 	override
 	public void stop()
 	{GetComponent<UnitManager> ().animStop();
-		speed = .1f;
+		myspeed = .1f;
 	}
 
 	override
@@ -50,15 +50,15 @@ public class airmover : IMover {
 
 		float tempDist = Vector3.Distance (transform.position, targetPosition);
 		if (tempDist <= nextWaypointDistance) {
-			speed = 0;
+			myspeed = 0;
 			//Debug.Log ("Returnin 2 ");
 			return true;
 		}
-		if (speed < getMaxSpeed()) {
-			speed += .1f * acceleration;
+		if (myspeed< getMaxSpeed()) {
+			myspeed += .1f * acceleration;
 
-			if (speed > getMaxSpeed()) {
-				speed = getMaxSpeed();
+			if (myspeed > getMaxSpeed()) {
+				myspeed = getMaxSpeed();
 			}
 
 		}
@@ -70,7 +70,7 @@ public class airmover : IMover {
 
 		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, 1 << 8)) {
 
-			dir.y -= Time.deltaTime *  (this.gameObject.transform.position.y -(objecthit.point.y + flyerHeight) ) *(speed/8) * Mathf.Min(3, tempDist);
+			dir.y -= Time.deltaTime *  (this.gameObject.transform.position.y -(objecthit.point.y + flyerHeight) ) *(myspeed/8) * Mathf.Min(3, tempDist);
 
 		
 
@@ -86,7 +86,7 @@ public class airmover : IMover {
 			dir -= this.gameObject.transform.TransformDirection (Vector3.right) * dirNum;
 		
 		}
-		dir *= speed * Time.deltaTime;
+		dir *= myspeed * Time.deltaTime;
 
 		controller.Move (dir);
 		//Debug.Log ("air movin " + dir);
@@ -140,8 +140,8 @@ public class airmover : IMover {
 			
 
 		//Debug.Log ("Moving to " + location + "   but acvtually " + targetPosition);
-		if (speed == 0) {
-			speed = .1f;
+		if (myspeed == 0) {
+			myspeed = .1f;
 		}
 		//targetPosition = location + Vector3.up * flyerHeight;
 	//Debug.Log ("Target is " + location);

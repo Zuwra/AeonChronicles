@@ -55,7 +55,11 @@ public class FlatDamageBoost : MonoBehaviour, Modifier {
 			enemies.Add (manage.myStats);
 			//Debug.Log ("Adding modifer");
 			manage.myStats.addModifier (this);
+
+
 			Buff buff = manage.gameObject.AddComponent<Buff> ();
+			buff.name = "Flat Damaged"; 
+			buff.source = this.gameObject;
 			buff.HelpIcon = DebuffIcon;
 			buff.toolDescription = "This unit takes an extra " + FlatDamageIncrease + ""+ (PercDamageIncrease*100)+"%" +" Damage from each enemy attack.";
 			buff.applyDebuff();
@@ -85,7 +89,7 @@ public class FlatDamageBoost : MonoBehaviour, Modifier {
 			manage.myStats.removeModifier (this);
 
 			foreach (Buff b in manage.gameObject.GetComponents<Buff>()) {
-				if (b.name == "Flat Damaged") {
+				if (b.source == this.gameObject) {
 					b.removeDebuff ();
 					Destroy (b);
 				}
@@ -99,7 +103,7 @@ public class FlatDamageBoost : MonoBehaviour, Modifier {
 		foreach (UnitStats stat in enemies) {
 			if (stat) {
 				foreach (Buff b in stat.gameObject.GetComponents<Buff>()) {
-					if (b.name == "Flat Damaged") {
+					if (b.source == this.gameObject) {
 						b.removeDebuff ();
 						Destroy (b);
 					}

@@ -102,7 +102,7 @@ public class AttackMoveState : UnitState {
 			}
 			//Debug.Log ("After attack "+ "   " + Time.time);
 			if (!attacked) {
-				if (myManager.cMover.speed == 0) {
+				if (myManager.cMover.myspeed == 0) {
 					myManager.cMover.resetMoveLocation (enemy.transform.position);
 				}
 			

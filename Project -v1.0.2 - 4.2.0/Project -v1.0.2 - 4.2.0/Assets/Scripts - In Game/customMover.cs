@@ -92,7 +92,7 @@ public class customMover : IMover {
 			}
 			return true;}
 		if (currentWaypoint >= path.vectorPath.Count) {
-			speed = 0;
+			myspeed = 0;
 			
 			path = null;
 			pathSet = false;
@@ -102,11 +102,11 @@ public class customMover : IMover {
 			}
 			return true;
 		}
-		if (speed < getMaxSpeed()) {
-			speed += .1f * acceleration;
+		if (myspeed < getMaxSpeed()) {
+			myspeed += .1f * acceleration;
 			
-			if (speed > getMaxSpeed()) {
-				speed = getMaxSpeed();
+			if (myspeed > getMaxSpeed()) {
+				myspeed = getMaxSpeed();
 			}
 		}
 		//Direction to the next waypoint
@@ -114,9 +114,9 @@ public class customMover : IMover {
 	
 
 		if (myRVO) {
-			myRVO.Move (dir * speed);
+			myRVO.Move (dir * myspeed);
 		} else {
-			dir *= speed * Time.deltaTime;
+			dir *= myspeed * Time.deltaTime;
 			controller.Move (dir);
 		}
 		if (myFogger) {

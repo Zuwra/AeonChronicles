@@ -11,18 +11,15 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 	List<GameObject> myIcons = new List<GameObject>();
 
 	// Use this for initialization
-	void Start () {
+	IEnumerator Start () {
 
-		Invoke ("AddIcon", 1f);
-	}
-
-	void AddIcon()
-	{
+		yield return new WaitForSeconds (1);
 		GetComponent<UnitStats> ().addDeathTrigger (this);
 
 		foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
 
-			if (mini && mini.enabled) {
+			if (mini) {
+				Debug.Log ("Adding MiniIcon");
 				myIcons.Add (mini.showUnitIcon (this.transform.position, myIcon));
 			}
 		}
@@ -30,8 +27,8 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 		if (updateRate > 0) {
 			InvokeRepeating ("updatePosition", updateRate, updateRate);
 		}
-
 	}
+
 
 
 
@@ -40,7 +37,8 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 	{
 		foreach (GameObject obj in myIcons) {
 			foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
-				if (obj && mini.enabled) {
+				if (obj) {
+					Debug.Log ("I died");
 					mini.deleteUnitIcon (obj);
 				}
 			}
@@ -51,6 +49,7 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 
 	void updatePosition()
 	{
+		//Debug.Log ("Updating Position");
 		foreach (GameObject obj in myIcons) {
 			foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
 				if (obj && mini && mini.enabled) {

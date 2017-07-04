@@ -14,15 +14,6 @@ public class SpeedUpgrade  : Upgrade {
 		public float percAmount;
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	override
 	public void applyUpgrade (GameObject obj){

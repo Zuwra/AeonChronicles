@@ -303,7 +303,6 @@
      <Compile Include="Assets\RepairUpgrade.cs" />
      <Compile Include="Assets\ResearchUpgrade.cs" />
      <Compile Include="Assets\ResourceGenerator.cs" />
-     <Compile Include="Assets\Resources\mortarPod.cs" />
      <Compile Include="Assets\RoamAI.cs" />
      <Compile Include="Assets\RocketBooster.cs" />
      <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\DebugPass.cs" />
@@ -425,6 +424,7 @@
      <Compile Include="Assets\Scripts - In Game\WarpCore.cs" />
      <Compile Include="Assets\Scripts - In Game\bobble.cs" />
      <Compile Include="Assets\Scripts - In Game\customMover.cs" />
+     <Compile Include="Assets\Scripts - In Game\mortarPod.cs" />
      <Compile Include="Assets\Scripts - In Game\rotater.cs" />
      <Compile Include="Assets\Scripts - In Game\turret.cs" />
      <Compile Include="Assets\SelectionNotifier.cs" />
@@ -555,7 +555,7 @@
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_Pr_D_S_ST.shader" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
-     <None Include="Assets\Resources\ANimations\Materials\OutlineShader.shader" />
+     <None Include="Assets\ArtResources\ANimations\Materials\OutlineShader.shader" />
      <None Include="Assets\AstarPathfindingEditor\Editor\EditorAssets\Materials\Navmesh.shader" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_St_N_ST.shader" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\Mobile\SFS_M_NS.shader" />
@@ -582,7 +582,6 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
      <None Include="Assets\Environment\Planets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetNoiseGenerator.compute" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\Terrain\SFS_TeA_St.shader" />
-     <None Include="Assets\Resources\Fonts\pieces_of_eight\Alt Map.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\VignetteShader.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
@@ -604,14 +603,13 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\SSAA.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\RadialBlur.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
-     <None Include="Assets\Resources\Fonts\oh_no\License - READ THIS.txt" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_Pr_D__S.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_St_Nt_S.shader" />
      <None Include="Assets\Effects\BasicBeamShot\sh\Add_UVScroll_sh.shader" />
-     <None Include="Assets\Resources\Fonts\thundercover\License.txt" />
+     <None Include="Assets\ArtResources\Fonts\thundercover\License.txt" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_St_N.shader" />
      <None Include="Assets\FogOfWar\Resources\FogOfWarShader.shader" />
      <None Include="Assets\Environment\Planets\HeyBlairGames\PlanetTextureGenerator\Runtime\PlanetSpecular.shader" />
@@ -629,7 +627,7 @@
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\Terrain\SFS_TeA_D.shader" />
      <None Include="Assets\Plugins\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\Mobile\SFS_M_D.shader" />
-     <None Include="Assets\Resources\Fonts\caracas2\Licence - Licencia.txt" />
+     <None Include="Assets\ArtResources\Fonts\caracas2\Licence - Licencia.txt" />
      <None Include="Assets\Effects\BasicBeamShot\HowToUse_JP.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\Plugins\dependencies.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
@@ -732,7 +730,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
      <None Include="Assets\Effects\BasicBeamShot\sh\AddColor_sh.shader" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_Pr_N.shader" />
-     <None Include="Assets\Resources\Fonts\caracas2\MODO DE INSTALLACION.txt" />
+     <None Include="Assets\ArtResources\Fonts\caracas2\MODO DE INSTALLACION.txt" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_St_Dt.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
      <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
@@ -740,10 +738,9 @@
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_Pr_Nt.shader" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_Pr_D_S_S.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
-     <None Include="Assets\Resources\Fonts\pieces_of_eight\readme.txt" />
      <None Include="Assets\Effects\BasicBeamShot\HowToUse_EN.txt" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_Pr_N_S_D.shader" />
-     <None Include="Assets\Resources\Fonts\prototype\Prototype.txt" />
+     <None Include="Assets\ArtResources\Fonts\prototype\Prototype.txt" />
      <None Include="Assets\Plugins\AstarPathfindingProject\link.xml" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_St_Dt_S.shader" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_St_N_S_ST.shader" />

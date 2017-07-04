@@ -32,7 +32,7 @@ public class evasiveMenuvers : Ability,Modifier{
 		{
 		int rand = Random.Range (0, 100);
 		//Debug.Log ("Current move speed is " + mover.speed);
-		if (rand <= mover.speed * chanceMultiplier) {
+		if (rand <= mover.myspeed * chanceMultiplier) {
 
 
 			amount = 0;

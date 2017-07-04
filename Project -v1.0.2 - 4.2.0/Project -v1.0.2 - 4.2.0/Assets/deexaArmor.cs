@@ -13,7 +13,7 @@ public class deexaArmor : Upgrade
 
         UnitManager manager = obj.GetComponent<UnitManager>();
 
-        if (!manager.myStats.isUnitType(UnitTypes.UnitTypeTag.Structure))
+		if (!manager.myStats.isUnitType(UnitTypes.UnitTypeTag.Structure) || manager.UnitName == "Augmentor")
         {
             obj.GetComponent<UnitStats>().armor += 1;
         }

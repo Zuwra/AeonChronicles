@@ -7,7 +7,7 @@ public abstract class IMover: MonoBehaviour {
 
 
 
-	public float speed = 0;
+	public float myspeed = 0;
 	public float acceleration;
 	public float MaxSpeed = 10;
 	public float initialSpeed;
@@ -107,8 +107,8 @@ public abstract class IMover: MonoBehaviour {
 
 
 		MaxSpeed = tempspeed;
-		if (speed > MaxSpeed) {
-			speed = MaxSpeed;}
+		if (myspeed > MaxSpeed) {
+			myspeed = MaxSpeed;}
 		
 		RVOController rvo = GetComponent<RVOController> ();
 		if (rvo) {

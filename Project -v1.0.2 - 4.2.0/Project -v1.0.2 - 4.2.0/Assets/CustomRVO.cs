@@ -165,7 +165,7 @@ public class CustomRVO : IMover {
 
 
 		if (currentWaypoint >= path.vectorPath.Count) {
-			speed = 0;
+			myspeed = 0;
 
 		
 			path = null;
@@ -178,17 +178,17 @@ public class CustomRVO : IMover {
 			return true;
 		}
 
-		if (speed < getMaxSpeed()) {
-			speed += acceleration * Time.deltaTime;
+		if (myspeed < getMaxSpeed()) {
+			myspeed += acceleration * Time.deltaTime;
 
-			if (speed > getMaxSpeed()) {
-				speed =  getMaxSpeed();
+			if (myspeed > getMaxSpeed()) {
+				myspeed =  getMaxSpeed();
 			}
 		}
 
 		//Direction to the next waypoint
 	
-		Vector3 dir = (path.vectorPath[currentWaypoint]-this.transform.position).normalized * speed;
+		Vector3 dir = (path.vectorPath[currentWaypoint]-this.transform.position).normalized * myspeed;
 		if (myFogger) {
 			myFogger.move ();
 		}

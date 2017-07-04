@@ -22,8 +22,7 @@ public class WayPointInteracter : StandardInteract {
 	public override UnitState computeState(UnitState s)
 	{
 
-
-		if (s is DefaultState && next  && startTime - Time.timeSinceLevelLoad > 1) {
+		if (s is DefaultState && next  &&  Time.timeSinceLevelLoad - startTime  > 1) {
 			
 			Invoke ("giveOrder", .01f);
 		}

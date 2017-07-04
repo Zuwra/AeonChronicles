@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
 
 
-
 	public RaceManager[] playerList = new RaceManager[3];
 	public int playerNumber;
 	public RaceManager activePlayer;
