@@ -462,6 +462,7 @@
      <Compile Include="Assets\TextChanger.cs" />
      <Compile Include="Assets\TextHolder.cs" />
      <Compile Include="Assets\TextTrigger.cs" />
+     <Compile Include="Assets\Thornmail.cs" />
      <Compile Include="Assets\ThrasherBlade.cs" />
      <Compile Include="Assets\TimeDelayTrigger.cs" />
      <Compile Include="Assets\TimedObjective.cs" />

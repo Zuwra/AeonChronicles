@@ -10,6 +10,7 @@ public class IWeapon : MonoBehaviour {
 	public Sprite myIcon;
 	public UnitManager myManager;
 	public MultiShotParticle fireEffect;
+	public GameObject OnHitEffect;
 	public AudioClip attackSoundEffect;
 	protected AudioSource audioSrc;
 	public Animator myAnimator;
@@ -340,7 +341,10 @@ public class IWeapon : MonoBehaviour {
 			if (fireEffect) {
 				fireEffect.playEffect ();
 			}
-		
+			if (OnHitEffect) {
+				
+				Instantiate (OnHitEffect, target.transform.position, Quaternion.identity);
+			}
 
 		}
 

@@ -413,6 +413,10 @@ public class UnitStats : MonoBehaviour {
 
 	}
 
+	/// <summary>
+	/// Adds this amount of damage done to this guys DamageDealt or to its host if its a turret
+	/// </summary>
+	/// <param name="amount">Amount.</param>
 	public void veteranDamage(float amount)
 	{
 		if (otherTags.Contains (UnitTypes.UnitTypeTag.Turret)) {

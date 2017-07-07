@@ -16,6 +16,24 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 		yield return new WaitForSeconds (1);
 		GetComponent<UnitStats> ().addDeathTrigger (this);
 
+		OnEnable ();
+	}
+
+	void OnDisable()
+	{
+		foreach (GameObject obj in myIcons) {
+			foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
+				if (obj) {
+					Debug.Log ("I died");
+					mini.deleteUnitIcon (obj);
+				}
+			}
+		}
+
+	}
+
+	void OnEnable()
+	{
 		foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
 
 			if (mini) {
@@ -32,17 +50,9 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 
 
 
-
 	public float modify ( float amount,GameObject deathSource, DamageTypes.DamageType typ)
 	{
-		foreach (GameObject obj in myIcons) {
-			foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
-				if (obj) {
-					Debug.Log ("I died");
-					mini.deleteUnitIcon (obj);
-				}
-			}
-		}
+		OnDisable ();
 
 		return amount;
 	}
