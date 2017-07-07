@@ -301,6 +301,7 @@ public class IWeapon : MonoBehaviour {
 					proj =  myBulletPool.FastSpawn(transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
 					//proj = (GameObject)Instantiate (projectile, transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
 				}
+				//Debug.Log ("Spawning " + proj);
 				originIndex++;
 				if (originIndex == originPoint.Count) {
 					originIndex = 0;}
@@ -334,6 +335,7 @@ public class IWeapon : MonoBehaviour {
 				myManager.cleanEnemy ();
 			}
 			if (attackSoundEffect) {
+				
 				audioSrc.pitch = ((float)Random.Range (6, 14) / 10);
 					SoundManager.PlayOneShotSound(audioSrc, attackSoundEffect);
 				//audioSrc.PlayOneShot (attackSoundEffect, Random.value/3 + .15f);

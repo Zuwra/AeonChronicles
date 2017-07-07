@@ -22,22 +22,29 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 	void OnDisable()
 	{
 		foreach (GameObject obj in myIcons) {
-			foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
-				if (obj) {
-					Debug.Log ("I died");
-					mini.deleteUnitIcon (obj);
+			if (GameManager.main) {
+				foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
+					if (obj) {
+						Debug.Log ("I died");
+						mini.deleteUnitIcon (obj);
+					}
 				}
 			}
 		}
-
 	}
 
 	void OnEnable()
 	{
+		StartCoroutine (waitASec ());
+	}
+
+	IEnumerator waitASec()
+	{
+		yield return null;
 		foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
 
 			if (mini) {
-				Debug.Log ("Adding MiniIcon");
+			//	Debug.Log ("Adding MiniIcon");
 				myIcons.Add (mini.showUnitIcon (this.transform.position, myIcon));
 			}
 		}
@@ -46,7 +53,6 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 			InvokeRepeating ("updatePosition", updateRate, updateRate);
 		}
 	}
-
 
 
 

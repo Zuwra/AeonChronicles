@@ -26,10 +26,12 @@ public class AttckWhileMoveState : UnitState{
 	override
 	public void Update () {
 
+
 		if(myManager.enemies.Count > 0){
 			UnitManager closestEnemy = myManager.findClosestEnemy();
 			foreach (IWeapon weap in myManager.myWeapon) {
 				if (weap.turret || weap is AngleWeapon) {
+
 					if (weap.canAttack (closestEnemy)) {
 						weap.attack (closestEnemy, myManager);
 					}

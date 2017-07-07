@@ -35,7 +35,9 @@ public class WayPointInteracter : StandardInteract {
 		WayPoint temp = next;
 		next = next.nextPoint (previous);
 		previous = temp;
+
 		myManager.GiveOrder (Orders.CreateMoveOrder (next.transform.position));
+		
 	}
 
 }

@@ -58,7 +58,7 @@ public class FlatDamageBoost : MonoBehaviour, Modifier {
 
 
 			Buff buff = manage.gameObject.AddComponent<Buff> ();
-			buff.name = "Flat Damaged"; 
+			//buff.name = "Flat Damaged"; 
 			buff.source = this.gameObject;
 			buff.HelpIcon = DebuffIcon;
 			buff.toolDescription = "This unit takes an extra " + FlatDamageIncrease + ""+ (PercDamageIncrease*100)+"%" +" Damage from each enemy attack.";

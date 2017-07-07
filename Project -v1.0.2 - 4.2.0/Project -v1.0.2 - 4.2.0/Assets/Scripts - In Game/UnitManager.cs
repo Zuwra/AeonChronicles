@@ -669,6 +669,9 @@ public class UnitManager : Unit,IOrderable{
 	IEnumerator stunnedIcon()
 	{
 	//	Debug.Log ("Starting stun");
+		if (cMover) {
+			cMover.stop ();
+		}
 		GameObject icon =  PopUpMaker.CreateStunIcon (this.gameObject);
 		while (isStunned) {
 		
@@ -690,7 +693,9 @@ public class UnitManager : Unit,IOrderable{
 
 	IEnumerator stunOverTime(Object source, float duration)
 	{
-
+		if (cMover) {
+			cMover.stop ();
+		}
 		stunSources.Add (source);
 		isStunned = (stunSources.Count > 0);
 
