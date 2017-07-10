@@ -420,12 +420,12 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 	}
 
 	//Select all of a given unit type that is currently selected
-	public void selectAllUnitType(RTSObject obj)
+	public void selectAllUnitType(RTSObject obj, string name = null)
 	{
 		List<RTSObject> tempList = new List<RTSObject> ();
 		for (int i = tempAbilityGroups.Count - 1; i > -1; i--) {
 
-			if (obj.getUnitManager().UnitName == (tempAbilityGroups [i]) [0].getUnitManager().UnitName) {
+			if ((obj && obj.getUnitManager().UnitName == (tempAbilityGroups [i]) [0].getUnitManager().UnitName) || (tempAbilityGroups [i]) [0].getUnitManager().UnitName == name) {
 				foreach (RTSObject rts in (tempAbilityGroups [i])) {
 					tempList.Add (rts);
 				}

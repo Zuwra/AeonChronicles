@@ -1,17 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UnitStats.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\StatsUI.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="382" Column="51" />
-      <File FileName="Assets\StandardInteract.cs" Line="124" Column="74" />
-      <File FileName="Assets\Scripts - In Game\AttckWhileMoveState.cs" Line="34" Column="6" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="302" Column="40" />
-      <File FileName="Assets\UnitCrusher.cs" Line="26" Column="41" />
-      <File FileName="Assets\MiniMapIconer.cs" Line="41" Column="24" />
-      <File FileName="Assets\WayPointInteracter.cs" Line="20" Column="3" />
-      <File FileName="Assets\PopUpMaker.cs" Line="138" Column="1" />
-      <File FileName="Assets\FlatDamageBoost.cs" Line="48" Column="3" />
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="680" Column="3" />
+      <File FileName="Assets\Scripts - In Game\StatsUI.cs" Line="88" Column="58" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="214" Column="37" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="424" Column="3" />
+      <File FileName="Assets\UnitIconInfo.cs" Line="75" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="511" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

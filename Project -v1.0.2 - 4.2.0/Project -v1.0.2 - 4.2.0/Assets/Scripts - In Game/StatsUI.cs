@@ -17,6 +17,7 @@ public class StatsUI : MonoBehaviour {
 	private Text TwoText;
 	private Text ThreeText;
 	public Text UnitName;
+	public Button SelectButton;
 	// Use this for initialization
 	void Awake () {
 		OneText = columnOne.GetComponent<Text> ();
@@ -29,7 +30,7 @@ public class StatsUI : MonoBehaviour {
 
 	public void loadUnit(UnitManager man, int number, string unitName)
 		{
-		
+		SelectButton.enabled = true;
 		healthIcon.enabled = true;
 		armorIcon.enabled = true;
 
@@ -78,8 +79,13 @@ public class StatsUI : MonoBehaviour {
 		UnitName.text = "";
 		OneText.text = "";
 		TwoText.text = "";
-		ThreeText.text = "";}
+		ThreeText.text = "";
+		SelectButton.enabled = false;
+	}
 
-
+	public void SelectAllUnits()
+	{
+		SelectedManager.main.selectAllUnitType (null, UnitName.text);
+	}
 
 }
