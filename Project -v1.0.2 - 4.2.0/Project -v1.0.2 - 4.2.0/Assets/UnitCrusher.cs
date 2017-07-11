@@ -28,7 +28,7 @@ public class UnitCrusher : MonoBehaviour, Notify {
 			yield return null;
 		//	transform.position += Vector3.up * Time.deltaTime;
 			transform.localScale = new Vector3 (transform.localScale.x, startY * (1 - (i/8f)), transform.localScale.z);
-			transform.Rotate (Time.deltaTime*11.2f , 0,0);
+			transform.Rotate (0,0,Time.deltaTime*11.2f );
 		}
 		transform.localScale = new Vector3 (transform.localScale.x,.01f, transform.localScale.z);
 		yield return new WaitForSeconds (1.5f);
