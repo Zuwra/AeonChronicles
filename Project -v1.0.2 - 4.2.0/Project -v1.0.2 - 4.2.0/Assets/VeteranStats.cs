@@ -153,7 +153,7 @@ public class VeteranStats : IComparable<VeteranStats>{
 
 	private List<string>  terrors = new List<string> (new string[] {
 		" He's seen things.  Things you couldn't possibly imagine...   Terrible things that would haunt your dreams. Nightmares that wake him in a pool of sweat. ",
-		" Every time he closes his eyes at night, abstract horrors and memories are all he sees... Shapes ... Colors.... Sounds... its all too vague to describe. ", 
+		" Every time he closes his eyes at night, abstract horrors and memories are all he sees... Shapes without form ... Colors without depth.... Sounds without pitch...All too vague to describe. ", 
 		" He has done terrible things which he can't write home about. He can't even talk to dog about them. Most people just think he's mute because of how little he talks. Maybe he is. ", 
 		" He wonders when the war will end, when his commanders will stop sending him into battle after battle for reasons he doesn't understand. "});
 

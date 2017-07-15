@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UnitCrusher.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VeteranStats.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\StatsUI.cs" Line="1" Column="1" />
@@ -8,7 +8,8 @@
       <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
       <File FileName="Assets\UnitIconInfo.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitCrusher.cs" Line="30" Column="23" />
+      <File FileName="Assets\UnitCrusher.cs" Line="1" Column="1" />
+      <File FileName="Assets\VeteranStats.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
