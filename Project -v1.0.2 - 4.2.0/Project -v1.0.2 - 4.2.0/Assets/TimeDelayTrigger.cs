@@ -14,6 +14,7 @@ public class TimeDelayTrigger : MonoBehaviour {
 	public  bool doIt;
 	public float delay;
 
+	public UnityEngine.Events.UnityEvent OnTrigger;
 
 	public List<SceneEventTrigger> myTriggers;
 	// Use this for initialization
@@ -36,6 +37,7 @@ public class TimeDelayTrigger : MonoBehaviour {
 
 		foreach (SceneEventTrigger trig in myTriggers) {
 			//Debug.Log ("Triggering " + trig);
+			OnTrigger.Invoke();
 			trig.trigger (index, input, location, target, doIt);
 			yield return null;
 		}

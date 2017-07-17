@@ -487,6 +487,7 @@
      <Compile Include="Assets\UISetter.cs" />
      <Compile Include="Assets\UltCooldown.cs" />
      <Compile Include="Assets\UltTip.cs" />
+     <Compile Include="Assets\UltUpgradeUI.cs" />
      <Compile Include="Assets\UltimateApplier.cs" />
      <Compile Include="Assets\UndyingArmor.cs" />
      <Compile Include="Assets\UnitAppear.cs" />

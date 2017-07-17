@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VeteranStats.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MiniMapIconer.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\StatsUI.cs" Line="1" Column="1" />
@@ -10,6 +10,16 @@
       <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
       <File FileName="Assets\UnitCrusher.cs" Line="1" Column="1" />
       <File FileName="Assets\VeteranStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\UltUpgradeUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\TempInvulnerable.cs" Line="1" Column="1" />
+      <File FileName="Assets\APMCounter.cs" Line="78" Column="3" />
+      <File FileName="Assets\WaveManager.cs" Line="78" Column="5" />
+      <File FileName="Assets\TimeDelayTrigger.cs" Line="43" Column="4" />
+      <File FileName="Assets\TargetDeathVictory.cs" Line="5" Column="37" />
+      <File FileName="Assets\Objective.cs" Line="15" Column="1" />
+      <File FileName="Assets\SurviveVictory.cs" Line="64" Column="9" />
+      <File FileName="Assets\EarthQuake.cs" Line="1" Column="1" />
+      <File FileName="Assets\MiniMapIconer.cs" Line="29" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

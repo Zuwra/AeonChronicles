@@ -79,10 +79,10 @@ public class APMCounter : MonoBehaviour {
 		if (Acounter > 0) {
 
 			counter.text = "Actions Per Minute\n" + (int)((Acounter / apm) * 60) +"\nGame Average\n" + (int)(totalActions/ (Clock.main.getTotalSecond() / 60)) +
-				"\n\nFPS: "+(int)(Time.timeScale/Time.smoothDeltaTime);
+				"\n\nFPS: "+(int)(Time.timeScale/Time.smoothDeltaTime) + "\n\n" + Input.mousePosition;
 		} else {
 			counter.text = "Actions Per Minute\n0" +"\nGame Average\n" + (int)(totalActions/ (Clock.main.getTotalSecond() / 60)) + 
-				"\n\nFPS: " + (int)(Time.timeScale/Time.smoothDeltaTime);
+				"\n\nFPS: " + (int)(Time.timeScale/Time.smoothDeltaTime) + "\n\n" + Input.mousePosition;
 		}
 	}
 

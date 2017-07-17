@@ -67,10 +67,11 @@ public class WaveManager : MonoBehaviour {
 		//GeneralIndex = PlayerPrefs.GetInt ("VoicePack", 0);
 		currentWaveIndex = 0;
 		SpawnerCount = spawnLocations.Count;
+		container = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ();
 		if (LevelData.getHighestLevel () > 3) {
 
 			if (ReplayWaves.Count > 0) {
-				container = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ();
+				//container = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ();
 				waveOption = container.getWave (ReplayWaves [UnityEngine.Random.Range (0, ReplayWaves.Count)]);
 				CurrentWaves = waveOption.waveRampUp;
 
@@ -79,6 +80,7 @@ public class WaveManager : MonoBehaviour {
 
 
 		} else {
+			//Debug.Log (container +" -- ");
 			waveOption = container.getWave (ReplayWaves [UnityEngine.Random.Range (0, ReplayWaves.Count)]);
 			CurrentWaves = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ()
 				.getWave (FirstPlayWaveType).waveRampUp;
