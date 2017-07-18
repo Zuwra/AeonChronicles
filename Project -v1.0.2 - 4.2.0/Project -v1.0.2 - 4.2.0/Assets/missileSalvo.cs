@@ -21,6 +21,7 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 	float lastDistance;
 	bool inLanding;
 	Vector3 homeLocation;
+	float landingTime = 4.5f;
 
 	Coroutine ReFill;
 	// Use this for initialization
@@ -207,12 +208,12 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 		}
 
 		//Loading missiles
-		home.startLanding (this.gameObject);
+		landingTime = home.startLanding (this.gameObject);
 		yield return new WaitForSeconds (.001f);
 
 		GetComponent<CharacterController> ().radius = 2.1f;
 
-		mymanager.StunForTime (this, 4.5f);
+		mymanager.StunForTime (this, landingTime);
 		StopCoroutine (ReFill);
 
 		yield return new WaitForSeconds (1.5f);

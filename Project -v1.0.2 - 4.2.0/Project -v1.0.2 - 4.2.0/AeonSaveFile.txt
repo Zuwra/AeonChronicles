@@ -1,1 +1,1 @@
-{"myLevels":[{"levelNumber":7,"unitsLost":0,"EnemiesDest":0,"Resources":80,"time":"0:17","TechCredits":30,"bonusObj":"0/0"}],"ComingFromLevel":true,"purchasedUpgrades":[],"appliedUpgrades":[],"myVets":[]}
+{"myLevels":[{"levelNumber":0,"unitsLost":0,"EnemiesDest":0,"Resources":0,"time":"0:09","TechCredits":15,"bonusObj":"0/0"}],"ComingFromLevel":true,"purchasedUpgrades":["Arbitronium Capacitors","Duplex Plating"],"appliedUpgrades":[],"myVets":[]}

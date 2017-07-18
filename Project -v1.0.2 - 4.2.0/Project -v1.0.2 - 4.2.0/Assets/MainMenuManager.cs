@@ -46,7 +46,8 @@ public class MainMenuManager : MonoBehaviour {
 	{
 		setDifficulty (dropper);
 		resetProgress ();
-		SceneManager.LoadScene (5);
+		audioSource.Stop ();
+		SceneManager.LoadScene(5);
 	}
 
 	public void toCampaignLevelSelect()

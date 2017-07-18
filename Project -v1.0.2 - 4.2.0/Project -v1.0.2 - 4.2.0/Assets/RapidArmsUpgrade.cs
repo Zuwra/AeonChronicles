@@ -8,18 +8,22 @@ public class RapidArmsUpgrade : SpecificUpgrade {
 	{
 
 		if (confirmUnit (obj)) {
+			if (obj.GetComponent<UnitManager> ().UnitName == "Armory") {
+				foreach (buildTurret bt in obj.GetComponents<buildTurret>()) {
+					bt.rapidArms = true;
+				}
 
-			foreach (buildTurret bt in obj.GetComponents<buildTurret>()) {
-				bt.rapidArms = true;
+				foreach (TurretScreenDisplayer tsd in obj.GetComponents<TurretScreenDisplayer>()) {
+					tsd.rapidArms = true;
+				}
+
+				foreach (TurretMount tm in obj.GetComponentsInChildren<TurretMount>()) {
+					tm.rapidArms = true;
+				}
 			}
 
-			foreach (TurretScreenDisplayer tsd in obj.GetComponents<TurretScreenDisplayer>()) {
-				tsd.rapidArms = true;
-			}
-
-			foreach (TurretMount tm in obj.GetComponentsInChildren<TurretMount>()) {
-				tm.rapidArms = true;
-			}
+			if(obj.GetComponent<UnitManager> ().UnitName == "Ballistics Lab")
+			{obj.GetComponent<HarpyLandingPad> ().landingTime = .5f;}
 		}
 
 	}

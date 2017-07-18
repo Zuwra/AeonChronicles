@@ -6,7 +6,7 @@ public class HarpyLandingPad : MonoBehaviour {
 	public Vector3 RightPadPoint;
 	public Vector3 LeftPadPoint;
 
-
+	public float landingTime = 4.5f;
 	public GameObject leftPadInUse;
 	public GameObject rightPadInUse;
 
@@ -38,7 +38,7 @@ public class HarpyLandingPad : MonoBehaviour {
 		return Vector3.zero;
 	}
 
-	public void startLanding( GameObject incoming)
+	public float startLanding( GameObject incoming)
 	{
 		if (rightPadInUse == incoming) {
 
@@ -54,6 +54,7 @@ public class HarpyLandingPad : MonoBehaviour {
 			myAnim.Play ("BallisticLeftOut");
 
 		}
+		return landingTime;
 
 	}
 
