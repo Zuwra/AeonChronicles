@@ -271,6 +271,7 @@
      <Compile Include="Assets\Objective.cs" />
      <Compile Include="Assets\ObjectiveManager.cs" />
      <Compile Include="Assets\ObjectiveTrigger.cs" />
+     <Compile Include="Assets\OnTakeDamage.cs" />
      <Compile Include="Assets\OneShotParticleSystem.cs" />
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />

@@ -15,6 +15,7 @@ public class FogOfWarUnit : MonoBehaviour
 
     void Start()
     {
+		Debug.Log ("Fog");
 		hasMoved = true;
 		InvokeRepeating ("clearFog", Random.Range(0, updateFrequency), updateFrequency);
 		Invoke ("move", 1.9f);

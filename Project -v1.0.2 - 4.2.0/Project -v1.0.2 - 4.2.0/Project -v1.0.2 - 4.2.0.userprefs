@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RapidArmsUpgrade.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FogOfWar\FogOfWarUnit.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\StatsUI.cs" Line="1" Column="1" />
@@ -9,8 +9,13 @@
       <File FileName="Assets\UnitIconInfo.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
       <File FileName="Assets\UnitCrusher.cs" Line="1" Column="1" />
-      <File FileName="Assets\missileSalvo.cs" Line="395" Column="66" />
-      <File FileName="Assets\RapidArmsUpgrade.cs" Line="28" Column="3" />
+      <File FileName="Assets\missileSalvo.cs" Line="1" Column="1" />
+      <File FileName="Assets\RapidArmsUpgrade.cs" Line="1" Column="1" />
+      <File FileName="Assets\PayLoadCreator.cs" Line="1" Column="1" />
+      <File FileName="Assets\OnTakeDamage.cs" Line="15" Column="20" />
+      <File FileName="Assets\RegenerativeSap.cs" Line="64" Column="1" />
+      <File FileName="Assets\Scripts - In Game\StimPack.cs" Line="66" Column="60" />
+      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="15" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
