@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Actually now just switches out the prefab for the ammo used.
 public class ChimeraRangeUpgrade : Upgrade {
 
 	public Sprite replacementImage;
 	public float RangeIncrease;
+	public GameObject newAmmo;
 	override
 	public void applyUpgrade (GameObject obj){
 
@@ -15,7 +17,8 @@ public class ChimeraRangeUpgrade : Upgrade {
 			foreach (ChangeAmmo ca in manager.GetComponents<ChangeAmmo>()) {
 				if(ca.Name == "Ammo: Siege Rounds [Z]")
 				{ca.iconPic = replacementImage;
-					ca.range += RangeIncrease;
+					ca.myAmmo = newAmmo;
+					//ca.range += RangeIncrease;
 					if (ca.autocast) {
 						ca.Activate ();
 					}

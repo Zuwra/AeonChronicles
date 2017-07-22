@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FogOfWar\FogOfWarUnit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NewUnitPanel.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\StatsUI.cs" Line="1" Column="1" />
@@ -8,14 +8,12 @@
       <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
       <File FileName="Assets\UnitIconInfo.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitCrusher.cs" Line="1" Column="1" />
-      <File FileName="Assets\missileSalvo.cs" Line="1" Column="1" />
-      <File FileName="Assets\RapidArmsUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\PayLoadCreator.cs" Line="1" Column="1" />
-      <File FileName="Assets\OnTakeDamage.cs" Line="15" Column="20" />
-      <File FileName="Assets\RegenerativeSap.cs" Line="64" Column="1" />
-      <File FileName="Assets\Scripts - In Game\StimPack.cs" Line="66" Column="60" />
-      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="15" Column="2" />
+      <File FileName="Assets\FogIndicator.cs" Line="1" Column="1" />
+      <File FileName="Assets\ChimeraRangeUpgrade.cs" Line="22" Column="24" />
+      <File FileName="Assets\TargetDeathVictory.cs" Line="65" Column="4" />
+      <File FileName="Assets\GameMenu.cs" Line="126" Column="2" />
+      <File FileName="Assets\NewUnitPanel.cs" Line="122" Column="9" />
+      <File FileName="Assets\NewUnitTrigger.cs" Line="18" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

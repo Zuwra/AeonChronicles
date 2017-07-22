@@ -211,7 +211,7 @@ namespace Pathfinding.RVO {
 				
 			rvoAgent.DesiredVelocity = desiredVelocity + force*wallAvoidForce;
 
-			tr.position = realPos + Vector3.up*height*0.5f - center;
+			tr.position = realPos + Vector3.up*height*0.5f - center - Vector3.up;
 
 
 

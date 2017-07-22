@@ -11,7 +11,7 @@ public class NewUnitTrigger  : SceneEventTrigger {
 		if (!hasTriggered) {
 			hasTriggered = true;
 		//	Debug.Log ("Triggered");
-			NewUnitPanel.main.setMaxAlled (index, currentIndex);
+			//NewUnitPanel.main.setMaxAlled (index, currentIndex);
 
 
 	

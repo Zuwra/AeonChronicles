@@ -15,13 +15,12 @@ public class NewUnitPanel : MonoBehaviour {
 	public Text mydescript;
 	public Image myImage;
 
-	public int maxAllowed;
 
 	private int index =0;
 
 	[System.Serializable]
 	public struct NewUnit{
-		public Color myColor;
+		//public Color myColor;
 		[TextArea(2,10)]
 		public string Title;
 		[TextArea(2,10)]
@@ -32,9 +31,36 @@ public class NewUnitPanel : MonoBehaviour {
 	}
 
 	public static NewUnitPanel main;
-
+	List<string> usedNames = new List<string>();
 	// Use this for initialization
-	void Start () {
+	IEnumerator Start () {
+		yield return null;
+		units.Clear ();
+
+
+		foreach (WaveManager manage in GameObject.FindObjectsOfType<WaveManager>()) {
+			foreach (GameObject unitType in	manage.getCurrentWaveType().waveRampUp[manage.getCurrentWaveType().waveRampUp.Count -1].waveType) {
+				addUnitToList (unitType);
+			}
+			foreach (GameObject unitType in	manage.getCurrentWaveType().waveRampUp[manage.getCurrentWaveType().waveRampUp.Count -1].mediumExtra) {
+				addUnitToList (unitType);
+			}
+			foreach (GameObject unitType in	manage.getCurrentWaveType().waveRampUp[manage.getCurrentWaveType().waveRampUp.Count -1].HardExtra) {
+				addUnitToList (unitType);
+			}
+		
+		}
+
+		foreach (KeyValuePair<string, List<UnitManager>> obj in GameManager.main.playerList[1].getUnitList()) {
+			if (obj.Value.Count > 0) {
+				Debug.Log ("Checking " + obj.Key);
+				//if (obj.Value [0].getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Static_Defense)) {
+					addUnitToList (obj.Value [0].gameObject);
+				//}
+			}
+		}
+
+
 		main = this;
 		previous ();
 
@@ -42,12 +68,28 @@ public class NewUnitPanel : MonoBehaviour {
 			GetComponent<Canvas> ().enabled = true;
 			}
 	}
-	
+
+
+	public void addUnitToList(GameObject unitType)
+	{
+		UnitManager unitsManager = unitType.GetComponent<UnitManager> ();
+
+		if (usedNames.Contains (unitsManager.UnitName)) {
+			return;
+		}
+		UnitStats stats = unitType.GetComponent<UnitStats> ();
+		usedNames.Add (unitsManager.UnitName);
+		NewUnit newunit = new NewUnit ();
+		newunit.Description = stats.UnitDescription;
+		newunit.myPic = stats.Icon;
+		newunit.Title = unitsManager.UnitName;
+		units.Add (newunit);
+	}
 
 
 	public void next()
 	{index++;
-		if (index == maxAllowed || index ==  units.Count - 1) {
+		if ( index ==  units.Count - 1) {
 
 			nextButton.SetActive (false);
 		} else if (index == units.Count) {
@@ -77,31 +119,14 @@ public class NewUnitPanel : MonoBehaviour {
 
 	public void loadUnit(int i)
 	{
-		myTitle.color = units [i].myColor;
+		//myTitle.color = units [i].myColor;
 		myTitle.text = units [i].Title;
 		mydescript.text = units [i].Description;
 		myImage.sprite = units [i].myPic;
 		index = i;
 	}
 
-	public void setMaxAlled(int i, int current )
-	{
-		loadUnit (current);
-		index = current;
-		maxAllowed = i;
-		GetComponent<Canvas> ().enabled = true;
-		Time.timeScale = 0;
 
-		if (index == maxAllowed || index ==  units.Count - 1) {
-
-			nextButton.SetActive (false);
-		} else if (index == units.Count) {
-			index--;
-		}
-		if (index > 0) {
-			prevButton.SetActive (true);
-		}
-	}
 
 	public void exit()
 	{Time.timeScale = GameSettings.gameSpeed;

@@ -61,6 +61,10 @@ public class WaveManager : MonoBehaviour {
 		public Sprite myPic;
 	}
 
+	public WaveContainer.WaveOption getCurrentWaveType()
+	{
+		return waveOption;
+	}
 
 
 	void Awake () {

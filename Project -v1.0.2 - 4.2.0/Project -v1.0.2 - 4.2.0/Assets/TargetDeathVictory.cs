@@ -59,6 +59,7 @@ public class TargetDeathVictory : Objective {
 
 				if (targetsKilled == trig.numDied) {
 					dialogManager.instance.playLine (trig.VoiceLine);
+					break;
 				}
 			}
 

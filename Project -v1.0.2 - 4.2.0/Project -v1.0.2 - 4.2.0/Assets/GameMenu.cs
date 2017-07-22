@@ -16,6 +16,7 @@ public class GameMenu : MonoBehaviour {
 	public Button raceTipsB;
 	public Button returnToGameB;
 	public Button MissionLogB;
+	public Button EnemyArrayB;
 
 	public bool ispaused = false;
 	public bool isDisabled = false;
@@ -29,6 +30,7 @@ public class GameMenu : MonoBehaviour {
 
 	public Canvas missionLog;
 	public Canvas otherHotkeys;
+	public Canvas EnemyArray;
 
 	private Canvas currentMenu;
 
@@ -115,6 +117,11 @@ public class GameMenu : MonoBehaviour {
 
 	public void openRaceTips()
 	{setMenu (racetipMenu);}
+
+	public void OpenEnemyArray()
+	{pause ();
+		setMenu (EnemyArray);
+	}
 
 
 	public void pause()

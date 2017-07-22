@@ -11,7 +11,7 @@ public class FogIndicator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		myCam = GameObject.FindObjectOfType<MainCamera> ().GetComponent<Camera> ();
+		myCam = MainCamera.main.GetComponent<Camera> ();
 		child = transform.Find ("Image").GetComponent<RectTransform> ();
 	
 
@@ -22,16 +22,14 @@ public class FogIndicator : MonoBehaviour {
 			location  = hit.point;
 		}
 		child.gameObject.GetComponent<Image> ().enabled = true;
+		child.transform.position = myCam.WorldToScreenPoint(location) ;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		Vector3 temp = myCam.WorldToScreenPoint(location);
 
-		child.transform.position = temp ;
+		child.transform.position = myCam.WorldToScreenPoint(location) ;
 
-
-	
 	}
 
 
