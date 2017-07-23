@@ -53,7 +53,7 @@ public class NewUnitPanel : MonoBehaviour {
 
 		foreach (KeyValuePair<string, List<UnitManager>> obj in GameManager.main.playerList[1].getUnitList()) {
 			if (obj.Value.Count > 0) {
-				Debug.Log ("Checking " + obj.Key);
+				//Debug.Log ("Checking " + obj.Key);
 				//if (obj.Value [0].getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Static_Defense)) {
 					addUnitToList (obj.Value [0].gameObject);
 				//}

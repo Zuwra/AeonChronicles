@@ -8,7 +8,7 @@ public class explosion : MonoBehaviour {
 	public GameObject source;
 	public int sourceInt = 1;
 	public GameObject particleEff;
-	public bool friendlyFire;
+	public float friendlyFireRatio;
 	public float damageAmount;
 	public DamageTypes.DamageType type;
 	public float maxSize= 5.0f;
@@ -68,13 +68,18 @@ public class explosion : MonoBehaviour {
 
 			if (manager) {
 
-				if (!friendlyFire && source && !mySrcMan) {
+				if (friendlyFireRatio == 0 && source && !mySrcMan) {
 					return;
 				}
 
-				if (friendlyFire || sourceInt != manager.PlayerOwner) {
+				if (friendlyFireRatio > 0 || sourceInt != manager.PlayerOwner) {
 
 					float amount = damageAmount	;
+
+					if (sourceInt != manager.PlayerOwner) {
+						amount *= friendlyFireRatio;
+					}
+
 					UnitStats stats = manager.myStats;
 					foreach ( IWeapon.bonusDamage tag in extraDamage) {
 						if ( manager.myStats.isUnitType (tag.type)) {

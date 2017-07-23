@@ -123,7 +123,7 @@ public class StandardInteract : MonoBehaviour, Iinteract {
 	public void Move(Order order)
 	{//Debug.Log (" Ordering " + attackWhileMoving + "   " + myManager.myWeapon.Count);
 		if (attackWhileMoving &&  myManager.myWeapon.Count >0) {
-			Debug.Log ("Setting to attack move");
+			//Debug.Log ("Setting to attack move");
 			myManager.changeState (new AttckWhileMoveState (order.OrderLocation, myManager),false,order.queued);
 		} else {
 			myManager.changeState (new MoveState (order.OrderLocation, myManager, false),false,order.queued);
