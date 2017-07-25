@@ -545,6 +545,7 @@
      <Compile Include="Assets\inflectionStarter.cs" />
      <Compile Include="Assets\laserGun.cs" />
      <Compile Include="Assets\missileSalvo.cs" />
+     <Compile Include="Assets\moneyObjective.cs" />
      <Compile Include="Assets\mortarUpgrade.cs" />
      <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\newWorkerInteract.cs" />
