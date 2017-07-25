@@ -7,6 +7,8 @@ public class WayPointInteracter : StandardInteract {
 	public WayPoint previous;
 	[Tooltip("You only have to fill in one or the other")]
 	public  WayPoint next;
+	public float randomRadius;
+
 
 	float startTime;
 	void Start() {
@@ -36,7 +38,10 @@ public class WayPointInteracter : StandardInteract {
 		next = next.nextPoint (previous);
 		previous = temp;
 
-		myManager.GiveOrder (Orders.CreateMoveOrder (next.transform.position));
+		Vector3 nextPoint = next.transform.position;
+		nextPoint.x += UnityEngine.Random.Range (-randomRadius,randomRadius);
+		nextPoint.z += UnityEngine.Random.Range (-randomRadius,randomRadius);
+		myManager.GiveOrder (Orders.CreateMoveOrder (nextPoint));
 		
 	}
 

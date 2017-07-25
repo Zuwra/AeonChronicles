@@ -39,15 +39,17 @@ public class TempInvulnerable : MonoBehaviour, Modifier {
 
 	IEnumerator InVulnerable()
 	{
-
-		Effect.SetActive (true);
+		if (Effect) {
+			Effect.SetActive (true);
+		}
 		mystats.otherTags.Add (UnitTypes.UnitTypeTag.Invulnerable);
 		mystats.SetTags ();
 		nextActionTime = Time.time + TimeBetween + TimeInvulnerable;
 
 		yield return new WaitForSeconds (TimeInvulnerable);
-
-		Effect.SetActive (false);
+		if (Effect) {
+			Effect.SetActive (false);
+		}
 		mystats.otherTags.Remove(UnitTypes.UnitTypeTag.Invulnerable);
 		mystats.SetTags ();
 

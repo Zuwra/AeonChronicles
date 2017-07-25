@@ -53,12 +53,22 @@ public class ChangeAmmo : Ability {
 		return  new continueOrder ();
 	}
 
+	public void upgrade(string upgradeName)
+	{
+		if (autocast) {
+			Debug.Log (attackDamage + "   " + myWeapon.getUpgradeLevel());
+			myWeapon.baseDamage = attackDamage + myWeapon.getUpgradeLevel()*5;
+		}
+	
+	}
+
 	override
 	public void Activate()
 	{
 		autocast = true;
 		myWeapon.projectile = myAmmo;
-		myWeapon.baseDamage = attackDamage;
+		myWeapon.baseDamage = attackDamage + myWeapon.getUpgradeLevel()*5;
+
 		myWeapon.range = range;
 		myWeapon.setBulletPool (myBulletPool);
 		myWeapon.extraDamage = bonus;

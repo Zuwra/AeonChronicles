@@ -33,18 +33,21 @@ public class DamageUpgrade : Upgrade {
 		bool doubleTheDamage = false;
 		if (obj.GetComponent<DoubleUpgradeApp> () && obj.GetComponent<DoubleUpgradeApp> ().doubleIt) {
 			doubleTheDamage = true;}
+
+	
 		foreach (unitAmount ua in unitsToUpgrade) {
 			if (manager.UnitName.Contains(ua.UnitName)) {
 				for (int i = 0; i < manager.myWeapon.Count; i++)
 					if (manager.myWeapon [i]) {
 
-						//Debug.Log ("Applying damage to " + obj);
-
+					
 						manager.myWeapon [i].changeAttack(0, ua.amount[i],true,null);
+					
 						if (doubleTheDamage) {
 							manager.myWeapon [i].changeAttack(0, ua.amount[i],true,null);
 						}
 						manager.myWeapon [i].incrementUpgrade ();
+						manager.gameObject.SendMessage ("upgrade", Name,SendMessageOptions.DontRequireReceiver);
 						if (ua.mySpecial.Count > 0) {
 
 					
@@ -61,6 +64,8 @@ public class DamageUpgrade : Upgrade {
 			
 			}
 		}
+
+
 
 	
 	}

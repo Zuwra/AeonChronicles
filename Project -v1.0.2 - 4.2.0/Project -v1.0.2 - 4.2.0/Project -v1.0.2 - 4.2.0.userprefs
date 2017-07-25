@@ -1,26 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UnitManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CustomRVO.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="540" Column="18" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\StatsUI.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnitIconInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\FogIndicator.cs" Line="1" Column="1" />
       <File FileName="Assets\ChimeraRangeUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\TargetDeathVictory.cs" Line="1" Column="1" />
-      <File FileName="Assets\GameMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\NewUnitPanel.cs" Line="1" Column="1" />
-      <File FileName="Assets\NewUnitTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\explosion.cs" Line="1" Column="1" />
-      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets\IconAttacker.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\IMover.cs" Line="1" Column="1" />
-      <File FileName="Assets\WaveManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\StandardInteract.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="258" Column="13" />
+      <File FileName="Assets\ChangeAmmo.cs" Line="61" Column="4" />
+      <File FileName="Assets\DamageUpgrade.cs" Line="42" Column="7" />
+      <File FileName="Assets\Upgrade.cs" Line="5" Column="1" />
+      <File FileName="Assets\RacerSpeedChanger.cs" Line="25" Column="3" />
+      <File FileName="Assets\TempInvulnerable.cs" Line="40" Column="28" />
+      <File FileName="Assets\WayPointInteracter.cs" Line="40" Column="3" />
+      <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="1" Column="1" />
+      <File FileName="Assets\CustomRVO.cs" Line="129" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
