@@ -11,7 +11,7 @@ public class ResourceDropOff : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		raceM = GameObject.Find ("GameRaceManager").GetComponent<GameManager> ().activePlayer;
+		raceM = GameManager.main.activePlayer;
 		raceM.addDropOff (this.gameObject);
 
 	

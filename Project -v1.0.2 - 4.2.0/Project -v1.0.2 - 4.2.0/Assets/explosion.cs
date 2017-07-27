@@ -68,12 +68,7 @@ public class explosion : MonoBehaviour {
 
 			if (manager) {
 
-				if (friendlyFireRatio == 0 && source && !mySrcMan) {
-					return;
-				}
-
-				if (friendlyFireRatio > 0 || sourceInt != manager.PlayerOwner) {
-
+		
 					float amount = damageAmount	;
 
 					if (sourceInt != manager.PlayerOwner) {
@@ -103,7 +98,7 @@ public class explosion : MonoBehaviour {
 					
 						not.trigger(source,  null, manager, amount);
 					}
-				}
+
 
 			}
 		}

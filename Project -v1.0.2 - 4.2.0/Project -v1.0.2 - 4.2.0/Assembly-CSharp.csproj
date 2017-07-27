@@ -281,6 +281,7 @@
      <Compile Include="Assets\PayLoadEndZone.cs" />
      <Compile Include="Assets\PayloadFirendlyEndZone.cs" />
      <Compile Include="Assets\PenetratingShot.cs" />
+     <Compile Include="Assets\Pillage.cs" />
      <Compile Include="Assets\PlaceBuildingState.cs" />
      <Compile Include="Assets\PlasmaDischarge.cs" />
      <Compile Include="Assets\PopUp.cs" />
