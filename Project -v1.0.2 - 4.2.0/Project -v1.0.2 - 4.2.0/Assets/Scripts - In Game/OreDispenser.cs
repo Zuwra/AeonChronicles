@@ -14,11 +14,7 @@ public class OreDispenser : MonoBehaviour {
 	private Queue<GameObject> workers =  new Queue<GameObject >();
 	// used for increased mining
 	public float returnRate = 1;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+
 
 
 	public bool requestWork(GameObject obj)

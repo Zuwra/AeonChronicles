@@ -18,6 +18,28 @@ public class TextTrigger : SceneEventTrigger {
 
 	public float stealCamera;
 
+	public void triggerMe (){
+
+		if (!hasTriggered) {
+			hasTriggered = true;
+
+			if (!dialogue) {
+
+				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
+				//UIHighLight.main.highLight (null, 0);
+			} else {
+				//	Debug.Log ("Triggering from " + this.gameObject.name);
+				dialogManager.instance.playLine (VoiceLineIndex);
+
+				//ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic,Priority);
+				if (stealCamera > 0) {
+					MainCamera.main.setCutScene (this.gameObject.transform.position, 120);
+				}
+			}
+		}
+
+	}
+
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 
