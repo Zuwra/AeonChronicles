@@ -101,7 +101,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 			}
 		
 
-			ErrorPrompt.instance.BuildingDone(myManager.UnitName + " Construction Complete" , this.transform.position);
+			ErrorPrompt.instance.BuildingDone(myManager.UnitName, this.transform.position);
 
 			UnitManager template = sourceObj.GetComponent<UnitManager> ();
 			for (int i = 0; i < myManager.abilityList.Count; i++) {

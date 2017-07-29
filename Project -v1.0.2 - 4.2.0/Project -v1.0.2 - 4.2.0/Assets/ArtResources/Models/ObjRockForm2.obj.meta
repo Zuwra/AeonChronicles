@@ -30,6 +30,7 @@ ModelImporter:
     100044: pCylinder32
     100046: pCylinder5
     100048: pPyramid1
+    100050: default
     400000: //RootNode
     400002: pCylinder10
     400004: pCylinder11
@@ -55,6 +56,7 @@ ModelImporter:
     400044: pCylinder32
     400046: pCylinder5
     400048: pPyramid1
+    400050: default
     2300000: pCylinder10
     2300002: pCylinder11
     2300004: pCylinder12
@@ -79,6 +81,7 @@ ModelImporter:
     2300042: pCylinder32
     2300044: pCylinder5
     2300046: pPyramid1
+    2300048: default
     3300000: pCylinder10
     3300002: pCylinder11
     3300004: pCylinder12
@@ -103,6 +106,7 @@ ModelImporter:
     3300042: pCylinder32
     3300044: pCylinder5
     3300046: pPyramid1
+    3300048: default
     4300000: pCylinder10
     4300002: pCylinder11
     4300004: pCylinder12
@@ -127,6 +131,7 @@ ModelImporter:
     4300042: pCylinder32
     4300044: pCylinder5
     4300046: pPyramid1
+    4300048: default
   materials:
     importMaterials: 1
     materialName: 0
@@ -134,9 +139,11 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -173,6 +180,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -183,7 +191,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1

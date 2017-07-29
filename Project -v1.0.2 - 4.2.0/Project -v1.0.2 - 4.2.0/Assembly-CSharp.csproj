@@ -443,6 +443,7 @@
      <Compile Include="Assets\SimpleSpawner.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />
+     <Compile Include="Assets\SkinUnlocker.cs" />
      <Compile Include="Assets\SoloKillAchievement.cs" />
      <Compile Include="Assets\SoundManager\Demo\SoundManagerDemo.cs" />
      <Compile Include="Assets\SoundManager\SoundManager.cs" />

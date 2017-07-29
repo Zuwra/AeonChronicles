@@ -84,7 +84,7 @@ public class ErrorPrompt : MonoBehaviour {
 
 
 	public void ResearchComplete(string s , Vector3 location)
-	{showError( s, myVoicePack.getResearchLine());
+	{showError( s+ " Complete ", myVoicePack.getResearchLine(s));
 		addAlertLocation( location);
 	}
 
@@ -103,7 +103,7 @@ public class ErrorPrompt : MonoBehaviour {
 	}
 	public void BuildingDone(string n, Vector3 location)
 	{
-		showError( n, myVoicePack.getBuildingCompleteLine());
+		showError( n + " Construction Complete", myVoicePack.getBuildingCompleteLine(n));
 		addAlertLocation( location);
 
 	}

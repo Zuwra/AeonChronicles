@@ -163,8 +163,8 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
 			foreach (UnitManager tempMan  in pair.Value) {
 				if(tempMan){
-
-				upgrade.applyUpgrade (tempMan.gameObject);
+					upgrade.ApplySkin (tempMan.gameObject);
+					upgrade.applyUpgrade (tempMan.gameObject);
 
 					if (tempMan.UnitName == unitname) {
 				

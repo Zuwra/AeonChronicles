@@ -26,6 +26,23 @@ public class VoicePack : MonoBehaviour {
 	public List<AudioClip> UltTwoComp;
 	public List<AudioClip> UltFourComp;
 
+	public List<BuildLine> ResearchLines;
+	public List<BuildLine> StructureLines;
+
+	[System.Serializable]
+	public class BuildLine
+	{
+		public string ResearchLine;
+		public List<AudioClip> myClips;
+
+		public AudioClip getClip()
+		{	
+			if (myClips.Count > 0) {
+				return myClips [UnityEngine.Random.Range (0, myClips.Count - 1)];
+			}
+			return null;
+		}
+	}
 
 	public AudioClip getVoicePackLine()
 	{
@@ -67,8 +84,18 @@ public class VoicePack : MonoBehaviour {
 		return buildingPlacement [Random.Range (0,buildingPlacement.Count - 1)];
 	}
 
-	public AudioClip getResearchLine()
+	public AudioClip getResearchLine(string researchName)
 	{
+		foreach (BuildLine l in ResearchLines) {
+			if (l.ResearchLine == researchName) {
+				if (l.myClips.Count == 0) {
+					break;
+				}
+				return l.getClip ();
+			}
+		
+		}
+
 		return ResearchFinished[Random.Range (0,ResearchFinished.Count - 1)];
 	}
 
@@ -93,8 +120,17 @@ public class VoicePack : MonoBehaviour {
 	}
 
 
-	public AudioClip getBuildingCompleteLine()
+	public AudioClip getBuildingCompleteLine(string structureName)
 	{
+		foreach (BuildLine l in StructureLines) {
+			if (l.ResearchLine == structureName) {
+				if (l.myClips.Count == 0) {
+					break;
+				}
+				return l.getClip ();
+			}
+		}
+
 		return BuildingComplete[Random.Range (0,BuildingComplete.Count - 1)];
 	}
 
