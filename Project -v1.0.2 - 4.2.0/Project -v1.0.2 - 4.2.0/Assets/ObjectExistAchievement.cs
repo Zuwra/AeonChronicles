@@ -18,9 +18,11 @@ public class ObjectExistAchievement :Achievement {
 	public override void CheckEnd ()
 	{
 		if (!IsAccomplished ()) {
-			int n = GameObject.FindGameObjectsWithTag (ObjectTag).Length;
-			if (n >= MinNumber &&  n <= MaxNumber) {
-				Accomplished ();
+			if (GameObject.FindObjectOfType<VictoryTrigger> ().levelNumber == getLevelNumber ()) {
+				int n = GameObject.FindGameObjectsWithTag (ObjectTag).Length;
+				if (n >= MinNumber && n <= MaxNumber) {
+					Accomplished ();
+				}
 			}
 		}
 

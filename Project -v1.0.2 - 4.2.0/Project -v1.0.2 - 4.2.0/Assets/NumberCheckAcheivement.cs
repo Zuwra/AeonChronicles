@@ -17,18 +17,18 @@ public class NumberCheckAcheivement: Achievement{
 
 	public override void CheckEnd (){
 		if (!IsAccomplished ()) {
-
-			if (!lessThan) {
-				if (PlayerPrefs.GetInt (PlayerPrefTag, 0) > number) {
-					Accomplished ();
-				}
-			} else {
-				if (PlayerPrefs.GetInt (PlayerPrefTag, 0) < number) {
-					Accomplished ();
+			if (GameObject.FindObjectOfType<VictoryTrigger> ().levelNumber == getLevelNumber ()) {
+				if (!lessThan) {
+					if (PlayerPrefs.GetInt (PlayerPrefTag, 0) > number) {
+						Accomplished ();
+					}
+				} else {
+					if (PlayerPrefs.GetInt (PlayerPrefTag, 0) < number) {
+						Accomplished ();
+					}
 				}
 			}
 		}
-
 		PlayerPrefs.SetInt (PlayerPrefTag,0);
 
 	}

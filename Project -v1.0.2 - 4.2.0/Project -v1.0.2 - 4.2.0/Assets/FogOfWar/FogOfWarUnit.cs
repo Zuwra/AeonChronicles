@@ -18,13 +18,14 @@ public class FogOfWarUnit : MonoBehaviour
 		//Debug.Log ("Fog");
 		hasMoved = true;
 		InvokeRepeating ("clearFog", Random.Range(0, updateFrequency), updateFrequency);
-		Invoke ("move", 1.9f);
-		Invoke ("clearFog", 2);
+		//Invoke ("move", 1.9f);
+		//Invoke ("clearFog", 2);
     }
 
 
 
-	public void move (){hasMoved = true;}
+	public void move (){hasMoved = true;
+		}
 
 
 	public void clearFog()

@@ -26,6 +26,42 @@ public abstract class Achievement : MonoBehaviour {
 		}
 	}
 
+	protected int getLevelNumber()
+	{
+		switch (myLevel) {
+		case Level.one:
+			return 0;
+		case Level.two:
+			return 1;
+		case Level.three:
+			return 2;
+		case Level.four:
+			return 3;
+		case Level.five:
+			return 4;
+		case Level.six:
+			return 5;
+		case Level.seven:
+			return 6;
+	
+		case Level.eight:
+			return 7;
+		case Level.nine:
+			return 8;
+		case Level.ten:
+			return 9;
+		case Level.eleven:
+			return 10;
+		case Level.twelve:
+			return 11;
+		case Level.thirteen:
+			return 12;
+
+
+		}
+		return -1;
+	}
+
 	public bool HasBeenRewarded()
 	{
 		if (PlayerPrefs.GetInt (Title + "Reward", 0) == 0) {

@@ -125,7 +125,8 @@ class FogFill
     }
 
     public void UnfogCircle(byte[] values)
-    {
+	{int sqrdistance;
+		Vector2i offset;
         for (int y = yStart; y < yEnd; ++y)
         {
             for (int x = xStart; x < xEnd; ++x)
@@ -136,8 +137,8 @@ class FogFill
                 if (values[index] == 0)
                     continue;
 
-                Vector2i offset = new Vector2i(x - position.x, y - position.y);
-                int sqrdistance = offset.sqrMagnitude;
+                offset = new Vector2i(x - position.x, y - position.y);
+                sqrdistance = offset.sqrMagnitude;
 
                 // fully unfogged
                 if (sqrdistance <= innerRadiusSqr)
@@ -253,7 +254,7 @@ public class FogOfWar : MonoBehaviour
     static Shader _clearFogShader = null;
     public static Shader clearFogShader { get { if (_clearFogShader == null) _clearFogShader = Resources.Load<Shader>("ClearFogShader"); return _clearFogShader; } }
 
-	public   void Initialize()
+	public void Initialize()
     {
         current = this;
 		mapResolution = (int)(mapSize / 2.8f);
@@ -277,7 +278,7 @@ public class FogOfWar : MonoBehaviour
         _camera.depthTextureMode |= DepthTextureMode.Depth;
 
 		HasUnFogged = true;
-		InvokeRepeating( "UpdateTexture",1, .1f);
+		InvokeRepeating( "UpdateTexture",.01f, .1f);
 		Invoke("delayedFogger",1.1f);
 		Invoke ("UpdateTexture", 1.2f);
 

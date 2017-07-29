@@ -49,17 +49,18 @@ public class LevelManager : MonoBehaviour {
 		foreach (GameObject ob in Expositions) {
 			ob.SetActive (false);
 		}
-		Debug.Log (" current level " + LevelData.getHighestLevel());
-
-		ReplayButtonText.text = "Replay Previous:\n" + LevelCompilation.getLevelInfo().ls[PlayerPrefs.GetInt ("RecentLevel")].LevelName;
-
+		//Debug.Log (" current level " + LevelData.getHighestLevel());
+		//Debug.Log ("Num is " +PlayerPrefs.GetInt ("RecentLevel") + "  " + LevelCompilation.getLevelInfo().ls.Count );
+		//ReplayButtonText.text = "Replay Previous:\n" + LevelCompilation.getLevelInfo().ls[PlayerPrefs.GetInt ("RecentLevel")].LevelName;
+		testText.text = "Setting it";
 
 
 			currentTech = Vehicles;
 		if (LevelData.getHighestLevel() == 0) {
 			techButton.interactable = false;
 			UltButton.interactable = false;
-			} else if (LevelData.getHighestLevel() == 1) {
+			} 
+		else if (LevelData.getHighestLevel() == 1) {
 			techButton.interactable = true;
 			UltButton.interactable = false;
 		} else {
@@ -119,26 +120,43 @@ public class LevelManager : MonoBehaviour {
 	
 	}
 
+	public Text testText;
+
 	public void ToggleVehicle()
-	{currentTech.enabled = false;
+	{testText.text = "Vehicle";
+		if (currentTech) {
+			currentTech.enabled = false;
+		}
+		testText.text += currentTech.enabled;
+
 		currentTech = Vehicles;
 		Vehicles.enabled = true;
+		testText.text += currentTech.enabled;
 		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultVehicle);
 	}
 
 	public void ToggleStruct()
-	{currentTech.enabled = false;
+	{testText.text = "Structure";
+		if (currentTech) {
+			currentTech.enabled = false;
+		}
+		testText.text += currentTech.enabled;
 		currentTech = Structures;
 		Structures.enabled = true;
+		testText.text += currentTech.enabled;
 		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultStructure);
+
 	}
 
 	public void ToggleTurret()
-	{Debug.Log ("Toggling Turet");
-		currentTech.enabled = false;
+	{testText.text = "Toggle turret";
+		if (currentTech) {
+			currentTech.enabled = false;
+		}
+		testText.text += currentTech.enabled;
 		currentTech = Turrets;
 		Turrets.enabled = true;
-
+		testText.text += currentTech.enabled;
 		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultTurret);
 	}
 
