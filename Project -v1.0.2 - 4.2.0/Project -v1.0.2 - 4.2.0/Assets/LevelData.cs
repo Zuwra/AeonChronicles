@@ -196,15 +196,24 @@ public class LevelData  {
 
 	public static int getMoney()
 	{
+		Debug.Log ("Money left" + PlayerPrefs.GetInt ("Money"));
 		return PlayerPrefs.GetInt ("Money");
 	}
 
+	public static int getArbitronium()
+	{
+		return PlayerPrefs.GetInt ("Arbitronium",0);
+	}
+		
 
 	public static void addMoney(int amount)
 	{
 		PlayerPrefs.SetInt ("Money", PlayerPrefs.GetInt ("Money") + amount);
 	}
-
+	public static void addArbitronium(int amount)
+	{
+		PlayerPrefs.SetInt ("Arbitronium", PlayerPrefs.GetInt ("Arbitronium") + amount);
+	}
 
 
 	public static int getDifficulty()

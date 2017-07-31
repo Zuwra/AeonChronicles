@@ -8,7 +8,7 @@ public class Bombardment : TargetAbility{
 	public int shotCount = 35;
 	public float myDamage = 40;
 
-
+	public float FriendlyFire = 1;
 
 	override
 	public continueOrder canActivate(bool showError){
@@ -92,6 +92,7 @@ public class Bombardment : TargetAbility{
 			script.sourceInt = 1;
 			script.Source = this.gameObject;
 			script.setLocation (hitzone);
+			script.FriendlyFire = FriendlyFire;
 		}
 		
 	}

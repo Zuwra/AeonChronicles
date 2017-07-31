@@ -44,7 +44,7 @@ public  class Projectile : MonoBehaviour {
 	public Texture indicatorPic;
 	public float indicatorSize;
 	private GameObject myIndiactor;
-
+	public float FriendlyFire;
 	protected Vector3 randomOffset;
 
 	// Use this for initialization
@@ -299,6 +299,7 @@ public  class Projectile : MonoBehaviour {
 			if (Escript) {
 				Escript.setSource (Source);
 				Escript.damageAmount = this.damage;
+				Escript.friendlyFireRatio = FriendlyFire;
 			}
 		}
 

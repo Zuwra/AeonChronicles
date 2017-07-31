@@ -5,58 +5,176 @@ using UnityEngine.UI;
 
 public class UltUpgradeUI : MonoBehaviour {
 
+	public string UltName;  //HyperCharge  Nimbus   BarrierDome   Firestorm
+	public List<UltCategory> myCategories;
 
-	public Text ColOneDescription;
-	public Text ColTwoDescription;
-	public Text DescriptionText;
-	public int UltNumber;
+	public static int availableArb;
+	public Text ArbText;
 
-	public List<string> ColOneDescriptions;
-	public List<string> ColTwoDescriptions;
-	int colOneLevel;
-	int colTwoLevel;
+	public Button BuyButton;
+	public Text notEnoughMoney;
 
-	// Use this for initialization
-	void Start () {
-		updateDescription ();
+	void Awake()
+	{
+		UltUpgradeUI.availableArb = LevelData.getArbitronium ();
 	}
 
-	public void BuyColOneUlt(int levelNum)
+	void Start()
 	{
-		colOneLevel = levelNum;
-		//ColOneDescription.text = ColOneDescriptions [levelNum];
-		updateDescription ();
+
+		for (int n = 0; n < myCategories.Count + 1; n++) {
+			for (int i = 0; i < PlayerPrefs.GetInt (UltName + ""+n); i++) {
+				myCategories[n].upLevel ();
+				UltUpgradeUI.availableArb--;
+			}
+		}
+		
+		foreach (UltCategory cat in myCategories) {
+			cat.UpdateSprites ();
+		}
+		updateArbText ();
 	}
 
-	public void BuyColTwoUlt(int levelNum)
+	public void openBuyArbWindow()
 	{
-		colTwoLevel = levelNum;
-		//ColTwoDescription.text = ColTwoDescriptions [levelNum];
-		updateDescription ();
-	}
-
-
-	void updateDescription()
-	{
-		if (UltNumber == 1) {
-			DescriptionText.text = getUltOneDescription ();
+		if (LevelData.getMoney () > 4) {
+			BuyButton.interactable = true;
+			notEnoughMoney.enabled = false;
+		} else {
+			BuyButton.interactable = false;
+			notEnoughMoney.enabled = true;
 		}
 	}
 
-	public string getUltOneDescription()
-	{
-		string toReturn = "Targeted Friendly Units Energy systems are redirected into hyper charging their weapons for a short period.\nThey gain a " + (40 + colOneLevel * 10) + "% damage and attack speed boost but lose 10% of their maximum energy per second.\n Effect ends when no energy remains.";
-		if (colTwoLevel == 1) {
-			toReturn += "\n\nUnit's energy are recharged 33% when first cast.";
-		}
-		else if (colTwoLevel == 2) {
-			toReturn += "\n\nUnit's energy are recharged 66% when first cast.";
-		}
-		else if (colTwoLevel == 3) {
-			toReturn += "\n\nUnit's energy are recharged 100% when first cast.";
-		}
-		return toReturn;
-		}
+	public void increaseUltLevel(int index)
+	{if (UltUpgradeUI.availableArb > 0) {
+			if (myCategories [index].upLevel ()) {
+				UltUpgradeUI.availableArb--;
+			}
+			PlayerPrefs.SetInt (UltName + "" + index, myCategories [index].currentLevel);
+			updateArbText ();
 
+		}
+	}
+
+	public void decreaseUltLevel(int index)
+	{
+		if (myCategories [index].downLevel ()) {
+		
+			UltUpgradeUI.availableArb++;
+		}
+		PlayerPrefs.SetInt (UltName +""+index, myCategories[index].currentLevel);
+		updateArbText ();
+
+	}
+
+	public void BuyArbitronium()
+	{
+		UltUpgradeUI.availableArb++;
+		LevelData.addMoney (-5);
+		LevelData.addArbitronium (1);
+		updateArbText ();
+		openBuyArbWindow ();
+	}
+
+	public void ToggleUlt(int index)
+	{
+		if (UltUpgradeUI.availableArb == 0 && myCategories [index].currentLevel == 0) {
+			return;
+		}
+		myCategories [index].Toggle ();
+		PlayerPrefs.SetInt (UltName + "" + index, myCategories [index].currentLevel);
+		updateArbText ();
+
+	}
+
+	public void updateArbText()
+	{
+		ArbText.text = ""+UltUpgradeUI.availableArb;
+		if (UltUpgradeUI.availableArb == 0) {
+			ArbText.color = Color.red;
+		} else {
+			ArbText.color = Color.green;
+		}
+	}
 
 }
+
+[System.Serializable]
+public class UltCategory
+{
+	public int currentLevel;
+	public List<Image> mySprites;
+	public List<Image> miniSprites;
+	public Sprite onSprite;
+	public Sprite offSprite;
+	public List<TextAffect> fillerStrings;
+
+	public bool downLevel ()
+	{if (currentLevel > 0) {
+			currentLevel--;
+			UpdateSprites ();
+			return true;
+		}
+		return false;
+	}
+
+	public bool upLevel ()
+	{
+		if (currentLevel < mySprites.Count) {
+			currentLevel++;
+			UpdateSprites ();
+			return true;
+		}
+		return false;
+	}
+
+	public void Toggle()
+	{
+		if (currentLevel == 0) {
+			currentLevel = 1;
+			UltUpgradeUI.availableArb--;
+		} else {
+			currentLevel = 0;
+			UltUpgradeUI.availableArb++;
+		}
+		UpdateSprites ();
+	}
+
+	public void UpdateSprites()
+	{
+		for (int i = 0; i < mySprites.Count; i++) {
+			if (currentLevel > i) {
+				mySprites [i].sprite = onSprite;
+				miniSprites [i].sprite = onSprite;
+			} else {
+				mySprites [i].sprite = offSprite;
+				miniSprites [i].sprite = offSprite;
+			}
+		}
+		foreach (TextAffect affect in fillerStrings) {
+			affect.fillString (currentLevel);
+		}
+			
+	}
+}
+
+[System.Serializable]
+public class TextAffect
+{
+	public Text toAffect;
+	public List<string> LevelStrings;
+	public Color defaultColor = Color.yellow;
+	public Color UpgradedColor = Color.yellow;
+
+	public void fillString(int n)
+	{
+		toAffect.text = LevelStrings [n];
+		if (n == 0) {
+			toAffect.color = defaultColor;
+		} else {
+			toAffect.color = UpgradedColor;
+		}
+	}
+}
+	

@@ -52,7 +52,6 @@ public class LevelManager : MonoBehaviour {
 		//Debug.Log (" current level " + LevelData.getHighestLevel());
 		//Debug.Log ("Num is " +PlayerPrefs.GetInt ("RecentLevel") + "  " + LevelCompilation.getLevelInfo().ls.Count );
 		//ReplayButtonText.text = "Replay Previous:\n" + LevelCompilation.getLevelInfo().ls[PlayerPrefs.GetInt ("RecentLevel")].LevelName;
-		testText.text = "Setting it";
 
 
 			currentTech = Vehicles;
@@ -120,43 +119,40 @@ public class LevelManager : MonoBehaviour {
 	
 	}
 
-	public Text testText;
 
 	public void ToggleVehicle()
-	{testText.text = "Vehicle";
+	{
 		if (currentTech) {
 			currentTech.enabled = false;
 		}
-		testText.text += currentTech.enabled;
 
 		currentTech = Vehicles;
 		Vehicles.enabled = true;
-		testText.text += currentTech.enabled;
+
 		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultVehicle);
 	}
 
 	public void ToggleStruct()
-	{testText.text = "Structure";
+	{
 		if (currentTech) {
 			currentTech.enabled = false;
 		}
-		testText.text += currentTech.enabled;
+
 		currentTech = Structures;
 		Structures.enabled = true;
-		testText.text += currentTech.enabled;
+
 		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultStructure);
 
 	}
 
 	public void ToggleTurret()
-	{testText.text = "Toggle turret";
+	{
 		if (currentTech) {
 			currentTech.enabled = false;
 		}
-		testText.text += currentTech.enabled;
 		currentTech = Turrets;
 		Turrets.enabled = true;
-		testText.text += currentTech.enabled;
+
 		GameObject.FindObjectOfType<CampTechCamManager> ().loadTech (defaultTurret);
 	}
 
@@ -195,6 +191,17 @@ public class LevelManager : MonoBehaviour {
 	public void toggleUltTree()
 	{mySource.PlayOneShot (buttonPress);
 		//Technology.enabled = !Technology.enabled;
+		CanvasGroup grouper = UltTree.GetComponent<CanvasGroup>();
+		if (grouper.interactable) {
+			grouper.interactable = false;
+			grouper.alpha = 0;
+			grouper.blocksRaycasts = false;
+		
+		} else {
+			grouper.interactable = true;
+			grouper.alpha = 1;
+			grouper.blocksRaycasts = true;
+		}
 		UltTree.enabled = !UltTree.enabled;
 	}
 
