@@ -222,7 +222,9 @@ public class LevelManager : MonoBehaviour {
 
 		LevelData.addMoney (input);
 		foreach (Text t in creditDisplayers) {
-			t.text = "" + LevelData.getMoney ();
+			if (t) {
+				t.text = "" + LevelData.getMoney ();
+			}
 		}
 
 		//Debug.Log ("money " + LevelData.totalXP);

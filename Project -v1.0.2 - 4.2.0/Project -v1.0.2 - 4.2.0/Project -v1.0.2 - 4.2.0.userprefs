@@ -1,15 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UltimateApplier.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelManager.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\UltUpgradeUI.cs" Line="26" Column="59" />
-      <File FileName="Assets\LevelManager.cs" Line="200" Column="11" />
-      <File FileName="Assets\CampUpgradePurchase.cs" Line="49" Column="24" />
-      <File FileName="Assets\LevelData.cs" Line="237" Column="2" />
-      <File FileName="Assets\UltimateApplier.cs" Line="58" Column="3" />
-      <File FileName="Assets\Bombardment.cs" Line="26" Column="3" />
-      <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="282" Column="3" />
+      <File FileName="Assets\UltUpgradeUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelManager.cs" Line="228" Column="4" />
+      <File FileName="Assets\CampUpgradePurchase.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelData.cs" Line="1" Column="1" />
+      <File FileName="Assets\UltimateApplier.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bombardment.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

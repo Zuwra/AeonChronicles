@@ -1,0 +1,1 @@
+{"myLevels":[{"levelNumber":0,"unitsLost":0,"EnemiesDest":27,"Resources":0,"time":"4:22","TechCredits":22,"bonusObj":"1/1"}],"ComingFromLevel":true,"purchasedUpgrades":[],"appliedUpgrades":[],"myVets":[]}
