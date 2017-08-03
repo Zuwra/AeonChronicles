@@ -67,8 +67,9 @@ public class TrueUpgradeManager : MonoBehaviour {
 
 	public void playSound ()
 	{
-		mySource.PlayOneShot (buttonPress[Random.Range(0, buttonPress.Count -1)]);
-
+		if (Time.timeSinceLevelLoad > 1) {
+			mySource.PlayOneShot (buttonPress [Random.Range (0, buttonPress.Count - 1)]);
+		}
 	}
 
 	public void upgradeBought(SpecificUpgrade upg, CampaignUpgrade.upgradeType t)
@@ -88,7 +89,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 		myUpgrades.Add (cpu);
 
 		foreach (CampaignUpgrade cu in CampUpRef) {
-			cu.reInitialize ();
+			//cu.reInitialize ();
 		
 		}
 		

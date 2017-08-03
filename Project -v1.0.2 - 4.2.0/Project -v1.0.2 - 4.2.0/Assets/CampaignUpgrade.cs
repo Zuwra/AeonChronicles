@@ -9,14 +9,15 @@ public class CampaignUpgrade : MonoBehaviour {
 
 
 	public Text theDescription;
-	public Dropdown myDropDown;
 	public List<UpgradesPiece> myUpgrades = new List<UpgradesPiece>();
+	public Text Title;
 
+	public List<Button> myButtons;
 	public List<Image> myPic;
 
 	public enum upgradeType{Shields, Barrels, Speed, Concussion, Siege, Mount, Construction, Recoil, Ability, Deployment, DuplexPlating, DoublePHD,General,Munition}
 
-
+	public Material grayScale;
 	SpecificUpgrade currentUpgrade;
 
 	public List<upgradeType> myTypes = new List<upgradeType> ();
@@ -24,6 +25,8 @@ public class CampaignUpgrade : MonoBehaviour {
 	public List<GameObject> unitsToUpgrade = new List<GameObject>();
 
 	private bool justSetIndex;
+
+	int currentIndex;
 
 	[System.Serializable]
 	public class UpgradesPiece{
@@ -48,7 +51,7 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		grayScale = Resources.Load<Material>("GrayScaleUI");
 		StartCoroutine (delayInit());
 	}
 
@@ -65,9 +68,10 @@ public class CampaignUpgrade : MonoBehaviour {
 		setDropDownOptions ();
 
 		string upGradeName = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
-		for (int i = 0; i < myDropDown.options.Count; i++) {
-			if (myDropDown.options [i].text == upGradeName) {
-				myDropDown.value = i;
+		for (int i = 0; i < options.Count; i++) {
+			if ( options[i] == upGradeName) {
+				currentIndex = i;
+				setUpgrade (currentIndex);
 			}
 		}
 		//myDropDown.value = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
@@ -76,9 +80,16 @@ public class CampaignUpgrade : MonoBehaviour {
 	}
 
 
-	public void setUpgrade()
-	{
-
+	public void setUpgrade(int index)
+	{if (myButtons.Count > 0) {
+		//	Debug.Log ("Gray " + currentIndex);
+			myButtons [currentIndex].image.material = grayScale;
+		}
+		currentIndex = index;
+		theDescription.text = myUpgrades [currentIndex].description;
+		if (myButtons.Count > 0) {
+			myButtons [currentIndex].image.material = null;
+		}
 		if (currentUpgrade) {
 			foreach (GameObject o in unitsToUpgrade) {
 				currentUpgrade.unitsToApply.Remove(o.GetComponent<UnitManager>().UnitName);
@@ -86,8 +97,9 @@ public class CampaignUpgrade : MonoBehaviour {
 		}
 
 
-		PlayerPrefs.SetString (this.gameObject.ToString (), myDropDown.options[myDropDown.value].text);
-		LevelData.applyUpgrade (this.gameObject.ToString (), myDropDown.value);
+
+		PlayerPrefs.SetString (this.gameObject.ToString (), options[currentIndex]);
+		LevelData.applyUpgrade (this.gameObject.ToString (), currentIndex);
 		GameObject.FindObjectOfType<TrueUpgradeManager> ().playSound ();
 		GameObject.FindObjectOfType<CampTechCamManager> ().AssignTechEffect ();
 
@@ -106,27 +118,25 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	public void SetImageDescript()
 	{
-		theDescription.text = myUpgrades [myDropDown.value].description;
-
+		theDescription.text = myUpgrades [currentIndex].description;
+		if (myUpgrades.Count > 0) {
+			Title.text = myUpgrades [currentIndex].name;
+		}
 		foreach (Image i in myPic) {
-			i.sprite = myUpgrades [myDropDown.value].pic;
+			i.sprite = myUpgrades [currentIndex].pic;
 
 			CampTooltip tip = i.GetComponent<CampTooltip> ();
 			if (tip) {
-				tip.helpText = myUpgrades [myDropDown.value].description;
-				tip.Title = myUpgrades [myDropDown.value].name;
+				tip.helpText = myUpgrades [currentIndex].description;
+				tip.Title = myUpgrades [currentIndex].name;
 			
 			}
 		}
-		currentUpgrade = myUpgrades [myDropDown.value].pointer;
+		currentUpgrade = myUpgrades [currentIndex].pointer;
 	}
 
 
-	public void reInitialize()
-	{
-		setDropDownOptions ();
 
-	}
 
 
 	public void setInitialStuff()
@@ -138,28 +148,39 @@ public class CampaignUpgrade : MonoBehaviour {
 
 
 		string upGradeName = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
-		for (int i = 0; i < myDropDown.options.Count; i++) {
-			if (myDropDown.options [i].text == upGradeName) {
-				myDropDown.value = i;
+		for (int i = 0; i <options.Count; i++) {
+			if( options [i] == upGradeName) {
+				currentIndex = i;
+				setUpgrade (currentIndex);
+
 			}
 		}
-		myDropDown.Select ();
-		myDropDown.RefreshShownValue ();
+		//myDropDown.Select ();
+		//myDropDown.RefreshShownValue ();
 
 
 		this.gameObject.SetActive (false);
 
 	}
-
+	List<string> options = new List<string> ();
 	public void setDropDownOptions()
 	{
 
+		foreach (Button b in myButtons) {
+			//b.interactable = false;//.gameObject.SetActive (false);
+		}
 		
-		List<string> options = new List<string> ();
+		options = new List<string> ();
 		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
 
 			if (up.isUnlocked() && myTypes.Contains (up.myType) && !myUpgrades.Contains(up)) {
 
+				if (myButtons.Count > options.Count) {
+					Debug.Log ("Found" + up.name +" "+ options.Count  + "  " + myButtons [options.Count].gameObject);
+					myButtons [options.Count].gameObject.SetActive (true);//.interactable = true;//.gameObject.SetActive (true);
+					Debug.Log(myButtons [options.Count].interactable);
+					myButtons [options.Count].image.sprite = up.pic;
+				}
 				myUpgrades.Add (up);
 				options.Add (up.name);
 
@@ -167,7 +188,12 @@ public class CampaignUpgrade : MonoBehaviour {
 
 		}
 
-		myDropDown.AddOptions (options);
-		myDropDown.RefreshShownValue ();
+		for (int i = options.Count; i < Mathf.Min( 6,myButtons.Count); i++) {
+			Debug.Log ("Setting " + myButtons[i].gameObject );
+			myButtons[i].gameObject.SetActive(false);
+		}
+
+		//myDropDown.AddOptions (options);
+		//myDropDown.RefreshShownValue ();
 	}
 }
