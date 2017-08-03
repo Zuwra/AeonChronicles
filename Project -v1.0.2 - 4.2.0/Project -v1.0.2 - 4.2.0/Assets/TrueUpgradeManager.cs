@@ -89,7 +89,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 		myUpgrades.Add (cpu);
 
 		foreach (CampaignUpgrade cu in CampUpRef) {
-			//cu.reInitialize ();
+			cu.upgradeBought();
 		
 		}
 		

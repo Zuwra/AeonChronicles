@@ -82,10 +82,11 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	public void setUpgrade(int index)
 	{if (myButtons.Count > 0) {
-		//	Debug.Log ("Gray " + currentIndex);
+
 			myButtons [currentIndex].image.material = grayScale;
 		}
 		currentIndex = index;
+
 		theDescription.text = myUpgrades [currentIndex].description;
 		if (myButtons.Count > 0) {
 			myButtons [currentIndex].image.material = null;
@@ -114,7 +115,20 @@ public class CampaignUpgrade : MonoBehaviour {
 			
 	}
 
+	public void upgradeBought()
+	{
+		setDropDownOptions ();
 
+		string upGradeName = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
+		for (int i = 0; i < options.Count; i++) {
+			if ( options[i] == upGradeName) {
+				currentIndex = i;
+				setUpgrade (currentIndex);
+			}
+		}
+		//myDropDown.value = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
+		SetImageDescript ();
+	}
 
 	public void SetImageDescript()
 	{
@@ -155,9 +169,6 @@ public class CampaignUpgrade : MonoBehaviour {
 
 			}
 		}
-		//myDropDown.Select ();
-		//myDropDown.RefreshShownValue ();
-
 
 		this.gameObject.SetActive (false);
 
@@ -165,20 +176,16 @@ public class CampaignUpgrade : MonoBehaviour {
 	List<string> options = new List<string> ();
 	public void setDropDownOptions()
 	{
-
-		foreach (Button b in myButtons) {
-			//b.interactable = false;//.gameObject.SetActive (false);
-		}
-		
+		myUpgrades.Clear ();
 		options = new List<string> ();
 		foreach (UpgradesPiece  up in GameObject.FindObjectOfType<TrueUpgradeManager>().myUpgrades) {
 
 			if (up.isUnlocked() && myTypes.Contains (up.myType) && !myUpgrades.Contains(up)) {
 
 				if (myButtons.Count > options.Count) {
-					Debug.Log ("Found" + up.name +" "+ options.Count  + "  " + myButtons [options.Count].gameObject);
+			
 					myButtons [options.Count].gameObject.SetActive (true);//.interactable = true;//.gameObject.SetActive (true);
-					Debug.Log(myButtons [options.Count].interactable);
+					myButtons[options.Count].image.material = grayScale;
 					myButtons [options.Count].image.sprite = up.pic;
 				}
 				myUpgrades.Add (up);
@@ -189,11 +196,8 @@ public class CampaignUpgrade : MonoBehaviour {
 		}
 
 		for (int i = options.Count; i < Mathf.Min( 6,myButtons.Count); i++) {
-			Debug.Log ("Setting " + myButtons[i].gameObject );
+			myButtons[options.Count].image.material = grayScale;
 			myButtons[i].gameObject.SetActive(false);
 		}
-
-		//myDropDown.AddOptions (options);
-		//myDropDown.RefreshShownValue ();
 	}
 }
