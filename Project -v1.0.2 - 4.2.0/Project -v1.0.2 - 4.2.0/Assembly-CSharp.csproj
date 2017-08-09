@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
@@ -19,10 +22,11 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_1;UNITY_5_6;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_1_0;UNITY_2017_1;UNITY_2017;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VR;ENABLE_MODULAR_UNITYENGINE_ASSEMBLIES;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,9 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AIMover.cs" />
-     <Compile Include="Assets\APMAchieve.cs" />
-     <Compile Include="Assets\APMCounter.cs" />
      <Compile Include="Assets\AbilityBox.cs" />
      <Compile Include="Assets\AbilityFollowState.cs" />
      <Compile Include="Assets\AbilityUpgrade.cs" />
@@ -61,46 +63,58 @@
      <Compile Include="Assets\AetherCapture.cs" />
      <Compile Include="Assets\AetherOvercharge.cs" />
      <Compile Include="Assets\AetherRelay.cs" />
+     <Compile Include="Assets\AIMover.cs" />
+     <Compile Include="Assets\airmover.cs" />
      <Compile Include="Assets\AllDestroyed.cs" />
      <Compile Include="Assets\AllLevelAch.cs" />
      <Compile Include="Assets\AngleWeapon.cs" />
+     <Compile Include="Assets\animate.cs" />
+     <Compile Include="Assets\APMAchieve.cs" />
+     <Compile Include="Assets\APMCounter.cs" />
      <Compile Include="Assets\AreaDamage.cs" />
      <Compile Include="Assets\ArmoryInteractor.cs" />
      <Compile Include="Assets\ArmyOfOneAch.cs" />
      <Compile Include="Assets\ArmyUIManager.cs" />
      <Compile Include="Assets\AttachGrinder.cs" />
      <Compile Include="Assets\AttackMoveAngled.cs" />
+     <Compile Include="Assets\attackSpeedUpgrade.cs" />
      <Compile Include="Assets\AudioPlayer.cs" />
      <Compile Include="Assets\AugmentAetherVictory.cs" />
      <Compile Include="Assets\AugmentAttachPoint.cs" />
-     <Compile Include="Assets\AugmentUpgrade.cs" />
      <Compile Include="Assets\Augmentor.cs" />
+     <Compile Include="Assets\AugmentUpgrade.cs" />
      <Compile Include="Assets\BackLashAura.cs" />
      <Compile Include="Assets\BackLashZone.cs" />
      <Compile Include="Assets\BallisticMissile.cs" />
      <Compile Include="Assets\BarrierAch.cs" />
+     <Compile Include="Assets\barrierShield.cs" />
      <Compile Include="Assets\BeamCannon.cs" />
      <Compile Include="Assets\Behavior.cs" />
      <Compile Include="Assets\BloodFury.cs" />
      <Compile Include="Assets\BloodMist.cs" />
      <Compile Include="Assets\BloodMistAura.cs" />
      <Compile Include="Assets\BloodMistCloud.cs" />
+     <Compile Include="Assets\blowUp.cs" />
      <Compile Include="Assets\Bombardment.cs" />
      <Compile Include="Assets\BonusObjectiverTimer.cs" />
      <Compile Include="Assets\BountyHunter.cs" />
      <Compile Include="Assets\Buff.cs" />
-     <Compile Include="Assets\BuildManager.cs" />
-     <Compile Include="Assets\BuildStructure.cs" />
-     <Compile Include="Assets\BuildUnitObjective.cs" />
      <Compile Include="Assets\BuilderUI.cs" />
      <Compile Include="Assets\BuildingInteractor.cs" />
      <Compile Include="Assets\BuildingPlacer.cs" />
+     <Compile Include="Assets\BuildManager.cs" />
+     <Compile Include="Assets\buildResumeState.cs" />
+     <Compile Include="Assets\BuildStructure.cs" />
+     <Compile Include="Assets\buildTurret.cs" />
+     <Compile Include="Assets\BuildUnitObjective.cs" />
+     <Compile Include="Assets\bunnyManager.cs" />
+     <Compile Include="Assets\bunnyPopulate.cs" />
+     <Compile Include="Assets\CampaignUltUpgrade.cs" />
+     <Compile Include="Assets\CampaignUpgrade.cs" />
      <Compile Include="Assets\CampShieldUpgrade.cs" />
      <Compile Include="Assets\CampTechCamManager.cs" />
      <Compile Include="Assets\CampTooltip.cs" />
      <Compile Include="Assets\CampUpgradePurchase.cs" />
-     <Compile Include="Assets\CampaignUltUpgrade.cs" />
-     <Compile Include="Assets\CampaignUpgrade.cs" />
      <Compile Include="Assets\CapturableUnit.cs" />
      <Compile Include="Assets\CarryRacks.cs" />
      <Compile Include="Assets\CastAbilityState.cs" />
@@ -118,6 +132,7 @@
      <Compile Include="Assets\CoagulateAura.cs" />
      <Compile Include="Assets\ConcussiveUpgrade.cs" />
      <Compile Include="Assets\ConstructionUpgrade.cs" />
+     <Compile Include="Assets\continueOrder.cs" />
      <Compile Include="Assets\ControlGroupUI.cs" />
      <Compile Include="Assets\CooldownUpgrade.cs" />
      <Compile Include="Assets\CostBox.cs" />
@@ -126,31 +141,33 @@
      <Compile Include="Assets\DaexaWorkerInteract.cs" />
      <Compile Include="Assets\DamageUpgrade.cs" />
      <Compile Include="Assets\DataChecker.cs" />
-     <Compile Include="Assets\DayFFUpgrade.cs" />
      <Compile Include="Assets\DayexaShield.cs" />
+     <Compile Include="Assets\DayFFUpgrade.cs" />
      <Compile Include="Assets\DeathCubeAchievement.cs" />
      <Compile Include="Assets\DeathCubeVulnerable.cs" />
+     <Compile Include="Assets\deathTrigger.cs" />
      <Compile Include="Assets\DeathWinTrigger.cs" />
+     <Compile Include="Assets\deexaArmor.cs" />
      <Compile Include="Assets\DeployTurret.cs" />
      <Compile Include="Assets\DetachAugment.cs" />
+     <Compile Include="Assets\dialogManager.cs" />
      <Compile Include="Assets\DifficultyManager.cs" />
      <Compile Include="Assets\DoubleUpgrade.cs" />
      <Compile Include="Assets\DoubleUpgradeApp.cs" />
      <Compile Include="Assets\DropDownDudeFinder.cs" />
      <Compile Include="Assets\DuplexPlating.cs" />
-     <Compile Include="Assets\EMPblast.cs" />
      <Compile Include="Assets\EarthQuake.cs" />
      <Compile Include="Assets\EconomyManager.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\SampleStage\GetUI.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\AutoDestroy.cs" />
-     <Compile Include="Assets\Effects\BasicBeamShot\Script\BM_WaveEffect.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\BasicBullet.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\BeamCollision.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\BeamLine.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\BeamParam.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\BeamWave.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\BillBoard.cs" />
+     <Compile Include="Assets\Effects\BasicBeamShot\Script\BM_WaveEffect.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\Create_MyLineMesh.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\Flash.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\GeroBeam.cs" />
@@ -166,29 +183,34 @@
      <Compile Include="Assets\Effects\BasicBeamShot\Script\SceneMaster.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\ShooterRotate.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\ShotBase.cs" />
-     <Compile Include="Assets\Effects\BasicBeamShot\Script\ShotParticleEmitter.cs" />
      <Compile Include="Assets\Effects\BasicBeamShot\Script\ShotParticle_Scale.cs" />
+     <Compile Include="Assets\Effects\BasicBeamShot\Script\ShotParticleEmitter.cs" />
      <Compile Include="Assets\Effects\Elemental Free\Scripts\GE_ELF_Demo.cs" />
      <Compile Include="Assets\Effects\LightningBolt\LightningBoltScript.cs" />
      <Compile Include="Assets\EggAchievement.cs" />
+     <Compile Include="Assets\EMPblast.cs" />
      <Compile Include="Assets\EmpMissile.cs" />
      <Compile Include="Assets\EnableAbility.cs" />
      <Compile Include="Assets\EnemySearchAI.cs" />
      <Compile Include="Assets\EnergyAchievement.cs" />
+     <Compile Include="Assets\energyDrain.cs" />
      <Compile Include="Assets\ErrorPrompt.cs" />
+     <Compile Include="Assets\evasiveMenuvers.cs" />
      <Compile Include="Assets\ExplodeOnDeath.cs" />
      <Compile Include="Assets\ExplodeParts.cs" />
+     <Compile Include="Assets\explosion.cs" />
      <Compile Include="Assets\ExpositionDisplayer.cs" />
      <Compile Include="Assets\ExpositionTexts.cs" />
      <Compile Include="Assets\ExtendedBarrels.cs" />
-     <Compile Include="Assets\FButtonManager.cs" />
      <Compile Include="Assets\FadeOut.cs" />
+     <Compile Include="Assets\FButtonManager.cs" />
      <Compile Include="Assets\FlatDamageBoost.cs" />
      <Compile Include="Assets\FogIndicator.cs" />
      <Compile Include="Assets\FogOfWar\FogOfWar.cs" />
      <Compile Include="Assets\FogOfWar\FogOfWarUnit.cs" />
      <Compile Include="Assets\FogOfWar\Test\FogOfWarTestGUI.cs" />
      <Compile Include="Assets\FogOfWar\Vector2i.cs" />
+     <Compile Include="Assets\fogUI.cs" />
      <Compile Include="Assets\FrontalShield.cs" />
      <Compile Include="Assets\FullExposition.cs" />
      <Compile Include="Assets\FullMetalAchieve.cs" />
@@ -198,6 +220,7 @@
      <Compile Include="Assets\GameSettings.cs" />
      <Compile Include="Assets\GameTips.cs" />
      <Compile Include="Assets\GraphicsMenu.cs" />
+     <Compile Include="Assets\gravityWell.cs" />
      <Compile Include="Assets\Grinder.cs" />
      <Compile Include="Assets\GroundSetter.cs" />
      <Compile Include="Assets\GuiControls.cs" />
@@ -210,9 +233,12 @@
      <Compile Include="Assets\HookFury.cs" />
      <Compile Include="Assets\HotkeyMenu.cs" />
      <Compile Include="Assets\HotkeyPicSetter.cs" />
-     <Compile Include="Assets\IEffect.cs" />
      <Compile Include="Assets\IconAttacker.cs" />
+     <Compile Include="Assets\IEffect.cs" />
      <Compile Include="Assets\Iinteract.cs" />
+     <Compile Include="Assets\incendiaryUpgrade.cs" />
+     <Compile Include="Assets\inflectionBarrier.cs" />
+     <Compile Include="Assets\inflectionStarter.cs" />
      <Compile Include="Assets\InstructionDisplayer.cs" />
      <Compile Include="Assets\InstructionHelper.cs" />
      <Compile Include="Assets\InstructionHelperManager.cs" />
@@ -220,6 +246,7 @@
      <Compile Include="Assets\KillModifier.cs" />
      <Compile Include="Assets\KillUnitAch.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
+     <Compile Include="Assets\laserGun.cs" />
      <Compile Include="Assets\LaserNode.cs" />
      <Compile Include="Assets\LaserNodeTurret.cs" />
      <Compile Include="Assets\LeanPool\Examples\SimpleDelayedPooling.cs" />
@@ -240,7 +267,6 @@
      <Compile Include="Assets\LifeSteal.cs" />
      <Compile Include="Assets\LocationObjective.cs" />
      <Compile Include="Assets\LootDrop.cs" />
-     <Compile Include="Assets\MVPCalculator.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />
      <Compile Include="Assets\Masochism.cs" />
      <Compile Include="Assets\MassCapture.cs" />
@@ -253,15 +279,21 @@
      <Compile Include="Assets\MiningState.cs" />
      <Compile Include="Assets\MissileArmer.cs" />
      <Compile Include="Assets\MissileProjectile.cs" />
+     <Compile Include="Assets\missileSalvo.cs" />
      <Compile Include="Assets\MissionLogger.cs" />
      <Compile Include="Assets\MissionManager.cs" />
      <Compile Include="Assets\MissionMapManager.cs" />
+     <Compile Include="Assets\moneyObjective.cs" />
      <Compile Include="Assets\MoneyPickUp.cs" />
      <Compile Include="Assets\Morph.cs" />
+     <Compile Include="Assets\mortarUpgrade.cs" />
+     <Compile Include="Assets\mousetracker.cs" />
      <Compile Include="Assets\MultiShotParticle.cs" />
+     <Compile Include="Assets\MVPCalculator.cs" />
      <Compile Include="Assets\NewAchievmentUI.cs" />
      <Compile Include="Assets\NewUnitPanel.cs" />
      <Compile Include="Assets\NewUnitTrigger.cs" />
+     <Compile Include="Assets\newWorkerInteract.cs" />
      <Compile Include="Assets\NimbusAch.cs" />
      <Compile Include="Assets\NoBuildingDeadAchievement.cs" />
      <Compile Include="Assets\NoDreadAch.cs" />
@@ -271,8 +303,8 @@
      <Compile Include="Assets\Objective.cs" />
      <Compile Include="Assets\ObjectiveManager.cs" />
      <Compile Include="Assets\ObjectiveTrigger.cs" />
-     <Compile Include="Assets\OnTakeDamage.cs" />
      <Compile Include="Assets\OneShotParticleSystem.cs" />
+     <Compile Include="Assets\OnTakeDamage.cs" />
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\ParticleAn.cs" />
@@ -292,44 +324,42 @@
      <Compile Include="Assets\Prefabs\Level2\Formations.cs" />
      <Compile Include="Assets\PrismTower.cs" />
      <Compile Include="Assets\ProductionManager.cs" />
+     <Compile Include="Assets\ProxyMine.cs" />
      <Compile Include="Assets\PulseCannon.cs" />
+     <Compile Include="Assets\pulsefieldupgrade.cs" />
      <Compile Include="Assets\RabbitEgg.cs" />
      <Compile Include="Assets\RaceInfo.cs" />
      <Compile Include="Assets\RaceNames.cs" />
      <Compile Include="Assets\RaceObjective.cs" />
-     <Compile Include="Assets\RaceSelectManager.cs" />
-     <Compile Include="Assets\RaceSelectionManger.cs" />
-     <Compile Include="Assets\RaceTipManager.cs" />
      <Compile Include="Assets\RacerSpeedChanger.cs" />
+     <Compile Include="Assets\RaceSelectionManger.cs" />
+     <Compile Include="Assets\RaceSelectManager.cs" />
+     <Compile Include="Assets\RaceTipManager.cs" />
      <Compile Include="Assets\RadiationTreatment.cs" />
      <Compile Include="Assets\RangeDisplayer.cs" />
+     <Compile Include="Assets\rangeUpgrade.cs" />
      <Compile Include="Assets\RapidArmsUpgrade.cs" />
      <Compile Include="Assets\RecoilUpgrade.cs" />
      <Compile Include="Assets\RegenerativeSap.cs" />
      <Compile Include="Assets\RepairDrone.cs" />
+     <Compile Include="Assets\repairReturn.cs" />
      <Compile Include="Assets\RepairTurret.cs" />
      <Compile Include="Assets\RepairUpgrade.cs" />
      <Compile Include="Assets\ResearchUpgrade.cs" />
      <Compile Include="Assets\ResourceGenerator.cs" />
      <Compile Include="Assets\RoamAI.cs" />
      <Compile Include="Assets\RocketBooster.cs" />
-     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\DebugPass.cs" />
-     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\EdgeDetectionMethod.cs" />
-     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\HDRMode.cs" />
-     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\MinAttribute.cs" />
-     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\PredicationPreset.cs" />
-     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\Preset.cs" />
-     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\QualityPreset.cs" />
-     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\SMAA.cs" />
-     <Compile Include="Assets\SanguinAura.cs" />
      <Compile Include="Assets\Sanguinate.cs" />
+     <Compile Include="Assets\SanguinAura.cs" />
      <Compile Include="Assets\SateliteScan.cs" />
+     <Compile Include="Assets\sawDefense.cs" />
      <Compile Include="Assets\SceneEventTrigger.cs" />
      <Compile Include="Assets\Scripts - In Game\$leftrighttest_276.cs" />
      <Compile Include="Assets\Scripts - In Game\Ability.cs" />
      <Compile Include="Assets\Scripts - In Game\AbstractCost.cs" />
      <Compile Include="Assets\Scripts - In Game\AttackMoveState.cs" />
      <Compile Include="Assets\Scripts - In Game\AttckWhileMoveState.cs" />
+     <Compile Include="Assets\Scripts - In Game\bobble.cs" />
      <Compile Include="Assets\Scripts - In Game\BuildUnit.cs" />
      <Compile Include="Assets\Scripts - In Game\Camera\MainCamera.cs" />
      <Compile Include="Assets\Scripts - In Game\Camera\sPoint.cs" />
@@ -340,6 +370,7 @@
      <Compile Include="Assets\Scripts - In Game\Core\RTSObject.cs" />
      <Compile Include="Assets\Scripts - In Game\Core\Unit.cs" />
      <Compile Include="Assets\Scripts - In Game\Cursors\CursorManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\customMover.cs" />
      <Compile Include="Assets\Scripts - In Game\DamageTypes.cs" />
      <Compile Include="Assets\Scripts - In Game\DefaultState.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\KeyBoardEventActions\Key_Control.cs" />
@@ -352,25 +383,24 @@
      <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\MouseEventArgs.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\ScreenEdgeEventArgs.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\Custom EventArgs\ScrollWheelEventArgs.cs" />
+     <Compile Include="Assets\Scripts - In Game\Events\EventsManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\EventsManager.Keyboard.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\EventsManager.Mouse.cs" />
      <Compile Include="Assets\Scripts - In Game\Events\EventsManager.ScreenEdge.cs" />
-     <Compile Include="Assets\Scripts - In Game\Events\EventsManager.cs" />
      <Compile Include="Assets\Scripts - In Game\FollowState.cs" />
+     <Compile Include="Assets\Scripts - In Game\GameManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\GarataiManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\GatlingGun.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\Events\GUIEvents.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\GUIManager.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\Modules\Drag Select\DragSelect.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\Modules\Item Progress\ItemProgressTextures.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\Styles\GUIStyles.cs" />
      <Compile Include="Assets\Scripts - In Game\GUI\Textures\GUITextures.cs" />
-     <Compile Include="Assets\Scripts - In Game\GameManager.cs" />
-     <Compile Include="Assets\Scripts - In Game\GarataiManager.cs" />
-     <Compile Include="Assets\Scripts - In Game\GatlingGun.cs" />
      <Compile Include="Assets\Scripts - In Game\HeartStopper.cs" />
      <Compile Include="Assets\Scripts - In Game\HoldState.cs" />
-     <Compile Include="Assets\Scripts - In Game\IMover.cs" />
-     <Compile Include="Assets\Scripts - In Game\IWeapon.cs" />
      <Compile Include="Assets\Scripts - In Game\ImmortalityProtocol.cs" />
+     <Compile Include="Assets\Scripts - In Game\IMover.cs" />
      <Compile Include="Assets\Scripts - In Game\InteractState.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IButton.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - GUI\IQueueButton.cs" />
@@ -379,8 +409,8 @@
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ICamera.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IEventsManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGLManager.cs" />
-     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGUIManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGrid.cs" />
+     <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IGUIManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ILevelLoader.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\IManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Managers\ISelectedManager.cs" />
@@ -389,10 +419,12 @@
      <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IAttackable.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IMoveable.cs" />
      <Compile Include="Assets\Scripts - In Game\Interfaces - Unit Actions\IOrderable.cs" />
+     <Compile Include="Assets\Scripts - In Game\IWeapon.cs" />
      <Compile Include="Assets\Scripts - In Game\LethalDamageinterface.cs" />
      <Compile Include="Assets\Scripts - In Game\ManagerWatcher.cs" />
      <Compile Include="Assets\Scripts - In Game\Misc\wayPointGizmo.cs" />
      <Compile Include="Assets\Scripts - In Game\Modifier.cs" />
+     <Compile Include="Assets\Scripts - In Game\mortarPod.cs" />
      <Compile Include="Assets\Scripts - In Game\MoveState.cs" />
      <Compile Include="Assets\Scripts - In Game\Notify.cs" />
      <Compile Include="Assets\Scripts - In Game\OpenGL\GLItem.cs" />
@@ -405,6 +437,7 @@
      <Compile Include="Assets\Scripts - In Game\RaceManager.cs" />
      <Compile Include="Assets\Scripts - In Game\RaceUIManager.cs" />
      <Compile Include="Assets\Scripts - In Game\Recall.cs" />
+     <Compile Include="Assets\Scripts - In Game\rotater.cs" />
      <Compile Include="Assets\Scripts - In Game\RunicBlessing.cs" />
      <Compile Include="Assets\Scripts - In Game\Selected Units\Selected.cs" />
      <Compile Include="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" />
@@ -420,41 +453,49 @@
      <Compile Include="Assets\Scripts - In Game\Threading\GetPathThread.cs" />
      <Compile Include="Assets\Scripts - In Game\Threading\ThreadJob.cs" />
      <Compile Include="Assets\Scripts - In Game\Threading\ThreadManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\turret.cs" />
      <Compile Include="Assets\Scripts - In Game\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts - In Game\UiAbilityManager.cs" />
      <Compile Include="Assets\Scripts - In Game\UnitManager.cs" />
+     <Compile Include="Assets\Scripts - In Game\Units\Workers\ResourceCarry.cs" />
+     <Compile Include="Assets\Scripts - In Game\Units\Workers\ResourceDropOff.cs" />
      <Compile Include="Assets\Scripts - In Game\UnitState.cs" />
      <Compile Include="Assets\Scripts - In Game\UnitStats.cs" />
      <Compile Include="Assets\Scripts - In Game\UnitTypes.cs" />
-     <Compile Include="Assets\Scripts - In Game\Units\Workers\ResourceCarry.cs" />
-     <Compile Include="Assets\Scripts - In Game\Units\Workers\ResourceDropOff.cs" />
      <Compile Include="Assets\Scripts - In Game\Validator.cs" />
      <Compile Include="Assets\Scripts - In Game\WarpCore.cs" />
-     <Compile Include="Assets\Scripts - In Game\bobble.cs" />
-     <Compile Include="Assets\Scripts - In Game\customMover.cs" />
-     <Compile Include="Assets\Scripts - In Game\mortarPod.cs" />
-     <Compile Include="Assets\Scripts - In Game\rotater.cs" />
-     <Compile Include="Assets\Scripts - In Game\turret.cs" />
      <Compile Include="Assets\SelectionNotifier.cs" />
+     <Compile Include="Assets\selfDestructTimer.cs" />
      <Compile Include="Assets\ShieldGlobe.cs" />
      <Compile Include="Assets\ShieldSpeedBoost.cs" />
      <Compile Include="Assets\ShieldSpeedUpgrade.cs" />
      <Compile Include="Assets\ShieldUpgrade.cs" />
+     <Compile Include="Assets\simpleROV.cs" />
      <Compile Include="Assets\SimpleSpawner.cs" />
      <Compile Include="Assets\SimpleStats.cs" />
      <Compile Include="Assets\SingleTarget.cs" />
      <Compile Include="Assets\SkinUnlocker.cs" />
+     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\DebugPass.cs" />
+     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\EdgeDetectionMethod.cs" />
+     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\HDRMode.cs" />
+     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\MinAttribute.cs" />
+     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\PredicationPreset.cs" />
+     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\Preset.cs" />
+     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\QualityPreset.cs" />
+     <Compile Include="Assets\SMAA-master\SMAA-master\SMAA\Scripts\SMAA.cs" />
      <Compile Include="Assets\SoloKillAchievement.cs" />
      <Compile Include="Assets\SoundManager\Demo\SoundManagerDemo.cs" />
      <Compile Include="Assets\SoundManager\SoundManager.cs" />
      <Compile Include="Assets\SoundOptions.cs" />
-     <Compile Include="Assets\SoundTrackPlayList.cs" />
      <Compile Include="Assets\SoundTrackPlayer.cs" />
+     <Compile Include="Assets\SoundTrackPlayList.cs" />
      <Compile Include="Assets\SpaceDrop.cs" />
      <Compile Include="Assets\SpecificUpgrade.cs" />
      <Compile Include="Assets\SpeedAch.cs" />
+     <Compile Include="Assets\speedLifeUpgrade.cs" />
      <Compile Include="Assets\SpeedUpgrade.cs" />
      <Compile Include="Assets\StandardInteract.cs" />
+     <Compile Include="Assets\stunStrike.cs" />
      <Compile Include="Assets\SuicideAttack.cs" />
      <Compile Include="Assets\SurviveVictory.cs" />
      <Compile Include="Assets\TargetAbility.cs" />
@@ -463,6 +504,7 @@
      <Compile Include="Assets\TargetDeathVictory.cs" />
      <Compile Include="Assets\Teleport.cs" />
      <Compile Include="Assets\TempInvulnerable.cs" />
+     <Compile Include="Assets\testScript.cs" />
      <Compile Include="Assets\TextChanger.cs" />
      <Compile Include="Assets\TextHolder.cs" />
      <Compile Include="Assets\TextTrigger.cs" />
@@ -483,6 +525,7 @@
      <Compile Include="Assets\TurretPlacer.cs" />
      <Compile Include="Assets\TurretPlacerManager.cs" />
      <Compile Include="Assets\TurretScreenDisplayer.cs" />
+     <Compile Include="Assets\turretState.cs" />
      <Compile Include="Assets\TurretTipDisplayer.cs" />
      <Compile Include="Assets\TurretUIPanel.cs" />
      <Compile Include="Assets\TutorialManager.cs" />
@@ -490,9 +533,9 @@
      <Compile Include="Assets\UIHighLight.cs" />
      <Compile Include="Assets\UISetter.cs" />
      <Compile Include="Assets\UltCooldown.cs" />
+     <Compile Include="Assets\UltimateApplier.cs" />
      <Compile Include="Assets\UltTip.cs" />
      <Compile Include="Assets\UltUpgradeUI.cs" />
-     <Compile Include="Assets\UltimateApplier.cs" />
      <Compile Include="Assets\UndyingArmor.cs" />
      <Compile Include="Assets\UnitAppear.cs" />
      <Compile Include="Assets\UnitCardCreater.cs" />
@@ -524,43 +567,6 @@
      <Compile Include="Assets\WayPoint.cs" />
      <Compile Include="Assets\WayPointInteracter.cs" />
      <Compile Include="Assets\ZephyrInteract.cs" />
-     <Compile Include="Assets\airmover.cs" />
-     <Compile Include="Assets\animate.cs" />
-     <Compile Include="Assets\attackSpeedUpgrade.cs" />
-     <Compile Include="Assets\barrierShield.cs" />
-     <Compile Include="Assets\blowUp.cs" />
-     <Compile Include="Assets\buildResumeState.cs" />
-     <Compile Include="Assets\buildTurret.cs" />
-     <Compile Include="Assets\bunnyManager.cs" />
-     <Compile Include="Assets\bunnyPopulate.cs" />
-     <Compile Include="Assets\continueOrder.cs" />
-     <Compile Include="Assets\deathTrigger.cs" />
-     <Compile Include="Assets\deexaArmor.cs" />
-     <Compile Include="Assets\dialogManager.cs" />
-     <Compile Include="Assets\energyDrain.cs" />
-     <Compile Include="Assets\evasiveMenuvers.cs" />
-     <Compile Include="Assets\explosion.cs" />
-     <Compile Include="Assets\fogUI.cs" />
-     <Compile Include="Assets\gravityWell.cs" />
-     <Compile Include="Assets\incendiaryUpgrade.cs" />
-     <Compile Include="Assets\inflectionBarrier.cs" />
-     <Compile Include="Assets\inflectionStarter.cs" />
-     <Compile Include="Assets\laserGun.cs" />
-     <Compile Include="Assets\missileSalvo.cs" />
-     <Compile Include="Assets\moneyObjective.cs" />
-     <Compile Include="Assets\mortarUpgrade.cs" />
-     <Compile Include="Assets\mousetracker.cs" />
-     <Compile Include="Assets\newWorkerInteract.cs" />
-     <Compile Include="Assets\pulsefieldupgrade.cs" />
-     <Compile Include="Assets\rangeUpgrade.cs" />
-     <Compile Include="Assets\repairReturn.cs" />
-     <Compile Include="Assets\sawDefense.cs" />
-     <Compile Include="Assets\selfDestructTimer.cs" />
-     <Compile Include="Assets\simpleROV.cs" />
-     <Compile Include="Assets\speedLifeUpgrade.cs" />
-     <Compile Include="Assets\stunStrike.cs" />
-     <Compile Include="Assets\testScript.cs" />
-     <Compile Include="Assets\turretState.cs" />
      <None Include="Assets\Materials\Bit2Good\SFS\Shaders\SFS_Pr_Dt.shader" />
      <None Include="Assets\Editor\readme.txt" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
@@ -775,7 +781,10 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Timeline">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
@@ -783,29 +792,20 @@
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.VR">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
- </Reference>
  <Reference Include="Pathfinding.ClipperLib">
- <HintPath>C:/Users/nosnh/Desktop/BattleMore2/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/Clipper/Pathfinding.ClipperLib.dll</HintPath>
+ <HintPath>C:/Users/Matthew Johnson/Desktop/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/Clipper/Pathfinding.ClipperLib.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Ionic.Zip.Reduced">
- <HintPath>C:/Users/nosnh/Desktop/BattleMore2/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ <HintPath>C:/Users/Matthew Johnson/Desktop/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.JsonFx">
- <HintPath>C:/Users/nosnh/Desktop/BattleMore2/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
+ <HintPath>C:/Users/Matthew Johnson/Desktop/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Poly2Tri">
- <HintPath>C:/Users/nosnh/Desktop/BattleMore2/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
+ <HintPath>C:/Users/Matthew Johnson/Desktop/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
  </Reference>
  <Reference Include="UIAddons">
- <HintPath>C:/Users/nosnh/Desktop/BattleMore2/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/UIAddons/Plugins/UIAddons/UIAddons.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Common">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
+ <HintPath>C:/Users/Matthew Johnson/Desktop/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/UIAddons/Plugins/UIAddons/UIAddons.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

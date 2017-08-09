@@ -118,7 +118,7 @@ public class DayexaShield : Ability,Modifier , Notify{
 			if (shieldEffect && damageReduction > 0 && lastShieldEffect < Time.time - .6f) {
 				lastShieldEffect = Time.time;
 
-				GameObject obj = (GameObject)Instantiate (shieldEffect, this.gameObject.transform.position, this.gameObject.transform.rotation, this.transform);
+				Instantiate (shieldEffect, this.gameObject.transform.position, this.gameObject.transform.rotation, this.transform);
 			}
 			return (amount - damageReduction);
 		}

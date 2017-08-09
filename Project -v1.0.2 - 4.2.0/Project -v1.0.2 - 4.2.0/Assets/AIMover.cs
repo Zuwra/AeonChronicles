@@ -66,7 +66,7 @@ public class AIMover : IMover {
 		/** Maximum velocity.
 	 * This is the maximum speed in world units per second.
 	 */
-		public new float speed = 3;
+		public float speed = 3;
 
 		/** Rotation speed.
 	 * Rotation is calculated using Quaternion.SLerp. This variable represents the damping, the higher, the faster it will be able to rotate.

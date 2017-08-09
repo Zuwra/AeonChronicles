@@ -71,7 +71,7 @@ public class explosion : MonoBehaviour {
 		
 					float amount = damageAmount	;
 
-					if (sourceInt != manager.PlayerOwner) {
+					if (sourceInt == manager.PlayerOwner) {
 						amount *= friendlyFireRatio;
 					}
 

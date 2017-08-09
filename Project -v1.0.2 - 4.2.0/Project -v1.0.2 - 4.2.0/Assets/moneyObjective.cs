@@ -11,7 +11,7 @@ public class moneyObjective : Objective {
 
 	public float moneyVictory;
 	// Use this for initialization
-	void Start () {
+	new void Start () {
 		base.Start ();
 		InvokeRepeating ("UpdateMoney", .75f, .7f);
 	}
