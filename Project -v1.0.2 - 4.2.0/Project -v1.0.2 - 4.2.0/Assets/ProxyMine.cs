@@ -79,6 +79,30 @@ public class ProxyMine : MonoBehaviour {
 		}
 	}
 
+	public void attack(GameObject obj)
+	{
+		if (myroutine == null) {
+			target = obj;
+
+			BoxCollider box = GetComponent<BoxCollider> ();
+			if ( box) {
+				box.center = new Vector3 (0, 0, 0);
+				box.size = new Vector3 (7, 11, 7);
+			} else {
+
+				SphereCollider sphere = GetComponent<SphereCollider> ();
+				if (sphere && sphere.isTrigger) {
+					sphere.radius = 4;
+
+				}
+			}
+
+			myroutine = StartCoroutine (attackTarget());
+			return;
+
+		}
+	}
+
 	IEnumerator attackTarget()
 	{	
 

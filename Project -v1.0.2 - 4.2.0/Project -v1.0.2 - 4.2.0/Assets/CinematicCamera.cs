@@ -100,6 +100,7 @@ public class CinematicCamera : SceneEventTrigger {
 
 			trig.trigger (0, 0, Vector3.zero, null, false);
 		}
+		myScenes [currentScene].onComplete.Invoke ();
 		currentScene = -1;
 		GetComponent<Camera> ().enabled = false;
 		MainCamera.main.gameObject.transform.position = previousCamPos ;
@@ -116,7 +117,7 @@ public class CinematicCamera : SceneEventTrigger {
 	public struct scene{
 		public List<shot> myShots;
 		public List<SceneEventTrigger> nextTrig;
-
+		public UnityEngine.Events.UnityEvent onComplete;
 
 
 	}
