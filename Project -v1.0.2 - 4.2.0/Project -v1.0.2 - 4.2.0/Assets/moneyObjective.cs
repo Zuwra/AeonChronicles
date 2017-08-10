@@ -8,8 +8,12 @@ public class moneyObjective : Objective {
 	public Slider moneySlide;
 	public RaceManager myRace;
 	public Text myText;
+	public List<int> halfwayVoiceLines;
 
 	public float moneyVictory;
+
+	bool playedHalfWay;
+
 	// Use this for initialization
 	new void Start () {
 		base.Start ();
@@ -21,6 +25,14 @@ public class moneyObjective : Objective {
 
 		myText.text = myRace.ResourceOne +"/"+ moneyVictory;
 		moneySlide.value = myRace.ResourceOne / moneyVictory;
+
+		if (!playedHalfWay && myRace.ResourceOne > moneyVictory / 2) {
+			playedHalfWay = true;
+			if (halfwayVoiceLines.Count > 0) {
+				dialogManager.instance.playLine (UnityEngine.Random.Range(0,halfwayVoiceLines.Count));
+			}
+		}
+
 		if (myRace.ResourceOne >= moneyVictory) {
 			complete ();
 		}
