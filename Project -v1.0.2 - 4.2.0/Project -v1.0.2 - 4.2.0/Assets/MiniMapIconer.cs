@@ -26,7 +26,9 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 				foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
 					if (obj) {
 						Debug.Log ("I died");
-						mini.deleteUnitIcon (obj);
+						if (mini) {
+							mini.deleteUnitIcon (obj);
+						}
 					}
 				}
 			}

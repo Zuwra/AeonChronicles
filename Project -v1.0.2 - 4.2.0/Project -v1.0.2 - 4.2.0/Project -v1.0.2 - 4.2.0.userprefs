@@ -1,22 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\moneyObjective.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\newWorkerInteract.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampUpgradePurchase.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelManager.cs" Line="220" Column="2" />
+      <File FileName="Assets\CampUpgradePurchase.cs" Line="50" Column="34" />
       <File FileName="Assets\SpecificUpgrade.cs" Line="1" Column="1" />
       <File FileName="Assets\CampaignUpgrade.cs" Line="1" Column="1" />
       <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\CampTechCamManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\ProxyMine.cs" Line="1" Column="1" />
-      <File FileName="Assets\airmover.cs" Line="1" Column="1" />
-      <File FileName="Assets\DayexaShield.cs" Line="1" Column="1" />
-      <File FileName="Assets\CinematicCamera.cs" Line="1" Column="1" />
-      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets\moneyObjective.cs" Line="24" Column="23" />
-      <File FileName="Assets\TextTrigger.cs" Line="32" Column="54" />
+      <File FileName="Assets\TextTrigger.cs" Line="1" Column="1" />
       <File FileName="Assets\bunnyManager.cs" Line="25" Column="35" />
+      <File FileName="Assets\UltUpgradeUI.cs" Line="69" Column="3" />
+      <File FileName="Assets\MiniMapIconer.cs" Line="29" Column="18" />
+      <File FileName="Assets\WaveManager.cs" Line="116" Column="12" />
+      <File FileName="Assets\bunnyPopulate.cs" Line="63" Column="22" />
+      <File FileName="Assets\newWorkerInteract.cs" Line="43" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

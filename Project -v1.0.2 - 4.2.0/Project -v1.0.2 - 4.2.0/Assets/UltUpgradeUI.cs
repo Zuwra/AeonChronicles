@@ -71,7 +71,8 @@ public class UltUpgradeUI : MonoBehaviour {
 	public void BuyArbitronium()
 	{
 		UltUpgradeUI.availableArb++;
-		LevelData.addMoney (-5);
+		//LevelData.addMoney (-5);
+		LevelManager.main.changeMoney (-5);
 		LevelData.addArbitronium (1);
 		updateArbText ();
 		openBuyArbWindow ();

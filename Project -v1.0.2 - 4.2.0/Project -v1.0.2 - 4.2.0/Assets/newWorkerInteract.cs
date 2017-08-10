@@ -39,8 +39,10 @@ public class newWorkerInteract :  Ability, Iinteract {
 		
 		if (autocast && myManager) {
 	
-			if ((myManager.getState () is ChannelState  && s is MoveState) || ( myManager.getState() is PlaceBuildingState&& s is DefaultState)) {
-				StartCoroutine (autocastReturn());
+			if ((myManager.getState () is ChannelState && s is MoveState) || (myManager.getState () is PlaceBuildingState && s is DefaultState)) {
+				if (myManager.PlayerOwner == 1) { // This is a hack to make sure the SUperCraftor in the money level doesn't try to start mining from the start.
+					StartCoroutine (autocastReturn ());
+				}
 			}
 
 		}

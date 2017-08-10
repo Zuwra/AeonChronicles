@@ -110,6 +110,11 @@ public class WaveManager : MonoBehaviour {
 
 			}
 			GameObject spawner = null;
+
+
+			if (currentWaveIndex >= myWaves.Count) {
+				return;
+			}
 			if (myWaves [currentWaveIndex].MustBeHere && !myWaves [currentWaveIndex].SpawnObject) {
 				setNextWave ();
 				return;

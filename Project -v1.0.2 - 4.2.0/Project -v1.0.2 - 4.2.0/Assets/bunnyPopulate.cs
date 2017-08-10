@@ -22,7 +22,7 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 		bunnyMan =	GameObject.FindObjectOfType<bunnyManager> ();
 		if(bunnyMan){
 			bunnyMan.changeInBunnyCount (1);}
-		nextRepopulate = Time.time + repopulateTime + Random.Range(0,randomSpawnRange);
+		nextRepopulate = repopulateTime + Random.Range(0,randomSpawnRange);
 		myStats = GetComponent<UnitStats> ();
 
 		foreach(IWeapon weap in mymanager.myWeapon)
