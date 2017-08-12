@@ -325,6 +325,7 @@
      <Compile Include="Assets\PrismTower.cs" />
      <Compile Include="Assets\ProductionManager.cs" />
      <Compile Include="Assets\ProxyMine.cs" />
+     <Compile Include="Assets\ProxySpawner.cs" />
      <Compile Include="Assets\PulseCannon.cs" />
      <Compile Include="Assets\pulsefieldupgrade.cs" />
      <Compile Include="Assets\RabbitEgg.cs" />
