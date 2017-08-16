@@ -370,10 +370,12 @@ public class IWeapon : MonoBehaviour {
 	}
 
 	public float fireTriggers(GameObject source, GameObject proj, UnitManager target, float damage)
-	{	triggers.RemoveAll (item => item == null);
+	{	Debug.Log ("Firing triggers " + triggers.Count);
+		triggers.RemoveAll (item => item == null);
 		foreach (Notify obj in triggers) {
+			
 			if(obj != null){
-		//	Debug.Log (obj);
+			Debug.Log (obj);
 				damage =  obj.trigger(source,proj,target, damage);}
 		}
 		return damage;

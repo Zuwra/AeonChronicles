@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class HookFury : MonoBehaviour, Modifier, Notify {
+using System.Collections.Generic;
+public class HookFury : MonoBehaviour,  Notify {
 
 	// Unit modifier that make them attack faster the less health they have
-	private IWeapon myWeapon;
+	public List<IWeapon> myWeapon;
 
 	private UnitStats myStats;
 	// Use this for initialization
 	void Start () {
-		myWeapon = GetComponent<IWeapon> ();
-	
+		myWeapon = new List<IWeapon>(GetComponents<IWeapon> ());
+		Debug.Log ("Length is " + myWeapon.Count);
+
 		myStats = GetComponent<UnitStats> ();
-		myStats.addModifier (this);
-		myWeapon.triggers.Add (this);
+
+		foreach (IWeapon weap in myWeapon) {
+			weap.addNotifyTrigger (this);
+		}
 	}
 	
 
@@ -21,17 +24,14 @@ public class HookFury : MonoBehaviour, Modifier, Notify {
 
 	public float trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
 	{
-		myWeapon.removeAttackSpeedBuff (this);
-		myWeapon.changeAttackSpeed (-(.5f - (myStats.health / myStats.Maxhealth) / 2), 0, false, this);
-
+		float toChange = -(.5f - (myStats.health / myStats.Maxhealth) / 2);
+		Debug.Log ("Changing " + toChange);
+		foreach (IWeapon weap in myWeapon) {
+			weap.removeAttackSpeedBuff (this);
+			weap.changeAttackSpeed (toChange, 0, false, this);
+		}
 		return damage;
 	}
 
-	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
-	{
-		myWeapon.removeAttackSpeedBuff (this);
-		myWeapon.changeAttackSpeed (-(.5f -  (myStats.health / myStats.Maxhealth) / 2), 0, false, this);
-		return damage;
-	}
 
 }
