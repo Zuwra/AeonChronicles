@@ -220,6 +220,7 @@
      <Compile Include="Assets\GamePlayMenu.cs" />
      <Compile Include="Assets\GameSettings.cs" />
      <Compile Include="Assets\GameTips.cs" />
+     <Compile Include="Assets\Gigapede.cs" />
      <Compile Include="Assets\GraphicsMenu.cs" />
      <Compile Include="Assets\gravityWell.cs" />
      <Compile Include="Assets\Grinder.cs" />
