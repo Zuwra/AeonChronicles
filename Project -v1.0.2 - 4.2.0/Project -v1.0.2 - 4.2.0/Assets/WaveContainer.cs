@@ -8,11 +8,11 @@ public class WaveContainer : MonoBehaviour {
 
 	public enum waveWarningType
 	{
-		Normal, Bunny, DreadNaught
+		Normal, Bunny, DreadNaught,Bugs
 	}
 
 	public enum EnemyWave{
-		ScrapCrack, ScrapChem, DreadFleet, Bunny, CrackSkiff, ScrapSkif, BunnySKiff, ChemScrap,ShapeLand
+		ScrapCrack, ScrapChem, DreadFleet, Bunny, CrackSkiff, ScrapSkif, BunnySKiff, ChemScrap,ShapeLand,Wasps,Bugs,NecroSkitter
 	}
 
 
@@ -44,9 +44,18 @@ public class WaveContainer : MonoBehaviour {
 			return myWaveOptions [7];
 		case EnemyWave.ShapeLand:
 			return myWaveOptions [8];
+		
+		case EnemyWave.Wasps:
+			return myWaveOptions [9];
+		
+		case EnemyWave.Bugs:
+			return myWaveOptions [10];
+		
 
-
-		}
+		case EnemyWave.NecroSkitter:
+			return myWaveOptions [11];
+		
+	}
 
 		return myWaveOptions [0];
 	}

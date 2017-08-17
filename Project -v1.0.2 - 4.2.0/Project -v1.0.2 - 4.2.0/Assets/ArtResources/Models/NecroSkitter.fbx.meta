@@ -29,6 +29,7 @@ ModelImporter:
     100042: Icosphere.003
     100044: Icosphere.004
     100046: //RootNode
+    100048: Icosphere
     400000: Cube
     400002: Cube.001
     400004: Cube.002
@@ -53,6 +54,7 @@ ModelImporter:
     400042: Icosphere.003
     400044: Icosphere.004
     400046: //RootNode
+    400048: Icosphere
     2300000: Cube
     2300002: Cube.001
     2300004: Cube.002
@@ -76,6 +78,7 @@ ModelImporter:
     2300040: Icosphere.002
     2300042: Icosphere.003
     2300044: Icosphere.004
+    2300046: Icosphere
     3300000: Cube
     3300002: Cube.001
     3300004: Cube.002
@@ -99,6 +102,7 @@ ModelImporter:
     3300040: Icosphere.002
     3300042: Icosphere.003
     3300044: Icosphere.004
+    3300046: Icosphere
     4300000: Cube.017
     4300002: Cube.016
     4300004: Cube.015
@@ -122,6 +126,7 @@ ModelImporter:
     4300040: Cube.001
     4300042: Cube
     4300044: Icosphere.002
+    4300046: Icosphere
   materials:
     importMaterials: 1
     materialName: 0

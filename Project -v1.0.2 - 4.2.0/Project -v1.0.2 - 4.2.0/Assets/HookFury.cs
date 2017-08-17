@@ -10,7 +10,7 @@ public class HookFury : MonoBehaviour,  Notify {
 	// Use this for initialization
 	void Start () {
 		myWeapon = new List<IWeapon>(GetComponents<IWeapon> ());
-		Debug.Log ("Length is " + myWeapon.Count);
+		//Debug.Log ("Length is " + myWeapon.Count);
 
 		myStats = GetComponent<UnitStats> ();
 
@@ -25,7 +25,7 @@ public class HookFury : MonoBehaviour,  Notify {
 	public float trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
 	{
 		float toChange = -(.5f - (myStats.health / myStats.Maxhealth) / 2);
-		Debug.Log ("Changing " + toChange);
+		//Debug.Log ("Changing " + toChange);
 		foreach (IWeapon weap in myWeapon) {
 			weap.removeAttackSpeedBuff (this);
 			weap.changeAttackSpeed (toChange, 0, false, this);

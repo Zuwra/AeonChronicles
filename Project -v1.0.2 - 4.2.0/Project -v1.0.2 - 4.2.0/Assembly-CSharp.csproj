@@ -145,6 +145,7 @@
      <Compile Include="Assets\DayFFUpgrade.cs" />
      <Compile Include="Assets\DeathCubeAchievement.cs" />
      <Compile Include="Assets\DeathCubeVulnerable.cs" />
+     <Compile Include="Assets\DeathInjector.cs" />
      <Compile Include="Assets\deathTrigger.cs" />
      <Compile Include="Assets\DeathWinTrigger.cs" />
      <Compile Include="Assets\deexaArmor.cs" />
