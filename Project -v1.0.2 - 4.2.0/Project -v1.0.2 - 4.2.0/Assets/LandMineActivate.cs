@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LandMineActivate : MonoBehaviour {
+public class LandMineActivate : VisionTrigger {
 
 	public IWeapon explosion;
 
@@ -10,7 +10,6 @@ public class LandMineActivate : MonoBehaviour {
 	public float baseDamage;
 	public float chargeUpTime;
 	public float damagePerSec;
-
 
 	public float currentDamage;
 
@@ -42,11 +41,35 @@ public class LandMineActivate : MonoBehaviour {
 		FullChargeEffect.SetActive (true);
 		Destroy (ChargeEffect);
 	}
+	public override void UnitExitTrigger(UnitManager manager)
+	{
+	}
+
+	public override void UnitEnterTrigger(UnitManager manager)
+	{
+		if (manager.getUnitStats ()) {
+
+			float amount;
+			if (myVet) {
+				amount = manager.getUnitStats ().TakeDamage (currentDamage, myVet.gameObject, DamageTypes.DamageType.True);
+				myVet.veteranDamage (amount);
+			} else {
+				amount = manager.getUnitStats ().TakeDamage (currentDamage, null, DamageTypes.DamageType.True);
+			}
+			if (PlayerNumber == 1) {
+				PlayerPrefs.SetInt ("TotalPlasmaMineDamage", PlayerPrefs.GetInt ("TotalPlasmaMineDamage") + (int)amount);
+			}
+			Instantiate (explosionEffect, this.gameObject.transform.position, Quaternion.identity);
+			Destroy (this.gameObject);	
+		}
+	}
+
+	/*
 
 	void OnTriggerEnter(Collider other) {
 
 		UnitManager otherManager = other.gameObject.GetComponent<UnitManager> ();
-		if (otherManager && !otherManager.PlayerOwner.Equals (1) && otherManager.getUnitStats()) {
+		if (otherManager && !otherManager.PlayerOwner.Equals (playerOwner) && otherManager.getUnitStats()) {
 
 			float amount;
 			if (myVet) {
@@ -62,7 +85,7 @@ public class LandMineActivate : MonoBehaviour {
 		}
 
 	}
-
+*/
 	public void setSource(GameObject obj)
 	{
 		myVet = obj.GetComponent<UnitStats> ();

@@ -20,7 +20,7 @@ public class DeployTurret  : TargetAbility{
 	public GameObject PlaceEffect;
 
 	public TurretMount myMount;
-	GameObject currentTurret;
+	public GameObject currentTurret;
 
 	public List<Sprite> turretIcons;
 	int maxChargeCount =2;

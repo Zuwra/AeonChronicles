@@ -98,6 +98,7 @@
      <Compile Include="Assets\Bombardment.cs" />
      <Compile Include="Assets\BonusObjectiverTimer.cs" />
      <Compile Include="Assets\BountyHunter.cs" />
+     <Compile Include="Assets\BridgeActivator.cs" />
      <Compile Include="Assets\Buff.cs" />
      <Compile Include="Assets\BuilderUI.cs" />
      <Compile Include="Assets\BuildingInteractor.cs" />
@@ -558,6 +559,7 @@
      <Compile Include="Assets\VeteranVicDisplayer.cs" />
      <Compile Include="Assets\VictoryScreen.cs" />
      <Compile Include="Assets\VictoryTrigger.cs" />
+     <Compile Include="Assets\VisionTrigger.cs" />
      <Compile Include="Assets\VoiceContainer.cs" />
      <Compile Include="Assets\VoicePack.cs" />
      <Compile Include="Assets\VoicePackUI.cs" />
