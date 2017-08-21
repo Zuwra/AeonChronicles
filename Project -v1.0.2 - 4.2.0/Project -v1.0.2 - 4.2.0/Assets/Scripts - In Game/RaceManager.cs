@@ -42,7 +42,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public UIManager uiManage;
 
-	private List<Upgrade> myUpgrades = new List<Upgrade> ();
+	public List<Upgrade> myUpgrades = new List<Upgrade> ();
 
 	private SelectedManager selectedManager;
 

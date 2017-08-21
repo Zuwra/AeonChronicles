@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Gigapede.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RepairDrone.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\LevelManager.cs" Line="1" Column="1" />
@@ -8,13 +8,11 @@
       <File FileName="Assets\SpecificUpgrade.cs" Line="1" Column="1" />
       <File FileName="Assets\CampaignUpgrade.cs" Line="1" Column="1" />
       <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\HookFury.cs" Line="38" Column="1" />
-      <File FileName="Assets\WaveContainer.cs" Line="1" Column="1" />
-      <File FileName="Assets\DeathInjector.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\Modifier.cs" Line="1" Column="1" />
-      <File FileName="Assets\Gigapede.cs" Line="29" Column="3" />
-      <File FileName="Assets\RegenerativeSap.cs" Line="64" Column="1" />
+      <File FileName="Assets\RegenerativeSap.cs" Line="1" Column="1" />
+      <File FileName="Assets\DamageUpgrade.cs" Line="1" Column="1" />
+      <File FileName="Assets\ResearchUpgrade.cs" Line="50" Column="17" />
+      <File FileName="Assets\WaveContainer.cs" Line="58" Column="28" />
+      <File FileName="Assets\RepairDrone.cs" Line="29" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

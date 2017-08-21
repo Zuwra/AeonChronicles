@@ -12,7 +12,7 @@ public class WaveContainer : MonoBehaviour {
 	}
 
 	public enum EnemyWave{
-		ScrapCrack, ScrapChem, DreadFleet, Bunny, CrackSkiff, ScrapSkif, BunnySKiff, ChemScrap,ShapeLand,Wasps,Bugs,NecroSkitter
+		ScrapCrack, ScrapChem, DreadFleet, Bunny, CrackSkiff, ScrapSkif, BunnySKiff, ChemScrap,ShapeLand,Wasps,Bugs,NecroSkitter,EvilDaexa
 	}
 
 
@@ -54,6 +54,9 @@ public class WaveContainer : MonoBehaviour {
 
 		case EnemyWave.NecroSkitter:
 			return myWaveOptions [11];
+
+		case EnemyWave.EvilDaexa:
+			return myWaveOptions [12];
 		
 	}
 

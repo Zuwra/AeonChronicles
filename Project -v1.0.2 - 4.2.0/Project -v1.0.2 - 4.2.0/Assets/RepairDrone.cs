@@ -25,7 +25,8 @@ public class RepairDrone : MonoBehaviour {
 	void Update () {
 		if (!myHome) {
 			Destroy (this.gameObject);
-		}
+			return;
+		} 
 
 		if (target) {
 			if (Vector3.Distance (myHome.transform.position, this.gameObject.transform.position) > 50) {
