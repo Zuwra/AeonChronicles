@@ -1,13 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\UnitManagerEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts - In Game\UnitManager.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="189" Column="3" />
       <File FileName="Assets\TimeDelayTrigger.cs" Line="1" Column="1" />
       <File FileName="Assets\MissileArmer.cs" Line="1" Column="1" />
-      <File FileName="Assets\EarthQuake.cs" Line="22" Column="17" />
+      <File FileName="Assets\EarthQuake.cs" Line="1" Column="1" />
       <File FileName="Assets\SurviveVictory.cs" Line="7" Column="2" />
-      <File FileName="Assets\Editor\UnitManagerEditor.cs" Line="15" Column="2" />
+      <File FileName="Assets\Scripts - In Game\Classes\Orders.cs" Line="10" Column="16" />
+      <File FileName="Assets\Scripts - In Game\Classes\Order.cs" Line="38" Column="2" />
+      <File FileName="Assets\Scripts - In Game\Core\Unit.cs" Line="54" Column="3" />
+      <File FileName="Assets\StandardInteract.cs" Line="49" Column="12" />
+      <File FileName="Assets\DeathInjector.cs" Line="66" Column="21" />
+      <File FileName="Assets\newWorkerInteract.cs" Line="68" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

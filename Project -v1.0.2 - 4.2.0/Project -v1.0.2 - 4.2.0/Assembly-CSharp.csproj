@@ -311,7 +311,6 @@
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PageUIManager.cs" />
      <Compile Include="Assets\ParticleAn.cs" />
-     <Compile Include="Assets\Patrol.cs" />
      <Compile Include="Assets\PayLoadCreator.cs" />
      <Compile Include="Assets\PayLoadEndZone.cs" />
      <Compile Include="Assets\PayloadFirendlyEndZone.cs" />

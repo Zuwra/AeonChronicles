@@ -65,7 +65,7 @@ public class DeathInjector :MonoBehaviour,  Notify {
 
 	public void Dying()
 	{
-		Debug.Log ("Dying " + onTarget + "  -" + toSpawn);
+		//Debug.Log ("Dying " + onTarget + "  -" + toSpawn);
 		if (onTarget ) {
 			Instantiate (Resources.Load<GameObject>(toSpawn), this.transform.position + Vector3.up* 3, Quaternion.identity);
 		}

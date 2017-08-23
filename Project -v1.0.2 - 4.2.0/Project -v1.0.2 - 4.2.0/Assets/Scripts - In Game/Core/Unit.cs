@@ -10,12 +10,7 @@ public class Unit : RTSObject, IOrderable {
 
 	protected bool m_IsAttackable = true;
 	protected bool m_IsInteractable = false;
-	
-	protected IGUIManager guiManager
-	{
-		get;
-		private set;
-	}
+
 	
 	protected ISelectedManager selectedManager
 	{
@@ -51,13 +46,13 @@ public class Unit : RTSObject, IOrderable {
 
 	protected void Start()
 	{
-		guiManager = GameObject.FindObjectOfType<GUIManager> ();// ManagerResolver.Resolve<IGUIManager>();
-		selectedManager = GameObject.FindObjectOfType<SelectedManager>();
+		//guiManager = GameObject.FindObjectOfType<GUIManager> ();// ManagerResolver.Resolve<IGUIManager>();
+		selectedManager = SelectedManager.main;//GameObject.FindObjectOfType<SelectedManager>();
 
 		m_IsAttackable = this is IAttackable;
 	
 	}
-	
+	/*
 	protected void Update()
 	{
 		if (GetComponent<Renderer>().isVisible && guiManager.Dragging)
@@ -72,7 +67,7 @@ public class Unit : RTSObject, IOrderable {
 			}
 		}
 	}
-		
+		*/
 	public override void SetSelected ()
 	{
 		if (!GetComponent<Selected>().IsSelected)

@@ -69,7 +69,9 @@ public class newWorkerInteract :  Ability, Iinteract {
 	{
 		yield return new WaitForSeconds (1.5f);
 		//Debug.Log ("Finding Ore");
-		findNearestOre ();
+		if (myManager.getState () is DefaultState) {
+			findNearestOre ();
+		}
 	}
 
 	public void findNearestOre()

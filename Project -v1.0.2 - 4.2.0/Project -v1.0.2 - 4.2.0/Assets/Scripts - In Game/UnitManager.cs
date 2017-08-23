@@ -41,11 +41,15 @@ public class UnitManager : Unit,IOrderable{
 	//List of weapons modifiers that need to be applied to weapons as they are put on this guy
 	private List<Notify> potentialNotify = new List<Notify>();
 
+
+
+
+
 	public CharacterController CharController;
 	public FogOfWarUnit fogger;
 	[System.Serializable]
 	public struct voiceResponse
-	{
+	{ 
 		public List<AudioClip> moving;
 		public List<AudioClip> attacking;
 
@@ -54,6 +58,7 @@ public class UnitManager : Unit,IOrderable{
 	private bool isStunned;
 	private bool isSilenced;
 
+	public List<StartCommand> startingCommand;
 
 	new void Awake()
 	{
@@ -142,7 +147,9 @@ public class UnitManager : Unit,IOrderable{
 	
 			chaseRange = visionRange;
 
+		Invoke ("GiveStartCommand", .5f);
 	}
+
 
 	//Elsewhere this command is called on the RTSObject class, which is not a monobehavior, and cannot access its gameobject.
 	public new GameObject getObject()
@@ -175,6 +182,15 @@ public class UnitManager : Unit,IOrderable{
 		}
 	}
 
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+
+		foreach (StartCommand command in startingCommand) {
+			Gizmos.DrawSphere (transform.position +  command.location, 1);
+		}
+	}
 
 
 	override
@@ -235,16 +251,41 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
+
 	public void setInteractor()
 	{Start (); // in the parent class
-		
 
+	}
+
+	void GiveStartCommand()
+	{
+		foreach (StartCommand command in startingCommand) {
+
+			RaycastHit hit;
+			Vector3 newLocation = transform.position;
+			if (Physics.Raycast (command.location + transform.position, Vector3.down, out hit, 1000, 1 << 8)) {
+				
+					newLocation = hit.point;
+				}
+			
+
+				if (command.myCommand == StartCommand.CommandType.AttackMove) {
+					GiveOrder (Orders.CreateAttackMove (newLocation, startingCommand.Count > 1));
+
+				} else if (command.myCommand == StartCommand.CommandType.Move) {
+			
+					GiveOrder (Orders.CreateMoveOrder (newLocation, startingCommand.Count > 1));
+
+				} else {
+					GiveOrder (Orders.CreatePatrol (newLocation, startingCommand.Count > 1));
+				}
+
+		}
 	}
 
 
 	public new void GiveOrder (Order order)
 	{
-		
 		if (myState is  ChannelState) {
 			//order.queued = true;
 			foreach (UnitState s in queuedStates) {
@@ -801,5 +842,14 @@ public class UnitManager : Unit,IOrderable{
 
 	public float getChaseRange()
 	{return chaseRange;}
+
+}
+
+[System.Serializable]
+public class StartCommand
+{
+	public enum CommandType{Move, AttackMove, Patrol}
+	public CommandType myCommand;
+	public Vector3 location;
 
 }
