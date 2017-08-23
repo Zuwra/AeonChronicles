@@ -17,6 +17,7 @@ public class EarthQuake : MonoBehaviour {
 
 	public MultiShotParticle myParticle;
 	public GameObject QuakeBuilding;
+	public bool ableToActivate = true;
 	// Use this for initialization
 	void Start () {
 		enemyRace = GameObject.FindObjectOfType<GameManager> ().playerList [1];
@@ -27,8 +28,10 @@ public class EarthQuake : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.KeypadEnter)) {
-			generateEarthQuake ();
+		if (ableToActivate) {
+			if (Input.GetKeyDown (KeyCode.KeypadEnter)) {
+				generateEarthQuake ();
+			}
 		}
 	}
 

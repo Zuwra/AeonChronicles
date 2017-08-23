@@ -16,6 +16,7 @@ public class UnitEnterTrigger : MonoBehaviour {
 	public List<string> specificUnits;
 	public List<SceneEventTrigger> myTriggers;
 
+	public UnityEngine.Events.UnityEvent OnEnter;
 
 
 
@@ -45,6 +46,7 @@ public class UnitEnterTrigger : MonoBehaviour {
 			//Debug.Log ("Triggering " + trig);
 			trig.trigger (index, input, location, target, doIt);
 		}
+		OnEnter.Invoke ();
 		GetComponent<Collider> ().enabled = false;
 
 		yield return new WaitForSeconds (15);

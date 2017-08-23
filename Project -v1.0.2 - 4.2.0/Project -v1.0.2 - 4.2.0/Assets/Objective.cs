@@ -12,6 +12,7 @@ public class Objective : SceneEventTrigger {
 	public Objective nextObjective;
 	public bool UltimateObjective;
 
+	public UnityEngine.Events.UnityEvent OnStart;
 	public UnityEngine.Events.UnityEvent OnComplete;
 
 	public List<SceneEventTrigger> myEvents = new List<SceneEventTrigger>();
@@ -22,10 +23,16 @@ public class Objective : SceneEventTrigger {
 		}
 	
 	}
+
+	public void BeginObjective()
+	{
+		VictoryTrigger.instance.addObjective (this);
+		OnStart.Invoke ();
+	}
 	
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
-		VictoryTrigger.instance.addObjective (this);
+		BeginObjective ();
 	}
 
 	public void complete()
