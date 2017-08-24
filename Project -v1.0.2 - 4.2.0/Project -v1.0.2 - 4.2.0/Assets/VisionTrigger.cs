@@ -9,6 +9,21 @@ public abstract class VisionTrigger : MonoBehaviour {
 	public List<UnitManager> InVision;
 	public abstract void  UnitEnterTrigger(UnitManager manager);
 	public abstract void  UnitExitTrigger(UnitManager manager);
+	public bool CheckForDeaths = false;
+
+	void OnEnable()
+	{
+		if (CheckForDeaths) {
+			InvokeRepeating ("CheckNull", .5f, .5f);
+		}
+	}
+
+	void CheckNull(){
+		
+		if (InVision.RemoveAll (item => item == null) > 0) {
+			UnitExitTrigger (null);
+		}
+	}
 
 	void OnTriggerEnter(Collider other) {
 
