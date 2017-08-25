@@ -43,14 +43,22 @@ public class VictoryScreen : MonoBehaviour {
 			enemyDisplay.text = "" + (int)info.EnemiesDest;
 			allyDisplay.text = "" + (int)info.unitsLost;
 			objDisplay.text = "" + info.bonusObj;
-			techDisplay.text = "" + (int)info.TechCredits;
-
+			if (win) {
+				techDisplay.text = "" + (int)info.TechCredits;
+			} else {
+				techDisplay.text = "0";
+			}
 
 			int bonusTech = LevelData.getDifficulty ();
-			if (bonusTech == 1) {
+			if (win) {
+
+				if (bonusTech == 1) {
+					bonusTech = 0;
+				} else if (bonusTech == 3) {
+					bonusTech = 5;
+				}
+			} else {
 				bonusTech = 0;
-			} else if (bonusTech == 3) {
-				bonusTech = 5;
 			}
 
 			if (DifficultyText) {

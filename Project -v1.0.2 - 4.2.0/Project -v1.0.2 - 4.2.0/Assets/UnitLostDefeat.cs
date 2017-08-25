@@ -39,7 +39,7 @@ public class UnitLostDefeat : MonoBehaviour, LethalDamageinterface {
 
 			foreach (KeyValuePair<string, List<UnitManager>> pair in  myRace.getUnitList()) {
 				foreach (UnitManager unit in pair.Value) {
-					
+					Debug.Log ("checking " + unit);
 					if (!unit.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 						return true;
 					}

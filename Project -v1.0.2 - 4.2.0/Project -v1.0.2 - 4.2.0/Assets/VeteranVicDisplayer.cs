@@ -16,6 +16,10 @@ public class VeteranVicDisplayer : MonoBehaviour {
 
 	public void SetStats(VeteranStats stat, string reward)
 	{
+		if (transform.GetSiblingIndex () < 3) {
+			((RectTransform)Description.transform.parent).anchoredPosition  = ((RectTransform)Description.transform.parent).anchoredPosition + new Vector2 (0, 292);
+		}
+
 		unitName.text = stat.UnitName;
 		if (stat.DeathTime > 0) {
 			status.text = "Dead";

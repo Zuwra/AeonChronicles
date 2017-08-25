@@ -49,7 +49,7 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 
 	// Use this for initialization
 	void Start () {
-		if (toolbox == null) {
+		if (toolbox == null && ToolObj == null) {
 			try {
 				toolbox = GameObject.Find ("ToolTipBox").GetComponent<Canvas> ();
 			} catch (System.Exception) {

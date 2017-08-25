@@ -37,6 +37,7 @@ public class DamageUpgrade : Upgrade {
 	
 		foreach (unitAmount ua in unitsToUpgrade) {
 			if (manager.UnitName.Contains(ua.UnitName)) {
+			//Debug.Log ("Applying to "+ ua.UnitName + "  " + obj.name);
 				for (int i = 0; i < manager.myWeapon.Count; i++)
 					if (manager.myWeapon [i]) {
 

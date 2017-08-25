@@ -14,6 +14,7 @@ public class CapturableUnit : MonoBehaviour {
 	public UnityEngine.Events.UnityEvent OnCapture;
 	public void capture()
 	{
+		//Debug.Log ("Capturiung " + this.gameObject);
 
 		foreach(UnitManager manage in myManagers){
 			if (!manage) {
@@ -32,7 +33,7 @@ public class CapturableUnit : MonoBehaviour {
 		}
 
 		UnitManager man = this.gameObject.GetComponent<UnitManager> ();
-		GameManager.main.activePlayer.applyUpgrade (man);
+		//GameManager.main.activePlayer.applyUpgrade (man);
 		GameManager.main.activePlayer.UnitCreated (man.myStats.supply);
 		GameManager.main.activePlayer.addUnit (man);
 		GameManager.main.activePlayer.addVeteranStat (man.myStats.veternStat);
