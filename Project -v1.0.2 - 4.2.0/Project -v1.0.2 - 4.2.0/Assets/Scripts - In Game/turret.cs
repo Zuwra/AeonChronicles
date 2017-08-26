@@ -36,6 +36,8 @@ public class turret : MonoBehaviour {
 
 	IEnumerator trackTarget()
 	{
+
+
 		Vector3 spotter = myTarget.transform.position;
 		if (!rotateY) {
 			spotter.y = this.transform.position.y;

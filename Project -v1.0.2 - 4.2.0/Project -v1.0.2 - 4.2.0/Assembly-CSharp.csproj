@@ -156,6 +156,7 @@
      <Compile Include="Assets\DifficultyManager.cs" />
      <Compile Include="Assets\DoubleUpgrade.cs" />
      <Compile Include="Assets\DoubleUpgradeApp.cs" />
+     <Compile Include="Assets\DrillSpotter.cs" />
      <Compile Include="Assets\DropDownDudeFinder.cs" />
      <Compile Include="Assets\DuplexPlating.cs" />
      <Compile Include="Assets\EarthQuake.cs" />
@@ -249,6 +250,7 @@
      <Compile Include="Assets\KillModifier.cs" />
      <Compile Include="Assets\KillUnitAch.cs" />
      <Compile Include="Assets\LandMineActivate.cs" />
+     <Compile Include="Assets\LaserDrill.cs" />
      <Compile Include="Assets\laserGun.cs" />
      <Compile Include="Assets\LaserNode.cs" />
      <Compile Include="Assets\LaserNodeTurret.cs" />
