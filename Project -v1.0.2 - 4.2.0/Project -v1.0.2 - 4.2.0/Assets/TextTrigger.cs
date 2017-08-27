@@ -6,7 +6,7 @@ public class TextTrigger : SceneEventTrigger {
 	[TextArea(3,10)]
 	public string text;
 	public float duration;
-	public bool dialogue;
+	public bool dialogue = true;
 	public int Priority =4;
 	public AudioClip sound;
 	public Sprite myPic;

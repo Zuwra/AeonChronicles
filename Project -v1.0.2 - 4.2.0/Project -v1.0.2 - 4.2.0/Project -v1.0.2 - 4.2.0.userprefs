@@ -1,23 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LaserDrill.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TimedObjective.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\TimeDelayTrigger.cs" Line="1" Column="1" />
       <File FileName="Assets\MissileArmer.cs" Line="1" Column="1" />
       <File FileName="Assets\BridgeActivator.cs" Line="1" Column="1" />
-      <File FileName="Assets\VisionTrigger.cs" Line="11" Column="2" />
-      <File FileName="Assets\DamageUpgrade.cs" Line="1" Column="1" />
-      <File FileName="Assets\VictoryScreen.cs" Line="1" Column="1" />
-      <File FileName="Assets\VictoryTrigger.cs" Line="171" Column="3" />
-      <File FileName="Assets\UnitLostDefeat.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="945" Column="26" />
-      <File FileName="Assets\LaserDrill.cs" Line="100" Column="41" />
-      <File FileName="Assets\Scripts - In Game\turret.cs" Line="40" Column="3" />
-      <File FileName="Assets\Scripts - In Game\IWeapon.cs" Line="552" Column="3" />
-      <File FileName="Assets\DrillSpotter.cs" Line="22" Column="27" />
-      <File FileName="Assets\Scripts - In Game\UnitStats.cs" Line="279" Column="1" />
-      <File FileName="Assets\PrismTower.cs" Line="19" Column="7" />
+      <File FileName="Assets\VisionTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\VoiceContainer.cs" Line="14" Column="2" />
+      <File FileName="Assets\VoicePack.cs" Line="1" Column="1" />
+      <File FileName="Assets\dialogManager.cs" Line="12" Column="22" />
+      <File FileName="Assets\TextTrigger.cs" Line="7" Column="21" />
+      <File FileName="Assets\TimedObjective.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

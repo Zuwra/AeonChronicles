@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class dialogManager : MonoBehaviour {
 
-	[Tooltip("These images should be in order of Hadrian, Katrina, Jarvis, Ludacrus, Paradox")]
+	[Tooltip("These images should be in order of Hadrian, Katrina, Jarvis, Ludacrus, Paradox,BackSlash,Timmy,Kara")]
 	public List<Sprite> myCharacters;
 
 	public List<DialogLine> VoiceLines;
@@ -44,6 +44,10 @@ public class dialogManager : MonoBehaviour {
 			return RootPrafab.myCharacters [4];
 		case Character.BackSlash:
 			return RootPrafab.myCharacters [5];
+		case Character.Timmy:
+			return RootPrafab.myCharacters [6];
+		case Character.Kara:
+			return RootPrafab.myCharacters [7];
 
 		}
 
@@ -85,4 +89,4 @@ public class VoiceInstance
 
 }
 
-public enum Character{ Hadrian, Katrina, Jarvis, Ludacrus, Paradox, BackSlash } //Backslash has a sidekick named tilda
+public enum Character{ Hadrian, Katrina, Jarvis, Ludacrus, Paradox, BackSlash,Timmy,Kara} //Backslash has a sidekick named tilda
