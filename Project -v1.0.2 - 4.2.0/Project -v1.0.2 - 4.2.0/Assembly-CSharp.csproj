@@ -278,6 +278,7 @@
      <Compile Include="Assets\MegaMap.cs" />
      <Compile Include="Assets\MenuAnimationPlayer.cs" />
      <Compile Include="Assets\MenuverUpgrade.cs" />
+     <Compile Include="Assets\MeteorStorm.cs" />
      <Compile Include="Assets\MiniMapIconer.cs" />
      <Compile Include="Assets\MiniMapUIController.cs" />
      <Compile Include="Assets\MiningSawDamager.cs" />

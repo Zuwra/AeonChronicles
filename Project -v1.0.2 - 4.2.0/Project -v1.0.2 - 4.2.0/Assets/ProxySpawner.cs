@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProxySpawner : MonoBehaviour {
+public class ProxySpawner :VisionTrigger {
 
 	[Tooltip("Max number of guys spawned here in one game")]
 	public int maxSpawnCount;
@@ -39,12 +39,13 @@ public class ProxySpawner : MonoBehaviour {
 		currentCharges = waveCount;
 	}
 
-	void OnTriggerEnter(Collider col)
-	{
+	public override void  UnitEnterTrigger(UnitManager manager){
 		if (currentSpawner == null) {
-			currentSpawner = StartCoroutine (spawnEnemies ());
+			currentSpawner = StartCoroutine (spawnEnemies());
 		}
 	}
+	public override void  UnitExitTrigger(UnitManager manager){}
+
 
 	Vector3 spawnLocation = Vector3.zero;
 

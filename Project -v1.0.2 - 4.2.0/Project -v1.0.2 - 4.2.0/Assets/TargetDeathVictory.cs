@@ -11,6 +11,7 @@ public class TargetDeathVictory : Objective {
 	public struct VoiceTrigger{
 		public int numDied;
 		public int VoiceLine;
+		public UnityEngine.Events.UnityEvent triggerMe;
 	}
 
 	string initialDescription;
@@ -33,6 +34,11 @@ public class TargetDeathVictory : Objective {
 
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
+		startObjective ();
+	}
+
+	public void startObjective()
+	{
 		VictoryTrigger.instance.addObjective (this);
 
 		foreach (GameObject go in targets) {
@@ -43,7 +49,6 @@ public class TargetDeathVictory : Objective {
 			}
 		}
 	}
-
 
 	public void IDied(GameObject obj)
 	{
@@ -58,7 +63,10 @@ public class TargetDeathVictory : Objective {
 			foreach (VoiceTrigger trig in VoiceTriggers) {
 
 				if (targetsKilled == trig.numDied) {
-					dialogManager.instance.playLine (trig.VoiceLine);
+					if (trig.VoiceLine != -1) {
+						dialogManager.instance.playLine (trig.VoiceLine);
+					}
+					trig.triggerMe.Invoke ();
 					break;
 				}
 			}

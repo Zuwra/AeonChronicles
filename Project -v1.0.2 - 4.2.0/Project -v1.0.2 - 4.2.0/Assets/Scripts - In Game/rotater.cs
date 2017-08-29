@@ -30,6 +30,12 @@ public class rotater : animate {
 	
 	}
 
+	public void setSpeed(float f)
+	{
+		speed = f;
+	}
+
+
 
 
 

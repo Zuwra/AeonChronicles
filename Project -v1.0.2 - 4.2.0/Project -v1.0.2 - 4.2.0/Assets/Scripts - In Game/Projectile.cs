@@ -293,7 +293,7 @@ public  class Projectile : MonoBehaviour {
 	{//Debug.Log ("Finished");
 		if (explosionO) {
 			GameObject explode = (GameObject)Instantiate (explosionO, this.gameObject.transform.position, Quaternion.identity);
-			//Debug.Log ("INstantiating explosion");
+			Debug.Log ("INstantiating explosion");
 
 			explosion Escript = explode.GetComponent<explosion> ();
 			if (Escript) {
@@ -327,7 +327,7 @@ public  class Projectile : MonoBehaviour {
 
 		if (SpecialEffect) {
 			Instantiate (SpecialEffect,this.gameObject.transform.position, Quaternion.identity);
-		
+			Debug.Log ("Effect");
 		}
 
 		if (myIndiactor != null) {
@@ -342,7 +342,7 @@ public  class Projectile : MonoBehaviour {
 
 
 	public void Despawn()
-	{
+	{Debug.Log ("Despawning " + this.gameObject);
 		Lean.LeanPool.Despawn (this.gameObject, 0);
 	}
 
@@ -402,6 +402,7 @@ public  class Projectile : MonoBehaviour {
 		//selfDest = true;
 		if (explosionO) {
 			Instantiate (explosionO, this.gameObject.transform.position, Quaternion.identity);
+			Debug.Log ("Self destruct");
 		}
 
 		Destroy (myIndiactor);

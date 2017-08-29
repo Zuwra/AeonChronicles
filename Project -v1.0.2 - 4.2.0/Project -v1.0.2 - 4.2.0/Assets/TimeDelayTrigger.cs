@@ -35,9 +35,10 @@ public class TimeDelayTrigger : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (delay + .0001f);
 
+		OnTrigger.Invoke();
 		foreach (SceneEventTrigger trig in myTriggers) {
 			//Debug.Log ("Triggering " + trig);
-			OnTrigger.Invoke();
+
 			trig.trigger (index, input, location, target, doIt);
 			yield return null;
 		}

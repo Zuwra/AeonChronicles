@@ -1,19 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DataChecker.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TargetDeathVictory.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\TimeDelayTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="273" Column="15" />
+      <File FileName="Assets\TimeDelayTrigger.cs" Line="34" Column="21" />
       <File FileName="Assets\MissileArmer.cs" Line="1" Column="1" />
       <File FileName="Assets\BridgeActivator.cs" Line="1" Column="1" />
-      <File FileName="Assets\VisionTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\VoiceContainer.cs" Line="1" Column="1" />
-      <File FileName="Assets\VoicePack.cs" Line="1" Column="1" />
-      <File FileName="Assets\dialogManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\TextTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\TimedObjective.cs" Line="5" Column="36" />
-      <File FileName="Assets\DataChecker.cs" Line="21" Column="13" />
       <File FileName="Assets\Objective.cs" Line="15" Column="47" />
+      <File FileName="Assets\MeteorStorm.cs" Line="42" Column="4" />
+      <File FileName="Assets\Scripts - In Game\Projectile.cs" Line="205" Column="24" />
+      <File FileName="Assets\ProxySpawner.cs" Line="41" Column="2" />
+      <File FileName="Assets\VisionTrigger.cs" Line="11" Column="61" />
+      <File FileName="Assets\TargetDeathVictory.cs" Line="39" Column="2" />
+      <File FileName="Assets\Scripts - In Game\rotater.cs" Line="38" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
