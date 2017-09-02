@@ -24,7 +24,7 @@ public class Objective : SceneEventTrigger {
 	
 	}
 
-	public void BeginObjective()
+	public virtual void BeginObjective()
 	{
 		VictoryTrigger.instance.addObjective (this);
 		OnStart.Invoke ();

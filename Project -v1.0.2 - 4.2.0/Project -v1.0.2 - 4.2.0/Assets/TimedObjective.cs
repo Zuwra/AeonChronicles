@@ -11,8 +11,14 @@ public class TimedObjective : Objective {
 	new void Start () {
 		base.Start ();
 		initialDescript = description;
+
+	}
+
+	public override void BeginObjective()
+	{base.BeginObjective ();
 		StartCoroutine (countDown());
 	}
+
 
 	IEnumerator countDown()
 	{

@@ -24,6 +24,15 @@ public class dialogManager : MonoBehaviour {
 			getCharacter(VoiceLines[index].CharacterImage, VoiceLines[index]),VoiceLines[index].Priority);
 	}
 
+	public List<string>  getVoiceTitleList()
+	{
+		List<string> toReturn = new List<string> ();
+		foreach (DialogLine line in VoiceLines) {
+			toReturn.Add (line.summary);
+		}
+		return toReturn;
+	}
+
 	Sprite getCharacter(Character character, DialogLine myLine)
 	{
 

@@ -16,13 +16,18 @@ public class VictoryTrigger : MonoBehaviour {
 	private int completeBonusObj;
 
 	public int levelNumber;
-	public int EnemiesDest;
-	public int ResourceAmount;
-	public string time;
+	//public int EnemiesDest;
+	//public int ResourceAmount;
+	//public string time;
 	public int TechCredits;
 
 	public AudioClip victoryLine;
 	public AudioClip DefeatLine;
+
+	[HideInInspector]
+	public int winLine;
+	[HideInInspector]
+	public int loseLine;
 	bool hasFinished;
 
 	public static VictoryTrigger instance;
