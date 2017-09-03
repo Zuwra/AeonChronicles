@@ -91,6 +91,7 @@
      <Compile Include="Assets\Editor\Styles\DependencyStyle.cs" />
      <Compile Include="Assets\Editor\TextTrigEditor.cs" />
      <Compile Include="Assets\Editor\VictoryScriptEditor.cs" />
+     <Compile Include="Assets\Editor\VoiceManEditor.cs" />
      <Compile Include="Assets\Effects\LightningBolt\Editor\LightningBoltEditor.cs" />
      <Compile Include="Assets\Environment\Planets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetAsset.cs" />
      <Compile Include="Assets\Environment\Planets\HeyBlairGames\PlanetTextureGenerator\Editor\PlanetComponentEditor.cs" />
