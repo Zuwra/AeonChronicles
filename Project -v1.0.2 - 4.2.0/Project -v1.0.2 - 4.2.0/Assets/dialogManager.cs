@@ -27,8 +27,14 @@ public class dialogManager : MonoBehaviour {
 	public List<string>  getVoiceTitleList()
 	{
 		List<string> toReturn = new List<string> ();
+		int i = 0;
 		foreach (DialogLine line in VoiceLines) {
-			toReturn.Add (line.summary);
+			if (!string.IsNullOrEmpty (line.summary)) {
+				toReturn.Add (line.summary);
+			} else {
+				toReturn.Add(""+i);
+			}
+			i++;
 		}
 		return toReturn;
 	}

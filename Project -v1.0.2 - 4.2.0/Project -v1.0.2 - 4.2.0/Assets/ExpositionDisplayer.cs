@@ -89,10 +89,9 @@ public class ExpositionDisplayer : MonoBehaviour {
 		while (i <dialog.Length) {
 			i++;
 	
-
 			myText.text = dialog.Substring(0,i);
 
-			yield return new WaitForSeconds (.022f);
+			yield return new WaitForSeconds (.025f);
 		}
 
 

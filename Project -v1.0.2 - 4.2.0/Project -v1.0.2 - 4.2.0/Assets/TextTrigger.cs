@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TextTrigger : SceneEventTrigger {
 	
@@ -10,6 +11,8 @@ public class TextTrigger : SceneEventTrigger {
 	public int Priority =4;
 	public AudioClip sound;
 	public Sprite myPic;
+	[HideInInspector]
+	public List<int> VoiceLines;
 
 	[Tooltip("Index in the DialogManager, becareful not to move things around.")]
 	public int VoiceLineIndex;
@@ -24,13 +27,23 @@ public class TextTrigger : SceneEventTrigger {
 			hasTriggered = true;
 
 			if (!dialogue) {
+				
 
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
 				//UIHighLight.main.highLight (null, 0);
 			} else {
+				
 				//	Debug.Log ("Triggering from " + this.gameObject.name);
-				dialogManager.instance.playLine (VoiceLineIndex);
+				if (VoiceLines.Count > 0) {
+					foreach (int i in VoiceLines) {
+						Debug.Log ("Playing " + i);
+						dialogManager.instance.playLine (i);
+					}
 
+				} else {
+					Debug.Log ("Only one");
+					dialogManager.instance.playLine (VoiceLineIndex);
+				}
 				//ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic,Priority);
 				if (stealCamera > 0) {
 					MainCamera.main.setCutScene (this.gameObject.transform.position, 120);
@@ -51,10 +64,18 @@ public class TextTrigger : SceneEventTrigger {
 				
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
 				//UIHighLight.main.highLight (null, 0);
-			} else {
-			//	Debug.Log ("Triggering from " + this.gameObject.name);
-				dialogManager.instance.playLine (VoiceLineIndex);
+			}else {
 
+				//	Debug.Log ("Triggering from " + this.gameObject.name);
+				if (VoiceLines.Count > 0) {
+					foreach (int i in VoiceLines) {
+						dialogManager.instance.playLine (i);
+					}
+
+				} else {
+					Debug.Log ("Only one");
+					dialogManager.instance.playLine (VoiceLineIndex);
+				}
 				//ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic,Priority);
 				if (stealCamera > 0) {
 					MainCamera.main.setCutScene (this.gameObject.transform.position, 120);

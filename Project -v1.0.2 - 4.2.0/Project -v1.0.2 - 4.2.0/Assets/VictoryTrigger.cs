@@ -21,13 +21,13 @@ public class VictoryTrigger : MonoBehaviour {
 	//public string time;
 	public int TechCredits;
 
-	public AudioClip victoryLine;
-	public AudioClip DefeatLine;
+	//public AudioClip victoryLine;
+	//public AudioClip DefeatLine;
 
 	[HideInInspector]
-	public int winLine;
+	public List<int> winLine;
 	[HideInInspector]
-	public int loseLine;
+	public List<int> loseLine;
 	bool hasFinished;
 
 	public static VictoryTrigger instance;
@@ -142,7 +142,7 @@ public class VictoryTrigger : MonoBehaviour {
 	public void Lose()
 	{if (!hasFinished) {
 			hasFinished = true;
-			Debug.Log ("Lost");
+			//Debug.Log ("Lost");
 			DefeatScreen.enabled = true;
 			GameObject.FindObjectOfType<MainCamera> ().DisableScrolling ();
 			StartCoroutine (LoseLevel ());
@@ -150,9 +150,12 @@ public class VictoryTrigger : MonoBehaviour {
 	}
 
 	IEnumerator WinLevel ()
-	{LevelData.getsaveInfo().ComingFromLevel = true;
-		ExpositionDisplayer.instance.displayText (6, victoryLine, 1);
-	
+	{
+		LevelData.getsaveInfo().ComingFromLevel = true;
+		//ExpositionDisplayer.instance.displayText (6, victoryLine, 1);
+		foreach (int i in winLine) {
+			dialogManager.instance.playLine (i);
+		}
 		yield return new WaitForSeconds (2.5f);
 
 		int bonusTech =LevelData.getDifficulty ();
@@ -178,7 +181,11 @@ public class VictoryTrigger : MonoBehaviour {
 	IEnumerator LoseLevel ()
 	{
 		yield return new WaitForSeconds (1);
-		ExpositionDisplayer.instance.displayText (6, DefeatLine, 1);
+
+		foreach (int i in loseLine) {
+			dialogManager.instance.playLine (i);
+		}
+		//ExpositionDisplayer.instance.displayText (6, DefeatLine, 1);
 		yield return new WaitForSeconds (2.5f);
 
 		LevelData.levelInfo Ldata = createLevelInfo(levelNumber , GameManager.main.playerList [1].UnitsLost(),GameManager.main.playerList [0].UnitsLost(), GameManager.main.playerList [0].totalResO() +  GameManager.main.playerList [0].totalResT(),

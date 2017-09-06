@@ -20,6 +20,13 @@ using UnityEditor;
 				if (trig.VoiceLineIndex > n) {
 					trig.VoiceLineIndex++;
 				}
+
+				for (int i = 0; i < trig.VoiceLines.Count; i++) {
+					if (trig.VoiceLines [i] > n) {
+						trig.VoiceLines [i]++;
+					}
+				}
+					
 			}
 		
 		}
@@ -30,6 +37,12 @@ using UnityEditor;
 			foreach (TextTrigger trig in GameObject.FindObjectsOfType<TextTrigger>()) {
 				if (trig.VoiceLineIndex > n) {
 					trig.VoiceLineIndex--;
+				}
+
+				for (int i = 0; i < trig.VoiceLines.Count; i++) {
+					if (trig.VoiceLines [i] > n) {
+						trig.VoiceLines [i]--;
+					}
 				}
 			}
 

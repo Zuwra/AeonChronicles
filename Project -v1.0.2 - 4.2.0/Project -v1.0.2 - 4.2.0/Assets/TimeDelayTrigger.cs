@@ -25,7 +25,7 @@ public class TimeDelayTrigger : MonoBehaviour {
 
 	// Update is called once per frame
 	void DelayedUpdate () {
-		Debug.Log ("Firing");
+		//Debug.Log ("Firing");
 			StartCoroutine (Fire ());
 	}
 
@@ -37,7 +37,7 @@ public class TimeDelayTrigger : MonoBehaviour {
 
 		OnTrigger.Invoke();
 		foreach (SceneEventTrigger trig in myTriggers) {
-			//Debug.Log ("Triggering " + trig);
+			Debug.Log ("Triggering " + trig);
 
 			trig.trigger (index, input, location, target, doIt);
 			yield return null;
