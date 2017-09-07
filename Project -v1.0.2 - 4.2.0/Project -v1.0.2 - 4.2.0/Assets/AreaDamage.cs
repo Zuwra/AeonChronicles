@@ -47,7 +47,7 @@ public class AreaDamage : MonoBehaviour {
 					}
 				}
 				if (cutEffect) {
-					Instantiate (cutEffect, getImpactLocation (), Quaternion.identity);
+					Instantiate (cutEffect, s.gameObject.transform.position, Quaternion.identity);
 				}
 				//obj.transform.SetParent (this.gameObject.transform);
 			}
@@ -71,7 +71,7 @@ public class AreaDamage : MonoBehaviour {
 	public Vector3 getImpactLocation()
 	{
 		Vector3 vec = this.transform.position;
-		vec.y = 1;
+		//vec.y = 1;
 		return vec;
 
 	}

@@ -9,6 +9,7 @@ public class EconomyManager : MonoBehaviour {
 
 	public Text Workers ;
 	public Text ResourceOne;
+	public Text BarResOneAvg;
 	public Text ResourceTwo;
 
 
@@ -26,6 +27,7 @@ public class EconomyManager : MonoBehaviour {
 		if (racer.OneName.Length > 0) {
 			
 			ResourceOne.text = " ";
+			BarResOneAvg.text = " ";
 		}
 		if (racer.TwoName.Length > 0) {
 			ResourceTwo.text =  " ";
@@ -53,7 +55,7 @@ public class EconomyManager : MonoBehaviour {
 			foreach (float f in deleteThese) {
 				resOneMap.Remove (f);
 			}
-
+			BarResOneAvg.text = "(+"+(totalResOne * 6)+")";
 			ResourceOne.text = racer.OneName + ": " + totalResOne * 6 + " per min";
 
 		}

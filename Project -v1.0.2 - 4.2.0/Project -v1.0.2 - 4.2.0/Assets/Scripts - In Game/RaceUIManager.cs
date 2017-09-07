@@ -10,8 +10,8 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 	public RaceManager raceManager;
 
-	Text resourceOne;
-	Text resourceTwo;
+	public Text resourceOne;
+	public Text resourceTwo;
 	Text supply;
 	string OneName;
 	string TwoName;
@@ -41,7 +41,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			TwoName = raceManager.TwoName;
 
 		
-			resourceOne = this.gameObject.transform.Find ("Resources").Find ("ResourceOne").GetComponent<Text> ();
+			//resourceOne = this.gameObject.transform.Find ("Resources").Find ("ResourceOne").GetComponent<Text> ();
 			resourceTwo = this.gameObject.transform.Find ("Resources").Find ("ResourceTwo").GetComponent<Text> ();
 			supply = this.gameObject.transform.Find ("Resources").Find ("Supply").GetComponent<Text> ();
 

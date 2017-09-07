@@ -327,7 +327,7 @@ public  class Projectile : MonoBehaviour {
 
 		if (SpecialEffect) {
 			Instantiate (SpecialEffect,this.gameObject.transform.position, Quaternion.identity);
-			Debug.Log ("Effect");
+			Debug.Log ("Effect " + Source);
 		}
 
 		if (myIndiactor != null) {

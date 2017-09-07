@@ -7,15 +7,18 @@ public class BridgeActivator : VisionTrigger {
 
 	public GameObject Bridge;
 
+	public GameObject DeathZone;
 	void Start()
 	{
 		Bridge.SetActive (false);
+		DeathZone.SetActive (true);
 	}
 
 	public override void UnitExitTrigger(UnitManager manager)
 	{
 		if (InVision.Count == 0) {
 			Bridge.SetActive (false);
+			DeathZone.SetActive (true);
 			StartCoroutine (DeathRescan ());
 		}
 	}
@@ -23,6 +26,7 @@ public class BridgeActivator : VisionTrigger {
 	public override void UnitEnterTrigger(UnitManager manager)
 	{
 		Bridge.SetActive (true);
+		DeathZone.SetActive (false);
 		StartCoroutine (DeathRescan ());
 	}
 

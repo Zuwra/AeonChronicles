@@ -80,8 +80,9 @@ public class LaserDrill : MonoBehaviour {
 		particle.SetActive (true);
 		while (currentTarget) {
 			yield return new WaitForSeconds (.3f);
-			currentTarget.myStats.TakeDamage (30,this.transform.root.gameObject,DamageTypes.DamageType.Regular);
-		
+			if (currentTarget) {
+				currentTarget.myStats.TakeDamage (25, this.transform.root.gameObject, DamageTypes.DamageType.Regular);
+			}
 		}
 		firing = null;
 		switchTarget ();
