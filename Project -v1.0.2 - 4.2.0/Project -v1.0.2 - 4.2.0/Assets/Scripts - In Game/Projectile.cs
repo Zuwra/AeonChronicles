@@ -327,7 +327,7 @@ public  class Projectile : MonoBehaviour {
 
 		if (SpecialEffect) {
 			Instantiate (SpecialEffect,this.gameObject.transform.position, Quaternion.identity);
-			Debug.Log ("Effect " + Source);
+		//	Debug.Log ("Effect " + Source);
 		}
 
 		if (myIndiactor != null) {
@@ -342,7 +342,7 @@ public  class Projectile : MonoBehaviour {
 
 
 	public void Despawn()
-	{Debug.Log ("Despawning " + this.gameObject);
+	{//Debug.Log ("Despawning " + this.gameObject);
 		Lean.LeanPool.Despawn (this.gameObject, 0);
 	}
 

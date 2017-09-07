@@ -119,6 +119,7 @@
      <Compile Include="Assets\CapturableUnit.cs" />
      <Compile Include="Assets\CarryRacks.cs" />
      <Compile Include="Assets\CastAbilityState.cs" />
+     <Compile Include="Assets\ChainWhip.cs" />
      <Compile Include="Assets\ChangeAmmo.cs" />
      <Compile Include="Assets\ChannelState.cs" />
      <Compile Include="Assets\ChildDeathTrigger.cs" />
