@@ -14,8 +14,10 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 	IEnumerator Start () {
 
 		yield return new WaitForSeconds (1);
+		try{
 		GetComponent<UnitStats> ().addDeathTrigger (this);
-
+		}catch{
+		}
 		OnEnable ();
 	}
 

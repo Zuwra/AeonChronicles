@@ -231,8 +231,13 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 		}
 
 
+		Vector3 homePos = transform.position;
+
+		if(home)
+		{homePos = home.transform.position;}
+
 	
-		Vector3 MoveLocation = (padSpot - home.transform.position);
+		Vector3 MoveLocation = (padSpot - homePos);
 		MoveLocation.x += Random.Range (-6, 6);
 		MoveLocation.Normalize ();
 		home = null;

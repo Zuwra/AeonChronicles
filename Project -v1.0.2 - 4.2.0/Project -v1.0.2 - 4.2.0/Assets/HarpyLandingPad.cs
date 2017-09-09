@@ -38,6 +38,8 @@ public class HarpyLandingPad : MonoBehaviour {
 		return Vector3.zero;
 	}
 
+
+
 	public float startLanding( GameObject incoming)
 	{
 		if (rightPadInUse == incoming) {

@@ -12,7 +12,7 @@ public class TextTrigger : SceneEventTrigger {
 	public AudioClip sound;
 	public Sprite myPic;
 	[HideInInspector]
-	public List<int> VoiceLines;
+	public List<int> VoiceLines = new List<int>();
 
 	[Tooltip("Index in the DialogManager, becareful not to move things around.")]
 	public int VoiceLineIndex;
