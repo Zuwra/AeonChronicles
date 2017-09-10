@@ -54,6 +54,8 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	//public List<GameObject> unitList = new List<GameObject>();
 	Dictionary<string, List<UnitManager>> unitRoster =  new Dictionary<string, List<UnitManager>>();
 
+	Dictionary<string, List<Ability>> UnitBuildTrigger =  new Dictionary<string, List<Ability>>();
+
 	private MVPCalculator MVP = new MVPCalculator();
 	//used for unit ability validation
 	private Dictionary<string, int > unitTypeCount = new Dictionary<string, int>();
@@ -145,6 +147,22 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			}
 		}
 	}
+
+	public void addBuildTrigger(string unitName, Ability a)
+	{
+		List<Ability> ab;
+		if (UnitBuildTrigger.ContainsKey (unitName)) {
+			ab = UnitBuildTrigger [unitName];
+		} else {
+			ab = new List<Ability> ();
+			UnitBuildTrigger.Add (unitName, ab);
+		}
+		ab.Add (a);
+
+		
+	}
+
+
 
 	public void addUpgrade(Upgrade upgrade, string unitname)
 	{
@@ -360,12 +378,11 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 				if (unitTypeCount [unitName] == 0 && trueDeath) {
 					//unitList.RemoveAll (item => item == null);
-					//foreach (GameObject o in unitList) {
-					unitRoster[unitName].RemoveAll (item => item == null);
-					foreach (UnitManager o in unitRoster[unitName]) {
 
-						foreach (Ability a in o.abilityList){//  o.GetComponent<UnitManager>().abilityList) {
-							if(a != null)
+					unitRoster[unitName].RemoveAll (item => item == null);
+					if(UnitBuildTrigger.ContainsKey(unitName)){
+						UnitBuildTrigger [unitName].RemoveAll (item => item == null);
+						foreach (Ability a in UnitBuildTrigger[unitName]){
 							a.UnitDied (unitName);
 
 						}
@@ -505,20 +522,18 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		// new unit, call update function on units abilities
 		if (unitTypeCount [unitName] == 1) {
 
-			foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
-				foreach (UnitManager o in pair.Value) {
-					if (o != null) {
-						foreach (Ability a in o.abilityList) {
-							if (a != null) {
-								//Debug.Log ("checking a " + a.Name + "   " + unitName);
-								a.newUnitCreated (unitName);
-							}
+
+			if(UnitBuildTrigger.ContainsKey(unitName)){
+				UnitBuildTrigger [unitName].RemoveAll (item => item == null);
+				foreach (Ability a in UnitBuildTrigger[unitName] ) {
+
+						a.newUnitCreated (unitName);
 				
-						}
 					}
 				}
 			}
-		}
+
+
 
 		applyUpgrade (obj);
 	

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gigapede : MonoBehaviour, Modifier {
+public class Gigapede : VisionTrigger, Modifier {
 
 	public List<GameObject> segments = new List<GameObject> ();
 
@@ -30,9 +30,47 @@ public class Gigapede : MonoBehaviour, Modifier {
 			mystats.armor--;
 			Instantiate (toSpawn, segments[segmentLeft].transform.position, Quaternion.identity);
 			segments [segmentLeft].SetActive (false);
+
+			foreach (UnitManager unit in InVision) {
+				updateDamageBuff (unit);
+			}
 		}
 
 
 		return damage;
 	}
+
+
+	public override void  UnitEnterTrigger(UnitManager manager)
+	{
+		if(segmentLeft >1 && manager.gameObject != gameObject){
+			foreach (IWeapon weap in manager.myWeapon) {
+				weap.AdjustAttack (0, segmentLeft - 1, false, this);
+			}
+		}
+	}
+
+	public override void  UnitExitTrigger(UnitManager manager)
+	{
+		foreach (IWeapon weap in manager.myWeapon) {
+			weap.removeAttackBuff (this);
+		}
+	}
+
+
+	public void updateDamageBuff(UnitManager manager )
+	{
+
+		foreach (IWeapon weap in manager.myWeapon) {
+			weap.removeAttackBuff (this);
+		}
+
+
+		if(segmentLeft >1 && manager.gameObject != gameObject){
+			foreach (IWeapon weap in manager.myWeapon) {
+				weap.AdjustAttack (0, segmentLeft - 1, false, this);
+			}
+		}
+	}
+
 }

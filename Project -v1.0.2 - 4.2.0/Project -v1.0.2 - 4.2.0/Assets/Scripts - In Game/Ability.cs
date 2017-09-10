@@ -42,10 +42,14 @@ public abstract class Ability : MonoBehaviour {
 	private void initialize()
 		{
 		initialized = true;
+
+
+		UnitManager manage = GetComponent<UnitManager>();
+
 		foreach (string s in RequiredUnit) {
 
 			requirementList.Add (s, false);
-
+			GameManager.getInstance ().playerList [GetComponent<UnitManager> ().PlayerOwner - 1].addBuildTrigger (s, this);
 		}
 
 		if (requirementList.Count  > 0 && requirementList.ContainsValue (false)) {
@@ -57,6 +61,7 @@ public abstract class Ability : MonoBehaviour {
 
 
 	}
+
 
 	void Awake()
 	{

@@ -101,12 +101,12 @@ public class PlaceBuildingState :UnitState {
 
 
 	}
-
+	/*
 	override
 	public void attackResponse(UnitManager src, float amount)
 	{
 	}
-
+*/
 	override
 	public void endState()
 	{

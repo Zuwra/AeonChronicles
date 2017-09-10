@@ -22,7 +22,7 @@ public class ChannelState : UnitState{
 
 	}
 
-
+	/*
 	override
 	public void attackResponse(UnitManager src, float amount)
 	{/*
@@ -51,8 +51,8 @@ public class ChannelState : UnitState{
 			}
 		}
 
-*/
-		}
+
+		}*/
 
 	override
 	public void endState()

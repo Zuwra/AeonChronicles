@@ -191,12 +191,12 @@ public class MiningState : UnitState {
 
 	}
 
-
+	/*
 	override
 	public void attackResponse(UnitManager src, float amount)
 	{
 	}
-
+*/
 	override
 	public void endState()
 	{currentlyMining.currentMinor = null;

@@ -196,7 +196,7 @@ public class LevelData  {
 
 	public static int getMoney()
 	{
-		Debug.Log ("Money left" + PlayerPrefs.GetInt ("Money"));
+	//	Debug.Log ("Money left" + PlayerPrefs.GetInt ("Money"));
 		return PlayerPrefs.GetInt ("Money");
 	}
 

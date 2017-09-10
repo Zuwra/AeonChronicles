@@ -46,11 +46,11 @@ public class CastAbilityState  : UnitState {
 	public void endState()
 	{
 	}
-
+	/*
 	override
 	public void attackResponse(UnitManager src, float amount)
 	{
 	}
 
-
+*/
 }

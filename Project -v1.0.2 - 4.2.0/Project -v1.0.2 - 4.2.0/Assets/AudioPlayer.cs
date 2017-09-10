@@ -8,7 +8,7 @@ public class AudioPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		if (myClip) {
+		if (myClip) { // this is here to make sure you dont' play too many of the same sound, takes place of playOnAwake of AudiOSource
 			SoundManager.PlayOneShotSound (GetComponent<AudioSource> (), myClip);
 		}
 	

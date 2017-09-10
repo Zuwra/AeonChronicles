@@ -24,6 +24,9 @@ public class AchievementUI : MonoBehaviour {
 	void Start()
 	{
 		currentAchievments = myAchievements.myAchievements;
+		setEarnings ();
+
+
 		LoadPage (0);
 
 	}
@@ -89,8 +92,11 @@ public class AchievementUI : MonoBehaviour {
 		currentPage = 0;
 		List<Achievement> newAchievements = new List<Achievement> ();
 		foreach (Achievement ach in myAchievements.myAchievements) {
-			if (AddForLevel (ach) && AddForEarning (ach)) {
-				newAchievements.Add (ach);
+
+			if ((int)ach.myLevel < LevelData.getHighestLevel () +2) {
+				if (AddForLevel (ach) && AddForEarning (ach)) {
+					newAchievements.Add (ach);
+				}
 			}
 		}
 		currentAchievments = newAchievements;

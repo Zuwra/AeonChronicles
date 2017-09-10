@@ -157,13 +157,15 @@ public class AttackMoveState : UnitState {
 	{
 	}
 
+	bool hasCalledAide = false;
+
 	override
 	public void attackResponse(UnitManager src, float amount)
 	{
-		if(src && !enemy){
+		if(src && !hasCalledAide){
 
 			if (src.PlayerOwner != myManager.PlayerOwner) {
-
+				hasCalledAide = true;
 					if(amount > 0){
 						foreach (UnitManager ally in myManager.allies) {
 							if (ally) {

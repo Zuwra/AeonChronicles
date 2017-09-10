@@ -73,12 +73,12 @@ public class buildResumeState : UnitState{
 
 
 	}
-
+	/*
 	override
 	public void attackResponse(UnitManager src, float amount)
 	{
 	}
-
+*/
 	override
 	public void endState()
 	{

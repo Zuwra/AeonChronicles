@@ -44,9 +44,9 @@ public class AttckWhileMoveState : UnitState{
 		
 	}
 
-
+	/*
 	override
 	public void attackResponse(UnitManager src, float amount)
 	{
-	}
+	}*/
 }
