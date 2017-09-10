@@ -38,4 +38,17 @@ public class ConcussiveUpgrade :SpecificUpgrade{
 		//obj.GetComponent<SlowDebuff> ().enabled = false;
 		}
 	}
+
+	public override float ChangeString (string name, float number)
+	{
+		return number;
+	}
+
+	public override string AddString (string name, string ToAddOn)
+	{
+		if ("Damage" == name) {
+			return ToAddOn + " (+6 vs Structures)";
+		}
+		return ToAddOn;
+	}
 }

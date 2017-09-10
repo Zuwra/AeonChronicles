@@ -27,6 +27,7 @@ public class CampaignUpgrade : MonoBehaviour {
 	private bool justSetIndex;
 
 	int currentIndex;
+	public List<StatDisplayer> myStatDisplayer;
 
 	[System.Serializable]
 	public class UpgradesPiece{
@@ -76,12 +77,16 @@ public class CampaignUpgrade : MonoBehaviour {
 		}
 		//myDropDown.value = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
 		SetImageDescript ();
+		foreach (StatDisplayer stat in myStatDisplayer) {
+			stat.SetText ();
+		}
 		this.gameObject.SetActive (false);
 	}
 
 
 	public void setUpgrade(int index)
-	{if (myButtons.Count > 0) {
+	{
+		if (myButtons.Count > 0) {
 
 			myButtons [currentIndex].image.material = grayScale;
 		}
@@ -112,7 +117,10 @@ public class CampaignUpgrade : MonoBehaviour {
 				}
 			}
 		}
-			
+
+		foreach (StatDisplayer stat in myStatDisplayer) {
+			stat.SetText ();
+		}
 	}
 
 	public void upgradeBought()
@@ -200,4 +208,23 @@ public class CampaignUpgrade : MonoBehaviour {
 			myButtons[i].gameObject.SetActive(false);
 		}
 	}
+
+
+	public float changeText(string name, float f)
+	{
+		if (currentUpgrade) {
+			return currentUpgrade.ChangeString (name, f);
+		}
+		return f;
+	}
+
+	public string addText(string name, string AddOn)
+	{
+		if (currentUpgrade) {
+			return currentUpgrade.AddString (name, AddOn);
+		}
+		return AddOn;
+	}
+
+
 }

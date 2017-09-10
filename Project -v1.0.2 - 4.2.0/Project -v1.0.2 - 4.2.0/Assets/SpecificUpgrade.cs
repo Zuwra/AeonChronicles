@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SpecificUpgrade : Upgrade {
+public abstract class SpecificUpgrade : Upgrade {
 
 	public List<string> unitsToApply = new List<string>();
 
@@ -24,6 +24,13 @@ public class SpecificUpgrade : Upgrade {
 			return true;
 		}
 		return false;
+	}
+
+	public abstract float ChangeString (string name, float number);
+
+	public virtual string AddString (string name, string ToAddOn)
+	{
+		return ToAddOn;
 	}
 
 

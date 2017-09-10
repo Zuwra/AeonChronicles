@@ -35,4 +35,17 @@ public class DuplexPlating  :SpecificUpgrade{
 		}
 	}
 
+	public override float ChangeString (string name, float number)
+	{
+		if ("Health" == name) {
+			number *= 1.2f;
+		}
+
+		if ("Armor" == name) {
+			number += 4;
+		}
+
+		return number;
+	}
+
 }

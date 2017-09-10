@@ -31,4 +31,16 @@ public class ExtendedBarrels :SpecificUpgrade{
 		}
 
 	}
+
+	public override float ChangeString (string name, float number)
+	{
+		if ("Range" == name) {
+			number *= 1.2f;
+		}
+
+	
+		return number;
+	}
+
+
 }

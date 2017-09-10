@@ -43,4 +43,10 @@ public class RapidArmsUpgrade : SpecificUpgrade {
 			}
 		}
 	}
+
+	public override float ChangeString (string name, float number)
+	{
+		return number;
+	}
+
 }

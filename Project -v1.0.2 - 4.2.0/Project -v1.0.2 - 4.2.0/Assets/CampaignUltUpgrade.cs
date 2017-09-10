@@ -32,5 +32,10 @@ public class CampaignUltUpgrade  : SpecificUpgrade {
 
 	}
 
+	public override float ChangeString (string name, float number)
+	{
+		return number;
+	}
+
 
 }

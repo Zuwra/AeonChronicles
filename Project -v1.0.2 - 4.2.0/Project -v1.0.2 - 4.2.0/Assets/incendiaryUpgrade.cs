@@ -38,4 +38,10 @@ public class incendiaryUpgrade:SpecificUpgrade{
 		//obj.GetComponent<SlowDebuff> ().enabled = false;
 		}
 	}
+
+	public override float ChangeString (string name, float number)
+	{
+
+		return number;
+	}
 }

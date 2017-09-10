@@ -32,5 +32,13 @@ public class CampShieldUpgrade :SpecificUpgrade{
 		}
 	}
 
+	public override float ChangeString (string name, float number)
+	{
+		if ("Energy" == name) {
+			return number * 1.5f;
+		}
+
+		return number;
+	}
 
 }

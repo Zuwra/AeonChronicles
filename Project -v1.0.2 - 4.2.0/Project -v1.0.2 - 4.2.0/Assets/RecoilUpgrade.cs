@@ -27,4 +27,10 @@ public class RecoilUpgrade : SpecificUpgrade {
 			obj.GetComponent<DayexaShield> ().AbsorbRecoil = false;
 		}
 	}
+
+	public override float ChangeString (string name, float number)
+	{
+		return number;
+	}
+
 }

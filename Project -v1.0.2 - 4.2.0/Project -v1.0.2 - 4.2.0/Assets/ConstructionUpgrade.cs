@@ -111,4 +111,9 @@ public class ConstructionUpgrade  :SpecificUpgrade{
 	}
 
 
+	public override float ChangeString (string name, float number)
+	{
+		return number;
+	}
+
 }

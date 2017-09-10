@@ -42,4 +42,9 @@ public class AbilityUpgrade : SpecificUpgrade {
 	public override void unApplyUpgrade (GameObject obj){
 		
 	}
+
+	public override float ChangeString (string name, float number)
+	{
+		return number;
+	}
 }

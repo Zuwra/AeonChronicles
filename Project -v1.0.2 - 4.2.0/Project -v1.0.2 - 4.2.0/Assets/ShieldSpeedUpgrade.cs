@@ -23,4 +23,19 @@ public class ShieldSpeedUpgrade : SpecificUpgrade {
 		//	obj.GetComponent<UnitManager> ().abilityList.Remove (ssb);
 		}
 	}
+
+
+	public override float ChangeString (string name, float number)
+	{
+		return number;
+	}
+
+	public override string AddString (string name, string ToAddOn)
+	{
+		if ("Speed" == name) {
+			return ToAddOn + " (x1.5)";
+		}
+		return ToAddOn;
+	}
+
 }
