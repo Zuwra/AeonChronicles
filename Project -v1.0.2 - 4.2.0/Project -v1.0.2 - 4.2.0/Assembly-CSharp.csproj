@@ -547,6 +547,7 @@
      <Compile Include="Assets\speedLifeUpgrade.cs" />
      <Compile Include="Assets\SpeedUpgrade.cs" />
      <Compile Include="Assets\StandardInteract.cs" />
+     <Compile Include="Assets\StatDisplayer.cs" />
      <Compile Include="Assets\stunStrike.cs" />
      <Compile Include="Assets\SuicideAttack.cs" />
      <Compile Include="Assets\SurviveVictory.cs" />
