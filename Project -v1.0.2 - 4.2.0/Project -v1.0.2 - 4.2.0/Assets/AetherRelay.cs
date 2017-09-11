@@ -58,15 +58,18 @@ public class AetherRelay : Ability{
 
 			} else {
 
+			float total = 0;
 				foreach (DayexaShield ds in shieldList) {
 					if (ds) {
 						if (ds.myStats.currentEnergy < ds.myStats.MaxEnergy) {
 							float actual = ds.myStats.changeEnergy (energyChargeRate);
 							Instantiate (chargeEffect, ds.transform.position, Quaternion.identity);
-							manager.myStats.veternStat.energyGained += actual;
+						total += actual;
+							
 						}
 					}
 				}
+			manager.myStats.veternStat.UpEnergy(total);
 			}
 
 	}

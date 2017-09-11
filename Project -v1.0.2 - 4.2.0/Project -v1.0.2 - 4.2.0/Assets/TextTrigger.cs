@@ -36,13 +36,13 @@ public class TextTrigger : SceneEventTrigger {
 				//	Debug.Log ("Triggering from " + this.gameObject.name);
 				if (VoiceLines.Count > 0) {
 					foreach (int i in VoiceLines) {
-						Debug.Log ("Playing " + i);
+					//	Debug.Log ("Playing " + i);
 						dialogManager.instance.playLine (i);
 					}
 
 				} else {
 					Debug.Log ("Only one");
-					dialogManager.instance.playLine (VoiceLineIndex);
+				//	dialogManager.instance.playLine (VoiceLineIndex);
 				}
 				//ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic,Priority);
 				if (stealCamera > 0) {

@@ -20,7 +20,7 @@ public class ConstructionUpgrade  :SpecificUpgrade{
 				foreach (GameObject steel in steelCraftors) {
 					UnitManager man = steel.GetComponent<UnitManager> ();
 					foreach (Ability ab in man.abilityList) {
-						if (ab.Name.Contains ("Yard")) {
+						if (ab &&ab.Name.Contains ("Yard")) {
 							((BuildStructure)ab).buildTime *= .75f;
 							ab.myCost.ResourceOne *= .75f;
 						}
@@ -34,7 +34,7 @@ public class ConstructionUpgrade  :SpecificUpgrade{
 				foreach (GameObject steel in steelCraftors) {
 					UnitManager man = steel.GetComponent<UnitManager> ();
 					foreach (Ability ab in man.abilityList) {
-						if (ab.Name.Contains ("Core")) {
+						if (ab && ab.Name.Contains ("Core")) {
 							((BuildStructure)ab).buildTime *= .75f;
 							ab.myCost.ResourceOne *= .75f;
 						}
@@ -48,7 +48,7 @@ public class ConstructionUpgrade  :SpecificUpgrade{
 				foreach (GameObject steel in steelCraftors) {
 					UnitManager man = steel.GetComponent<UnitManager> ();
 					foreach (Ability ab in man.abilityList) {
-						if (ab.Name.Contains ("Factory")) {
+						if (ab &&ab.Name.Contains ("Factory")) {
 							((BuildStructure)ab).buildTime *= 75f;
 							ab.myCost.ResourceOne *= .75f;
 						}
@@ -70,7 +70,7 @@ public class ConstructionUpgrade  :SpecificUpgrade{
 			foreach (GameObject steel in steelCraftors) {
 				UnitManager man = steel.GetComponent<UnitManager> ();
 				foreach (Ability ab in man.abilityList) {
-					if (ab.Name.Contains ("Yard")) {
+						if (ab &&ab.Name.Contains ("Yard")) {
 						((BuildStructure)ab).buildTime /= .75f;
 						ab.myCost.ResourceOne /= .75f;
 					}
@@ -84,7 +84,7 @@ public class ConstructionUpgrade  :SpecificUpgrade{
 			foreach (GameObject steel in steelCraftors) {
 				UnitManager man = steel.GetComponent<UnitManager> ();
 				foreach (Ability ab in man.abilityList) {
-					if (ab.Name.Contains ("Core")) {
+						if (ab &&ab.Name.Contains ("Core")) {
 						((BuildStructure)ab).buildTime /= .75f;
 						ab.myCost.ResourceOne /= .75f;
 					}
@@ -98,7 +98,7 @@ public class ConstructionUpgrade  :SpecificUpgrade{
 				foreach (GameObject steel in steelCraftors) {
 					UnitManager man = steel.GetComponent<UnitManager> ();
 					foreach (Ability ab in man.abilityList) {
-						if (ab.Name.Contains ("Factory")) {
+						if (ab &&ab.Name.Contains ("Factory")) {
 							((BuildStructure)ab).buildTime /= .75f;
 							ab.myCost.ResourceOne /= .75f;
 						}

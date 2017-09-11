@@ -56,7 +56,8 @@ public class DayexaShield : Ability,Modifier , Notify{
 	public float trigger(GameObject source,GameObject proj, UnitManager target,float damage)
 	{
 		if (AbsorbRecoil) {
-			myStats.changeEnergy (damage/12);
+
+			myStats.veternStat.UpEnergy( myStats.changeEnergy (damage/12));
 		}
 
 		return damage;
@@ -161,6 +162,7 @@ public class DayexaShield : Ability,Modifier , Notify{
 		while(true){
 
 			myStats.changeEnergy (rechargeRate / 2);
+			myStats.veternStat.UpEnergy(rechargeRate / 2);
 			yield return new WaitForSeconds (.5f);
 			}
 	}
