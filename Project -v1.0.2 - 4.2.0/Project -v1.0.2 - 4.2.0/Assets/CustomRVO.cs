@@ -76,6 +76,7 @@ public class CustomRVO : IMover {
 	//	Debug.Log ("Resetting to " + target);
 		this.target = target;
 		RecalculatePath();
+		Debug.Log ("Setting move path " + target);
 		GetComponent<UnitManager> ().animMove ();
 	}
 

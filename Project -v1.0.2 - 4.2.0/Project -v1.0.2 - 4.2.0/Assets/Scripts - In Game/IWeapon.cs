@@ -234,6 +234,25 @@ public class IWeapon : MonoBehaviour {
 
 	}
 
+	/// <summary>
+	/// returns false if the unit is too close
+	/// </summary>
+	/// <returns><c>true</c>, if minimum range was checked, <c>false</c> otherwise.</returns>
+	/// <param name="target">Target.</param>
+	public bool checkMinimumRange(UnitManager target)
+	{
+		float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.CharController.radius;
+		if ( distance < minimumRange) {
+
+			return false;
+		}
+		return true;
+
+	}
+
+
+
+
 
 	public void attack(UnitManager target, UnitManager toStun)
 	{

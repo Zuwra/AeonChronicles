@@ -55,7 +55,6 @@ public class DefaultState : UnitState{
 	public void attackResponse(UnitManager src, float amount)
 	{	
 
-		Debug.Log ("Geting called " + amount);
 		if(src){
 		//UnitManager manage = src.GetComponent<UnitManager> ();
 

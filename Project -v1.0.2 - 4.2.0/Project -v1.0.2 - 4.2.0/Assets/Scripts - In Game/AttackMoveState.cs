@@ -59,6 +59,8 @@ public class AttackMoveState : UnitState {
 		}
 	}
 
+	bool EnemyTooClose = false;
+	Vector3 lastEnemyLocation;
 	// Update is called once per frame
 	override
 	public void Update () {
@@ -68,19 +70,44 @@ public class AttackMoveState : UnitState {
 			nextActionTime += .2f;
 			UnitManager temp =  myManager.findBestEnemy ();
 
-			if (temp) {
-				
-				enemy = temp;
-				if (myManager.cMover) {
-		
-					myManager.cMover.resetMoveLocation (enemy.transform.position);
+			if (Vector3.Distance (home, myManager.transform.position) > 150) {
+				enemy = null;
+				myManager.cMover.resetMoveLocation (home);
+			}
+
+			else if (temp) {
+				if (temp == enemy ){
+					if(Vector3.Distance (lastEnemyLocation, temp.transform.position) > 3) {
+						if (myManager.cMover) {
+							lastEnemyLocation = enemy.transform.position;
+							if (EnemyTooClose) {
+								myManager.cMover.resetMoveLocation (myManager.transform.position - (enemy.transform.position - myManager.transform.position).normalized * 10);
+							} else {
+								myManager.cMover.resetMoveLocation (enemy.transform.position);
+							}
+						}
+					}	
+				} else {
+
+					enemy = temp;
+
+
+					if (myManager.cMover) {
+						lastEnemyLocation = enemy.transform.position;
+						if (EnemyTooClose) {
+							myManager.cMover.resetMoveLocation (myManager.transform.position - (enemy.transform.position - myManager.transform.position).normalized * 10);
+						} else {
+							myManager.cMover.resetMoveLocation (enemy.transform.position);
+						}
+					}
 				}
 
-			} else if(enemy && Vector3.Distance(myManager.gameObject.transform.position,enemy.transform.position) > 85){
+			} else if(enemy && Vector3.Distance(myManager.gameObject.transform.position,enemy.transform.position) > 85 ){
+				enemy = null;
 				myManager.cMover.resetMoveLocation (home);
 			}
 		}
-		//still need to figure out calcualte ion for if enemy goes out of range or if a better one comes into range
+		//still need to figure out calculation for if enemy goes out of range or if a better one comes into range
 
 
 		if (enemy != null && myManager.myWeapon.Count > 0) {
@@ -98,12 +125,25 @@ public class AttackMoveState : UnitState {
 					if (weap.simpleCanAttack (enemy)) {
 						weap.attack (enemy, myManager);
 					} 
-				} 
+				} else if (weap.minimumRange > 0 ){
+					EnemyTooClose =	!weap.checkMinimumRange (enemy);
+					
+				}
+
 			}
-			//Debug.Log ("After attack "+ "   " + Time.time);
+
 			if (!attacked) {
+				
 				if (myManager.cMover.myspeed == 0) {
-					myManager.cMover.resetMoveLocation (enemy.transform.position);
+					lastEnemyLocation = enemy.transform.position;
+					if (EnemyTooClose) {
+
+						myManager.cMover.resetMoveLocation ( myManager.transform.position - ( enemy.transform.position - myManager.transform.position ).normalized *10);
+						Debug.Log ("Moving Away him " + enemy.transform.position + "  " + ( myManager.transform.position - ( enemy.transform.position - myManager.transform.position ).normalized *10));
+					} else {
+						Debug.Log ("Towards");
+						myManager.cMover.resetMoveLocation (enemy.transform.position);
+					}
 				}
 			
 				myManager.cMover.move ();
@@ -115,10 +155,12 @@ public class AttackMoveState : UnitState {
 					myManager.cMover.resetMoveLocation (endLocation);
 				} else if (commandType == MoveType.passive) {//Debug.Log("going home");
 					if (myManager.cMover) {
+	
 						myManager.cMover.resetMoveLocation (home);
 					}
 				} else {
 					if (myManager.cMover) {
+
 						myManager.cMover.resetMoveLocation (target);
 					}
 				}
@@ -126,8 +168,10 @@ public class AttackMoveState : UnitState {
 			}
 
 			if (myManager.cMover) {
+
 				bool there = myManager.cMover.move ();
 				if (there && commandType == MoveType.patrol) {
+					
 					if (target == home) {
 					
 						target = endLocation;
@@ -135,9 +179,10 @@ public class AttackMoveState : UnitState {
 				
 						target = home;
 					}
-				
+
 					myManager.cMover.resetMoveLocation (target);
 				} else if (there) {
+
 					myManager.changeState (new DefaultState ());
 				}
 
