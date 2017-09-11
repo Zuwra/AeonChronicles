@@ -40,6 +40,7 @@ public class DayexaShield : Ability,Modifier , Notify{
 		if (maxDamagePerSec < 9999) {
 			InvokeRepeating ("UpdateShield", 1, 1);
 		}
+		changeAbsorption (0);
 	}
 
 	public void ApplyMaxDamageUpgrade(float max)
@@ -57,7 +58,7 @@ public class DayexaShield : Ability,Modifier , Notify{
 	{
 		if (AbsorbRecoil) {
 
-			myStats.veternStat.UpEnergy( myStats.changeEnergy (damage/12));
+			myStats.veternStat.UpEnergy( myStats.changeEnergy (damage/10));
 		}
 
 		return damage;

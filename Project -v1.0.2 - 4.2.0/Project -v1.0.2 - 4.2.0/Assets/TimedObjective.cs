@@ -9,7 +9,11 @@ public class TimedObjective : Objective {
 	string initialDescript;
 	// Use this for initialization
 	new void Start () {
-		base.Start ();
+
+		if (ActiveOnStart) {
+			BeginObjective ();
+		}
+
 		initialDescript = description;
 
 	}
@@ -22,7 +26,7 @@ public class TimedObjective : Objective {
 
 	IEnumerator countDown()
 	{
-
+		Debug.Log ("Starting countddown");
 		while (remainingTime > 0 && !completed) {
 			yield return new WaitForSeconds (1);
 			remainingTime -= 1;

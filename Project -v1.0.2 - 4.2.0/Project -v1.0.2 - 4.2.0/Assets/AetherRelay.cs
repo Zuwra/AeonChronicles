@@ -23,6 +23,11 @@ public class AetherRelay : Ability{
 
 
 		InvokeRepeating ("UpdateAether", 1, 1);
+
+
+		if (GetComponent<DayexaShield>().maxDamagePerSec > 0) {
+			Descripton += " Maximum of " + GetComponent<DayexaShield>().maxDamagePerSec +" damage per second can be taken while field is active.";
+		}
 	}
 	
 	// Update is called once per frame

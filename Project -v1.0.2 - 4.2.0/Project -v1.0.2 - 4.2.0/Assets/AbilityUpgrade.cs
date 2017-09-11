@@ -17,7 +17,7 @@ public class AbilityUpgrade : SpecificUpgrade {
 				return;
 			}
 			if (manager.UnitName == "Triton") {
-				manager.GetComponent<DayexaShield> ().maxDamagePerSec = 10;
+				manager.GetComponent<DayexaShield> ().maxDamagePerSec = 15;
 			} else if (manager.UnitName == "Vulcan") {
 				foreach (BloodMist bm in obj.GetComponents<BloodMist>()) {
 					bm.chargeCount = bm.maxChargeCount;
