@@ -9,8 +9,8 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public AudioClip ButtonPress;
 	AudioSource audSrc;
-	private bool shiftDown;
-	private bool ctrlDown;
+
+
 	//public List<GameObject> UIButtons = new List<GameObject>();
 	Color disabledColor = new Color(.5f,0,0,1);
 	public List<Button> quickButtons = new List<Button>();
@@ -105,10 +105,7 @@ public class UiAbilityManager : MonoBehaviour {
 		} else if (Input.GetKeyUp (KeyCode.V)) {
 			callAbility (11);
 		} 
-
-
-
-
+			
 
 
 
@@ -117,19 +114,6 @@ public class UiAbilityManager : MonoBehaviour {
 		} 
 		nextActionTime += .08f;
 
-		if (Input.GetKeyDown (KeyCode.LeftShift)) {
-			shiftDown = true;
-		}
-		else if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			shiftDown =false;
-		}
-
-		if (Input.GetKeyDown (KeyCode.LeftControl)) {
-			ctrlDown = true;
-		}
-		else if (Input.GetKeyUp (KeyCode.LeftControl)) {
-			ctrlDown =false;
-		}
 
 
 		if (currentPage == null) {
@@ -279,18 +263,19 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public void IconClick(GameObject obj)
 	{
-		if (!shiftDown && !ctrlDown) {
+
+		if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl)) {
 			GameObject temp = unitIcons [obj];
 			selectMan.DeselectAll ();
 			selectMan.AddObject (temp.GetComponent<UnitManager> ());
 
 			selectMan.CreateUIPages (0);
-		} else if (shiftDown && !ctrlDown) {
+		} else if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl)) {
 
 			selectMan.DeselectObject (unitIcons [obj].GetComponent<UnitManager> ());
 			selectMan.CreateUIPages (0);
 		
-		} else if (!shiftDown && ctrlDown) {
+		} else if (!Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl)) {
 			selectMan.selectAllUnitType (unitIcons [obj].GetComponent<UnitManager> ());
 		
 		} else {selectMan.DeSelectAllUnitType (unitIcons [obj].GetComponent<UnitManager> ());

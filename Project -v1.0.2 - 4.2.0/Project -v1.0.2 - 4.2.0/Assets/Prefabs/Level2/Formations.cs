@@ -14,7 +14,7 @@ public class Formations{
 		} else if (count == 2) {
 
 			for (int n = 0; n < 2; n++) {
-				toReturn.Add (Even [n]);
+				toReturn.Add (Even [n]* sepDist);
 			}
 
 		}

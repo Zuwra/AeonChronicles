@@ -32,19 +32,6 @@ public class GUIManager : MonoBehaviour, IGUIManager {
 
 	}
 
-	// Use this for initialization
-	void Start () 
-	{
-		//Load the mini map and assign the menu width and mini map rect
-		//IMiniMapController miniMap = ManagerResolver.Resolve<IMiniMapController>();		
-
-
-		//GameObject.FindObjectOfType<MiniMapController> ().LoadMiniMap ();
-		//miniMap.LoadMiniMap();
-	
-
-	}
-	
 
 
 	

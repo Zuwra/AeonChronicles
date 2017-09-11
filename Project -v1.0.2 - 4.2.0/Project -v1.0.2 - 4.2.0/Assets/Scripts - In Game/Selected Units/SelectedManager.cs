@@ -893,6 +893,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		List<Vector3> points = Formations.getFormation (MoverCount, Mathf.Min (2, sepDistance));
 		for (int t = 0; t < points.Count; t++) {
+	
 			points [t] = Quaternion.Euler (0, angle, 0) * points [t] + targetPoint;
 		}
 

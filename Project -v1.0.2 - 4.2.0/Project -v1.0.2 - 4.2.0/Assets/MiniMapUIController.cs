@@ -117,6 +117,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		myRect = GetComponent<RectTransform> ();
 		minimapWidth = myRect.rect.width;
 		minimapHeight = myRect.rect.height;
+		//Debug.Log ("Mini map " + minimapWidth + " " +minimapHeight + "  " + myRect.sizeDelta + "  " + myRect.rect);
 
 		nextActionTimea = 0;
 	
@@ -245,13 +246,13 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetKeyUp (KeyCode.Tab)) {
+		if (Input.GetKeyUp (KeyCode.T)) {
 			attackMoveMinimap ();
 		}
 
-		//if (Input.GetKeyDown (KeyCode.M)) {
-		//	toggleMegaMap ();
-		//}
+		if (Input.GetKeyDown (KeyCode.M)) {
+			toggleMegaMap ();
+	}
 	}
 
 	public void toggleMegaMap ()
@@ -630,11 +631,12 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		if (!this.enabled) {
 			return;
 		}
-		Vector3 clickPos = Input.mousePosition;
-		clickPos.x -= myRect.position.x;
-		clickPos.y -= myRect.position.y;
-		float x = .5f + (clickPos.x) / minimapWidth;
-		float y = .5f + (clickPos.y) / minimapHeight;
+
+		Vector3 clickPos = transform.InverseTransformPoint (Input.mousePosition);
+
+		float x = ((clickPos.x) / myRect.rect.width) + .5f;// minimapWidth;
+		float y = ((clickPos.y) / myRect.rect.height) + .5f;
+
 		Vector3 RayPoint = new Vector3 ((x * WorldWidth) + Left, 100, (y * WorldHeight) + bottom);
 
 		RaycastHit hit;		

@@ -70,7 +70,7 @@ public class AttackMoveState : UnitState {
 			nextActionTime += .2f;
 			UnitManager temp =  myManager.findBestEnemy ();
 
-			if (Vector3.Distance (home, myManager.transform.position) > 150) {
+			if (commandType == MoveType.passive && Vector3.Distance (home, myManager.transform.position) > 150) {
 				enemy = null;
 				myManager.cMover.resetMoveLocation (home);
 			}
@@ -139,9 +139,9 @@ public class AttackMoveState : UnitState {
 					if (EnemyTooClose) {
 
 						myManager.cMover.resetMoveLocation ( myManager.transform.position - ( enemy.transform.position - myManager.transform.position ).normalized *10);
-						Debug.Log ("Moving Away him " + enemy.transform.position + "  " + ( myManager.transform.position - ( enemy.transform.position - myManager.transform.position ).normalized *10));
+						//Debug.Log ("Moving Away him " + enemy.transform.position + "  " + ( myManager.transform.position - ( enemy.transform.position - myManager.transform.position ).normalized *10));
 					} else {
-						Debug.Log ("Towards");
+					//	Debug.Log ("Towards");
 						myManager.cMover.resetMoveLocation (enemy.transform.position);
 					}
 				}

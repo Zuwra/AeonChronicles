@@ -15,7 +15,7 @@ public class DragSelect : MonoBehaviour {
 	private UIManager uiManager;
 	//private ISelectedManager m_SelectedManager;
 
-	private bool shiftDown;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -35,12 +35,6 @@ public class DragSelect : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKeyDown (KeyCode.LeftShift)) {
-			shiftDown = true;
-		}
-		else if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			shiftDown =false;
-		}
 
 
 		if (m_CheckDeselect) {
@@ -50,9 +44,7 @@ public class DragSelect : MonoBehaviour {
 					m_Dragging = true;
 					m_GuiManager.Dragging = true;
 					
-					if (!shiftDown) {
-						//m_SelectedManager.DeselectAll ();
-					}
+		
 				}
 			}
 

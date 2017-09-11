@@ -34,12 +34,15 @@ public class TargetDeathVictory : Objective {
 
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
+
 		startObjective ();
 	}
 
 	public void startObjective()
 	{
-		VictoryTrigger.instance.addObjective (this);
+		BeginObjective ();
+
+	//	VictoryTrigger.instance.addObjective (this);
 
 		foreach (GameObject go in targets) {
 			if (go) {
