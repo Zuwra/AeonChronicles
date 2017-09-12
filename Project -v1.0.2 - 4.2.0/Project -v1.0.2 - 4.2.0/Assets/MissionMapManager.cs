@@ -63,7 +63,6 @@ public class MissionMapManager : MonoBehaviour {
 
 	public void toggleMissionMap(bool onOrOff)
 	{
-		Debug.Log ("Opening Mission Map");
 		GetComponent<Canvas> ().enabled = onOrOff;
 
 		MainScreen.SetActive (!onOrOff);

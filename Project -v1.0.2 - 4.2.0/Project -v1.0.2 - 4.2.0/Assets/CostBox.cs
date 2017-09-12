@@ -72,7 +72,7 @@ public class CostBox : MonoBehaviour {
 
 
 			if (input.myCost.ResourceOne > 0) {
-				resOne.text = "" + input.myCost.ResourceOne;
+				resOne.text = "" + (int)input.myCost.ResourceOne;
 				OreIcon.enabled =true;
 				if (order.reasonList.Contains (continueOrder.reason.resourceOne)) {
 					resOne.color = Color.red;
@@ -128,7 +128,7 @@ public class CostBox : MonoBehaviour {
 					resTwo.color = teal;
 				}
 
-				resTwo.text = "Gas: " + input.myCost.ResourceTwo;
+				resTwo.text = "Gas: " + (int)input.myCost.ResourceTwo;
 			} else {
 				resTwo.text = "";
 			}

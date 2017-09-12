@@ -262,6 +262,7 @@ namespace Pathfinding.RVO {
 		 */
 		public void Move (Vector3 vel) {
 			desiredVelocity = vel;
+	
 		}
 
 		/** Teleport the agent to a new position.
@@ -338,9 +339,16 @@ namespace Pathfinding.RVO {
 
 			tr.position = realPos + Vector3.up*height*0.5f - center;
 			lastPosition = tr.position;
+		//	transform.up = hit.normal;
 
-			if (enableRotation && velocity != Vector3.zero)
-				transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity), Time.deltaTime * rotationSpeed * Mathf.Min(velocity.magnitude, 0.2f));
+			if (enableRotation && velocity != Vector3.zero) {
+				
+				transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (velocity), Time.deltaTime * rotationSpeed * Mathf.Min (velocity.magnitude, 0.2f));
+			
+			
+			}
+			transform.rotation = Quaternion.LookRotation (Vector3.Cross (transform.right, hit.normal));
+
 		}
 
 		private static readonly Color GizmoColor = new Color(240/255f, 213/255f, 30/255f);

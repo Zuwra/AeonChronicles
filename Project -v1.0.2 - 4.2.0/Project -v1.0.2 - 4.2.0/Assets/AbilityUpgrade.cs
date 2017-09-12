@@ -16,6 +16,8 @@ public class AbilityUpgrade : SpecificUpgrade {
 			if (!manager) {
 				return;
 			}
+
+
 			if (manager.UnitName == "Triton") {
 				manager.GetComponent<DayexaShield> ().maxDamagePerSec = 15;
 			} else if (manager.UnitName == "Vulcan") {
@@ -24,10 +26,13 @@ public class AbilityUpgrade : SpecificUpgrade {
 				}
 				obj.GetComponent<DeployTurret> ().chargeCount = 2;
 			} else if (manager.UnitName == "Chimera") {
-			
+	
 				foreach (ChangeAmmo ca in manager.GetComponents<ChangeAmmo>()) {
-					if (ca.Name == "Ammo: Pentrating Shot [X]") {
+
+					if (ca.Name.Contains("[X]")) {
+
 						ca.myAmmo = SuperPenetrator;
+						ca.Descripton = "Deals Line Damage.";
 					}
 				
 				}

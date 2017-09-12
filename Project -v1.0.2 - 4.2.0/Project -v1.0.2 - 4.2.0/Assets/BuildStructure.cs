@@ -19,6 +19,7 @@ public class BuildStructure:  UnitProduction {
 
 	private UnitManager inConstruction;
 	private BuildingInteractor builder;
+	public float animationRate =1;
 
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
@@ -183,7 +184,7 @@ public class BuildStructure:  UnitProduction {
 				builder = (BuildingInteractor)inConstruction.GetComponent<ArmoryInteractor> ();
 
 			} 
-			builder.startConstruction (unitToBuild, buildTime);
+			builder.startConstruction (unitToBuild, animationRate);
 			inConstruction.setInteractor();
 			inConstruction.interactor.initialize ();
 			inConstruction.GetComponent<Selected> ().Initialize ();

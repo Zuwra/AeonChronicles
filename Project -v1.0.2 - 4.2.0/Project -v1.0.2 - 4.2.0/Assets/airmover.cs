@@ -6,6 +6,7 @@ public class airmover : IMover {
 
 	private Vector3 targetPosition;
 	private CharacterController controller;
+
 	//The calculated path
 	public float turnSpeed;
 	//The AI's speed per second
@@ -66,12 +67,15 @@ public class airmover : IMover {
 
 		//Make sure your the right height above the terrain
 		RaycastHit objecthit;
+		RaycastHit objecthitB;
 		Vector3 down = this.gameObject.transform.TransformDirection (Vector3.down);
-
+	
 		if (Physics.Raycast (this.gameObject.transform.position, down, out objecthit, 1000, 1 << 8)) {
 
-			dir.y -= Time.deltaTime *  (this.gameObject.transform.position.y -(objecthit.point.y + flyerHeight) ) *(myspeed/8) * Mathf.Min(3, tempDist);
 
+			if (Physics.Raycast (transform.position + transform.forward *6 + Vector3.up*30, down, out objecthitB, 1000, 1 << 8)) {
+				dir.y -= Time.deltaTime * (transform.position.y - ((objecthit.point.y + objecthitB.point.y)/2 + flyerHeight)) * (myspeed / 8) * Mathf.Min (3, tempDist);
+			}
 		
 
 		}

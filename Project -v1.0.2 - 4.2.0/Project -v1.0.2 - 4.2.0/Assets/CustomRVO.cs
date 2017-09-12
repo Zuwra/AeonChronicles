@@ -195,6 +195,7 @@ public class CustomRVO : IMover {
 		}
 		//Debug.Log ("Moving " + dir);
 		try{
+
 		controller.Move (dir);
 		}
 		catch(System.Exception) {

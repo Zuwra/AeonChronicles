@@ -16,6 +16,8 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	private GameObject sourceObj;
 	public Animator myAnim;
 
+	float animSpeed = 1;
+
 	//private float buildTime;
 	// Last time someone did a construction action, for animation tracking
 	private float lastBuildInput;
@@ -53,7 +55,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 	}
 
 
-	public void startConstruction(GameObject obj, float buildtime)
+	public void startConstruction(GameObject obj, float animationRate)
 	{sourceObj = obj;
 		doneConstruction = false;
 		//buildTime = buildtime;
@@ -61,6 +63,10 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 		foreach (Ability ab in  GetComponent<UnitManager>().abilityList) {
 			ab.active = false;
 			//ab.enabled = false;
+		}
+		if(myAnim)
+		{animSpeed = animationRate;
+			myAnim.speed = animationRate;
 		}
 	}
 
@@ -79,7 +85,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 		if (myAnim) {
 			lastBuildInput = Time.time;
-			myAnim.speed = 1;
+			myAnim.speed = animSpeed;
 			if (currentCoRoutine != null) {
 				StopCoroutine (currentCoRoutine);
 			}
@@ -97,7 +103,7 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 				StopCoroutine (currentCoRoutine);
 			}
 			if (myAnim) {
-				myAnim.speed = 1;
+				myAnim.speed = animSpeed;
 			}
 		
 

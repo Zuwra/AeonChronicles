@@ -14,100 +14,36 @@ public class ConstructionUpgrade  :SpecificUpgrade{
 
 	public override void applyUpgrade (GameObject obj){
 
-		if (confirmUnit (obj)) {
-			UnitManager us = obj.GetComponent<UnitManager> ();
-			if (us.UnitName.Contains ("Yard")) {
-				foreach (GameObject steel in steelCraftors) {
-					UnitManager man = steel.GetComponent<UnitManager> ();
-					foreach (Ability ab in man.abilityList) {
-						if (ab &&ab.Name.Contains ("Yard")) {
+
+		UnitManager man = obj.GetComponent<UnitManager> ();
+		if (man.UnitName.Contains ("Steel")) {
+		
+			foreach (Ability ab in man.abilityList) {
+
+
+				if (ab){
+					foreach (string toApply in unitsToApply) {
+						if (ab.Name.Contains (toApply)) {
 							((BuildStructure)ab).buildTime *= .75f;
 							ab.myCost.ResourceOne *= .75f;
+							((BuildStructure)ab).animationRate = 1.333f;
+
+							break;
 						}
-				
 					}
 
-			
 				}
+
 			}
-			if (us.UnitName.Contains ("Core")) {
-				foreach (GameObject steel in steelCraftors) {
-					UnitManager man = steel.GetComponent<UnitManager> ();
-					foreach (Ability ab in man.abilityList) {
-						if (ab && ab.Name.Contains ("Core")) {
-							((BuildStructure)ab).buildTime *= .75f;
-							ab.myCost.ResourceOne *= .75f;
-						}
-
-					}
-
-
-				}
-			}
-			if (us.UnitName.Contains ("Factory")) {
-				foreach (GameObject steel in steelCraftors) {
-					UnitManager man = steel.GetComponent<UnitManager> ();
-					foreach (Ability ab in man.abilityList) {
-						if (ab &&ab.Name.Contains ("Factory")) {
-							((BuildStructure)ab).buildTime *= 75f;
-							ab.myCost.ResourceOne *= .75f;
-						}
-
-					}
-
-
-				}
-			}
+		
 		}
+	
 	}
 
 
 	public override void unApplyUpgrade (GameObject obj){
 
-		if (confirmUnit (obj)) {
-		UnitManager us = obj.GetComponent<UnitManager>();
-		if (us.UnitName.Contains("Yard")) {
-			foreach (GameObject steel in steelCraftors) {
-				UnitManager man = steel.GetComponent<UnitManager> ();
-				foreach (Ability ab in man.abilityList) {
-						if (ab &&ab.Name.Contains ("Yard")) {
-						((BuildStructure)ab).buildTime /= .75f;
-						ab.myCost.ResourceOne /= .75f;
-					}
 
-				}
-
-
-			}
-		}
-		if (us.UnitName.Contains("Core")) {
-			foreach (GameObject steel in steelCraftors) {
-				UnitManager man = steel.GetComponent<UnitManager> ();
-				foreach (Ability ab in man.abilityList) {
-						if (ab &&ab.Name.Contains ("Core")) {
-						((BuildStructure)ab).buildTime /= .75f;
-						ab.myCost.ResourceOne /= .75f;
-					}
-
-				}
-
-
-			}
-		}
-		if (us.UnitName.Contains("Factory")) {
-				foreach (GameObject steel in steelCraftors) {
-					UnitManager man = steel.GetComponent<UnitManager> ();
-					foreach (Ability ab in man.abilityList) {
-						if (ab &&ab.Name.Contains ("Factory")) {
-							((BuildStructure)ab).buildTime /= .75f;
-							ab.myCost.ResourceOne /= .75f;
-						}
-
-					}
-
-				}
-			}
-		}
 	}
 
 
