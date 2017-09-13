@@ -37,7 +37,7 @@ public class TimeDelayTrigger : MonoBehaviour {
 
 		OnTrigger.Invoke();
 		foreach (SceneEventTrigger trig in myTriggers) {
-			Debug.Log ("Triggering " + trig);
+			Debug.Log ("Triggering " + trig + "  " + this.gameObject);
 
 			trig.trigger (index, input, location, target, doIt);
 			yield return null;

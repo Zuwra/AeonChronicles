@@ -176,6 +176,16 @@ public class IWeapon : MonoBehaviour {
 		return true;
 	}
 
+	public bool validateWeap(UnitManager target)
+	{
+		foreach (Validator val in validators) {
+			if(val.validate(this.gameObject,target.gameObject) == false)
+			{
+				return false;}
+		}
+		return true;
+	}
+
 	public virtual bool canAttack(UnitManager target)
 	{
 
@@ -423,7 +433,14 @@ public class IWeapon : MonoBehaviour {
 			if (target.myStats.isUnitType (ty))
 				return false;
 		}
+
+		foreach (Validator val in validators) {
+			if(val.validate(this.gameObject,target.gameObject) == false)
+			{
+				return false;}
+		}
 		return true;
+
 
 	}
 

@@ -638,7 +638,7 @@ public class UnitManager : Unit,IOrderable{
 	{IWeapon best = null;
 		float min= 100000000;
 		foreach (IWeapon weap in myWeapon) {
-			if(weap.isValidTarget(obj)){
+			if( weap.isValidTarget(obj)){
 				if (weap.range < min) {
 					best = weap;
 					min = weap.range;

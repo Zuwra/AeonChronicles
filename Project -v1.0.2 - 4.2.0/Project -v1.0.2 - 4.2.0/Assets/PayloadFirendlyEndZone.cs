@@ -17,7 +17,7 @@ public class PayloadFirendlyEndZone : MonoBehaviour {
 	int payloadIndex;
 	// Use this for initialization
 	void Start () {
-
+		/*
 		foreach (VariableTargetZones zone in targetZones) {
 		
 			while (zone.AreaTargets.Count > zone.SinceLastLaunch.Count) {
@@ -37,8 +37,8 @@ public class PayloadFirendlyEndZone : MonoBehaviour {
 			}
 		}
 
-
-		int spawnIndex = Random.Range (0, targetZones[0].AreaTargets.Count);
+*/
+		int spawnIndex = 0;//Random.Range (0, targetZones[0].AreaTargets.Count);
 		currentLoc = targetZones [0].AreaTargets [spawnIndex];
 		currentCo =  StartCoroutine (OpenLocation (targetZones[0].AreaTargets[spawnIndex],targetZones[0].SinceLastLaunch[0]));
 		targetZones[0].AreaTargets.RemoveAt (spawnIndex);
@@ -85,9 +85,9 @@ public class PayloadFirendlyEndZone : MonoBehaviour {
 
 		if (targetZones.Count > 0) {
 			
-			int spawnIndex = Random.Range (0, targetZones[0].AreaTargets.Count);
+			int spawnIndex = 0;// Random.Range (0, targetZones[0].AreaTargets.Count);
 			currentLoc = targetZones [0].AreaTargets [spawnIndex];
-			currentCo =  StartCoroutine (OpenLocation (targetZones[0].AreaTargets[spawnIndex],targetZones[0].SinceLastLaunch[0]));
+			//currentCo =  StartCoroutine (OpenLocation (targetZones[0].AreaTargets[spawnIndex],targetZones[0].SinceLastLaunch[0]));
 			targetZones[0].AreaTargets.RemoveAt (spawnIndex);
 			targetZones[0].SinceLastLaunch.RemoveAt (0);
 

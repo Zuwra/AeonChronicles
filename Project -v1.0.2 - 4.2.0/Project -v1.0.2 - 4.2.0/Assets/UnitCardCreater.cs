@@ -211,7 +211,7 @@ public class UnitCardCreater : MonoBehaviour {
 			if (manager.myWeapon.Count > i) {
 				weaponIcons [i].transform.Find("DamageIcon").GetComponent<Image> ().sprite = manager.myWeapon [i].myIcon;
 				if (manager.myWeapon [i].getUpgradeLevel () > 0) {
-					Debug.Log ("Setting level to " + manager.myWeapon [i].getUpgradeLevel ());
+				//	Debug.Log ("Setting level to " + manager.myWeapon [i].getUpgradeLevel ());
 					weaponIcons [i].transform.GetComponentInChildren<Text> ().text = "" + manager.myWeapon [i].getUpgradeLevel ();
 				} else {
 					weaponIcons [i].transform.GetComponentInChildren<Text> ().text = "";
