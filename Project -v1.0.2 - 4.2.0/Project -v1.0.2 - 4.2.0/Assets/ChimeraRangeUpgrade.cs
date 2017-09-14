@@ -18,6 +18,7 @@ public class ChimeraRangeUpgrade : Upgrade {
 				if(ca.Name == "Ammo: Siege Rounds [Z]")
 				{ca.iconPic = replacementImage;
 					ca.myAmmo = newAmmo;
+					ca.resetBulletPool ();
 					//ca.range += RangeIncrease;
 					if (ca.autocast) {
 						ca.Activate ();

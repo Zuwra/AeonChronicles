@@ -293,7 +293,7 @@ public  class Projectile : MonoBehaviour {
 	{//Debug.Log ("Finished");
 		if (explosionO) {
 			GameObject explode = (GameObject)Instantiate (explosionO, this.gameObject.transform.position, Quaternion.identity);
-			Debug.Log ("INstantiating explosion");
+
 
 			explosion Escript = explode.GetComponent<explosion> ();
 			if (Escript) {

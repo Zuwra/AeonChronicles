@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TunnelSpawner : MonoBehaviour {
+public class TunnelSpawner : Objective,Modifier{
 
 
 
@@ -10,7 +10,8 @@ public class TunnelSpawner : MonoBehaviour {
 
 
 	GameObject[] usedPoints;
-
+	public int bonusKillAmount;
+	int killCount;
 	int diff;
 	public GameObject tunnelObject;
 	[Tooltip("How many seconds on average between each spawn")]
@@ -19,8 +20,11 @@ public class TunnelSpawner : MonoBehaviour {
 	[Tooltip("How many second knoecked off the spawn rate with each spawn")]
 	public float increaseSpawnRate;
 
+	string rawObjectText;
 	// Use this for initialization
 	void Start () {
+		rawObjectText = description;
+
 		usedPoints = new GameObject[spawnPoints.Count];
 		diff = LevelData.getDifficulty ();
 	
@@ -29,6 +33,7 @@ public class TunnelSpawner : MonoBehaviour {
 		spawnRate -= ((diff -1) * 2);
 
 		Invoke("SpawnWave", firstSpawnTime);
+		Invoke ("BeginObjective", firstSpawnTime);
 	}
 	
 	// Update is called once per frame
@@ -39,6 +44,9 @@ public class TunnelSpawner : MonoBehaviour {
 			int index = Random.Range (0, spawnPoints.Count);
 			if (usedPoints [index] == null) {
 				usedPoints[index] = (GameObject)Instantiate (tunnelObject, spawnPoints [index], Quaternion.identity);
+				usedPoints [index].GetComponent<UnitStats> ().addDeathTrigger (this);
+
+
 				used = true;
 				break;
 			}
@@ -48,6 +56,8 @@ public class TunnelSpawner : MonoBehaviour {
 			for (int i = 0; i < spawnPoints.Count; i++) {
 				if (usedPoints [i] == null) {
 					usedPoints[i] = Instantiate (tunnelObject, spawnPoints [i], Quaternion.identity);
+					usedPoints [i].GetComponent<UnitStats> ().addDeathTrigger (this);
+
 					break;
 				}
 			}
@@ -60,6 +70,22 @@ public class TunnelSpawner : MonoBehaviour {
 		Invoke("SpawnWave", spawnRate + Random.Range(-20,20));
 
 	}
+
+	public float modify(float num, GameObject obj, DamageTypes.DamageType theType)
+	{
+		killCount++;
+		description = rawObjectText + "  " + killCount +"/"+bonusKillAmount;
+
+		VictoryTrigger.instance.UpdateObjective (this);
+		if (killCount >= bonusKillAmount) {
+			complete ();
+		}
+		return num;
+	}
+
+
+
+
 
 	void OnDrawGizmos()
 	{

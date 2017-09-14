@@ -725,6 +725,7 @@ public class UnitManager : Unit,IOrderable{
 
 	public void StunForTime(Object source, float duration)
 	{
+
 		StartCoroutine (stunOverTime (source, duration));
 		if (isStunned && StunRun == null) {
 			StunRun = StartCoroutine (stunnedIcon());

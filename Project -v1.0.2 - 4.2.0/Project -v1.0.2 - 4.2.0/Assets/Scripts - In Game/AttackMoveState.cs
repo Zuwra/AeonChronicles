@@ -70,12 +70,9 @@ public class AttackMoveState : UnitState {
 			nextActionTime += .2f;
 			UnitManager temp =  myManager.findBestEnemy ();
 
-			if (commandType == MoveType.passive && Vector3.Distance (home, myManager.transform.position) > 150) {
-				enemy = null;
-				myManager.cMover.resetMoveLocation (home);
-			}
 
-			else if (temp) {
+
+			if (temp) {
 				if (temp == enemy ){
 					if(Vector3.Distance (lastEnemyLocation, temp.transform.position) > 3) {
 						if (myManager.cMover) {

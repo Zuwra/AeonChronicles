@@ -26,7 +26,7 @@ public class SurviveVictory : Objective {
 
 	public void UpdateObj()
 	{
-		description = rawObjectText + " " + Clock.convertToString(SurvivalTime + (pulsesUsed * 15) - (Time.time - startTime));
+		description = rawObjectText + " " + Clock.convertToString(SurvivalTime + (pulsesUsed * 15) - (Time.timeSinceLevelLoad - startTime));
 		VictoryTrigger.instance.UpdateObjective (this);
 	}
 
@@ -35,7 +35,7 @@ public class SurviveVictory : Objective {
 	{
 		CancelInvoke ("WaitFunction");
 		pulsesUsed++;
-		Invoke ("WaitFunction", SurvivalTime + (pulsesUsed * 15) - Time.time - startTime);
+		Invoke ("WaitFunction", SurvivalTime + (pulsesUsed * 15) - Time.timeSinceLevelLoad - startTime);
 	}
 
 	void WaitFunction()

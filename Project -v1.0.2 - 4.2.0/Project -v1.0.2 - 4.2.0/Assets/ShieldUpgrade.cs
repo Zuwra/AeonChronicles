@@ -7,7 +7,6 @@ public class ShieldUpgrade  : Upgrade {
 	override
 	public void applyUpgrade (GameObject obj){
 
-		Debug.Log ("Applying");
 		DayexaShield manager = obj.GetComponent<DayexaShield>();
 		//Debug.Log ("Checking " + obj);
 		if (manager) {

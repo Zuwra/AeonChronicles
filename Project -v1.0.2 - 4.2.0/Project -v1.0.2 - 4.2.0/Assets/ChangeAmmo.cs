@@ -45,6 +45,10 @@ public class ChangeAmmo : Ability {
 		Activate ();
 	}
 
+	public void resetBulletPool()
+	{
+		myBulletPool = Lean.LeanPool.getSpawnPool (myAmmo);
+	}
 
 	override
 	public continueOrder canActivate (bool showError)

@@ -71,9 +71,12 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 				if (!manager.myWeapon.Contains (w)) {
 
 					manager.myWeapon.Add (w);
+					manager.getUnitStats ().attackPriority = 3;
 				}
 
 			}
+		} else {
+			manager.getUnitStats ().attackPriority = 3;
 		}
 		UnitManager unitMan = target.GetComponent<UnitManager> ();
 
@@ -161,7 +164,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	public void Unattach()
 	{if (!attached) {
 			return;}
-
+		manager.getUnitStats ().attackPriority = 2;
 		myRotate.speed /= 3;
 		manager.myStats.myHeight = UnitTypes.HeightType.Air;
 		attached.GetComponent<UnitManager> ().myStats.removeDeathTrigger (this);

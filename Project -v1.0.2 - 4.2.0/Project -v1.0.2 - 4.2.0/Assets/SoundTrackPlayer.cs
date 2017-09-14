@@ -26,14 +26,18 @@ public class SoundTrackPlayer : MonoBehaviour {
 		mySrc.clip = myPlayList.myTracks [currentIndex];
 		mySrc.Play ();
 
-		nextPlayTime = System.DateTime.Now.Second + (int)mySrc.clip.length - 1;
+		nextPlayTime =  (int)mySrc.clip.length - 1;
 		//Invoke ("playNextTrack", mySrc.clip.length -1.5f);
 
 	}
 
+	float updateTime;
+
 	void Update(){
 	
-		if (System.DateTime.Now.Second > nextPlayTime) {
+		updateTime += Time.deltaTime * Time.timeScale;
+		if (updateTime > nextPlayTime) {
+			updateTime = 0;
 			playNextTrack ();
 		}
 

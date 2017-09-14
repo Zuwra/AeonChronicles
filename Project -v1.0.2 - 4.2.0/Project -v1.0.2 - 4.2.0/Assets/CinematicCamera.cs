@@ -95,22 +95,43 @@ public class CinematicCamera : SceneEventTrigger {
 	}
 
 	public void exitScene(){
-		
+
 		foreach(SceneEventTrigger trig in myScenes[currentScene].nextTrig){
 
 			trig.trigger (0, 0, Vector3.zero, null, false);
 		}
 		myScenes [currentScene].onComplete.Invoke ();
+		StartCoroutine (TweenFromScene (myScenes [currentScene].tweenFromScene));
 		currentScene = -1;
-		GetComponent<Camera> ().enabled = false;
+	
 		MainCamera.main.gameObject.transform.position = previousCamPos ;
-		if (GameMenu.main) {
-			GameMenu.main.EnableInput();}
 		currentShot = 0;
 
 	}
 
 
+
+	IEnumerator TweenFromScene(float duration)
+	{
+		Camera cam = GetComponent<Camera> ();
+		float startAngle = cam.fieldOfView;
+		Vector3 startPosition = transform.position;
+		Quaternion startRotation = transform.rotation;
+
+		yield return null;
+		for (float i = 0; i < duration; i += Time.deltaTime) {
+			this.transform.position = Vector3.Lerp(startPosition, previousCamPos, i/duration);
+			this.transform.rotation = Quaternion.Slerp (startRotation, MainCamera.main.gameObject.transform.rotation, i / duration);
+			cam.fieldOfView = startAngle * (1 - i / duration) + MainCamera.main.GetComponent<Camera> ().fieldOfView * (i / duration);
+			MainCamera.main.gameObject.transform.position = previousCamPos ;
+			yield return null;
+		}
+
+		GetComponent<Camera> ().enabled = false;
+		MainCamera.main.GetComponent<Camera> ().fieldOfView = startAngle;
+		if (GameMenu.main) {
+			GameMenu.main.EnableInput();}
+	}
 
 
 	[System.Serializable]
@@ -118,6 +139,7 @@ public class CinematicCamera : SceneEventTrigger {
 		public List<shot> myShots;
 		public List<SceneEventTrigger> nextTrig;
 		public UnityEngine.Events.UnityEvent onComplete;
+		public float tweenFromScene;
 
 
 	}
