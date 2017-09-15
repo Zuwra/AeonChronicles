@@ -111,6 +111,8 @@ public class ProxyMine : MonoBehaviour {
 		RedLine.SetActive (true);
 		float speed = 15;
 		for (float i = 0; i < 1.6f; i += Time.deltaTime) {
+			if (!target) {
+				break;}
 			Vector3 turnAmount = target.transform.position - transform.position;
 
 			turnAmount.y = 0;

@@ -267,7 +267,7 @@ public class IWeapon : MonoBehaviour {
 	public void attack(UnitManager target, UnitManager toStun)
 	{
 		offCooldown = false;
-		StartCoroutine (ComeOffCooldown (attackPeriod));
+	
 
 		if (toStun && damagePoint > 0) {
 			toStun.cMover.changeSpeed (-1, 0, false, this);
@@ -280,6 +280,7 @@ public class IWeapon : MonoBehaviour {
 			StartCoroutine( Fire ((i * .05f + AttackDelay), target));
 		
 		}
+		StartCoroutine (ComeOffCooldown (attackPeriod));
 	}
 
 

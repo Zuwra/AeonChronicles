@@ -22,7 +22,9 @@ public class newWorkerInteract :  Ability, Iinteract {
 		myManager.setInteractor (this);
 		oreBlock = Hook.transform.Find ("Cube").gameObject;
 
-		StartCoroutine (delayer());
+		if (autocast) {
+			StartCoroutine (delayer ());
+		}
 		if (Hook) {
 			hookPos = this.gameObject.transform.position - Hook.transform.position;
 
@@ -77,7 +79,7 @@ public class newWorkerInteract :  Ability, Iinteract {
 	public void findNearestOre()
 	{
 
-		float distance = 100000;
+		float distance = 300;
 		if (myManager.getState () is MiningState) {
 			return;}
 		OreDispenser closest = null;

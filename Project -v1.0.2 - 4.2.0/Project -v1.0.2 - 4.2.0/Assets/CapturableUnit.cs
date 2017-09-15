@@ -11,9 +11,18 @@ public class CapturableUnit : MonoBehaviour {
 	// and disable the FogOfWarUnitScript
 	// Set the Vision Range in the Unitmanger 5 more than what it should be,
 
+	void Start()
+	{
+		foreach (UnitManager manager in myManagers) {
+			manager.setStun (true, this, false);
+		}
+	}
+
 	public UnityEngine.Events.UnityEvent OnCapture;
 	public void capture()
-	{
+	{foreach (UnitManager manager in myManagers) {
+			manager.setStun (false, this, false);
+		}
 		//Debug.Log ("Capturiung " + this.gameObject);
 
 		foreach(UnitManager manage in myManagers){

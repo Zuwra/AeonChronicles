@@ -187,7 +187,9 @@ public class MiningState : UnitState {
 
 
 		if (!target) 
-			{myManager.changeState(new DefaultState());	}
+			{myManager.changeState(new DefaultState());
+			((newWorkerInteract)myManager.interactor).findNearestOre ();
+		}
 
 	}
 

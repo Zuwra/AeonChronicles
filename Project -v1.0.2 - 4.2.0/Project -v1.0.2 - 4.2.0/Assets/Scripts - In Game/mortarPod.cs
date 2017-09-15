@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class mortarPod : MonoBehaviour, Validator, Notify{//, Modifier {
+public class mortarPod : MonoBehaviour, Notify { // Modifier { //, Notify { //Validator, Notify{//, Modifier {
 
 
 
@@ -25,8 +25,9 @@ public class mortarPod : MonoBehaviour, Validator, Notify{//, Modifier {
 		weapon = this.gameObject.GetComponent<IWeapon> ();
 		nextActionTime = Time.time;
 
-		weapon.validators.Add (this);
+		//weapon.validators.Add (this);
 		weapon.triggers.Add (this);
+
 		if (FireAll) {
 			weapon.attackPeriod = .01f;
 		}
@@ -39,12 +40,15 @@ public class mortarPod : MonoBehaviour, Validator, Notify{//, Modifier {
 	void Update () {
 
 		if (Time.time > nextActionTime) {
-			nextActionTime += reloadRate;
+			nextActionTime += reloadRate - .01f;
 			if(shotCount < totalShots)
 			{
 				shotCount++;
 
 				HealthD.updateCoolDown (shotCount / totalShots);
+				if (shotCount > 1) {
+					weapon.attackPeriod = .1f;
+				}
 			}
 		
 		}
@@ -61,27 +65,22 @@ public class mortarPod : MonoBehaviour, Validator, Notify{//, Modifier {
 
 
 
-
-	public bool validate(GameObject source, GameObject target)
-		{if (shotCount > 0) {
-			return true;
-		
-		}
-		return false;
-	}
-
 	public float trigger(GameObject source, GameObject proj, UnitManager target, float damage)
 		{
 		shotCount --;
 		HealthD.updateCoolDown (shotCount / totalShots);
-		if (FireAll) {
+
+		if (shotCount <= 1) {
+			weapon.attackPeriod = reloadRate;
+		} else {
 			weapon.attackPeriod = .1f;
 		}
+
 		return damage;
 
 	}
+	/*(
 
-	/*
 	public float modify(float damage, GameObject source, DamageTypes.DamageType theType)
 	{ 
 
@@ -98,6 +97,6 @@ public class mortarPod : MonoBehaviour, Validator, Notify{//, Modifier {
 		weapon.myManager.changeState (new DefaultState ());
 	}
 		return 0 ;
-	}*/
-
+	}
+		*/
 }
