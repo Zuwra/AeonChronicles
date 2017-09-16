@@ -70,6 +70,9 @@ public class UiAbilityManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		IconStartPoints [0].SetActive (false);
+		IconStartPoints [1].SetActive (false);
+		IconStartPoints [2].SetActive (false);
 		audSrc = GameObject.FindObjectOfType<ExpositionDisplayer> ().GetComponent<AudioSource> ();
 		GameMenu.main.addDisableScript (this);
 		nextActionTime = Time.time;
@@ -331,6 +334,9 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public void loadUI(Page uiPage)
 	{
+		IconStartPoints [0].SetActive (false);
+		IconStartPoints [1].SetActive (false);
+		IconStartPoints [2].SetActive (false);
 		currentPage = uiPage;
 		// Clear old info in the buttons and stats
 		foreach (StatsUI obj in Stats) {
@@ -421,7 +427,7 @@ public class UiAbilityManager : MonoBehaviour {
 			//Sets the unit's stats and count
 			UnitManager man = uiPage.rows[j][0].gameObject.GetComponent<UnitManager> ();
 			Stats[n].GetComponent<StatsUI> ().loadUnit (man,uiPage.rows[j].Count, man.UnitName);
-
+			IconStartPoints [j].SetActive (true);
 		// fill the icon panel
 		
 			if (totalUnit > 1) {

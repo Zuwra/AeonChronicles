@@ -47,6 +47,19 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 	}
 
 
+	void OnDisable()
+	{
+		if (toolbox) {
+			if (render) {
+				render.alpha = 0;
+			}
+			toolbox.enabled = (false);
+			//	toolbox.enabled = false;
+		}else {
+			ToolObj.SetActive (false);
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		if (toolbox == null && ToolObj == null) {

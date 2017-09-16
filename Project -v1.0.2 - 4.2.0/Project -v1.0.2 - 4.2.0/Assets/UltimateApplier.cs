@@ -33,6 +33,21 @@ public class UltimateApplier : MonoBehaviour {
 		hyperZero  = PlayerPrefs.GetInt ("HyperCharge0",0);
 		hyperOne = PlayerPrefs.GetInt ("HyperCharge1",0);
 
+		switch (hyperOne) {
+		case 0:
+
+			break;
+		case 1:
+			RaceUIManager.instance.ultTexts[0].text += "\n Restores 33% of energy on casting.";
+			break;
+		case 2:
+			RaceUIManager.instance.ultTexts[0].text += "\n Restores 67% of energy on casting.";
+			break;
+		case 3:
+			RaceUIManager.instance.ultTexts[0].text += "\n Restores 100% of energy on casting.";
+			break;
+		}
+
 		NimbusOne = PlayerPrefs.GetInt ("Nimbus0",0);
 		NimbusTwo= PlayerPrefs.GetInt ("Nimbus1",0);
 		NimbusThree= PlayerPrefs.GetInt ("Nimbus2",0);

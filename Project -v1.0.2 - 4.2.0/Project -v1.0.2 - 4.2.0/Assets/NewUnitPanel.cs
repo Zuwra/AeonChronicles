@@ -7,13 +7,13 @@ using UnityEngine.Serialization;
 public class NewUnitPanel : MonoBehaviour {
 
 
-	public bool activeOnStart;
 	public List<NewUnit> units = new List<NewUnit> ();
 	public GameObject nextButton;
 	public GameObject prevButton;
 	public Text myTitle;
 	public Text mydescript;
 	public Image myImage;
+	public List<GameObject> ArsenalButtons;
 
 
 	private int index =0;
@@ -37,36 +37,25 @@ public class NewUnitPanel : MonoBehaviour {
 		yield return null;
 		units.Clear ();
 
+		int LevelNum = GameObject.FindObjectOfType<VictoryTrigger> ().levelNumber;
+		LevelCompilation comp = ((GameObject)Resources.Load ("LevelEditor")).GetComponent<LevelCompilation> ();	
+		if (comp.MyLevels [LevelNum].displayArsenal.tobeSeen.Count == 0) {
+			foreach (GameObject obj in ArsenalButtons) {
+				obj.SetActive (false);
+			}
+		}
+		
+		foreach (GameObject manage in  comp.MyLevels [LevelNum].displayArsenal.tobeSeen) {
 
-		foreach (WaveManager manage in GameObject.FindObjectsOfType<WaveManager>()) {
-			foreach (GameObject unitType in	manage.getCurrentWaveType().waveRampUp[manage.getCurrentWaveType().waveRampUp.Count -1].waveType) {
-				addUnitToList (unitType);
-			}
-			foreach (GameObject unitType in	manage.getCurrentWaveType().waveRampUp[manage.getCurrentWaveType().waveRampUp.Count -1].mediumExtra) {
-				addUnitToList (unitType);
-			}
-			foreach (GameObject unitType in	manage.getCurrentWaveType().waveRampUp[manage.getCurrentWaveType().waveRampUp.Count -1].HardExtra) {
-				addUnitToList (unitType);
-			}
+			addUnitToList (manage);
 		
 		}
 
-		foreach (KeyValuePair<string, List<UnitManager>> obj in GameManager.main.playerList[1].getUnitList()) {
-			if (obj.Value.Count > 0) {
-				//Debug.Log ("Checking " + obj.Key);
-				//if (obj.Value [0].getUnitStats ().isUnitType (UnitTypes.UnitTypeTag.Static_Defense)) {
-					addUnitToList (obj.Value [0].gameObject);
-				//}
-			}
-		}
-
+	
 
 		main = this;
 		previous ();
 
-		if (activeOnStart) {
-			GetComponent<Canvas> ().enabled = true;
-			}
 	}
 
 

@@ -21,10 +21,16 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 
 	public Dropdown production; // Controls which Info panel to display - Production, Income, or Current total army
 
+	public static RaceUIManager instance;
 
 	private GameObject currentProdManager;
 	public List<GameObject> dropdowns = new List<GameObject>();
+	public List<Text> ultTexts;
 
+	void Awake()
+	{
+		instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {

@@ -23,6 +23,10 @@ public class LevelInfo {
 	public Sprite MinimapPic;
 	public TopUIActivations UIBarsNUlts;
 	public float startingMoney = 500;
+	public EnemyArsenal displayArsenal;
+
+
+
 
 	[System.Serializable]
 	public class TopUIActivations
@@ -106,3 +110,10 @@ public class LevelInfo {
 
 
 }
+
+[System.Serializable]
+public class EnemyArsenal
+{
+	public List<GameObject> tobeSeen = new List<GameObject> ();
+}
+
