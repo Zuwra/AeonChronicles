@@ -68,6 +68,19 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 
 
+	public void resume()
+	{
+		if (currentMessage!=null && myAudio.time != 0) {
+
+			myAudio.Play ();
+		
+		}
+	}
+
+	public void pause()
+	{
+		myAudio.Pause ();
+	}
 
 
 	void Start () {
@@ -230,7 +243,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 		} else {
 	
 			this.enabled = false;
-
+		
 			myCanvas.enabled =false;
 			currentMessage = null;
 			inMessage = false;

@@ -9,7 +9,7 @@ public class BloodMist : TargetAbility {
 	Coroutine currentCharger;
 
 	public int maxChargeCount = 2;
-
+	public bool OnlyOnPathable;
 
 	// Use this for initialization
 	void Start () {
@@ -68,6 +68,9 @@ public class BloodMist : TargetAbility {
 	public  void setAutoCast(bool offOn){}
 
 	public override bool isValidTarget (GameObject target, Vector3 location){
+		if (OnlyOnPathable) {
+			return onPathableGround (location);
+		}
 
 
 

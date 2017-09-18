@@ -161,10 +161,13 @@ public class DeployTurret  : TargetAbility{
 	}
 
 	public override bool isValidTarget (GameObject target, Vector3 location){
+		if (!target|| target.layer == 8 || target.layer == 16) {
 
-		if (!target ||  target.layer == 8) {
-			return true;
+			return onPathableGround (location);
 		}
+
+
+
 
 
 		foreach (TurretMount tm in target.GetComponentsInChildren<TurretMount>()) {

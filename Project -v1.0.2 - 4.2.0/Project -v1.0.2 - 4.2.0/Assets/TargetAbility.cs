@@ -32,5 +32,11 @@ public abstract class TargetAbility : Ability {
 
 	public abstract bool isValidTarget (GameObject target, Vector3 location);
 
+	public bool onPathableGround(Vector3 location)
+	{//float dist = Vector3.Distance(location, AstarPath.active.graphs [0].GetNearest (location).node.Walkable);
+		//Debug.Log ("distance is " + dist);
+		return AstarPath.active.graphs [0].GetNearest (location).node.Walkable;// (dist < 5);
+	}
+
 
 }

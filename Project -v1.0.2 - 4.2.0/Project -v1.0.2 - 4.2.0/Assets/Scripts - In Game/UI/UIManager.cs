@@ -467,15 +467,15 @@ public class UIManager : MonoBehaviour, IUIManager {
 		
 		}
 		clickOverUI = isPointerOverUIObject ();
-		if (clickOverUI ) {
-			clickOverUI = false;
-			return;
+		if (clickOverUI  ) {
+			//clickOverUI = false;
+			//return;
 		}
 
 		Vector3 targetPoint = Vector3.zero;
 			Ray ray;
 		RaycastHit hit;
-			switch (m_Mode) {
+		switch (m_Mode) {
 			case Mode.Menu:
 			
 				break;
@@ -622,7 +622,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		case Mode.globalAbility:
 
-		//	if (!EventSystem.current.IsPointerOverGameObject ()) {
+			if (!EventSystem.current.IsPointerOverGameObject ()) {
 				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		
 				bool hitSomethingB;
@@ -650,34 +650,34 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 					SwitchMode (Mode.Normal);
 				}
-		//	}
+			}
 				break;
 			
 		case Mode.PlaceBuilding:
-				
+			if (!EventSystem.current.IsPointerOverGameObject ()) {
 			if (tempBuildingPlacer.GetComponent<BuildingPlacer> ().canBuild ()) {
 			
 
-				if (!EventSystem.current.IsPointerOverGameObject ()) {
-					ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+					if (!EventSystem.current.IsPointerOverGameObject ()) {
+						ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
-					if (Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8)) {
-						targetPoint = hit.point;
+						if (Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8)) {
+							targetPoint = hit.point;
 
-					}
+						}
 
-					m_SelectedManager.fireAbility (m_ObjectBeingPlaced, targetPoint, currentAbilityNUmber);
+						m_SelectedManager.fireAbility (m_ObjectBeingPlaced, targetPoint, currentAbilityNUmber);
 				
-					if (!Input.GetKey (KeyCode.LeftShift)) {
+						if (!Input.GetKey (KeyCode.LeftShift)) {
 						
-						SwitchMode (Mode.Normal);
-						m_ObjectBeingPlaced = null;
-					} else {
-						m_ObjectBeingPlaced = null;
-						SwitchToModePlacingBuilding(thingToBeBuilt);
-					}
+							SwitchMode (Mode.Normal);
+							m_ObjectBeingPlaced = null;
+						} else {
+							m_ObjectBeingPlaced = null;
+							SwitchToModePlacingBuilding (thingToBeBuilt);
+						}
 
-				
+					}
 				}
 
 			}

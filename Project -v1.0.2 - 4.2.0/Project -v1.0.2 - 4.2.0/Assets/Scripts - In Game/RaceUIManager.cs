@@ -110,11 +110,8 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 		} else if (Input.GetKeyDown (KeyCode.P)) {
 			production.value = 2;
 			chanageDropDown ();
-		} else if (Input.GetKeyDown (KeyCode.I)) {
-			production.value = 3;
-			chanageDropDown ();
-		} 
-		else if (Input.GetKeyDown (KeyCode.K)) {
+		}
+		else if (Input.GetKeyDown (KeyCode.I)) {
 			production.value = 1;
 			chanageDropDown ();
 		}
@@ -122,7 +119,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			production.value = 0;
 			chanageDropDown ();
 		} else if (Input.GetKeyDown (KeyCode.O)) {
-			production.value = 4;
+			production.value = 3;
 			chanageDropDown ();
 		}
 		else if (Input.GetKeyDown (KeyCode.L)) {
@@ -175,12 +172,7 @@ public class RaceUIManager : MonoBehaviour , ManagerWatcher{
 			currentProdManager.SetActive (true);
 
 		}
-			else if (production.value == 4) {
-
-				currentProdManager = dropdowns [4];
-				currentProdManager.SetActive (true);
-
-			}
+		
 		else{
 			currentProdManager.SetActive (false);
 		}

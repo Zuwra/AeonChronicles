@@ -36,6 +36,7 @@ public class GameMenu : MonoBehaviour {
 
 	private UIManager uimanage;
 
+	public ExpositionDisplayer displayer;
 	//to be deactivated when the game is paused to halt their inputs.
 	private List<MonoBehaviour> disableScripts = new List<MonoBehaviour>();
 
@@ -130,6 +131,7 @@ public class GameMenu : MonoBehaviour {
 		ispaused = true;
 
 			Time.timeScale = 0;
+		displayer.pause ();
 		foreach (MonoBehaviour m in disableScripts) {
 			m.enabled = false;
 		}
@@ -154,7 +156,7 @@ public class GameMenu : MonoBehaviour {
 	{
 		//	Debug.Log ("Pauseing");
 		ispaused = false;
-	
+		displayer.resume ();
 		Time.timeScale = GameSettings.gameSpeed;
 		foreach (MonoBehaviour m in disableScripts) {
 			m.enabled = true;
