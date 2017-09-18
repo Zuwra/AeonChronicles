@@ -186,6 +186,9 @@ public class TurretPlacer : MonoBehaviour {
 	}
 
 	public void showButtons(){
+		if (UIManager.main.CurrentMode == Mode.globalAbility) {
+			return;
+		}
 		buttonsOn = !buttonsOn;
 
 

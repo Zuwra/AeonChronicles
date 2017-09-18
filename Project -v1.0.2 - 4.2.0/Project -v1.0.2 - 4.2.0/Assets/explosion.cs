@@ -83,7 +83,7 @@ public class explosion : MonoBehaviour {
 					}
 				
 					float total = 0;
-				
+
 					if (stats.isUnitType (UnitTypes.UnitTypeTag.Turret)) {
 						total = stats.TakeDamage (amount*TurretDamageRatio, source, type);
 					} else {

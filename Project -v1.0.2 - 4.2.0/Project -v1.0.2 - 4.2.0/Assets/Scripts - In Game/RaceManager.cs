@@ -822,9 +822,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 	public void useAbilityOne()
 	{if (UltOne != null) {
-			Debug.Log ("Casting ");
+		
 			if (UltOne.active && UltOne.canActivate (true).canCast) {
-				Debug.Log ("Cast it fo real");
+
 				uiManage.SwitchMode (Mode.globalAbility);
 				uiManage.setAbility (UltOne, 1, "");
 			}

@@ -189,6 +189,10 @@ public class RepairTurret : Ability, Modifier{
 					}
 				}
 			}
+		if (!best && !mymanager.myStats.atFullHealth()) {
+			best = mymanager.gameObject;
+		
+		}
 			return best;
 
 		}

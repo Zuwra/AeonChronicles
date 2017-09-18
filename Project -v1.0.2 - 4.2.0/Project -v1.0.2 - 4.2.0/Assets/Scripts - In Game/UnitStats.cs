@@ -256,7 +256,6 @@ public class UnitStats : MonoBehaviour {
 	public float TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
 	{
 
-		//Debug.Log ("Damage source " + amount +"    "+ source + "   " + type);
 		if (!otherTags.Contains (UnitTypes.UnitTypeTag.Invulnerable)) {
 			
 			bool setToZero = false;
@@ -284,7 +283,7 @@ public class UnitStats : MonoBehaviour {
 				}
 
 				if (takeDamageEffect) {
-					//Debug.Log ("Taking damage " + this.gameObject);
+
 					Instantiate (takeDamageEffect, this.gameObject.transform.position, new Quaternion ());
 				}
 				if (veternStat != null) {

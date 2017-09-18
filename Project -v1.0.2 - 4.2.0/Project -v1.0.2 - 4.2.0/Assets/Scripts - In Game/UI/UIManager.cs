@@ -384,7 +384,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	//------------------------Mouse Button Commands--------------------------------------------
 	public void LeftButton_SingleClickDown(MouseEventArgs e)
 	{	clickOverUI = isPointerOverUIObject ();
-		//Debug.Log ("Left click" +myName );
+
 
 		if(hoverOver != HoverOver.Menu)
 		switch (m_Mode)
@@ -410,7 +410,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		List<RaycastResult> results = new List<RaycastResult> ();
 		EventSystem.current.RaycastAll (eventDatacurrenPosition, results);
-		return results.Count > 0;
+	
+		if (results.Count == 0) {
+			return false;
+		} 
+		//Debug.Log ("returning " + (results[0].distance == 0));
+		return results[0].distance == 0;
 
 
 	}
@@ -461,13 +466,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 			return;
 		
 		}
-
-		if (clickOverUI) {
-			
+		clickOverUI = isPointerOverUIObject ();
+		if (clickOverUI ) {
 			clickOverUI = false;
 			return;
 		}
-	
+
 		Vector3 targetPoint = Vector3.zero;
 			Ray ray;
 		RaycastHit hit;
@@ -580,7 +584,8 @@ public class UIManager : MonoBehaviour, IUIManager {
 				break;
 
 		case Mode.targetAbility:
-			if (!EventSystem.current.IsPointerOverGameObject ()) {
+			
+			if (!EventSystem.current.IsPointerOverGameObject () ) {
 				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			
 
@@ -616,17 +621,18 @@ public class UIManager : MonoBehaviour, IUIManager {
 				break;
 
 		case Mode.globalAbility:
-			if (!EventSystem.current.IsPointerOverGameObject ()) {
+
+		//	if (!EventSystem.current.IsPointerOverGameObject ()) {
 				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		
-				bool hitSomething;
+				bool hitSomethingB;
 				if (currentAbility.myTargetType == TargetAbility.targetType.ground) {
-					hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8);
+					hitSomethingB = Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8);
 				} else {
-					hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16));
+					hitSomethingB = Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16));
 				}
 
-				if (hitSomething) {
+				if (hitSomethingB) {
 					targetPoint = hit.point;
 
 
@@ -644,7 +650,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 					SwitchMode (Mode.Normal);
 				}
-			}
+		//	}
 				break;
 			
 		case Mode.PlaceBuilding:
@@ -898,7 +904,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 			break;
 
 		}
-
 	
 	}
 
@@ -907,11 +912,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 	public void SwitchToModeNormal()
 	{//buildingPlacer.SetActive (false);
 
-		if (m_ObjectBeingPlaced)
-		{
-			//Destroy (m_ObjectBeingPlaced);
-		}
-	
+
 		m_Mode = Mode.Normal;
 
 	}

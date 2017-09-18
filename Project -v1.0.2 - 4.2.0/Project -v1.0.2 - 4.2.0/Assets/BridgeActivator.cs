@@ -12,6 +12,7 @@ public class BridgeActivator : VisionTrigger {
 	{
 		Bridge.SetActive (false);
 		DeathZone.SetActive (true);
+		StartCoroutine (DeathRescan ());
 	}
 
 	public override void UnitExitTrigger(UnitManager manager)

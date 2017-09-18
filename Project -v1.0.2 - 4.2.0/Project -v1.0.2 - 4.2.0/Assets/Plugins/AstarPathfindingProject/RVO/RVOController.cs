@@ -238,23 +238,35 @@ namespace Pathfinding.RVO {
 				rvoAgent = simulator.AddAgent(transform.position);
 			}
 
+			rvoAgent.Radius = radius;
+			rvoAgent.MaxSpeed = maxSpeed;
+			rvoAgent.Height = height;
+			rvoAgent.AgentTimeHorizon = agentTimeHorizon;
+			rvoAgent.ObstacleTimeHorizon = obstacleTimeHorizon;
+			rvoAgent.Locked = locked;
+			rvoAgent.MaxNeighbours = maxNeighbours;
+			rvoAgent.DebugDraw = debug;
+			rvoAgent.NeighbourDist = neighbourDist;
+			rvoAgent.Layer = layer;
+			rvoAgent.CollidesWith = collidesWith;
+
 			UpdateAgentProperties();
 			rvoAgent.Teleport(transform.position);
 			adjustedY = rvoAgent.Position.y;
 		}
 
 		protected void UpdateAgentProperties () {
-			rvoAgent.Radius = radius;
+		//	rvoAgent.Radius = radius;
 			rvoAgent.MaxSpeed = maxSpeed;
-			rvoAgent.Height = height;
+			//rvoAgent.Height = height;
 			//rvoAgent.AgentTimeHorizon = agentTimeHorizon;
 			//rvoAgent.ObstacleTimeHorizon = obstacleTimeHorizon;
 			rvoAgent.Locked = locked;
 			//rvoAgent.MaxNeighbours = maxNeighbours;
 			//rvoAgent.DebugDraw = debug;
-			rvoAgent.NeighbourDist = neighbourDist;
-			rvoAgent.Layer = layer;
-			rvoAgent.CollidesWith = collidesWith;
+			//rvoAgent.NeighbourDist = neighbourDist;
+			//rvoAgent.Layer = layer;
+			//rvoAgent.CollidesWith = collidesWith;
 		}
 
 		/** Set the desired velocity for the agent.
@@ -262,6 +274,7 @@ namespace Pathfinding.RVO {
 		 */
 		public void Move (Vector3 vel) {
 			desiredVelocity = vel;
+	
 	
 		}
 
@@ -281,6 +294,8 @@ namespace Pathfinding.RVO {
 		}
 
 		RaycastHit hit;
+
+
 		public void Update () {
 			if (rvoAgent == null) return;
 
@@ -347,8 +362,13 @@ namespace Pathfinding.RVO {
 			
 			
 			}
-			transform.rotation = Quaternion.LookRotation (Vector3.Cross (transform.right, hit.normal));
 
+			RaycastHit hitb;
+			if (Physics.Raycast (realPos + Vector3.up * height * 10f + transform.forward *2, Vector3.down, out hitb, 55, mask)) {
+
+			
+				transform.rotation = Quaternion.LookRotation (Vector3.Cross (transform.right, (hit.normal + hitb.normal) *.5f));
+			}
 		}
 
 		private static readonly Color GizmoColor = new Color(240/255f, 213/255f, 30/255f);

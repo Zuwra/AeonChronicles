@@ -586,6 +586,7 @@ public class UnitManager : Unit,IOrderable{
 
 	public void animAttack()
 	{if (myAnim) {
+			Debug.Log ("Attcking + "+ this.gameObject);
 			myAnim.SetInteger ("State", 3);
 		}
 	}
