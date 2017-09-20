@@ -62,7 +62,7 @@ public class EarthQuake : MonoBehaviour {
 	public void generateEarthQuake()
 	{
 		if (!Coolingdown) {
-			MainCamera.main.ShakeCamera (1.2f,CameraShakeIntensity);
+			MainCamera.main.ShakeCamera (1.2f,CameraShakeIntensity,1f);
 			if (myParticle) {
 				myParticle.playEffect ();
 			}

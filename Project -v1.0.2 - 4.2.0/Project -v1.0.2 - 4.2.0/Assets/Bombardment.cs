@@ -10,6 +10,15 @@ public class Bombardment : TargetAbility{
 
 	public float FriendlyFire = 1;
 
+
+	Lean.LeanPool myBulletPool;
+	void Start()
+	{
+		if (Explosion) {
+			myBulletPool = Lean.LeanPool.getSpawnPool (Explosion);
+		}
+	}
+
 	override
 	public continueOrder canActivate(bool showError){
 
@@ -48,15 +57,19 @@ public class Bombardment : TargetAbility{
 
 		for (int i = 0; i < shotCount; i++) {
 		
-			StartCoroutine( Fire ((i * .083f), location, i));
+			StartCoroutine( Fire ((i * .087f), location, i));
 		}
 
-
+		StartCoroutine( shakeCamera ());
 		return false;
 
 	}
 
-
+	IEnumerator shakeCamera()
+	{
+		yield return new WaitForSeconds (1.5f);
+		MainCamera.main.ShakeCamera (4, 10,.08f);
+	}
 
 
 	IEnumerator Fire (float time, Vector3 location, int index)
@@ -79,10 +92,10 @@ public class Bombardment : TargetAbility{
 	
 
 		Vector3 spawnLoc = hitzone;
-		spawnLoc.y += 200;
+		spawnLoc.y += 192;
 
 
-		proj = (GameObject)Instantiate (Explosion, spawnLoc, Quaternion.identity);
+		proj = myBulletPool.FastSpawn  (spawnLoc, Quaternion.identity);//Instantiate (Explosion, spawnLoc, Quaternion.identity);
 
 		Projectile script = proj.GetComponent<Projectile> ();
 		//proj.SendMessage ("setSource", this.gameObject, SendMessageOptions.DontRequireReceiver);
@@ -93,6 +106,7 @@ public class Bombardment : TargetAbility{
 			script.Source = this.gameObject;
 			script.setLocation (hitzone);
 			script.FriendlyFire = FriendlyFire;
+
 		}
 		
 	}

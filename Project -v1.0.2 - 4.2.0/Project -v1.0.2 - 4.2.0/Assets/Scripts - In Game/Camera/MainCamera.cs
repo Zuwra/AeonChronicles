@@ -375,13 +375,18 @@ public class MainCamera : MonoBehaviour, ICamera {
 		return m_Boundries;
 	}
 
-
-	public void ShakeCamera(float Duration, float Intensity)
+	/// <summary>
+	/// Shakes the camera.
+	/// </summary>
+	/// <param name="Duration">Duration.</param>
+	/// <param name="Intensity">Intensity. 8 is a good number</param>
+	/// <param name="amplitude">Amplitude. .1f is a good number</param>
+	public void ShakeCamera(float Duration, float Intensity, float amplitude)
 	{
-		StartCoroutine(CameraShake(Duration, Intensity));
+		StartCoroutine(CameraShake(Duration, Intensity, amplitude));
 	}
 
-	IEnumerator CameraShake(float duration, float intensity)
+	IEnumerator CameraShake(float duration, float intensity, float amplitude)
 	{
 
 		float elapsed = 0.0f;
@@ -396,7 +401,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 			Vector3 toMove = new Vector3(Random.value  - .5f, Random.value  - .5f,Random.value - .5f) * intensity;
 
 
-			while(MiniShake < .1f)
+			while(MiniShake < amplitude)
 				{MiniShake += Time.deltaTime;
 				transform.Translate (toMove * Time.deltaTime);
 				totalMovement += toMove * Time.deltaTime;

@@ -8,7 +8,7 @@ public class mortarPod : MonoBehaviour, Notify {
 
 	public float totalShots;
 	public float reloadRate;
-	private float shotCount;
+	public float shotCount;
 	private IWeapon weapon;
 
 	public bool FireAll;
@@ -74,6 +74,11 @@ public class mortarPod : MonoBehaviour, Notify {
 
 		return damage;
 
+	}
+
+	public void updateUI()
+	{
+		HealthD.updateCoolDown (shotCount / totalShots);
 	}
 
 }

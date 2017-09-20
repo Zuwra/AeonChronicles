@@ -46,7 +46,7 @@ public class SurviveVictory : Objective {
 
 	IEnumerator endEffects()
 	{
-		MainCamera.main.ShakeCamera (7, 20);
+		MainCamera.main.ShakeCamera (7, 20, .1f);
 		MainCamera.main.setCutScene (QuakeBuilding.transform.position, 100);
 		yield return new WaitForSeconds (.5f);
 		myParticles.playEffect ();
