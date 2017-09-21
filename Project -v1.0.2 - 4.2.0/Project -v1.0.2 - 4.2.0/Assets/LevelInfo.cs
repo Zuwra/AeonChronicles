@@ -24,6 +24,7 @@ public class LevelInfo {
 	public TopUIActivations UIBarsNUlts;
 	public float startingMoney = 500;
 	public EnemyArsenal displayArsenal;
+	public int defaultTip;
 
 
 

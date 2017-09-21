@@ -179,8 +179,7 @@ namespace Pathfinding.RVO {
 			Vector3 realPos = rvoAgent.InterpolatedPosition;
 			realPos.y = adjustedY;
 
-			if (mask != 0 && Physics.Raycast (realPos + Vector3.up * height * 10f, Vector3.down, out hit, 55, mask)) {
-					//	Debug.Log ("Hitting " + hit.collider);
+			if (mask != 0 && Physics.Raycast (realPos + Vector3.up * height * 10f, Vector3.down, out hit, 55, 1<<8)) {
 				adjustedY = hit.point.y;
 			} else {
 				adjustedY = 0;
@@ -210,9 +209,8 @@ namespace Pathfinding.RVO {
 			}
 				
 			rvoAgent.DesiredVelocity = desiredVelocity + force*wallAvoidForce;
-
-			tr.position = realPos + Vector3.up*height*0.5f - center - Vector3.up;
-
+		
+			tr.position = realPos + Vector3.up*height*0.5f - center - Vector3.up*.5f;
 
 
 
@@ -364,7 +362,7 @@ namespace Pathfinding.RVO {
 			}
 
 			RaycastHit hitb;
-			if (Physics.Raycast (realPos + Vector3.up * height * 10f + transform.forward *2, Vector3.down, out hitb, 55, mask)) {
+			if (Physics.Raycast (realPos + Vector3.up * height * 10f + transform.forward *3, Vector3.down, out hitb, 55, mask)) {
 
 			
 				transform.rotation = Quaternion.LookRotation (Vector3.Cross (transform.right, (hit.normal + hitb.normal) *.5f));

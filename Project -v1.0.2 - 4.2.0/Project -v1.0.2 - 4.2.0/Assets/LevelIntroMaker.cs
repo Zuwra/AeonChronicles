@@ -20,6 +20,8 @@ public class LevelIntroMaker : MonoBehaviour {
 
 	LevelInfo currentInfo;
 
+	public TextChanger LoadingTip;
+
 	public void LoadLevel(LevelInfo info)
 	{
 		currentInfo = info;
@@ -74,6 +76,13 @@ public class LevelIntroMaker : MonoBehaviour {
 		GameObject.FindObjectOfType<MissionManager> ().StartMission (currentInfo.SceneNumber);
 		foreach (Text t in LevelTitles) {
 			t.text = currentInfo.LevelName;
+		}
+			
+		int i = Resources.Load<GameObject> ("LevelEditor").GetComponent<LevelCompilation>().MyLevels.IndexOf(currentInfo);
+		if (PlayerPrefs.GetInt ("L" + i + "Win") == 0) {
+			LoadingTip.loadLevelTip (currentInfo.defaultTip);
+		} else {
+			LoadingTip.setRandomTip ();
 		}
 	}
 
