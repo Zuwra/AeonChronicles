@@ -26,23 +26,24 @@ public class turretState : UnitState {
 	// Update is called once per frame
 	override
 	public void Update () {
+		
 		if (myManager.myWeapon.Count ==0) {
 			return;}
 		//if (!myWeapon.isOffCooldown()) {
 		//	return;
 		//}
 
+		//Debug.Log ("Turret Update " + myManager.gameObject + "  " + myManager.myWeapon.Count);
 		if (myManager.enemies.Count > 0) {
-
-
 			enemy = findBestEnemy ();
 
 		}
-
+	
 		if (!enemy) {
 
 			return;
 		}
+		Debug.Log ("Enemy is " + enemy);
 		IWeapon myWeap = myManager.canAttack (enemy);
 		if (myWeap) {
 				
@@ -84,18 +85,14 @@ public class turretState : UnitState {
 					continue;}
 
 				if (myManager.enemies[i].myStats.attackPriority < bestPriority) {
-					
+
 					continue;
 				}
 				else 
 				{best = myManager.enemies[i];
-					
+
 					bestPriority = myManager.enemies[i].myStats.attackPriority;
 				}
-
-
-
-
 
 			}
 		}

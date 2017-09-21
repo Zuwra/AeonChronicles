@@ -234,11 +234,12 @@ public class IWeapon : MonoBehaviour {
 			float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
 
 			if (distance > (range + (verticalDistance/3 )) ||  (minimumRange >0 && distance < minimumRange)) {
-			
+
 		
 				return false;
 			}
 		} else {
+
 			return false;}
 		return true;
 

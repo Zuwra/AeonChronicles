@@ -144,7 +144,7 @@ public class CustomRVO : IMover {
 	override 
 	public bool move()
 	{
-		//Debug.Log ( this.gameObject + " is moving");
+		
 		if (Time.time >= nextRepath && canSearchAgain) {
 			RecalculatePath();
 
@@ -157,10 +157,10 @@ public class CustomRVO : IMover {
 				//Debug.Log ("Zeroa");
 				controller.Move (Vector3.zero);
 			}
-			//Debug.Log ("Returning 3");
+			//Debug.Log ("Returning 3"+this.gameObject);
 			return true;
 		} else if (pathSet && path == null) {
-			//Debug.Log ("Returning 2");
+			//Debug.Log ("Returning 2"+this.gameObject);
 			return false;}
 
 
@@ -175,7 +175,7 @@ public class CustomRVO : IMover {
 				
 				controller.Move (Vector3.zero);
 			}
-		//Debug.Log ("Returning 1");
+			//Debug.Log ("Returning 1"+this.gameObject);
 			return true;
 		}
 
@@ -208,6 +208,7 @@ public class CustomRVO : IMover {
 
 			currentWaypoint++;
 			latestDistance = 100000;
+			//Debug.Log (" is movingB"+this.gameObject);
 			return false;
 		} else {
 			latestDistance = dist;}
@@ -217,7 +218,7 @@ public class CustomRVO : IMover {
 			currentWaypoint++;
 		
 		}
-	
+		//Debug.Log (" is movingA"+this.gameObject);
 		return false;
 
 	}

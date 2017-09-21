@@ -5,6 +5,28 @@ using System.Collections.Generic;
 public abstract class  UnitState  {
 
 
+	public enum StateType
+	{
+		Default,Move,AttackMove,AttackWhileMove,HoldGround,Turret,Channel,noState
+	}
+
+	public static UnitState getState(StateType type, Vector3 position, UnitManager manager)
+	{
+		switch(type){
+		case StateType.Default:
+			return new DefaultState ();
+			break;
+		case StateType.HoldGround:
+			return new HoldState (manager);
+			break;
+		case StateType.Turret:
+			return new turretState (manager);
+			break;
+
+		}
+		return new DefaultState ();
+	}
+
 	public UnitManager myManager;
 
 	// Update is called once per frame

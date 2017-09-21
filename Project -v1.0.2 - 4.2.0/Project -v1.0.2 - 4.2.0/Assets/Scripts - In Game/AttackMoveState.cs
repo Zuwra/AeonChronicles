@@ -65,7 +65,6 @@ public class AttackMoveState : UnitState {
 	override
 	public void Update () {
 		
-	
 		if (Time.time > nextActionTime) {
 			nextActionTime += .2f;
 			UnitManager temp =  myManager.findBestEnemy ();
@@ -142,8 +141,9 @@ public class AttackMoveState : UnitState {
 						myManager.cMover.resetMoveLocation (enemy.transform.position);
 					}
 				}
-			
-				myManager.cMover.move ();
+
+				bool returned = myManager.cMover.move ();
+				//Debug.Log ("A " +myManager + "  " + myManager.cMover + " 0----" + returned);
 			}
 		} else {
 			if (!enemyDead) {
@@ -165,7 +165,7 @@ public class AttackMoveState : UnitState {
 			}
 
 			if (myManager.cMover) {
-
+				//Debug.Log ("MovingB");
 				bool there = myManager.cMover.move ();
 				if (there && commandType == MoveType.patrol) {
 					

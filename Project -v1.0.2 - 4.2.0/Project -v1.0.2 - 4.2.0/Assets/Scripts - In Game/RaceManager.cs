@@ -243,6 +243,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 	public void applyUpgrade(UnitManager obj )
 	{	foreach (Upgrade up in myUpgrades) {
 			up.applyUpgrade (obj.gameObject);
+			up.ApplySkin (obj.gameObject);
 			obj.SendMessage ("researched", up,SendMessageOptions.DontRequireReceiver);
 		}
 	}
@@ -536,7 +537,7 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 		applyUpgrade (obj);
-	
+
 
 		//uiManager.changeUnits ();
 	}
@@ -653,6 +654,12 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 		List<UnitManager> foundUnits = new List<UnitManager> ();
 
 		foreach (KeyValuePair<string, List<UnitManager>> pair in unitRoster) {
+			pair.Value.RemoveAll (item => item == null);
+			if(pair.Value.Count >0){
+				if (pair.Value [0].getUnitStats ().isUnitType(UnitTypes.UnitTypeTag.Turret)) {
+					continue;
+				}
+				}
 			foreach (UnitManager obj in pair.Value) {
 				Vector3 tempLocation = Camera.main.WorldToScreenPoint (obj.transform.position);
 				//Debug.Log ("Checking " + tempLocation + "   within  "+ upperLeft + " bot " + bottRight);

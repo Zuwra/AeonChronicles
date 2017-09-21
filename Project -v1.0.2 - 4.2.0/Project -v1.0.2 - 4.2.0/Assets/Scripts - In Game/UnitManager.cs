@@ -59,13 +59,16 @@ public class UnitManager : Unit,IOrderable{
 	private bool isSilenced;
 
 	public List<StartCommand> startingCommand;
+	[Tooltip("Use this if you do not put anything in Starting COmmand List")]
 
+	public UnitState.StateType startingState;
 	new void Awake()
 	{
 		
 		if(interactor == null)
 		{
 			interactor = (Iinteract)gameObject.GetComponent(typeof(Iinteract));
+			//Debug.Log ("Found Interactor " + interactor);
 		}
 
 		if (visionSphere == null) {
@@ -132,23 +135,60 @@ public class UnitManager : Unit,IOrderable{
 
 
 		if (cMover != null) {
+			//Debug.Log (this.gameObject + " state is default");
 			changeState (new DefaultState ());
-		} else if (myStats.isUnitType (UnitTypes.UnitTypeTag.Turret)
-		           && this.gameObject.gameObject.GetComponent<UnitManager> ().UnitName == "Manticore"
-		           && ((StandardInteract)this.gameObject.gameObject.GetComponent<UnitManager> ().interactor).attackWhileMoving) {
+		} else if ( startingState == UnitState.StateType.Turret)
+			//myStats.isUnitType (UnitTypes.UnitTypeTag.Turret)
+		         //  && this.gameObject.gameObject.GetComponent<UnitManager> ().UnitName == "Manticore"
+		         //  && ((StandardInteract)this.gameObject.gameObject.GetComponent<UnitManager> ().interactor).attackWhileMoving) 
+		{
 
 			changeState (new turretState (this));
-		} else if( myStats.isUnitType (UnitTypes.UnitTypeTag.Static_Defense) ){
+		}// else if( myStats.isUnitType (UnitTypes.UnitTypeTag.Static_Defense) ){
 			
-			changeState (new turretState (this));
-		}
+			//changeState (new turretState (this));
+		//}
+
 
 
 	
 			chaseRange = visionRange;
 
-		Invoke ("GiveStartCommand", .5f);
+		if (startingCommand.Count > 0) {
+
+			Invoke ("GiveStartCommand", .3f);
+		}
 	}
+
+
+
+
+	void GiveStartCommand()
+	{
+		
+			foreach (StartCommand command in startingCommand) {
+
+				RaycastHit hit;
+				Vector3 newLocation = transform.position;
+				if (Physics.Raycast (command.location + transform.position, Vector3.down, out hit, 1000, 1 << 8)) {
+
+					newLocation = hit.point;
+				}
+
+
+				if (command.myCommand == StartCommand.CommandType.AttackMove) {
+					GiveOrder (Orders.CreateAttackMove (newLocation, startingCommand.Count > 1));
+
+				} else if (command.myCommand == StartCommand.CommandType.Move) {
+
+					GiveOrder (Orders.CreateMoveOrder (newLocation, startingCommand.Count > 1));
+
+				} else {
+					GiveOrder (Orders.CreatePatrol (newLocation, startingCommand.Count > 1));
+				}
+			}
+	}
+
 
 
 	//Elsewhere this command is called on the RTSObject class, which is not a monobehavior, and cannot access its gameobject.
@@ -253,34 +293,15 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public void setInteractor()
-	{Start (); // in the parent class
-
-	}
-
-	void GiveStartCommand()
-	{
-		foreach (StartCommand command in startingCommand) {
-
-			RaycastHit hit;
-			Vector3 newLocation = transform.position;
-			if (Physics.Raycast (command.location + transform.position, Vector3.down, out hit, 1000, 1 << 8)) {
-				
-					newLocation = hit.point;
-				}
-			
-
-				if (command.myCommand == StartCommand.CommandType.AttackMove) {
-					GiveOrder (Orders.CreateAttackMove (newLocation, startingCommand.Count > 1));
-
-				} else if (command.myCommand == StartCommand.CommandType.Move) {
-			
-					GiveOrder (Orders.CreateMoveOrder (newLocation, startingCommand.Count > 1));
-
-				} else {
-					GiveOrder (Orders.CreatePatrol (newLocation, startingCommand.Count > 1));
-				}
-
+	{Debug.Log ("Setting interactor");
+		if(interactor == null)
+		{
+			interactor = (Iinteract)gameObject.GetComponent(typeof(Iinteract));
+			//Debug.Log ("Found Interactor " + interactor);
 		}
+
+		Start (); // in the parent class
+
 	}
 
 
@@ -436,6 +457,7 @@ public class UnitManager : Unit,IOrderable{
 
 	public void setInteractor(Iinteract inter)
 	{interactor = inter;
+		Start ();
 	}
 
 
@@ -470,7 +492,12 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 	public void changeState(UnitState nextState)
-	{changeState (nextState, false, false);
+	{
+		if (gameObject.name.Contains ("Test")) {
+		//	Debug.Log ("my state is going to " + nextState);
+		}
+
+		changeState (nextState, false, false);
 	}
 
 
@@ -551,10 +578,8 @@ public class UnitManager : Unit,IOrderable{
 			myState.endState ();
 		}
 
-
-
 		myState =interactor.computeState (nextState);
-		//Debug.Log ("Setting state to " + myState);
+
 		if (myState!= null) {
 			myState.initialize ();
 		}
@@ -586,7 +611,7 @@ public class UnitManager : Unit,IOrderable{
 
 	public void animAttack()
 	{if (myAnim) {
-			Debug.Log ("Attcking + "+ this.gameObject);
+		//	Debug.Log ("Attcking + "+ this.gameObject);
 			myAnim.SetInteger ("State", 3);
 		}
 	}
@@ -819,7 +844,7 @@ public class UnitManager : Unit,IOrderable{
 
 	public void Attacked(UnitManager src) //I have been attacked, what do i do?
 	{
-		
+	//	Debug.Log (this.gameObject + " attacked by " + src + " state is " + myState);
 		if (myState != null) {
 
 			myState.attackResponse (src, 5);

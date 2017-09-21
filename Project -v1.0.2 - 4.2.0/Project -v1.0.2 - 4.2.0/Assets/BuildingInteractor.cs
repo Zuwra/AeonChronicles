@@ -24,9 +24,14 @@ public class BuildingInteractor : MonoBehaviour, Iinteract {
 
 	private Coroutine currentCoRoutine;
 	// Use this for initialization
-	void Start () {
+
+	void Awake()
+	{
 		myManager = GetComponent<UnitManager> ();
 		myManager.setInteractor (this);
+	}
+
+	void Start () {
 
 		if (Clock.main.getTotalSecond () < 3) {
 			doneConstruction = true;

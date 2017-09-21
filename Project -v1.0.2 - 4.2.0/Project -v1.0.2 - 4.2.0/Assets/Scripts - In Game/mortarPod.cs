@@ -17,10 +17,14 @@ public class mortarPod : MonoBehaviour, Notify {
 	Selected HealthD;
 
 	// Use this for initialization
+
+	void Awake ()
+	{
+		HealthD = GetComponentInChildren<Selected> ();
+	}
 	void Start () {
 
-		HealthD = GetComponentInChildren<Selected> ();
-
+	
 		shotCount = totalShots;
 		weapon = this.gameObject.GetComponent<IWeapon> ();
 		nextActionTime = Time.time;
@@ -78,6 +82,9 @@ public class mortarPod : MonoBehaviour, Notify {
 
 	public void updateUI()
 	{
+		if (!HealthD) {
+			HealthD = GetComponentInChildren<Selected> ();
+		}
 		HealthD.updateCoolDown (shotCount / totalShots);
 	}
 

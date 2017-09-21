@@ -1,14 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelIntroMaker.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SkinUnlocker.cs">
     <Files>
-      <File FileName="Assets\Scripts - In Game\AttackMoveState.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts - In Game\RaceUIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\TextChanger.cs" Line="4" Column="1" />
-      <File FileName="Assets\LevelIntroMaker.cs" Line="83" Column="53" />
-      <File FileName="Assets\VictoryTrigger.cs" Line="127" Column="99" />
-      <File FileName="Assets\LevelInfo.cs" Line="29" Column="2" />
+      <File FileName="Assets\Scripts - In Game\AttackMoveState.cs" Line="67" Column="3" />
+      <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="109" Column="25" />
+      <File FileName="Assets\Scripts - In Game\UnitState.cs" Line="1" Column="1" />
+      <File FileName="Assets\BuildingInteractor.cs" Line="4" Column="54" />
+      <File FileName="Assets\SkinUnlocker.cs" Line="39" Column="32" />
+      <File FileName="Assets\ResearchUpgrade.cs" Line="91" Column="20" />
+      <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="245" Column="10" />
+      <File FileName="Assets\Upgrade.cs" Line="20" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

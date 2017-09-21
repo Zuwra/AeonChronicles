@@ -6,11 +6,15 @@ public class SkinUnlocker : MonoBehaviour {
 
 	public List<Skin> mySkins;
 
-	void Start()
-	{
-		foreach (Skin s in mySkins) {
-			foreach (GameObject obj in s.myPieces) {
-				obj.SetActive (false);
+	bool setFalse;
+	void Awake()
+	{	if (!setFalse) {
+			setFalse = true;
+		
+			foreach (Skin s in mySkins) {
+				foreach (GameObject obj in s.myPieces) {
+					obj.SetActive (false);
+				}
 			}
 		}
 	}
@@ -28,6 +32,10 @@ public class SkinUnlocker : MonoBehaviour {
 
 	public void unlockSkin(string name)
 	{
+		if (!setFalse) {
+			Awake ();
+		}
+		
 		foreach (Skin s in mySkins) {
 			if (name == s.name) {
 			

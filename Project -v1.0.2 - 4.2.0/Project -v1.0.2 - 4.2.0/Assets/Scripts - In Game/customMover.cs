@@ -73,18 +73,21 @@ public class customMover : IMover {
 	override
 	public bool move()
 	{// for some reason the updates are being called out of order so this is here,
-		
+
+		Debug.Log ("Moving");
+		Debug.Log ("MovingB");
 		GraphUpdateObject b =new GraphUpdateObject(GetComponent<CharacterController>().bounds); 
 		AstarPath.active.UpdateGraphs (b);
 
 		if (!workingframe) {
 			workingframe = !workingframe;
+			Debug.Log ("MovingD");
 			return false;
 		}
 
 		if (path == null && pathSet) {
 			//We have no path to move after yet
-
+			Debug.Log ("MovingE");
 			return false;
 		} else if (path == null && !pathSet) {
 			if (myRVO) {
@@ -154,7 +157,7 @@ public class customMover : IMover {
 
 			
 		}
-
+		Debug.Log ("MovingC");
 		return false;
 	}
 
