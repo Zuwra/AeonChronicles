@@ -61,7 +61,9 @@ public class LaserDrill : MonoBehaviour {
 	void switchTarget()
 	{
 		currentTarget = null;
-		particle.SetActive (false);
+		if (particle) {
+			particle.SetActive (false);
+		}
 		if (firing != null) {
 			StopCoroutine (firing);	
 		}	

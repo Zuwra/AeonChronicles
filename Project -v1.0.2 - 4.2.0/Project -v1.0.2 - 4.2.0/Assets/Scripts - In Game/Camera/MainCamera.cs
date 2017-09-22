@@ -206,7 +206,7 @@ public class MainCamera : MonoBehaviour, ICamera {
 			}
 
 
-			float totalSpeed = e.duration*ScrollAcceleration;
+			float totalSpeed = e.duration*ScrollAcceleration *1.4f;
 			float targetSpeed = totalSpeed < ScrollSpeed ? totalSpeed : ScrollSpeed;
 
 			transform.Translate (e.x*avgDeltaTime*targetSpeed, 0, e.y*avgDeltaTime*targetSpeed, Space.World);

@@ -26,7 +26,7 @@ public class SoundTrackPlayer : MonoBehaviour {
 		mySrc.clip = myPlayList.myTracks [currentIndex];
 		mySrc.Play ();
 
-		nextPlayTime =  (int)mySrc.clip.length - 1;
+		nextPlayTime =  Time.unscaledTime + (int)mySrc.clip.length - 1;
 		//Invoke ("playNextTrack", mySrc.clip.length -1.5f);
 
 	}
@@ -34,10 +34,8 @@ public class SoundTrackPlayer : MonoBehaviour {
 	float updateTime;
 
 	void Update(){
-	
-		updateTime += Time.deltaTime * Time.timeScale;
-		if (updateTime > nextPlayTime) {
-			updateTime = 0;
+
+		if (Time.unscaledTime > nextPlayTime) {
 			playNextTrack ();
 		}
 

@@ -24,7 +24,6 @@ public abstract class Upgrade : MonoBehaviour {
 
 	public void ApplySkin(GameObject obj)
 	{
-		Debug.Log ("Applying skin " + obj);
 		SkinUnlocker unlocker = obj.GetComponent<SkinUnlocker> ();
 		if (unlocker) {
 			unlocker.unlockSkin (Name);

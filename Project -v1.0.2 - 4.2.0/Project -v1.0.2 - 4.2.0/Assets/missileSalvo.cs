@@ -127,7 +127,7 @@ public class missileSalvo :  Ability, Iinteract, Validator, Notify{
 
 	override
 	public void Activate()
-	{Debug.Log ("activating " + chargeCount);
+	{
 		if (chargeCount < maxRockets) {
 			if (home) {
 				home.finished (this.gameObject);}

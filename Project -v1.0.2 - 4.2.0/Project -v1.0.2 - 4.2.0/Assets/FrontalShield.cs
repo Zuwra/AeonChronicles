@@ -12,6 +12,8 @@ public class FrontalShield : Ability,Modifier {
 	public GameObject shieldEffect;
 	private float lastHit;
 
+	Coroutine bleederCo;
+
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
 		myType = type.passive;
@@ -48,7 +50,7 @@ public class FrontalShield : Ability,Modifier {
 			if (amount < 1) {
 				amount = 1;
 			}
-			lastHit = Time.time;
+
 
 
 			if (shieldEffect) {
@@ -56,7 +58,10 @@ public class FrontalShield : Ability,Modifier {
 				obj.transform.SetParent (this.gameObject.transform);
 			}
 		} else {
-			StartCoroutine (delayTurnOff ());
+			lastHit = Time.time;
+			if (bleederCo == null) {
+				bleederCo = StartCoroutine (delayTurnOff ());
+			}
 		}
 
 		return amount;
@@ -66,11 +71,12 @@ public class FrontalShield : Ability,Modifier {
 	IEnumerator delayTurnOff()
 	{
 		hullBleeder.SetActive (true);
-		yield return new WaitForSeconds (.74f);
-		if(Time.time < lastHit + .8f)
-		{
-			hullBleeder.SetActive (false);
+		while (Time.time < lastHit + .3f) {
+		
+			yield return new WaitForSeconds (.2f);
 		}
+		hullBleeder.SetActive (false);
+		bleederCo = null;
 	}
 
 

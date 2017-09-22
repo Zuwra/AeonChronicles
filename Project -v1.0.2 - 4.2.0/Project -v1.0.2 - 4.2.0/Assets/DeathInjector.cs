@@ -10,8 +10,9 @@ public class DeathInjector :MonoBehaviour,  Notify {
 	public float DamageTime =15;
 	public float DamageAmount =15;
 	private UnitStats myStats;
-
+	public GameObject effect;
 	public string toSpawn;
+	GameObject myEffect;
 	// Use this for initialization
 	void Start () {
 
@@ -22,6 +23,8 @@ public class DeathInjector :MonoBehaviour,  Notify {
 			foreach (IWeapon weap in GetComponents<IWeapon> ()) {
 				weap.addNotifyTrigger (this);
 			}
+		} else {
+			myEffect =	Instantiate<GameObject> (effect, this.transform.position, Quaternion.identity, transform);
 		}
 	}
 
@@ -36,6 +39,7 @@ public class DeathInjector :MonoBehaviour,  Notify {
 			inject = target.gameObject.AddComponent<DeathInjector> ();
 
 		}
+		inject.effect = effect;
 		inject.toSpawn = toSpawn;
 		inject.DamageOverTime (DamageAmount,DamageTime);
 
@@ -60,6 +64,7 @@ public class DeathInjector :MonoBehaviour,  Notify {
 			yield return new WaitForSeconds (1);
 			myStats.TakeDamage (DamageAmount, null, DamageTypes.DamageType.True);
 		}
+		Destroy (myEffect);
 		Destroy (this);
 	}
 

@@ -66,7 +66,7 @@ public class Gigapede : VisionTrigger, Modifier {
 		}
 
 
-		if(segmentLeft >1 && manager.gameObject != gameObject){
+		if(this &&manager && gameObject && segmentLeft >1 && manager.gameObject != gameObject){
 			foreach (IWeapon weap in manager.myWeapon) {
 				weap.AdjustAttack (0, segmentLeft - 1, false, this);
 			}
