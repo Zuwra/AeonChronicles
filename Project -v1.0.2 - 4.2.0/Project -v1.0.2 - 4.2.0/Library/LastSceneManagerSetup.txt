@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/CampaignMechanics.unity
+- path: Assets/Scenes/Level12Freedom.unity
   isLoaded: 1
   isActive: 1

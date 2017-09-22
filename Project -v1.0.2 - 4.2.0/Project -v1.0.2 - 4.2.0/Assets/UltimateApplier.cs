@@ -74,7 +74,7 @@ public class UltimateApplier : MonoBehaviour {
 		if (myRace.UltOne == ab) {
 			thingy.GetComponent<AetherOvercharge> ().rechargeAmount = hyperOne * .333f;
 			thingy.GetComponent<AetherOvercharge> ().attackDamage += .1f * hyperZero;
-			thingy.GetComponent<AetherOvercharge> ().attackSpeed -= .1f * hyperZero;
+			thingy.GetComponent<AetherOvercharge> ().attackSpeed += .1f * hyperZero;
 		}
 
 		else if (myRace.UltTwo == ab) {

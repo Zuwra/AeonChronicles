@@ -60,7 +60,7 @@ public class ChangeAmmo : Ability {
 	public void upgrade(string upgradeName)
 	{
 		if (autocast) {
-			Debug.Log (attackDamage + "   " + myWeapon.getUpgradeLevel());
+	//		Debug.Log (attackDamage + "   " + myWeapon.getUpgradeLevel());
 			myWeapon.baseDamage = attackDamage + myWeapon.getUpgradeLevel()*5;
 		}
 	

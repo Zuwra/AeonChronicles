@@ -22,7 +22,7 @@ public class TextTrigger : SceneEventTrigger {
 	public float stealCamera;
 
 	public void triggerMe (){
-
+		Debug.Log ("Triggering " + this.gameObject);
 		if (!hasTriggered) {
 			hasTriggered = true;
 
@@ -56,7 +56,7 @@ public class TextTrigger : SceneEventTrigger {
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
 
-
+		Debug.Log ("Triggering " + this.gameObject);
 		if (!hasTriggered) {
 			hasTriggered = true;
 

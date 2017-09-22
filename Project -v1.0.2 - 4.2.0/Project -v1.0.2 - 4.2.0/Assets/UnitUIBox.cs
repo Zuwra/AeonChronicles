@@ -41,14 +41,14 @@
 		if (myUnit.currentUnit) {
 			Title.text = myUnit.currentUnit.myWeapon [index].Title;
 			Range.text = "Range: " +myUnit.currentUnit.myWeapon [index].range;
-			AttackSpeed.text = "Att. Rate: " +myUnit.currentUnit.myWeapon [index].attackPeriod;
+			AttackSpeed.text = "Att. Rate: " +   ((float)((int)(100 *myUnit.currentUnit.myWeapon [index].attackPeriod)))/100;
 
 			//if (myUnit.currentUnit.myWeapon [index].numOfAttacks > 1) {
 				//AttackNum.text = "Attacks: " + myUnit.currentUnit.myWeapon [index].numOfAttacks;
 			//} else {
 				//AttackNum.text = "";
 			//}
-			Damage.text = "Damage: " + myUnit.currentUnit.myWeapon [index].baseDamage;
+			Damage.text = "Damage: " + ((float)((int)(100 *myUnit.currentUnit.myWeapon [index].baseDamage)))/100; // myUnit.currentUnit.myWeapon [index].baseDamage;
 
 			//if (myUnit.currentUnit.myWeapon [index].extraDamage.Length > 0) {
 				//Damage.text += " ( +" +myUnit.currentUnit.myWeapon [index].extraDamage [0].bonus + " vs " + myUnit.currentUnit.myWeapon [index].extraDamage [0].type + ")";

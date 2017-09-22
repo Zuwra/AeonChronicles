@@ -36,7 +36,7 @@ public class BridgeActivator : VisionTrigger {
 	IEnumerator DeathRescan()
 	{	
 		GraphUpdateObject b =new GraphUpdateObject( new Bounds(transform.position,Vector3.one * 75)); 
-		yield return new WaitForSeconds (.2f);
+		yield return new WaitForSeconds (.05f);
 
 		AstarPath.active.UpdateGraphs (b);
 

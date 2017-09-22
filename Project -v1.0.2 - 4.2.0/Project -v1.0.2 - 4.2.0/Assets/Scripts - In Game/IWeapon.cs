@@ -500,7 +500,7 @@ public class IWeapon : MonoBehaviour {
 			percent += a.perc;
 		}
 		//Debug.Log ("Setting to " + percent);
-		speed *= percent;
+		speed /= percent;
 		if (speed < .05f) {
 			speed = .05f;}
 		

@@ -34,7 +34,7 @@ public class AetherRelay : Ability{
 	void UpdateAether () {
 
 			if (turnedOn) {
-				if (manager.myStats.currentEnergy <= 0) {
+				if (manager.myStats.currentEnergy <= 20) {
 					turnedOn = !turnedOn;
 					autocast = false;
 					myEffect.stopEffect ();
