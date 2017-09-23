@@ -12,7 +12,7 @@ public class FogOfWarUnit : MonoBehaviour
 
 
 	private bool hasMoved = true;
-
+	public bool autoUpdate;
     void Start()
     {
 		//Debug.Log ("Fog");
@@ -20,6 +20,9 @@ public class FogOfWarUnit : MonoBehaviour
 		InvokeRepeating ("clearFog", Random.Range(0, updateFrequency), updateFrequency);
 		//Invoke ("move", 1.9f);
 		//Invoke ("clearFog", 2);
+		if (autoUpdate) {
+			InvokeRepeating ("AutoUpdate", Random.Range(0, updateFrequency), updateFrequency + .2f);
+		}
     }
 
 
@@ -36,4 +39,10 @@ public class FogOfWarUnit : MonoBehaviour
 
 		}
 	}
+
+	public void AutoUpdate ()
+	{
+		FogOfWar.current.Unfog (transform.position, radius, lineOfSightMask);
+	}
+
 }

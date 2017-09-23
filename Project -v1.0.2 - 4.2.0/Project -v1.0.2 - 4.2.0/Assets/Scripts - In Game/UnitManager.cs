@@ -133,18 +133,22 @@ public class UnitManager : Unit,IOrderable{
 			}
 		}
 
+		if(startingState == UnitState.StateType.HoldGround) {
 
-		if (cMover != null) {
+			changeState (new HoldState (this));
+		}
+		else if (cMover != null) {
 			//Debug.Log (this.gameObject + " state is default");
 			changeState (new DefaultState ());
-		} else if ( startingState == UnitState.StateType.Turret)
+		} else if (startingState == UnitState.StateType.Turret)
 			//myStats.isUnitType (UnitTypes.UnitTypeTag.Turret)
 		         //  && this.gameObject.gameObject.GetComponent<UnitManager> ().UnitName == "Manticore"
-		         //  && ((StandardInteract)this.gameObject.gameObject.GetComponent<UnitManager> ().interactor).attackWhileMoving) 
-		{
+ {		         //  && ((StandardInteract)this.gameObject.gameObject.GetComponent<UnitManager> ().interactor).attackWhileMoving) 
 
 			changeState (new turretState (this));
-		}// else if( myStats.isUnitType (UnitTypes.UnitTypeTag.Static_Defense) ){
+		} 
+
+		// else if( myStats.isUnitType (UnitTypes.UnitTypeTag.Static_Defense) ){
 			
 			//changeState (new turretState (this));
 		//}

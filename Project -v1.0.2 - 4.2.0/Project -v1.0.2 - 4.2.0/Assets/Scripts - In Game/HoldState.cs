@@ -15,6 +15,7 @@ public class HoldState : UnitState {
 	// Update is called once per frame
 	override
 	public void Update () {
+
 		if (myManager) {
 			UnitManager enemy = myManager.findBestEnemy ();
 
