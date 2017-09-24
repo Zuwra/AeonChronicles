@@ -22,16 +22,20 @@ public class UnitEnterTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.GetComponent<UnitManager> ())
-		if (other.GetComponent<UnitManager> ().PlayerOwner == player) {
+		if (other.isTrigger) {
+			return;
+		}
+		if (other.GetComponent<UnitManager> ()) {
+			if (other.GetComponent<UnitManager> ().PlayerOwner == player) {
 
-			if (specificUnits.Count > 0) {
-				if (specificUnits.Contains (other.GetComponent<UnitManager> ().UnitName)) {
+				if (specificUnits.Count > 0) {
+					if (specificUnits.Contains (other.GetComponent<UnitManager> ().UnitName)) {
+						StartCoroutine (Fire ());
+					}
+				} else {
+					//Debug.Log (other.gameObject);
 					StartCoroutine (Fire ());
 				}
-			} else {
-				//Debug.Log (other.gameObject);
-				StartCoroutine (Fire ());
 			}
 		}
 	}

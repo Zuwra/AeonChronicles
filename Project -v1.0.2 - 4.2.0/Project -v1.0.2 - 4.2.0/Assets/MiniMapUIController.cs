@@ -188,7 +188,6 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	{
 		int iCoord = (int)(((location.x - Left) / (WorldWidth)) * UIWidth);
 		int jCoord = (int)(((location.z - bottom) / (WorldHeight)) * UIHeight);
-
 		//Debug.Log ("Creating warning");
 
 

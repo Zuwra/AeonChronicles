@@ -40,8 +40,10 @@ public class ProxySpawner :VisionTrigger {
 	}
 
 	public override void  UnitEnterTrigger(UnitManager manager){
-		if (currentSpawner == null) {
-			currentSpawner = StartCoroutine (spawnEnemies());
+		if (this.enabled) {
+			if (currentSpawner == null) {
+				currentSpawner = StartCoroutine (spawnEnemies ());
+			}
 		}
 	}
 	public override void  UnitExitTrigger(UnitManager manager){}

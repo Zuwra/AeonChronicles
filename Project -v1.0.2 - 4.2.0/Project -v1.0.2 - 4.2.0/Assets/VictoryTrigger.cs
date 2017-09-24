@@ -142,7 +142,7 @@ public class VictoryTrigger : MonoBehaviour {
 	public void Lose()
 	{if (!hasFinished) {
 			hasFinished = true;
-			//Debug.Log ("Lost");
+			Debug.Log ("LostA");
 			DefeatScreen.enabled = true;
 			GameObject.FindObjectOfType<MainCamera> ().DisableScrolling ();
 			StartCoroutine (LoseLevel ());
@@ -179,7 +179,7 @@ public class VictoryTrigger : MonoBehaviour {
 	}
 
 	IEnumerator LoseLevel ()
-	{
+	{Debug.Log ("LostB");
 		yield return new WaitForSeconds (1);
 
 		foreach (int i in loseLine) {

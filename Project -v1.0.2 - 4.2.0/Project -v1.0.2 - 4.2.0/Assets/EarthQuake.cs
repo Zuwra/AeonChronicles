@@ -18,9 +18,12 @@ public class EarthQuake : MonoBehaviour {
 	public MultiShotParticle myParticle;
 	public GameObject QuakeBuilding;
 	public bool ableToActivate = true;
+	public float damage =250;
+	public float maxDistance = 400;
+
 	// Use this for initialization
 	void Start () {
-		enemyRace = GameObject.FindObjectOfType<GameManager> ().playerList [1];
+		enemyRace = GameManager.main.playerList [1];
 		StartCoroutine (onCooldown ());
 	}
 
@@ -37,30 +40,38 @@ public class EarthQuake : MonoBehaviour {
 
 	IEnumerator onCooldown()
 	{
-		float timer = CooldownTime;
-		Coolingdown = true;
-		cooldownSlider.gameObject.SetActive(true);
-		while (timer > 0) {
+		if (cooldownSlider && percentage) {
+
+
+			float timer = CooldownTime;
+			Coolingdown = true;
+			cooldownSlider.gameObject.SetActive (true);
+			while (timer > 0) {
 		
 
-			timer -= Time.deltaTime;
-			cooldownSlider.value =  1 -timer / CooldownTime;
+				timer -= Time.deltaTime;
+				cooldownSlider.value = 1 - timer / CooldownTime;
 
-			int i = (int)(cooldownSlider.value * 100);
-			if (i != lastPercent) {
-				percentage.text = i + "%";
+				int i = (int)(cooldownSlider.value * 100);
+				if (i != lastPercent) {
+					percentage.text = i + "%";
+				}
+				lastPercent = i;
+				yield return null;
+
 			}
-			lastPercent = i;
-			yield return null;
-
+			Coolingdown = false;
+			cooldownSlider.gameObject.SetActive (false);
 		}
-		Coolingdown = false;
-		cooldownSlider.gameObject.SetActive (false);
-
+		
 	}
 
 	public void generateEarthQuake()
 	{
+		if (!enemyRace) {
+			enemyRace = GameManager.main.playerList [1];
+		}
+
 		if (!Coolingdown) {
 			MainCamera.main.ShakeCamera (1.2f,CameraShakeIntensity,1f);
 			if (myParticle) {
@@ -70,8 +81,9 @@ public class EarthQuake : MonoBehaviour {
 				survival.increaseWait ();
 			}
 			PlayerPrefs.SetInt ("EarthQuake", PlayerPrefs.GetInt ("EarthQuake") + 1);
-			if (QuakeBuilding) {
-				QuakeBuilding.GetComponentInChildren<Animator> ().SetTrigger("Pulse");}
+			if (QuakeBuilding) {try{
+					QuakeBuilding.GetComponentInChildren<Animator> ().SetTrigger("Pulse");}catch{
+				}}
 
 		
 
@@ -81,8 +93,8 @@ public class EarthQuake : MonoBehaviour {
 				UnitManager[] unitListCopy = pair.Value.ToArray ();
 
 				for (int i = 0; i < unitListCopy.Length; i++) {
-					if(Vector3.Distance(QuakeBuilding.transform.position, unitListCopy[i].transform.position) < 400){
-						unitListCopy[i].myStats.TakeDamage (250, null, DamageTypes.DamageType.Penetrating);
+					if(Vector3.Distance(QuakeBuilding.transform.position, unitListCopy[i].transform.position) < maxDistance){
+						unitListCopy[i].myStats.TakeDamage (damage, null, DamageTypes.DamageType.Penetrating);
 						unitListCopy[i].StunForTime (QuakeBuilding, 10);
 					}
 				}

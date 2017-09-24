@@ -145,12 +145,13 @@ public class WaveManager : MonoBehaviour {
 
 			foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
 				if (mini) {
-					mini.showWarning (this.transform.position);
+					mini.showWarning (spawner.transform.position);
 				}
 			}
 
 
-		
+			Debug.Log ("Spawning wave " + this.gameObject + "  " + currentWaveIndex);
+
 
 			foreach (GameObject obj in CurrentWaves[currentWaveIndex].waveType) {
 

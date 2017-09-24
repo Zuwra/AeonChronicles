@@ -308,6 +308,7 @@
      <Compile Include="Assets\OathFury.cs" />
      <Compile Include="Assets\ObjectExistAchievement.cs" />
      <Compile Include="Assets\Objective.cs" />
+     <Compile Include="Assets\ObjectiveEditor.cs" />
      <Compile Include="Assets\ObjectiveManager.cs" />
      <Compile Include="Assets\ObjectiveTrigger.cs" />
      <Compile Include="Assets\OneShotParticleSystem.cs" />
