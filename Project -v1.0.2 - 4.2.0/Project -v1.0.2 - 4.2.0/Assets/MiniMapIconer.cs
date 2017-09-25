@@ -13,7 +13,6 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 	// Use this for initialization
 	IEnumerator Start () {
 
-		Debug.Log ("Icon on " + this.gameObject);
 		yield return new WaitForSeconds (1);
 		try{
 		GetComponent<UnitStats> ().addDeathTrigger (this);
@@ -28,7 +27,7 @@ public class MiniMapIconer : MonoBehaviour, Modifier {
 			if (GameManager.main) {
 				foreach (MiniMapUIController mini in GameManager.main.MiniMaps) {
 					if (obj) {
-						Debug.Log ("I died");
+						//Debug.Log ("I died");
 						if (mini) {
 							mini.deleteUnitIcon (obj);
 						}

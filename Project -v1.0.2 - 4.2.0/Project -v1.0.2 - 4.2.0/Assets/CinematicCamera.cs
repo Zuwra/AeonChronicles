@@ -169,9 +169,9 @@ public class CinematicCamera : SceneEventTrigger {
 				foreach(shot curr in s.myShots)
 				{Gizmos.color = Color.blue;
 					Gizmos.DrawLine (curr.startLocation,(curr.startTarget));
-					Gizmos.DrawSphere (curr.startLocation, 5);
+					Gizmos.DrawSphere (curr.startLocation, 3);
 					Gizmos.color = Color.red;
-					Gizmos.DrawSphere (curr.endLocation, 5);
+					Gizmos.DrawSphere (curr.endLocation, 2);
 					Gizmos.DrawLine (curr.endLocation, curr.endTarget);
 				}
 			

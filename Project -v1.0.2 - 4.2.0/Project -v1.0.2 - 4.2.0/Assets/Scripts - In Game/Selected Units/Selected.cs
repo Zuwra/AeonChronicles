@@ -35,7 +35,7 @@ public class Selected : MonoBehaviour {
 	private bool tempSelectOn;
 	private bool interactSelect;
 	public List<SelectionNotifier> selectionNotifiers = new List<SelectionNotifier>();
-	private LineRenderer myLine;
+	public LineRenderer myLine;
 
 
 	public enum displayType
@@ -46,7 +46,7 @@ public class Selected : MonoBehaviour {
 
 	public displayType mydisplayType = displayType.damaged;
 
-	private GameObject decalCircle;
+	public GameObject decalCircle;
 	private UnitStats myStats;
 	//private bool onCooldown = false;
 	// Use this for initialization
@@ -57,12 +57,15 @@ public class Selected : MonoBehaviour {
 
 
 	public void Initialize()
-	{myLine = GetComponent<LineRenderer> ();
+	{if (!myLine) {
+			myLine = GetComponent<LineRenderer> ();
+		}
 		IsSelected = false;
 
 		myStats = this.gameObject.GetComponent<UnitStats> ();
-		decalCircle = this.gameObject.transform.Find("DecalCircle").gameObject;
-
+		if (!decalCircle) {
+			decalCircle = this.gameObject.transform.Find ("DecalCircle").gameObject;
+		}
 		if (!buffDisplay) {
 			buffDisplay = GetComponentInChildren<HealthDisplay> ();
 		}
@@ -103,7 +106,7 @@ public class Selected : MonoBehaviour {
 		catch(Exception) {
 			
 		}
-		setDisplayType (GameObject.FindObjectOfType<GamePlayMenu> ().getDisplayType ());
+		setDisplayType (GamePlayMenu.getInstance().getDisplayType ());
 
 	}
 

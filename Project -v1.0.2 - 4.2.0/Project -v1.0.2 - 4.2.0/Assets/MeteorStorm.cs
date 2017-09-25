@@ -63,9 +63,13 @@ public class MeteorStorm : MonoBehaviour {
 		List<UnitManager> buildings = new List<UnitManager> ();
 
 		foreach (KeyValuePair<string,List<UnitManager>> pair in GameManager.main.playerList [PlayerTarget - 1].getUnitList ()) {
-			if (pair.Value [0].myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
-				foreach (UnitManager man in pair.Value) {
-					buildings.Add (man);
+			if (pair.Value.Count > 0) {
+				if (pair.Value [0].myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+					foreach (UnitManager man in pair.Value) {
+						if (man != null) {
+							buildings.Add (man);
+						}
+					}
 				}
 			}
 		}

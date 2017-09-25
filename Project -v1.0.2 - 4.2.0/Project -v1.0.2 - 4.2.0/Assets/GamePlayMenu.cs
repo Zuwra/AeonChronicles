@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class GamePlayMenu : MonoBehaviour {
 
+	public static GamePlayMenu instance;
 
 	public Dropdown healthList;
 	private bool toggled= true;
@@ -13,10 +14,24 @@ public class GamePlayMenu : MonoBehaviour {
 	public Toggle showToolTip;
 	public Toggle showAbility;
 
+	public static GamePlayMenu getInstance()
+	{
+		if (!instance) {
+			instance = GameObject.FindObjectOfType<GamePlayMenu> ();
+		}
+		return instance;
+	}
+
+
+	void Awake()
+	{
+		instance = this;
+	}
+
 	// Use this for initialization
 	void Start () {
 
-		cam = GameObject.Find ("Main Camera").GetComponent<MainCamera> ();
+		cam =  MainCamera.main;
 
 		if (!GameSettings.getToolTips()) {
 

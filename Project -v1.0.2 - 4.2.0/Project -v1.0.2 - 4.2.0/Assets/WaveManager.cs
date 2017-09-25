@@ -72,7 +72,9 @@ public class WaveManager : MonoBehaviour {
 		currentWaveIndex = 0;
 		SpawnerCount = spawnLocations.Count;
 		container = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ();
-		if (LevelData.getHighestLevel () > 3) {
+	
+
+		if ( PlayerPrefs.GetInt ("L" + VictoryTrigger.instance.levelNumber+"Win") > 0) {
 
 			if (ReplayWaves.Count > 0) {
 				//container = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ();
@@ -85,9 +87,8 @@ public class WaveManager : MonoBehaviour {
 
 		} else {
 			//Debug.Log (container +" -- ");
-			waveOption = container.getWave (ReplayWaves [UnityEngine.Random.Range (0, ReplayWaves.Count)]);
-			CurrentWaves = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ()
-				.getWave (FirstPlayWaveType).waveRampUp;
+			waveOption = container.getWave (FirstPlayWaveType);
+			CurrentWaves = container.getWave (FirstPlayWaveType).waveRampUp;
 		}
 
 
@@ -149,9 +150,11 @@ public class WaveManager : MonoBehaviour {
 				}
 			}
 
-
+			if (CurrentWaves == null) {
+				waveOption = container.getWave (ReplayWaves [UnityEngine.Random.Range (0, ReplayWaves.Count)]);
+				CurrentWaves = waveOption.waveRampUp;
+			}
 			Debug.Log ("Spawning wave " + this.gameObject + "  " + currentWaveIndex);
-
 
 			foreach (GameObject obj in CurrentWaves[currentWaveIndex].waveType) {
 

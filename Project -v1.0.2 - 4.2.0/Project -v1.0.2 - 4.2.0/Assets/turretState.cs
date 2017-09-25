@@ -43,7 +43,7 @@ public class turretState : UnitState {
 
 			return;
 		}
-		Debug.Log ("Enemy is " + enemy);
+	
 		IWeapon myWeap = myManager.canAttack (enemy);
 		if (myWeap) {
 				
