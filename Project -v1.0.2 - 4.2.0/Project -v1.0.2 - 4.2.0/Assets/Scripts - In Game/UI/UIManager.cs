@@ -878,8 +878,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 		{
 		case Mode.Normal:
 			SwitchToModeNormal ();
-			AbilityTargeter.SetActive (false);
-			CursorManager.main.normalMode ();
 		
 			break;
 			
@@ -911,10 +909,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 	public void SwitchToModeNormal()
 	{//buildingPlacer.SetActive (false);
-
-
-		m_Mode = Mode.Normal;
-
+		if (m_Mode != Mode.Normal) {
+			AbilityTargeter.SetActive (false);
+			CursorManager.main.normalMode ();
+			m_Mode = Mode.Normal;
+		}
 	}
 
 

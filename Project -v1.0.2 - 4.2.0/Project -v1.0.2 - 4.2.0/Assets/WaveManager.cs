@@ -67,14 +67,14 @@ public class WaveManager : MonoBehaviour {
 	}
 
 
-	void Awake () {
+	void Start () {
 		//GeneralIndex = PlayerPrefs.GetInt ("VoicePack", 0);
 		currentWaveIndex = 0;
 		SpawnerCount = spawnLocations.Count;
 		container = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ();
 	
 
-		if ( PlayerPrefs.GetInt ("L" + VictoryTrigger.instance.levelNumber+"Win") > 0) {
+		if ( PlayerPrefs.GetInt ("L" + VictoryTrigger.instance.levelNumber+"Win",0) > 0) {
 
 			if (ReplayWaves.Count > 0) {
 				//container = ((GameObject)(Resources.Load ("WaveContainer"))).GetComponent<WaveContainer> ();

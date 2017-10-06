@@ -25,7 +25,9 @@ public class CinematicCamera : SceneEventTrigger {
 
 	
 	}
-	
+
+	Vector3 lookPosition;
+
 	// Update is called once per frame
 	void Update () {
 
@@ -33,6 +35,7 @@ public class CinematicCamera : SceneEventTrigger {
 			exitScene ();
 		
 		}
+
 
 		if (currentScene > -1) {
 			if (Time.time > shotChangeTime) {
@@ -65,12 +68,14 @@ public class CinematicCamera : SceneEventTrigger {
 			float timeThroughShot = (shotChangeTime - Time.time) / myScenes [currentScene].myShots [currentShot].duration;
 		//	Debug.Log ("Shot time is " + timeThroughShot);
 			float perc = timeThroughShot;// myScenes [currentScene].myShots [currentShot].myCurve.Evaluate( timeThroughShot);
-			this.transform.position = Vector3.Lerp
-				(myScenes [currentScene].myShots [currentShot].startLocation, myScenes [currentScene].myShots [currentShot].endLocation,1 -perc );
 
-			this.transform.LookAt(Vector3.Lerp
-				(myScenes [currentScene].myShots [currentShot].startTarget, myScenes [currentScene].myShots [currentShot].endTarget, 1 - perc ));
-		
+	
+				this.transform.position = Vector3.Lerp
+				(myScenes [currentScene].myShots [currentShot].startLocation, myScenes [currentScene].myShots [currentShot].endLocation, 1 - perc);
+
+				this.transform.LookAt (Vector3.Lerp
+				(myScenes [currentScene].myShots [currentShot].startTarget, myScenes [currentScene].myShots [currentShot].endTarget, 1 - perc));
+			
 		
 		}
 
@@ -89,6 +94,17 @@ public class CinematicCamera : SceneEventTrigger {
 			hasNextDialogue = true;
 			nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay * GameSettings.gameSpeed;
 		}
+
+		if(myScenes[currentScene].myShots.Count > 1){
+			//lookPosition = myScenes [currentScene].myShots [1] - myScenes [currentScene].myShots [0];
+		}
+
+		for (int i = 1; i < myScenes [currentScene].myShots.Count; i++) {
+			if (myScenes [currentScene].myShots [i - 1].endLocation == myScenes [currentScene].myShots [i].startLocation) {
+				//myScenes [currentScene].myShots [i - 1].isCurveMiddle = true;
+			}
+		}
+
 		if (GameMenu.main) {
 			GameMenu.main.disableInput ();}
 
@@ -144,13 +160,14 @@ public class CinematicCamera : SceneEventTrigger {
 
 	}
 	[System.Serializable]
-	public struct shot{
+	public class shot{
 		public Vector3 startLocation;
 		public Vector3 startTarget;
 		public Vector3 endLocation;
 		public Vector3 endTarget;
 		public float duration;
 		public AnimationCurve myCurve;
+		public bool isCurveMiddle;
 
 		public Sprite dialogueImage;
 		public float dialogueStartDelay;
@@ -160,6 +177,7 @@ public class CinematicCamera : SceneEventTrigger {
 		public string DialogueText;
 
 	}
+
 
 
 	public void OnDrawGizmos()
@@ -173,6 +191,7 @@ public class CinematicCamera : SceneEventTrigger {
 					Gizmos.color = Color.red;
 					Gizmos.DrawSphere (curr.endLocation, 2);
 					Gizmos.DrawLine (curr.endLocation, curr.endTarget);
+				
 				}
 			
 			}

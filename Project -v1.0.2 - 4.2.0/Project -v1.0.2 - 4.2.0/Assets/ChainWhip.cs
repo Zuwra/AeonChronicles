@@ -7,8 +7,7 @@ public class ChainWhip : MonoBehaviour {
 
 
 	public ChainWhip childWhip;
-	public LineRenderer leftLine;
-	public LineRenderer rightLine;
+
 	public UnitManager myManager;
 
 	public float maxDamage;

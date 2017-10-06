@@ -1022,7 +1022,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
     public void SelectGroup(int groupNumber)
-    {
+	{uiManage.SwitchToModeNormal ();
         DeselectAll();
         foreach (RTSObject obj in Group[groupNumber])
         {
@@ -1052,7 +1052,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     }
 
     public void selectAllArmy()
-	{ 
+	{ uiManage.SwitchToModeNormal ();
 		DeselectAll ();
 
 		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
@@ -1110,7 +1110,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
     }
 
 	public void selectAllUnArmedTanks()
-	{
+	{uiManage.SwitchToModeNormal ();
 		DeselectAll();
 
 		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
@@ -1142,7 +1142,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 
     public void selectIdleWorker()
-	{List<UnitManager> idleWorkers = new List<UnitManager> ();
+	{uiManage.SwitchToModeNormal ();
+		List<UnitManager> idleWorkers = new List<UnitManager> ();
         
 
 		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
@@ -1184,7 +1185,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	public void globalSelect(int n )
 	{ DeselectAll();
-
+		uiManage.SwitchToModeNormal ();
 		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
 
 			if (globalSelection [n].Contains (pair.Key)) {
@@ -1205,7 +1206,8 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 		
 		}
-		CreateUIPages(0);}
+		CreateUIPages(0);
+	}
 
 
 
@@ -1243,6 +1245,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 
 	public void selectAllBuildings ()
 	{DeselectAll();
+		uiManage.SwitchToModeNormal ();
 		foreach (KeyValuePair<string, List<UnitManager>> pair in raceMan.getUnitList()) {
 			foreach (UnitManager manager in pair.Value) {
 				

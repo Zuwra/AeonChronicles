@@ -16,6 +16,8 @@ public class DifficultyEditor : EditorWindow {
 	}
 
 	void OnGUI(){
+
+	
 		GUILayout.BeginHorizontal ();
 		if(GUILayout.Button("Add To Easy"))
 		{

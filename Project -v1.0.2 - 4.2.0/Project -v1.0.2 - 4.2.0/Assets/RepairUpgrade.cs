@@ -9,16 +9,12 @@ public class RepairUpgrade : Upgrade {
     public void applyUpgrade(GameObject obj)
     {
 
-        UnitManager manager = obj.GetComponent<UnitManager>();
-
-        if (manager)
-        {
-			if (manager.UnitName.Contains("Repair"))
-            {
-                obj.GetComponent<RepairTurret>().repairRate = repairAmount;
-				obj.GetComponent<RepairTurret> ().drone.GetComponent<RepairDrone> ().repairRate = repairAmount;
-            }
-        }
+		RepairTurret turret = obj.GetComponent<RepairTurret> ();
+		if(turret){
+			turret.repairRate = repairAmount;
+			turret.drone.GetComponent<RepairDrone> ().repairRate = repairAmount;
+           }
+        
     }
 
 	public override void unApplyUpgrade (GameObject obj){

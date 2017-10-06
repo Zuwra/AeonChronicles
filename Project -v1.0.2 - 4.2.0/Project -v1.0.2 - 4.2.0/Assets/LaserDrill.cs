@@ -7,7 +7,7 @@ public class LaserDrill : MonoBehaviour {
 	public static LaserDrill instance;
 
 	public List<UnitManager> spottedTargets = new List<UnitManager>();
-	UnitManager currentTarget;
+	public UnitManager currentTarget;
 
 	public LineRenderer line;
 	public Vector3 LaserStartPoint;
