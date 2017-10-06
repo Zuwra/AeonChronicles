@@ -8,15 +8,23 @@ public class HealthDisplay : MonoBehaviour {
 	private Transform cam;
 	//public List<Image> buffList = new List<Image>();
 
-
+	public Canvas myCanvas;
 
 	public Image BuildingUnit;
 	public Image background;
 	Vector3 LookLocation;
 
+	void Awake()
+	{
+		if (!myCanvas) {
+			myCanvas = GetComponent<Canvas> ();
+		}	
+	}
+
 	// Use this for initialization
 	void Start () {
 		cam = MainCamera.main.transform;// GameObject.FindObjectOfType<MainCamera> ().gameObject;
+
 	}
 	
 	// Update is called once per frame
@@ -26,6 +34,18 @@ public class HealthDisplay : MonoBehaviour {
 			LookLocation.x = gameObject.transform.position.x;
 			gameObject.transform.LookAt (LookLocation);
 
+	}
+
+	void OnEnable()
+	{
+		myCanvas.enabled = true;
+	}
+
+	void OnDisable()
+	{
+		if (this) {
+			myCanvas.enabled = false;
+		}
 	}
 
 	public void  loadIMage(Sprite m)

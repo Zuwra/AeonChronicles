@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Level1SnowGlobes.unity
+- path: Assets/Scenes/gameCreation.unity
   isLoaded: 1
   isActive: 1

@@ -15,7 +15,7 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 	Coroutine myFade;
 
 	public void OnPointerEnter(PointerEventData eventd)
-	{
+	{if(Time.timeScale != 0)
 		if (toolbox) {
 			if (myFade != null) {
 				StopCoroutine (myFade);

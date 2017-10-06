@@ -90,6 +90,13 @@ using UnityEngine.EventSystems;
 
 	}
 
+	void OnDisable()
+	{
+		if (toolbox) {
+			toolbox.enabled = false;
+		}
+	}
+
 
 
 	}

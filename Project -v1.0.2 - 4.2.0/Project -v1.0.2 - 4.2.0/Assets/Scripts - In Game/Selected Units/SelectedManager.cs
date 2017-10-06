@@ -261,21 +261,18 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 			}
 		}
 
-        if (Input.GetKeyUp(KeyCode.Tab))
+		if (Input.GetKeyUp(KeyCode.Tab) && UIPages.Count > 0)
         {
 
             if (currentPage < UIPages.Count-1)
 			{
 				currentPage++;
-				pageUI.selectPage (currentPage);
-                abilityManager.loadUI(UIPages[currentPage]);
             }
             else {
-				
                 currentPage = 0;
-				pageUI.selectPage (currentPage);
-                abilityManager.loadUI(UIPages[currentPage]);
             }
+			pageUI.selectPage (currentPage);
+			abilityManager.loadUI(UIPages[currentPage]);
 
         }
 			
@@ -604,7 +601,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
         }
 		if (abilityManager) {
 			abilityManager.loadUI (UIPages [currentPage]);
-			pageUI.setPageCount (UIPages.Count);
+			pageUI.setPageCount (UIPages);
 		}
     }
 

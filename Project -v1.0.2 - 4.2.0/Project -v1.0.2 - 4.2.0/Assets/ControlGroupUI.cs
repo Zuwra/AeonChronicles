@@ -14,7 +14,7 @@ public class ControlGroupUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		selectM = GameObject.FindObjectOfType<SelectedManager> ();
+		selectM = SelectedManager.main;;
 	}
 	
 
@@ -26,9 +26,12 @@ public class ControlGroupUI : MonoBehaviour {
 
 	public void activateTab(int n, int count, Sprite icon)
 	{
+		
 		controlList [n].gameObject.SetActive (true);
-		controlList [n].gameObject.transform.Find ("Count").GetComponent<Text> ().text = "" + count;
-		controlList [n].gameObject.transform.Find ("Image").GetComponent<Image> ().sprite = icon;
+		//if (controlList [n].gameObject.activeInHierarchy) {
+			controlList [n].gameObject.transform.Find ("Count").GetComponent<Text> ().text = "" + count;
+			controlList [n].gameObject.transform.Find ("Image").GetComponent<Image> ().sprite = icon;
+		//}
 	}
 
 

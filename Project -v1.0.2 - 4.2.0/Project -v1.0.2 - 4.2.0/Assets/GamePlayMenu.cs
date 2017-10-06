@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -14,6 +15,13 @@ public class GamePlayMenu : MonoBehaviour {
 	public Toggle showToolTip;
 	public Toggle showAbility;
 
+	public Toggle simpleToggle;
+	public Toggle ControlToggle;
+	public List<GameObject> SimpleObjects;
+	public List<Canvas> SimpleCanvas;
+	public List<GameObject> SuperSimpleObjects;
+
+
 	public static GamePlayMenu getInstance()
 	{
 		if (!instance) {
@@ -25,7 +33,14 @@ public class GamePlayMenu : MonoBehaviour {
 
 	void Awake()
 	{
+		
 		instance = this;
+		simpleToggle.isOn =  PlayerPrefs.GetInt ("SimpleUI",0)  == 1;
+
+
+		ControlToggle.isOn =  PlayerPrefs.GetInt ("SuperSimpleUI",0)  == 1;
+
+
 	}
 
 	// Use this for initialization
@@ -71,6 +86,29 @@ public class GamePlayMenu : MonoBehaviour {
 			if (tool.Ability) {
 				tool.enabled = toggled;
 			}
+		}
+	}
+
+	public void setSimpleUI()
+	{
+
+		PlayerPrefs.SetInt ("SimpleUI", simpleToggle.isOn ? 1:0);
+
+		foreach (GameObject obj in SimpleObjects) {
+			obj.SetActive (!simpleToggle.isOn);
+		}
+		foreach (Canvas obj in SimpleCanvas) {
+			obj.enabled = !simpleToggle.isOn;
+		}
+	}
+
+	public void setSuperSimpleUI()
+	{
+
+		PlayerPrefs.SetInt ("SuperSimpleUI", ControlToggle.isOn ?1:0);
+	
+		foreach (GameObject obj in SuperSimpleObjects) {
+			obj.SetActive (!ControlToggle.isOn);
 		}
 	}
 
