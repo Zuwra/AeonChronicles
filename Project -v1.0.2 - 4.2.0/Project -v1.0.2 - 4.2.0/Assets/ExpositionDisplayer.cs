@@ -26,7 +26,7 @@ public class ExpositionDisplayer : MonoBehaviour {
 
 	void Update()
 	{	if (inMessage) {
-			if (Input.GetKeyDown (KeyCode.Return)) {
+			if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) {
 				if (inMessage)
 					InteruptMessage ();
 				if (messageQueue.Count > 0) {
