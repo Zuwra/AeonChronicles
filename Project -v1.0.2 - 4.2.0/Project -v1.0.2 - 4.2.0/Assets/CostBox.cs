@@ -24,6 +24,21 @@ public class CostBox : MonoBehaviour {
 	Color teal = new Color(.698f, .949f, 255);
 
 
+	public static CostBox instance;
+	 
+	Canvas myCanvas;
+	void Awake()
+	{
+		myCanvas = GetComponent<Canvas> ();
+		instance = this;
+	}
+
+
+	public void turnOff()
+	{
+		myCanvas.enabled = false;
+	}
+
 	public void setText(Ability input)
 	{if (input == null) {
 			return;}

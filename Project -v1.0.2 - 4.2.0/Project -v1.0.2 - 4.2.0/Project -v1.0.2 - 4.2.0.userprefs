@@ -1,12 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ExpositionDisplayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ControlGroupUI.cs">
     <Files>
       <File FileName="Assets\CinematicCamera.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts - In Game\RaceManager.cs" Line="1" Column="1" />
       <File FileName="Assets\SplineCurve.cs" Line="1" Column="1" />
-      <File FileName="Assets\ExpositionDisplayer.cs" Line="28" Column="20" />
+      <File FileName="Assets\ExpositionDisplayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\ControlGroupUI.cs" Line="43" Column="3" />
+      <File FileName="Assets\Scripts - In Game\Selected Units\SelectedManager.cs" Line="208" Column="22" />
+      <File FileName="Assets\Scripts - In Game\UiAbilityManager.cs" Line="6" Column="1" />
+      <File FileName="Assets\AbilityBox.cs" Line="36" Column="28" />
+      <File FileName="Assets\CostBox.cs" Line="39" Column="28" />
+      <File FileName="Assets\ToolTip.cs" Line="44" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

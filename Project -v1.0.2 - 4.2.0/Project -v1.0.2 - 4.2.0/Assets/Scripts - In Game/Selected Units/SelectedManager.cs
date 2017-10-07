@@ -205,25 +205,35 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             // Select a control group
             if (Input.GetKeyDown(KeyCode.Alpha1))
             { 
-				SelectGroup(0); }
+				//SelectGroup(0);
+				ControlGroupUI.instance.pressButton (0);}
             else if (Input.GetKeyDown(KeyCode.Alpha2))
-            { SelectGroup(1); }
+            { //SelectGroup(1); 
+				ControlGroupUI.instance.pressButton (1);}
             else if (Input.GetKeyDown(KeyCode.Alpha3))
-            { SelectGroup(2); }
+            {// SelectGroup(2); 
+				ControlGroupUI.instance.pressButton (2);}
             else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {SelectGroup(3);}
+            {//SelectGroup(3);
+				ControlGroupUI.instance.pressButton (3);}
             else if (Input.GetKeyDown(KeyCode.Alpha5))
-            {SelectGroup(4); }
+            {//SelectGroup(4);
+				ControlGroupUI.instance.pressButton (4);}
             else if (Input.GetKeyDown(KeyCode.Alpha6))
-            { SelectGroup(5);}
+            { //SelectGroup(5);
+				ControlGroupUI.instance.pressButton (5);}
             else if (Input.GetKeyDown(KeyCode.Alpha7))
-            { SelectGroup(6);}
+            {// SelectGroup(6);
+				ControlGroupUI.instance.pressButton (6);}
             else if (Input.GetKeyDown(KeyCode.Alpha8))
-            {SelectGroup(7); }
+            {//SelectGroup(7);
+				ControlGroupUI.instance.pressButton (7);}
             else if (Input.GetKeyDown(KeyCode.Alpha9))
-            {SelectGroup(8); }
+            {//SelectGroup(8); 
+				ControlGroupUI.instance.pressButton (8);}
             else if (Input.GetKeyDown(KeyCode.Alpha0))
-            {SelectGroup(9); }
+            {//SelectGroup(9); 
+				ControlGroupUI.instance.pressButton (9);}
 
         }
 
@@ -1026,6 +1036,7 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
             AddObject(obj);
         }
 		CreateUIPages (0);
+
     }
 
     public int ActiveObjectsCount()

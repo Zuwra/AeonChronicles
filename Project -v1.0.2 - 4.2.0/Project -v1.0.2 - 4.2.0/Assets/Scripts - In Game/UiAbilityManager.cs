@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class UiAbilityManager : MonoBehaviour {
 
@@ -68,6 +68,26 @@ public class UiAbilityManager : MonoBehaviour {
 		main = this;
 	}
 
+	public void pressButton(int n)
+	{
+		var pointer = new PointerEventData (EventSystem.current);
+		ExecuteEvents.Execute (quickButtons [n].gameObject, pointer, ExecuteEvents.pointerEnterHandler);
+		ExecuteEvents.Execute (quickButtons [n].gameObject, pointer, ExecuteEvents.pointerDownHandler);
+		StartCoroutine (delayedClick(n));
+
+	}
+
+	IEnumerator delayedClick(int n)
+	{var pointer = new PointerEventData (EventSystem.current);
+		CostBox.instance.turnOff ();
+		yield return new WaitForSeconds (.1f);
+		ExecuteEvents.Execute (quickButtons [n].gameObject, pointer, ExecuteEvents.pointerClickHandler);
+		ExecuteEvents.Execute (quickButtons [n].gameObject, pointer, ExecuteEvents.pointerExitHandler);
+
+
+	}
+
+
 	// Use this for initialization
 	void Start () {
 		IconStartPoints [0].SetActive (false);
@@ -84,29 +104,41 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 		if (Input.GetKeyUp (KeyCode.Q)) {
-				callAbility (0);
+			pressButton (0);
+				//callAbility (0);
 		} else if (Input.GetKeyUp (KeyCode.W)) {
-			callAbility (1);
+			pressButton (1);
+		//	callAbility (1);
 		} else if (Input.GetKeyUp (KeyCode.E)) {
-			callAbility (2);
+			pressButton (2);
+			//callAbility (2);
 		} else if (Input.GetKeyUp (KeyCode.R)) {
-			callAbility (3);
+			pressButton (3);
+			//callAbility (3);
 		} else if (Input.GetKeyUp (KeyCode.A)) {
-			callAbility (4);
+			pressButton (4);
+			//callAbility (4);
 		} else if (Input.GetKeyUp (KeyCode.S)) {
-			callAbility (5);
+			pressButton (5);
+			//callAbility (5);
 		} else if (Input.GetKeyUp (KeyCode.D)) {
-			callAbility (6);
+			pressButton (6);
+			//callAbility (6);
 		} else if (Input.GetKeyUp (KeyCode.F)) {
-			callAbility (7);
+			pressButton (7);
+			//callAbility (7);
 		} else if (Input.GetKeyUp (KeyCode.Z)) {
-			callAbility (8);
+			pressButton (8);
+			//callAbility (8);
 		} else if (Input.GetKeyUp (KeyCode.X)) {
-			callAbility (9);
+			pressButton (9);
+			//callAbility (9);
 		} else if (Input.GetKeyUp (KeyCode.C)) {
-			callAbility (10);
+			pressButton (10);
+			//callAbility (10);
 		} else if (Input.GetKeyUp (KeyCode.V)) {
-			callAbility (11);
+			pressButton (11);
+			//callAbility (11);
 		} 
 			
 
@@ -1216,18 +1248,18 @@ public class UiAbilityManager : MonoBehaviour {
 	public void callAbility(int n)
 	{
 
-		//Debug.Log("CAlling " + n + "   " + quickButtons [n].IsInteractable() +"   " + quickAbility[n].myAbility + "   "+quickButtons[n].IsActive()  );
+		Debug.Log ("CAlling " + n + "   " + quickButtons [n].IsInteractable ());// +"   " + quickAbility[n].myAbility + "   "+quickButtons[n].IsActive()  );
 		if (Input.GetKey (KeyCode.LeftAlt)) {
 			selectMan.setAutoCast (n);
 			selectMan.AutoCastUI ();
 			audSrc.PlayOneShot (ButtonPress, .1f);
 
 		}else if (quickButtons [n].IsInteractable() && quickAbility[n].myAbility && quickButtons[n].IsActive()){// && quickAbility[n].myAbility.active) {
-			
 			selectMan.callAbility (n);
 			audSrc.PlayOneShot (ButtonPress, .1f);
 			
 		}
+		//EventSystem.current.SetSelectedGameObject (null);
 		
 	}
 
