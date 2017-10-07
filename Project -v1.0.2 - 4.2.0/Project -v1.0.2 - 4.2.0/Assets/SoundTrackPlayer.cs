@@ -42,6 +42,35 @@ public class SoundTrackPlayer : MonoBehaviour {
 
 	}
 
+	public void crossFadeTrack(AudioClip clip)
+	{
+		StartCoroutine (crossFade(3,clip));
+	}
+
+	public void crossFadeTrack(float fadeTime, AudioClip clip)
+	{
+		StartCoroutine (crossFade(fadeTime,clip));
+	}
+
+	IEnumerator crossFade(float fadeTime, AudioClip clip)
+	{
+		float startVolume = mySrc.volume;
+		float FadeRate = startVolume / (fadeTime * .5f);
+		for (float i = 0; i < fadeTime / 2; i += Time.deltaTime) {
+			mySrc.volume -= FadeRate * Time.deltaTime;
+			yield return null;
+		}
+		mySrc.Stop ();
+		mySrc.PlayOneShot (clip);
+		nextPlayTime = Time.unscaledTime + clip.length;
+		for (float i = 0; i < fadeTime / 2; i += Time.deltaTime) {
+			mySrc.volume += FadeRate * Time.deltaTime;
+			yield return null;
+		}
+
+
+	}
+
 
 
 }
