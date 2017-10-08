@@ -49,7 +49,7 @@ public class CinematicCamera : SceneEventTrigger {
 				} else {
 					
 					shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration* GameSettings.gameSpeed;
-					if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
+					if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0 || myScenes [currentScene].myShots [currentShot].toTrigger.GetPersistentEventCount() > 0) {
 						
 				
 						hasNextDialogue = true;
@@ -61,8 +61,11 @@ public class CinematicCamera : SceneEventTrigger {
 			if (hasNextDialogue && Time.time > nextDialogue) {
 				hasNextDialogue = false;
 				//Debug.Log ("PLaying  " +myScenes [currentScene].myShots [currentShot].DialogueText );
-				ExpositionDisplayer.instance.displayText (myScenes [currentScene].myShots [currentShot].DialogueText,myScenes [currentScene].myShots [currentShot].dialogueLength
-					,myScenes [currentScene].myShots [currentShot].dialogueAudio, .8f,myScenes [currentScene].myShots [currentShot].dialogueImage,5);
+				if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
+					ExpositionDisplayer.instance.displayText (myScenes [currentScene].myShots [currentShot].DialogueText, myScenes [currentScene].myShots [currentShot].dialogueLength
+						, myScenes [currentScene].myShots [currentShot].dialogueAudio, .8f, myScenes [currentScene].myShots [currentShot].dialogueImage, 5);
+				}
+				myScenes [currentScene].myShots [currentShot].toTrigger.Invoke ();
 			
 			}
 			float timeThroughShot = (shotChangeTime - Time.time) / myScenes [currentScene].myShots [currentShot].duration;
@@ -90,7 +93,7 @@ public class CinematicCamera : SceneEventTrigger {
 	GetComponent<Camera> ().enabled = true;
 		currentScene = index;
 		shotChangeTime = Time.time + myScenes [currentScene].myShots [currentShot].duration* GameSettings.gameSpeed;
-		if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0) {
+		if (myScenes [currentScene].myShots [currentShot].dialogueLength > 0 || myScenes [currentScene].myShots [currentShot].toTrigger.GetPersistentEventCount() > 0) {
 			hasNextDialogue = true;
 			nextDialogue = Time.time + myScenes [currentScene].myShots [currentShot].dialogueStartDelay * GameSettings.gameSpeed;
 		}
@@ -175,6 +178,8 @@ public class CinematicCamera : SceneEventTrigger {
 		public AudioClip dialogueAudio;
 		[TextArea(1,10)]
 		public string DialogueText;
+		[Tooltip("This will trigger on the same time delay as the text")]
+		public UnityEngine.Events.UnityEvent toTrigger;
 
 	}
 

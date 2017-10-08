@@ -17,7 +17,8 @@ public class LandMineActivate : VisionTrigger {
 	public GameObject FullChargeEffect;
 
 	public GameObject explosionEffect;
-
+	[Tooltip("If null, it will use clip already on explosion object")]
+	public AudioClip explosionSound;
 	UnitStats myVet;
 
 	// Use this for initialization
@@ -59,7 +60,10 @@ public class LandMineActivate : VisionTrigger {
 			if (PlayerNumber == 1) {
 				PlayerPrefs.SetInt ("TotalPlasmaMineDamage", PlayerPrefs.GetInt ("TotalPlasmaMineDamage") + (int)amount);
 			}
-			Instantiate (explosionEffect, this.gameObject.transform.position, Quaternion.identity);
+			GameObject obj = Instantiate (explosionEffect, this.gameObject.transform.position, Quaternion.identity);
+			if (explosionSound) {
+				obj.GetComponentInChildren<AudioPlayer> ().myClip = explosionSound;
+			}
 			Destroy (this.gameObject);	
 		}
 	}

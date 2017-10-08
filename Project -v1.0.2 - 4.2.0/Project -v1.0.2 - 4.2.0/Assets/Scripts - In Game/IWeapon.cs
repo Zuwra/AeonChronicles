@@ -367,7 +367,7 @@ public class IWeapon : MonoBehaviour {
 			}
 			if (attackSoundEffect) {
 				
-				audioSrc.pitch = ((float)Random.Range (6, 14) / 10);
+				audioSrc.pitch = ((float)Random.Range (7, 12) / 10);
 					SoundManager.PlayOneShotSound(audioSrc, attackSoundEffect);
 				//audioSrc.PlayOneShot (attackSoundEffect, Random.value/3 + .15f);
 			}
