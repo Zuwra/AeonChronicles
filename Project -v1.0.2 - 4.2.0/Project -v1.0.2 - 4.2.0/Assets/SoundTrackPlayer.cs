@@ -63,7 +63,7 @@ public class SoundTrackPlayer : MonoBehaviour {
 		mySrc.Stop ();
 		mySrc.PlayOneShot (clip);
 		nextPlayTime = Time.unscaledTime + clip.length;
-		for (float i = 0; i < fadeTime / 2; i += Time.deltaTime) {
+		for (float i = 0; i < fadeTime / 5; i += Time.deltaTime) {
 			mySrc.volume += FadeRate * Time.deltaTime;
 			yield return null;
 		}
