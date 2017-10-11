@@ -306,11 +306,11 @@ public class IWeapon : MonoBehaviour {
 				turretClass.Target (enemy.gameObject);
 			}
 			else{
-				if (!(this is AngleWeapon)) {
+				//if (!(this is AngleWeapon)) {
 					Vector3 spotter = enemy.transform.position;
 					spotter.y = this.transform.position.y;
 					this.gameObject.transform.LookAt (spotter);
-				}
+			//	}
 			}
 			float damage = baseDamage;
 
