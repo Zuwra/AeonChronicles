@@ -297,7 +297,7 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public void setInteractor()
-	{Debug.Log ("Setting interactor");
+	{
 		if(interactor == null)
 		{
 			interactor = (Iinteract)gameObject.GetComponent(typeof(Iinteract));
