@@ -10,6 +10,23 @@ public class TrueUpgradeManager : MonoBehaviour {
 	public List<CampaignUpgrade> CampUpRef;
 	public List<CampaignUpgrade.UpgradesPiece> myUpgrades= new List<CampaignUpgrade.UpgradesPiece>();
 	// Use this for initialization
+	public GameObject UnAppliedUpgrade;
+
+
+	public void Unused()
+	{
+
+		bool unUsed = false;
+
+		foreach (CampaignUpgrade upgrade in CampUpRef) {
+			if (upgrade.myUpgrades.Count > 1 && upgrade.currentIndex == 0 && upgrade.gameObject.activeInHierarchy) {
+				unUsed = true;
+				break;
+			}
+		}
+
+		UnAppliedUpgrade.SetActive (unUsed);
+	}
 
 	void OnEnable()
 	{
@@ -25,13 +42,11 @@ public class TrueUpgradeManager : MonoBehaviour {
 	bool hasBeenToLevel;
 	void Start()
 	{
-		//Debug.Log ("Calling from " + this.gameObject);
+		
 		if (this && !hasBeenToLevel) {
 			if (SceneManager.GetActiveScene ().buildIndex == 1) {
 				DontDestroyOnLoad (this.gameObject);
-		
 			} 
-
 
 			mySource = GetComponent<AudioSource> ();
 
@@ -65,11 +80,13 @@ public class TrueUpgradeManager : MonoBehaviour {
 		//SceneManager.sceneLoaded -= LevelWasLoaded;
 	}
 
+	float lastSound ;
 	public void playSound ()
 	{
-		if (Time.timeSinceLevelLoad > 1) {
+		if (Time.timeSinceLevelLoad > 1 &&  Time.time > lastSound +1) {
 			mySource.PlayOneShot (buttonPress [Random.Range (0, buttonPress.Count - 1)]);
 		}
+		lastSound = Time.time;
 	}
 
 	public void upgradeBought(SpecificUpgrade upg, CampaignUpgrade.upgradeType t)

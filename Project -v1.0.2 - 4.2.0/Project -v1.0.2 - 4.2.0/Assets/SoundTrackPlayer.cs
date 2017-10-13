@@ -35,9 +35,10 @@ public class SoundTrackPlayer : MonoBehaviour {
 
 	void Update(){
 
-		if (Time.unscaledTime > nextPlayTime) {
+		if(!mySrc.isPlaying)
+		//if (Time.unscaledTime > nextPlayTime) {
 			playNextTrack ();
-		}
+		//}
 
 
 	}

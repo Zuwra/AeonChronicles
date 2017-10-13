@@ -84,6 +84,7 @@ public class StatDisplayer : MonoBehaviour {
 			damage = addOnText ("Damage", damage);
 
 			if (weap.numOfAttacks > 1) {
+				original += " (X" + weap.numOfAttacks + ")";
 				damage += " (X" + weap.numOfAttacks+")";
 			}
 			addText (damage, secondText,original != damage);

@@ -26,7 +26,7 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	private bool justSetIndex;
 
-	int currentIndex;
+	public int currentIndex;
 	public List<StatDisplayer> myStatDisplayer;
 
 	[System.Serializable]
@@ -85,7 +85,7 @@ public class CampaignUpgrade : MonoBehaviour {
 
 
 	public void setUpgrade(int index)
-	{
+	{//Debug.Log("UpgradeSet " + index + "  " +this.gameObject);
 		if (myButtons.Count > 0) {
 
 			myButtons [currentIndex].image.material = grayScale;
@@ -121,7 +121,13 @@ public class CampaignUpgrade : MonoBehaviour {
 		foreach (StatDisplayer stat in myStatDisplayer) {
 			stat.SetText ();
 		}
+
+
+		GameObject.FindObjectOfType<TrueUpgradeManager> ().Unused ();			
+
+
 	}
+
 
 	public void upgradeBought()
 	{
@@ -134,9 +140,17 @@ public class CampaignUpgrade : MonoBehaviour {
 				setUpgrade (currentIndex);
 			}
 		}
-		//myDropDown.value = PlayerPrefs.GetString(this.gameObject.ToString (), "Basic Engineering");
+		GameObject.FindObjectOfType<TrueUpgradeManager> ().Unused ();	
+	
 		SetImageDescript ();
 	}
+
+	void OnDisable()
+	{
+		GameObject.FindObjectOfType<TrueUpgradeManager> ().Unused ();
+
+	}
+
 
 	public void SetImageDescript()
 	{
