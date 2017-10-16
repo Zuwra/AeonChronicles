@@ -113,6 +113,8 @@ public class UnitManager : Unit,IOrderable{
 			man.playerList [PlayerOwner - 1].addUnit (this);
 		}
 
+
+
 		if (!fogger) {
 			fogger = GetComponent<FogOfWarUnit> ();
 		}
@@ -158,9 +160,23 @@ public class UnitManager : Unit,IOrderable{
 	
 			chaseRange = visionRange;
 
+	
+	}
+
+	protected void Start()
+	{
+
 		if (startingCommand.Count > 0) {
 
 			Invoke ("GiveStartCommand", .3f);
+		}
+			
+		if (myStats == null) {
+			myStats = gameObject.GetComponent<UnitStats>();
+		}
+
+		if (myStats.isUnitType (UnitTypes.UnitTypeTag.Structure) && UnitName!= "Augmentor") {
+			GameManager.getInstance ().playerList [PlayerOwner - 1].applyUpgrade (this);
 		}
 	}
 

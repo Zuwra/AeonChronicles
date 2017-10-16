@@ -90,6 +90,14 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			StartCoroutine (UltTwoNotif ());}
 		if (UltFour && !UltFour.myCost.StartsRefreshed && UltFour.active) {
 			StartCoroutine (UltFourNotif ());}
+
+		if (upgradeBall) {
+			foreach (Upgrade grade in upgradeBall.GetComponents<Upgrade>()) {
+				if (!myUpgrades.Contains (grade)) {
+					addUpgrade (grade, "");
+				}
+			}
+		}
 	
 	}
 		
@@ -182,8 +190,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 			foreach (UnitManager tempMan  in pair.Value) {
 				if(tempMan){
 					upgrade.ApplySkin (tempMan.gameObject);
-					upgrade.applyUpgrade (tempMan.gameObject);
-
+					if (!tempMan.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
+						upgrade.applyUpgrade (tempMan.gameObject);
+					}
 					if (tempMan.UnitName == unitname) {
 				
 						tempMan.gameObject.SendMessage ("researched", upgrade);
@@ -241,7 +250,9 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 
 	public void applyUpgrade(UnitManager obj )
-	{	foreach (Upgrade up in myUpgrades) {
+	{	
+		
+		foreach (Upgrade up in myUpgrades) {
 			up.applyUpgrade (obj.gameObject);
 			up.ApplySkin (obj.gameObject);
 			obj.SendMessage ("researched", up,SendMessageOptions.DontRequireReceiver);
@@ -475,8 +486,10 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 
 		if (obj.myStats.isUnitType (UnitTypes.UnitTypeTag.Structure)) {
 			//This rescans the Astar graph after the unit dies
-			GraphUpdateObject b =new GraphUpdateObject(obj.GetComponent<CharacterController>().bounds); 
+			GraphUpdateObject b = new GraphUpdateObject (obj.GetComponent<CharacterController> ().bounds); 
 			StartCoroutine (DeathRescan (b));
+		} else {
+			applyUpgrade (obj);
 		}
 
 	
@@ -534,9 +547,6 @@ public class RaceManager : MonoBehaviour, ManagerWatcher {
 				}
 			}
 
-
-
-		applyUpgrade (obj);
 
 
 		//uiManager.changeUnits ();

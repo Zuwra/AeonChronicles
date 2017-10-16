@@ -4,18 +4,13 @@ using System.Collections;
 [RequireComponent(typeof(Selected))]
 public class Unit : RTSObject, IOrderable {
 	
-	//Member Variables
-	protected bool m_IsMoveable = true;
-	
 
-	protected bool m_IsAttackable = true;
-	protected bool m_IsInteractable = false;
 
-	
+
 	protected ISelectedManager selectedManager
 	{
 		get;
-		private set;
+		set;
 	}
 
 
@@ -44,14 +39,7 @@ public class Unit : RTSObject, IOrderable {
 
 	public GameObject getObject(){return this.gameObject;}
 
-	protected void Start()
-	{
-		//guiManager = GameObject.FindObjectOfType<GUIManager> ();// ManagerResolver.Resolve<IGUIManager>();
-		selectedManager = SelectedManager.main;//GameObject.FindObjectOfType<SelectedManager>();
 
-		m_IsAttackable = this is IAttackable;
-	
-	}
 	/*
 	protected void Update()
 	{
@@ -107,22 +95,6 @@ public class Unit : RTSObject, IOrderable {
 	}
 	
 
-
-
-	public bool IsAttackable ()
-	{
-		return m_IsAttackable;
-	}
-
-	public bool IsMoveable ()
-	{
-		return m_IsMoveable;
-	}
-
-	public bool IsInteractable ()
-	{
-		return m_IsInteractable;
-	}
 
 
 

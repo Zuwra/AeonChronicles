@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AbilityBox.cs" />
+     <Compile Include="Assets\AbilityDisabler.cs" />
      <Compile Include="Assets\AbilityFollowState.cs" />
      <Compile Include="Assets\AbilityUpgrade.cs" />
      <Compile Include="Assets\Achievement.cs" />
