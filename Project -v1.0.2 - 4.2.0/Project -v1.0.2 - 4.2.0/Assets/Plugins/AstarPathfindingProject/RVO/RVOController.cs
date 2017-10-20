@@ -313,7 +313,7 @@ namespace Pathfinding.RVO {
 			realPos.y = adjustedY;
 
 			if (desiredVelocity != Vector3.zero) {
-				if (mask != 0 && Physics.Raycast (realPos + Vector3.up * height * 10f, Vector3.down, out hit, 55, mask)) {
+				if (mask != 0 && Physics.Raycast (realPos + Vector3.up * height * 10f - transform.forward *2.5f, Vector3.down, out hit, 55, mask)) {
 					//	Debug.Log ("Hitting " + hit.collider);
 					adjustedY = hit.point.y;
 				} else {
@@ -362,7 +362,7 @@ namespace Pathfinding.RVO {
 			}
 
 			RaycastHit hitb;
-			if (Physics.Raycast (realPos + Vector3.up * height * 10f + transform.forward *3, Vector3.down, out hitb, 55, mask)) {
+			if (Physics.Raycast (realPos + Vector3.up * height * 10f + transform.forward *2, Vector3.down, out hitb, 55, mask)) {
 
 			
 				transform.rotation = Quaternion.LookRotation (Vector3.Cross (transform.right, (hit.normal + hitb.normal) *.5f));

@@ -516,10 +516,10 @@ public class UiAbilityManager : MonoBehaviour {
 
 
 				
-						certainButtons [j].QSlide.gameObject.SetActive (false);
+						certainButtons [j+ AbilityX ].QSlide.gameObject.SetActive (false);
 						trans.gameObject.SetActive (true);
 						trans.GetComponent<Image> ().sprite = man.abilityList [AbilityX * 4].iconPic;
-						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [0 + AbilityX * 4];
+						trans.GetComponent<AbilityBox> ().myAbility = man.abilityList [ AbilityX * 4];
 
 							ColorBlock cb= trans.GetComponent<Button> ().colors;
 							
@@ -576,7 +576,7 @@ public class UiAbilityManager : MonoBehaviour {
 						if (man.abilityList [1 + AbilityX * 4] != null) {
 
 					
-							certainButtons [j].WSlide.gameObject.SetActive (false);
+						certainButtons [j+ AbilityX].WSlide.gameObject.SetActive (false);
 
 
 						Transform trans = certainButtons [n].WButton.transform;//.Find("WButton");;
@@ -652,7 +652,7 @@ public class UiAbilityManager : MonoBehaviour {
 						if (man.abilityList [2 +AbilityX * 4] != null) {
 
 				
-							certainButtons [j].ESlide.gameObject.SetActive (false);
+						certainButtons [j+ AbilityX].ESlide.gameObject.SetActive (false);
 
 
 						Transform trans = certainButtons [n].EButton.transform;//.Find("EButton");;
@@ -720,7 +720,7 @@ public class UiAbilityManager : MonoBehaviour {
 						if (man.abilityList [3 +AbilityX * 4] != null) {
 
 				
-							certainButtons [j].RSlide.gameObject.SetActive (false);
+						certainButtons [j+ AbilityX].RSlide.gameObject.SetActive (false);
 
 
 						Transform trans = certainButtons [n].RButton.transform;//.Find("RButton");;
@@ -1247,8 +1247,6 @@ public class UiAbilityManager : MonoBehaviour {
 
 	public void callAbility(int n)
 	{
-
-		Debug.Log ("CAlling " + n + "   " + quickButtons [n].IsInteractable ());// +"   " + quickAbility[n].myAbility + "   "+quickButtons[n].IsActive()  );
 		if (Input.GetKey (KeyCode.LeftAlt)) {
 			selectMan.setAutoCast (n);
 			selectMan.AutoCastUI ();

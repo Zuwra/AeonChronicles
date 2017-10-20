@@ -167,11 +167,14 @@ public class UIManager : MonoBehaviour, IUIManager {
 				hitSomething = Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 16));
 			}
 
-			if (hitSomething)
-			{
+			if (hitSomething) {
 				Vector3 targetPoint = hit.point;
 				currentObject = hit.collider.gameObject;
 
+				if (currentObject.transform.parent && currentObject.transform.parent.GetComponent<UnitManager> ()) {
+					currentObject = currentObject.transform.parent.gameObject;
+				}
+			
 				try{
 					
 				if (m_SelectedManager.checkValidTarget(targetPoint, currentObject, currentAbilityNUmber)) {
@@ -216,6 +219,12 @@ public class UIManager : MonoBehaviour, IUIManager {
 			{
 				Vector3 targetPoint = hit.point;
 				currentObject = hit.collider.gameObject;
+				currentObject = hit.collider.gameObject;
+
+				if (currentObject.transform.parent && currentObject.transform.parent.GetComponent<UnitManager> ()) {
+					currentObject = currentObject.transform.parent.gameObject;
+				}
+
 				if (currentAbility.isValidTarget (currentObject, targetPoint)) {
 					AbilityTargeter.GetComponentInChildren<Light> ().color = Color.green;
 					CursorManager.main.targetMode();
@@ -602,6 +611,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 					AbilityTargeter.transform.position = targetPoint;
 					currentObject = hit.collider.gameObject;
+
+					if (currentObject.transform.parent && currentObject.transform.parent.GetComponent<UnitManager> ()) {
+						currentObject = currentObject.transform.parent.gameObject;
+					}
+
 					if (currentObject.layer == 9 || currentObject.layer == 10 || currentObject.layer == 13) {
 				
 					} else {
@@ -638,6 +652,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 					AbilityTargeter.transform.position = targetPoint;
 					currentObject = hit.collider.gameObject;
+
+					if (currentObject.transform.parent && currentObject.transform.parent.GetComponent<UnitManager> ()) {
+						currentObject = currentObject.transform.parent.gameObject;
+					}
 					if (currentObject.layer == 9 || currentObject.layer == 10 || currentObject.layer == 13) {
 
 					} else {
@@ -747,6 +765,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			AbilityTargeter.GetComponentInChildren<Light> ().cookie = currentAbility.targetArea;
 			AbilityTargeter.GetComponentInChildren<Light> ().spotAngle = currentAbility.areaSize;
 		}
+		Update ();
 	}
 
 
@@ -775,6 +794,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 			case Mode.Normal:
 			//We've right clicked, have we right clicked on ground, interactable object or enemy?
 				int currentObjLayer = currentObject.layer;
+
 
 				if (currentObjLayer == 8) {
 					//Terrain -> Move Command
@@ -888,6 +908,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		case Mode.targetAbility:
 			CursorManager.main.targetMode ();
 			m_Mode = Mode.targetAbility;
+
 			//AbilityTargeter.SetActive (true);
 			break;
 			

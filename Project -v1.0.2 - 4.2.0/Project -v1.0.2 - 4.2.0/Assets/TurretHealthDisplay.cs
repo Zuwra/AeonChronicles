@@ -7,7 +7,7 @@ public class TurretHealthDisplay : HealthDisplay {
 	private GameObject camy;
 
 	public Image Icon;
-	public Text percentHealth;
+
 
 	private bool flashing;
 	private int flashNum;
@@ -23,7 +23,7 @@ public class TurretHealthDisplay : HealthDisplay {
 	void Start () {
 		updateHealth (currentHealth);
 		camy = GameObject.FindObjectOfType<MainCamera> ().gameObject;
-		percentHealth.text = "";
+
 	}
 	
 	Vector3 location;
@@ -40,10 +40,10 @@ public class TurretHealthDisplay : HealthDisplay {
 				if (flashNum < 5) {
 					nextflashTime += .1f;
 					if (Icon.color == Color.red) {
-						//percentHealth.color = getCurrentColor();
+
 						Icon.color = getCurrentColor();
 					} else {
-						//percentHealth.color = Color.red;
+
 						Icon.color = Color.red;
 					}
 				} else {
@@ -72,37 +72,31 @@ public class TurretHealthDisplay : HealthDisplay {
 
 	public void updateHealth(float input)
 	{currentHealth = input;
-		int casted = (int)(input * 100);
 
-		if (casted > 98) {
-			//percentHealth.text = "";
-			Icon.enabled = false;
-		} else {
-			//percentHealth.text = casted + "%";
-			Icon.enabled = true;
-		}
 
+		Icon.enabled = (input < .98f);
 		if (!flashing) {
-			if (input > .60) {
+			
+			if (input > .60f) {
 
-				//percentHealth.color = Color.green;
+
 				if (!pointerIn) {
 					Icon.color = Color.green;
 				}
 
-			} else if (input > .35) {
-				//percentHealth.color = Color.yellow;
+			} else if (input > .35f) {
+
 				if (!pointerIn) {
 					Icon.color = Color.yellow;
 				}
-			} else if (input > .15) {
-				//percentHealth.color = Color.yellow;
+			} else if (input > .15f) {
+
 				if (!pointerIn) {
 					Icon.color = new Color (1, .4f, 0);
 				}
 			}
 			else {
-				//percentHealth.color = Color.red;
+
 				if (!pointerIn) {
 					Icon.color = Color.red;
 				}
@@ -115,7 +109,7 @@ public class TurretHealthDisplay : HealthDisplay {
 	public void flash()
 	{flashNum = 0;
 
-		//percentHealth.color = Color.red;
+
 		Icon.color = Color.red;
 		nextflashTime = Time.time + .1f;
 		flashing = true;
@@ -156,13 +150,13 @@ public class TurretHealthDisplay : HealthDisplay {
 
 
 	public void setSelect (){
+
 		Icon.enabled = true;
 	}
 
 	public void setDeselect (){
-
-		Icon.enabled = false;
 		updateHealth (currentHealth);
+
 	}
 
 

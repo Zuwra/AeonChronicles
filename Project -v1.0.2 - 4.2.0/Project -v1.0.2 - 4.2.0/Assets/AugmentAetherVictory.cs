@@ -68,6 +68,7 @@ public class AugmentAetherVictory  : Objective {
 			waveHasSpawned = true;
 	
 			if (counterAttack) {
+				
 				attackTrig.trigger (0, 0, Vector3.zero, null, false);
 				counterAttack.spawnWave (waveNumber);
 			}
@@ -94,7 +95,8 @@ public class AugmentAetherVictory  : Objective {
 				return;
 			}
 		}
-		GameObject.FindObjectOfType<VictoryTrigger> ().Win ();
+		VictoryTrigger.instance.Win ();
+	//	GameObject.FindObjectOfType<VictoryTrigger> ().Win ();
 
 	}
 

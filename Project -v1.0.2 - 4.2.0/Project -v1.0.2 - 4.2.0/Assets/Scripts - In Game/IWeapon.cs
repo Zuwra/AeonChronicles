@@ -289,9 +289,6 @@ public class IWeapon : MonoBehaviour {
 	{if (myAnimator) {
 			//Debug.Log ("Settign state to one");
 			myAnimator.Play ("Attack");
-			myAnimator.SetInteger ("State", 1);
-
-	
 		}
 
 		if (myManager) {
@@ -381,12 +378,6 @@ public class IWeapon : MonoBehaviour {
 				Instantiate (OnHitEffect, target.transform.position, Quaternion.identity);
 			}
 
-		}
-
-		if (myAnimator) {
-		yield return new WaitForSeconds(.1f);
-
-			myAnimator.SetInteger ("State", 0);
 		}
 	}
 		

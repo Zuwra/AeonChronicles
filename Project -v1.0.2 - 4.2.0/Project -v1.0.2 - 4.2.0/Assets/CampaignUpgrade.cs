@@ -11,6 +11,7 @@ public class CampaignUpgrade : MonoBehaviour {
 	public Text theDescription;
 	public List<UpgradesPiece> myUpgrades = new List<UpgradesPiece>();
 	public Text Title;
+	public bool unlocked = true;
 
 	public List<Button> myButtons;
 	public List<Image> myPic;

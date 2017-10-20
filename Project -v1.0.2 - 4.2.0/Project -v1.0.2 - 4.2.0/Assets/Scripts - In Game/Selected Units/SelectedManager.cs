@@ -751,6 +751,11 @@ public class SelectedManager : MonoBehaviour, ISelectedManager
 		Vector3 location = order.OrderLocation;
 		location.y = location.y + 30;
 
+	
+		if (order.Target && order.Target.transform.parent && order.Target.transform.parent.GetComponentInParent<UnitManager> ()) {
+			order.Target = order.Target.transform.parent.gameObject;
+		}
+
 		if (order.OrderType == 1 ) {
 			// MOVE COMMAND
 			if (FogOfWar.current.IsInCompleteFog (location)) {

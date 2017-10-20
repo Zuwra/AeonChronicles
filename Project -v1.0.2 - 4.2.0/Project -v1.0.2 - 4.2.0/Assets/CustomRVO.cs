@@ -194,14 +194,13 @@ public class CustomRVO : IMover {
 			myFogger.move ();
 		}
 		//Debug.Log ("Moving " + dir);
-		try{
 
-		controller.Move (dir);
-		}
-		catch(System.Exception) {
+		if(controller){
+			controller.Move (dir);}
+		else{
 			Debug.Log (this.gameObject +  " is missing its rvocontroller");
 		}
-
+	
 
 		float dist = Vector3.Distance (transform.position, path.vectorPath [currentWaypoint]);
 		if (dist > latestDistance && currentWaypoint < path.vectorPath.Count -1) {

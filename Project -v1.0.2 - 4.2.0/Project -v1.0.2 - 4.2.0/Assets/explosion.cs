@@ -14,7 +14,6 @@ public class explosion : MonoBehaviour {
 	public float maxSize= 5.0f;
 	public float growthRate = 1.0f;
 	private float scale = 1.0f;
-	public float TurretDamageRatio = .5f;
 	public List<Notify> triggers = new List<Notify> ();
 
 	private List<GameObject> hitStuff= new List<GameObject>();
@@ -84,11 +83,9 @@ public class explosion : MonoBehaviour {
 				
 					float total = 0;
 
-					if (stats.isUnitType (UnitTypes.UnitTypeTag.Turret)) {
-						total = stats.TakeDamage (amount*TurretDamageRatio, source, type);
-					} else {
-						total = stats.TakeDamage (amount, source, type);
-					}
+
+					total = stats.TakeDamage (amount, source, type);
+					
 
 					if (mySrcMan) {
 						mySrcMan.myStats.veteranDamage (total);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AreaDamage : MonoBehaviour {
 
 
-	private List<UnitStats> enemies = new List<UnitStats> ();
+	public List<UnitStats> enemies = new List<UnitStats> ();
 
 
 	public DamageTypes.DamageType myType = DamageTypes.DamageType.Regular;
@@ -13,7 +13,6 @@ public class AreaDamage : MonoBehaviour {
 	public GameObject cutEffect;
 
 	public float damage = 5;
-	public float turretRatio = .2f;
 	private AudioSource myAudio;
 	public AudioClip chopSound;
 
@@ -35,17 +34,14 @@ public class AreaDamage : MonoBehaviour {
 			enemies.RemoveAll (item => item == null);
 			foreach (UnitStats s in enemies) {
 
-				if (s.isUnitType (UnitTypes.UnitTypeTag.Turret)) {
-					s.TakeDamage (damage * (turretRatio), this.gameObject.gameObject, myType);
-				} else {
-
+		
 					s.TakeDamage (damage, this.gameObject.gameObject.gameObject, myType);
 					iter++;
 					if (iter == 6) {
 						PopUpMaker.CreateGlobalPopUp (-(damage*2) + "", Color.red, s.gameObject.transform.position);
 						iter = 0;
 					}
-				}
+
 				if (cutEffect) {
 					Instantiate (cutEffect, s.gameObject.transform.position, Quaternion.identity);
 				}

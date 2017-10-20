@@ -20,7 +20,6 @@ public class TextTrigEditor : Editor {
 
 
 		List<string> s = dialog.getVoiceTitleList ();
-		((TextTrigger)target).VoiceLineIndex = EditorGUILayout.Popup("Voice Line: ",((TextTrigger)target).VoiceLineIndex,s.ToArray());
 
 		if (GUILayout.Button ("Add Line")) {
 			if (((TextTrigger)target).VoiceLines.Count == 0) {

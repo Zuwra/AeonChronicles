@@ -70,7 +70,7 @@ public class BuildStructure:  UnitProduction {
 	} 
 	// this only halts construction
 	public void cancel()
-	{//Debug.Log ("Canceling the build");
+	{
 		mySelect.updateCoolDown (0);
 		HD.stopBuilding ();
 		Morphing = false;

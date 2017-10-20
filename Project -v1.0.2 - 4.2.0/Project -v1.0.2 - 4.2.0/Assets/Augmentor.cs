@@ -58,9 +58,9 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		target.GetComponent<UnitManager> ().myStats.addDeathTrigger (this);
 
 		AAP.myAugment = this.gameObject;
-		Vector3 attachSpot = target.transform.position+ AAP.attachPoint;
+		Vector3 attachSpot = target.transform.position+  target.transform.rotation * AAP.attachPoint;
 
-		this.gameObject.transform.position = attachSpot;
+		this.gameObject.transform.position = target.transform.position+  target.transform.rotation * AAP.attachPoint;
 
 
 		MissileArmer armer = attached.GetComponent<MissileArmer> ();
@@ -249,7 +249,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 
 		Vector3 attachSpot = target.transform.position;
 
-		this.gameObject.transform.position = attachSpot;
+		this.gameObject.transform.position =  target.transform.rotation * attachSpot;
 		///myMover = manager.cMover;
 		/// 
 	
@@ -400,14 +400,16 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 	// Right click on a objt/unit
 	public void Interact(Order order)
 	{
+
 		if (!attached) {
 			if (!attached && isValidTarget (order.Target, Vector3.zero)) {
 				manager.UseTargetAbility (order.Target, Vector3.zero, 0, false);
-				//Debug.Log ("Ordered to follow");
+
 				return;
 			}
 		} else {
 			if (isValidTarget (order.Target, Vector3.zero)) {
+	
 				manager.UseTargetAbility (order.Target, Vector3.zero, 0, false);
 			}
 		}
@@ -424,10 +426,10 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 				manager.changeState (new FollowState (order.Target.gameObject, manager),false,order.queued);
 			} else if(!attached && isValidTarget(order.Target, Vector3.zero)){
 				manager.UseTargetAbility (order.Target, Vector3.zero, 0, false);
-					
+
 				}
 			} else {
-			
+
 			manager.changeState (new FollowState (order.Target.gameObject,  manager),false,order.queued);
 			}
 
@@ -474,6 +476,7 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (order.Target == this.gameObject) {
 			return;
 		}
+
 		if (!order.Target) {
 		
 			return;}
@@ -481,22 +484,30 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		if (!attached) {
 			if (isValidTarget (order.Target, Vector3.zero)) {
 				manager.UseTargetAbility (order.Target, Vector3.zero, 0, order.queued);
-				//Debug.Log ("Ordered to follow");
+
 			} else {
 				manager.changeState (new MoveState (order.OrderLocation, manager, true), false, order.queued);
+	
 				if (target) {
 					target = null;
 				}
 			}
 		} else {
 		
-
-			if (isValidTarget (order.Target, Vector3.zero)) {
-				manager.UseTargetAbility (order.Target, Vector3.zero, 0, order.queued);
-				//Debug.Log ("Ordered to follow");
+			int count = 0; // The uagmentor will only target a thing if it is attached and if it is the only uagmentor selected
+			foreach (RTSObject obj in SelectedManager.main.ActiveObjectList()) {
+				if (obj.getUnitManager ().UnitName == "Augmentor") {
+					count++;
+					if (count > 1) {
+						return;}
+				}
 			}
 
+				if (isValidTarget (order.Target, Vector3.zero)) {
 
+					manager.UseTargetAbility (order.Target, Vector3.zero, 0, order.queued);
+					//Debug.Log ("Ordered to follow");
+				}
 			}
 
 		}

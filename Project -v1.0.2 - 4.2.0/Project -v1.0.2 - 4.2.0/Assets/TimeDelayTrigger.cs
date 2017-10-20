@@ -19,13 +19,11 @@ public class TimeDelayTrigger : MonoBehaviour {
 	public List<SceneEventTrigger> myTriggers;
 	// Use this for initialization
 	void Start () {
-		
 		Invoke ("DelayedUpdate", timeDelay);
 	}
 
-	// Update is called once per frame
+
 	void DelayedUpdate () {
-		//Debug.Log ("Firing");
 			StartCoroutine (Fire ());
 	}
 

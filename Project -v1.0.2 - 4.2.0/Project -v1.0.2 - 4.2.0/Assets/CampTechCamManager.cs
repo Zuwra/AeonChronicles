@@ -69,6 +69,16 @@ public class CampTechCamManager : MonoBehaviour {
 			if (to.levelAcquired > n) {
 				//to.HUD.SetActive (false);
 				to.openButton.SetActive (false);
+				to.HUD.GetComponent<CampaignUpgrade> ().unlocked = false;
+				to.openButton.GetComponent<Button> ().enabled = false;
+
+				foreach(Transform t in to.HUD.transform)
+				{
+					if (t.GetComponent<CampaignUpgrade> ()) {
+						t.GetComponent<CampaignUpgrade> ().unlocked = false;
+					}
+				}
+				to.openButton.GetComponent<Button> ().enabled = false;
 				to.CamFocus.SetActive (false);
 			}
 		}

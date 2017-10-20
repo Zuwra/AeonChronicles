@@ -10,7 +10,7 @@ public class TrueUpgradeManager : MonoBehaviour {
 	public List<CampaignUpgrade> CampUpRef;
 	public List<CampaignUpgrade.UpgradesPiece> myUpgrades= new List<CampaignUpgrade.UpgradesPiece>();
 	// Use this for initialization
-	public GameObject UnAppliedUpgrade;
+	public List<GameObject> UnAppliedUpgrade;
 
 
 	public void Unused()
@@ -19,13 +19,16 @@ public class TrueUpgradeManager : MonoBehaviour {
 		bool unUsed = false;
 
 		foreach (CampaignUpgrade upgrade in CampUpRef) {
-			if (upgrade.myUpgrades.Count > 1 && upgrade.currentIndex == 0 && upgrade.gameObject.activeInHierarchy) {
+			if (upgrade.myUpgrades.Count > 1 && upgrade.currentIndex == 0 && upgrade.unlocked) {
+		
 				unUsed = true;
 				break;
 			}
-		}
 
-		UnAppliedUpgrade.SetActive (unUsed);
+		}
+		foreach (GameObject obj in UnAppliedUpgrade) {
+			obj.SetActive (unUsed);
+		}
 	}
 
 	void OnEnable()

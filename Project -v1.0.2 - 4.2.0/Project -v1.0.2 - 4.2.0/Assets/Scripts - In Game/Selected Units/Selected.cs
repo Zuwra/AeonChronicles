@@ -267,8 +267,9 @@ public class Selected : MonoBehaviour {
 				myLine.enabled = true;
 			}
 
-			foreach (Transform obj in this.transform) {
 
+			foreach (Transform obj in this.transform) {
+				
 				obj.SendMessage ("setSelect", SendMessageOptions.DontRequireReceiver);
 			}
 		}
@@ -285,7 +286,7 @@ public class Selected : MonoBehaviour {
 
 
 		while (tempSelectTime > Time.time) {
-
+			
 			if (myLine && RallyUnit) {
 				myLine.SetPositions (new Vector3[]{ this.gameObject.transform.position, RallyUnit.transform.position });
 				RallyPoint.transform.position = RallyUnit.transform.position;
@@ -492,6 +493,11 @@ public class Selected : MonoBehaviour {
 			if (myStats.MaxEnergy > 0) {
 				energySlider.gameObject.SetActive (false);
 			}
+		}
+
+		foreach (Transform obj in this.transform) {
+
+			obj.SendMessage ("setDeSelect", SendMessageOptions.DontRequireReceiver);
 		}
 
 	}

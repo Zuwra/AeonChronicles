@@ -17,9 +17,7 @@ using UnityEditor;
 			((dialogManager)target).VoiceLines.Insert (n, new DialogLine ());
 
 			foreach (TextTrigger trig in GameObject.FindObjectsOfType<TextTrigger>()) {
-				if (trig.VoiceLineIndex > n) {
-					trig.VoiceLineIndex++;
-				}
+	
 
 				for (int i = 0; i < trig.VoiceLines.Count; i++) {
 					if (trig.VoiceLines [i] > n) {
@@ -35,9 +33,7 @@ using UnityEditor;
 			((dialogManager)target).VoiceLines.RemoveAt(n);
 
 			foreach (TextTrigger trig in GameObject.FindObjectsOfType<TextTrigger>()) {
-				if (trig.VoiceLineIndex > n) {
-					trig.VoiceLineIndex--;
-				}
+		
 
 				for (int i = 0; i < trig.VoiceLines.Count; i++) {
 					if (trig.VoiceLines [i] > n) {

@@ -14,13 +14,11 @@ public class APMCounter : MonoBehaviour {
 	private float nextActionTime;
 	public int totalActions;
 
-	int targetFrameRate;
 	// Use this for initialization
 	void Start () {
 		Application.targetFrameRate = 150;
 		nextActionTime = Time.time + 3;
 
-		targetFrameRate = Application.targetFrameRate;
 	}
 
 	// Update is called once per frame

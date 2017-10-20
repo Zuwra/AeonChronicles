@@ -11,11 +11,8 @@ public class AugmentAttachPoint : MonoBehaviour {
 
 	public void OnDrawGizmos()
 	{if (showPoint) {
-
-
-
-			Gizmos.DrawSphere (attachPoint +this.gameObject.transform.position, 1.5f);
-
+			Gizmos.color = Color.green;
+			Gizmos.DrawSphere (transform.rotation * attachPoint + transform.position, 1.5f);
 
 		}
 	}

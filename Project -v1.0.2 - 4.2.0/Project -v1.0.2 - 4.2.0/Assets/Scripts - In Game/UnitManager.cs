@@ -624,21 +624,33 @@ public class UnitManager : Unit,IOrderable{
 
 
 	public void animMove()
-	{if (myAnim) {
-			myAnim.SetInteger ("State", 2);
+	{if (myAnim ) {
+			foreach (AnimatorControllerParameter parem in myAnim.parameters) {
+				if (parem.name == "State") {
+					myAnim.SetInteger ("State", 2);
+				}
+			}
 		}
 	}
 
 	public void animAttack()
-	{if (myAnim) {
-		//	Debug.Log ("Attcking + "+ this.gameObject);
-			myAnim.SetInteger ("State", 3);
+	{
+		if (myAnim ) {
+			foreach (AnimatorControllerParameter parem in myAnim.parameters) {
+				if (parem.name == "State") {
+					myAnim.SetInteger ("State", 3);
+				}
+			}
 		}
 	}
 
 	public void animStop()
 	{if (myAnim) {
-			myAnim.SetInteger ("State", 1);
+				foreach (AnimatorControllerParameter parem in myAnim.parameters) {
+					if (parem.name == "State") {
+						myAnim.SetInteger ("State", 1);
+					}
+				}
 		}
 	}
 

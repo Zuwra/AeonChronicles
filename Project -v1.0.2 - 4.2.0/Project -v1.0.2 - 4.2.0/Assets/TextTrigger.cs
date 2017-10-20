@@ -14,8 +14,6 @@ public class TextTrigger : SceneEventTrigger {
 	[HideInInspector]
 	public List<int> VoiceLines = new List<int>();
 
-	[Tooltip("Index in the DialogManager, becareful not to move things around.")]
-	public int VoiceLineIndex;
 
 	[Tooltip("Length of Cutsccene, Set this to 0 so it wont steal the camera, cutscene length not implemented yet")]
 
@@ -63,19 +61,14 @@ public class TextTrigger : SceneEventTrigger {
 			if (!dialogue) {
 				
 				InstructionHelperManager.instance.addBUtton (text, duration, myPic);
-				//UIHighLight.main.highLight (null, 0);
+
 			}else {
 
-				//	Debug.Log ("Triggering from " + this.gameObject.name);
-				if (VoiceLines.Count > 0) {
 					foreach (int i in VoiceLines) {
 						dialogManager.instance.playLine (i);
 					}
 
-				} else {
-					Debug.Log ("Only one");
-					dialogManager.instance.playLine (VoiceLineIndex);
-				}
+			
 				//ExpositionDisplayer.instance.displayText (text, duration, sound, .93f, myPic,Priority);
 				if (stealCamera > 0) {
 					MainCamera.main.setCutScene (this.gameObject.transform.position, 120);

@@ -15,13 +15,13 @@ public abstract class  UnitState  {
 		switch(type){
 		case StateType.Default:
 			return new DefaultState ();
-			break;
+
 		case StateType.HoldGround:
 			return new HoldState (manager);
-			break;
+
 		case StateType.Turret:
 			return new turretState (manager);
-			break;
+
 
 		}
 		return new DefaultState ();
