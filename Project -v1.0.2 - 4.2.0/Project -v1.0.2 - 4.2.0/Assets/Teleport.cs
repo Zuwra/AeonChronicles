@@ -11,10 +11,7 @@ public class Teleport :  TargetAbility {
 		myType = type.target;
 	}
 
-	// Update is called once per frame
-	void Update () {
 
-	}
 
 	override
 	public continueOrder canActivate(bool showError){
@@ -61,7 +58,7 @@ public class Teleport :  TargetAbility {
 			this.gameObject.transform.position = location+ Vector3.up *3;
 		}
 
-		GetComponent<FogOfWarUnit> ().move ();
+		GetComponent<FogOfWarUnit> ().AutoUpdate ();
 		return true;
 
 	}
@@ -93,7 +90,7 @@ public class Teleport :  TargetAbility {
 			}
 		}
 
-		GetComponent<FogOfWarUnit> ().move ();
+		GetComponent<FogOfWarUnit> ().AutoUpdate ();
 
 
 	}

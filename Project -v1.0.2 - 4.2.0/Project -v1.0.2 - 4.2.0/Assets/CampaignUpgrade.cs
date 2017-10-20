@@ -148,7 +148,9 @@ public class CampaignUpgrade : MonoBehaviour {
 
 	void OnDisable()
 	{
-		GameObject.FindObjectOfType<TrueUpgradeManager> ().Unused ();
+		if (TrueUpgradeManager.instance) {
+			TrueUpgradeManager.instance.Unused ();
+		}
 
 	}
 

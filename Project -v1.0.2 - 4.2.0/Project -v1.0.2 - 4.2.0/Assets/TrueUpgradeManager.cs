@@ -12,6 +12,12 @@ public class TrueUpgradeManager : MonoBehaviour {
 	// Use this for initialization
 	public List<GameObject> UnAppliedUpgrade;
 
+	public static TrueUpgradeManager instance;
+
+	void Awake()
+	{instance = this;
+		
+	}
 
 	public void Unused()
 	{
@@ -27,7 +33,9 @@ public class TrueUpgradeManager : MonoBehaviour {
 
 		}
 		foreach (GameObject obj in UnAppliedUpgrade) {
-			obj.SetActive (unUsed);
+			if (obj) {
+				obj.SetActive (unUsed);
+			}
 		}
 	}
 

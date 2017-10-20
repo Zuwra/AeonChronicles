@@ -14,7 +14,8 @@ public class ObjectiveManager : MonoBehaviour {
 	private Dictionary<Objective, GameObject> bonusObjectives = new Dictionary<Objective, GameObject> ();
 
 	public Text bonusTitle;
-
+	public Text mainTitle;
+	public GameObject highlighter;
 
 	public static ObjectiveManager instance;
 
@@ -24,6 +25,7 @@ public class ObjectiveManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		instance = this;
+		mainTitle.gameObject.SetActive (false);
 	}
 
 
@@ -59,7 +61,8 @@ public class ObjectiveManager : MonoBehaviour {
 
 	public void setObjective(Objective input)
 	{//Debug.Log ("adding objective");
-
+		mainTitle.gameObject.SetActive (true);
+		highlighter.SetActive (true);
 		GameObject obj = (GameObject)Instantiate (ObjectiveText, this.transform);
 
 		obj.transform.SetAsFirstSibling ();

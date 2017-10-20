@@ -10,6 +10,7 @@ public class bunnyManager : MonoBehaviour {
 	public int maxAmount;
 
 	public Image myPanel;
+	public Slider mySlide;
 
 	Color green = new Color (0, 100, 0);
 	Color red = new Color (120, 0, 0);
@@ -60,6 +61,7 @@ public class bunnyManager : MonoBehaviour {
 			}
 		}
 
+		mySlide.value = (float)currAmount / (float)maxAmount;
 
 		if (currAmount > maxAmount * .85) {
 			flash = true;

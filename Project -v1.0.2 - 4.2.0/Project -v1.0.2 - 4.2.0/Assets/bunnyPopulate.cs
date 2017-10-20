@@ -19,7 +19,7 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 	// Use this for initialization
 	void Start () {
 
-		repopulateTime +=  (20 - LevelData.getDifficulty () * 10);
+		repopulateTime +=  (37 - LevelData.getDifficulty () * 10);
 
 		mymanager = GetComponent<UnitManager> ();
 		bunnyMan =	GameObject.FindObjectOfType<bunnyManager> ();
@@ -40,7 +40,7 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 	void BunnyUpdate () {
 
 	
-			Vector3 hitzone = this.transform.position;
+		Vector3 hitzone = this.transform.position + Vector3.up *.7f;
 			float radius = Random.Range (6, 20);
 			float angle = Random.Range (0, 360);
 

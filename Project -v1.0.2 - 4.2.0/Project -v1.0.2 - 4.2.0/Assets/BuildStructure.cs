@@ -24,15 +24,16 @@ public class BuildStructure:  UnitProduction {
 	void Awake()
 	{audioSrc = GetComponent<AudioSource> ();
 		myType = type.building;
+		buildMan = GetComponent<BuildManager> ();
+		myManager = GetComponent<UnitManager> ();
+
+		mySelect = GetComponent<Selected> ();
 	}
 
 
 	// Use this for initialization
 	void Start () {
-		buildMan = GetComponent<BuildManager> ();
-		myManager = this.gameObject.GetComponent<UnitManager> ();
 
-		mySelect = GetComponent<Selected> ();
 	
 		racer = GameObject.FindObjectOfType<GameManager>().activePlayer;
 		HD = GetComponentInChildren<HealthDisplay>();

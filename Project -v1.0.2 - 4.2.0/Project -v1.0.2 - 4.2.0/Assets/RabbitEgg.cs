@@ -75,7 +75,7 @@ public class RabbitEgg : MonoBehaviour,Modifier  {
 	void BurstForth()
 	{
 		if (ToSpawn) {
-			Instantiate (ToSpawn, transform.position+ Vector3.up *.5f, Quaternion.identity);
+			Instantiate (ToSpawn, transform.position+ Vector3.up*2 , Quaternion.identity);
 		}
 		if (hatchEffect) {
 			Instantiate (hatchEffect, transform.position + Vector3.up *.5f, Quaternion.identity);
