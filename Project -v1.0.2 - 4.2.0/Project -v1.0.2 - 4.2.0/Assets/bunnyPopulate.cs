@@ -19,7 +19,7 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 	// Use this for initialization
 	void Start () {
 
-		repopulateTime +=  (37 - LevelData.getDifficulty () * 10);
+		repopulateTime +=  (43 - LevelData.getDifficulty () * 10);
 
 		mymanager = GetComponent<UnitManager> ();
 		bunnyMan =	GameObject.FindObjectOfType<bunnyManager> ();

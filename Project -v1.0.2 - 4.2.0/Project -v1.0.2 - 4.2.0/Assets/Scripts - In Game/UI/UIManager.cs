@@ -101,11 +101,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 	// Update is called once per frame
 	void Update () 
 	{
-
+		clickOverUI = isPointerOverUIObject ();
 
 		if (Input.GetMouseButtonDown (1)) {
 
-			if (!EventSystem.current.IsPointerOverGameObject ()) 
+			if (!clickOverUI) 
 			{
 				rightClickOrigin = Input.mousePosition;
 				//lineRender.enabled = true;
@@ -275,7 +275,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		//	Debug.Log ("hit something " + hit.collider.gameObject + "   "+this.gameObject.name);
 			currentObject = hit.collider.gameObject;
 
-			if (!EventSystem.current.IsPointerOverGameObject ()) {
+			if (!clickOverUI) {
 				
 			
 				switch (hit.collider.gameObject.layer) {
@@ -368,7 +368,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 		//Get current location and place building on that location
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
-		if (!EventSystem.current.IsPointerOverGameObject ()) {
+		if (!clickOverUI) {
 			if (Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8)) {
 
 				Vector3 spot = hit.point;
@@ -595,7 +595,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		case Mode.targetAbility:
 			
-			if (!EventSystem.current.IsPointerOverGameObject () ) {
+			if (!clickOverUI) {
 				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			
 
@@ -637,7 +637,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 
 		case Mode.globalAbility:
 
-			if (!EventSystem.current.IsPointerOverGameObject ()) {
+			if (!clickOverUI) {
 				ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		
 				bool hitSomethingB;
@@ -673,11 +673,11 @@ public class UIManager : MonoBehaviour, IUIManager {
 				break;
 			
 		case Mode.PlaceBuilding:
-			if (!EventSystem.current.IsPointerOverGameObject ()) {
+			if (!clickOverUI) {
 			if (tempBuildingPlacer.GetComponent<BuildingPlacer> ().canBuild ()) {
 			
 
-					if (!EventSystem.current.IsPointerOverGameObject ()) {
+					if (!clickOverUI) {
 						ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
 						if (Physics.Raycast (ray, out hit, Mathf.Infinity, 1 << 8)) {
@@ -961,10 +961,6 @@ public class UIManager : MonoBehaviour, IUIManager {
 		tempBuildingPlacer .transform.SetParent (m_ObjectBeingPlaced.transform);
 		p.GetComponent<SphereCollider> ().enabled = true;
 		StartCoroutine (delayBuildDeath (m_ObjectBeingPlaced));
-		//raceManager.UnitDying (m_ObjectBeingPlaced, null,false);
-		//buildingPlacer.GetComponent<BuildingPlacer> ().reset (m_ObjectBeingPlaced, goodPlacement, badPlacement);
-		//Debug.Log(" Object to be place " + m_ObjectBeingPlaced);
-	
 	
 	}
 	IEnumerator delayBuildDeath(GameObject m_objectBeingPlaced)

@@ -77,7 +77,7 @@ public class TunnelSpawner : Objective,Modifier{
 		description = rawObjectText + "  " + killCount +"/"+bonusKillAmount;
 
 		VictoryTrigger.instance.UpdateObjective (this);
-		if (killCount >= bonusKillAmount) {
+		if (!completed && killCount >= bonusKillAmount ) {
 			complete ();
 		}
 		return num;

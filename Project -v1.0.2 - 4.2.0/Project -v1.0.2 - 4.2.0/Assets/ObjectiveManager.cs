@@ -43,6 +43,7 @@ public class ObjectiveManager : MonoBehaviour {
 	public void setBonusObjectives(Objective input)
 	{bonusTitle.gameObject.SetActive (true);
 		GameObject obj = (GameObject)Instantiate (ObjectiveText, this.transform);
+		highlighter.SetActive (true);
 		obj.GetComponentInChildren<Text> ().text ="" +  input.description;
 
 		if (!bonusObjectives.ContainsKey (input)) {

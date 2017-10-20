@@ -35,7 +35,7 @@ public class SurviveVictory : Objective {
 	{
 		CancelInvoke ("WaitFunction");
 		pulsesUsed++;
-		Invoke ("WaitFunction", SurvivalTime + (pulsesUsed * 15) - Time.timeSinceLevelLoad - startTime);
+		Invoke ("WaitFunction", SurvivalTime + (pulsesUsed * 10) - Time.timeSinceLevelLoad);
 	}
 
 	void WaitFunction()

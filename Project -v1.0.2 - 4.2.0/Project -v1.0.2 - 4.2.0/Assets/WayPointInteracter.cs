@@ -33,7 +33,7 @@ public class WayPointInteracter : StandardInteract {
 
 
 	void giveOrder()
-	{Debug.Log ("Giving new order " + this.gameObject);
+	{
 		WayPoint temp = next;
 		next = next.nextPoint (previous);
 		previous = temp;
@@ -43,6 +43,13 @@ public class WayPointInteracter : StandardInteract {
 		nextPoint.z += UnityEngine.Random.Range (-randomRadius,randomRadius);
 		myManager.GiveOrder (Orders.CreateMoveOrder (nextPoint));
 		
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		if (hit.gameObject.GetComponent<WayPointInteracter> ()) {
+			giveOrder ();
+		}
 	}
 
 }

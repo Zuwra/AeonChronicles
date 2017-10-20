@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class bunnyManager : MonoBehaviour {
+public class bunnyManager : Objective {
 
 	public Text bunnyCount;
 	public int currAmount;

@@ -42,12 +42,13 @@ public class ChainWhip : MonoBehaviour {
 					manage.myStats.TakeDamage (maxDamage * (distance / maxRadius), myManager.gameObject, DamageTypes.DamageType.Regular);
 					SoundManager.PlayOneShotSound(audioSource,hitSound);
 		
+					/*
 					if (distance < transform.localScale.x / 2) {
 						breakCount++;
 						if (breakCount > 3) {
 							halfChain ();
 						}
-					}
+					}*/
 				}
 			}
 		}

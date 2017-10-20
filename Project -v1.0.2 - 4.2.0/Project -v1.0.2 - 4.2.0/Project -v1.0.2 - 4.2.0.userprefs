@@ -1,20 +1,22 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ObjectiveManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TunnelSpawner.cs">
     <Files>
       <File FileName="Assets\Scripts - In Game\UnitManager.cs" Line="1" Column="1" />
       <File FileName="Assets\HealthDisplay.cs" Line="1" Column="1" />
-      <File FileName="Assets\TrueUpgradeManager.cs" Line="22" Column="22" />
-      <File FileName="Assets\CampaignUpgrade.cs" Line="155" Column="3" />
-      <File FileName="Assets\RabbitEgg.cs" Line="73" Column="2" />
-      <File FileName="Assets\ResearchUpgrade.cs" Line="28" Column="40" />
+      <File FileName="Assets\TrueUpgradeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\CampaignUpgrade.cs" Line="1" Column="1" />
+      <File FileName="Assets\RabbitEgg.cs" Line="1" Column="1" />
+      <File FileName="Assets\ResearchUpgrade.cs" Line="1" Column="1" />
       <File FileName="Assets\RepairTurret.cs" Line="1" Column="1" />
-      <File FileName="Assets\bunnyPopulate.cs" Line="23" Column="3" />
-      <File FileName="Assets\BuildStructure.cs" Line="30" Column="40" />
-      <File FileName="Assets\Teleport.cs" Line="93" Column="47" />
-      <File FileName="Assets\bunnyManager.cs" Line="67" Column="17" />
-      <File FileName="Assets\FogOfWar\FogOfWarUnit.cs" Line="35" Column="5" />
-      <File FileName="Assets\ObjectiveManager.cs" Line="63" Column="36" />
+      <File FileName="Assets\bunnyPopulate.cs" Line="24" Column="27" />
+      <File FileName="Assets\BuildStructure.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts - In Game\UI\UIManager.cs" Line="106" Column="38" />
+      <File FileName="Assets\ChainWhip.cs" Line="49" Column="21" />
+      <File FileName="Assets\EarthQuake.cs" Line="81" Column="20" />
+      <File FileName="Assets\SurviveVictory.cs" Line="34" Column="29" />
+      <File FileName="Assets\TunnelSpawner.cs" Line="75" Column="3" />
+      <File FileName="Assets\Objective.cs" Line="38" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
