@@ -102,11 +102,13 @@ public class PlasmaDischarge : Ability {
 		float totalDamage = 0;
 		foreach(UnitManager obj in myManager.enemies)
 		{
-			UnitStats stat = obj.GetComponent<UnitStats> ();
-			totalDamage += stat.TakeDamage ((duration -  (timer -Time.time )) * damagePerSecond, this.gameObject, DamageTypes.DamageType.Regular);
-			PopUpMaker.CreateGlobalPopUp ("-" + (int)((duration - (timer - Time.time)) * damagePerSecond), Color.red, obj.transform.position);
-			if (explodeEffect) {
-				Instantiate (explodeEffect, obj.transform.position, Quaternion.identity);
+			if (obj) {
+				UnitStats stat = obj.GetComponent<UnitStats> ();
+				totalDamage += stat.TakeDamage ((duration - (timer - Time.time)) * damagePerSecond, this.gameObject, DamageTypes.DamageType.Regular);
+				PopUpMaker.CreateGlobalPopUp ("-" + (int)((duration - (timer - Time.time)) * damagePerSecond), Color.red, obj.transform.position);
+				if (explodeEffect) {
+					Instantiate (explodeEffect, obj.transform.position, Quaternion.identity);
+				}
 			}
 		
 		}

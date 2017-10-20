@@ -75,10 +75,10 @@ public class RabbitEgg : MonoBehaviour,Modifier  {
 	void BurstForth()
 	{
 		if (ToSpawn) {
-			Instantiate (ToSpawn, transform.position, Quaternion.identity);
+			Instantiate (ToSpawn, transform.position+ Vector3.up *.5f, Quaternion.identity);
 		}
 		if (hatchEffect) {
-			Instantiate (hatchEffect, transform.position, Quaternion.identity);
+			Instantiate (hatchEffect, transform.position + Vector3.up *.5f, Quaternion.identity);
 		}
 
 		GetComponent<UnitManager> ().myStats.kill (null);

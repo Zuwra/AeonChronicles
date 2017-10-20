@@ -55,14 +55,17 @@ public class RepairTurret : Ability, Modifier{
 		
 			if(target &&  Vector3.Distance (target.transform.position, this.gameObject.transform.position) < 40)
 			{
-				if (mymanager.cMover) {
-					mymanager.cMover.stop ();
+				if (mymanager.myWeapon.Count == 0) {
+					if (mymanager.cMover) {
+						mymanager.cMover.stop ();
+					}
+					mymanager.changeState (new DefaultState ());
 				}
-				mymanager.changeState (new DefaultState());
+		
 				droneScript.setTarget (target);
 				DroneAway = true;
 				drone.transform.SetParent (null);
-
+				
 			}
 
 			else if (!target || (Vector3.Distance (target.transform.position, this.gameObject.transform.position) > 65 && !commandRepair)) {
@@ -73,14 +76,13 @@ public class RepairTurret : Ability, Modifier{
 					target = findHurtAlly ();
 				
 					commandRepair = false;
-					if (target) {
+					if (target && target != mymanager.gameObject) {
 				
 						mymanager.changeState (new FollowState (target, null));
-							
-
+					
 					} 
 				} 
-			} else if (target){
+			} else if (target&& target != mymanager.gameObject){
 				
 					mymanager.changeState (new FollowState (target, null));
 
@@ -92,13 +94,15 @@ public class RepairTurret : Ability, Modifier{
 		if (target && !DroneAway) {
 			
 				if (Vector3.Distance (this.gameObject.transform.position, target.transform.position) < 40) {
-				if (mymanager.cMover) {
-					mymanager.cMover.stop ();
+				if (mymanager.myWeapon.Count == 0) {
+					if (mymanager.cMover) {
+						mymanager.cMover.stop ();
+					}
+					mymanager.changeState (new DefaultState ());
 				}
-					mymanager.changeState (new DefaultState());
-					droneScript.setTarget (target);
-					DroneAway = true;
-					drone.transform.SetParent (null);
+				droneScript.setTarget (target);
+				DroneAway = true;
+				drone.transform.SetParent (null);
 				//Debug.Log ("Stopping " + mymanager);
 			
 
@@ -118,7 +122,9 @@ public class RepairTurret : Ability, Modifier{
 				return;
 			}
 		}
-		mymanager.changeState (new DefaultState());
+		if (mymanager.myWeapon.Count == 0) {
+			mymanager.changeState (new DefaultState ());
+		}
 	}
 
 
@@ -137,8 +143,10 @@ public class RepairTurret : Ability, Modifier{
 		target = obj;
 		DroneAway = false;
 		if (Vector3.Distance (target.transform.position, this.gameObject.transform.position) < 40) {
-			mymanager.cMover.stop ();
-			mymanager.changeState (new DefaultState ());
+			if (mymanager.myWeapon.Count == 0) {
+				mymanager.cMover.stop ();
+				mymanager.changeState (new DefaultState ());
+			}
 			droneScript.setTarget (target);
 			DroneAway = true;
 			drone.transform.SetParent (null);

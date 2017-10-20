@@ -73,9 +73,7 @@ public class DifficultyManager : MonoBehaviour {
 				saw.damage *= (EasyDamage);
 			}
 
-			foreach (bunnyPopulate bp in GameObject.FindObjectsOfType<bunnyPopulate>()) {
-				bp.repopulateTime += 15;
-			}
+		
 
 			foreach (GameObject obj in deleteOnEasy) {
 				Destroy (obj);
@@ -100,9 +98,7 @@ public class DifficultyManager : MonoBehaviour {
 
 			}
 
-			foreach (bunnyPopulate bp in GameObject.FindObjectsOfType<bunnyPopulate>()) {
-				bp.repopulateTime -= 15;
-			}
+
 		
 		}
 	}

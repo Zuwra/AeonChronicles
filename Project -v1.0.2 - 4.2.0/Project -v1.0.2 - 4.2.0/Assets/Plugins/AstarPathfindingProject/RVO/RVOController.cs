@@ -313,7 +313,7 @@ namespace Pathfinding.RVO {
 			realPos.y = adjustedY;
 
 			if (desiredVelocity != Vector3.zero) {
-				if (mask != 0 && Physics.Raycast (realPos + Vector3.up * height * 10f - transform.forward *2.5f, Vector3.down, out hit, 55, mask)) {
+				if (mask != 0 && Physics.Raycast (realPos + Vector3.up * height * 10f , Vector3.down, out hit, 55, mask)) {
 					//	Debug.Log ("Hitting " + hit.collider);
 					adjustedY = hit.point.y;
 				} else {
@@ -355,18 +355,22 @@ namespace Pathfinding.RVO {
 		//	transform.up = hit.normal;
 
 			if (enableRotation && velocity != Vector3.zero) {
-				
-				transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (velocity), Time.deltaTime * rotationSpeed * Mathf.Min (velocity.magnitude, 0.2f));
-			
-			
-			}
 
-			RaycastHit hitb;
-			if (Physics.Raycast (realPos + Vector3.up * height * 10f + transform.forward *2, Vector3.down, out hitb, 55, mask)) {
+				// THIS CODE IS FOR MOING THE UP VECTOR OF THE UNIT MORE SMOOTHLY
+				//Vector3 up = hit.normal;
+				//RaycastHit hitb;
+				//if (Physics.Raycast (realPos + Vector3.up * height * 10f + transform.forward * 2, Vector3.down, out hitb, 55, mask)) {
+					//up += hitb.normal;
+					//up *= .5f;
+				//}
 
 			
-				transform.rotation = Quaternion.LookRotation (Vector3.Cross (transform.right, (hit.normal + hitb.normal) *.5f));
+				transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (velocity ), Time.deltaTime * rotationSpeed * Mathf.Min (velocity.magnitude, 0.2f));
+			
+				transform.rotation = Quaternion.LookRotation (Vector3.Cross (transform.right, Vector3.Lerp(transform.up, hit.normal,.24f)));
+
 			}
+			
 		}
 
 		private static readonly Color GizmoColor = new Color(240/255f, 213/255f, 30/255f);

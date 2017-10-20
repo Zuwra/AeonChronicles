@@ -18,6 +18,9 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 	bunnyManager bunnyMan;
 	// Use this for initialization
 	void Start () {
+
+		repopulateTime +=  (20 - LevelData.getDifficulty () * 10);
+
 		mymanager = GetComponent<UnitManager> ();
 		bunnyMan =	GameObject.FindObjectOfType<bunnyManager> ();
 		if(bunnyMan){
@@ -51,12 +54,11 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 			
 
 			nextRepopulate = repopulateTime + Random.Range(0,randomSpawnRange);
-			repopulateTime += 5;
+			repopulateTime += 8;
 
 			myStats.HealthRegenPerSec += 1;
 			myStats.Maxhealth += 25;
 			myStats.heal (50);
-			myStats.armor += .5f;
 
 			foreach(IWeapon weap in mymanager.myWeapon)
 			{

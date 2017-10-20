@@ -453,9 +453,10 @@ public class UIManager : MonoBehaviour, IUIManager {
 						m_SelectedManager.DeselectAll ();
 					}
 
-				if (currentObject.GetComponent<UnitManager> ()) {
+
+				if (currentObject.GetComponentInParent<UnitManager> ()) {
 					
-					foreach (UnitManager obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
+					foreach (UnitManager obj in raceManager.getUnitOnScreen(true,currentObject.GetComponentInParent<UnitManager>().UnitName)) {
 
 			
 						m_SelectedManager.AddObject (obj);
@@ -524,7 +525,7 @@ public class UIManager : MonoBehaviour, IUIManager {
 					if (IsControlDown ) {
 
 					
-						foreach (UnitManager obj in raceManager.getUnitOnScreen(true,currentObject.GetComponent<UnitManager>().UnitName)) {
+						foreach (UnitManager obj in raceManager.getUnitOnScreen(true,currentObject.GetComponentInParent<UnitManager>().UnitName)) {
 							if (!Input.GetKey (KeyCode.LeftAlt)) {
 								m_SelectedManager.AddObject (obj);
 							} else {
@@ -694,12 +695,9 @@ public class UIManager : MonoBehaviour, IUIManager {
 							m_ObjectBeingPlaced = null;
 							SwitchToModePlacingBuilding (thingToBeBuilt);
 						}
-
 					}
 				}
-
 			}
-
 				break;
 			}
 		

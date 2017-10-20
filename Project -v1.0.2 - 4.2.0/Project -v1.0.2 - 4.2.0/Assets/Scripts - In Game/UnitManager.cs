@@ -513,10 +513,6 @@ public class UnitManager : Unit,IOrderable{
 
 	public void changeState(UnitState nextState)
 	{
-		if (gameObject.name.Contains ("Test")) {
-		//	Debug.Log ("my state is going to " + nextState);
-		}
-
 		changeState (nextState, false, false);
 	}
 
