@@ -18,11 +18,13 @@ public class Pillage : MonoBehaviour , Notify {
 
 	public float trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
 	{
-		//myStats.heal (damage * percentage);
-		if (showPopup) {
-			PopUpMaker.CreateGlobalPopUp ("+" + +moneyPerAttack, Color.white, this.gameObject.transform.position);
+		if (!target.myStats.isUnitType (UnitTypes.UnitTypeTag.Invulnerable)) {
+			//myStats.heal (damage * percentage);
+			if (showPopup) {
+				PopUpMaker.CreateGlobalPopUp ("+" + +moneyPerAttack, Color.white, this.gameObject.transform.position);
+			}
+			GameManager.main.activePlayer.updateResources (moneyPerAttack, 0, true);
 		}
-		GameManager.main.activePlayer.updateResources (moneyPerAttack,0, true);
 		//popper.CreatePopUp ("+" + (int)(damage * percentage), Color.gray);
 		return damage;
 	}
