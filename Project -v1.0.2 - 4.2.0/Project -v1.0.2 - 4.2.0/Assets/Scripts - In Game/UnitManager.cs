@@ -560,7 +560,6 @@ public class UnitManager : Unit,IOrderable{
 			
 				myState.myManager = this;
 				myState.initialize ();
-				checkIdleWorker ();
 				return;
 
 			}  
@@ -600,7 +599,6 @@ public class UnitManager : Unit,IOrderable{
 			myState.initialize ();
 		}
 	
-		checkIdleWorker ();
 
 	}
 
@@ -660,13 +658,6 @@ public class UnitManager : Unit,IOrderable{
 		return this;
 	}
 
-
-	public void checkIdleWorker()
-	{
-		if (myStats.isUnitType (UnitTypes.UnitTypeTag.Worker)) {
-			FButtonManager.main.changeWorkers ();
-		}
-	}
 
 
 	// return -1 if it is not in range, else pass back the index of the weapon that is in range

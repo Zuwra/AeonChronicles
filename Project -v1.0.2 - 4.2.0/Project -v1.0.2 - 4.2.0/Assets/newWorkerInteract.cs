@@ -58,7 +58,16 @@ public class newWorkerInteract :  Ability, Iinteract {
 			}
 		}
 
+		StartCoroutine (checkIdle());
+
 		return s;
+	}
+
+	IEnumerator checkIdle()
+	{
+		yield return null;
+		FButtonManager.main.changeWorkers ();
+		
 	}
 
 	IEnumerator autocastReturn()

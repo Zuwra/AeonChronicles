@@ -34,8 +34,7 @@ public class LevelIntroButton : MonoBehaviour {
 			completedPic.GetComponent<UIAddons.PulseEffect> ().isPulsing = true;
 		} else {
 			MissionMapManager mapper =  GameObject.FindObjectOfType<MissionMapManager> ();
-
-			completedPic.sprite = mapper.DifficultyPics [PlayerPrefs.GetInt ("L" + LevelIndex + "Dif", 0)];
+			completedPic.sprite = mapper.DifficultyPics [Mathf.Max( PlayerPrefs.GetInt ("L" + LevelIndex + "Dif", 0), 0)];
 		
 		}
 		if (LevelIndex == 0) {
