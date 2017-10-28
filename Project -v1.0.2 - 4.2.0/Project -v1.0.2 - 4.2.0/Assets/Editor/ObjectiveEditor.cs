@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class ObjectiveEditor : MonoBehaviour {
+[CustomEditor(typeof(Objective))]
+public class ObjectiveEditor :Editor{
 
-	// Use this for initialization
-	void Start () {
-		
+
+	public override void OnInspectorGUI()
+	{
+		DrawDefaultInspector ();
+		if (GUILayout.Button ("Start Objective")) {
+			((Objective)target).BeginObjective ();
+
+		}
+
+		if (GUILayout.Button ("Finish Objective")) {
+			((Objective)target).complete();
+
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }
+

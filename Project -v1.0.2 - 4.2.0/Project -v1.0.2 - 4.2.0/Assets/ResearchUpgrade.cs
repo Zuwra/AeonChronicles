@@ -203,7 +203,9 @@ public class ResearchUpgrade: UnitProduction, Upgradable{
 				if (requiresAddon && hasAddon || !requiresAddon) {
 					this.active = true;
 				}
-				if (mySelect.IsSelected) {
+		
+
+				if (mySelect && mySelect.IsSelected) {
 					RaceManager.updateActivity();
 				}
 

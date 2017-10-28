@@ -8,7 +8,6 @@ public class StatDisplayer : MonoBehaviour {
 	public GameObject sourceUnit;
 	public Text myText;
 	public Text secondText;
-	UnitManager manager;
 	UnitStats stats;
 	IMover mover;
 	public List<CampaignUpgrade> myCampaigns;
@@ -17,7 +16,7 @@ public class StatDisplayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		myText = GetComponent<Text> ();
-		manager = sourceUnit.GetComponent<UnitManager> ();
+
 		stats = sourceUnit.GetComponent<UnitStats> ();
 		mover = sourceUnit.GetComponent < IMover> ();
 

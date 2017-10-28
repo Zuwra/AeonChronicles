@@ -7,6 +7,7 @@ public class TimedObjective : Objective {
 	public float remainingTime;
 
 	string initialDescript;
+	public bool loseOnComplete = true;
 	// Use this for initialization
 	new void Start () {
 
@@ -35,9 +36,12 @@ public class TimedObjective : Objective {
 		
 		
 		}
-		if (!completed) {
-			VictoryTrigger.instance.Lose ();
-
+		if (loseOnComplete) {
+			if (!completed) {
+				VictoryTrigger.instance.Lose ();
+			}
+		} else {
+			complete ();
 		}
 
 

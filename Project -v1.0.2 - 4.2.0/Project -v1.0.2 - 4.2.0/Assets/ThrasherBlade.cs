@@ -12,7 +12,7 @@ public class ThrasherBlade : Projectile {
 	RaycastHit objecthit;
 
 	Vector3 dir;
-	new void Start()
+	public override void setup()
 	{base.Start ();
 		Origin = this.transform.position;
 		EndTarget = target.transform.position;
@@ -20,11 +20,11 @@ public class ThrasherBlade : Projectile {
 		dir.y = 0;
 
 		lastLocation = target.transform.position -this.gameObject.transform.position ;
-
+		lookAtTarget ();
 		trueROlltime = rollTime;
 	}
 
-	new void Update () {
+	protected override void Update () {
 
 		Vector3 tempDir = dir;
 		//Make sure your the right height above the terrain

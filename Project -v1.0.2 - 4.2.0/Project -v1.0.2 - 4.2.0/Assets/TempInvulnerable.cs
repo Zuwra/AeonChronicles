@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TempInvulnerable : MonoBehaviour, Modifier {
 
-	private List<int> healthList = new List<int> ();
 
 	private float nextActionTime;
 	private UnitStats mystats;

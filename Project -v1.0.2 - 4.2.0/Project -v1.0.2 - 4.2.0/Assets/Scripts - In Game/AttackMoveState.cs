@@ -121,7 +121,7 @@ public class AttackMoveState : UnitState {
 					if (weap.simpleCanAttack (enemy)) {
 						weap.attack (enemy, myManager);
 					} 
-				} else if (weap.minimumRange > 0 ){
+				} else {
 					EnemyTooClose =	!weap.checkMinimumRange (enemy);
 					
 				}
@@ -142,7 +142,8 @@ public class AttackMoveState : UnitState {
 					}
 				}
 
-				bool returned = myManager.cMover.move ();
+				//bool returned = 
+				myManager.cMover.move ();
 				//Debug.Log ("A " +myManager + "  " + myManager.cMover + " 0----" + returned);
 			}
 		} else {

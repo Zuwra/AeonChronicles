@@ -255,7 +255,6 @@ public class UnitStats : MonoBehaviour {
 
 	public float TakeDamage(float amount, GameObject source, DamageTypes.DamageType type)
 	{
-
 		if (!otherTags.Contains (UnitTypes.UnitTypeTag.Invulnerable)) {
 			
 			bool setToZero = false;

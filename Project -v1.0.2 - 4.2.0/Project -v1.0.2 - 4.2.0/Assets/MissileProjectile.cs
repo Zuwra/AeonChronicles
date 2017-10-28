@@ -59,7 +59,9 @@ public class MissileProjectile : Projectile {
 		gameObject.transform.Translate ((Vector3.forward * speed) *40* Time.deltaTime);
 		gameObject.transform.Translate (((gameObject.transform.right * nextX) + (gameObject.transform.up * nextY)) * Time.deltaTime);
 
-		myModel.transform.LookAt (prevPos);
+
+		// FIX THIS!!!!!!!!!!!!!!!!!!!! My Model is no logner a variable in Projectile
+		//myModel.transform.LookAt (prevPos);
 
 
 		//myModel.transform.LookAt (target.transform.position);

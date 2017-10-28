@@ -84,6 +84,8 @@ public class ProxySpawner :VisionTrigger {
 
 
 
+
+
 	IEnumerator ReCharge()
 	{
 		while (currentCharges < waveCount) {

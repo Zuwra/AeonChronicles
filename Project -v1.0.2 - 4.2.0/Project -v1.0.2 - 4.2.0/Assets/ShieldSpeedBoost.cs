@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShieldSpeedBoost : Buff,Modifier {
+public class ShieldSpeedBoost : Buff,Modifier,Notify {
 	
 
 	public float speedBoost = .5f;
@@ -9,7 +9,7 @@ public class ShieldSpeedBoost : Buff,Modifier {
 	UnitStats myStats;
 	IMover myMover;
 
-	private bool ShieldsDown = false;
+	//private bool ShieldsDown = false;
 	public MultiShotParticle BoostEffect;
 	UnitManager mymanager;
 	private Selected select;
@@ -39,21 +39,62 @@ public class ShieldSpeedBoost : Buff,Modifier {
 		select = GetComponent<Selected> ();
 		mymanager = GetComponent<UnitManager> ();
 		myStats = GetComponent<UnitStats> ();
-		myStats.addEnergyModifier(this);
 
+		myStats.addModifier (this);// ADDED
+		//myStats.addEnergyModifier(this);
+		mymanager.addNotify(this);
 
 		myMover = GetComponent<airmover> ();
 		if (!myMover) {
 			myMover = GetComponent<CustomRVO> ();
 		}
+		activateSPeedBoost ();
+	}
 
+	Coroutine inCombat = null;
+	float lastCombatTime;
+
+	public float modify(float amount, GameObject src, DamageTypes.DamageType theType)
+	{
+		checkCombat ();
+		return amount;
+	}
+
+	public float trigger(GameObject source, GameObject projectile,UnitManager target, float damage)
+	{
+		checkCombat ();
+		return damage;
+	}
+
+	void checkCombat()
+	{
+		lastCombatTime = Time.time;
+		if (inCombat == null) {
+			inCombat = StartCoroutine (InCombatCheck ());
+		} 
+
+	}
+
+	IEnumerator InCombatCheck()
+	{
+		yield return 0;
+		DeactivateSpeedBoost ();
+		while(lastCombatTime > Time.time -4 )
+		{
+			yield return new WaitForSeconds (.3f);
+		}
+		activateSPeedBoost ();
+
+		inCombat = null;
 	}
 
 
 
-	public float modify(float amount, GameObject src, DamageTypes.DamageType theType)
-	{
 
+	/*
+
+	public float modify(float amount, GameObject src, DamageTypes.DamageType theType)
+{
 		StartCoroutine (delayedEnergyCheck ());
 
 		return amount;
@@ -71,10 +112,11 @@ public class ShieldSpeedBoost : Buff,Modifier {
 		}
 		
 	}
+	*/
 
 	void activateSPeedBoost()
 	{
-		ShieldsDown = true;
+		//ShieldsDown = true;
 		mymanager.cMover.changeSpeed (speedBoost,0,false,this);
 		BoostEffect.continueEffect ();
 
@@ -87,7 +129,7 @@ public class ShieldSpeedBoost : Buff,Modifier {
 	void DeactivateSpeedBoost()
 	{
 		mymanager.cMover.removeSpeedBuff (this);
-		ShieldsDown = false;
+		//ShieldsDown = false;
 		BoostEffect.stopEffect ();
 		if (select.IsSelected) {
 			RaceManager.upDateSingleCard ();

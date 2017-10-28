@@ -26,6 +26,7 @@ public class WaveManager : MonoBehaviour {
 
 	DifficultyManager difficultyM;
 	RaceManager raceMan;
+	float mystartTime;
 
 	WaveContainer container = null;
 	WaveContainer.WaveOption waveOption;
@@ -68,6 +69,7 @@ public class WaveManager : MonoBehaviour {
 
 
 	void Start () {
+		mystartTime = Time.timeSinceLevelLoad;
 		//GeneralIndex = PlayerPrefs.GetInt ("VoicePack", 0);
 		currentWaveIndex = 0;
 		SpawnerCount = spawnLocations.Count;
@@ -101,7 +103,7 @@ public class WaveManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Clock.main.getTotalSecond () > nextActionTime) {
+		if (Time.timeSinceLevelLoad - mystartTime > nextActionTime) {
 
 			float delay = .1f;
 

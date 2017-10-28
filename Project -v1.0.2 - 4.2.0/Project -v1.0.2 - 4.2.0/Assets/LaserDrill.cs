@@ -110,10 +110,9 @@ public class LaserDrill : MonoBehaviour {
 
 	public void OnDrawGizmos()
 	{
-		if (LaserStartPoint != null) {
 
-			Gizmos.DrawSphere ((transform.rotation) * LaserStartPoint + this.gameObject.transform.position, .5f);
-		}
+		Gizmos.DrawSphere ((transform.rotation) * LaserStartPoint + this.gameObject.transform.position, .5f);
+
 	}
 
 }

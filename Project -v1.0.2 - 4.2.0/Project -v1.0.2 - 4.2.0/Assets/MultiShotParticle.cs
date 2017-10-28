@@ -7,16 +7,27 @@ public class MultiShotParticle : MonoBehaviour {
 	private ParticleSystem ps;
 	private List<ParticleSystem> otherP;
 	private int emmitNUm;
+	private AudioPlayer myPlayer;
 
-	public void Start() 
+	public void Awake() 
 		{otherP = new List<ParticleSystem> ();
 		ps = GetComponent<ParticleSystem>();
 		emmitNUm = ps.maxParticles;
+		myPlayer = GetComponent<AudioPlayer> ();
 
-		foreach (ParticleSystem pps in GetComponentsInChildren<ParticleSystem>()) {
+		recurseAddChildren (transform);
+
+		this.gameObject.SetActive (false);
+	}
+
+	void recurseAddChildren(Transform t)
+	{
+		foreach (ParticleSystem pps in t.GetComponents<ParticleSystem>()) {
 			otherP.Add (pps);
 		}
-		this.gameObject.SetActive (false);
+		foreach (Transform trans in t) {
+			recurseAddChildren (trans);
+	}
 	}
 		
 
@@ -36,7 +47,9 @@ public class MultiShotParticle : MonoBehaviour {
 	public void playEffect()
 	{this.gameObject.SetActive (true);
 
-
+		if (myPlayer) {
+			myPlayer.Start ();
+		}
 		//ps.Clear ();
 		if (ps) {
 			ps.Emit (emmitNUm);

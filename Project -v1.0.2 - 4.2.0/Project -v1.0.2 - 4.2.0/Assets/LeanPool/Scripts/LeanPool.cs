@@ -31,10 +31,10 @@ namespace Lean
 		public GameObject Prefab;
 		
 		[Tooltip("Should this pool preload some clones?")]
-		public int Preload;
+		public int Preload=4;
 		
 		[Tooltip("Should this pool have a maximum amount of spawnable clones?")]
-		public int Capacity;
+		public int Capacity = 100;
 		
 		[Tooltip("Should this pool send messages to the clones when they're spawned/despawned?")]
 		public NotificationType Notification = NotificationType.SendMessage;
@@ -122,11 +122,22 @@ namespace Lean
 
 		public static LeanPool getSpawnPool(GameObject prefab)
 		{
-			var pool = AllPools.Find(p => p.Prefab == prefab);
+			
+			LeanPool pool = null;
+			foreach (LeanPool poo in AllPools) {
+				Debug.Log ("Checking " + prefab + ":::" + poo.name + "-" +poo.Prefab);
+				if (poo.Prefab.name == prefab.name) {
+					pool = poo;
+					break;
+				}
+			}
+			//var pool = AllPools.Find (p => p.Prefab.name == prefab.name);
+			
 
 			// Create a new pool for this prefab?
 			if (pool == null)
 			{
+				Debug.Log ("Creating " + prefab.name);
 				pool = new GameObject(prefab.name + " Pool").AddComponent<LeanPool>();
 
 				pool.Prefab = prefab;
@@ -230,6 +241,7 @@ namespace Lean
 				}
 				
 				// Make a new clone?
+
 				if (Capacity <= 0 || total < Capacity)
 				{
 					var clone = FastClone(position, rotation, parent);
@@ -385,7 +397,7 @@ namespace Lean
 			
 			total += 1;
 			
-			clone.name = Prefab.name + " " + total;
+			clone.name = Prefab.name;
 			
 			clone.transform.SetParent(parent, false);
 			

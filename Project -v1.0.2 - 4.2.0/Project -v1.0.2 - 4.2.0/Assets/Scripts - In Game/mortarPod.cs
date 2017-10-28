@@ -13,7 +13,6 @@ public class mortarPod : MonoBehaviour, Notify {
 
 	public bool FireAll;
 
-	private float nextActionTime;
 	Selected HealthD;
 
 	// Use this for initialization
@@ -27,7 +26,6 @@ public class mortarPod : MonoBehaviour, Notify {
 	
 		shotCount = totalShots;
 		weapon = this.gameObject.GetComponent<IWeapon> ();
-		nextActionTime = Time.time;
 
 		weapon.triggers.Add (this);
 

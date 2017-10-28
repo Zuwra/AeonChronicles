@@ -153,10 +153,12 @@ public class VictoryTrigger : MonoBehaviour {
 	{
 		LevelData.getsaveInfo().ComingFromLevel = true;
 		//ExpositionDisplayer.instance.displayText (6, victoryLine, 1);
+		float totalTime = 0;
 		foreach (int i in winLine) {
 			dialogManager.instance.playLine (i);
-		}
-		yield return new WaitForSeconds (2.5f);
+			totalTime += dialogManager.instance.VoiceLines[i].MainLine.duration;
+			}
+		yield return new WaitForSeconds (totalTime);
 
 		int bonusTech =LevelData.getDifficulty ();
 		if (bonusTech == 1) {

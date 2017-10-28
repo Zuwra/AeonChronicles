@@ -13,7 +13,7 @@ public class ChainWhip : MonoBehaviour {
 	public float maxDamage;
 	public float maxRadius;
 	public IWeapon myWeap;
-	int breakCount = 0;
+	//int breakCount = 0;
 	bool whipOn;
 
 	public float speed;
@@ -108,7 +108,7 @@ public class ChainWhip : MonoBehaviour {
 
 	void halfChain()
 	{	
-		breakCount = 0;
+		//breakCount = 0;
 		Vector3 newScale = transform.localScale;
 		newScale.x *= .5f;
 		if (newScale.x < 10) {

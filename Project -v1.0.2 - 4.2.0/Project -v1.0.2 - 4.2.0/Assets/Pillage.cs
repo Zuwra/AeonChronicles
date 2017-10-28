@@ -25,7 +25,7 @@ public class Pillage : MonoBehaviour , Notify {
 			}
 			GameManager.main.activePlayer.updateResources (moneyPerAttack, 0, true);
 		}
-		//popper.CreatePopUp ("+" + (int)(damage * percentage), Color.gray);
+		//popper.CreatePopUp ("+" + (int)(damage * percentage), Color.gray); 
 		return damage;
 	}
 

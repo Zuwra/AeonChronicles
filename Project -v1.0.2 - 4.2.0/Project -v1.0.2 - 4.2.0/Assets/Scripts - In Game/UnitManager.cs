@@ -227,7 +227,10 @@ public class UnitManager : Unit,IOrderable{
 	}
 
 
-
+	/// <summary>
+	/// Adds the listeners for a weapon Attack.
+	/// </summary>
+	/// <param name="toAdd">To add.</param>
 	public void addNotify(Notify toAdd)
 	{
 		if (!potentialNotify.Contains (toAdd)) {

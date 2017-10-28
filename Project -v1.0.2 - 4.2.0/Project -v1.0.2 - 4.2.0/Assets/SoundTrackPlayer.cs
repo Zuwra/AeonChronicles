@@ -10,7 +10,6 @@ public class SoundTrackPlayer : MonoBehaviour {
 
 	int currentIndex = 0;
 
-	float nextPlayTime;
 
 	void Start () {
 		currentIndex = Random.Range (0, myPlayList.myTracks.Count - 1);
@@ -26,7 +25,6 @@ public class SoundTrackPlayer : MonoBehaviour {
 		mySrc.clip = myPlayList.myTracks [currentIndex];
 		mySrc.Play ();
 
-		nextPlayTime =  Time.unscaledTime + (int)mySrc.clip.length - 1;
 		//Invoke ("playNextTrack", mySrc.clip.length -1.5f);
 
 	}
@@ -65,7 +63,6 @@ public class SoundTrackPlayer : MonoBehaviour {
 		}
 		mySrc.Stop ();
 		mySrc.PlayOneShot (clip);
-		nextPlayTime = Time.unscaledTime + clip.length;
 		for (float i = 0; i < fadeTime / 5; i += Time.deltaTime) {
 			mySrc.volume += FadeRate * Time.deltaTime;
 			yield return null;

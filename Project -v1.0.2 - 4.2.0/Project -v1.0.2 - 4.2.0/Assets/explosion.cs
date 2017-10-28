@@ -16,7 +16,7 @@ public class explosion : MonoBehaviour {
 	private float scale = 1.0f;
 	public List<Notify> triggers = new List<Notify> ();
 
-	private List<GameObject> hitStuff= new List<GameObject>();
+	private List<UnitManager> hitStuff= new List<UnitManager>();
 
 
 	public IWeapon.bonusDamage[] extraDamage;
@@ -60,13 +60,14 @@ public class explosion : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{if (other.isTrigger) {
 			return;}
-		
-		if(!hitStuff.Contains(other.gameObject)) {
-			hitStuff.Add (other.gameObject);
-			UnitManager manager = other.gameObject.GetComponent<UnitManager> ();
 
-			if (manager) {
 
+
+		UnitManager manager = other.gameObject.GetComponent<UnitManager> ();
+
+		if (manager) {
+			if(!hitStuff.Contains(manager)) {
+				hitStuff.Add (manager);
 		
 					float amount = damageAmount	;
 

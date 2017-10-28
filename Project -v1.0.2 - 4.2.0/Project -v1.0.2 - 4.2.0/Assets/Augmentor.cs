@@ -58,7 +58,6 @@ public class Augmentor : TargetAbility, Iinteract, Modifier {
 		target.GetComponent<UnitManager> ().myStats.addDeathTrigger (this);
 
 		AAP.myAugment = this.gameObject;
-		Vector3 attachSpot = target.transform.position+  target.transform.rotation * AAP.attachPoint;
 
 		this.gameObject.transform.position = target.transform.position+  target.transform.rotation * AAP.attachPoint;
 

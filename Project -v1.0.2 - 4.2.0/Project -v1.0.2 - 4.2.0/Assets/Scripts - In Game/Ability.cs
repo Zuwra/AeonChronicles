@@ -43,9 +43,6 @@ public abstract class Ability : MonoBehaviour {
 		{
 		initialized = true;
 
-
-		UnitManager manage = GetComponent<UnitManager>();
-
 		foreach (string s in RequiredUnit) {
 
 			requirementList.Add (s, false);

@@ -64,6 +64,10 @@ public class DaexaSupplyDrop: TargetAbility{
 		tempMan.interactor.initialize ();
 		racer.applyUpgrade (tempMan);
 
+		if (proj.GetComponent<FogOfWarUnit> ()) {
+			proj.GetComponent<FogOfWarUnit> ().AutoUpdate ();
+		}
+
 		proj.GetComponent<SpaceDrop> ().setLocation (location);
 		if (myApplier) {
 			myApplier.applyUlt (proj, this);

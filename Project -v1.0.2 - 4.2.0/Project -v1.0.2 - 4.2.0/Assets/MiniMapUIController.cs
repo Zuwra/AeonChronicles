@@ -46,7 +46,6 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 	public float heightOffset;
    
 	public Sprite UnitSprite;
-	private float nextActionTimea;
 
 	private float nextActionTimec;
 
@@ -119,8 +118,7 @@ public class MiniMapUIController : MonoBehaviour, IPointerDownHandler , IPointer
 		minimapHeight = myRect.rect.height;
 		//Debug.Log ("Mini map " + minimapWidth + " " +minimapHeight + "  " + myRect.sizeDelta + "  " + myRect.rect);
 
-		nextActionTimea = 0;
-	
+
 		WorldHeight = top - bottom;
 		WorldWidth = Right - Left;
 		fog = GameObject.FindObjectOfType<FogOfWar> ();

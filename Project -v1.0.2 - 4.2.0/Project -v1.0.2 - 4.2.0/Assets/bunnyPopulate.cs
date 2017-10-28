@@ -25,15 +25,19 @@ public class bunnyPopulate : MonoBehaviour, Notify {
 		bunnyMan =	GameObject.FindObjectOfType<bunnyManager> ();
 		if(bunnyMan){
 			bunnyMan.changeInBunnyCount (1);}
-		nextRepopulate = repopulateTime + Random.Range(0,randomSpawnRange);
-		myStats = GetComponent<UnitStats> ();
 
+		myStats = GetComponent<UnitStats> ();
 		foreach(IWeapon weap in mymanager.myWeapon)
-			{
+		{
 			weap.addNotifyTrigger (this);
 		}
 
-		Invoke ("BunnyUpdate", nextRepopulate);
+		if (repopulateTime > 0) {
+			nextRepopulate = repopulateTime + Random.Range (0, randomSpawnRange);
+
+
+			Invoke ("BunnyUpdate", nextRepopulate);
+		}
 	}
 	
 	// Update is called once per frame

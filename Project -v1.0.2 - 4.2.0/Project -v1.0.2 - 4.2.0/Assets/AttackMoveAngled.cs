@@ -29,7 +29,7 @@ public class AttackMoveAngled : IWeapon{
 		float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.CharController.radius ;
 
 		float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
-		if (distance > (range + (verticalDistance/3)) || (minimumRange >0 && distance < minimumRange)) {
+		if (distance > (range + (verticalDistance/3))) {
 
 			return false;}
 

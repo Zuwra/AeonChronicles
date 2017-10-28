@@ -51,11 +51,24 @@ public class DamageUpgrade : Upgrade {
 						manager.gameObject.SendMessage ("upgrade", Name,SendMessageOptions.DontRequireReceiver);
 						if (ua.mySpecial.Count > 0) {
 
-					
-							IWeapon.bonusDamage bonus = new IWeapon.bonusDamage ();
-							bonus.bonus =  ua.mySpecial [i].amount;
-							bonus.type = ua.mySpecial [i].myType;
-							manager.myWeapon [i].extraDamage.Add (bonus);
+							IWeapon.bonusDamage foundOne = new IWeapon.bonusDamage();
+							bool found = false;
+							foreach (IWeapon.bonusDamage bonusA in manager.myWeapon[i].extraDamage) {
+								if (bonusA.type == ua.mySpecial [i].myType) {
+									foundOne = bonusA;
+									found = true;
+								}
+							}
+							if (found) {
+								foundOne.bonus += ua.mySpecial [i].amount;
+							}
+
+							else{
+								IWeapon.bonusDamage bonus = new IWeapon.bonusDamage ();
+								bonus.bonus = ua.mySpecial [i].amount;
+								bonus.type = ua.mySpecial [i].myType;
+								manager.myWeapon [i].extraDamage.Add (bonus);
+							}
 						}
 					}
 

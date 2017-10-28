@@ -28,6 +28,8 @@ public class CinematicCamera : SceneEventTrigger {
 
 	Vector3 lookPosition;
 
+	float previousGameSpeed;
+
 	// Update is called once per frame
 	void Update () {
 
@@ -87,6 +89,8 @@ public class CinematicCamera : SceneEventTrigger {
 
 
 	public override void trigger (int index, float input, Vector3 location, GameObject target, bool doIt){
+		previousGameSpeed = Time.timeScale;
+		Time.timeScale = previousGameSpeed;
 		previousCamPos = MainCamera.main.gameObject.transform.position;
 
 
@@ -114,7 +118,8 @@ public class CinematicCamera : SceneEventTrigger {
 	}
 
 	public void exitScene(){
-
+		
+		Time.timeScale = previousGameSpeed;
 		foreach(SceneEventTrigger trig in myScenes[currentScene].nextTrig){
 
 			trig.trigger (0, 0, Vector3.zero, null, false);

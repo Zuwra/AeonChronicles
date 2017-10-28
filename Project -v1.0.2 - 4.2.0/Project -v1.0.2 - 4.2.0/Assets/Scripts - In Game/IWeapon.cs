@@ -31,15 +31,20 @@ public class IWeapon : MonoBehaviour {
 
 	[Tooltip("Having arange that is longer than the vision range is not supported yet")]
 	public float range =5;
-	public float minimumRange;
-
 
 	public GameObject turret;
 	turret turretClass;
-	public List<Vector3> originPoint;
+
+	public List<AnimationPoint> firePoints;
+
+	[System.Serializable]
+	public class AnimationPoint
+	{
+		public Vector3 position;
+		public MultiShotParticle myParticle;
+	}
+
 	protected int originIndex = 0;
-	//private float nextActionTime;
-	public float attackArc;
 	private UnitManager enemy;
 	public float damagePoint;
 
@@ -56,7 +61,7 @@ public class IWeapon : MonoBehaviour {
 
 	public List<Validator> validators = new List<Validator>();
 
-	Lean.LeanPool myBulletPool;
+	protected Lean.LeanPool myBulletPool;
 
 	public void setBulletPool(Lean.LeanPool pool)
 	{
@@ -101,8 +106,9 @@ public class IWeapon : MonoBehaviour {
 		InitialBaseDamage = baseDamage;
 		initalDamageSet = true;
 		initialSpeedSet = true;
-		if (originPoint.Count == 0) {
-			originPoint.Add (Vector3.zero);
+
+		if (firePoints.Count == 0) {
+			firePoints.Add(new AnimationPoint());
 		}
 	}
 	// Use this for initialization
@@ -133,11 +139,7 @@ public class IWeapon : MonoBehaviour {
 	IEnumerator ComeOffDamagePoint(float length)
 	{
 		yield return new WaitForSeconds (length);
-	
-			//onDamagePoint = false;
-			PointSource.cMover.removeSpeedBuff (this);
-	
-
+		PointSource.cMover.removeSpeedBuff (this);
 	}
 
 
@@ -151,19 +153,15 @@ public class IWeapon : MonoBehaviour {
 	public bool simpleCanAttack(UnitManager target)
 	{
 		if (!offCooldown) {
-			//Debug.Log (Title + " On cooldown");
 			return false;}
 		if (!target) {
-			//	Debug.Log (Title + " No title");
 			return false;}
 
 
 
 		foreach (Validator val in validators) {
 			if(val.validate(this.gameObject,target.gameObject) == false)
-			{
-				//Debug.Log ("Not valid");
-				return false;}
+			{return false;}
 		}
 
 
@@ -204,7 +202,7 @@ public class IWeapon : MonoBehaviour {
 		float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.CharController.radius ;
 
 		float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
-		if (distance > (range + (verticalDistance/3)) || (minimumRange >0 && distance < minimumRange)) {
+		if (distance > (range + (verticalDistance/3))) {
 			
 			return false;}
 
@@ -217,7 +215,7 @@ public class IWeapon : MonoBehaviour {
 	
 	}
 
-	public bool inRange(UnitManager target)
+	public virtual bool inRange(UnitManager target)
 	{
 
 		if (this && target) {
@@ -228,12 +226,10 @@ public class IWeapon : MonoBehaviour {
 					return false;	}
 			}
 
-
 			float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.CharController.radius;
-
 			float verticalDistance = this.gameObject.transform.position.y - target.transform.position.y;
 
-			if (distance > (range + (verticalDistance/3 )) ||  (minimumRange >0 && distance < minimumRange)) {
+			if (distance > (range + (verticalDistance/3 ))) {
 
 		
 				return false;
@@ -250,13 +246,8 @@ public class IWeapon : MonoBehaviour {
 	/// </summary>
 	/// <returns><c>true</c>, if minimum range was checked, <c>false</c> otherwise.</returns>
 	/// <param name="target">Target.</param>
-	public bool checkMinimumRange(UnitManager target)
+	public virtual bool checkMinimumRange(UnitManager target)
 	{
-		float distance = Mathf.Sqrt((Mathf.Pow (transform.position.x - target.transform.position.x, 2) + Mathf.Pow (transform.position.z - target.transform.position.z, 2))) - target.CharController.radius;
-		if ( distance < minimumRange) {
-
-			return false;
-		}
 		return true;
 
 	}
@@ -322,38 +313,23 @@ public class IWeapon : MonoBehaviour {
 			GameObject proj = null;
 			if (projectile != null) {
 
-				if (turret) {
-					
-					proj = myBulletPool.FastSpawn(turret.transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
-					//Debug.Log ("Projectile is " + proj);
-					//proj = (GameObject)Instantiate (projectile, turret.transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
-				} else {
-					proj =  myBulletPool.FastSpawn(transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
-					//proj = (GameObject)Instantiate (projectile, transform.rotation * originPoint [originIndex] + this.gameObject.transform.position, Quaternion.identity);
-				}
-				//Debug.Log ("Spawning " + proj);
-				originIndex++;
-				if (originIndex == originPoint.Count) {
-					originIndex = 0;}
-				Projectile script = proj.GetComponent<Projectile> ();
+				proj = createBullet ();
+
 
 				damage = fireTriggers (this.gameObject, proj, target, damage);
-				proj.SendMessage ("setSource", this.gameObject, SendMessageOptions.DontRequireReceiver);
-				proj.SendMessage ("setTarget", target,SendMessageOptions.DontRequireReceiver);
-				proj.SendMessage ("setDamage", damage,SendMessageOptions.DontRequireReceiver);
 
+				Projectile script = proj.GetComponent<Projectile> ();
 				if (script) {
-					script.damage = damage;
+					script.Initialize (target, damage, myManager);
+					script.setup ();
+				} else {
 
-					script.target = target;
-					script.Source = this.gameObject;
+					proj.SendMessage ("setSource", this.gameObject, SendMessageOptions.DontRequireReceiver);
+					proj.SendMessage ("setTarget", target, SendMessageOptions.DontRequireReceiver);
+					proj.SendMessage ("setDamage", damage, SendMessageOptions.DontRequireReceiver);
 				}
-
-
 			} else {
-
-				//OnAttacking();
-				//Debug.Log("Dealing direct Damage");
+				
 				damage = fireTriggers (this.gameObject, proj, target, damage); 
 				if (damage > 0) {
 					damage = target.myStats.TakeDamage (damage, this.gameObject, DamageTypes.DamageType.Regular);
@@ -361,23 +337,44 @@ public class IWeapon : MonoBehaviour {
 				}
 
 			}
+
+
+			if (firePoints[originIndex].myParticle) {
+				Debug.Log ("PLaying effect");
+				firePoints[originIndex].myParticle.playEffect ();
+			}
+			originIndex++;
+
+			if (originIndex ==firePoints.Count) {
+				originIndex = 0;}
+
+
+
 			if (target == null) {
 				myManager.cleanEnemy ();
 			}
+
 			if (attackSoundEffect) {
 				
 				audioSrc.pitch = ((float)Random.Range (7, 12) / 10);
 					SoundManager.PlayOneShotSound(audioSrc, attackSoundEffect);
 				//audioSrc.PlayOneShot (attackSoundEffect, Random.value/3 + .15f);
 			}
-			if (fireEffect) {
-				fireEffect.playEffect ();
-			}
+
 			if (OnHitEffect) {
 				
 				Instantiate (OnHitEffect, target.transform.position, Quaternion.identity);
 			}
 
+		}
+	}
+
+	protected virtual GameObject createBullet()
+	{
+		if (turret) {
+			return myBulletPool.FastSpawn(turret.transform.rotation * firePoints[originIndex].position + turret.transform.position, Quaternion.identity);
+		} else {
+			return myBulletPool.FastSpawn(transform.rotation * firePoints [originIndex].position + this.gameObject.transform.position, Quaternion.identity);
 		}
 	}
 		
@@ -581,14 +578,14 @@ public class IWeapon : MonoBehaviour {
 
 	public void OnDrawGizmos()
 	{
-		if (originPoint != null) {
-			foreach (Vector3 vec in originPoint) {
+
+		foreach (AnimationPoint vec in firePoints) {
 				if (turret) {
-					Gizmos.DrawSphere ((turret.transform.rotation) * vec + this.gameObject.transform.position, .5f);
+				Gizmos.DrawSphere ((turret.transform.rotation) * vec.position +turret.transform.position, .5f);
 				} else {
-					Gizmos.DrawSphere ((transform.rotation) * vec + this.gameObject.transform.position, .5f);
+				Gizmos.DrawSphere ((transform.rotation) *vec.position + this.gameObject.transform.position, .5f);
 				}
-			}
+
 		}
 	}
 
