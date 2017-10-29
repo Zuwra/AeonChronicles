@@ -125,7 +125,7 @@ namespace Lean
 			
 			LeanPool pool = null;
 			foreach (LeanPool poo in AllPools) {
-				Debug.Log ("Checking " + prefab + ":::" + poo.name + "-" +poo.Prefab);
+
 				if (poo.Prefab.name == prefab.name) {
 					pool = poo;
 					break;
@@ -137,7 +137,7 @@ namespace Lean
 			// Create a new pool for this prefab?
 			if (pool == null)
 			{
-				Debug.Log ("Creating " + prefab.name);
+
 				pool = new GameObject(prefab.name + " Pool").AddComponent<LeanPool>();
 
 				pool.Prefab = prefab;

@@ -31,7 +31,7 @@ public class ThrasherBlade : Projectile {
 
 		if (Physics.Raycast (this.gameObject.transform.position + Vector3.up * 4, Vector3.down, out objecthit, 100, (~8))) {
 			float h = Vector3.Distance (this.gameObject.transform.position, objecthit.point);
-			if (h < 2f || h > 4) {
+			if (h < 2.8f || h > 4.4f) {
 
 				tempDir.y -=   (this.gameObject.transform.position.y -(objecthit.point.y + 3f) ) *speed *8;
 			}
@@ -54,7 +54,7 @@ public class ThrasherBlade : Projectile {
 				foreach (rotater rot in GetComponentsInChildren<rotater>()) {
 					rot.speed *=-1; 
 				}
-				rollTime = trueROlltime;
+				rollTime = trueROlltime -.1f;
 				goingOut = false;
 			}
 			else{
@@ -70,9 +70,14 @@ public class ThrasherBlade : Projectile {
 
 	void OnControllerColliderHit(ControllerColliderHit other)
 	{
+		
 	}
 	new void OnTriggerEnter(Collider other)
-	{}
+	{
+		if (other.gameObject == Source && !goingOut) {
+			Destroy (this.gameObject);
+		}
+	}
 
 	 void OnTriggerExit(Collider other)
 	{}

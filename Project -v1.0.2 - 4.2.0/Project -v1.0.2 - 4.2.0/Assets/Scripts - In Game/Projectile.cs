@@ -38,7 +38,7 @@ public  class Projectile : MonoBehaviour {
 	public float FriendlyFire;
 	protected Vector3 randomOffset;
 
-	public GameObject myEffect;
+	GameObject myEffect;
 	MultiShotParticle multiParticle;
 
 	Lean.LeanPool myBulletPool;
@@ -125,8 +125,13 @@ public  class Projectile : MonoBehaviour {
 	// Update is called once per frame
 	protected virtual void Update () {
 
-		if (distance - currentDistance < 1.5f) {
+		if (distance - currentDistance < 1.5f ) {
 			if (target && trackTarget) {
+				if (Vector3.Distance (transform.position, target.transform.position) < 2) {
+					Terminate (target);
+					return;
+				}
+
 				float trueDist = Vector3.Distance (transform.position, target.transform.position + randomOffset);
 				if (trueDist > 2) {
 					distance = trueDist;

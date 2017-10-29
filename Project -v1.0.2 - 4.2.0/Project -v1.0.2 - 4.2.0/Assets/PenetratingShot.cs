@@ -27,7 +27,7 @@ public class PenetratingShot : Projectile {
 	}
 
 	RaycastHit objecthit;
-	new void Update()
+	protected override void Update()
 	{
 		//Debug.Log("Updating penetratiin g" + currentDistance +   "     "+TotalRange);
 		if(currentDistance > TotalRange)
@@ -65,6 +65,21 @@ public class PenetratingShot : Projectile {
 
 
 
+	}
+
+
+	public override void setup()
+	{
+		if (target) {
+
+			CharacterController cont = target.GetComponent<CharacterController> ();
+
+			randomOffset = Vector3.up;
+
+			lastLocation = target.transform.position + randomOffset;
+			distance = Vector3.Distance (this.gameObject.transform.position, lastLocation);
+		}
+		lookAtTarget ();
 	}
 
 	public void OnDespawn()

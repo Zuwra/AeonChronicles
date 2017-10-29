@@ -309,7 +309,6 @@
      <Compile Include="Assets\OathFury.cs" />
      <Compile Include="Assets\ObjectExistAchievement.cs" />
      <Compile Include="Assets\Objective.cs" />
-     <Compile Include="Assets\ObjectiveEditor.cs" />
      <Compile Include="Assets\ObjectiveManager.cs" />
      <Compile Include="Assets\ObjectiveTrigger.cs" />
      <Compile Include="Assets\OneShotParticleSystem.cs" />
@@ -518,6 +517,8 @@
      <Compile Include="Assets\Scripts - In Game\UnitTypes.cs" />
      <Compile Include="Assets\Scripts - In Game\Validator.cs" />
      <Compile Include="Assets\Scripts - In Game\WarpCore.cs" />
+     <Compile Include="Assets\Scripts - In Game\WeaponScripts\MortarProjectile.cs" />
+     <Compile Include="Assets\Scripts - In Game\WeaponScripts\MortarWeapon.cs" />
      <Compile Include="Assets\SelectionNotifier.cs" />
      <Compile Include="Assets\selfDestructTimer.cs" />
      <Compile Include="Assets\ShieldGlobe.cs" />
@@ -891,19 +892,19 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.ClipperLib">
- <HintPath>C:/Users/Matthew Johnson/Desktop/BattleMore/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/Clipper/Pathfinding.ClipperLib.dll</HintPath>
+ <HintPath>C:/Users/Matthew Johnson/Desktop/BattleMoreClean/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/Clipper/Pathfinding.ClipperLib.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Ionic.Zip.Reduced">
- <HintPath>C:/Users/Matthew Johnson/Desktop/BattleMore/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+ <HintPath>C:/Users/Matthew Johnson/Desktop/BattleMoreClean/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.JsonFx">
- <HintPath>C:/Users/Matthew Johnson/Desktop/BattleMore/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
+ <HintPath>C:/Users/Matthew Johnson/Desktop/BattleMoreClean/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/JsonFx/Pathfinding.JsonFx.dll</HintPath>
  </Reference>
  <Reference Include="Pathfinding.Poly2Tri">
- <HintPath>C:/Users/Matthew Johnson/Desktop/BattleMore/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
+ <HintPath>C:/Users/Matthew Johnson/Desktop/BattleMoreClean/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/Plugins/AstarPathfindingProject/Plugins/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
  </Reference>
  <Reference Include="UIAddons">
- <HintPath>C:/Users/Matthew Johnson/Desktop/BattleMore/AeonChronicles/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/UIAddons/Plugins/UIAddons/UIAddons.dll</HintPath>
+ <HintPath>C:/Users/Matthew Johnson/Desktop/BattleMoreClean/Project -v1.0.2 - 4.2.0/Project -v1.0.2 - 4.2.0/Assets/UIAddons/Plugins/UIAddons/UIAddons.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
