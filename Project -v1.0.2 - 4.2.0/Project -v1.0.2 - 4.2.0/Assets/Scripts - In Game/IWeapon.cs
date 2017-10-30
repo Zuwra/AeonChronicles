@@ -9,8 +9,10 @@ public class IWeapon : MonoBehaviour {
 	public string Title;
 	public Sprite myIcon;
 	public UnitManager myManager;
-	public MultiShotParticle fireEffect;
+
 	public GameObject OnHitEffect;
+	MultiShotParticle fireEffect;
+
 	public AudioClip attackSoundEffect;
 	protected AudioSource audioSrc;
 	public Animator myAnimator;
@@ -362,8 +364,16 @@ public class IWeapon : MonoBehaviour {
 			}
 
 			if (OnHitEffect) {
-				
-				Instantiate (OnHitEffect, target.transform.position, Quaternion.identity);
+
+				if (!fireEffect) {
+					GameObject temp = (GameObject)Instantiate (OnHitEffect, target.transform.position, Quaternion.identity);
+					fireEffect = OnHitEffect.GetComponent<MultiShotParticle> ();
+					fireEffect.playEffect ();
+				} else {
+					fireEffect.transform.position = target.transform.position + Vector3.up;
+					fireEffect.playEffect ();
+				}
+				Debug.Log ("Playing eeffect " + fireEffect.gameObject.activeSelf);
 			}
 
 		}
@@ -413,13 +423,6 @@ public class IWeapon : MonoBehaviour {
 
 	public bool isValidTarget(UnitManager target)
 	{
-		if (range < 4) {
-			if (target.cMover is airmover) {
-				return false;
-			}
-
-		
-		}
 
 		foreach (UnitTypes.UnitTypeTag ty in cantAttackTypes) {
 			if (target.myStats.isUnitType (ty))

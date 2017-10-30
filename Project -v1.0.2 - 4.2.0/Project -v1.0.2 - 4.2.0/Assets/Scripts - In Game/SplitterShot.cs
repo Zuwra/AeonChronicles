@@ -126,6 +126,12 @@ public class SplitterShot : Projectile {
 		
 	}
 
+	public override void setup()
+	{	base.setup ();
+		hitlist = Source.GetComponent<SplitterHitList> ();
+
+	}
+
 
 	new void OnTriggerEnter(Collider other)
 	{
