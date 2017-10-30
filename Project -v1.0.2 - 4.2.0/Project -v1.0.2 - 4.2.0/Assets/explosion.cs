@@ -26,7 +26,8 @@ public class explosion : MonoBehaviour {
 	void Start () {
 		if (particleEff) {
 		
-			Instantiate (particleEff, this.gameObject.transform.position, Quaternion.identity);
+			GameObject obj = 	(GameObject)Instantiate (particleEff, this.gameObject.transform.position, Quaternion.identity);
+
 		}
 	
 	}
