@@ -22,7 +22,6 @@ public class UnitCardCreater : MonoBehaviour {
 
 	public Text ArmorTypes;
 	public Text SizeTypes;
-	public Text OtherTypes;
 
 	public Image damageIcon;
 	public Image rangeIcon;
@@ -50,8 +49,11 @@ public class UnitCardCreater : MonoBehaviour {
 	public Image UnitPortrait;
 	string blankText = "";
 
+	GameObject BuffIcon;
+
 	// Use this for initialization
 	void Start () {
+		BuffIcon = Resources.Load<GameObject> ("BuffIcon");
 		builder = GetComponent<BuilderUI> ();
 	
 	}
@@ -179,14 +181,6 @@ public class UnitCardCreater : MonoBehaviour {
 		SizeTypes.text = blankText + manager.myStats.sizeType;
 		string s = "  ";
 
-		if(manager.myStats.otherTags.Count > 0){
-
-		s = " - ";
-			foreach(UnitTypes.UnitTypeTag ut in manager.myStats.otherTags){
-			s += ut + " - ";
-			}
-		}
-		OtherTypes.text = s;
 	
 		if (currentUnit.myStats.MaxEnergy > 0) {
 			energyIcon.enabled = true;
@@ -226,21 +220,22 @@ public class UnitCardCreater : MonoBehaviour {
 
 		foreach (Buff dabuff in manager.myStats.goodBuffs) {
 			if (dabuff != null) {
-			
-			
-				GameObject ic = (GameObject)Instantiate (Resources.Load ("BuffIcon"));
-				ic.transform.SetParent (BuffList.transform);
+
+				GameObject ic = (GameObject)Instantiate (BuffIcon, BuffList.transform);
 				ic.transform.Find ("BuffHelp").GetComponentInChildren<Text> ().text = dabuff.toolDescription;
 				ic.GetComponent<Image> ().sprite = dabuff.HelpIcon;
+				ic.GetComponentInChildren<Canvas> ().overrideSorting = true;
+				ic.GetComponentInChildren<Canvas> ().sortingOrder = 10;
 			}
 		}
 
 		foreach (Buff dabuff in manager.myStats.badBuffs) {
 			if (dabuff != null) {
-				GameObject ic = (GameObject)Instantiate (Resources.Load ("BuffIcon"));
-				ic.transform.SetParent (BuffList.transform);
+				GameObject ic = (GameObject)Instantiate (BuffIcon, BuffList.transform);
 				ic.transform.Find ("BuffHelp").GetComponentInChildren<Text> ().text = dabuff.toolDescription;
 				ic.GetComponent<Image> ().sprite = dabuff.HelpIcon;
+				ic.GetComponentInChildren<Canvas> ().overrideSorting = true;
+				ic.GetComponentInChildren<Canvas> ().sortingOrder = 10;
 			}
 		}
 

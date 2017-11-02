@@ -15,14 +15,12 @@ public class StatsUI : MonoBehaviour {
 
 	private Text OneText;
 	private Text TwoText;
-	private Text ThreeText;
 	public Text UnitName;
 	public Button SelectButton;
 	// Use this for initialization
 	void Awake () {
 		OneText = columnOne.GetComponent<Text> ();
 		TwoText = columnTwo.GetComponent<Text> ();
-		ThreeText = columnThree.GetComponent<Text> ();
 	
 	}
 	
@@ -62,10 +60,9 @@ public class StatsUI : MonoBehaviour {
 			}
 		} 
 		if (number > 4) {
-			ThreeText.text = "( " + number + " )";
-		} else {
-			ThreeText.text = "";
-		}
+			UnitName.text += " ( " + number + " )";
+
+		} 
 
 	}
 
@@ -79,13 +76,18 @@ public class StatsUI : MonoBehaviour {
 		UnitName.text = "";
 		OneText.text = "";
 		TwoText.text = "";
-		ThreeText.text = "";
 		SelectButton.enabled = false;
 	}
 
 	public void SelectAllUnits()
 	{
-		SelectedManager.main.selectAllUnitType (null, UnitName.text);
+
+		string text = UnitName.text;
+		if (text.Contains ("(")) {
+			text = text.Substring (0, text.IndexOf ("(")-1);
+		}
+		Debug.Log ("Selecting all " + text);
+		SelectedManager.main.selectAllUnitType (null,text);
 	}
 
 }

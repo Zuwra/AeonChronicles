@@ -137,7 +137,6 @@ namespace Lean
 			// Create a new pool for this prefab?
 			if (pool == null)
 			{
-
 				pool = new GameObject(prefab.name + " Pool").AddComponent<LeanPool>();
 
 				pool.Prefab = prefab;
